@@ -1,0 +1,55 @@
+# Using R Studio online
+
+(a) Point your web browser at <http://r.datatools.utoronto.ca>. Click on the button to the left of "R Studio" (it will show blue), click the orange Log in to Start, and log in using your UTorID and password.
+
+Solution
+
+This is about what you should see first, before you click the orange thing:
+
+![](Screenshot_2021-08-27_14-54-52.png)
+
+You will see a progress bar as things start up, and then you should see something like this:
+
+![](Screenshot_2023-05-16_12-12-45.png)
+
+This is R Studio, ready to go.
+
+If you are already logged in to something else on the same browser that uses your UTorID and password, you may come straight here without needing to log in again.
+
+$\blacksquare$
+
+(b) Take a look around, and create a new Project. Give the new project any name you like.
+
+Solution
+
+Select File and New Project to get this:
+
+![](Screenshot_2021-08-27_15-39-02.png)
+
+Click on New Directory (highlighted blue on mine). This will create a new folder to put your new project in, which is usually what you want to do. The idea is that a project is a container for a larger collection of work, such as all your assignments in this course. That brings you to this:
+
+![](Screenshot_2021-08-27_15-43-04.png)
+
+where you click on New Project (highlighted on mine), and:
+
+![](Screenshot_2021-08-27_15-44-58.png)
+
+Give your project a name, as I did. Then click Create Project. At this point, R Studio will be restarted in your new project. You can tell which project you are in by looking top right, and you'll see the name of your project next to the R symbol:
+
+![](Screenshot_2021-08-27_16-00-36.png)
+
+$\blacksquare$
+
+(c) One last piece of testing: find the Console window (which is probably on the left). Click next to the blue \>, and type `library(tidyverse)`. Press Enter.
+
+Solution
+
+It may think a bit, and then you'll see something like this:
+
+![](Screenshot_2022-08-30_16-07-40.png)
+
+Aside: I used to use a cloud R Studio called `rstudio.cloud`. If you see or hear any references to that, it means the same thing as R Studio on `r.datatools` or `jupyter`. (You can still use `rstudio.cloud` if you want; it used to be completely free, but now the free tier won't last you very long; the `utoronto.ca`link is free as long as you are at U of T.) I'm trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.
+
+Now we can get down to some actual work.
+
+$\blacksquare$

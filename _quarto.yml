@@ -2,16 +2,12 @@ project:
   type: book
 
 book:
-  title: "pasias2"
-  author: "Norah Jones"
+  title: "Problems and Solutions in Applied Statistics (2nd ed)"
+  author: "Ken Butler"
   date: "2023-05-23"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
-
-bibliography: references.bib
+    - getting_used.qmd
 
 format:
   html:
