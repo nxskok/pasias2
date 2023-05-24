@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,10 +17,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,13 +46,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -64,6 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./reading-in.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -94,7 +124,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -103,16 +135,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting_used.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -120,48 +147,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
     </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting_used.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#using-r-studio-online" id="toc-using-r-studio-online" class="nav-link active" data-scroll-target="#using-r-studio-online"><span class="header-section-number">1.1</span> Using R Studio online</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.2</span> Getting started</a></li>
-  <li><a href="#reading-data-from-a-file" id="toc-reading-data-from-a-file" class="nav-link" data-scroll-target="#reading-data-from-a-file"><span class="header-section-number">1.3</span> Reading data from a file</a></li>
-  <li><a href="#reading-files-different-ways" id="toc-reading-files-different-ways" class="nav-link" data-scroll-target="#reading-files-different-ways"><span class="header-section-number">1.4</span> Reading files different ways</a></li>
-  <li><a href="#getting-started-1" id="toc-getting-started-1" class="nav-link" data-scroll-target="#getting-started-1"><span class="header-section-number">1.5</span> Getting started</a></li>
-  <li><a href="#reading-data-from-a-file-1" id="toc-reading-data-from-a-file-1" class="nav-link" data-scroll-target="#reading-data-from-a-file-1"><span class="header-section-number">1.6</span> Reading data from a file</a></li>
-  <li><a href="#reading-files-different-ways-1" id="toc-reading-files-different-ways-1" class="nav-link" data-scroll-target="#reading-files-different-ways-1"><span class="header-section-number">1.7</span> Reading files different ways</a></li>
+  <li><a href="#using-r-studio-online" id="toc-using-r-studio-online" class="nav-link active" data-scroll-target="#using-r-studio-online"><span class="toc-section-number">1.1</span>  Using R Studio online</a></li>
+  <li><a href="#using-r-studio-on-your-own-computer" id="toc-using-r-studio-on-your-own-computer" class="nav-link" data-scroll-target="#using-r-studio-on-your-own-computer"><span class="toc-section-number">1.2</span>  Using R Studio on your own computer</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="toc-section-number">1.3</span>  Getting started</a></li>
+  <li><a href="#reading-data-from-a-file" id="toc-reading-data-from-a-file" class="nav-link" data-scroll-target="#reading-data-from-a-file"><span class="toc-section-number">1.4</span>  Reading data from a file</a></li>
+  <li><a href="#reading-files-different-ways" id="toc-reading-files-different-ways" class="nav-link" data-scroll-target="#reading-files-different-ways"><span class="toc-section-number">1.5</span>  Reading files different ways</a></li>
   </ul>
 </nav>
     </div>
@@ -170,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></h1>
 </div>
 
 
@@ -185,8 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>or skip this for now:</p>
-<p>My solutions follow the problems. Look ahead if you get stuck. Don’t forget <code>library(tidyverse)</code> if you need it:</p>
+<p>Don’t forget <code>library(tidyverse)</code> first if you need it (you probably will).</p>
+<div class="cell">
+
+</div>
 <section id="using-r-studio-online" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="using-r-studio-online"><span class="header-section-number">1.1</span> Using R Studio online</h2>
 <ol type="a">
@@ -219,342 +248,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Solution</p>
 <p>It may think a bit, and then you’ll see something like this:</p>
 <p><img src="Screenshot_2022-08-30_16-07-40.png" class="img-fluid"></p>
-<p>Aside: I used to use a cloud R Studio called <code>rstudio.cloud</code>. If you see or hear any references to that, it means the same thing as R Studio on <code>r.datatools</code> or <code>jupyter</code>. (You can still use <code>rstudio.cloud</code> if you want; it used to be completely free, but now the free tier won’t last you very long; the <code>utoronto.ca</code> link is free as long as you are at U of T.) I’m trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.</p>
+<p>Aside: I used to use a cloud R Studio called <code>rstudio.cloud</code>. If you see or hear any references to that, it means the same thing as R Studio on <code>r.datatools</code> or <code>jupyter</code>. (You can still use <code>rstudio.cloud</code> if you want; it used to be completely free, but now the free tier won’t last you very long; the <code>utoronto.ca</code>link is free as long as you are at U of T.) I’m trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.</p>
 <p>Now we can get down to some actual work.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="getting-started" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1.2</span> Getting started</h2>
+<section id="using-r-studio-on-your-own-computer" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="using-r-studio-on-your-own-computer"><span class="header-section-number">1.2</span> Using R Studio on your own computer</h2>
+<p>This is not required now, but you may wish to do this now or later so that you are not fighting for resources on the <code>r.datatools</code> server at busy times (eg. when an assignment is due).</p>
+<p>Follow the instructions <a href="http://ritsokiguess.site/lecture-notes/running.html#/installing-r-on-your-own-computer">here</a> to install R Studio on your computer, then start R Studio (which itself starts R).</p>
+<p>Once you have this working, you can use it for any of the following questions, in almost exactly the same way as the online R (I will explain any differences).</p>
+</section>
+<section id="getting-started" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1.3</span> Getting started</h2>
 <p>This question is to get you started using R.</p>
 <ol type="a">
-<li><p>Start R Studio, in some project. (If you started up a new project in the previous question and still have that open, use that; if not, create a new project.)</p></li>
-<li><p>We’re going to do some stuff in R here, just to get used to it. First, make an R Notebook by selecting File, New File and R Notebook.</p></li>
-<li><p>Change the title to something of your choosing. Then go down to line 5, click on the Insert button and select R. You should see a “code chunk” appear at line 5, which we are going to use in a moment.</p></li>
-<li><p>Type the line of code shown below into the chunk in the R Notebook:</p></li>
-</ol>
-<pre><code>
-mtcars
-</code></pre>
-<ol start="5" type="a">
-<li><p>Run this command. To do that, look at the top right of your code chunk block (shaded in a slightly different colour). You should see a gear symbol, a down arrow and a green “play button”. Click the play button. This will run the code, and show the output below the code chunk.</p></li>
-<li><p>Something a little more interesting: <code>summary</code> obtains a summary of whatever you feed it (the five-number summary plus the mean for numerical variables). Obtain this for our data frame. To do this, create a new code chunk below the previous one, type <code>summary(mtcars)</code> into the code chunk, and run it.</p></li>
-<li><p>Let’s make a boxplot of the gas mileage data. This is a “poor man’s boxplot”; we’ll see a nicer-looking way later. To do it this way, make another new code chunk, enter the code <code>boxplot(mtcars$mpg)</code> into it, and run the chunk.</p></li>
-<li><p>Some aesthetics to finish with: delete the template notebook (all the stuff you didn’t type below your code chunks and output). Then add some narrative text above and below your code chunks. Above the code chunk is where you say what you are going to do (and maybe why you are doing it), and below is where you say what you conclude from the output you just obtained.</p></li>
-<li><p>Save your notebook (the usual way with File and Save). This saves it <em>on the <code>r.datatools</code> server</em> (and not on your computer, unless you are running R Studio on your computer). This means that when you come back to <code>r.datatools</code> later, even from another device, this notebook will still be available to you. Now click Preview. This produces a pretty HTML version of your notebook.</p></li>
-<li><p>Optional extra: Practice handing in your previewed R notebook, as if it were an assignment that was worth something. (It is good to get the practice in a low-stakes situation, so that you’ll know what to do next week.)</p></li>
-<li><p>Optional extra. Something more ambitious: make a scatterplot of gas mileage <code>mpg</code>, on the <span class="math inline">\(y\)</span> axis, against horsepower, <code>hp</code>, on the <span class="math inline">\(x\)</span>-axis.</p></li>
-</ol>
-</section>
-<section id="reading-data-from-a-file" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="reading-data-from-a-file"><span class="header-section-number">1.3</span> Reading data from a file</h2>
-<p>In this question, we read a file from the web and do some descriptive statistics and a graph. This is very like what you will be doing on future assignments, so it’s good to practice it now.</p>
-<p>Take a look at the data file at <a href="http://ritsokiguess.site/datafiles/jumping.txt">http://ritsokiguess.site/datafiles/jumping.txt</a>. These are measurements on 30 rats that were randomly made to do different amounts of jumping by group (we’ll see the details later in the course). The control group did no jumping, and the other groups did “low jumping” and “high jumping”. The first column says which jumping group each rat was in, and the second is the rat’s bone density (the experimenters’ supposition was that more jumping should go with higher bone density).</p>
-<ol type="a">
-<li><p>What are the two columns of data separated by? (The fancy word is “delimited”).</p></li>
-<li><p>Make a new R Notebook. Leave the first four lines, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</p></li>
-<li><p>Put the URL of the data file in a variable called <code>my_url</code>. Then use <code>read_delim</code> to read in the file. (See solutions for how.) <code>read_delim</code> reads data files where the data values are always separated by the same single character, here a space. Save the data frame in a variable <code>rats</code>.</p></li>
-<li><p>Take a look at your data frame, by making a new code chunk and putting the data frame’s name in it (as we did with <code>mtcars</code>).</p></li>
-<li><p>Find the mean bone density for rats that did each amount of jumping.</p></li>
-<li><p>Make a boxplot of bone density for each jumping group.</p></li>
-</ol>
-</section>
-<section id="reading-files-different-ways" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="reading-files-different-ways"><span class="header-section-number">1.4</span> Reading files different ways</h2>
-<p>This question is about different ways of reading data files. If you’re using <code>r.datatools</code> (online), start at the beginning. If you’re using R Studio running on your own computer, start at part (<a href="#part:own-start">here</a>).</p>
-<ol type="a">
-<li>Log in to <code>r.datatools.utoronto.ca</code>. Open up a project (or start a new one), and watch the spinning circles for a few minutes. When that’s done, create a new Quarto Document with File, New File, Quarto Document. Delete the “template” document, but keep the top lines with <code>title:</code> and possibly <code>output:</code> in them. Add a code chunk that contains <code>library(tidyverse)</code> and run it.</li>
+<li>Start R Studio on <code>r.datatools</code> (or on your computer), in some project. (If you started up a new project in the previous question and are still logged in, use that; if not, create a new project with File, New Project, and New Directory. Then select New Project and give it a name. Click Create Project. This will give you an empty workspace to start from.)</li>
 </ol>
 <p>Solution</p>
-<p>So far you (with luck) have something that looks like this:</p>
-<p><img src="Screenshot_2019-01-10_11-55-06.png" class="img-fluid"></p>
-<p>If you have an error rather than that output, you probably need to install the <code>tidyverse</code> first. Make another code chunk, containing</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and run it. Wait for it to finish. It may take a while. If it completes successfully (you might see the word DONE at the end), delete that code chunk (you don’t need it any more) and try again with the <code>library(tidyverse)</code> chunk. It should run properly this time.</p>
+<p>You ought to see something like this:</p>
+<p><img src="Screenshot_2023-05-16_12-12-45.png" class="img-fluid"></p>
+<p>There should be one thing on the left half, and at the top right it’ll say “Environment is empty”.</p>
+<p>Extra: if you want to tweak things, select Tools (at the top of the screen) and from it Global Options, then click Appearance. You can make the text bigger or smaller via Editor Font Size, and choose a different colour scheme by picking one of the Editor Themes (which previews on the right). My favourite is Tomorrow Night Blue. Click Apply or OK when you have found something you like. (I spend a lot of time in R Studio, and I like having a dark background to be easier on my eyes.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
-<li><a name="part:internet-file">*</a> The easiest kind of files to read in are ones on the Internet, with a URL address that begins with <code>http</code> or <code>https</code>. I have a small file at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</li>
+<li>We’re going to do some stuff in R here, just to get used to it. First, make a Quarto document by selecting File, New File and Quarto Document.</li>
 </ol>
 <p>Solution</p>
-<p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: " "
-chr (1): g
-dbl (2): x, y
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
-</div>
-<p>:::</p>
-<p>When you run that, you’ll see something like my output. The first part is <code>read_delim</code> telling you what it saw in the file: two columns of (whole) numbers and one column of text. The top line of the file is assumed to contain names, which are used as the names of the columns of your data frame. The bottom part of the output, obtained by putting the name of the data frame on a line by itself in your code chunk, is what the data frame actually looks like. You ought to get into the habit of eyeballing it and checking that it looks like the values in the data file.</p>
-<p>The things on the left side of the equals signs are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
+<p>In the first box that pops up, you’ll be invited to give your document a title. Make something up for now.</p>
+<p>The first time, you might be invited to “install some packages” to make the document thing work.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Let it do that by clicking Yes. After that, you’ll have this:</p>
+<p><img src="Screenshot_2023-05-16_12-31-50.png" class="img-fluid"></p>
+<p>A couple of technical notes:</p>
+<ul>
+<li><p>this should be in the top left pane of your R Studio now, with the Console below it.</p></li>
+<li><p>At the top of the file, between the two lines with three hyphens (minus signs, whatever), is some information about the document, known in the jargon as a YAML block, any of which you can change:</p>
+<ul>
+<li><p>the title is whatever title you gave your document</p></li>
+<li><p>the <code>format</code>is what the <em>output</em> is going to be (in this case, HTML like a webpage, which is mostly what we’ll be using)</p></li>
+<li><p>there is a visual editor that looks like Notion or a bit like a Google doc (the default), and also a Source editor which gives you more control, and shows that underlying the document is a thing called R Markdown (which is a code for writing documents).</p></li>
+</ul></li>
+<li><p>My <em>document</em> is called “My awesome title”, but the <em>file</em> in which the document lives is still untitled because I haven’t saved it yet. See right at the top.</p></li>
+</ul>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
-<li>You might have data in a file on your own computer. To read data from such a file, you first have to <em>upload</em> it to <code>r.datatools</code>, and then read it from there. To practice this: open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Upload that file to <code>r.datatools</code>, read in the data and verify that you get the right thing. (For this last part, see the Solution.)</li>
-</ol>
-<p>Solution</p>
-<p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Then go back to <code>r.datatools</code>. You should have a Files pane bottom right. If you don’t see a pane bottom right at all, press Control-Shift-0 to show all the panes. If you see something bottom right but it’s not Files (for example a plot), click the Files tab, and you should see a list of things that look like files, like this:</p>
-<p><img src="Screenshot_2019-01-10_12-29-48.png" class="img-fluid"></p>
-<p>Click the Upload button (next to New Folder), click Choose File. Use the file finder to track down the file you saved on your computer, then click OK. The file should be uploaded to the same folder on <code>r.datatools</code> that your project is, and appear in the Files pane bottom right. To read it in, you supply the file name to <code>read_delim</code> thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"testing.txt"</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: " "
-chr (1): g
-dbl (2): x, y
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<p>:::</p>
-<p>and then you look at it in the same way as before:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
-</div>
-</div>
-<p>Check.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="4" type="a">
-<li>You might have a spreadsheet on your computer. Create a <code>.csv</code> file from it, and use the ideas of the last part to read it into R Studio.</li>
-</ol>
-<p>Solution</p>
-<p>Open the spreadsheet containing the data you want to read into R. If there are several sheets in the workbook, make sure you’re looking at the right one. Select File, Save As, select “CSV” or “comma-separated values” and give it a name. Save the resulting file somewhere.</p>
-<p>Then follow the same steps as the previous part to upload it to your project on <code>r.datatools</code>. (If you look at the actual file, it will be plain text with the data values having commas between them, as the name suggests. You can open the file in R Studio by clicking on it in the Files pane; it should open top left.)</p>
-<p>The final step is to read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one.</p>
-<p>My spreadsheet got saved as <code>cars.csv</code>, so:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 38 Columns: 6
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (2): Car, Country
-dbl (4): MPG, Weight, Cylinders, Horsepower
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 38 × 6
-   Car                  MPG Weight Cylinders Horsepower Country
-   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
- 1 Buick Skylark       28.4   2.67         4         90 U.S.   
- 2 Dodge Omni          30.9   2.23         4         75 U.S.   
- 3 Mercury Zephyr      20.8   3.07         6         85 U.S.   
- 4 Fiat Strada         37.3   2.13         4         69 Italy  
- 5 Peugeot 694 SL      16.2   3.41         6        133 France 
- 6 VW Rabbit           31.9   1.92         4         71 Germany
- 7 Plymouth Horizon    34.2   2.2          4         70 U.S.   
- 8 Mazda GLC           34.1   1.98         4         65 Japan  
- 9 Buick Estate Wagon  16.9   4.36         8        155 U.S.   
-10 Audi 5000           20.3   2.83         5        103 Germany
-# ℹ 28 more rows</code></pre>
-</div>
-</div>
-<p>Some information about different types of cars.</p>
-<p>You are now done with this question.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="5" type="a">
-<li><a name="part:own-start">*</a> Start here if you downloaded R and R Studio and they are running on your own computer. Open a web browser and point it at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</li>
-</ol>
-<p>Solution</p>
-<p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: " "
-chr (1): g
-dbl (2): x, y
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
-</div>
-<p>:::</p>
-<p>When you run that, you’ll see something like my output. The first part is <code>read_delim</code> telling you what it saw in the file: two columns of (whole) numbers and one column of text. The top line of the file is assumed to contain names, which are used as the names of the columns of your data frame. The bottom part of the output, obtained by putting the name of the data frame on a line by itself in your code chunk, is what the data frame actually looks like. You ought to get into the habit of eyeballing it and checking that it looks like the values in the data file.</p>
-<p>The things on the left side of the equals signs are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
-<p>(This part is exactly the same whether you are running R Studio online or have R Studio running on your computer. A remote file is obtained in exactly the same way regardless.)</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="6" type="a">
-<li>You might have data in a file on your own computer. To read data from such a file, R has to know where to find it. Each R project lives in a folder, and one way of specifying where a data file is is to give its complete path relative to the folder that R Studio is running its current project in. This is rather complicated, so we will try a simpler way. To set this up, open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Follow the steps in the solution below to read the data into R.</li>
-</ol>
-<p>Solution</p>
-<p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Go back to R Studio. Create a new code chunk containing this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<p>Run this code chunk. You’ll see a file chooser. Find the file you saved on your computer, and click Open (or OK or whatever you see). This saves what R needs to access the file in the variable <code>f</code>. If you want to, you can look at it:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and you’ll see what looks like a file path in the appropriate format for your system (Windows, Mac, Linux). To read the data in, you supply the file path to <code>read_delim</code> thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(f, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<p>and then you look at it in the same way as before:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
-</div>
-</div>
-<p>Check.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="7" type="a">
-<li>You might have a spreadsheet on your computer. Create a <code>.csv</code> file from it, and use the ideas of the last part to read it into R Studio.</li>
-</ol>
-<p>Solution</p>
-<p>Open the spreadsheet containing the data you want to read into R. If there are several sheets in the workbook, make sure you’re looking at the right one. Select File, Save As, select “CSV” or “comma-separated values” and give it a name. Save the resulting file somewhere.</p>
-<p>Then read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one. Before that, though, again run</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>to find the <code>.csv</code> file on your computer, and then</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>to read it in. My spreadsheet was</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 38 × 6
-   Car                  MPG Weight Cylinders Horsepower Country
-   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
- 1 Buick Skylark       28.4   2.67         4         90 U.S.   
- 2 Dodge Omni          30.9   2.23         4         75 U.S.   
- 3 Mercury Zephyr      20.8   3.07         6         85 U.S.   
- 4 Fiat Strada         37.3   2.13         4         69 Italy  
- 5 Peugeot 694 SL      16.2   3.41         6        133 France 
- 6 VW Rabbit           31.9   1.92         4         71 Germany
- 7 Plymouth Horizon    34.2   2.2          4         70 U.S.   
- 8 Mazda GLC           34.1   1.98         4         65 Japan  
- 9 Buick Estate Wagon  16.9   4.36         8        155 U.S.   
-10 Audi 5000           20.3   2.83         5        103 Germany
-# ℹ 28 more rows</code></pre>
-</div>
-</div>
-<p>Some information about different types of cars.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<p>My solutions follow:</p>
-</section>
-<section id="getting-started-1" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="getting-started-1"><span class="header-section-number">1.5</span> Getting started</h2>
-<p>This question is to get you started using R.</p>
-<ol type="a">
-<li>Start R Studio at <code>r.datatools</code> or on your computer, in some project. (If you started up a new project in the previous question and are still logged in, use that; if not, create a new project with File, New Project, and New Directory. Then select New Project and give it a name. Click Create Project. This will give you an empty workspace to start from.)</li>
-</ol>
-<p>Solution</p>
-<p>You ought to see something like this. I have a dark blue background here, which you probably do not.</p>
-<p><img src="empty.png" class="img-fluid"></p>
-<p>It won’t look exactly like that (for example, the background will probably be white) but there should be one thing on the left half, and at the top right it’ll say “Environment is empty”. Extra: if you want to tweak things, select Tools (at the top of the screen) and from it Global Options, then click Appearance. You can make the text bigger or smaller via Editor Font Size, and choose a different colour scheme by picking one of the Editor Themes (which previews on the right). My favourite is Tomorrow Night Blue. Click Apply or OK when you have found something you like. (I spend a lot of time in R Studio, and I like having a dark background to be easier on my eyes.)</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="2" type="a">
-<li>We’re going to do some stuff in R here, just to get used to it. First, make a Quarto Document by selecting File, New File and Quarto Document.</li>
-</ol>
-<p>Solution</p>
-<p>The first time, you might be invited to “install some packages” to make the Document thing work. Let it do that by clicking Yes. After that, you’ll have something like this:</p>
-<p><img src="rnote1.png" class="img-fluid"></p>
-<p>*** need a new screenshot</p>
-<p>*** need to talk about source and visual mode</p>
-<p>Find the Insert and Run buttons along the top of the document window. We’ll be using them shortly. (The template notebook may or may not be maximized; it doesn’t matter either way. You might see all four panes or as few as one. If you want to control that, select View at the top, then Panes, then either Show All Panes or Zoom Source, as you prefer. In the menus, you’ll also see keyboard shortcuts for these, which you might find worth learning.)</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="3" type="a">
-<li>Change the title to something of your choosing. Then go down to line 5, click on the Insert button and select R. You should see a “code chunk” appear at line 5, which we are going to use in a moment.</li>
+<li>You can delete the template code below the YAML block now (that is, everything from the title “Quarto” to the end). Somewhere in the space opened up below the YAML block (it might say “Heading 2”, greyed out), type a /. This, like Notion, gives you a list of things to choose from to insert there. Pressing Enter will insert a “code chunk”, sometimes known as a “code cell”. We are going to use this in a moment.</li>
 </ol>
 <p>Solution</p>
 <p>Something like this:</p>
-<p><img src="chunk1.png" class="img-fluid"></p>
+<p><img src="Screenshot_2023-05-16_13-00-52.png" class="img-fluid"></p>
+<p>The {r} at the top of the code chunk means that the code that will go in there will be R code (you can also have a Python code chunk, among others).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
-<li>Type the line of code shown below into the chunk in the Document:</li>
+<li>On the line below the <code>{r}</code>, type these two lines of code into the chunk in the Quarto document:</li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>library(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Solution</p>
 <p>What this will do: get hold of a built-in data set with information about some different models of car, and display it.</p>
-<p><img src="chunk2.png" class="img-fluid"></p>
+<p><img src="Screenshot_2023-05-16_13-13-46.png" class="img-fluid"></p>
 <p>In approximately five seconds, you’ll be demonstrating that for yourself.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
-<li>Run this command. To do that, look at the top right of your code chunk block (shaded in a slightly different colour). You should see a gear symbol, a down arrow and a green “play button”. Click the play button. This will run the code, and show the output below the code chunk.</li>
+<li>Run this command. To do that, look at the top right of your code chunk block (shaded in a slightly different colour). You should see a down arrow and a green “play button”. Click the play button. This will run the code, and show the output below the code chunk.</li>
 </ol>
 <p>Solution</p>
-<p>Here’s what I get (yours will be the same).</p>
-<p><img src="chunk3.png" class="img-fluid"></p>
-<p>This is a rectangular array of rows and columns, with individuals in rows and variables in columns, known as a “data frame”. When you display a data frame in a Quarto document, you see 10 rows and as many columns as will fit on the screen. At the bottom, it says how many rows and columns there are altogether (here 32 rows and 11 columns), and which ones are being displayed. You can see more rows by clicking on Next, and if there are more columns, you’ll see a little arrow next to the rightmost column (as here next to <code>am</code>) that you can click on to see more columns. Try it and see. Or if you want to go to a particular collection of rows, click one of the numbers between Previous and Next: 1 is rows 1–10, 2 is rows 11–20, and so on. The column on the left without a header (containing the names of the cars) is called “row names”. These have a funny kind of status, kind of a column and kind of not a column; usually, if we need to use the names, we have to put them in a column first. In future solutions, rather than showing you a screenshot, expect me to show you something like this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+<p>Here’s what I get (yours should be the same):</p>
+<p><img src="Screenshot_2023-05-16_13-15-50.png" class="img-fluid"></p>
+<p>This is a rectangular array of rows and columns, with individuals (here, cars) in rows and variables in columns, known as a “dataframe”. When you display a dataframe in an Quarto document, you see 10 rows and as many columns as will fit on the screen. At the bottom, it says how many rows and columns there are altogether (here 32 rows and 11 columns), and which ones are being displayed.</p>
+<p>You can see more rows by clicking on Next, and if there are more columns, you’ll see a little arrow next to the rightmost column (as here next to <code>am</code>) that you can click on to see more columns. Try it and see. Or if you want to go to a particular collection of rows, click one of the numbers between Previous and Next: 1 is rows 1–10, 2 is rows 11–20, and so on.</p>
+<p>The column on the left without a header (containing the names of the cars) is called “row names”. These have a funny kind of status, kind of a column and kind of not a column; usually, if we need to use the names, we have to put them in a column first.</p>
+<p>In future solutions, rather than showing you a screenshot, expect me to show you something like this:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32 × 11
-     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
- 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
- 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
- 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
- 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
- 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
- 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
- 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
- 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-# ℹ 22 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mpg"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[12],"type":["dbl"],"align":["right"]}],"data":[{"1":"Mazda RX4","2":"21.0","3":"6","4":"160.0","5":"110","6":"3.90","7":"2.620","8":"16.46","9":"0","10":"1","11":"4","12":"4"},{"1":"Mazda RX4 Wag","2":"21.0","3":"6","4":"160.0","5":"110","6":"3.90","7":"2.875","8":"17.02","9":"0","10":"1","11":"4","12":"4"},{"1":"Datsun 710","2":"22.8","3":"4","4":"108.0","5":"93","6":"3.85","7":"2.320","8":"18.61","9":"1","10":"1","11":"4","12":"1"},{"1":"Hornet 4 Drive","2":"21.4","3":"6","4":"258.0","5":"110","6":"3.08","7":"3.215","8":"19.44","9":"1","10":"0","11":"3","12":"1"},{"1":"Hornet Sportabout","2":"18.7","3":"8","4":"360.0","5":"175","6":"3.15","7":"3.440","8":"17.02","9":"0","10":"0","11":"3","12":"2"},{"1":"Valiant","2":"18.1","3":"6","4":"225.0","5":"105","6":"2.76","7":"3.460","8":"20.22","9":"1","10":"0","11":"3","12":"1"},{"1":"Duster 360","2":"14.3","3":"8","4":"360.0","5":"245","6":"3.21","7":"3.570","8":"15.84","9":"0","10":"0","11":"3","12":"4"},{"1":"Merc 240D","2":"24.4","3":"4","4":"146.7","5":"62","6":"3.69","7":"3.190","8":"20.00","9":"1","10":"0","11":"4","12":"2"},{"1":"Merc 230","2":"22.8","3":"4","4":"140.8","5":"95","6":"3.92","7":"3.150","8":"22.90","9":"1","10":"0","11":"4","12":"2"},{"1":"Merc 280","2":"19.2","3":"6","4":"167.6","5":"123","6":"3.92","7":"3.440","8":"18.30","9":"1","10":"0","11":"4","12":"4"},{"1":"Merc 280C","2":"17.8","3":"6","4":"167.6","5":"123","6":"3.92","7":"3.440","8":"18.90","9":"1","10":"0","11":"4","12":"4"},{"1":"Merc 450SE","2":"16.4","3":"8","4":"275.8","5":"180","6":"3.07","7":"4.070","8":"17.40","9":"0","10":"0","11":"3","12":"3"},{"1":"Merc 450SL","2":"17.3","3":"8","4":"275.8","5":"180","6":"3.07","7":"3.730","8":"17.60","9":"0","10":"0","11":"3","12":"3"},{"1":"Merc 450SLC","2":"15.2","3":"8","4":"275.8","5":"180","6":"3.07","7":"3.780","8":"18.00","9":"0","10":"0","11":"3","12":"3"},{"1":"Cadillac Fleetwood","2":"10.4","3":"8","4":"472.0","5":"205","6":"2.93","7":"5.250","8":"17.98","9":"0","10":"0","11":"3","12":"4"},{"1":"Lincoln Continental","2":"10.4","3":"8","4":"460.0","5":"215","6":"3.00","7":"5.424","8":"17.82","9":"0","10":"0","11":"3","12":"4"},{"1":"Chrysler Imperial","2":"14.7","3":"8","4":"440.0","5":"230","6":"3.23","7":"5.345","8":"17.42","9":"0","10":"0","11":"3","12":"4"},{"1":"Fiat 128","2":"32.4","3":"4","4":"78.7","5":"66","6":"4.08","7":"2.200","8":"19.47","9":"1","10":"1","11":"4","12":"1"},{"1":"Honda Civic","2":"30.4","3":"4","4":"75.7","5":"52","6":"4.93","7":"1.615","8":"18.52","9":"1","10":"1","11":"4","12":"2"},{"1":"Toyota Corolla","2":"33.9","3":"4","4":"71.1","5":"65","6":"4.22","7":"1.835","8":"19.90","9":"1","10":"1","11":"4","12":"1"},{"1":"Toyota Corona","2":"21.5","3":"4","4":"120.1","5":"97","6":"3.70","7":"2.465","8":"20.01","9":"1","10":"0","11":"3","12":"1"},{"1":"Dodge Challenger","2":"15.5","3":"8","4":"318.0","5":"150","6":"2.76","7":"3.520","8":"16.87","9":"0","10":"0","11":"3","12":"2"},{"1":"AMC Javelin","2":"15.2","3":"8","4":"304.0","5":"150","6":"3.15","7":"3.435","8":"17.30","9":"0","10":"0","11":"3","12":"2"},{"1":"Camaro Z28","2":"13.3","3":"8","4":"350.0","5":"245","6":"3.73","7":"3.840","8":"15.41","9":"0","10":"0","11":"3","12":"4"},{"1":"Pontiac Firebird","2":"19.2","3":"8","4":"400.0","5":"175","6":"3.08","7":"3.845","8":"17.05","9":"0","10":"0","11":"3","12":"2"},{"1":"Fiat X1-9","2":"27.3","3":"4","4":"79.0","5":"66","6":"4.08","7":"1.935","8":"18.90","9":"1","10":"1","11":"4","12":"1"},{"1":"Porsche 914-2","2":"26.0","3":"4","4":"120.3","5":"91","6":"4.43","7":"2.140","8":"16.70","9":"0","10":"1","11":"5","12":"2"},{"1":"Lotus Europa","2":"30.4","3":"4","4":"95.1","5":"113","6":"3.77","7":"1.513","8":"16.90","9":"1","10":"1","11":"5","12":"2"},{"1":"Ford Pantera L","2":"15.8","3":"8","4":"351.0","5":"264","6":"4.22","7":"3.170","8":"14.50","9":"0","10":"1","11":"5","12":"4"},{"1":"Ferrari Dino","2":"19.7","3":"6","4":"145.0","5":"175","6":"3.62","7":"2.770","8":"15.50","9":"0","10":"1","11":"5","12":"6"},{"1":"Maserati Bora","2":"15.0","3":"8","4":"301.0","5":"335","6":"3.54","7":"3.570","8":"14.60","9":"0","10":"1","11":"5","12":"8"},{"1":"Volvo 142E","2":"21.4","3":"4","4":"121.0","5":"109","6":"4.11","7":"2.780","8":"18.60","9":"1","10":"1","11":"4","12":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<p>The top bit is the code, the bottom bit with the <code>##</code> the output. In this kind of display, you only see the first ten rows (by default).</p>
+</div>
+<p>The top bit is the code, the bottom bit the output. In this kind of display, you only see the first ten rows (by default).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>If you don’t see the “play button”, make sure that what you have really is a code chunk. (I often accidentally delete one of the special characters above or below the code chunk). If you can’t figure it out, delete this code chunk and make a new one. Sometimes R Studio gets confused.</p>
 <p>On the code chunk, the other symbols are the settings for this chunk (you have the choice to display or not display the code or the output or to not actually run the code). The second one, the down arrow, runs all the chunks prior to this one (but not this one).</p>
-<p>The output has its own little buttons. The first one pops the output out into its own window; the second one shows or hides the output, and the third one deletes the output (so that you have to run the chunk again to get it back). Experiment. You can’t do much damage here.</p>
+<p>Your output has its own little buttons (as seen on the screenshot). The first one pops the output out into its own window; the second one shows or hides the output, and the third one deletes the output (so that you have to run the chunk again to get it back). Experiment. You can’t do much damage here.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
 <li>Something a little more interesting: <code>summary</code> obtains a summary of whatever you feed it (the five-number summary plus the mean for numerical variables). Obtain this for our data frame. To do this, create a new code chunk below the previous one, type <code>summary(mtcars)</code> into the code chunk, and run it.</li>
@@ -562,8 +342,9 @@ dbl (2): x, y
 <p>Solution</p>
 <p>This is what you should see:</p>
 <p><img src="chunk4.png" class="img-fluid"></p>
-<p>or the other way: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or the other way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg             cyl             disp             hp       
  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
@@ -587,59 +368,75 @@ dbl (2): x, y
  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
  Max.   :1.0000   Max.   :5.000   Max.   :8.000  </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>For the gas mileage column <code>mpg</code>, the mean is bigger than the median, and the largest value is unusually large compared with the others, suggesting a distribution that is skewed to the right.</p>
 <p>There are 11 numeric (quantitative) variables, so we get the five-number summary plus mean for each one. Categorical variables, if we had any here, would be displayed a different way.</p>
-<p>(In case you are wondering, the way without screenshots is obtained by <em>my</em> writing a notebook with code chunks and running them, so this output genuinely <em>is</em> obtained by running the code you see.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="7" type="a">
-<li>Let’s make a boxplot of the gas mileage data. This is a “poor man’s boxplot”; we’ll see a nicer-looking way later. To do it this way, make another new code chunk, enter the code <code>boxplot(mtcars$mpg)</code> into it, and run the chunk.</li>
+<li>Let’s make a histogram of the gas mileage data. Type the code below into another new code chunk, and run it:</li>
 </ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ggplot(mtcars, aes(x = mpg)) + geom_histogram(bins = 8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code looks a bit wordy, but we’ll see what all those pieces do later in the course (like, maybe tomorrow).</p>
 <p>Solution</p>
-<p>This is what you should see: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is what you should see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/r0-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
-<p>The long upper whisker supports our guess from before that the distribution is right-skewed.</p>
+</div>
+<p>The long right tail supports our guess from before that the distribution is right-skewed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="8" type="a">
-<li>Some aesthetics to finish with: delete the template notebook (all the stuff you didn’t type below your code chunks and output). Then add some narrative text above and below your code chunks. Above the code chunk is where you say what you are going to do (and maybe why you are doing it), and below is where you say what you conclude from the output you just obtained.</li>
+<li>Some aesthetics: Add some narrative text above and below your code chunks. Above the code chunk is where you say what you are going to do (and maybe why you are doing it), and below is where you say what you conclude from the output you just obtained. I find it looks better if you have a blank line above and below each code chunk.</li>
 </ol>
 <p>Solution</p>
-<p>My complete document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd">http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd</a>. Take a look at it. I added one extra thing: my variable names have “backticks” around them. You’ll see the effect of this in a moment. Backtick is on the key to the left of 1 and below Esc on your keyboard, along with a “squiggle” symbol that we’ll be using later in the course.</p>
+<p>This is what I wrote (screenshot), with none of the code run yet. My <code>library(tidyverse)</code> line seems to have disappeared, but yours should still be there:</p>
+<p><img src="Screenshot_2023-05-16_13-53-44.png" class="img-fluid"></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol type="i">
-<li>Save your document (the usual way with File and Save). This saves it <em>on the <code>r.datatools</code> server</em> (and not on your computer). This means that when you come back to R Studio later, even from another device, this document will still be available to you. Now click Render. This produces a pretty HTML version of your document, that should display on the right of your R Studio in the Viewer.</li>
+<li>Save your Quarto document (the usual way with File and Save). This saves it <em>on the jupyter servers</em> (and not on your computer). This means that when you come back to it later, even from another device, this document will still be available to you. (If you are running R Studio on your own computer, it is much simpler: the Quarto document is on that computer, in the folder associated with the project you created.)</li>
 </ol>
+<p>Now click Render. This produces a pretty HTML version of your Quarto document. This will appear in a new tab of your web browser, which you might need to encourage to appear (if you have a pop-up blocker) by clicking a Try Again.</p>
 <p>Solution</p>
-<p>Note that the HTML document only contains output from the chunks you’ve run in the notebook, so it’s up to you to run them there first.<br>
-My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1.nb.html">http://ritsokiguess.site/datafiles/a0-notebook-1.nb.html</a>. Here’s where you see the effect of the backticks: all the variable names are in <code>typewriter font</code> so that you can see they are variable names and not something else. If you want to try this notebook out yourself, you have a couple of options: (i) make a new Quarto Document on R Studio Cloud and copy-paste the contents of my file (it’s just text), or (ii) download my document onto your computer, and then upload it to <code>r.datatools</code>. Look in the Files pane bottom right, and next to New Folder you should see Upload. Upload the file from wherever it got saved to when you downloaded it. Extra: if you’re feeling ambitious, click the arrow to the right of Preview and select Knit to Word. The button changes to Knit with a ball of wool beside it. Now, when you “knit” the notebook, you get a Word document directly — look for it in the Files pane. If you want to, you can hand this kind of thing in (on later assignments), but you’ll have to do a little work first: first, find it in your Files list, then click the checkbox to the left of it, then click More (with the gear, on the same line as New Folder and Upload), then select Export (and click Download). This will put a copy in your downloads folder on your computer, and you can open it from there. If you’re feeling extra-ambitious, you can try Knit to PDF. This produces something that looks as if it was written in LaTeX, but actually wasn’t. To make this work, if you have a <code>library(tidyverse)</code> line somewhere, as you probably will, find the code chunk it’s in, and make it look like this:</p>
-<p><img src="Screenshot_2018-10-10_17-24-47.png" class="img-fluid"></p>
-<p>Then it will work. Extra extra: if you like the keyboard better than the mouse, R Studio has a lot of keyboard shortcuts. Two that are useful now: control-alt-i inserts a code chunk where the cursor is, and control-shift-enter runs the code chunk that the cursor is in, if it is in one. (Mac users, “command” instead of “control” in both cases.) I use these two a lot.</p>
+<p>If there are any errors in the rendering process, these will appear in the Render tab. The error message will tell you where in your document your error was. Find it and correct it.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Otherwise, you should see your document.</p>
+<p>Extra 1: the rendering process as you did it doesn’t produce that nice display of a dataframe that I had in one of my screenshots. To get that, alter the YAML block to read:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>format: </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  html:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     df-print: paged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This way, anyone reading your document can actually page through the dataframes you display in the same way that you did, to check that they contain the right things.</p>
+<p>Extra 2: you might prefer to have a preview of your document within R Studio. To make this happen, look for the gear wheel to the right of Render. Click the arrow beside it, and in the drop-down, click on Preview in Viewer Pane. Render again, and you’ll see the rendered version of your document in a Viewer pane on the right. This puts the thing you’re writing and what it will look like side by side.</p>
+<p>Extra 3: you might be annoyed at having to remember to save things. If you are, you can enable auto-saving. To do this, go to Tools and select Global Options. Select Code (on the left) and Saving (at the top). Click on Automatically Save when editor loses focus, to put a check mark in the box on the left of it. Change the pull-down below that to Save and Write Changes. Click OK. Now, as soon as you pause for a couple of seconds, everything unsaved will be saved.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="10" type="a">
-<li>Optional extra: practice handing in your previewed R notebook, as if it were an assignment that was worth something. (It is good to get the practice in a low-stakes situation, so that you’ll know what to do next week.)</li>
+<li>Practice handing in your rendered Quarto document, as if it were an assignment that was worth something. (It is good to get the practice in a low-stakes situation, so that you’ll know what to do next week.)</li>
 </ol>
 <p>Solution</p>
-<p>There are two steps: download the HTML file onto your computer, and then handing it in on Quercus. To download: find the HTML file that you want to download in the Files pane bottom right. There should be two files starting with the same thing, eg. <code>test1.Rmd</code>, which is the notebook you wrote, and <code>test1.nb.html</code>, which is the previewed version of it, and is the one you want to download. (The <code>test1</code> part is the name <em>you</em> chose when you saved it.) Click the checkbox to the left of the HTML file. Now click on More above the bottom-right pane. This pops up a menu from which you choose Export. This will pop up another window called Export Files, where you put the name that the file will have on your computer. (I usually leave the name the same.) Click Download. The file will go to your Downloads folder, or wherever things you download off the web go. Now, to hand it in. Open up Quercus at <code>q.utoronto.ca</code>, log in and navigate to this course. Click Assignments. Click (the title of) Assignment 0. There is a big blue Submit Assignment button top right. Click it. You’ll get a File Upload at the bottom of the screen. Click Choose File and find the HTML file that you downloaded. Click Open (or equivalent on your system). The name of the file should appear next to Choose File. Click Submit Assignment. You’ll see Submitted at the top right. If you want to try this again, you can Re-submit Assignment as many times as you like. (For the real thing, you can use this if you realize you made a mistake in something you submitted. The graders’ instructions, for the real thing, are to grade the <em>last</em> file submitted, so in that case you need to make sure that the last thing submitted includes <em>everything</em> that you want graded. Here, though, it doesn’t matter.)</p>
+<p>There are two steps: download the HTML file onto your computer, and then handing it in on Quercus. To download: find the HTML file that you want to download in the Files pane on the right. You might need to click on Files at the top, especially if you had a Viewer open there before:</p>
+<p><img src="Screenshot_2023-05-16_16-01-24.png" class="img-fluid"></p>
+<p>I called my Quarto document <code>awesome</code>and the file I was working on was called <code>awesome.qmd</code>(which stands for “Quarto Markdown”). That’s the file I had to render to produce the output. My output file itself is called <code>awesome.html.</code>That’s the file I want to hand in. If you called your file something different when you saved it, that’s the thing to look for: there should be something ending in <code>.qmd</code> and something with the same first part ending in <code>.html</code>.</p>
+<p>Click the checkbox to the left of the HTML file. Now click on More above the bottom-right pane. This pops up a menu from which you choose Export. This will pop up another window called Export Files, where you put the name that the file will have on your computer. (I usually leave the name the same.) Click Download. The file will go to your Downloads folder, or wherever things you download off the web go.</p>
+<p>Now, to hand it in. Open up Quercus at <code>q.utoronto.ca</code>, log in and navigate to this course. Click Assignments. Click (the title of) Assignment 0. There is a big blue Start Assignment button top right. Click it. You’ll get a File Upload at the bottom of the screen. Click Choose File and find the HTML file that you downloaded. Click Open (or equivalent on your system). The name of the file should appear next to Choose File. Click Submit Assignment. You’ll see Submitted at the top right, and below that is a Submission Details window and the file you uploaded.</p>
+<p><img src="Screenshot_2023-05-16_16-23-27.png" class="img-fluid"></p>
+<p>You should be in the habit of <em>always</em> checking what you hand in, by downloading it again and looking at it to make sure it’s what you thought you had handed in.</p>
+<p>If you want to try this again, you can try again as many times as you like, by making a New Attempt. (For the real thing, you can use this if you realize you made a mistake in something you submitted. The graders’ instructions, for the real thing, are to grade the <em>last</em> file submitted, so in that case you need to make sure that the last thing submitted before the due date includes <em>everything</em> that you want graded. Here, though, it doesn’t matter.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="11" type="a">
 <li>Optional extra. Something more ambitious: make a scatterplot of gas mileage <code>mpg</code>, on the <span class="math inline">\(y\)</span> axis, against horsepower, <code>hp</code>, on the <span class="math inline">\(x\)</span>-axis.</li>
 </ol>
 <p>Solution</p>
-<p>That goes like this. I’ll explain the steps below. ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That goes like this. I’ll explain the steps below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/r0-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>::: $ %$ %$</p>
+</div>
 <p>This shows a somewhat downward trend, which is what you’d expect, since a larger <code>hp</code> value means a more powerful engine, which will probably consume more gas and get <em>fewer</em> miles per gallon. As for the code: to make a <code>ggplot</code> plot, as we will shortly see in class, you first need a <code>ggplot</code> statement that says what to plot. The first thing in a <code>ggplot</code> is a data frame (<code>mtcars</code> here), and then the <code>aes</code> says that the plot will have <code>hp</code> on the <span class="math inline">\(x\)</span>-axis and <code>mpg</code> on the <span class="math inline">\(y\)</span>-axis, taken from the data frame that you specified. That’s all of the what-to-plot. The last thing is how to plot it; <code>geom_point()</code> says to plot the data values as points.</p>
 <p>You might like to add a regression line to the plot. That is a matter of adding this to the end of the plotting command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -650,10 +447,10 @@ My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1
 <p>The line definitely goes downhill. Decide for yourself how well you think a line fits these data.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="reading-data-from-a-file-1" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="reading-data-from-a-file-1"><span class="header-section-number">1.6</span> Reading data from a file</h2>
+<section id="reading-data-from-a-file" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="reading-data-from-a-file"><span class="header-section-number">1.4</span> Reading data from a file</h2>
 <p>In this question, we read a file from the web and do some descriptive statistics and a graph. This is very like what you will be doing on future assignments, so it’s good to practice it now.</p>
-<p>Take a look at the data file at <a href="http://ritsokiguess.site/datafiles/jumping.txt">http://ritsokiguess.site/datafiles/jumping.txt</a>. These are measurements on 30 rats that were randomly made to do different amounts of jumping by group (we’ll see the details later in the course). The control group did no jumping, and the other groups did “low jumping” and “high jumping”. The first column says which jumping group each rat was in, and the second is the rat’s bone density (the experimenters’ supposition was that more jumping should go with higher bone density).</p>
+<p>Take a look at the data file at <a href="http://ritsokiguess.site/datafiles/jumping.txt" class="uri">http://ritsokiguess.site/datafiles/jumping.txt</a>. These are measurements on 30 rats that were randomly made to do different amounts of jumping by group (we’ll see the details later in the course). The control group did no jumping, and the other groups did “low jumping” and “high jumping”. The first column says which jumping group each rat was in, and the second is the rat’s bone density (the experimenters’ supposition was that more jumping should go with higher bone density).</p>
 <ol type="a">
 <li>What are the two columns of data separated by? (The fancy word is “delimited”).</li>
 </ol>
@@ -661,7 +458,7 @@ My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1
 <p>Exactly one space. This is true all the way down, as you can check.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
-<li>Make a new R Notebook. Leave the first four lines, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</li>
+<li>Make a new Quarto document. Leave the YAML block, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</li>
 </ol>
 <p>Solution</p>
 <p>You will get either the same message as before or nothing. (I got nothing because I had already loaded the <code>tidyverse</code> in this session.)</p>
@@ -670,9 +467,10 @@ My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1
 <li>Put the URL of the data file in a variable called <code>my_url</code>. Then use <code>read_delim</code> to read in the file. (See solutions for how.) <code>read_delim</code> reads data files where the data values are always separated by the same single character, here a space. Save the data frame in a variable <code>rats</code>.</li>
 </ol>
 <p>Solution</p>
-<p>Like this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>my_url<span class="ot">=</span><span class="st">"http://ritsokiguess.site/datafiles/jumping.txt"</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>rats<span class="ot">=</span><span class="fu">read_delim</span>(my_url,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/jumping.txt"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 30 Columns: 2
 ── Column specification ────────────────────────────────────────────────────────
@@ -683,30 +481,27 @@ dbl (1): density
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The second thing in <code>read_delim</code> is the thing that separates the data values. Often when you use <code>read_delim</code> it’ll be a space.</p>
+<p>Hint: to get the file name into <code>my_url</code>, the best way is to <em>right</em>-click on the link, and select Copy Link Address (or equivalent in your browser). That puts in on your clipboard. Then make a code chunk and put this in it (you’ll probably only need to type one quote symbol, because R Studio will supply the other one):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>then put the cursor between the two quote symbols and paste. This is better than selecting the URL in my text and then copy-pasting that because odd things happen if it happens to span two lines on your screen. (URLs tend to be rather long, so this is not impossible.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Take a look at your data frame, by making a new code chunk and putting the data frame’s name in it (as we did with <code>mtcars</code>).</li>
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 30 × 2
-   group   density
-   &lt;chr&gt;     &lt;dbl&gt;
- 1 Control     611
- 2 Control     621
- 3 Control     614
- 4 Control     593
- 5 Control     593
- 6 Control     653
- 7 Control     600
- 8 Control     554
- 9 Control     603
-10 Control     569
-# ℹ 20 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["density"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Control","2":"611"},{"1":"Control","2":"621"},{"1":"Control","2":"614"},{"1":"Control","2":"593"},{"1":"Control","2":"593"},{"1":"Control","2":"653"},{"1":"Control","2":"600"},{"1":"Control","2":"554"},{"1":"Control","2":"603"},{"1":"Control","2":"569"},{"1":"Lowjump","2":"635"},{"1":"Lowjump","2":"605"},{"1":"Lowjump","2":"638"},{"1":"Lowjump","2":"594"},{"1":"Lowjump","2":"599"},{"1":"Lowjump","2":"632"},{"1":"Lowjump","2":"631"},{"1":"Lowjump","2":"588"},{"1":"Lowjump","2":"607"},{"1":"Lowjump","2":"596"},{"1":"Highjump","2":"650"},{"1":"Highjump","2":"622"},{"1":"Highjump","2":"626"},{"1":"Highjump","2":"626"},{"1":"Highjump","2":"631"},{"1":"Highjump","2":"622"},{"1":"Highjump","2":"643"},{"1":"Highjump","2":"674"},{"1":"Highjump","2":"643"},{"1":"Highjump","2":"650"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>There are 30 rows and two columns, as there should be.</p>
@@ -715,37 +510,39 @@ dbl (1): density
 <li>Find the mean bone density for rats that did each amount of jumping.</li>
 </ol>
 <p>Solution</p>
-<p>This is something you’ll see a lot: <code>group_by</code> followed by <code>summarize</code>. Reminder: to get that funny thing with the percent signs (called the “pipe symbol”), type control-shift-M (or equivalent on a Mac): ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>rats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m=</span><span class="fu">mean</span>(density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  group        m
-  &lt;chr&gt;    &lt;dbl&gt;
-1 Control   601.
-2 Highjump  639.
-3 Lowjump   612.</code></pre>
+<p>This is something you’ll see a lot: <code>group_by</code> followed by <code>summarize</code>. Reminder: to get that funny thing with the percent signs (called the “pipe symbol”), type control-shift-M (or equivalent on a Mac):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Control","2":"601.1"},{"1":"Highjump","2":"638.7"},{"1":"Lowjump","2":"612.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<p>:::</p>
+</div>
+</div>
 <p>The mean bone density is clearly highest for the high jumping group, and not much different between the low-jumping and control groups.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
 <li>Make a boxplot of bone density for each jumping group.</li>
 </ol>
 <p>Solution</p>
-<p>On a boxplot, the groups go across and the values go up and down, so the right syntax is this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats,<span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>density))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On a boxplot, the groups go across and the values go up and down, so the right syntax is this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats, <span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>density)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/lippach-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Given the amount of variability, the control and low-jump groups are very similar (with the control group having a couple of outliers), but the high-jump group seems to have a consistently higher bone density than the others.</p>
 <p>This is more or less in line with what the experimenters were guessing, but it seems that it has to be high jumping to make a difference.</p>
 <p>You might recognize that this is the kind of data where we would use analysis of variance, which we will do later on in the course: we are comparing several (here three) groups.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="reading-files-different-ways-1" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="reading-files-different-ways-1"><span class="header-section-number">1.7</span> Reading files different ways</h2>
+<section id="reading-files-different-ways" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="reading-files-different-ways"><span class="header-section-number">1.5</span> Reading files different ways</h2>
 <p>This question is about different ways of reading data files. If you’re working online (using <code>r.datatools</code> or similar), start at the beginning. If you’re using R Studio running on your own computer, start at part (<a href="#part:own-start">here</a>).</p>
 <ol type="a">
 <li>Log in to <code>r.datatools.utoronto.ca</code>. Open up a project (or start a new one), and watch the spinning circles for a few minutes. When that’s done, create a new Quarto Document with File, New File, Quarto Document. Delete the “template” document, but not the top lines with <code>title:</code> and <code>output:</code> in them. Add a code chunk that contains <code>library(tidyverse)</code> and run it.</li>
@@ -755,7 +552,7 @@ dbl (1): density
 <p><img src="Screenshot_2019-01-10_11-55-06.png" class="img-fluid"></p>
 <p>If you have an error rather than that output, you probably need to install the <code>tidyverse</code> first. Make another code chunk, containing</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and run it. Wait for it to finish. It may take a while. If it completes successfully (you might see the word DONE at the end), delete that code chunk (you don’t need it any more) and try again with the <code>library(tidyverse)</code> chunk. It should run properly this time.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -763,9 +560,10 @@ dbl (1): density
 <li><a name="part:internet-file">*</a> The easiest kind of files to read in are ones on the Internet, with a URL address that begins with <code>http</code> or <code>https</code>. I have a small file at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</li>
 </ol>
 <p>Solution</p>
-<p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -776,21 +574,18 @@ dbl (2): x, y
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<p>:::</p>
+</div>
+</div>
 <p>When you run that, you’ll see something like my output. The first part is <code>read_delim</code> telling you what it saw in the file: two columns of (whole) numbers and one column of text. The top line of the file is assumed to contain names, which are used as the names of the columns of your data frame. The bottom part of the output, obtained by putting the name of the data frame on a line by itself in your code chunk, is what the data frame actually looks like. You ought to get into the habit of eyeballing it and checking that it looks like the values in the data file.</p>
-<p>The things on the left side of the equals signs are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
+<p>The things on the left side of the <code>&lt;-</code> symbol (that is meant to look like an arrow pointing left) are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>You might have data in a file on your own computer. To read data from such a file, you first have to <em>upload</em> it to <code>r.datatools</code>, and then read it from there. To practice this: open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Upload that file, read in the data and verify that you get the right thing. (For this last part, see the Solution.)</li>
@@ -799,7 +594,7 @@ dbl (2): x, y
 <p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Then go back to <code>r.datatools</code>. You should have a Files pane bottom right. If you don’t see a pane bottom right at all, press Control-Shift-0 to show all the panes. If you see something bottom right but it’s not Files (for example a plot), click the Files tab, and you should see a list of things that look like files, like this:</p>
 <p><img src="Screenshot_2019-01-10_12-29-48.png" class="img-fluid"></p>
 <p>Click the Upload button (next to New Folder), click Choose File. Use the file finder to track down the file you saved on your computer, then click OK. The file should be uploaded to the same folder on <code>r.datatools</code> that your project is, and appear in the Files pane bottom right. To read it in, you supply the file name to <code>read_delim</code> thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"testing.txt"</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"testing.txt"</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -813,17 +608,14 @@ dbl (2): x, y
 <p>:::</p>
 <p>and then you look at it in the same way as before:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Check.</p>
@@ -837,7 +629,7 @@ dbl (2): x, y
 <p>The final step is to read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one.</p>
 <p>My spreadsheet got saved as <code>cars.csv</code>, so:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 38 Columns: 6
 ── Column specification ────────────────────────────────────────────────────────
@@ -848,22 +640,14 @@ dbl (4): MPG, Weight, Cylinders, Horsepower
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 38 × 6
-   Car                  MPG Weight Cylinders Horsepower Country
-   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
- 1 Buick Skylark       28.4   2.67         4         90 U.S.   
- 2 Dodge Omni          30.9   2.23         4         75 U.S.   
- 3 Mercury Zephyr      20.8   3.07         6         85 U.S.   
- 4 Fiat Strada         37.3   2.13         4         69 Italy  
- 5 Peugeot 694 SL      16.2   3.41         6        133 France 
- 6 VW Rabbit           31.9   1.92         4         71 Germany
- 7 Plymouth Horizon    34.2   2.2          4         70 U.S.   
- 8 Mazda GLC           34.1   1.98         4         65 Japan  
- 9 Buick Estate Wagon  16.9   4.36         8        155 U.S.   
-10 Audi 5000           20.3   2.83         5        103 Germany
-# ℹ 28 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Horsepower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Country"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"28.4","3":"2.670","4":"4","5":"90","6":"U.S."},{"1":"Dodge Omni","2":"30.9","3":"2.230","4":"4","5":"75","6":"U.S."},{"1":"Mercury Zephyr","2":"20.8","3":"3.070","4":"6","5":"85","6":"U.S."},{"1":"Fiat Strada","2":"37.3","3":"2.130","4":"4","5":"69","6":"Italy"},{"1":"Peugeot 694 SL","2":"16.2","3":"3.410","4":"6","5":"133","6":"France"},{"1":"VW Rabbit","2":"31.9","3":"1.925","4":"4","5":"71","6":"Germany"},{"1":"Plymouth Horizon","2":"34.2","3":"2.200","4":"4","5":"70","6":"U.S."},{"1":"Mazda GLC","2":"34.1","3":"1.975","4":"4","5":"65","6":"Japan"},{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"155","6":"U.S."},{"1":"Audi 5000","2":"20.3","3":"2.830","4":"5","5":"103","6":"Germany"},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"125","6":"U.S."},{"1":"Dodge Aspen","2":"18.6","3":"3.620","4":"6","5":"110","6":"U.S."},{"1":"VW Dasher","2":"30.5","3":"2.190","4":"4","5":"78","6":"Germany"},{"1":"Ford Mustang 4","2":"26.5","3":"2.585","4":"4","5":"88","6":"U.S."},{"1":"Dodge Colt","2":"35.1","3":"1.915","4":"4","5":"80","6":"Japan"},{"1":"Datsun 810","2":"22.0","3":"2.815","4":"6","5":"97","6":"Japan"},{"1":"VW Scirocco","2":"31.5","3":"1.990","4":"4","5":"71","6":"Germany"},{"1":"Chevy Citation","2":"28.8","3":"2.595","4":"6","5":"115","6":"U.S."},{"1":"Olds Omega","2":"26.8","3":"2.700","4":"6","5":"115","6":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"150","6":"U.S."},{"1":"Datsun 510","2":"27.2","3":"2.300","4":"4","5":"97","6":"Japan"},{"1":"AMC Concord D/L","2":"18.1","3":"3.410","4":"6","5":"120","6":"U.S."},{"1":"Buick Century Special","2":"20.6","3":"3.380","4":"6","5":"105","6":"U.S."},{"1":"Saab 99 GLE","2":"21.6","3":"2.795","4":"4","5":"115","6":"Sweden"},{"1":"Datsun 210","2":"31.8","3":"2.020","4":"4","5":"65","6":"Japan"},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"129","6":"U.S."},{"1":"Volvo 240 GL","2":"17.0","3":"3.140","4":"6","5":"125","6":"Sweden"},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"135","6":"U.S."},{"1":"Toyota Corona","2":"27.5","3":"2.560","4":"4","5":"95","6":"Japan"},{"1":"Chevette","2":"30.0","3":"2.155","4":"4","5":"68","6":"U.S."},{"1":"Ford Mustang Ghia","2":"21.9","3":"2.910","4":"6","5":"109","6":"U.S."},{"1":"AMC Spirit","2":"27.4","3":"2.670","4":"4","5":"80","6":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"142","6":"U.S."},{"1":"BMW 320i","2":"21.5","3":"2.600","4":"4","5":"110","6":"Germany"},{"1":"Pontiac Phoenix","2":"33.5","3":"2.556","4":"4","5":"90","6":"U.S."},{"1":"Honda Accord LX","2":"29.5","3":"2.135","4":"4","5":"68","6":"Japan"},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"138","6":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"130","6":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Some information about different types of cars.</p>
@@ -874,8 +658,8 @@ dbl (4): MPG, Weight, Cylinders, Horsepower
 </ol>
 <p>Solution</p>
 <p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -886,21 +670,18 @@ dbl (2): x, y
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <p>:::</p>
 <p>When you run that, you’ll see something like my output. The first part is <code>read_delim</code> telling you what it saw in the file: two columns of (whole) numbers and one column of text. The top line of the file is assumed to contain names, which are used as the names of the columns of your data frame. The bottom part of the output, obtained by putting the name of the data frame on a line by itself in your code chunk, is what the data frame actually looks like. You ought to get into the habit of eyeballing it and checking that it looks like the values in the data file.</p>
-<p>The things on the left side of the equals signs are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
+<p>The things on the left side of the <code>&lt;-</code> symbol (that is meant to look like an arrow pointing left) are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
 <p>(This part is exactly the same whether you are running R Studio on <code>r.datatools</code> or have R Studio running on your computer. A remote file is obtained in exactly the same way regardless.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
@@ -908,28 +689,25 @@ dbl (2): x, y
 </ol>
 <p>Solution</p>
 <p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Go back to R Studio. Create a new code chunk containing this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 <p>Run this code chunk. You’ll see a file chooser. Find the file you saved on your computer, and click Open (or OK or whatever you see). This saves what R needs to access the file in the variable <code>f</code>. If you want to, you can look at it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and you’ll see what looks like a file path in the appropriate format for your system (Windows, Mac, Linux). To read the data in, you supply the file path to <code>read_delim</code> thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(f, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(f, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 <p>and then you look at it in the same way as before:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-      x     y g    
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-1     1    10 a    
-2     2    11 b    
-3     3    14 a    
-4     4    13 b    
-5     5    18 a    
-6     6    21 b    </code></pre>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Check.</p>
@@ -941,36 +719,36 @@ dbl (2): x, y
 <p>Open the spreadsheet containing the data you want to read into R. If there are several sheets in the workbook, make sure you’re looking at the right one. Select File, Save As, select “CSV” or “comma-separated values” and give it a name. Save the resulting file somewhere.</p>
 <p>Then read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one. Before that, though, again run</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>to find the <code>.csv</code> file on your computer, and then</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>to read it in. My spreadsheet was</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 38 × 6
-   Car                  MPG Weight Cylinders Horsepower Country
-   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
- 1 Buick Skylark       28.4   2.67         4         90 U.S.   
- 2 Dodge Omni          30.9   2.23         4         75 U.S.   
- 3 Mercury Zephyr      20.8   3.07         6         85 U.S.   
- 4 Fiat Strada         37.3   2.13         4         69 Italy  
- 5 Peugeot 694 SL      16.2   3.41         6        133 France 
- 6 VW Rabbit           31.9   1.92         4         71 Germany
- 7 Plymouth Horizon    34.2   2.2          4         70 U.S.   
- 8 Mazda GLC           34.1   1.98         4         65 Japan  
- 9 Buick Estate Wagon  16.9   4.36         8        155 U.S.   
-10 Audi 5000           20.3   2.83         5        103 Germany
-# ℹ 28 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Horsepower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Country"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"28.4","3":"2.670","4":"4","5":"90","6":"U.S."},{"1":"Dodge Omni","2":"30.9","3":"2.230","4":"4","5":"75","6":"U.S."},{"1":"Mercury Zephyr","2":"20.8","3":"3.070","4":"6","5":"85","6":"U.S."},{"1":"Fiat Strada","2":"37.3","3":"2.130","4":"4","5":"69","6":"Italy"},{"1":"Peugeot 694 SL","2":"16.2","3":"3.410","4":"6","5":"133","6":"France"},{"1":"VW Rabbit","2":"31.9","3":"1.925","4":"4","5":"71","6":"Germany"},{"1":"Plymouth Horizon","2":"34.2","3":"2.200","4":"4","5":"70","6":"U.S."},{"1":"Mazda GLC","2":"34.1","3":"1.975","4":"4","5":"65","6":"Japan"},{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"155","6":"U.S."},{"1":"Audi 5000","2":"20.3","3":"2.830","4":"5","5":"103","6":"Germany"},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"125","6":"U.S."},{"1":"Dodge Aspen","2":"18.6","3":"3.620","4":"6","5":"110","6":"U.S."},{"1":"VW Dasher","2":"30.5","3":"2.190","4":"4","5":"78","6":"Germany"},{"1":"Ford Mustang 4","2":"26.5","3":"2.585","4":"4","5":"88","6":"U.S."},{"1":"Dodge Colt","2":"35.1","3":"1.915","4":"4","5":"80","6":"Japan"},{"1":"Datsun 810","2":"22.0","3":"2.815","4":"6","5":"97","6":"Japan"},{"1":"VW Scirocco","2":"31.5","3":"1.990","4":"4","5":"71","6":"Germany"},{"1":"Chevy Citation","2":"28.8","3":"2.595","4":"6","5":"115","6":"U.S."},{"1":"Olds Omega","2":"26.8","3":"2.700","4":"6","5":"115","6":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"150","6":"U.S."},{"1":"Datsun 510","2":"27.2","3":"2.300","4":"4","5":"97","6":"Japan"},{"1":"AMC Concord D/L","2":"18.1","3":"3.410","4":"6","5":"120","6":"U.S."},{"1":"Buick Century Special","2":"20.6","3":"3.380","4":"6","5":"105","6":"U.S."},{"1":"Saab 99 GLE","2":"21.6","3":"2.795","4":"4","5":"115","6":"Sweden"},{"1":"Datsun 210","2":"31.8","3":"2.020","4":"4","5":"65","6":"Japan"},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"129","6":"U.S."},{"1":"Volvo 240 GL","2":"17.0","3":"3.140","4":"6","5":"125","6":"Sweden"},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"135","6":"U.S."},{"1":"Toyota Corona","2":"27.5","3":"2.560","4":"4","5":"95","6":"Japan"},{"1":"Chevette","2":"30.0","3":"2.155","4":"4","5":"68","6":"U.S."},{"1":"Ford Mustang Ghia","2":"21.9","3":"2.910","4":"6","5":"109","6":"U.S."},{"1":"AMC Spirit","2":"27.4","3":"2.670","4":"4","5":"80","6":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"142","6":"U.S."},{"1":"BMW 320i","2":"21.5","3":"2.600","4":"4","5":"110","6":"Germany"},{"1":"Pontiac Phoenix","2":"33.5","3":"2.556","4":"4","5":"90","6":"U.S."},{"1":"Honda Accord LX","2":"29.5","3":"2.135","4":"4","5":"68","6":"Japan"},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"138","6":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"130","6":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Some information about different types of cars.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Especially if you are on your own computer.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This document was actually produced by literally running this code, a process known as “rendering”, which we will learn about shortly.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>A big part of coding is dealing with errors. You will forget things, and it is fine. In the same way that it doesn’t matter how many times you get knocked down, it’s key that you get up again each time: it doesn’t matter how many errors you made, it’s key that you fix them. If you want something to sing along with while you do this, I recommend <a href="https://www.youtube.com/watch?v=2H5uWRjFsGc">this</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1001,23 +779,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -1082,92 +846,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1214,6 +892,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./reading-in.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
