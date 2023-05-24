@@ -333,7 +333,8 @@ dbl (2): x, y
 <li>Read the data into R. Display the data.</li>
 </ol>
 <p>Solution</p>
-<p>Read directly from the URL, most easily: ::: {.cell}</p>
+<p>Read directly from the URL, most easily:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/soap.txt"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>soap <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -355,7 +356,7 @@ dbl (3): case, scrap, speed
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>There should be 27 rows. Are there? What columns are there?</li>
