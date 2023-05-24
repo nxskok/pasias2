@@ -9,6 +9,7 @@ book:
     - index.qmd
     - getting_used.qmd
     - reading-in.Rmd
+    - data-summaries.Rmd
 
 format:
   html:
