@@ -1,0 +1,36 @@
+
+# Reading in data
+
+In this chapter, and from here on, the questions are first, and then my answers are in the second appearances of the problems with the same name. 
+It is much better for your learning to spend some time thinking about how you would solve these problems, and after *that* you can see how I did it.
+
+```{r 02-reading-in-1, eval=F}
+library(tidyverse)
+```
+
+```{r 02-reading-in-2, child="_packages.qmd"}
+```
+
+
+```{r 02-reading-in-3, child="_oj_qq.Rmd"}
+```
+
+```{r 02-reading-in-4, child="_soap_qq.Rmd"}
+```
+
+```{r 02-reading-in-5, child="_global_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 02-reading-in-6, child="_oj.Rmd"}
+```
+
+```{r 02-reading-in-7, child="_soap.Rmd"}
+```
+
+```{r 02-reading-in-8, child="_global.Rmd"}
+```
+
+

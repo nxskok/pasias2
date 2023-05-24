@@ -1,0 +1,42 @@
+##  Making soap
+
+
+ A company operates two production lines in a factory for
+making soap bars. The production lines are
+labelled A and B. A production line that moves faster may produce more
+soap, but may possibly also produce more "scrap" (that is, bits of
+soap that 
+can no longer be made into soap bars and will have to be thrown away).  
+
+The data are in [link](http://ritsokiguess.site/datafiles/soap.txt).
+
+
+
+(a) Read the data into R.  Display the data. 
+
+
+Solution
+
+
+Read directly from the URL, most easily:
+```{r soap-1 }
+url <- "http://ritsokiguess.site/datafiles/soap.txt"
+soap <- read_delim(url, " ")
+soap
+```
+
+    
+$\blacksquare$
+
+
+(b) There should be 27
+rows. Are there? What columns are there?
+
+Solution
+
+There are indeed 27 rows, one per observation. The column called `case` identifies  each particular run of a production line (scroll down to see that it gets to 27 as well). Though it is a number, it is an identifier variable and so should not be treated quantitatively. The other columns (variables) are `scrap` and `speed` (quantitative) and `line` (categorical). These indicate which production line was used for each run, the speed it was run at, and the amount of scrap produced.
+
+This seems like an odd place to end this question, but later we'll be using these data to draw some graphs. 
+
+$\blacksquare$
+

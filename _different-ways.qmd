@@ -51,6 +51,7 @@ Solution
 
 
 Data values separated by exactly one space is the kind of thing that `read_delim` reads, so make another code chunk and fill it with this:
+
 ```{r different-ways-112 }
 my_url <- "http://ritsokiguess.site/datafiles/testing.txt"
 testing <- read_delim(my_url, " ")
@@ -69,7 +70,7 @@ chunk, is what the data frame actually looks like. You ought to get
 into the habit of eyeballing it and checking that it looks like the
 values in the data file.
 
-The things on the left side of the equals signs are variables that you
+The things on the left side of the `<-` symbol (that is meant to look like an arrow pointing left) are variables that you
 are creating in R. You get to choose the names for them. My habit is
 to use `my_url` for URLs of files that I am going to read in,
 and (usually) to give my data frames names that say something about
@@ -194,7 +195,7 @@ chunk, is what the data frame actually looks like. You ought to get
 into the habit of eyeballing it and checking that it looks like the
 values in the data file.
 
-The things on the left side of the equals signs are variables that you
+The things on the left side of the `<-` symbol (that is meant to look like an arrow pointing left) are variables that you
 are creating in R. You get to choose the names for them. My habit is
 to use `my_url` for URLs of files that I am going to read in,
 and (usually) to give my data frames names that say something about

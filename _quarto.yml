@@ -8,10 +8,12 @@ book:
   chapters:
     - index.qmd
     - getting_used.qmd
+    - reading-in.Rmd
 
 format:
   html:
     theme: cosmo
+    df-print: paged
   pdf:
     documentclass: scrreprt
 

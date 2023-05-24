@@ -1,0 +1,57 @@
+##  Handling shipments
+
+
+ A company called Global Electronics from
+time to time imports shipments of a certain large part used as a
+component in several of its products. The size of the shipment varies
+each time. Each shipment is sent to one of two warehouses (labelled A
+and B) for handling. The data in
+[link](http://ritsokiguess.site/datafiles/global.csv) show the
+`size` of each shipment (in thousands of parts) and the direct
+`cost` of handling it, in thousands of dollars. Also shown is
+the `warehouse` (A or B) that handled each shipment.
+
+
+
+(a) Read the data into R and display your data frame. 
+
+
+Solution
+
+
+If you open the data file in your web browser, it will probably
+open as a spreadsheet, which is not really very helpful, since
+then it is not clear what to do with it. You could, I suppose,
+save it and upload it to R Studio Cloud, but it requires much less
+brainpower to open it directly from the URL:
+
+```{r global-1 }
+url <- "http://ritsokiguess.site/datafiles/global.csv"
+shipments <- read_csv(url)
+```
+
+     
+
+If you display your data frame and it looks like this, you are good
+(you can give the data frame any name):
+
+```{r global-2 }
+shipments
+```
+
+$\blacksquare$
+ 
+(b) Describe how many rows and columns your data frame has, and what they contain. 
+
+Solution
+
+It has 10 rows and 3 columns. *You need to say this.*
+
+That is, there were 10 shipments recorded, and for each of them, 3
+variables were noted: the size and cost of the shipment, and the
+warehouse it was handled at.
+    
+We will also be making some graphs of these data later.
+
+$\blacksquare$
+

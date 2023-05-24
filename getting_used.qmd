@@ -1,25 +1,26 @@
 
 # Getting used to R and R Studio
 
-or skip this for now:
 
-My solutions follow the problems. Look ahead if you get stuck. Don't forget `library(tidyverse)` if you need it:
+
+ Don't forget `library(tidyverse)` first if you need it (you probably will).
 
 {{< include _packages.qmd >}}
 
-{{< include _r-jupyter.qmd >}}
 
-{{< include _r0_qq.qmd >}}
+{{< include _r-jupyter.Rmd >}}
 
-{{< include _r0a_qq.qmd >}}
+## Using R Studio on your own computer
 
-{{< include _different-ways_qq.qmd >}}
+This is not required now, but you may wish to do this now or later so that you are not fighting for resources on the `r.datatools` server at busy times (eg. when an assignment is due).
 
-My solutions follow:
+Follow the instructions [here](http://ritsokiguess.site/lecture-notes/running.html#/installing-r-on-your-own-computer) to install R Studio on your computer, then start R Studio (which itself starts R).
 
-{{< include _r0.qmd >}}
+Once you have this working, you can use it for any of the following questions, in almost exactly the same way as the online R (I will explain any differences).
 
-{{< include _r0a.qmd >}}
+{{< include _r0.Rmd >}}
+
+{{< include _r0a.Rmd >}}
 
 {{< include _different-ways.qmd >}}
 
