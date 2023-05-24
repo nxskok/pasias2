@@ -48,7 +48,7 @@ It may think a bit, and then you'll see something like this:
 
 ![](Screenshot_2022-08-30_16-07-40.png)
 
-Aside: I used to use a cloud R Studio called `rstudio.cloud`. If you see or hear any references to that, it means the same thing as R Studio on `r.datatools` or `jupyter`. (You can still use `rstudio.cloud` if you want; it used to be completely free, but now the free tier won't last you very long; the `utoronto.ca`link is free as long as you are at U of T.) I'm trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.
+Aside: I used to use a cloud R Studio called `rstudio.cloud`. If you see or hear any references to that, it means the same thing as R Studio on `r.datatools` or `jupyter`. (You can still use `rstudio.cloud` if you want; it used to be completely free, but now the free tier won't last you very long; the `utoronto.ca` link is free as long as you are at U of T.) I'm trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.
 
 Now we can get down to some actual work.
 

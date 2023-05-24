@@ -4,7 +4,7 @@
 This question is to get you started using R.
 
 
-(a) Start R Studio Cloud, or the R Studio on Jupyter, in some project. (If you started up a
+(a) Start R Studio at `r.datatools` or on your computer, in some project. (If you started up a
 new project in the previous question and are still logged in, use
 that; if not, create a new project with File, New Project, and New Directory. Then select New Project and give it a name. Click Create Project. This will give you an empty workspace to start from.)
 
@@ -34,21 +34,24 @@ like having a dark background to be easier on my eyes.)
 $\blacksquare$
 
 (b) We're going to do some stuff in R here, just to get used to
-it. First, make an R Notebook by selecting File, New File and R
-Notebook.
+it. First, make a Quarto Document by selecting File, New File and Quarto Document.
 
 Solution
 
 
-The first time, you'll be invited to "install some packages"
-to make the Notebook thing work. Let it do that by clicking
-Yes. After that, you'll have this:
+The first time, you might be invited to "install some packages"
+to make the Document thing work. Let it do that by clicking
+Yes. After that, you'll have something like this:
 
 
 ![](rnote1.png)
         
+        
+*** need a new screenshot
 
-Find the Insert and Run buttons along the top of the R Notebook
+*** need to talk about source and visual mode
+
+Find the Insert and Run buttons along the top of the document
 window. We'll be using them shortly. (The template notebook may
 or may not be maximized; it doesn't matter either way. You might
 see all four panes or as few as one. If you want to control
@@ -76,13 +79,13 @@ Something like this:
 $\blacksquare$
 
 (d) Type the line of code shown below into the chunk in the
-R Notebook:
+Document:
 
-```
-
+```{r}
+#| eval: false
 mtcars
-
 ```
+
 
 
 Solution
@@ -117,7 +120,7 @@ Here's what I get (yours will be the same).
 
 This is a rectangular array of rows and columns, with
 individuals in rows and variables in columns, known as a 
-"data frame". When you display a data frame in an R Notebook, you see
+"data frame". When you display a data frame in a Quarto document, you see
 10 rows and as many columns as will fit on the screen.  At the
 bottom, it says how many rows and columns there are altogether
 (here 32 rows and 11 columns), and which ones are being
@@ -226,7 +229,7 @@ what you conclude from the output you just obtained.
 Solution
 
 
-My complete R Notebook is at
+My complete document is at
 [http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd](http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd). Take
 a look at it. I added one extra thing: my variable names have
 "backticks" around them. You'll see the effect of this in a
@@ -236,13 +239,13 @@ using later in the course.
 
 $\blacksquare$
 
-(i) Save your notebook (the usual way with File and Save). This
-saves it *on the R Studio Cloud servers* (and not on your
-computer). This means that when you come back to R Studio Cloud
-later, even from another device, this notebook will still be
+(i) Save your document (the usual way with File and Save). This
+saves it *on the `r.datatools` server* (and not on your
+computer). This means that when you come back to R Studio
+later, even from another device, this document will still be
 available to you.
-Now click Preview. This produces a pretty HTML version of your
-notebook.
+Now click Render. This produces a pretty HTML version of your
+document, that should display on the right of your R Studio in the Viewer.
 
 Solution
 
@@ -256,10 +259,8 @@ Here's where you see the effect of the backticks: all the
 variable names are in `typewriter font` so that you can
 see they are variable names and not something else. If you want
 to try this notebook out yourself, you have a couple of options:
-(i) make a new R Notebook on R Studio Cloud and copy-paste the
-contents of my file (it's just text), or (ii) download my R
-Notebook onto your computer, and then upload it to R Studio
-Cloud. Look in the Files pane bottom right, and next to New
+(i) make a new Quarto Document on R Studio Cloud and copy-paste the
+contents of my file (it's just text), or (ii) download my document onto your computer, and then upload it to `r.datatools`. Look in the Files pane bottom right, and next to New
 Folder you should see Upload. Upload the file from wherever it
 got saved to when you downloaded it.
 Extra: if you're feeling ambitious, click the arrow to the right

@@ -1,14 +1,13 @@
 ##  Reading files different ways
 
 
- This question is about different ways of reading data files. If you're using R Studio Cloud (online), start at the beginning. If you're using R Studio running on your own computer, start at part (<a href="#part:own-start">here</a>). 
+ This question is about different ways of reading data files. If you're working online (using `r.datatools` or similar),  start at the beginning. If you're using R Studio running on your own computer, start at part (<a href="#part:own-start">here</a>). 
 
 
 
-(a) Log in to R Studio Cloud. Open up a project (or start a new
+(a) Log in to `r.datatools.utoronto.ca`. Open up a project (or start a new
 one), and watch the spinning circles for a few minutes. When that's
-done, create a new R Notebook with File, New File, R
-Notebook. Delete the "template" notebook, but not the top four
+done, create a new Quarto Document with File, New File, Quarto Document. Delete the "template" document, but not the top
 lines with `title:` 
 and `output:` in them. Add a code chunk that contains `library(tidyverse)` and run it.
 
@@ -79,13 +78,11 @@ what they contain, but this is your choice to make.
 $\blacksquare$
 
 (c) You might have data in a file on your own computer. To read
-data from such a file, you first have to *upload* it to R
-Studio Cloud, and then read it from there. To practice this: open a
+data from such a file, you first have to *upload* it to `r.datatools`, and then read it from there. To practice this: open a
 text editor (like Notepad or TextEdit). Go back to the web browser
 tab containing the data you used in the previous part. Copy the data
 from there and paste it into the text editor. Save it somewhere on
-your computer (like the Desktop). Upload that file to R Studio
-Cloud, read in the data and verify that you get the right
+your computer (like the Desktop). Upload that file, read in the data and verify that you get the right
 thing. (For this last part, see the Solution.)
 
 Solution
@@ -94,7 +91,7 @@ Solution
 I copied and pasted the data, and saved it in a file called
 `testing.txt` on my computer. I'm assuming that you've
 given it a similar name.
-Then go back to R Studio Cloud. You should have a Files pane
+Then go back to `r.datatools`. You should have a Files pane
 bottom right. If you don't see a pane bottom right at all, press
 Control-Shift-0 to show all the panes. If you see something bottom
 right but it's not Files (for example a plot), click the Files
@@ -107,7 +104,7 @@ tab, and you should see a list of things that look like files, like this:
 Click the Upload button (next to New Folder), click Choose
 File. Use the file finder to track down the file you saved on your
 computer, then click OK. The file should be uploaded to the same
-folder on R Studio Cloud that your project is, and appear in the
+folder on `r.datatools` that your project is, and appear in the
 Files pane bottom right.
 To read it in, you supply the file name to `read_delim` thus:
 ```{r different-ways-113 }
@@ -130,7 +127,7 @@ $\blacksquare$
 
 (d) You might have a spreadsheet on your computer. Create a
 `.csv` file from it, and use the ideas of the last part to
-read it into R Studio Cloud.
+read it into R Studio.
 
 Solution
 
@@ -144,8 +141,7 @@ resulting file somewhere.
 Then follow the same steps as the previous part to upload it to
 your project on R Studio Cloud. (If you look at the actual file,
 it will be plain text with the data values having commas between
-them, as the name suggests. You can open the file in R Studio
-Cloud by clicking on it in the Files pane; it should open top
+them, as the name suggests. You can open the file in R Studio by clicking on it in the Files pane; it should open top
 left.)
 
 The final step is to read it into an R data frame. This uses
@@ -204,7 +200,7 @@ to use `my_url` for URLs of files that I am going to read in,
 and (usually) to give my data frames names that say something about
 what they contain, but this is your choice to make.
 
-(This part is exactly the same whether you are running R Studio Cloud
+(This part is exactly the same whether you are running R Studio on `r.datatools`
 or have R Studio running on your computer. A remote file is obtained
 in exactly the same way regardless.)
 

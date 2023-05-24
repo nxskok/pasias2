@@ -4,8 +4,8 @@
  This question is to get you started using R.
 
 
-(a) Start R Studio Cloud, in some project. (If you started up a
-new project in the previous question and are still logged in, use
+(a) Start R Studio, in some project. (If you started up a
+new project in the previous question and still have that open, use
 that; if not, create a new project.)
 
 
@@ -60,15 +60,15 @@ what you conclude from the output you just obtained.
 
 
 (i) Save your notebook (the usual way with File and Save). This
-saves it *on the R Studio Cloud servers* (and not on your
-computer). This means that when you come back to R Studio Cloud
+saves it *on the `r.datatools` server* (and not on your
+computer, unless you are running R Studio on your computer). This means that when you come back to `r.datatools`
 later, even from another device, this notebook will still be
 available to you.
 Now click Preview. This produces a pretty HTML version of your
 notebook.
 
 
-(j) Optional extra: practice handing in your previewed R
+(j) Optional extra: Practice handing in your previewed R
 notebook, as if it were an assignment that was worth
 something. (It is good to get the practice in a low-stakes
 situation, so that you'll know what to do next week.)
