@@ -4,12 +4,14 @@ project:
 book:
   title: "Problems and Solutions in Applied Statistics (2nd ed)"
   author: "Ken Butler"
-  date: "2023-05-23"
+  date: now
   chapters:
     - index.qmd
     - getting_used.qmd
     - reading-in.Rmd
     - data-summaries.Rmd
+    - one-sample-inference.Rmd
+    - two-sample-inference.Rmd
 
 format:
   html:
