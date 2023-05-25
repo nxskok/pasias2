@@ -27,6 +27,7 @@ Solution
 
 These are "tab-separated values", so `read_tsv` is the
 thing, as for the Australian athletes:
+
 ```{r nenana-1 }
 myurl <- "http://ritsokiguess.site/datafiles/nenana.txt"
 nenana <- read_tsv(myurl)

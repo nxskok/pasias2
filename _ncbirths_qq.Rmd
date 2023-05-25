@@ -2,7 +2,7 @@
 
 
  The data in file
-[link](http://ritsokiguess.site/datafiles/ncbirths.csv) are about
+[link](http://ritsokiguess.site/datafiles/ncbirths2.csv) are about
 500 randomly chosen births of babies in North Carolina. There is a lot
 of information: not just the weight at birth of the baby, but whether
 the baby was born prematurely, the ages of the parents, whether the

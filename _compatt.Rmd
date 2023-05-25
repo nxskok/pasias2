@@ -18,6 +18,7 @@ Solution
 
 
 Read in and display the data. This, I think, is the easiest way.
+
 ```{r compatt-1 }
 my_url <- "https://raw.githubusercontent.com/nxskok/datafiles/master/compatt.txt"
 anxiety=read_delim(my_url," ")

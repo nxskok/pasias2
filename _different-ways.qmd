@@ -107,7 +107,9 @@ File. Use the file finder to track down the file you saved on your
 computer, then click OK. The file should be uploaded to the same
 folder on `r.datatools` that your project is, and appear in the
 Files pane bottom right.
+
 To read it in, you supply the file name to `read_delim` thus:
+
 ```{r different-ways-113 }
 testing2 <- read_delim("testing.txt", " ")
 ```
