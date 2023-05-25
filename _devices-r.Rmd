@@ -59,8 +59,8 @@ Solution
 ggplot(plugged,aes(x=factor(year),y=hours))+geom_boxplot()
 ``` 
 
-The `fct_inorder` trick from assignment 1 will also work, since
-the years are in the data in the order we want them to be displayed.
+The `fct_inorder` trick will also work, since
+the years are in the data in the order we want them to be displayed. (An option in case  you have seen this.)
 
 The median for 2009 is noticeably higher, and there is no skewness or
 outliers worth worrying about.
