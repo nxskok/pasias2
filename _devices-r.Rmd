@@ -150,7 +150,7 @@ yourself how you can avoid the repeat.
 If you want the pooled test in R, you have to ask for it:
 
 ```{r devices-r-7 }
-t.test(hours~year,alternative="less",data=plugged,var.equal=T)    
+t.test(hours~year, alternative = "less", data = plugged, var.equal = TRUE)    
 ``` 
 
 As is often the case, the P-values for the pooled and
