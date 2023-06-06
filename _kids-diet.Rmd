@@ -22,6 +22,7 @@ Solution
 
 
 The data values are separated by one space, so:
+
 ```{r kids-diet-1 }
 my_url <- "http://ritsokiguess.site/datafiles/kids-diet.txt"
 diet <- read_delim(my_url, " ")
@@ -81,6 +82,7 @@ is good.
 As ever, normal quantile plots can offer more insight. With
 data in this form, the
 two samples are mixed up, but using facets is the way to go. Philosophically, we draw a normal quantile plot of *all* the heights, and then say at the end that we would actually like a separate plot for each sect:
+
 ```{r kids-diet-3 }
 diet %>%
   ggplot(aes(sample = height)) + stat_qq() + stat_qq_line() +

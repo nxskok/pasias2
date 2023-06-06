@@ -98,6 +98,7 @@ Solution
 
 
 The easiest is just to display the tibble:
+
 ```{r nenana-5 }
 nenana
 ```
@@ -137,6 +138,7 @@ from 87 (our $n$) is 128, which is $2^7$, so the base 2 log of
 87 rounds up to 7. That plus one is 8, so we need 8 bins. For
 you, any not-insane number of bins will do, or any not-insane
 bin width, if you want to go that way:
+
 ```{r nenana-7 }
 ggplot(nenana, aes(x = JulianDate)) + geom_histogram(bins = 8)
 ```

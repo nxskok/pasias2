@@ -1,0 +1,42 @@
+# Power and sample size
+
+```{r 06-power-1, eval=F}
+library(tidyverse)
+```
+
+```{r 06-power-2, child="_packages.qmd"}
+```
+
+
+```{r 06-power-3, child="_power-sim_qq.Rmd"}
+```
+
+```{r 06-power-4, child="_power20_qq.Rmd"}
+```
+
+```{r 06-power-5, child="_proportion-power-sim_qq.Rmd"}
+```
+
+```{r 06-power-6, child="_mean_two_qq.Rmd"}
+```
+
+```{r 06-power-7, child="_pop_power_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 06-power-8, child="_power-sim.Rmd"}
+```
+
+```{r 06-power-9, child="_power20.Rmd"}
+```
+
+```{r 06-power-10, child="_proportion-power-sim.Rmd"}
+```
+
+```{r 06-power-11, child="_mean_two.Rmd"}
+```
+
+```{r 06-power-12, child="_pop_power.Rmd"}
+```
+

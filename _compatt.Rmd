@@ -39,6 +39,7 @@ Solution
 
 
 Most easily `count`:
+
 ```{r compatt-2 }
 anxiety %>% count(gender)
 ```     
@@ -68,6 +69,7 @@ Solution
 
 
 Gender is categorical and CAS score is quantitative, so a boxplot would appear to be the thing:
+
 ```{r compatt-4 }
 ggplot(anxiety,aes(x=gender,y=CAS))+geom_boxplot()
 ```     
@@ -93,6 +95,7 @@ Solution
 
 
 Group-by and summarize:
+
 ```{r compatt-6 }
 anxiety %>% group_by(gender) %>% summarize(med=median(CAS))
 ```     

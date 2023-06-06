@@ -12,6 +12,7 @@ book:
     - data-summaries.Rmd
     - one-sample-inference.Rmd
     - two-sample-inference.Rmd
+    - power.Rmd
 
 format:
   html:

@@ -28,6 +28,7 @@ Solution
 
 The data values are separated by (single) spaces, so `read_delim`
 is the thing:
+
 ```{r hg-1 }
 url="http://ritsokiguess.site/datafiles/hg.txt"
 societies=read_delim(url," ")
@@ -82,6 +83,7 @@ Solution
 
 
 A $t$-test, since we are testing a mean:
+
 ```{r hg-3 }
 t.test(societies$density,mu=7.38)
 ```     
@@ -109,6 +111,7 @@ approximately normal. We can assess that in several ways, but the
 simplest (which is perfectly acceptable at this point) is a
 histogram. You'll need to pick a suitable number of bins. This one
 comes from Sturges' rule:
+
 ```{r schnagg}
 ggplot(societies,aes(x=density))+geom_histogram(bins=5)
 ```     

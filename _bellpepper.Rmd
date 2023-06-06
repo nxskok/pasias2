@@ -20,6 +20,7 @@ Solution
 
 
 Reading directly from the URL is easiest:
+
 ```{r bellpepper-1 }
 my_url <- "http://ritsokiguess.site/datafiles/bellpepper.csv"
 pepper <- read_csv(my_url)
@@ -47,6 +48,7 @@ Solution
 
 
 This kind of thing:
+
 ```{r dartmouth}
 ggplot(pepper, aes(x = field, y = water)) + geom_boxplot()
 ```
