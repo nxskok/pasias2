@@ -1,0 +1,44 @@
+# The sign test
+
+```{r 07-sign-1}
+library(tidyverse)
+library(smmr)
+```
+
+```{r 07-sign-2, child="_packages.qmd"}
+```
+
+
+```{r 07-sign-3, child="_maze_qq.Rmd"}
+```
+
+```{r 07-sign-4, child="_cookies-r_qq.Rmd"}
+```
+
+```{r 07-sign-5, child="_signpower_qq.Rmd"}
+```
+
+```{r 07-sign-6, child="_roethlisberger_qq.Rmd"}
+```
+
+```{r 07-sign-7, child="_protein_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 07-sign-8, child="_maze.Rmd"}
+```
+
+```{r 07-sign-9, child="_cookies-r.Rmd"}
+```
+
+```{r 07-sign-10, child="_signpower.Rmd"}
+```
+
+```{r 07-sign-11, child="_roethlisberger.Rmd"}
+```
+
+```{r 07-sign-12, child="_protein.Rmd"}
+```
+

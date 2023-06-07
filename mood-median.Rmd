@@ -1,0 +1,38 @@
+# Mood median test
+
+```{r 33-mood-median-1}
+library(tidyverse)
+library(smmr)
+```
+
+```{r 33-mood-median-2, child="_packages.qmd"}
+```
+
+
+```{r 33-mood-median-3, child="_cerealsugar_qq.Rmd"}
+```
+
+```{r 33-mood-median-4, child="_mathphobia_qq.Rmd"}
+```
+
+```{r 33-mood-median-5, child="_forehead_qq.Rmd"}
+```
+
+```{r 33-mood-median-6, child="_handspan2_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 33-mood-median-7, child="_cerealsugar.Rmd"}
+```
+
+```{r 33-mood-median-8, child="_mathphobia.Rmd"}
+```
+
+```{r 33-mood-median-9, child="_forehead.Rmd"}
+```
+
+```{r 33-mood-median-10, child="_handspan2.Rmd"}
+```
+

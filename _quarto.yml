@@ -13,6 +13,8 @@ book:
     - one-sample-inference.Rmd
     - two-sample-inference.Rmd
     - power.Rmd
+    - sign.Rmd
+    - mood-median.Rmd
 
 format:
   html:
