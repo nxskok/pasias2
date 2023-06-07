@@ -1,0 +1,23 @@
+# Normal quantile plots
+
+```{r 09-normal-quantile-1, eval=F}
+library(tidyverse)
+```
+
+```{r 09-normal-quantile-2, child="_packages.qmd"}
+```
+
+
+```{r 09-normal-quantile-3, child="_heliconia_qq.Rmd"}
+```
+
+```{r 09-normal-quantile-4, child="_aus-qq_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 09-normal-quantile-5, child="_heliconia.Rmd"}
+```
+
+```{r 09-normal-quantile-6, child="_aus-qq.Rmd"}
+```

@@ -1,0 +1,58 @@
+# Matched pairs t and sign test
+
+```{r 08-matched-pairs-sign-1, eval=F}
+library(tidyverse)
+library(smmr)
+```
+
+```{r 08-matched-pairs-sign-2, child="_packages.qmd"}
+```
+
+
+```{r 08-matched-pairs-sign-3, child="_bodyfat_qq.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-4, child="_baseball-softball-r_qq.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-5, child="_throw_qq.Rmd"}
+```
+
+
+```{r 08-matched-pairs-sign-6, child="_salaryinc_qq.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-7, child="_bodyfat-sign_qq.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-8, child="_blood_pressure_paired_qq.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-9, child="_french_qq.Rmd"}
+```
+
+My solutions follow:
+
+
+```{r 08-matched-pairs-sign-10, child="_bodyfat.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-11, child="_baseball-softball-r.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-12, child="_throw.Rmd"}
+```
+
+
+```{r 08-matched-pairs-sign-13, child="_salaryinc.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-14, child="_bodyfat-sign.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-15, child="_blood_pressure_paired.Rmd"}
+```
+
+```{r 08-matched-pairs-sign-16, child="_french.Rmd"}
+```
+

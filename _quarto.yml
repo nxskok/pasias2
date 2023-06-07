@@ -15,7 +15,7 @@ book:
     - power.Rmd
     - sign.Rmd
     - mood-median.Rmd
-
+    - matched-pairs-sign.Rmd
 format:
   html:
     theme: cosmo

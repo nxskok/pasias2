@@ -1,0 +1,65 @@
+# Analysis of variance
+
+```{r 10-analysis-of-variance-1, eval=F}
+library(tidyverse)
+```
+
+```{r 10-analysis-of-variance-2, child="_packages.qmd"}
+```
+
+```{r 10-analysis-of-variance-3, child="_movies-r_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-4, child="_deer_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-5, child="_movies2_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-6, child="_carbon_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-7, child="_caffeine_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-8, child="_reggae_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-9, child="_gss_tv_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-10, child="_writers_qq.Rmd"}
+```
+
+```{r 10-analysis-of-variance-11, child="_relig_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 10-analysis-of-variance-12, child="_movies-r.Rmd"}
+```
+
+```{r 10-analysis-of-variance-13, child="_deer.Rmd"}
+```
+
+```{r 10-analysis-of-variance-14, child="_movies2.Rmd"}
+```
+
+```{r 10-analysis-of-variance-15, child="_carbon.Rmd"}
+```
+
+```{r 10-analysis-of-variance-16, child="_caffeine.Rmd"}
+```
+
+```{r 10-analysis-of-variance-17, child="_reggae.Rmd"}
+```
+
+```{r 10-analysis-of-variance-18, child="_gss_tv.Rmd"}
+```
+
+```{r 10-analysis-of-variance-19, child="_writers.Rmd"}
+```
+
+```{r 10-analysis-of-variance-20, child="_relig.Rmd"}
+```
+
