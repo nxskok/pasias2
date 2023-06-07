@@ -43,7 +43,6 @@ My solutions follow:
 ```{r 08-matched-pairs-sign-12, child="_throw.Rmd"}
 ```
 
-
 ```{r 08-matched-pairs-sign-13, child="_salaryinc.Rmd"}
 ```
 

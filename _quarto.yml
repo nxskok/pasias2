@@ -16,6 +16,9 @@ book:
     - sign.Rmd
     - mood-median.Rmd
     - matched-pairs-sign.Rmd
+    - normal-quantile.Rmd
+    - analysis-of-variance.Rmd
+    - reports.Rmd
 format:
   html:
     theme: cosmo
