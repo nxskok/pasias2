@@ -1,0 +1,54 @@
+# Two-sample inference
+
+```{r 05-two-sample-inference-1, eval=F}
+library(tidyverse)
+```
+
+```{r 05-two-sample-inference-2, child="_packages.qmd"}
+```
+
+
+```{r 05-two-sample-inference-3, child="_devices-r_qq.Rmd"}
+```
+
+```{r 05-two-sample-inference-4, child="_parking_qq.Rmd"}
+```
+
+```{r 05-two-sample-inference-5, child="_bellpepper_qq.Rmd"}
+```
+
+```{r 05-two-sample-inference-6, child="_mousebully_qq.Rmd"}
+```
+
+```{r 05-two-sample-inference-7, child="_kids-diet_qq.Rmd"}
+```
+
+```{r 05-two-sample-inference-8, child="_handspan_qq.Rmd"}
+```
+
+```{r 05-two-sample-inference-9, child="_ozvus_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 05-two-sample-inference-10, child="_devices-r.Rmd"}
+```
+
+```{r 05-two-sample-inference-11, child="_parking.Rmd"}
+```
+
+```{r 05-two-sample-inference-12, child="_bellpepper.Rmd"}
+```
+
+```{r 05-two-sample-inference-13, child="_mousebully.Rmd"}
+```
+
+```{r 05-two-sample-inference-14, child="_kids-diet.Rmd"}
+```
+
+```{r 05-two-sample-inference-15, child="_handspan.Rmd"}
+```
+
+```{r 05-two-sample-inference-16, child="_ozvus.Rmd"}
+```
+

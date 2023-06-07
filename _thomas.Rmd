@@ -40,6 +40,7 @@ Solution
 
 I was lazy and used the one on the web, the
 values being separated ("delimited") by exactly one space:
+
 ```{r thomas-1 }
 my_url <- "http://ritsokiguess.site/datafiles/marks.txt"
 marks <- read_delim(my_url, " ")
@@ -138,6 +139,7 @@ Solution
 
 Replace your $x$-coordinate by some kind of dummy thing like
 `1` (`factor(1)` also works):
+
 ```{r torquay}
 ggplot(marks, aes(x = 1, y = score)) + geom_boxplot()
 ```

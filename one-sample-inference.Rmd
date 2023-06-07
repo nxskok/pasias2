@@ -4,46 +4,44 @@
 library(tidyverse)
 ```
 
-```{r 04-one-sample-inference-2, child="packages.Rmd"}
+```{r 04-one-sample-inference-2, child="_packages.qmd"}
 ```
 
-```{r 04-one-sample-inference-3, child="hg_qq.Rmd"}
+```{r 04-one-sample-inference-3, child="_hg_qq.Rmd"}
 ```
 
-```{r 04-one-sample-inference-4, child="boulder_qq.Rmd"}
+```{r 04-one-sample-inference-4, child="_boulder_qq.Rmd"}
 ```
 
-```{r 04-one-sample-inference-5, child="ncbirths-inf_qq.Rmd"}
+```{r 04-one-sample-inference-5, child="_ncbirths-inf_qq.Rmd"}
 ```
 
-```{r 04-one-sample-inference-6, child="nenana-inf_qq.Rmd"}
+```{r 04-one-sample-inference-6, child="_nenana-inf_qq.Rmd"}
 ```
 
-```{r 04-one-sample-inference-7, child="trees_qq.Rmd"}
+```{r 04-one-sample-inference-7, child="_trees_qq.Rmd"}
 ```
 
-```{r 04-one-sample-inference-8, child="cholest_qq.Rmd"}
+```{r 04-one-sample-inference-8, child="_cholest_qq.Rmd"}
 ```
-
-\setcounter{chapter}{1}
 
 My solutions follow:
 
-```{r 04-one-sample-inference-9, child="hg.Rmd"}
+```{r 04-one-sample-inference-9, child="_hg.Rmd"}
 ```
 
-```{r 04-one-sample-inference-10, child="boulder.Rmd"}
+```{r 04-one-sample-inference-10, child="_boulder.Rmd"}
 ```
 
-```{r 04-one-sample-inference-11, child="ncbirths-inf.Rmd"}
+```{r 04-one-sample-inference-11, child="_ncbirths-inf.Rmd"}
 ```
 
-```{r 04-one-sample-inference-12, child="nenana-inf.Rmd"}
+```{r 04-one-sample-inference-12, child="_nenana-inf.Rmd"}
 ```
 
-```{r 04-one-sample-inference-13, child="trees.Rmd"}
+```{r 04-one-sample-inference-13, child="_trees.Rmd"}
 ```
 
-```{r 04-one-sample-inference-14, child="cholest.Rmd"}
+```{r 04-one-sample-inference-14, child="_cholest.Rmd"}
 ```
 

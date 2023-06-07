@@ -24,7 +24,7 @@ see?
 (c) Do a web search to find the standard (North American)
 definition of a premature birth. Does that correspond to what you saw
 in the data? Cite the website you used, for example by saying
-"according to `URL`, ldots", with `URL` replaced by
+"according to `URL`, ...", with `URL` replaced by
 the address of the website you found.
 
 
