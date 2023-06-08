@@ -76,8 +76,8 @@ Something like this:
 Before that, start a new section like this:
 `## Introduction`. 
 Also, get used to expressing your understanding in your words,
-not mine. (Using my words, in my courses, is likely to be
-worth very little.)
+not mine. Using my words, in my courses, is likely to be
+worth very little.
 
 
 $\blacksquare$
@@ -90,6 +90,7 @@ Solution
 
 
 Values separated by spaces:
+
 ```{r carbon-1 }
 my_url <- "http://ritsokiguess.site/datafiles/carbon.txt"
 carbon <- read_delim(my_url, " ")
@@ -210,6 +211,7 @@ Solution
 
 This would be the Welch-Satterthwaite version of the two-sample
 $t$-test, since the two groups do appear to have different spreads:
+
 ```{r carbon-2 }
 t.test(weight ~ method, data = carbon)
 ```
@@ -300,6 +302,7 @@ Solution
 
 That would be Mood's median test. Since I didn't say anything
 about building it yourself, feel free to use `smmr`:
+
 ```{r carbon-6 }
 library(smmr)
 median_test(carbon, weight, method)

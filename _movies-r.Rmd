@@ -1,7 +1,7 @@
 ##  Movie ratings and lengths
 
 
- Before a movie is shown in theatres, it
+Before a movie is shown in theatres, it
 receives a "rating" that says what kind of material it
 contains. [link](https://en.wikipedia.org/wiki/Motion_Picture_Association_of_America_film_rating_system)
 explains the categories, from G (suitable for children) to R (anyone
@@ -20,6 +20,7 @@ Solution
 
 
 `read_csv`:
+
 ```{r movies-r-1 }
 my_url <- "http://ritsokiguess.site/datafiles/movie-lengths.csv"
 movies <- read_csv(my_url)
@@ -105,6 +106,7 @@ Solution
 
 
 The obvious graph is a boxplot:
+
 ```{r stattschriber}
 ggplot(movies, aes(x = rating, y = length)) + geom_boxplot()
 ```

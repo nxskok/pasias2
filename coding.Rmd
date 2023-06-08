@@ -1,0 +1,12 @@
+# Learning to code
+
+```{r 61-coding-1, eval=F}
+library(tidyverse)
+```
+
+```{r 61-coding-2, child="_packages.qmd"}
+```
+
+```{r 61-coding-3, child="_proggo.Rmd"}
+```
+

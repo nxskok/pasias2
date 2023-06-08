@@ -1,0 +1,96 @@
+# Tidying data
+
+```{r 11-tidying-data-1, eval=F}
+library(tidyverse)
+```
+
+```{r 11-tidying-data-2, child="_packages.qmd"}
+```
+
+
+```{r 11-tidying-data-3, child="_throw-spaghetti_qq.Rmd"}
+```
+
+```{r 11-tidying-data-4, child="_ethanol_qq.Rmd"}
+```
+
+```{r 11-tidying-data-5, child="_tomatoes_qq.Rmd"}
+```
+
+```{r 11-tidying-data-6,child="_migraine_qq.Rmd"}
+```
+
+```{r 11-tidying-data-7,child="_plants_qq.Rmd"}
+```
+
+```{r 11-tidying-data-8,child="_crickets_qq.Rmd"}
+```
+
+
+
+```{r 11-tidying-data-9, child="_billboard_qq.Rmd"}
+```
+
+```{r 11-tidying-data-10, child="_bikes_qq.Rmd"}
+```
+
+```{r 11-tidying-data-11, child="_heat-r_qq.Rmd"}
+```
+
+```{r 11-tidying-data-12, child="_isoflavones_qq.Rmd"}
+```
+
+```{r 11-tidying-data-13, child="_jocko_qq.Rmd"}
+```
+
+
+```{r 11-tidying-data-14, child="_util_temp_qq.Rmd"}
+```
+
+```{r 11-tidying-data-15, child="_blood_pressure_tidy_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 11-tidying-data-16, child="_throw-spaghetti.Rmd"}
+```
+
+```{r 11-tidying-data-17, child="_ethanol.Rmd"}
+```
+
+```{r 11-tidying-data-18, child="_tomatoes.Rmd"}
+```
+
+```{r 11-tidying-data-19,child="_migraine.Rmd"}
+```
+
+```{r 11-tidying-data-20,child="_plants.Rmd"}
+```
+
+```{r 11-tidying-data-21,child="_crickets.Rmd"}
+```
+
+
+
+```{r 11-tidying-data-22, child="_billboard.Rmd"}
+```
+
+```{r 11-tidying-data-23, child="_bikes.Rmd"}
+```
+
+```{r 11-tidying-data-24, child="_heat-r.Rmd"}
+```
+
+```{r 11-tidying-data-25, child="_isoflavones.Rmd"}
+```
+
+```{r 11-tidying-data-26, child="_jocko.Rmd"}
+```
+
+```{r 11-tidying-data-27, child="_util_temp.Rmd"}
+```
+
+```{r 11-tidying-data-28, child="_blood_pressure_tidy.Rmd"}
+```
+

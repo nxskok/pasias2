@@ -1,0 +1,252 @@
+##  Ethanol and sleep time in rats
+
+
+ A biologist wished to study the effects of ethanol on sleep
+time in rats. A sample of 20 rats (all the same age) was selected, and
+each rat was given an injection having a particular concentration (0,
+1, 2 or 4 grams per kilogram of body weight) of ethanol. These are
+labelled `e0, e1, e2, e4`. The "0"
+treatment was a control group. The rapid eye movement (REM) sleep time
+was then recorded for each rat. The data are in
+[link](http://ritsokiguess.site/datafiles/ratsleep.txt). 
+
+
+
+(a) Read the data in from the file. Check that you have four rows
+of observations  and five columns of sleep times.
+
+
+Solution
+
+
+Separated by single spaces:
+
+```{r ethanol-1 }
+my_url <- "http://ritsokiguess.site/datafiles/ratsleep.txt"
+sleep1 <- read_delim(my_url, " ")
+sleep1
+```
+
+ 
+
+There are six columns, but one of them labels the groups, and there
+are correctly five columns of sleep times.
+
+I used a "temporary" name for my data frame, because I'm going to be
+doing some processing on it in a minute, and I want to reserve the
+name `sleep` for my processed data frame.
+
+$\blacksquare$
+
+(b) Unfortunately, the data are in the wrong format. All the sleep
+times for each treatment group are on one row, and we should have
+*one* column containing *all* the sleep times, and the
+corresponding row should show which treatment group that sleep time
+came from. Transform this data frame into one that you could use for modelling or making graphs.
+
+
+
+
+Solution
+
+We will want *one* column of sleep times, with an additional categorical column saying what observation each sleep time was within its group (or, you might say, we don't really care about that much, but that's what we are going to get). 
+
+The columns `obs1` through `obs5` are
+different in that they are different observation numbers
+("replicates", in the jargon). I'll call that `rep`. What
+makes them the same is that they are all sleep times. Columns
+`obs1` through `obs5` are the ones we want to
+combine, thus. 
+Here is where I use the name `sleep`: I save the result of
+the `pivot_longer` into a data frame `sleep`. Note that I
+also used the brackets-around-the-outside to display what I had,
+so that I didn't have to do a separate display. This is a handy
+way of saving *and* displaying in one shot:
+
+```{r ethanol-2}
+(sleep1 %>% 
+  pivot_longer(-treatment, names_to="rep", values_to="sleeptime") -> sleep)
+```
+
+Typically in this kind of work, you have a lot of columns that need to be made longer, and a much smaller number of columns that need to be repeated as necessary. You can either specify all the columns to make longer, or you can specify "not" the other columns. Above, my first input to `pivot_longer` was "everything but treatment", but you could also do it like this:
+
+```{r ethanol-3}
+sleep1 %>% 
+  pivot_longer(obs1:obs5, names_to="rep", values_to="sleeptime") 
+```
+
+or like this:
+
+```{r ethanol-4}
+sleep1 %>% 
+  pivot_longer(starts_with("obs"), names_to="rep", values_to="sleeptime") 
+```
+
+This one was a little unusual in that usually with these you have the *treatments* in the columns and the replicates in the rows. It doesn't matter, though: `pivot_longer` handles both cases.
+
+
+ 
+We have 20 rows of 3 columns. I got all the rows, but you will
+probably get an output with ten rows as usual, and will need to click
+Next to see the last ten rows. The initial display will say how many
+rows (20) and columns (3) you have.
+
+The column `rep` is not very interesting: it just says which
+observation each one was within its group.^[Sometimes the  column playing the role of `rep` *is* interesting to us, but  not here.] 
+The interesting things are `treatment` and
+`sleeptime`, which are the two variables we'll need for our
+analysis of variance.
+
+$\blacksquare$
+
+
+(c) Using your new data frame, make side-by-side boxplots of sleep
+time by treatment group. 
+
+
+
+Solution
+
+
+```{r ethanol-5 }
+ggplot(sleep, aes(x = treatment, y = sleeptime)) + geom_boxplot()
+```
+
+ 
+
+$\blacksquare$
+
+
+(d) In your boxplots, how does the median sleep time appear to
+depend on treatment group?
+
+
+
+Solution
+
+
+It appears to *decrease* as the dose of ethanol increases,
+and pretty substantially so (in that the differences ought to be
+significant, but that's coming up). 
+
+
+$\blacksquare$
+
+(e) There is an assumption about spread that the analysis of
+variance needs in order to be reliable. Do your boxplots indicate that
+this assumption is satisfied for these data, bearing in mind that you
+have only five observations per group?
+
+
+
+Solution
+
+
+The assumption is that the population SDs of each group are all
+equal. Now, the boxplots show IQRs, which are kind of a surrogate
+for SD, and because we only have five observations per group to
+base the IQRs on, the *sample* IQRs might vary a bit. So we
+should look at the heights of the boxes on the boxplot, and see
+whether they are grossly unequal. They appear to be to be of very
+similar heights, all things considered, so I am happy.
+
+If you want the SDs themselves:
+
+```{r ethanol-6 }
+sleep %>%
+  group_by(treatment) %>%
+  summarize(stddev = sd(sleeptime))
+```
+
+ 
+
+Those are *very* similar, given only 5 observations per group. No
+problems here.
+
+
+$\blacksquare$
+
+(f) Run an analysis of variance to see whether sleep time differs
+significantly among treatment groups. What do you conclude?
+
+
+
+Solution
+
+
+I use `aov` here, because I might be following up with
+Tukey in a minute:
+
+```{r ethanol-7 }
+sleep.1 <- aov(sleeptime ~ treatment, data = sleep)
+summary(sleep.1)
+```
+
+ 
+
+This is a very small P-value, so my conclusion is that the mean sleep
+times are not all the same for the treatment groups. Further than that
+I am not entitled to say (yet).
+
+The technique here is to save the output from `aov` in
+something, look at that (via `summary`), and then that same
+something gets fed into `TukeyHSD` later. 
+
+
+$\blacksquare$
+
+(g) Would it be a good idea to run Tukey's method here? Explain
+briefly why or why not, and if you think it would be a good idea, run
+it.
+
+
+
+Solution
+
+
+Tukey's method is useful when (i) we have run an analysis of
+variance and got a significant result and (ii) when we want to know
+which groups differ significantly from which. Both (i) and (ii) are
+true here. So:
+
+```{r ethanol-8 }
+TukeyHSD(sleep.1)
+```
+
+ 
+
+
+$\blacksquare$
+
+(h) What do you conclude from Tukey's method? (This is liable to be
+a bit complicated.) Is there a treatment that is clearly best, in
+terms of the sleep time being largest?
+
+
+
+Solution
+
+
+All the differences are significant except treatment `e2`
+vs.\ `e1` and `e4`. All the differences involving
+the control group `e0` are significant, and if you look
+back at the boxplots in (c), you'll see that the control group `e0`
+had the *highest* mean sleep time. So the control group is
+best (from this point of view), or another way of saying it is
+that *any* dose of ethanol is significantly reducing mean
+sleep time.
+The other comparisons are a bit confusing, because the 1-4
+difference is significant, but neither of the differences
+involving 2 are. That is, 1 is better than 4, but 2 is not
+significantly worse than 1 nor better than 4. This seems like it
+should be a logical impossibility, but the story is that we don't
+have enough data to decide where 2 fits relative to 1 or 4.  If we
+had 10 or 20 observations per group, we might be able to conclude
+that 2 is in between 1 and 4 as the boxplots suggest.
+
+
+Extra: I didn't ask about normality here, but like the equal-spreads assumption I'd say there's nothing controversial about it with these data. With normality good and equal spreads good, `aov` plus Tukey is the analysis of choice. 
+
+$\blacksquare$
+
+

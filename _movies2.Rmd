@@ -15,6 +15,7 @@ Solution
 
 Reading in is as in the other question using these data (just copy
 your code, or mine). 
+
 ```{r movies2-1 }
 my_url <- "http://ritsokiguess.site/datafiles/movie-lengths.csv"
 movies <- read_csv(my_url)
@@ -49,6 +50,7 @@ Solution
 
 
 The graph would seem to be a boxplot, side by side for each group:
+
 ```{r bletzen}
 ggplot(movies, aes(x = rating, y = length)) + geom_boxplot()
 ```
@@ -148,6 +150,7 @@ Solution
 
 
 The smart way is to use `smmr`, since it is much easier:
+
 ```{r movies2-3 }
 library(smmr)
 median_test(movies, length, rating)
@@ -201,6 +204,7 @@ table tabulating the number of values above and below the overall
 median for each group, (iii) test the table for association, (iv)
 draw a conclusion.
 Thus (i):
+
 ```{r movies2-6 }
 median(movies$length)
 ```
@@ -255,7 +259,7 @@ need to store your table in a variable because it has to get passed on
 to `chisq.test` below, (iii):
 
 ```{r movies2-11 }
-chisq.test(tab1, correct = F)
+chisq.test(tab1, correct = FALSE)
 ```
 
  
@@ -263,12 +267,12 @@ chisq.test(tab1, correct = F)
 or 
 
 ```{r movies2-12 }
-chisq.test(tab2, correct = F)
+chisq.test(tab2, correct = FALSE)
 ```
 
  
 
-Either is correct, or, actually, without the `correct=F`.^[See discussion elsewhere about Yates' Correction and fixed margins.]
+Either is correct, or, actually, without the `correct=FALSE`.^[See discussion elsewhere about Yates' Correction and fixed margins.]
 
 The conclusion (iv) is the same either way: the null of no association
 is clearly rejected (with a P-value of 0.0028 or 0.0036 as
@@ -374,6 +378,7 @@ function and not returning it. Ooops. The nice thing about
 it will pull out (and return) whatever I want it to.
 
 Let's grab a hold of the different rating groups we have:
+
 ```{r movies2-17 }
 the_ratings <- unique(movies$rating)
 the_ratings
@@ -463,6 +468,7 @@ adjustment: instead of rejecting if the P-value is less than 0.05, we
 only reject if it is less than $0.05/6$, since we are doing 6
 tests. This is a fiddly calculation to do by hand, but it's easy to
 build in another `mutate`, thus:^[In the pairwise median  test in `smmr`, I did this backwards: rather than changing the alpha that you compare each P-value with from 0.05 to 0.05/6, I  flip it around so that you adjust the P-values by *multiplying*  them by 6, and then comparing the adjusted P-values with the usual  0.05. It comes to the same place in the end, except that this way  you can get adjusted P-values that are greater than 1, which makes no sense. You read those as being definitely not significant.]
+
 ```{r movies2-22 }
 crossing(first = the_ratings, second = the_ratings) %>%
   filter(first < second) %>%

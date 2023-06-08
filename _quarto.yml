@@ -19,6 +19,9 @@ book:
     - normal-quantile.Rmd
     - analysis-of-variance.Rmd
     - reports.Rmd
+    - coding.Rmd
+    - dandruff.Rmd
+    - tidying-data.Rmd
 format:
   html:
     theme: cosmo

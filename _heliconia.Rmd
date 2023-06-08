@@ -25,8 +25,10 @@ Solution
 
 
 The usual `read_csv`:
+
 ```{r heliconia-1 }
-heliconia=read_csv("heliconia.csv")
+my_url <- "http://ritsokiguess.site/datafiles/heliconia.csv"
+heliconia <- read_csv(my_url)
 ```       
 
 I suggested to look at *all* the rows. Here's why:
@@ -53,6 +55,7 @@ Solution
 
 There's a certain amount of repetitiveness here (that we work
 around later):
+
 ```{r heliconia-3 }
 ggplot(heliconia,aes(sample=bihai))+stat_qq()+stat_qq_line()
 ```         
@@ -70,6 +73,7 @@ Solution
 
           
 Same idea again:
+
 ```{r heliconia-4 }
 ggplot(heliconia,aes(sample=caribaea_red))+stat_qq()+stat_qq_line()
 ```         

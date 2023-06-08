@@ -1,0 +1,7 @@
+# Treating dandruff
+
+```{r 62-dandruff-1, child="_packages.qmd"}
+```
+
+```{r 62-dandruff-2, child="_dandruff.Rmd"}
+```

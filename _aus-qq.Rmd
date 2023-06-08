@@ -18,6 +18,7 @@ Solution
 
 
 `read_tsv` is the right thing:
+
 ```{r aus-qq-1 }
 my_url="http://ritsokiguess.site/datafiles/ais.txt"
 athletes=read_tsv(my_url)

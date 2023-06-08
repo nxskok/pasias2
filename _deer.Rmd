@@ -23,6 +23,7 @@ Solution
 
 
 The usual stuff for data values separated by (single) spaces:
+
 ```{r deer-1 }
 myurl <- "http://ritsokiguess.site/datafiles/deer.txt"
 deer <- read_delim(myurl, " ")
@@ -139,6 +140,7 @@ Solution
 
 To give you some practice with the mechanics, first find the
 overall median:
+
 ```{r deer-3 }
 deer %>% summarize(med = median(food))
 ```
@@ -228,6 +230,7 @@ Solution
 
 
 Off we go:
+
 ```{r deer-9 }
 library(smmr)
 median_test(deer, food, month)

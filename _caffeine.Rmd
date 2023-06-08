@@ -22,6 +22,7 @@ Solution
 
 
 `read_csv` because it's a `.csv` file:
+
 ```{r caffeine-1 }
 my_url <- "http://ritsokiguess.site/datafiles/caffeine.csv"
 caffeine.untidy <- read_csv(my_url)
@@ -142,6 +143,7 @@ Solution
 
 
 Something like this:
+
 ```{r caffeine-5 }
 caff.1 <- aov(score ~ amount, data = caffeine)
 summary(caff.1)
