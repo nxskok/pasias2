@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./power.html" rel="next">
 <link href="./one-sample-inference.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -170,6 +171,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -369,7 +436,7 @@ dbl (2): year, hours
 <p><img src="two-sample-inference_files/figure-html/waehingen-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The <code>fct_inorder</code> trick from assignment 1 will also work, since the years are in the data in the order we want them to be displayed.</p>
+<p>The <code>fct_inorder</code> trick will also work, since the years are in the data in the order we want them to be displayed. (An option in case you have seen this.)</p>
 <p>The median for 2009 is noticeably higher, and there is no skewness or outliers worth worrying about.</p>
 <p>The measurements for the two years have a very similar spread, so there would be no problem running the pooled test here.</p>
 <p>You might be bothered by the <code>factor(year)</code> on the <span class="math inline">\(x\)</span>-axis. To get around that, you can define year-as-factor <em>first</em>, using <code>mutate</code>, then feed your new column into the boxplot. That goes like this. There is a wrinkle that I explain afterwards:</p>
@@ -461,7 +528,7 @@ mean in group 1999 mean in group 2009
 <p>Ugly because you’ve just typed the name of the data frame and the dollar sign <em>twice</em> for no reason. As a general principle, if you as a programmer are repeating yourself, you should stop and ask yourself how you can avoid the repeat.</p>
 <p>If you want the pooled test in R, you have to ask for it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hours<span class="sc">~</span>year,<span class="at">alternative=</span><span class="st">"less"</span>,<span class="at">data=</span>plugged,<span class="at">var.equal=</span>T)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hours<span class="sc">~</span>year, <span class="at">alternative =</span> <span class="st">"less"</span>, <span class="at">data =</span> plugged, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -520,14 +587,15 @@ mean in group 1999 mean in group 2009
 <p>The direct way is to use the package <code>readxl</code>. This has a <code>read_excel</code> that works the same way as any of the other <code>read_</code> functions. You’ll have to make sure that you read in sheet 2, since that’s the one you want. There is some setup first. There are a couple of ways you can do that:</p>
 <ul>
 <li><p>Download the spreadsheet to your computer, and upload it to your project on R Studio Cloud (or, if you are running R Studio on your computer, use something like <code>file.choose</code> to get the file from wherever it got downloaded to).</p></li>
-<li><p>Use the function <code>download.file</code> to get the file from the URL and store it in your project folder directly. This also works in R Studio Cloud, and completely by-passes the download-upload steps that you would have to do otherwise. (I am grateful to Rose Gao for this idea.) Here is how you can use <code>download.file</code> here: ::: {.cell}</p></li>
+<li><p>Use the function <code>download.file</code> to get the file from the URL and store it in your project folder directly. This also works in R Studio Cloud, and completely by-passes the download-upload steps that you would have to do otherwise. (I am grateful to Rose Gao for this idea.) Here is how you can use <code>download.file</code> here:</p></li>
 </ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/parking.xlsx"</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>local <span class="ot">&lt;-</span> <span class="st">"parking.xlsx"</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(my_url, local, <span class="at">mode =</span> <span class="st">"wb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<p>When you’ve gotten the spreadsheet into your project folder via one of those two ways, you go ahead and do this:<br>
-::: {.cell}</p>
+</div>
+<p>When you’ve gotten the spreadsheet into your project folder via one of those two ways, you go ahead and do this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>parking <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"parking.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>parking</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -539,7 +607,7 @@ mean in group 1999 mean in group 2009
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>You have to do it this way, using the version of the spreadsheet on your computer, since <code>read_excel</code> won’t take a URL, or if it does, I can’t make it work.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> I put the spreadsheet in R Studio’s current folder, so I could read it in by name, or you can do the <code>f &lt;- file.choose()</code> thing, find it, then read it in. The <code>sheet=</code> thing can take either a number (as here: the second sheet in the workbook), or a name (whatever name the sheet has on its tab in the workbook).</p>
 <p>Extra: Rose actually came up with a better idea, which I will show you and explain:</p>
 <div class="cell">
@@ -551,7 +619,8 @@ mean in group 1999 mean in group 2009
 <p>The advantage of this approach is that the temporary file disappears as soon as you close R, and so you don’t have a copy of the spreadsheet lying around that you don’t need (once you have created the dataframe that I called <code>parking</code>, anyway).</p>
 <p>If you are wondering about that <code>mode</code> thing on <code>download.file</code>: files are of two different types, “text” (like the text of an email, that you can open and look at in something like Notepad), and “binary” that you can’t look at directly, but for which you need special software like Word or Excel to decode it for you.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a><br>
 The first character in <code>mode</code> is either <code>w</code> for “write a new file”, which is what we want here, or <code>a</code> for “append”, which would mean adding to the end of a file that already exists. Thus <code>mode="wb"</code> means “create a new binary file”. End of Extra.</p>
-<p>If you can’t make any of this work, then do it in two steps: save the appropriate sheet as a <code>.csv</code> file, and then read the <code>.csv</code> file using <code>read_csv</code>. If you experiment, you’ll find that saving a spreadsheet workbook as <code>.csv</code> only saves the sheet you’re looking at, so make sure you are looking at sheet 2 before you Save As <code>.csv</code>. I did that, and called my saved <code>.csv</code> <code>parking2.csv</code> (because it was from sheet 2, but you can use any name you like). Then I read this into R thus: ::: {.cell}</p>
+<p>If you can’t make any of this work, then do it in two steps: save the appropriate sheet as a <code>.csv</code> file, and then read the <code>.csv</code> file using <code>read_csv</code>. If you experiment, you’ll find that saving a spreadsheet workbook as <code>.csv</code> only saves the sheet you’re looking at, so make sure you are looking at sheet 2 before you Save As <code>.csv</code>. I did that, and called my saved <code>.csv</code> <code>parking2.csv</code> (because it was from sheet 2, but you can use any name you like). Then I read this into R thus:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>parking2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"parking2.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 93 Columns: 2
@@ -572,7 +641,7 @@ dbl (1): distance
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The read-in data frame <code>parking</code> has 93 rows (<span class="math inline">\(47+46=93\)</span> drivers) and two columns: the distance from the curb that the driver ended up at, and the gender of the driver. This is as the spreadsheet Sheet 2 was, and the first few distances match the ones in the spreadsheet.</p>
 <p>If I were grading this, you’d get some credit for the <code>.csv</code> route, but I really wanted you to figure out how to read the Excel spreadsheet directly, so that’s what would be worth full marks.</p>
 <p>You might want to check that you have some males and some females, and how many of each, which you could do this way:</p>
@@ -592,12 +661,13 @@ dbl (1): distance
 <li>Obtain side-by-side boxplots of parking distances for males and females. Does one gender seem to be better at parking than the other? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>With the right data set, this is a piece of cake: ::: {.cell}</p>
+<p>With the right data set, this is a piece of cake:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(parking, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> distance)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/parking-6-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The outcome variable is distance from the curb, so smaller should be better (more accurate parking). With that in mind, the median for females is a little smaller than for males (about 8.5 vs.&nbsp;about 10), so it seems that on average females are more accurate parkers than males are. The difference is small, however (and so you might be wondering at this point whether it’s a statistically significant difference — don’t worry, that’s coming up).</p>
 <p>Before I leave this one, I want to show you something else: above-and-below histograms, as another way of comparing males and females (two or more groups, in general). First, we make a histogram of all the distances, without distinguishing by gender:</p>
 <div class="cell">
@@ -693,20 +763,23 @@ dbl (1): distance
 <li>Explain briefly why this is two independent samples rather than matched pairs.</li>
 </ol>
 <p>Solution</p>
-<p>There is no way to pair any male with a corresponding female, because they are unrelated people. You might also notice that there are not even the <em>same number</em> of males and females, so there can be no way of pairing them up without leaving one over. (In general, if the two samples are paired, there must be the same number of observations in each; if there are different numbers in each, as here, they cannot be paired.) If you want that more mathematically, let <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be the two sample sizes; then: <span class="math display">\[
+<p>There is no way to pair any male with a corresponding female, because they are unrelated people. You might also notice that there are not even the <em>same number</em> of males and females, so there can be no way of pairing them up without leaving one over. (In general, if the two samples are paired, there must be the same number of observations in each; if there are different numbers in each, as here, they cannot be paired.) If you want that more mathematically, let <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be the two sample sizes; then:</p>
+<p><span class="math display">\[
 \mbox{Paired} \Longrightarrow n_1=n_2
 \]</span></p>
 <p>from which it follows logically (the “contrapositive”) that</p>
 <p><span class="math display">\[
 n_1 \ne n_2 \Longrightarrow \mbox{not paired}
-\]</span> You’ll note from the logic that if the two sample sizes are the same, that tells you <em>nothing</em> about whether it’s paired or independent samples: it could be either, and in that case you have to look at the description of the data to decide between them.</p>
+\]</span></p>
+<p>You’ll note from the logic that if the two sample sizes are the same, that tells you <em>nothing</em> about whether it’s paired or independent samples: it could be either, and in that case you have to look at the description of the data to decide between them.</p>
 <p>Here, anything that gets at why the males and females cannot be paired up is good.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>Run a suitable <span class="math inline">\(t\)</span>-test for comparing parking distances for males and females. What do you conclude, in the context of the data?</li>
 </ol>
 <p>Solution</p>
-<p>A two-sample <span class="math inline">\(t\)</span>-test. I think either the Welch or the pooled one can be justified (and I would expect them to give similar answers). You can do the Welch one either without comment or by asserting that the boxplots show different spreads; if you are going to do the pooled one, you need to say that the spreads are “about equal”, by comparing the heights of the boxes on the boxplots: ::: {.cell}</p>
+<p>A two-sample <span class="math inline">\(t\)</span>-test. I think either the Welch or the pooled one can be justified (and I would expect them to give similar answers). You can do the Welch one either without comment or by asserting that the boxplots show different spreads; if you are going to do the pooled one, you need to say that the spreads are “about equal”, by comparing the heights of the boxes on the boxplots:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(distance <span class="sc">~</span> gender, <span class="at">data =</span> parking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -721,11 +794,11 @@ sample estimates:
 mean in group female   mean in group male 
             9.308511            11.141304 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This is the Welch-Satterthwaite version of the test, the one that does not assume equal SDs in the two groups. The P-value of 0.1894 is not small, so there is no evidence of any difference in parking accuracy between males and females.</p>
 <p>Or, this being the pooled one:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(distance <span class="sc">~</span> gender, <span class="at">data =</span> parking, <span class="at">var.equal =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(distance <span class="sc">~</span> gender, <span class="at">data =</span> parking, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -746,7 +819,8 @@ mean in group female   mean in group male
 <li>Why might you have some doubts about the <span class="math inline">\(t\)</span>-test that you just did? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>The two-sample <span class="math inline">\(t\)</span>-test is based on an assumption of normally-distributed data within each group. If you go back and look at the boxplots, you’ll see either (depending on your point of view) that both groups are right-skewed, or that both groups have outliers, neither of which fits a normal distribution. The outlier in the male group is particularly egregious.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> So I think we are entitled to question whether a two-sample <span class="math inline">\(t\)</span>-test is the right thing to do. Having said that, we should go back and remember that the <span class="math inline">\(t\)</span>-tests are “robust to departures from normality” (since we are working with the Central Limit Theorem here), and therefore that this test might be quite good even though the data are not normal, because the sample sizes of 40-plus are large (by the standards of what typically makes the Central Limit Theorem work for us). So it may not be as bad as it seems. A common competitor for the two-sample <span class="math inline">\(t\)</span>-test is the Mann-Whitney test. This doesn’t assume normality, but it <em>does</em> assume symmetric distributions, which it’s not clear that we have here. I like a test called Mood’s Median Test, which is kind of the two-sample equivalent of the sign test (which we will also see later). It goes like this: Work out the overall median of all the distances, regardless of gender: ::: {.cell}</p>
+<p>The two-sample <span class="math inline">\(t\)</span>-test is based on an assumption of normally-distributed data within each group. If you go back and look at the boxplots, you’ll see either (depending on your point of view) that both groups are right-skewed, or that both groups have outliers, neither of which fits a normal distribution. The outlier in the male group is particularly egregious.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> So I think we are entitled to question whether a two-sample <span class="math inline">\(t\)</span>-test is the right thing to do. Having said that, we should go back and remember that the <span class="math inline">\(t\)</span>-tests are “robust to departures from normality” (since we are working with the Central Limit Theorem here), and therefore that this test might be quite good even though the data are not normal, because the sample sizes of 40-plus are large (by the standards of what typically makes the Central Limit Theorem work for us). So it may not be as bad as it seems. A common competitor for the two-sample <span class="math inline">\(t\)</span>-test is the Mann-Whitney test. This doesn’t assume normality, but it <em>does</em> assume symmetric distributions, which it’s not clear that we have here. I like a test called Mood’s Median Test, which is kind of the two-sample equivalent of the sign test (which we will also see later). It goes like this: Work out the overall median of all the distances, regardless of gender:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>parking <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">med =</span> <span class="fu">median</span>(distance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -756,7 +830,7 @@ mean in group female   mean in group male
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The overall median is 9.</p>
 <p>Count up how many distances of each gender were above or below the overall median. (Strictly, I’m supposed to throw away any values that are exactly equal to the overall median, but I won’t here for clarity of exposition.)</p>
 <div class="cell">
@@ -796,7 +870,8 @@ X-squared = 0.89075, df = 1, p-value = 0.3453</code></pre>
 <li>Read the file in using <code>read_csv</code>, and list the resulting data frame.</li>
 </ol>
 <p>Solution</p>
-<p>Reading directly from the URL is easiest: ::: {.cell}</p>
+<p>Reading directly from the URL is easiest:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/bellpepper.csv"</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>pepper <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -818,7 +893,7 @@ dbl (1): water
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>If you like, find out how many observations you have from each field, thus:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>pepper <span class="sc">%&gt;%</span> <span class="fu">count</span>(field)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -837,12 +912,13 @@ dbl (1): water
 <li>Make side-by-side boxplots of the water content values for the two fields. How do the fields seem to compare?</li>
 </ol>
 <p>Solution</p>
-<p>This kind of thing: ::: {.cell}</p>
+<p>This kind of thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pepper, <span class="fu">aes</span>(<span class="at">x =</span> field, <span class="at">y =</span> water)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/dartmouth-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This one is rather interesting: the distribution of water contents for field <code>a</code> is generally higher than that for field <code>b</code>, but the median for <code>a</code> is actually <em>lower</em>.</p>
 <p>The other reasonable plot is a facetted histogram, something like this:</p>
 <div class="cell">
@@ -933,7 +1009,8 @@ mean in group a mean in group b
 <li>Read the data into R, and display your data frame. Count the number of mice in each group.</li>
 </ol>
 <p>Solution</p>
-<p>These are aligned columns with spaces in between, so we need <code>read_table</code>: ::: {.cell}</p>
+<p>These are aligned columns with spaces in between, so we need <code>read_table</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/stressedmice.txt"</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>mice <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -953,7 +1030,7 @@ cols(
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>You can call the data frame whatever you like.</p>
 <p>If you must, you can physically count the number of mice in each group, but you ought to get in the habit of coding this kind of thing:</p>
 <div class="cell">
@@ -973,12 +1050,13 @@ cols(
 <li>Draw side-by-side boxplots of time spent in darkness for each group of mice.</li>
 </ol>
 <p>Solution</p>
-<p>This: ::: {.cell}</p>
+<p>This:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mice, <span class="fu">aes</span>(<span class="at">x =</span> Environment, <span class="at">y =</span> Time)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/artichoke-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>You did remember to put capital letters on the variable names, didn’t you?</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -991,7 +1069,8 @@ cols(
 <li>Carry out a <span class="math inline">\(t\)</span>-test for comparing the mean time spent in darkness for the mice in the two groups. Think carefully about the details of the <span class="math inline">\(t\)</span>-test (and what you need evidence in favour of).</li>
 </ol>
 <p>Solution</p>
-<p>We are trying to prove that exercise goes with <em>less</em> anxiety, so a one-sided test is called for. The other thing to think about is how R organizes the groups for <code>Environment</code>: in alphabetical order. Thus <code>Enriched</code> is first (like on the boxplot). We’re trying to prove that the mean <code>Time</code> is <em>less</em> for <code>Enriched</code> than for <code>Standard</code>, so we need <code>alternative="less"</code>: ::: {.cell}</p>
+<p>We are trying to prove that exercise goes with <em>less</em> anxiety, so a one-sided test is called for. The other thing to think about is how R organizes the groups for <code>Environment</code>: in alphabetical order. Thus <code>Enriched</code> is first (like on the boxplot). We’re trying to prove that the mean <code>Time</code> is <em>less</em> for <code>Enriched</code> than for <code>Standard</code>, so we need <code>alternative="less"</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(mice, <span class="fu">t.test</span>(Time <span class="sc">~</span> Environment, <span class="at">alternative =</span> <span class="st">"less"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1006,7 +1085,7 @@ sample estimates:
 mean in group Enriched mean in group Standard 
               231.7143               438.7143 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>A common clue that you have the wrong alternative hypothesis is a P-value coming out close to <em>1</em>, which is what you would have gotten from something like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(mice, <span class="fu">t.test</span>(Time <span class="sc">~</span> Environment, <span class="at">alternative =</span> <span class="st">"greater"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1041,13 +1120,14 @@ mean in group Enriched mean in group Standard
 <li><p>I see an outlier in the <code>Enriched</code> group. The data within each group are supposed to be normally distributed, and the <code>Enriched</code> group is not. So I see a problem.</p></li>
 <li><p>I see an outlier in the <code>Enriched</code> group. But the sample sizes are small, and an apparent outlier could arise by chance. So I do not see a problem.</p></li>
 </ul>
-<p>Extra: another way to think about this is normal quantile plots to assess normality within each group. This uses the facetting trick to get a separate normal quantile plot for each <code>Environment</code>: ::: {.cell}</p>
+<p>Extra: another way to think about this is normal quantile plots to assess normality within each group. This uses the facetting trick to get a separate normal quantile plot for each <code>Environment</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mice, <span class="fu">aes</span>(<span class="at">sample =</span> Time)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Environment, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/mousebully-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>For the <code>Enriched</code> group, the upper-end outlier shows up. In a way this plot is no more illuminating than the boxplot, because you still have to make a call about whether this is “too big”. Bear in mind also that these facetted normal quantile plots, with two groups, come out tall and skinny, so vertical deviations from the line are exaggerated. On this plot, the lowest value also looks too low.</p>
 <p>For the <code>Standard</code> group, there are no problems with normality at all.</p>
 <p>What happens if we change the shape of the plots?</p>
@@ -1068,7 +1148,8 @@ mean in group Enriched mean in group Standard
 <li>Read in the data and find out how many observations you have and which variables.</li>
 </ol>
 <p>Solution</p>
-<p>The data values are separated by one space, so: ::: {.cell}</p>
+<p>The data values are separated by one space, so:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/kids-diet.txt"</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>diet <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1090,7 +1171,7 @@ dbl (1): height
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>21 observations on two variables, <code>sect</code> and <code>height</code>. (You should state this; it is not enough to make the reader figure it out for themselves.)</p>
 <p>The heights are evidently in centimetres.</p>
 <p>You can call the data frame whatever you like.</p>
@@ -1112,14 +1193,15 @@ dbl (1): height
 <li>Looking at your boxplots, do you see any problems with doing a two-sample <span class="math inline">\(t\)</span>-test? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>The assumption is that the data in each group are “approximately normal”. Boxplots don’t tell you about normality specifically, but they tell you whether there are any outliers (none here) and something about the shape (via the lengths of the whiskers). I’d say the Sect A values are as symmetric as we could hope for. For Sect B, you can say either that they’re skewed to the left (and that therefore we have a problem), or that the heights are close enough to symmetric (and that therefore we don’t). For me, either is good. As ever, normal quantile plots can offer more insight. With data in this form, the two samples are mixed up, but using facets is the way to go. Philosophically, we draw a normal quantile plot of <em>all</em> the heights, and then say at the end that we would actually like a separate plot for each sect: ::: {.cell}</p>
+<p>The assumption is that the data in each group are “approximately normal”. Boxplots don’t tell you about normality specifically, but they tell you whether there are any outliers (none here) and something about the shape (via the lengths of the whiskers). I’d say the Sect A values are as symmetric as we could hope for. For Sect B, you can say either that they’re skewed to the left (and that therefore we have a problem), or that the heights are close enough to symmetric (and that therefore we don’t). For me, either is good. As ever, normal quantile plots can offer more insight. With data in this form, the two samples are mixed up, but using facets is the way to go. Philosophically, we draw a normal quantile plot of <em>all</em> the heights, and then say at the end that we would actually like a separate plot for each sect:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>diet <span class="sc">%&gt;%</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> height)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sect, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/kids-diet-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>I decided that I wanted short squat plots rather than tall skinny ones.</p>
 <p>With the sizes of the samples, I really don’t see any problems here. Most of the evidence for the left skewness in Sect B is actually coming from that largest value being too small. Sect A is as good as you could wish for. Having extreme values being <em>not extreme enough</em> is not a problem, since it won’t be distorting the mean.</p>
 <p>The other way of doing this is to use <code>filter</code> to pull out the rows you want and then feed that into the plot:</p>
@@ -1719,6 +1801,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./power.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -173,6 +173,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -296,7 +362,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read the data into R. Do you have the correct variables? How many hunter-gatherer societies in Australia were studied? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>The data values are separated by (single) spaces, so <code>read_delim</code> is the thing: ::: {.cell}</p>
+<p>The data values are separated by (single) spaces, so <code>read_delim</code> is the thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url<span class="ot">=</span><span class="st">"http://ritsokiguess.site/datafiles/hg.txt"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>societies<span class="ot">=</span><span class="fu">read_delim</span>(url,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -309,7 +376,7 @@ dbl (1): density
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>I like to put the URL in a variable first, because if I don’t, the <code>read_delim</code> line can be rather long. But if you want to do it in one step, that’s fine, as long as it’s clear that you are doing the right thing.</p>
 <p>Let’s look at the data frame:</p>
 <div class="cell">
@@ -335,7 +402,8 @@ dbl (1): density
 <li>Test your hypotheses using a suitable test. What do you conclude, in the context of the data?</li>
 </ol>
 <p>Solution</p>
-<p>A <span class="math inline">\(t\)</span>-test, since we are testing a mean: ::: {.cell}</p>
+<p>A <span class="math inline">\(t\)</span>-test, since we are testing a mean:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(societies<span class="sc">$</span>density,<span class="at">mu=</span><span class="fl">7.38</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -350,7 +418,7 @@ sample estimates:
 mean of x 
  26.21846 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The P-value is 0.0023, less than the usual <span class="math inline">\(\alpha\)</span> of 0.05, so we <em>reject</em> the null hypothesis and conclude that the mean population density is not equal to 7.38. That is to say, Australia is different from the rest of the world in this sense.</p>
 <p>As you know, “reject the null hypothesis” is only part of the answer, so gets only part of the marks.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -358,12 +426,13 @@ mean of x
 <li>Do you have any doubts about the validity of your test? Explain briefly, using a suitable graph to support your explanation.</li>
 </ol>
 <p>Solution</p>
-<p>The assumption behind the <span class="math inline">\(t\)</span>-test is that the data are approximately normal. We can assess that in several ways, but the simplest (which is perfectly acceptable at this point) is a histogram. You’ll need to pick a suitable number of bins. This one comes from Sturges’ rule: ::: {.cell}</p>
+<p>The assumption behind the <span class="math inline">\(t\)</span>-test is that the data are approximately normal. We can assess that in several ways, but the simplest (which is perfectly acceptable at this point) is a histogram. You’ll need to pick a suitable number of bins. This one comes from Sturges’ rule:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(societies,<span class="fu">aes</span>(<span class="at">x=</span>density))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="one-sample-inference_files/figure-html/schnagg-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Your conclusion might depend on how many bins you chose for your histogram. Here’s 8 bins (which is really too many with only 13 observations, but it actually shows the shape well):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(societies,<span class="fu">aes</span>(<span class="at">x=</span>density))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -407,7 +476,8 @@ mean of x
 <li>Read the data into R, and display the data frame that you read in.</li>
 </ol>
 <p>Solution</p>
-<p>Since you can read the data directly from the URL, do that (if you are online) rather than having to copy and paste and save, and then find the file you saved. Also, there is only one column, so you can pretend that there were multiple columns, separated by whatever you like. It’s least typing to pretend that they were separated by commas like a <code>.csv</code> file: ::: {.cell}</p>
+<p>Since you can read the data directly from the URL, do that (if you are online) rather than having to copy and paste and save, and then find the file you saved. Also, there is only one column, so you can pretend that there were multiple columns, separated by whatever you like. It’s least typing to pretend that they were separated by commas like a <code>.csv</code> file:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/buses.txt"</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>journey.times <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -428,7 +498,7 @@ dbl (1): minutes
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Using <code>read_delim</code> with any delimiter (such as <code>" "</code>) will also work, and is thus also good.</p>
 <p>Variable names in R can have a dot (or an underscore, but not a space) in them. I have grown accustomed to using dots to separate words. This works in R but not other languages, but is seen by some as old-fashioned, with underscores being the modern way.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> You can also use what is called “camel case” by starting each “word” after the first with an uppercase letter like this:</p>
 <div class="cell">
@@ -440,7 +510,8 @@ dbl (1): minutes
 <li>Run a suitable test to see whether there is evidence that the mean journey time differs from 60 minutes. What do you conclude? (I want a conclusion that says something about journey times of buses.)</li>
 </ol>
 <p>Solution</p>
-<p><code>t.test</code> doesn’t take a <code>data=</code> to say which data frame to use. Wrap it in a <code>with</code>: ::: {.cell}</p>
+<p><code>t.test</code> doesn’t take a <code>data=</code> to say which data frame to use. Wrap it in a <code>with</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(journey.times, <span class="fu">t.test</span>(minutes, <span class="at">mu =</span> <span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -455,7 +526,7 @@ sample estimates:
 mean of x 
  63.72727 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>We are testing that the mean journey time is 60 minutes, against the two-sided alternative (default) that the mean is not equal to 60 minutes. The P-value, 0.1971, is a lot bigger than the usual <span class="math inline">\(\alpha\)</span> of 0.05, so we cannot reject the null hypothesis. That is, there is no evidence that the mean journey time differs from 60 minutes.</p>
 <p>As you remember, we have not proved that the mean journey time <em>is</em> 60 minutes, which is what “accepting the null hypothesis” would be. We have only failed to reject it, in a shoulder-shrugging kind of way: “the mean journey time <em>could</em> be 60 minutes”. The other acceptable word is “retain”; when you say “we retain the null hypothesis”, you imply something like “we act as if the mean is 60 minutes, at least until we find something better.”</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -475,12 +546,13 @@ mean of x
 <li>Draw a boxplot of the journey times. Do you see a reason to doubt the test that you did above?</li>
 </ol>
 <p>Solution</p>
-<p>The grouping variable is a “nothing” as in the Ken and Thomas question (part (d)): ::: {.cell}</p>
+<p>The grouping variable is a “nothing” as in the Ken and Thomas question (part (d)):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(journey.times, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> minutes)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="one-sample-inference_files/figure-html/brixham-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The assumption behind the <span class="math inline">\(t\)</span>-test is that the population from which the data come has a normal distribution: ie.&nbsp;symmetric with no outliers. A small sample (here we have 11 values) even from a normal distribution might look quite non-normal (as in Assignment 0 from last week), so I am not hugely concerned by this boxplot. However, it’s perfectly all right to say that this distribution is skewed, and therefore we should doubt the <span class="math inline">\(t\)</span>-test, because the upper whisker is longer than the lower one. In fact, the topmost value is very nearly an outlier:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(journey.times, <span class="fu">aes</span>(<span class="at">x =</span> minutes)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

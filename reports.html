@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 12&nbsp; Writing reports</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./coding.html" rel="next">
+<link href="./analysis-of-variance.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#atomic-weight-of-carbon" id="toc-atomic-weight-of-carbon" class="nav-link active" data-scroll-target="#atomic-weight-of-carbon"><span class="header-section-number">12.1</span> Atomic weight of carbon</a></li>
+  <li><a href="#sparrowhawks" id="toc-sparrowhawks" class="nav-link" data-scroll-target="#sparrowhawks"><span class="header-section-number">12.2</span> Sparrowhawks</a></li>
+  <li><a href="#learning-to-code" id="toc-learning-to-code" class="nav-link" data-scroll-target="#learning-to-code"><span class="header-section-number">12.3</span> Learning to code</a></li>
+  <li><a href="#treating-dandruff" id="toc-treating-dandruff" class="nav-link" data-scroll-target="#treating-dandruff"><span class="header-section-number">12.4</span> Treating dandruff</a></li>
+  <li><a href="#atomic-weight-of-carbon-1" id="toc-atomic-weight-of-carbon-1" class="nav-link" data-scroll-target="#atomic-weight-of-carbon-1"><span class="header-section-number">12.5</span> Atomic weight of carbon</a></li>
+  <li><a href="#sparrowhawks-1" id="toc-sparrowhawks-1" class="nav-link" data-scroll-target="#sparrowhawks-1"><span class="header-section-number">12.6</span> Sparrowhawks</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="atomic-weight-of-carbon" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="atomic-weight-of-carbon"><span class="header-section-number">12.1</span> Atomic weight of carbon</h2>
+<p>The atomic weight of the chemical element carbon is 12. Two methods of measuring the atomic weight of samples of carbon were compared. The results are shown in <a href="http://ritsokiguess.site/datafiles/carbon.txt">link</a>. The methods are labelled 1 and 2. The first task is to find out whether the two methods have different “typical” measures (mean or median, as appropriate) of the atomic weight of carbon.</p>
+<p>For this question, compose a report in R Markdown. (R Markdown is what you use in an R Notebook, but you can also have a separate R Markdown document from which you can produce HTML, Word etc. output.) See part (a) for how to get this started.</p>
+<p>Your report should read like an actual report, not just the answers to some questions that I set you. To help with that, write some text that links the parts of the report together smoothly, so that it reads as a coherent whole. The grader had 3 discretionary marks to award for the overall quality of your writing. The scale for this was:</p>
+<ul>
+<li><p>3 points: excellent writing. The report flows smoothly, is easy to read, and contains everything it should (and nothing it shouldn’t).</p></li>
+<li><p>2 points: satisfactory writing. Not the easiest to read, but says what it should, and it looks at least somewhat like a report rather than a string of answers to questions.</p></li>
+<li><p>1 point: writing that is hard to read or to understand. If you get this (or 0), you should consider what you need to do to improve when you write your project.</p></li>
+<li><p>0 points: you answered the questions, but you did almost nothing to make it read like a report.</p></li>
+</ul>
+<ol type="a">
+<li><p>Create a new R Markdown document. To do this, in R Studio, select File, New File, R Markdown. Type the report title and your name in the boxes, and leave the output on the default HTML. Click OK.</p></li>
+<li><p>Write an introduction that explains the purpose of this study and the data collected in your own words.</p></li>
+<li><p>Begin an appropriately-titled new section in your report, read the data into R and display the results.</p></li>
+<li><p>Make an appropriate plot to compare the measurements obtained by the two methods. You might need to do something about the two methods being given as numbers even though they are really only identifiers. (If you do, your report ought to say what you did and why.)</p></li>
+<li><p>Comment briefly on what you see in your plot.</p></li>
+<li><p>Carry out the most appropriate <span class="math inline">\(t\)</span>-test. (You might like to begin another new section in your report here.)</p></li>
+<li><p>Do the most appropriate test you know that does not assume normally-distributed data.</p></li>
+<li><p>Discuss the results of your tests and what they say about the two methods for measuring the atomic weight of carbon. If it seems appropriate, put the discussion into a section called Conclusions.</p></li>
+</ol>
+</section>
+<section id="sparrowhawks" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="sparrowhawks"><span class="header-section-number">12.2</span> Sparrowhawks</h2>
+<p>(This is a report-writing question, but it also uses some regression techniques from later in the course.)</p>
+<p>One of nature’s patterns is the relationship between the percentage of adult birds in a colony that return from the previous year, and the number of new adults that join the colony. Data for 13 colonies of sparrowhawks can be found at <a href="http://ritsokiguess.site/datafiles/sparrowhawk.txt">link</a>. The columns are the percentage of adults returning from the previous year, and the number of new adults that join the colony.</p>
+<ol type="a">
+<li><p>Create a new R Markdown report, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Knit HTML to see how the report looks so far.</p></li>
+<li><p>Read in the data and display the first few values. Add some text saying how many rows of data there are.</p></li>
+<li><p>Create a new section entitled “Exploratory analysis”, and create a scatterplot for predicting number of new adults from the percentage of returning adults. Describe what you see, adding some suitable text to your report.</p></li>
+<li><p>Obtain the correlation between the two variables. Is this consistent with the scatterplot? Explain briefly. (The R function you need is <code>cor</code>. You can feed it a data frame.)</p></li>
+<li><p>Obtain the regression line for predicting the number of new adults from the percentage of returning adults.</p></li>
+<li><p>What are the intercept and slope of your regression line? Is the slope significant? What does that mean, in the context of the data?</p></li>
+<li><p>Create a scatterplot of the data with the regression line on it.</p></li>
+<li><p>For short-lived birds, the association between these two variables is positive: changes in weather and food supply cause the populations of new and returning birds to increase together. For long-lived territorial birds, however, the association is negative because returning birds claim their territories in the colony and do not leave room for new recruits. Which type of species is the sparrowhawk? Add a short Conclusions section to your report with discussion of this issue.</p></li>
+</ol>
+</section>
+<section id="learning-to-code" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="learning-to-code"><span class="header-section-number">12.3</span> Learning to code</h2>
+<p>A programming course, Comp Sci 101, can be taken either in-person, by attending a class at fixed days and times, or online, by doing sessions that can be taken at times the student chooses. The course coordinator wants to know whether students taking the course in these two different ways learn a different amount, as measured by their scores on the final exam for the course. This example comes from the before-times, so the final exam was taken in person by all students. The final exam was out of 45 marks. A total of 18 students took part in the study. Each student was allowed to choose the section they preferred. The data are in <a href="http://ritsokiguess.site/datafiles/proggo.csv">http://ritsokiguess.site/datafiles/proggo.csv</a>.</p>
+<p>Write a report of a complete and appropriate analysis of these data. Your report should include a description of the data in your own words, any necessary pre-processing steps, appropriate graphs, statistical analysis, assessment of assumptions for your preferred analysis, and a statement of conclusions. Imagine that your report will be read by the department Chair, who does not know about this study, and who still remembers some of their first-year Statistics course.</p>
+<p>(My example report is in a later chapter, the one called Learning to Code.)</p>
+</section>
+<section id="treating-dandruff" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="treating-dandruff"><span class="header-section-number">12.4</span> Treating dandruff</h2>
+<p>According to the <a href="https://www.mayoclinic.org/diseases-conditions/dandruff/symptoms-causes/syc-20353850">Mayo Clinic</a>, dandruff is “a common condition that causes the skin on the scalp to flake. It isn’t contagious or serious. But it can be embarrassing and difficult to treat.” Shampoos often claim to be effective in treating dandruff. In a study, four shampoos were compared:</p>
+<ul>
+<li><code>PyrI</code>: 1% pyrithione zinc shampoo</li>
+<li><code>PyrII</code>: the same as <code>PyrI</code> but with instructions to shampoo two times at each wash. The labels for these are <code>Pyr</code> with a Roman numeral I or II attached.</li>
+<li><code>Keto</code>: 2% ketoconazole shampoo</li>
+<li><code>Placebo</code>: a placebo shampoo</li>
+</ul>
+<p>Each subject was randomly assigned to a shampoo. After six weeks of treatment, eight sections of the scalp were examined for each subject. Each section of the scalp was given a score that measured the amount of flaking on a scale of 0-10, less flaking being better. The response variable, called <code>Flaking</code>, was the sum of these eight scores, and is a whole number for each subject.</p>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/dandruff.txt">http://ritsokiguess.site/datafiles/dandruff.txt</a>, with the data values separated by <em>tabs</em>.</p>
+<p>Your task is to write a report on your analysis of this data set, and to make a recommendation for the best shampoo(s) out of the four studied here. The target audience for your report is the principal investigator of the study described above, who knows a lot about shampoo, but not so much about statistics. (They took a course some time ago that covered the material you’ve seen in this course so far, at about the level of STAB22 or STA 220.) Some things you might want to consider, in no particular order (you need to think about where and if to include these things):</p>
+<ul>
+<li>an Introduction, written in your own words as much as possible</li>
+<li>a Conclusion that summarizes what you found</li>
+<li>a suitable and complete piece of statistical inference</li>
+<li>a numerical summary of the data</li>
+<li>graph(s) of the data</li>
+<li>an assessment of the assumptions of your analysis</li>
+<li>citation of external sources</li>
+<li>anything else that you can make the case for including</li>
+</ul>
+<p>In R Markdown (the text of an R Notebook), you can use <code>##</code> to make a heading (you can experiment with more or fewer <code>#</code> symbols).</p>
+<p>Your aim is to produce a report, suitable for the intended audience, with all the important elements and no irrelevant ones, that is well-written and easy to follow. There is credit for good writing. For this report, you should include your code in with your report. (In a real report, you would probably show the output and not the code, but we are interested in your code here as well.)</p>
+<p>(My example report is in a later chapter.)</p>
+<p>My solutions follow. The example reports on coding and treating dandruff are separate chapters.</p>
+</section>
+<section id="atomic-weight-of-carbon-1" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="atomic-weight-of-carbon-1"><span class="header-section-number">12.5</span> Atomic weight of carbon</h2>
+<p>The atomic weight of the chemical element carbon is 12. Two methods of measuring the atomic weight of samples of carbon were compared. The results are shown in <a href="http://ritsokiguess.site/datafiles/carbon.txt">link</a>. The methods are labelled 1 and 2. The first task is to find out whether the two methods have different “typical” measures (mean or median, as appropriate) of the atomic weight of carbon.</p>
+<p>For this question, compose a report in R Markdown. (R Markdown is what you use in an R Notebook, but you can also have a separate R Markdown document from which you can produce HTML, Word etc. output.) See part (a) for how to get this started.</p>
+<p>Your report should read like an actual report, not just the answers to some questions that I set you. To help with that, write some text that links the parts of the report together smoothly, so that it reads as a coherent whole. The grader had 3 discretionary marks to award for the overall quality of your writing. The scale for this was:</p>
+<ul>
+<li><p>3 points: excellent writing. The report flows smoothly, is easy to read, and contains everything it should (and nothing it shouldn’t).</p></li>
+<li><p>2 points: satisfactory writing. Not the easiest to read, but says what it should, and it looks at least somewhat like a report rather than a string of answers to questions.</p></li>
+<li><p>1 point: writing that is hard to read or to understand. If you get this (or 0), you should consider what you need to do to improve when you write your project.</p></li>
+<li><p>0 points: you answered the questions, but you did almost nothing to make it read like a report.</p></li>
+</ul>
+<ol type="a">
+<li>Create a new R Markdown document. To do this, in R Studio, select File, New File, R Markdown. Type the report title and your name in the boxes, and leave the output on the default HTML. Click OK.</li>
+</ol>
+<p>Solution</p>
+<p>You’ll see the title and your name in a section at the top of the document, and below that you’ll see a template document, as you would for an R Notebook. The difference is that where you are used to seeing Preview, it now says “knit”, but this has the same effect of producing the formatted version of your report.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Write an introduction that explains the purpose of this study and the data collected in your own words.</li>
+</ol>
+<p>Solution</p>
+<p>Something like this:</p>
+<blockquote class="blockquote">
+<p>This study is intended to compare two different methods (labelled 1 and 2) for measuring the atomic weight of carbon (which is known in actual fact to be 12). Fifteen samples of carbon were used; ten of these were assessed using method 1 and the remaining five using method 2. The primary interest in this particular study is to see whether there is a difference in the mean or median atomic weight as measured by the two methods.</p>
+</blockquote>
+<p>Before that, start a new section like this: <code>## Introduction</code>. Also, get used to expressing your understanding in your words, not mine. Using my words, in my courses, is likely to be worth very little.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Begin an appropriately-titled new section in your report, read the data into R and display the results.</li>
+</ol>
+<p>Solution</p>
+<p>Values separated by spaces:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/carbon.txt"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>carbon <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 15 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (2): method, weight
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>carbon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["method"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"12.0129"},{"1":"1","2":"12.0072"},{"1":"1","2":"12.0064"},{"1":"1","2":"12.0054"},{"1":"1","2":"12.0016"},{"1":"1","2":"11.9853"},{"1":"1","2":"11.9949"},{"1":"1","2":"11.9985"},{"1":"1","2":"12.0077"},{"1":"1","2":"12.0061"},{"1":"2","2":"12.0318"},{"1":"2","2":"12.0246"},{"1":"2","2":"12.0069"},{"1":"2","2":"12.0006"},{"1":"2","2":"12.0075"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>I would expect you to include, without being told to include it, some text in your report indicating that you have sensible data: two methods labelled 1 and 2 as promised, and a bunch<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of atomic weights close to the nominal figure of 12.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Make an appropriate plot to compare the measurements obtained by the two methods. You might need to do something about the two methods being given as numbers even though they are really only identifiers. (If you do, your report ought to say what you did and why.)</li>
+</ol>
+<p>Solution</p>
+<p>The appropriate plot, with a categorical method and quantitative weight, is something like a boxplot. If you’re not careful, <code>method</code> will get treated as a quantitative variable, which you don’t want; the easiest way around that, for a boxplot at least, is to turn it into a factor like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(carbon, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(method), <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reports_files/figure-html/seewerin-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>If you insist, you could do a faceted histogram (above and below, for preference):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(carbon, <span class="fu">aes</span>(<span class="at">x =</span> weight)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>method, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reports_files/figure-html/schuomarcher-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are really not enough data values for a histogram to be of much help, so I don’t like this as much.</p>
+<p>If you are thinking ahead (we are going to be doing a <span class="math inline">\(t\)</span>-test), then you’ll realize that normality is the kind of thing we’re looking for, in which case normal quantile plots would be the thing. However, we might have to be rather forgiving for method 2 since there are only 5 observations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(carbon, <span class="fu">aes</span>(<span class="at">sample =</span> weight)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>method)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reports_files/figure-html/mulichs-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I don’t mind these coming out side by side, though I would rather have them squarer.</p>
+<p>I would say, boxplots are the best, normal quantile plots are also acceptable, but expect to lose something for histograms because they offer only a rather crude comparison in this case.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Comment briefly on what you see in your plot.</li>
+</ol>
+<p>Solution</p>
+<p>In boxplots, if that’s what you drew, there are several things that deserve comment: the medians, the spreads and the shapes. The median for method 1 is a little bit lower than for method 2 (the means are probably more different, given the shapes of the boxes). The spread for method 2 is a lot bigger. (Looking forward, that suggests a Welch-Satterthwaite rather than a pooled test.) As for shape, the method 2 measurements seem more or less symmetric (the whiskers are equal anyway, even if the position of the median in the box isn’t), but the method 1 measurements have a low outlier. The histograms are hard to compare. Try to say something about centre and spread and shape. I think the method 2 histogram has a slightly higher centre and definitely bigger spread. On my histogram for method 1, the distribution looks skewed left. If you did normal quantile plots, say something sensible about normality for each of the two methods. For method 1, I would say the low value is an outlier and the rest of the values look pretty straight. Up to you whether you think there is a curve on the plot (which would indicate skewness, but then that highest value is too high: it would be bunched up with the other values below 12.01 if there were really skewness). For method 2, it’s really hard to say anything since there are only five values. Given where the line goes, there isn’t much you can say to doubt normality. Perhaps the best you can say here is that in a sample of size 5, it’s difficult to assess normality at all.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Carry out the most appropriate <span class="math inline">\(t\)</span>-test. (You might like to begin another new section in your report here.)</li>
+</ol>
+<p>Solution</p>
+<p>This would be the Welch-Satterthwaite version of the two-sample <span class="math inline">\(t\)</span>-test, since the two groups do appear to have different spreads:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weight <span class="sc">~</span> method, <span class="at">data =</span> carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  weight by method
+t = -1.817, df = 5.4808, p-value = 0.1238
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+ -0.027777288  0.004417288
+sample estimates:
+mean in group 1 mean in group 2 
+       12.00260        12.01428 </code></pre>
+</div>
+</div>
+<p>Imagining that this is a report that would go to your boss, you ought to defend your choice of the Welch-Satterthwaite test (as I did above), and not just do the default <span class="math inline">\(t\)</span>-test without comment.</p>
+<p>If, in your discussion above, you thought the spreads were equal enough, then you should do the pooled <span class="math inline">\(t\)</span>-test here, which goes like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weight <span class="sc">~</span> method, <span class="at">data =</span> carbon, <span class="at">var.equal =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  weight by method
+t = -2.1616, df = 13, p-value = 0.04989
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+ -2.335341e-02 -6.588810e-06
+sample estimates:
+mean in group 1 mean in group 2 
+       12.00260        12.01428 </code></pre>
+</div>
+</div>
+<p>The point here is that you should do the right test based on your conclusion. Being consistent is the most important thing. (In this case, note that the P-values are very different. We’ll get to that shortly.)</p>
+<p>If we were doing this in SAS, as we see later, we’d get a test at the bottom of the output that compares the two variances. I feel that it’s just as good to eyeball the spreads and make a call about whether they are “reasonably close”. Or even, to always do the Welch-Satterthwaite test on the basis that it is pretty good even if the two populations have the same variance. (If this last point of view is one that you share, you ought to say something about that when you do your <span class="math inline">\(t\)</span>-test.)</p>
+<p>Extra: I guess this is a good place to say something about tests for comparing variances, given that you might be pondering that. There are several that I can think of, that R can do, of which I mention two.</p>
+<p>The first is the <span class="math inline">\(F\)</span>-test for variances that you might have learned in B57 (that is the basis for the ANOVA <span class="math inline">\(F\)</span>-test):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(weight <span class="sc">~</span> method, <span class="at">data =</span> carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  weight by method
+F = 0.35768, num df = 9, denom df = 4, p-value = 0.1845
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.04016811 1.68758230
+sample estimates:
+ratio of variances 
+         0.3576842 </code></pre>
+</div>
+</div>
+<p>This, unfortunately, is rather dependent on the data in the two groups being approximately normal. Since we are talking variances rather than means, there is no Central Limit Theorem to rescue us for large samples (quite aside from the fact that these samples are <em>not</em> large). Since the ANOVA <span class="math inline">\(F\)</span>-test is based on the same theory, this is why normality is also more important in ANOVA than it is in a <span class="math inline">\(t\)</span>-test.</p>
+<p>The second is Levene’s test. This doesn’t depend on normality (at least, not nearly so much), so I like it better in general:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(weight <span class="sc">~</span> <span class="fu">factor</span>(method), <span class="at">data =</span> carbon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["F value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.988736","3":"0.3382002","_rn_":"group"},{"1":"13","2":"NA","3":"NA","_rn_":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Levene’s test takes a different approach: first the absolute differences from the group medians are calculated, and then an ANOVA is run on the absolute differences. If, say, one of the groups has a larger spread than the other(s), its absolute differences from the median will tend to be bigger.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> As for what we conclude here, well, neither of the variance tests show any significance at all, so from that point of view there is no evidence against using the pooled <span class="math inline">\(t\)</span>-test. Having said that, the samples are small, and so it would be difficult to <em>prove</em> that the two methods have different variance, even if they actually did.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Things are never as clear-cut as you would like. In the end, it all comes down to making a call and defending it.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>Do the most appropriate test you know that does not assume normally-distributed data.</li>
+</ol>
+<p>Solution</p>
+<p>That would be Mood’s median test. Since I didn’t say anything about building it yourself, feel free to use <code>smmr</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smmr)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median_test</span>(carbon, weight, method)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$table
+     above
+group above below
+    1     3     6
+    2     4     1
+
+$test
+       what      value
+1 statistic 2.80000000
+2        df 1.00000000
+3   P-value 0.09426431</code></pre>
+</div>
+</div>
+<p>As an aside, if you have run into a non-parametric test such as Mann-Whitney or Kruskal-Wallis that applies in this situation, be careful about using it here, because they have additional assumptions that you may not want to trust. Mann-Whitney started life as a test for “equal distributions”.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> This means that the null is equal location <em>and</em> equal spread, and if you reject the null, one of those has failed. But here, we suspect that equal spread will fail, so that the Mann-Whitney test may end up rejecting <em>whether or not</em> the medians are different, so it won’t answer the question you want an answer to. Mood’s median test doesn’t have that problem; all it’s saying if the null is true is that the medians are equal; the spreads could be anything at all.</p>
+<p>The same kind of issues apply to the signed-rank test vs.&nbsp;the sign test. In the case of the signed-rank test, the extra assumption is of a symmetric distribution — to my mind, if you don’t believe normality, you probably don’t have much confidence in symmetry either. That’s why I like the sign test and Mood’s median test: in the situation where you don’t want to be dealing with assumptions, these tests don’t make you worry about that.</p>
+<p>Another comment that you don’t need to make is based on the not-quite-significance of the Mood test. The P-value is less than 0.10 but not less than 0.05, so it doesn’t quite reach significance by the usual standard. But if you look up at the table, the frequencies seem rather unbalanced: 6 out of the remaining 9 weights in group 1 are below the overall median, but 4 out of 5 weights in group 2 are above. This seems as if it ought to be significant, but bear in mind that the sample sizes are small, and thus Mood’s median test needs <em>very</em> unbalanced frequencies, which we don’t quite have here.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>Discuss the results of your tests and what they say about the two methods for measuring the atomic weight of carbon. If it seems appropriate, put the discussion into a section called Conclusions.</li>
+</ol>
+<p>Solution</p>
+<p>Begin by pulling out the P-values for your preferred test(s) and say what they mean. The P-value for the Welch-Satterthwaite <span class="math inline">\(t\)</span>-test is 0.1238, which indicates no difference in mean atomic weights between the two methods. The Mood median test gives a similarly non-significant 0.0943, indicating no difference in the <em>median</em> weights. If you think both tests are plausible, then give both P-values and do a compare-and-contrast with them; if you think that one of the tests is clearly preferable, then say so (and why) and focus on that test’s results.</p>
+<p>If you thought the pooled test was the right one, then you’ll have a bit more discussion to do, since its P-value is 0.0499, and at <span class="math inline">\(\alpha=0.05\)</span> this test disagrees with the others. If you are comparing this test with the Mood test, you ought to make some kind of reasoned recommendation about which test to believe.</p>
+<p>As ever, be consistent in your reasoning.</p>
+<p>Extra: this dataset, where I found it, was actually being used to illustrate a case where the pooled and the Welch-Satterthwaite tests disagreed. The authors of the original paper that used this dataset (a 1987 paper by Best and Rayner;<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> the data come from 1924!) point out that the pooled <span class="math inline">\(t\)</span>-test can be especially misleading when the smaller sample is also the one with the larger variance. This is what happened here.</p>
+<p>In the Best and Rayner paper, the Mood (or the Mann-Whitney) test was not being considered, but I think it’s good practice to draw a picture and make a call about which test is appropriate.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="sparrowhawks-1" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="sparrowhawks-1"><span class="header-section-number">12.6</span> Sparrowhawks</h2>
+<p>(This is a report-writing question, but it also uses some regression techniques from later in the course.)</p>
+<p>One of nature’s patterns is the relationship between the percentage of adult birds in a colony that return from the previous year, and the number of new adults that join the colony. Data for 13 colonies of sparrowhawks can be found at <a href="http://ritsokiguess.site/datafiles/sparrowhawk.txt">link</a>. The columns are the percentage of adults returning from the previous year, and the number of new adults that join the colony.</p>
+<ol type="a">
+<li>Create a new R Markdown report, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Knit HTML to see how the report looks so far.</li>
+</ol>
+<p>Solution</p>
+<p>(Note: this is the previous version of Quarto, called R Markdown. The two are fairly similar.)</p>
+<p>In R Studio, select File, New File, R Markdown. Fill in the Title, Author and leave the Default Output Format at HTML. You’ll see a template report with the document info at the top. This is my document info:</p>
+<p><img src="sh0.png" class="img-fluid"></p>
+<p>This is known in the jargon as a “YAML block”.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Below that is the template R Markdown document, which you can delete now or later.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Read in the data and display the first few values. Add some text saying how many rows of data there are.</li>
+</ol>
+<p>Solution</p>
+<p>Read the data into a data frame. In your report, add some text like “we read in the data”, perhaps after a section heading like “The data”. Then add a <em>code chunk</em> by selecting Chunks and Insert Chunk, or by pressing control-alt-I. So far you have something like this.</p>
+<p><img src="sh1.png" class="img-fluid"></p>
+<p>Inside the code chunk, that is, in the bit between the backtick characters, put R code, just as you would type it at the Console or put in an R notebook. In this case, that would be the following code, minus the message that comes out of <code>read_delim</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/sparrowhawk.txt"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sparrowhawks <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 13 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (2): returning, newadults
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sparrowhawks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For you, it looks like this:</p>
+<p><img src="sh2.png" class="img-fluid"></p>
+<p>We don’t know how many rows of data there are yet, so I’ve left a “placeholder” for it, when we figure it out. The file is annoyingly called <code>sparrowhawk.txt</code>, singular. Sorry about that. If you knit this (click on “Knit HTML” next to the ball of wool, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and knit again. You might be worried about how hard R is working with all this knitting. Don’t worry about that. R can take it. Mine looked like this:</p>
+<p><img src="waluj.png" class="img-fluid"></p>
+<p>There is a better way of adding values that come from the output, which I mention here in case you are interested (if you are not, feel free to skip this). What you do is to make what is called an “inline code chunk”. Where you want a number to appear in the text, you have some R Markdown that looks like this:</p>
+<p><img src="sh3.png" class="img-fluid"></p>
+<p>The piece inside the backticks is the letter <code>r</code>, a space, and then one line of R code. The one line of code will be run, and all of the stuff within the backticks will be replaced in the output by the result of running the R code, in this case the number 13. Typically, you are extracting a number from the data, like the number of rows or a mean of something. If it’s a decimal number, it will come out with a lot of decimal places unless you explicitly <code>round</code> it. OK, let me try it: the data frame has 13 rows altogether. I didn’t type that number; it was calculated from the data frame. Woo hoo!</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Create a new section entitled “Exploratory analysis”, and create a scatterplot for predicting number of new adults from the percentage of returning adults. Describe what you see, adding some suitable text to your report.</li>
+</ol>
+<p>Solution</p>
+<p>The R code you add should look like this, with the results shown (when you knit the report again):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sparrowhawks, <span class="fu">aes</span>(<span class="at">x =</span> returning, <span class="at">y =</span> newadults)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="reports_files/figure-html/sparrowhawk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br></p>
+<p>The piece of report that I added looks like this:</p>
+<p><img src="sh4.png" class="img-fluid"></p>
+<p>Note (i) that you have to do nothing special to get the plot to appear, and (ii) that I put “smaller” in italics, and you see how.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Obtain the correlation between the two variables. Is this consistent with the scatterplot? Explain briefly. (The R function you need is <code>cor</code>. You can feed it a data frame.)</li>
+</ol>
+<p>Solution</p>
+<p>The appropriate R code is this, in another code chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(sparrowhawks, <span class="fu">cor</span>(newadults, returning))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.7484673</code></pre>
+</div>
+</div>
+<p>Or you can ask for the correlations of the whole data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(sparrowhawks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           returning  newadults
+returning  1.0000000 -0.7484673
+newadults -0.7484673  1.0000000</code></pre>
+</div>
+</div>
+<p>This latter is a “correlation matrix” with a correlation between each column and each other column. Obviously the correlation between a column and itself is 1, and that is <em>not</em> the one we want.</p>
+<p>I added this to the report (still in the Exploratory Analysis section, since it seems to belong there):</p>
+<p><img src="sh5.png" class="img-fluid"></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Obtain the regression line for predicting the number of new adults from the percentage of returning adults.</li>
+</ol>
+<p>Solution</p>
+<p>This R code, in another code chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>newadults<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(newadults <span class="sc">~</span> returning, <span class="at">data =</span> sparrowhawks)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newadults<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = newadults ~ returning, data = sparrowhawks)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.8687 -1.2532  0.0508  2.0508  5.3071 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 31.93426    4.83762   6.601 3.86e-05 ***
+returning   -0.30402    0.08122  -3.743  0.00325 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.667 on 11 degrees of freedom
+Multiple R-squared:  0.5602,    Adjusted R-squared:  0.5202 
+F-statistic: 14.01 on 1 and 11 DF,  p-value: 0.003248</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>What are the intercept and slope of your regression line? Is the slope significant? What does that mean, in the context of the data?</li>
+</ol>
+<p>Solution</p>
+<p>See the output in the previous part. That’s what we need to talk about. I added this to the report. I thought we deserved a new section here:</p>
+<p><img src="sh6.png" class="img-fluid"></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>Create a scatterplot of the data with the regression line on it.</li>
+</ol>
+<p>Solution</p>
+<p>This code. Using <code>geom_smooth</code> with <code>method="lm"</code> will add the regression line to the plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sparrowhawks, <span class="fu">aes</span>(<span class="at">x =</span> returning, <span class="at">y =</span> newadults)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="reports_files/figure-html/sparrowhawk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I added a bit of text to the report, which I will show in a moment.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>For short-lived birds, the association between these two variables is positive: changes in weather and food supply cause the populations of new and returning birds to increase together. For long-lived territorial birds, however, the association is negative because returning birds claim their territories in the colony and do not leave room for new recruits. Which type of species is the sparrowhawk? Add a short Conclusions section to your report with discussion of this issue.</li>
+</ol>
+<p>Solution</p>
+<p>My addition to the report looks like this:</p>
+<p><img src="sh7.png" class="img-fluid"></p>
+<p>I think that rounds off the report nicely.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>It’s probably better in a report to use language a bit more formal than <em>a bunch</em>. Something like <em>a number</em> would be better.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The use of absolute differences, and the median, downplays the influence of outliers. The assumption here is that the absolute differences from the medians are approximately normal, which seems a less big assumption than assuming the actual data are approximately normal.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is coming back to the <em>power</em> of something like Levene’s test; the power of any test is not going to be very big if the sample sizes are small.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The test goes back to the 1940s.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Best, D. J., and J. C. W. Rayner. “Welch’s Approximate Solution for the Behrens–Fisher Problem.” Technometrics 29, no. 2 (May 1, 1987): 205–10. doi:10.1080/00401706.1987.10488211. The data set is near the end.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>YAML stands for <em>Yet Another Markup Language</em>, but we’re only using it in this course as the top bit of an R Markdown document.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./analysis-of-variance.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./coding.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

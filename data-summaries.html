@@ -173,6 +173,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -753,7 +819,8 @@ chr (1): Year   JulianDate  Date&amp;Time
 <li>Find a way of displaying how many rows and columns your data frame has, and some of the values. Describe the first and last of the variables that you appear to have.</li>
 </ol>
 <p>Solution</p>
-<p>The easiest is just to display the tibble: ::: {.cell}</p>
+<p>The easiest is just to display the tibble:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>nenana</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -763,7 +830,7 @@ chr (1): Year   JulianDate  Date&amp;Time
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Alternatively, you can take a <code>glimpse</code> of it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(nenana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -781,12 +848,13 @@ $ `Date&amp;Time` &lt;chr&gt; "April 30 at 11:30 AM", "May 11 at 9:33 AM", "May 
 <li>Dates and times are awkward to handle with software. (We see more ways later in the course.) The column <code>JulianDate</code> expresses the time that the tripod fell through the ice as a fractional number of days since December 31. This enables the time (as a fraction of the way through the day) to be recorded as well, the whole thing being an ordinary number. Make a histogram of the Julian dates. Comment briefly on its shape.</li>
 </ol>
 <p>Solution</p>
-<p>With a <code>ggplot</code> histogram, we need a number of bins first. I can do Sturges’ rule in my head: the next power of 2 up from 87 (our <span class="math inline">\(n\)</span>) is 128, which is <span class="math inline">\(2^7\)</span>, so the base 2 log of 87 rounds up to 7. That plus one is 8, so we need 8 bins. For you, any not-insane number of bins will do, or any not-insane bin width, if you want to go that way: ::: {.cell}</p>
+<p>With a <code>ggplot</code> histogram, we need a number of bins first. I can do Sturges’ rule in my head: the next power of 2 up from 87 (our <span class="math inline">\(n\)</span>) is 128, which is <span class="math inline">\(2^7\)</span>, so the base 2 log of 87 rounds up to 7. That plus one is 8, so we need 8 bins. For you, any not-insane number of bins will do, or any not-insane bin width, if you want to go that way:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nenana, <span class="fu">aes</span>(<span class="at">x =</span> JulianDate)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="data-summaries_files/figure-html/nenana-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Note that you need to type <code>JulianDate</code> exactly as it appears, capital letters and all. R is case-sensitive.</p>
 <p>This histogram looks more or less symmetric (and, indeed, normal). I really don’t think you can justify an answer other than “symmetric” here. (Or “approximately normal”: that’s good too.) If your histogram is different, say so. I think that “hole” in the middle is not especially important.</p>
 <p>We haven’t done normal quantile plots yet, but looking ahead:</p>
@@ -896,7 +964,8 @@ dbl (2): CAS, CARS
 <li>How many males and females were there in the sample?</li>
 </ol>
 <p>Solution</p>
-<p>Most easily <code>count</code>: ::: {.cell}</p>
+<p>Most easily <code>count</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>anxiety <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -906,7 +975,7 @@ dbl (2): CAS, CARS
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This also works (and is therefore good):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>anxiety <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">count=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -926,12 +995,13 @@ dbl (2): CAS, CARS
 <li>Do the CAS scores tend to be higher for females or for males? Draw a suitable graph to help you decide, and come to a conclusion.</li>
 </ol>
 <p>Solution</p>
-<p>Gender is categorical and CAS score is quantitative, so a boxplot would appear to be the thing: ::: {.cell}</p>
+<p>Gender is categorical and CAS score is quantitative, so a boxplot would appear to be the thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anxiety,<span class="fu">aes</span>(<span class="at">x=</span>gender,<span class="at">y=</span>CAS))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="data-summaries_files/figure-html/compatt-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The median for males is slightly higher, so male accountants are more anxious around computers than female accountants are.</p>
 <p>If you wish, side-by-side (or, better, above-and-below) histograms would also work:</p>
 <div class="cell">
@@ -947,7 +1017,8 @@ dbl (2): CAS, CARS
 <li>Find the median CAS scores for each gender. Does this support what you saw on your plot? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>Group-by and summarize: ::: {.cell}</p>
+<p>Group-by and summarize:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>anxiety <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">med=</span><span class="fu">median</span>(CAS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -957,7 +1028,7 @@ dbl (2): CAS, CARS
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The median is a bit higher for males, which is what I got on my boxplot (and is apparently the same thing as is on the histograms, but it’s harder to be sure there).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
@@ -1097,7 +1168,8 @@ thomas 72
 <li>Read the data into a data frame called <code>marks</code>, using <code>read_delim</code>, and list the data frame (by typing its name) to confirm that you read the data values properly. Note that the top line of the data file contains the names of the variables, as it ought to.</li>
 </ol>
 <p>Solution</p>
-<p>I was lazy and used the one on the web, the values being separated (“delimited”) by exactly one space: ::: {.cell}</p>
+<p>I was lazy and used the one on the web, the values being separated (“delimited”) by exactly one space:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/marks.txt"</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>marks <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1119,7 +1191,7 @@ dbl (1): score
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>If you copied and pasted, or typed in, the data values yourself, use the local file name (such as <code>marks.txt</code>) in place of the URL.</p>
 <p>Extra: in the old days, when we used <code>read.table</code> (which actually also works here), we needed to also say <code>header=T</code> to note that the top line of the data file was variable names. With <code>read_delim</code>, that’s the default, and if the top line is <em>not</em> variable names, that’s when you have to say so. If I cheat, by skipping the first line and saying that I then have no column names, I get:</p>
 <div class="cell">
@@ -1198,12 +1270,13 @@ dbl (1): mark
 <li>Obtain a boxplot of all the scores together, regardless of which class they came from.</li>
 </ol>
 <p>Solution</p>
-<p>Replace your <span class="math inline">\(x\)</span>-coordinate by some kind of dummy thing like <code>1</code> (<code>factor(1)</code> also works): ::: {.cell}</p>
+<p>Replace your <span class="math inline">\(x\)</span>-coordinate by some kind of dummy thing like <code>1</code> (<code>factor(1)</code> also works):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(marks, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> score)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="data-summaries_files/figure-html/torquay-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The <span class="math inline">\(x\)</span>-axis is kind of dopey, so you just ignore it. It is possible to remove it, but that is more work than it’s worth, and I didn’t get rid of the ticks below:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(marks, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> score)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>

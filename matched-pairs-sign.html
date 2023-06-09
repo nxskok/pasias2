@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 9&nbsp; Matched pairs t and sign test</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./normal-quantile.html" rel="next">
+<link href="./mood-median.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matched-pairs-sign.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#measuring-body-fat" id="toc-measuring-body-fat" class="nav-link active" data-scroll-target="#measuring-body-fat"><span class="header-section-number">9.1</span> Measuring body fat</a></li>
+  <li><a href="#throwing-baseballs-and-softballs" id="toc-throwing-baseballs-and-softballs" class="nav-link" data-scroll-target="#throwing-baseballs-and-softballs"><span class="header-section-number">9.2</span> Throwing baseballs and softballs</a></li>
+  <li><a href="#throwing-baseballs-and-softballs-again" id="toc-throwing-baseballs-and-softballs-again" class="nav-link" data-scroll-target="#throwing-baseballs-and-softballs-again"><span class="header-section-number">9.3</span> Throwing baseballs and softballs, again</a></li>
+  <li><a href="#changes-in-salary" id="toc-changes-in-salary" class="nav-link" data-scroll-target="#changes-in-salary"><span class="header-section-number">9.4</span> Changes in salary</a></li>
+  <li><a href="#body-fat-revisited" id="toc-body-fat-revisited" class="nav-link" data-scroll-target="#body-fat-revisited"><span class="header-section-number">9.5</span> Body fat revisited</a></li>
+  <li><a href="#the-dentist-and-blood-pressure" id="toc-the-dentist-and-blood-pressure" class="nav-link" data-scroll-target="#the-dentist-and-blood-pressure"><span class="header-section-number">9.6</span> The dentist and blood pressure</a></li>
+  <li><a href="#french-teachers" id="toc-french-teachers" class="nav-link" data-scroll-target="#french-teachers"><span class="header-section-number">9.7</span> French teachers</a></li>
+  <li><a href="#measuring-body-fat-1" id="toc-measuring-body-fat-1" class="nav-link" data-scroll-target="#measuring-body-fat-1"><span class="header-section-number">9.8</span> Measuring body fat</a></li>
+  <li><a href="#throwing-baseballs-and-softballs-1" id="toc-throwing-baseballs-and-softballs-1" class="nav-link" data-scroll-target="#throwing-baseballs-and-softballs-1"><span class="header-section-number">9.9</span> Throwing baseballs and softballs</a></li>
+  <li><a href="#throwing-baseballs-and-softballs-again-1" id="toc-throwing-baseballs-and-softballs-again-1" class="nav-link" data-scroll-target="#throwing-baseballs-and-softballs-again-1"><span class="header-section-number">9.10</span> Throwing baseballs and softballs, again</a></li>
+  <li><a href="#changes-in-salary-1" id="toc-changes-in-salary-1" class="nav-link" data-scroll-target="#changes-in-salary-1"><span class="header-section-number">9.11</span> Changes in salary</a></li>
+  <li><a href="#body-fat-revisited-1" id="toc-body-fat-revisited-1" class="nav-link" data-scroll-target="#body-fat-revisited-1"><span class="header-section-number">9.12</span> Body fat revisited</a></li>
+  <li><a href="#the-dentist-and-blood-pressure-1" id="toc-the-dentist-and-blood-pressure-1" class="nav-link" data-scroll-target="#the-dentist-and-blood-pressure-1"><span class="header-section-number">9.13</span> The dentist and blood pressure</a></li>
+  <li><a href="#french-teachers-1" id="toc-french-teachers-1" class="nav-link" data-scroll-target="#french-teachers-1"><span class="header-section-number">9.14</span> French teachers</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smmr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="measuring-body-fat" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="measuring-body-fat"><span class="header-section-number">9.1</span> Measuring body fat</h2>
+<p>Athletes are concerned with measuring their body fat percentage. Two different methods are available: one using ultrasound, and the other using X-ray technology. We are interested in whether there is a difference in the mean body fat percentage as measured by these two methods, and if so, how big that difference is. Data on 16 athletes are at <a href="http://ritsokiguess.site/datafiles/bodyfat.txt">link</a>.</p>
+<ol type="a">
+<li><p>Explain briefly why a matched pairs analysis is more suitable for these data than a two-independent-samples analysis (using a two-sample <span class="math inline">\(t\)</span>-test). You might find that looking at the data (clicking on the link) helps you figure this out.</p></li>
+<li><p>Read in the data and check that you have a sensible number of rows and columns.</p></li>
+<li><p>Carry out a suitable test to determine whether the means are the same or different. (At this point, obtain the R output including a P-value.)</p></li>
+<li><p>What do you conclude from the test?</p></li>
+<li><p>Obtain a 95% confidence interval for the population mean difference. How is the interval consistent with your test?</p></li>
+<li><p>Calculate the differences, and make a normal quantile plot of them. Is there any evidence that normality of differences fails? Explain briefly.</p></li>
+</ol>
+</section>
+<section id="throwing-baseballs-and-softballs" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="throwing-baseballs-and-softballs"><span class="header-section-number">9.2</span> Throwing baseballs and softballs</h2>
+<p>Can students throw a baseball farther than a softball? A statistics class, containing 24 students, went out to a football field to try to answer this question. Each student warmed up and then threw each type of ball as far as they could. The order of ball types was randomized: some students threw the baseball first, and some threw the softball first. (A softball is bigger than a baseball, so we might expect that a softball would be harder to throw a long way than a baseball.) The data are in <a href="http://ritsokiguess.site/datafiles/throw.txt">http://ritsokiguess.site/datafiles/throw.txt</a> in three columns: the first is a number identifying the student, the second is the distance thrown with the baseball (in yards) and the third is the distance thrown with the softball (also in yards).</p>
+<ol type="a">
+<li><p>Read the data into R. You’ll need to supply some names to the columns.</p></li>
+<li><p>Calculate a column of differences, baseball minus softball, <em>in</em> the data frame.</p></li>
+<li><p>Carry out a sign test in R, testing the null hypothesis that the median difference is zero, against the alternative that it is greater than zero. Obtain a P-value. Your option whether you use <code>smmr</code> or not.</p></li>
+</ol>
+</section>
+<section id="throwing-baseballs-and-softballs-again" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="throwing-baseballs-and-softballs-again"><span class="header-section-number">9.3</span> Throwing baseballs and softballs, again</h2>
+<p>Previously, you carried out a sign test to determine whether students could throw a baseball farther than a softball. This time, we will calculate a confidence interval for the median difference baseball minus softball, using the results of sign tests.</p>
+<ol type="a">
+<li><p>Read the data into R from <a href="http://ritsokiguess.site/datafiles/throw.txt">link</a>, giving appropriate names to the columns, and add a column of differences.</p></li>
+<li><p>Use <code>smmr</code> to find a 95% confidence interval for the median difference.</p></li>
+<li><p>What function in <code>smmr</code> will run a two-sided sign test and return only the P-value? Check that it works by testing whether the median difference for your data is zero or different from zero.</p></li>
+<li><p>Based on your P-value, do you think 0 is inside the confidence interval or not? Explain briefly.</p></li>
+<li><p>Obtain a 95% confidence interval for the population median difference, baseball minus softball, using a trial-and-error procedure that determines whether a number of possible medians are inside or outside the CI.</p></li>
+</ol>
+</section>
+<section id="changes-in-salary" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="changes-in-salary"><span class="header-section-number">9.4</span> Changes in salary</h2>
+<p>A company is growing and would like to attract more employees. The company would like to advertise that salaries there are increasing. To do this, the company randomly samples 20 employees that have been working there since January 2016, and for each of these employees, records their salary in January 2016 and January 2017. The data, with salaries in thousands of dollars, are in <a href="http://ritsokiguess.site/datafiles/salaryinc.txt">link</a>.</p>
+<ol type="a">
+<li><p>Read the data into R and demonstrate that you have two salaries for each of 20 employees.</p></li>
+<li><p>To compare the salaries, explain briefly why a matched-pairs test would be better than a two-sample test.</p></li>
+<li><p>Make a suitable graph to assess the assumptions for a matched-pairs <span class="math inline">\(t\)</span>-test. What does your graph tell you?</p></li>
+<li><p>Carry out a suitable matched-pairs <span class="math inline">\(t\)</span>-test on these data. (If you thought in the previous part that this was the wrong thing to do, do it anyway for the purposes of this assignment.) What do you conclude?</p></li>
+<li><p>The company would like to estimate<br>
+<em>how much</em> salaries are increasing, on average. Obtain some output that will enable the company to assess this, and tell the CEO which piece of the output they should look at.</p></li>
+</ol>
+</section>
+<section id="body-fat-revisited" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="body-fat-revisited"><span class="header-section-number">9.5</span> Body fat revisited</h2>
+<p>Athletes are concerned with measuring their body fat percentage. Two different methods are available: one using ultrasound, and the other using X-ray technology. We are interested in whether there is a difference in the mean body fat percentage as measured by these two methods, and if so, how big that difference is. Data on 16 athletes are at <a href="http://ritsokiguess.site/datafiles/bodyfat.txt">link</a>.</p>
+<p>We saw this data set before.</p>
+<ol type="a">
+<li><p>Read in the data again.</p></li>
+<li><p>Calculate the differences, and make a normal quantile plot of them. Is there any evidence that normality of differences fails? Explain briefly.</p></li>
+<li><p>Previously, we did a matched-pairs <span class="math inline">\(t\)</span>-test for these data. In the light of your normal quantile plot, do you think that was a good idea? Explain briefly.</p></li>
+<li><p>Use the sign test appropriately to compare the two methods for measuring body fat. (Use <code>smmr</code> if you wish.) What do you conclude, as ever in the context of the data?</p></li>
+</ol>
+</section>
+<section id="the-dentist-and-blood-pressure" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="the-dentist-and-blood-pressure"><span class="header-section-number">9.6</span> The dentist and blood pressure</h2>
+<p>Going to the dentist is scary for a lot of people. One way in which this might show up is that people might have higher blood pressure on average before their dentist’s appointment than an hour after the appointment is done. Ten randomly-chosen individuals have their (systolic) blood pressure measured while they are in a dentist’s waiting room, and then again one hour after their appointment is finished.</p>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/blood_pressure1.csv">http://ritsokiguess.site/datafiles/blood_pressure1.csv</a>.</p>
+<ol type="a">
+<li><p>Read in and display the data.</p></li>
+<li><p>What kind of experimental design is this? How do you know? Explain briefly.</p></li>
+<li><p>Run a suitable <span class="math inline">\(t\)</span>-test on these data. What do you conclude, in the context of the data?</p></li>
+<li><p>Run a suitable sign test on these data. What do you conclude, in the context of the data?</p></li>
+<li><p>Draw a suitable normal quantile plot of these data, one that will enable you to decide between the tests you ran in the previous two parts.</p></li>
+<li><p>Discuss briefly which of your two tests is the more appropriate one to run.</p></li>
+</ol>
+</section>
+<section id="french-teachers" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="french-teachers"><span class="header-section-number">9.7</span> French teachers</h2>
+<p>Twenty high-school French teachers attended a summer institute to improve their French skills. At the beginning of their session, each teacher took a listening test (to test their understanding of spoken French). After 4 weeks of immersion in French, each teacher took a similar listening test again. (The actual French spoken in the two tests was different, so simply taking the first test should not improve the score in the second one; the tests were otherwise similar.) The maximum score on each test was 36, and a higher score is better. The data are <a href="http://ritsokiguess.site/datafiles/frenchtest.txt">here</a>. (Right-click on the link, select “copy link address”, and then paste that URL into R Studio.) The data values are separated by <em>tabs</em>.</p>
+<p>The data file has three columns:</p>
+<ul>
+<li>an identification for each teacher</li>
+<li>the teacher’s score in the first test</li>
+<li>the teacher’s score in the second test</li>
+</ul>
+<ol type="a">
+<li><p>Read in and display (some of) the data.</p></li>
+<li><p>Explain briefly why this is a matched-pairs study.</p></li>
+<li><p>Run a suitable matched-pairs <span class="math inline">\(t\)</span>-test to see whether the teachers’ scores have on average <em>improved</em> over the four weeks.</p></li>
+<li><p>What do you conclude from your test, in the context of the data?</p></li>
+<li><p>How much is the teachers’ listening skill improving, on average? Give a suitable interval to support your answer.</p></li>
+<li><p>Make a suitable plot to assess any assumptions for this test.</p></li>
+<li><p>Do you trust the result of your matched-pairs <span class="math inline">\(t\)</span>-test? Explain briefly.</p></li>
+<li><p>Run a suitable sign test, and obtain a suitable (95%) confidence interval. Comment briefly on your results.</p></li>
+<li><p>Comment briefly on the comparison between your inferences for the mean and the median.</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="measuring-body-fat-1" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="measuring-body-fat-1"><span class="header-section-number">9.8</span> Measuring body fat</h2>
+<p>Athletes are concerned with measuring their body fat percentage. Two different methods are available: one using ultrasound, and the other using X-ray technology. We are interested in whether there is a difference in the mean body fat percentage as measured by these two methods, and if so, how big that difference is. Data on 16 athletes are at <a href="http://ritsokiguess.site/datafiles/bodyfat.txt">link</a>.</p>
+<ol type="a">
+<li>Explain briefly why a matched pairs analysis is more suitable for these data than a two-independent-samples analysis (using a two-sample <span class="math inline">\(t\)</span>-test). You might find that looking at the data (clicking on the link) helps you figure this out.</li>
+</ol>
+<p>Solution</p>
+<p>The data file looks like this:</p>
+<pre><code>
+athlete xray ultrasound
+1 5.00 4.75
+2 7 3.75
+3 9.25 9
+4 12 11.75
+5 17.25 17
+6 29.5 27.5
+7 5.5 6.5
+8 6 6.75
+9 8 8.75
+10 8.5 9.5
+11 9.25 9.5
+12 11 12
+13 12 12.25
+14 14 15.5
+15 17 18
+16 18 18.25
+</code></pre>
+<p>The data are two measurements for each of the 16 athletes: that is, each athlete had their body fat percentage measured using <em>both</em> of the two methods. Extra: a two-sample <span class="math inline">\(t\)</span> approach would be reasonable if one set of 16 athletes had been measured by X-ray and <em>another different</em> set of 16 athletes had been measured by ultrasound. (That is, if there had been 32 athletes in total, with each one randomly assigned to <em>one</em> of the measurement methods.) But that’s not what happened. It is easy to measure one athlete’s body fat percentage using both of the two methods, so a matched pairs design is easy to implement (as well as being better). If you use two independent samples (each athlete doing only one measurement method), you introduce an extra source of variability: athletes differ one from another in body fat, as well as differing possibly by measurement method. If you use a matched-pairs design, you remove the athlete-to-athlete differences, leaving only the differences due to measurement method.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Read in the data and check that you have a sensible number of rows and columns.</li>
+</ol>
+<p>Solution</p>
+<p>This kind of thing. Since you looked at the data (didn’t you?), you’ll know that the values are separated by single spaces:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>myurl <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/bodyfat.txt"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bodyfat <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(myurl, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 16 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (3): athlete, xray, ultrasound
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bodyfat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["athlete"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["xray"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ultrasound"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"5.00","3":"4.75"},{"1":"2","2":"7.00","3":"3.75"},{"1":"3","2":"9.25","3":"9.00"},{"1":"4","2":"12.00","3":"11.75"},{"1":"5","2":"17.25","3":"17.00"},{"1":"6","2":"29.50","3":"27.50"},{"1":"7","2":"5.50","3":"6.50"},{"1":"8","2":"6.00","3":"6.75"},{"1":"9","2":"8.00","3":"8.75"},{"1":"10","2":"8.50","3":"9.50"},{"1":"11","2":"9.25","3":"9.50"},{"1":"12","2":"11.00","3":"12.00"},{"1":"13","2":"12.00","3":"12.25"},{"1":"14","2":"14.00","3":"15.50"},{"1":"15","2":"17.00","3":"18.00"},{"1":"16","2":"18.00","3":"18.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>16 rows (athletes) and 3 columns, one for each measurement method and one labelling the athletes. All good.</p>
+<p>Since 16 is not too much bigger than 10, I got the whole data frame here. (At least, I think that’s the reason I got more than 10 rows.) In an R Notebook, you’ll see the first ten rows as normal, with a button to click to see the other six.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Carry out a suitable test to determine whether the means are the same or different. (At this point, obtain the R output including a P-value.)</li>
+</ol>
+<p>Solution</p>
+<p>Feed the two columns into <code>t.test</code> along with <code>paired=T</code>. This is a two-sided test, so we don’t have to take any special steps for that. Note that we’re back to the “old-fashioned” version of <code>t.test</code> that <em>does not</em> allow <code>data=</code>, so we have to go the <code>with</code> way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(bodyfat, <span class="fu">t.test</span>(xray, ultrasound, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  xray and ultrasound
+t = -0.30801, df = 15, p-value = 0.7623
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -0.7425068  0.5550068
+sample estimates:
+mean difference 
+       -0.09375 </code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>What do you conclude from the test?</li>
+</ol>
+<p>Solution</p>
+<p>The P-value of 0.7623 is not at all small, so there is no way we can reject the null hypothesis.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> There is no evidence of a difference in means; we can act as if the two methods produce the same mean body fat percentage. That is to say, on this evidence we can use either method, whichever one is cheaper or more convenient.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Obtain a 95% confidence interval for the population mean difference. How is the interval consistent with your test?</li>
+</ol>
+<p>Solution</p>
+<p>You don’t even need to do any more coding: the test was two-sided, so just pick the confidence interval off the output above: <span class="math inline">\(-0.74\)</span> to 0.56. The interval includes both positive and negative values (or, 0 is inside the interval), so the difference could go either way. This is entirely consistent with not being able to reject the null.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Calculate the differences, and make a normal quantile plot of them. Is there any evidence that normality of differences fails? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>The smoothest<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> way to do this is to use a pipeline: use a <code>mutate</code> to create the column of differences, and then pipe that into <code>ggplot</code>, omitting the data frame that would normally go first (the input data frame here is the new one with the differences in it, which doesn’t have a name). I’ll make a normal quantile plot in a moment, but if you haven’t seen that yet, the plot to make is a histogram:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bodyfat <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> xray <span class="sc">-</span> ultrasound) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> diff)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/bodyfat-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I don’t know whether you’d call that “approximately normal” or not. We are in kind of a double-bind with this one: the sample size is small, so normality matters, but with a small sample, the data might not look very normal. It’s kind of skewed right, but most of the evidence for the skewness is contained in those two observations with difference 2 and above, which is pretty flimsy evidence for anything. (In the normal quantile plot below, the suggestion is that those two observations really are a bit too large. It’s easier to tell there.)</p>
+<p>Below, I’m repeating the calculation of the differences, which is inefficient. If I’m going to draw two graphs of the differences, the right way is to calculate the differences <em>and save the data frame</em>, then use that new data frame twice. But you’re probably only going to draw either the histogram or the normal quantile plot, not both, so you can use the appropriate one of my two bits of code. The normal quantile plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bodyfat <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> xray <span class="sc">-</span> ultrasound) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> diff)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/bodyfat-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is showing a little evidence of skewness or outliers (depending on your point of view: either is good). The lowest and highest values are both too high, and the pattern of points on the plot is kind of curved (which would be evidence of skewness). Or you could say that the two highest values are too high, with the other values being more or less in line (that would be evidence of outliers at the upper end). I like outliers better than skewness, since those bottom-end points are not far off the line. I would also accept “no substantial problems”, if you can make the case that those two highest points are not too far off the line. With only 16 observations as we have here, even truly normal data would stray off the line a bit.</p>
+<p>As ever, your explanation is more important than your conclusion. Can you justify what you think?</p>
+<p>If you took your differences the other way around, as <code>ultrasound</code> minus <code>xray</code>, your plot will also be the other way around, with the “outliers” at the bottom. That’s good too.</p>
+<p>Where this is going (which I didn’t ask you) is whether or not we trust the result of the matched pairs test. I would say that the test is so far from being significant, and the failure of normality is not gross, that it is hard to imagine <em>any</em> alternative test coming up with a significant result. So I would be happy to trust this paired <span class="math inline">\(t\)</span>-test.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="throwing-baseballs-and-softballs-1" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="throwing-baseballs-and-softballs-1"><span class="header-section-number">9.9</span> Throwing baseballs and softballs</h2>
+<p>Can students throw a baseball farther than a softball? A statistics class, containing 24 students, went out to a football field to try to answer this question. Each student warmed up and then threw each type of ball as far as they could. The order of ball types was randomized: some students threw the baseball first, and some threw the softball first. (A softball is bigger than a baseball, so we might expect that a softball would be harder to throw a long way than a baseball.) The data are in <a href="http://ritsokiguess.site/datafiles/throw.txt">http://ritsokiguess.site/datafiles/throw.txt</a> in three columns: the first is a number identifying the student, the second is the distance thrown with the baseball (in yards) and the third is the distance thrown with the softball (also in yards).</p>
+<ol type="a">
+<li>Read the data into R. You’ll need to supply some names to the columns.</li>
+</ol>
+<p>Solution</p>
+<p>This kind of thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>myurl<span class="ot">=</span><span class="st">"http://ritsokiguess.site/datafiles/throw.txt"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>throws<span class="ot">=</span><span class="fu">read_delim</span>(myurl,<span class="st">" "</span>,<span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"student"</span>,<span class="st">"baseball"</span>,<span class="st">"softball"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 24 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (3): student, baseball, softball
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>throws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["student"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["baseball"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["softball"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"65","3":"57"},{"1":"2","2":"90","3":"58"},{"1":"3","2":"75","3":"66"},{"1":"4","2":"73","3":"61"},{"1":"5","2":"79","3":"65"},{"1":"6","2":"68","3":"56"},{"1":"7","2":"58","3":"53"},{"1":"8","2":"41","3":"41"},{"1":"9","2":"56","3":"44"},{"1":"10","2":"70","3":"65"},{"1":"11","2":"64","3":"57"},{"1":"12","2":"62","3":"60"},{"1":"13","2":"73","3":"55"},{"1":"14","2":"50","3":"53"},{"1":"15","2":"63","3":"54"},{"1":"16","2":"48","3":"42"},{"1":"17","2":"34","3":"32"},{"1":"18","2":"49","3":"48"},{"1":"19","2":"48","3":"45"},{"1":"20","2":"68","3":"67"},{"1":"21","2":"30","3":"27"},{"1":"22","2":"26","3":"25"},{"1":"23","2":"28","3":"25"},{"1":"24","2":"26","3":"31"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This is one of those times where we have to tell R what names to give the columns. Or you can put <code>col_names=F</code> and leave the columns called <code>X1, X2, X3</code> or whatever they end up as.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Calculate a column of differences, baseball minus softball, <em>in</em> the data frame.</li>
+</ol>
+<p>Solution</p>
+<p>Add it to the data frame using <code>mutate</code>. Use the right-arrow assignment to create what I called <code>throws2</code> below, or put something like <code>throws2 &lt;-</code> on the beginning of the line. Your choice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>throws <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff=</span>baseball<span class="sc">-</span>softball) <span class="ot">-&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  throws2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Carry out a sign test in R, testing the null hypothesis that the median difference is zero, against the alternative that it is greater than zero. Obtain a P-value. Your option whether you use <code>smmr</code> or not.</li>
+</ol>
+<p>Solution</p>
+<p>I think using <code>smmr</code> is way easier, so I’ll do that first. There is even a shortcut in that the null median defaults to zero, which is exactly what we want here:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smmr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sign_test</span>(throws2,diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$above_below
+below above 
+    2    21 
+
+$p_values
+  alternative      p_value
+1       lower 9.999971e-01
+2       upper 3.302097e-05
+3   two-sided 6.604195e-05</code></pre>
+</div>
+</div>
+<p>We want, this time, the upper-tailed one-sided test, since we want to prove that students can throw a baseball a <em>longer</em> distance than a softball. Thus the P-value we want is 0.000033.</p>
+<p>To build it yourself, you know the steps by now. First step is to count how many differences are greater and less than zero:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(throws2<span class="sc">$</span>diff<span class="sc">&gt;</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+    3    21 </code></pre>
+</div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(throws2<span class="sc">$</span>diff<span class="sc">&lt;</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+   22     2 </code></pre>
+</div>
+</div>
+<p>or, since we have things in a data frame,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>throws2 <span class="sc">%&gt;%</span> <span class="fu">count</span>(diff<span class="sc">&gt;</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["diff > 0"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"3"},{"1":"TRUE","2":"21"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>or count those less than zero. I’d take any of those.</p>
+<p>Note that these are <em>not all the same</em>. One of the differences is in fact exactly zero. The technically right thing to do with the zero difference is to throw it away (leaving 23 differences with 2 negative and 21 positive). I would take that, or 2 or 3 negative differences out of 24 (depending on whether you count “greater than zero” or “less than zero”). We hope that this won’t make a material difference to the P-value; it’ll make some difference, but won’t (we hope) change the conclusion about whether to reject.</p>
+<p>Second step is to get a P-value for whichever one of those you got, from the appropriate binomial distribution.</p>
+<p>The P-value is the probability of getting 21 (or 22) positive differences out of 24 (or 23) or more, since this is the end of the distribution we should be at if the alternative hypothesis is correct. Thus any of these will get you a defensible P-value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">23</span>,<span class="dv">23</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.302097e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">22</span><span class="sc">:</span><span class="dv">24</span>,<span class="dv">24</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.7941e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>,<span class="dv">24</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0001385808</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">23</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.302097e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">24</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.7941e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">24</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0001385808</code></pre>
+</div>
+</div>
+<p>The first and fourth of those are the same as <code>smmr</code> (throwing away the exactly-median value).</p>
+<p>As we hoped, there is no <em>material</em> difference here: there is no doubt with any of these possibilities that we will reject a median difference of zero in favour of a median difference greater than zero.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="throwing-baseballs-and-softballs-again-1" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="throwing-baseballs-and-softballs-again-1"><span class="header-section-number">9.10</span> Throwing baseballs and softballs, again</h2>
+<p>Previously, you carried out a sign test to determine whether students could throw a baseball farther than a softball. This time, we will calculate a confidence interval for the median difference baseball minus softball, using the results of sign tests.</p>
+<ol type="a">
+<li>Read the data into R from <a href="http://ritsokiguess.site/datafiles/throw.txt">link</a>, giving appropriate names to the columns, and add a column of differences.</li>
+</ol>
+<p>Solution</p>
+<p>I did it this way, combining the reading of the data with the calculation of the differences in <em>one</em> pipe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>myurl <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/throw.txt"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>throws <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(myurl, <span class="st">" "</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student"</span>, <span class="st">"baseball"</span>, <span class="st">"softball"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> baseball <span class="sc">-</span> softball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 24 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (3): student, baseball, softball
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>throws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["student"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["baseball"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["softball"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["diff"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"65","3":"57","4":"8"},{"1":"2","2":"90","3":"58","4":"32"},{"1":"3","2":"75","3":"66","4":"9"},{"1":"4","2":"73","3":"61","4":"12"},{"1":"5","2":"79","3":"65","4":"14"},{"1":"6","2":"68","3":"56","4":"12"},{"1":"7","2":"58","3":"53","4":"5"},{"1":"8","2":"41","3":"41","4":"0"},{"1":"9","2":"56","3":"44","4":"12"},{"1":"10","2":"70","3":"65","4":"5"},{"1":"11","2":"64","3":"57","4":"7"},{"1":"12","2":"62","3":"60","4":"2"},{"1":"13","2":"73","3":"55","4":"18"},{"1":"14","2":"50","3":"53","4":"-3"},{"1":"15","2":"63","3":"54","4":"9"},{"1":"16","2":"48","3":"42","4":"6"},{"1":"17","2":"34","3":"32","4":"2"},{"1":"18","2":"49","3":"48","4":"1"},{"1":"19","2":"48","3":"45","4":"3"},{"1":"20","2":"68","3":"67","4":"1"},{"1":"21","2":"30","3":"27","4":"3"},{"1":"22","2":"26","3":"25","4":"1"},{"1":"23","2":"28","3":"25","4":"3"},{"1":"24","2":"26","3":"31","4":"-5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Use <code>smmr</code> to find a 95% confidence interval for the median difference.</li>
+</ol>
+<p>Solution</p>
+<p><code>ci_median</code>, with 95% being the default confidence level:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci_median</span>(throws, diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.002930 8.999023</code></pre>
+</div>
+</div>
+<p>2 to 9. The ends of a CI for the median will be data values, which are all whole numbers, so round off that 8.999.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>What function in <code>smmr</code> will run a two-sided sign test and return only the P-value? Check that it works by testing whether the median difference for your data is zero or different from zero.</li>
+</ol>
+<p>Solution</p>
+<p>The rest of the way, we are trying to reproduce that confidence interval by finding it ourselves. The function is called <code>pval_sign</code>. If you haven’t run into it before, in R Studio click on Packages, find <code>smmr</code>, and click on its name. This will bring up package help, which includes a list of all the functions in the package, along with a brief description of what each one does. (Clicking on a function name brings up the help for that function.) Let’s check that it works properly by repeating the previous <code>sign_test</code> and verifying that <code>pval_sign</code> gives the same thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sign_test</span>(throws, diff, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$above_below
+below above 
+    2    21 
+
+$p_values
+  alternative      p_value
+1       lower 9.999971e-01
+2       upper 3.302097e-05
+3   two-sided 6.604195e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pval_sign</span>(<span class="dv">0</span>, throws, diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.604195e-05</code></pre>
+</div>
+</div>
+<p>The P-values are the same (for the two-sided test) and both small, so the median difference is not zero.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Based on your P-value, do you think 0 is inside the confidence interval or not? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>Absolutely not. The median difference is definitely not zero, so zero cannot be in the confidence interval. Our suspicion, from the one-sided test from earlier, is that the differences were mostly positive (people could throw a baseball farther than a softball, in most cases). So the confidence interval ought to contain only positive values. I ask this because it drives what happens below.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Obtain a 95% confidence interval for the population median difference, baseball minus softball, using a trial-and-error procedure that determines whether a number of possible medians are inside or outside the CI.</li>
+</ol>
+<p>Solution</p>
+<p>I’ve given you a fair bit of freedom to tackle this as you wish. Anything that makes sense is good: whatever mixture of mindlessness, guesswork and cleverness that you want to employ. The most mindless way to try some values one at a time and see what you get, eg.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pval_sign</span>(<span class="dv">1</span>, throws, diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.001489639</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pval_sign</span>(<span class="dv">5</span>, throws, diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.168188</code></pre>
+</div>
+</div>
+<p>So median 1 is outside and median 5 is inside the 95% interval. Keep trying values until you’ve figured out where the lower and upper ends of the interval are: where the P-values cross from below 0.05 to above, or vice versa.</p>
+<p>Something more intelligent is to make a long list of potential medians, and get the P-value for each of them, eg.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">my.med =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2</span>))</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pvals =</span> <span class="fu">pval_sign</span>(my.med, throws, diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["my.med"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pvals"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"6.604195e-05"},{"1":"2","2":"5.247879e-02"},{"1":"4","2":"8.388197e-01"},{"1":"6","2":"6.776395e-01"},{"1":"8","2":"2.100396e-01"},{"1":"10","2":"2.265584e-02"},{"1":"12","2":"1.489639e-03"},{"1":"14","2":"6.604195e-05"},{"1":"16","2":"3.588200e-05"},{"1":"18","2":"5.722046e-06"},{"1":"20","2":"2.980232e-06"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>2 is just inside the interval, 8 is also inside, and 10 is outside. Some closer investigation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">my.med =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>))</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pvals =</span> <span class="fu">pval_sign</span>(my.med, throws, diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["my.med"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pvals"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"6.604195e-05"},{"1":"0.5","2":"2.771616e-04"},{"1":"1.0","2":"1.489639e-03"},{"1":"1.5","2":"2.265584e-02"},{"1":"2.0","2":"5.247879e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The bottom end of the interval actually is 2, since 2 is inside and 1.5 is outside.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">my.med =</span> <span class="fu">seq</span>(<span class="dv">8</span>, <span class="dv">10</span>, <span class="fl">0.5</span>))</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pvals =</span> <span class="fu">pval_sign</span>(my.med, throws, diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["my.med"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pvals"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"8.0","2":"0.21003962"},{"1":"8.5","2":"0.15158963"},{"1":"9.0","2":"0.05247879"},{"1":"9.5","2":"0.02265584"},{"1":"10.0","2":"0.02265584"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The top end is 9, 9 being inside and 9.5 outside.</p>
+<p>Since the data values are all whole numbers, I think this is accurate enough. The most sophisticated way is the “bisection” idea we saw before. We already have a kickoff for this, since we found, mindlessly, that 1 is outside the interval on the low end and 5 is inside, so the lower limit has to be between 1 and 5. Let’s try halfway between, ie.&nbsp;3:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pval_sign</span>(<span class="dv">3</span>, throws, diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3833103</code></pre>
+</div>
+</div>
+<p>Inside, so lower limit is between 1 and 3. This can be automated, thus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">abs</span>(hi <span class="sc">-</span> lo) <span class="sc">&gt;</span> <span class="fl">0.1</span>) {</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  try <span class="ot">&lt;-</span> (lo <span class="sc">+</span> hi) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  ptry <span class="ot">&lt;-</span> <span class="fu">pval_sign</span>(try, throws, diff)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ptry <span class="sc">&gt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    hi <span class="ot">&lt;-</span> try</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    lo <span class="ot">&lt;-</span> try</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(lo, hi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.9375 2.0000</code></pre>
+</div>
+</div>
+<p>The difficult bit is to decide whether the value <code>try</code> becomes the new <code>lo</code> or the new <code>hi</code>. If the P-value for the median of <code>try</code> is greater than 0.05, <code>try</code> is inside the interval, and it becomes the new <code>hi</code>; otherwise it’s outside and becomes the new <code>lo</code>. Whatever the values are, <code>lo</code> is always outside the interval and <code>hi</code> is always inside, and they move closer and closer to each other.</p>
+<p>At the other end of the interval, <code>lo</code> is inside and <code>hi</code> is outside, so there is a little switching around within the loop. For starting values, you can be fairly mindless: for example, we know that 5 is inside and something big like 20 must be outside:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">abs</span>(hi <span class="sc">-</span> lo) <span class="sc">&gt;</span> <span class="fl">0.1</span>) {</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  try <span class="ot">&lt;-</span> (lo <span class="sc">+</span> hi) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  ptry <span class="ot">&lt;-</span> <span class="fu">pval_sign</span>(try, throws, diff)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ptry <span class="sc">&gt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    lo <span class="ot">&lt;-</span> try</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    hi <span class="ot">&lt;-</span> try</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(lo, hi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.984375 9.042969</code></pre>
+</div>
+</div>
+<p>The interval goes from 2 to (as calculated here) about 9. (This is apparently the same as <code>ci_median</code> in <code>smmr</code> got.) <code>ci_median</code> uses the bisection method with a smaller “tolerance” than we did, so its answer is more accurate. It looks as if the interval goes from 2 to 9: that is, students can throw a baseball on average between 2 and 9 feet further than they can throw a softball.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="changes-in-salary-1" class="level2" data-number="9.11">
+<h2 data-number="9.11" class="anchored" data-anchor-id="changes-in-salary-1"><span class="header-section-number">9.11</span> Changes in salary</h2>
+<p>A company is growing and would like to attract more employees. The company would like to advertise that salaries there are increasing. To do this, the company randomly samples 20 employees that have been working there since January 2016, and for each of these employees, records their salary in January 2016 and January 2017. The data, with salaries in thousands of dollars, are in <a href="http://ritsokiguess.site/datafiles/salaryinc.txt">link</a>.</p>
+<ol type="a">
+<li>Read the data into R and demonstrate that you have two salaries for each of 20 employees.</li>
+</ol>
+<p>Solution</p>
+<p>Looking at the file, we see that the values are separated by exactly one space:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/salaryinc.txt"</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>salaries <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 20 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+chr (1): employee
+dbl (2): jan2016, jan2017
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>salaries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["employee"],"name":[1],"type":["chr"],"align":["left"]},{"label":["jan2016"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["jan2017"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"36.00","3":"39.50"},{"1":"B","2":"41.25","3":"47.00"},{"1":"C","2":"40.00","3":"45.00"},{"1":"D","2":"42.80","3":"49.00"},{"1":"E","2":"51.00","3":"57.75"},{"1":"F","2":"50.50","3":"54.00"},{"1":"G","2":"56.00","3":"62.00"},{"1":"I","2":"57.80","3":"69.90"},{"1":"J","2":"62.00","3":"66.80"},{"1":"K","2":"65.50","3":"71.00"},{"1":"L","2":"66.00","3":"72.00"},{"1":"M","2":"68.90","3":"74.00"},{"1":"N","2":"71.00","3":"80.00"},{"1":"O","2":"72.30","3":"79.00"},{"1":"P","2":"74.65","3":"80.00"},{"1":"Q","2":"77.00","3":"83.10"},{"1":"R","2":"79.90","3":"82.50"},{"1":"S","2":"81.00","3":"92.00"},{"1":"T","2":"83.25","3":"85.00"},{"1":"U","2":"90.00","3":"101.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>There are 20 employees (rows), and two columns of salaries: for each employee in the data set, their salary in January 2016 and in January 2017 (thus, two salaries for each employee).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>To compare the salaries, explain briefly why a matched-pairs test would be better than a two-sample test.</li>
+</ol>
+<p>Solution</p>
+<p>A matched-pairs test would be better because we have two observations (salaries) for each subject (employee). A two-sample test would be appropriate if we had two separate sets of employees, one set with their salaries recorded in 2016 and the other with their salaries recorded in 2017. That is not what we have here. You can go after this either way: why a matched-pairs approach is appropriate, or why a two-sample approach is not (or a bit of both).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Make a suitable graph to assess the assumptions for a matched-pairs <span class="math inline">\(t\)</span>-test. What does your graph tell you?</li>
+</ol>
+<p>Solution</p>
+<p>This requires thought first before you do any coding (and this is the reason for this one being four points). What has to be at least approximately normally distributed is the set of <em>differences</em>, salary at one time point minus the salary at the other, for each employee. The individual salaries don’t have to be normally distributed at all. We don’t have the differences here, so we have to calculate them first. The smoothest way is to make a pipeline:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>salaries <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> jan2017 <span class="sc">-</span> jan2016) <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> diff)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/salaryinc-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A couple of coding notes: (i) you can take the differences 2016 minus 2017 if you like (then they will tend to be negative), (ii) <code>ggplot</code> used in a pipeline like this does <em>not</em> have a data frame first (the data frame used is the nameless output from the <code>mutate</code>, with the differences in it).</p>
+<p>Also, there’s no problem doing the <code>mutate</code>, saving that, and then feeding the saved data frame into <code>ggplot</code>. If you find that clearer, go for it.</p>
+<p>As for what I see: I think those points get a bit far from the line at the high and low ends: the high values are too high and the low values are too low, which is to say that we have outliers at both ends, or the distribution has long tails (either way of saying it is good).</p>
+<p>The important conclusion here is whether these differences are normal <em>enough</em> to trust a matched pairs <span class="math inline">\(t\)</span>-test here. We have a sample of size 20, so the central limit theorem will help us some, but you can reasonably say that these tails are too long and that we should not trust a matched-pairs <span class="math inline">\(t\)</span>-test.</p>
+<p>I actually wanted you to practice doing a matched-pairs <span class="math inline">\(t\)</span>-test anyway, hence my comment in the next part, but the result is probably not <em>so</em> trustworthy.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Carry out a suitable matched-pairs <span class="math inline">\(t\)</span>-test on these data. (If you thought in the previous part that this was the wrong thing to do, do it anyway for the purposes of this assignment.) What do you conclude?</li>
+</ol>
+<p>Solution</p>
+<p>The company is trying to prove that salaries are <em>increasing</em> over time, so we need a one-sided alternative. Following through the procedure, even though you may not trust it much:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(salaries, <span class="fu">t.test</span>(jan2016, jan2017, <span class="at">alternative =</span> <span class="st">"less"</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  jan2016 and jan2017
+t = -10.092, df = 19, p-value = 2.271e-09
+alternative hypothesis: true mean difference is less than 0
+95 percent confidence interval:
+      -Inf -5.125252
+sample estimates:
+mean difference 
+         -6.185 </code></pre>
+</div>
+</div>
+<p>You could also have the years the other way around, in which case the alternative has to be the other way around as well:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(salaries, <span class="fu">t.test</span>(jan2017, jan2016, <span class="at">alternative =</span> <span class="st">"greater"</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  jan2017 and jan2016
+t = 10.092, df = 19, p-value = 2.271e-09
+alternative hypothesis: true mean difference is greater than 0
+95 percent confidence interval:
+ 5.125252      Inf
+sample estimates:
+mean difference 
+          6.185 </code></pre>
+</div>
+</div>
+<p>Or, if you saved the data frame with the differences in it, do a one-sample test on those, again making sure that you get the <code>alternative</code> right. I didn’t save it, so I’m calculating the differences again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>salaries <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> jan2017 <span class="sc">-</span> jan2016) <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(., <span class="fu">t.test</span>(diff, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  diff
+t = 10.092, df = 19, p-value = 2.271e-09
+alternative hypothesis: true mean is greater than 0
+95 percent confidence interval:
+ 5.125252      Inf
+sample estimates:
+mean of x 
+    6.185 </code></pre>
+</div>
+</div>
+<p>Whichever way you do it, the P-value is the same <span class="math inline">\(2.271 \times 10^{-9}\)</span>, which is a whole lot less than 0.05, so there is no doubt at all that salaries are increasing.</p>
+<p>(Your intuition ought to have expected something like this, because everyone’s 2017 salary appears to be greater than their 2016 salary.)</p>
+<p>Extra: you might be feeling that we ought to be doing a matched-pairs sign test, which you could do this way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smmr)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>salaries <span class="sc">%&gt;%</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> jan2017 <span class="sc">-</span> jan2016) <span class="sc">%&gt;%</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sign_test</span>(diff, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$above_below
+below above 
+    0    20 
+
+$p_values
+  alternative      p_value
+1       lower 1.000000e+00
+2       upper 9.536743e-07
+3   two-sided 1.907349e-06</code></pre>
+</div>
+</div>
+<p>and then take the “upper” P-value, which is in the same ballpark as the one from the <span class="math inline">\(t\)</span>-test. So the salaries really are increasing, whether you believe the <span class="math inline">\(t\)</span>-test or not. And note that <em>every single employee’s salary increased</em>.</p>
+<p>(Again, the “missing” data frame in <code>sign_test</code> is the nameless one with the differences in it.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>The company would like to estimate <em>how much</em> salaries are increasing, on average. Obtain some output that will enable the company to assess this, and tell the CEO which piece of the output they should look at.</li>
+</ol>
+<p>Solution</p>
+<p>A confidence interval. 95% is fine. As before, we have to run <code>t.test</code> again because we ran a one-sided test and a confidence interval for us is two-sided:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(salaries, <span class="fu">t.test</span>(jan2017, jan2016, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  jan2017 and jan2016
+t = 10.092, df = 19, p-value = 4.542e-09
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 4.902231 7.467769
+sample estimates:
+mean difference 
+          6.185 </code></pre>
+</div>
+</div>
+<p>Between about $5,000 and about $7,500. This is what to tell the CEO.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="body-fat-revisited-1" class="level2" data-number="9.12">
+<h2 data-number="9.12" class="anchored" data-anchor-id="body-fat-revisited-1"><span class="header-section-number">9.12</span> Body fat revisited</h2>
+<p>Athletes are concerned with measuring their body fat percentage. Two different methods are available: one using ultrasound, and the other using X-ray technology. We are interested in whether there is a difference in the mean body fat percentage as measured by these two methods, and if so, how big that difference is. Data on 16 athletes are at <a href="http://ritsokiguess.site/datafiles/bodyfat.txt">link</a>.</p>
+<p>We saw this data set before.</p>
+<ol type="a">
+<li>Read in the data again.</li>
+</ol>
+<p>Solution</p>
+<p>This kind of thing. Since you looked at the data (didn’t you?), you’ll know that the values are separated by single spaces:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>myurl <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/bodyfat.txt"</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>bodyfat <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(myurl, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 16 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (3): athlete, xray, ultrasound
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>bodyfat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["athlete"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["xray"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ultrasound"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"5.00","3":"4.75"},{"1":"2","2":"7.00","3":"3.75"},{"1":"3","2":"9.25","3":"9.00"},{"1":"4","2":"12.00","3":"11.75"},{"1":"5","2":"17.25","3":"17.00"},{"1":"6","2":"29.50","3":"27.50"},{"1":"7","2":"5.50","3":"6.50"},{"1":"8","2":"6.00","3":"6.75"},{"1":"9","2":"8.00","3":"8.75"},{"1":"10","2":"8.50","3":"9.50"},{"1":"11","2":"9.25","3":"9.50"},{"1":"12","2":"11.00","3":"12.00"},{"1":"13","2":"12.00","3":"12.25"},{"1":"14","2":"14.00","3":"15.50"},{"1":"15","2":"17.00","3":"18.00"},{"1":"16","2":"18.00","3":"18.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Calculate the differences, and make a normal quantile plot of them. Is there any evidence that normality of differences fails? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>This is a good place to look ahead. We’ll need the differences in two places, most likely: first for the normal quantile plot, and second for the matched-pairs sign test. So we should calculate and save them first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>bodyfat <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff =</span> xray <span class="sc">-</span> ultrasound) <span class="ot">-&gt;</span> bodyfat2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I seem to be using a 2 on the end to name my dataframe-with-differences, but you can use whatever name you like.</p>
+<p>Then, not forgetting to use the data frame that we just made:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bodyfat2, <span class="fu">aes</span>(<span class="at">sample =</span> diff)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/bodyfat-sign-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is showing a little evidence of skewness or outliers (depending on your point of view: either is good). The lowest and highest values are both too high, and the pattern of points on the plot is kind of curved (which would be evidence of skewness). Or you could say that the two highest values are too high, with the other values being more or less in line (that would be evidence of outliers at the upper end). I like outliers better than skewness, since those bottom-end points are not far off the line. I would also accept “no substantial problems”, if you can make the case that those two highest points are not too far off the line. With only 16 observations as we have here, even truly normal data would stray off the line a bit.</p>
+<p>As ever, your explanation is more important than your conclusion. Can you justify what you think?</p>
+<p>If you took your differences the other way around, as <code>ultrasound</code> minus <code>xray</code>, your plot will also be the other way around, with the “outliers” at the bottom. That’s good too.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Previously, we did a matched-pairs <span class="math inline">\(t\)</span>-test for these data. In the light of your normal quantile plot, do you think that was a good idea? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>We are looking for the differences to be approximately normal, bearing in mind that we have a sample of size 16, which is not that large. Say what you think here; the points, if I were giving any here, would be for the way in which you support it. The comment I made before when we did a matched-pairs <span class="math inline">\(t\)</span>-test was that the P-value was so large and non-significant that it was hard to imagine any other test giving a significant result. Another way of saying that is that I considered these differences to be “normal enough”, given the circumstances. You might very well take a different view. You could say that these differences are clearly not normal, and that the sample size of 16 is not large enough to get any substantial help from the Central Limit Theorem. From that point of view, running the <span class="math inline">\(t\)</span>-test is clearly not advisable.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Use the sign test appropriately to compare the two methods for measuring body fat. (Use <code>smmr</code> if you wish.) What do you conclude, as ever in the context of the data?</li>
+</ol>
+<p>Solution</p>
+<p>That means using a sign test to test the null hypothesis that the median difference is zero, against the alternative that it is not zero. (I don’t see anything here to indicate that we are looking only for positive or only for negative differences, so I think two-sided is right. You need some reason to do a one-sided test, and there isn’t one here.)</p>
+<p>Remembering again to use the data frame that has the differences in it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sign_test</span>(bodyfat2, diff, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$above_below
+below above 
+   10     6 
+
+$p_values
+  alternative   p_value
+1       lower 0.2272491
+2       upper 0.8949432
+3   two-sided 0.4544983</code></pre>
+</div>
+</div>
+<p>The two-sided P-value is 0.4545, so we are nowhere near rejecting the null hypothesis that the median difference is zero. There is no evidence that the two methods for measuring body fat show any difference on average.</p>
+<p>The table of aboves and belows says that there were 6 positive differences and 10 negative ones. This is not far from an even split, so the lack of significance is entirely what we would expect.</p>
+<p>Extra: this is the same conclusion that we drew the last time we looked at these data (with a matched-pairs <span class="math inline">\(t\)</span>-test). That supports what I said then, which is that the <span class="math inline">\(t\)</span>-test was so far from being significant, that it could be very wrong without changing the conclusion. That is what seems to have happened.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="the-dentist-and-blood-pressure-1" class="level2" data-number="9.13">
+<h2 data-number="9.13" class="anchored" data-anchor-id="the-dentist-and-blood-pressure-1"><span class="header-section-number">9.13</span> The dentist and blood pressure</h2>
+<p>Going to the dentist is scary for a lot of people. One way in which this might show up is that people might have higher blood pressure on average before their dentist’s appointment than an hour after the appointment is done. Ten randomly-chosen individuals have their (systolic) blood pressure measured while they are in a dentist’s waiting room, and then again one hour after their appointment is finished.</p>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/blood_pressure1.csv">http://ritsokiguess.site/datafiles/blood_pressure1.csv</a>.</p>
+<ol type="a">
+<li>Read in and display the data.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/blood_pressure1.csv"</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>blood_pressure <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 10 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): person
+dbl (2): before, after
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>blood_pressure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["person"],"name":[1],"type":["chr"],"align":["left"]},{"label":["before"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["after"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"p1","2":"132","3":"118"},{"1":"p2","2":"135","3":"137"},{"1":"p3","2":"149","3":"140"},{"1":"p4","2":"133","3":"139"},{"1":"p5","2":"119","3":"107"},{"1":"p6","2":"121","3":"116"},{"1":"p7","2":"128","3":"122"},{"1":"p8","2":"132","3":"124"},{"1":"p9","2":"119","3":"115"},{"1":"p10","2":"110","3":"103"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Aside: A blood pressure is usually given as two numbers, like ``120 over 80’’. The first number, which is the one shown in our data, is called the systolic blood pressure. It is the pressure in the arteries when the heart is pumping. The second is called the diastolic blood pressure, and it is the pressure in the arteries when the heart is resting.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>What kind of experimental design is this? How do you know? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>This is a matched pairs design. We know this because we have two measurements on each person, or the same people were measured before and after seeing the dentist. (The thing that it is <em>not</em> is one group of people measured before seeing the dentist, and a <em>different</em> group of people measured afterwards, so a two-sample test is <em>not</em> the right thing.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Run a suitable <span class="math inline">\(t\)</span>-test on these data. What do you conclude, in the context of the data?</li>
+</ol>
+<p>Solution</p>
+<p>A matched-pairs <span class="math inline">\(t\)</span>-test, then. Remember, we want to see whether blood pressure is <em>lower</em> afterwards (that is, before is <em>greater</em> than after), so this needs to be one-sided:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(blood_pressure, <span class="fu">t.test</span>(before, after, <span class="at">alternative =</span> <span class="st">"greater"</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  before and after
+t = 2.9945, df = 9, p-value = 0.007545
+alternative hypothesis: true mean difference is greater than 0
+95 percent confidence interval:
+ 2.210659      Inf
+sample estimates:
+mean difference 
+            5.7 </code></pre>
+</div>
+</div>
+<p>There are some variations possible here: <code>before</code> and <code>after</code> could be switched (in which case <code>alternative</code> must be reversed also).</p>
+<p>Or, you can do a one-sample <span class="math inline">\(t\)</span> on the differences, with the right <code>alternative</code> corresponding to the way you took differences. If you are looking ahead, you might realize that working out the differences <em>now</em> and adding them to the dataframe will be a good idea:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>blood_pressure <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">difference =</span> before <span class="sc">-</span> after) <span class="ot">-&gt;</span> blood_pressure</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>blood_pressure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["person"],"name":[1],"type":["chr"],"align":["left"]},{"label":["before"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["after"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["difference"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"p1","2":"132","3":"118","4":"14"},{"1":"p2","2":"135","3":"137","4":"-2"},{"1":"p3","2":"149","3":"140","4":"9"},{"1":"p4","2":"133","3":"139","4":"-6"},{"1":"p5","2":"119","3":"107","4":"12"},{"1":"p6","2":"121","3":"116","4":"5"},{"1":"p7","2":"128","3":"122","4":"6"},{"1":"p8","2":"132","3":"124","4":"8"},{"1":"p9","2":"119","3":"115","4":"4"},{"1":"p10","2":"110","3":"103","4":"7"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>I took the differences this way around since I was expecting, if anything, the before numbers to be bigger than the after ones. And then:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(blood_pressure, <span class="fu">t.test</span>(difference, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  difference
+t = 2.9945, df = 9, p-value = 0.007545
+alternative hypothesis: true mean is greater than 0
+95 percent confidence interval:
+ 2.210659      Inf
+sample estimates:
+mean of x 
+      5.7 </code></pre>
+</div>
+</div>
+<p>If you did the differences the other way around, your <code>alternative</code> will need to be the other way around also.</p>
+<p>The P-value (either way) is 0.008,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> so we have evidence that the mean blood pressure before is greater than the mean blood pressure after.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Run a suitable sign test on these data. What do you conclude, in the context of the data?</li>
+</ol>
+<p>Solution</p>
+<p>A sign test on the differences. By this point, you will realize that you will need to have obtained the differences. Get them here if you did not already get them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sign_test</span>(blood_pressure, difference, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$above_below
+below above 
+    2     8 
+
+$p_values
+  alternative   p_value
+1       lower 0.9892578
+2       upper 0.0546875
+3   two-sided 0.1093750</code></pre>
+</div>
+</div>
+<p>This one gives us all three P-values. The way around I found the differences, the one we want is “upper”, 0.055. There is not quite evidence that median blood pressure before is higher.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Draw a suitable normal quantile plot of these data, one that will enable you to decide between the tests you ran in the previous two parts.</li>
+</ol>
+<p>Solution</p>
+<p>The <em>differences</em> are supposed to be approximately normal if a matched-pairs <span class="math inline">\(t\)</span>-test is the thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blood_pressure, <span class="fu">aes</span>(<span class="at">sample=</span>difference)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/vilingers-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Discuss briefly which of your two tests is the more appropriate one to run.</li>
+</ol>
+<p>Solution</p>
+<p>Make a call about whether the differences are normal enough. You have a couple of angles you can take:</p>
+<ul>
+<li>the lowest two values are too low, so we have two outliers at the low end</li>
+<li>the lowest <em>and</em> highest values are too extreme, so that we have a long-tailed distribution</li>
+</ul>
+<p>Either of these would suggest a non-normal distribution, which I think you have to conclude from this plot.</p>
+<p>The best answer also considers the sample size: there are only 10 differences, a small sample size, and so we will not get much help from the Central Limit Theorem (the sample size is likely not enough<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> to overcome those two outliers or the long tails). Thus, we should <em>not</em> trust the <span class="math inline">\(t\)</span>-test and should prefer the sign test.</p>
+<p>Extra: you might be disappointed to go through this and come to the conclusion that there was not a decrease in blood pressure between before and after.</p>
+<p>What has happened, I think, is that we have only a small sample (10 people), and having 8 positive differences and 2 negative ones is not quite unbalanced enough (with such a small sample) to rule out chance: that is to say, a median difference of zero. The <span class="math inline">\(t\)</span>-test accounted for the size of the differences, and if you believed the normality was satisfactory, you could demonstrate a difference between before and after. But if you didn’t like the normality, you were out of luck: the only test you have is an apparently not very powerful one.</p>
+<p>If you wanted to, you could bootstrap the sampling distribution of the sample mean and see how normal it looks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">sim =</span>  <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">the_sample =</span> <span class="fu">list</span>(<span class="fu">sample</span>(blood_pressure<span class="sc">$</span>difference, <span class="at">replace =</span> <span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">the_mean =</span> <span class="fu">mean</span>(the_sample)) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> the_mean)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/haschin-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>(Code note: you can do anything with the result of a simulation, and you can use anything that might need to be normal as input to a normal quantile plot. Now that we have the normal quantile plot as a tool, we can use it wherever it might be helpful.)</p>
+<p>This is actually not nearly as bad as I was expecting. Even a sample size of 10 is providing some help. The bootstrapped sampling distribution is somewhat left-skewed, which is not a surprise given the two low outliers. However, it is rather close to normal, suggesting that the <span class="math inline">\(t\)</span>-test is not as bad as we thought.</p>
+<p>(I did 10,000 simulations because I was having trouble seeing how non-normal it was. With this many, I can be pretty sure that this distribution is somewhat left-skewed.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="french-teachers-1" class="level2" data-number="9.14">
+<h2 data-number="9.14" class="anchored" data-anchor-id="french-teachers-1"><span class="header-section-number">9.14</span> French teachers</h2>
+<p>Twenty high-school French teachers attended a summer institute to improve their French skills. At the beginning of their session, each teacher took a listening test (to test their understanding of spoken French). After 4 weeks of immersion in French, each teacher took a similar listening test again. (The actual French spoken in the two tests was different, so simply taking the first test should not improve the score in the second one; the tests were otherwise similar.) The maximum score on each test was 36, and a higher score is better. The data are <a href="http://ritsokiguess.site/datafiles/frenchtest.txt">here</a>. (Right-click on the link, select “copy link address”, and then paste that URL into R Studio.) The data values are separated by <em>tabs</em>.</p>
+<p>The data file has three columns:</p>
+<ul>
+<li>an identification for each teacher</li>
+<li>the teacher’s score in the first test</li>
+<li>the teacher’s score in the second test</li>
+</ul>
+<ol type="a">
+<li>Read in and display (some of) the data.</li>
+</ol>
+<p>Solution</p>
+<p>Separated by tabs means <code>read_tsv</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/frenchtest.txt"</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>french <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 20 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+dbl (3): id, pre, post
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>french</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pre"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["post"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"32","3":"34"},{"1":"2","2":"31","3":"31"},{"1":"3","2":"29","3":"35"},{"1":"4","2":"10","3":"16"},{"1":"5","2":"30","3":"33"},{"1":"6","2":"33","3":"36"},{"1":"7","2":"22","3":"24"},{"1":"8","2":"25","3":"28"},{"1":"9","2":"32","3":"26"},{"1":"10","2":"20","3":"26"},{"1":"11","2":"30","3":"36"},{"1":"12","2":"20","3":"26"},{"1":"13","2":"24","3":"27"},{"1":"14","2":"24","3":"24"},{"1":"15","2":"31","3":"32"},{"1":"16","2":"30","3":"31"},{"1":"17","2":"15","3":"15"},{"1":"18","2":"32","3":"34"},{"1":"19","2":"23","3":"26"},{"1":"20","2":"23","3":"26"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As promised. The score on the first test is called <code>pre</code> and on the second is called <code>post</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Explain briefly why this is a matched-pairs study.</li>
+</ol>
+<p>Solution</p>
+<p>There are two measurements for each teacher, or, the 20 <code>pre</code> measurements and the 20 <code>post</code> measurements are paired up, namely, the ones that come from the same teacher. Or, if it were two independent samples, our 40 measurements would come from 40 different teachers, but there are only 20 teachers, so the 40 measurements must be paired up.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Run a suitable matched-pairs <span class="math inline">\(t\)</span>-test to see whether the teachers’ scores have on average <em>improved</em> over the four weeks.</li>
+</ol>
+<p>Solution</p>
+<p>Seeing whether the scores have improved implies a <em>one</em>-sided test that <code>post</code> is bigger than <code>pre</code>. There are three ways you might do that, any of which is good. Remember that if you are running a test with <code>paired = TRUE</code>, the alternative is relative to the column that is <em>input first</em>, not the first one in alphabetical order or anything like that:</p>
+<p>(i):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(french, <span class="fu">t.test</span>(pre, post, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"less"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  pre and post
+t = -3.8649, df = 19, p-value = 0.0005216
+alternative hypothesis: true mean difference is less than 0
+95 percent confidence interval:
+      -Inf -1.381502
+sample estimates:
+mean difference 
+           -2.5 </code></pre>
+</div>
+</div>
+<p>(ii):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(french, <span class="fu">t.test</span>(post, pre, <span class="at">paired =</span> T, <span class="at">alternative =</span> <span class="st">"greater"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  post and pre
+t = 3.8649, df = 19, p-value = 0.0005216
+alternative hypothesis: true mean difference is greater than 0
+95 percent confidence interval:
+ 1.381502      Inf
+sample estimates:
+mean difference 
+            2.5 </code></pre>
+</div>
+</div>
+<p>Your choice between these two might be influenced by whether you think <code>pre</code> comes first, or whether you think it’s easier to decide how <code>post</code> compares to <code>pre</code>. It’s all down to what seems natural to you.</p>
+<ol start="3" type="i">
+<li>working out the differences and testing those (but look ahead in the question to see whether you need the differences for anything else: you do):</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>french <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gain =</span> post <span class="sc">-</span> pre) <span class="ot">-&gt;</span> french1</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(french1, <span class="fu">t.test</span>(gain, <span class="at">mu=</span><span class="dv">0</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  gain
+t = 3.8649, df = 19, p-value = 0.0005216
+alternative hypothesis: true mean is greater than 0
+95 percent confidence interval:
+ 1.381502      Inf
+sample estimates:
+mean of x 
+      2.5 </code></pre>
+</div>
+</div>
+<p>This last is an ordinary one-sample test, which saves you having to learn anything new, but requires you to calculate the differences first. You will need the differences for a plot anyway, so this may not be as much extra work as it appears. The right thing to do here is to <em>save</em> the data frame with the differences in it, so that you don’t need to calculate them again later.</p>
+<p>A fourth alternative is to calculate the differences as <code>pre</code> minus <code>post</code>, and then switch the <code>alternative</code> around (since if going to the French institute helps, the differences this way will be mostly <em>negative</em>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>french <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gain =</span> pre <span class="sc">-</span> post) <span class="ot">-&gt;</span> french2</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(french2, <span class="fu">t.test</span>(gain, <span class="at">mu=</span><span class="dv">0</span>, <span class="at">alternative =</span> <span class="st">"less"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  gain
+t = -3.8649, df = 19, p-value = 0.0005216
+alternative hypothesis: true mean is less than 0
+95 percent confidence interval:
+      -Inf -1.381502
+sample estimates:
+mean of x 
+     -2.5 </code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>What do you conclude from your test, in the context of the data?</li>
+</ol>
+<p>Solution</p>
+<p>The P-value of 0.0005 is much less than 0.05, so we reject the null hypothesis that the mean scores before and after are the same, in favour of the alternative that the mean score afterwards is higher. That is to say, the four-week program is helping the teachers improve their understanding of spoken French.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>How much is the teachers’ listening skill improving, on average? Give a suitable interval to support your answer.</li>
+</ol>
+<p>Solution</p>
+<p>A 95% (or other level) confidence interval for the mean difference. A one-sided test doesn’t give that, so you need to do the test again without the <code>alternative</code> (to make it two-sided), via any of the methods above, such as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(french, <span class="fu">t.test</span>(post, pre, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  post and pre
+t = 3.8649, df = 19, p-value = 0.001043
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 1.146117 3.853883
+sample estimates:
+mean difference 
+            2.5 </code></pre>
+</div>
+</div>
+<p>This says that, with 95% confidence, the mean test score afterwards is between about 1.1 and 3.9 points higher than before. So that’s how much listening skill is improving on average. Give the suitably rounded interval; the test scores are whole numbers, and there are 20 differences making up the mean, so one decimal is the most you should give.</p>
+<p>If you did it the first way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(french, <span class="fu">t.test</span>(pre, post, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  pre and post
+t = -3.8649, df = 19, p-value = 0.001043
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -3.853883 -1.146117
+sample estimates:
+mean difference 
+           -2.5 </code></pre>
+</div>
+</div>
+<p>you have given yourself a bit of work to do, because this is before minus after, so you have to strip off the minus signs and switch the numbers around. Giving the answer with the minus signs is wrong, because I didn’t ask about before minus after. Disentangle it, though, and you’re good.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Make a suitable plot to assess any assumptions for this test.</li>
+</ol>
+<p>Solution</p>
+<p>The key assumption here is that the <em>differences</em> are approximately normally distributed.</p>
+<p>First calculate <em>and save</em> the differences (since you will need them later for a sign test; otherwise you would have to find them again). If you found the differences to make your <span class="math inline">\(t\)</span>-test, use the ones you saved there.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>french <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gain =</span> post <span class="sc">-</span> pre) <span class="ot">-&gt;</span> french1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Assess that with a histogram (with suitable number of bins):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(french1, <span class="fu">aes</span>(<span class="at">x=</span>gain)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/french-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>or, better, a normal quantile plot (since the normality is our immediate concern):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(french1, <span class="fu">aes</span>(<span class="at">sample=</span>gain)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/french-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>(note that the horizontal lines of points are because the test scores were whole numbers, therefore the differences between them are whole numbers also, and some of the teachers had the same difference in scores as others.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>Do you trust the result of your matched-pairs <span class="math inline">\(t\)</span>-test? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>There are about three considerations here:</p>
+<ul>
+<li>the plot shows an outlier at the low end, but no other real problems.</li>
+<li>the sample size is 20, so we should get some help from the Central Limit Theorem.</li>
+<li>the P-value was really small.</li>
+</ul>
+<p>I expect you to mention the first two of those. Make a call about whether you think that outlier is too much of a problem, given the sample size. You could, I think, go either way with this one.</p>
+<p>The third of my points says that even if the distribution of differences is not normal enough, and so the P-value is off by a bit, it would take a lot to change it enough to stop it being significant. So I don’t think we need to worry, for myself.</p>
+<p>Extra:</p>
+<p>We can assess the <span class="math inline">\(t\)</span>-test by obtaining a bootstrap distribution of the sample mean, by sampling from the differences with replacement:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">sim =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_sample =</span> <span class="fu">list</span>(<span class="fu">sample</span>(french1<span class="sc">$</span>gain, <span class="at">replace =</span> T))) <span class="sc">%&gt;%</span> </span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_mean =</span> <span class="fu">mean</span>(my_sample)) <span class="sc">%&gt;%</span> </span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> my_mean)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="matched-pairs-sign_files/figure-html/french-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The bootstrapped sampling distribution of the sample mean difference is about as normal as you could reasonably wish for, so there was no need to worry. Only a very few of the most extreme samples were at all off the line.</p>
+<p>A histogram would be almost as good, but now that you know about the normal quantile plot, the time to use it is when you are <em>specifically</em> interested in normality, as you are here. (If you were interested in shape generally, then a histogram or, if appropriate, a boxplot, would also work.)</p>
+<p>The code: the first line takes 1000 bootstrap samples, and the second finds the mean of each one. Instead of saving the sample means, since I was only going to be using them once, I made them into a dataframe, and then made a normal quantile plot of them. The <code>enframe</code> creates a dataframe with a column called <code>value</code> with the means in it, which I use in the plot.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>Run a suitable sign test, and obtain a suitable (95%) confidence interval. Comment briefly on your results.</li>
+</ol>
+<p>Solution</p>
+<p>This works with the differences, that you calculated for the plot, so use the data frame that you saved them in:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sign_test</span>(french1, gain, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$above_below
+below above 
+    1    16 
+
+$p_values
+  alternative      p_value
+1       lower 0.9999923706
+2       upper 0.0001373291
+3   two-sided 0.0002746582</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci_median</span>(french1, gain)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.007812 3.000000</code></pre>
+</div>
+</div>
+<p>The P-value is 0.00014, again very small, saying that the median difference is greater than zero, that is, that the test scores after are greater than the test scores before on average. The confidence interval is from 1 to 3 points, indicating that this is how much test scores are increasing on average.</p>
+<p>A technique thing: the first time you are going through this, you probably got to this point and realized that you were calculating the differences for the second (or third) time. This is the place to stop and think that you don’t really need to do that, and to go back to the plot you did and <em>save</em> the differences after you have calculated them. Then you edit the code here to use the differences you got before and saved. It doesn’t matter whether you see this the first time you do it or not, but it does matter that you see it before you hand it in. It’s like editing an essay; you need to go back through work that you will be handing in and make sure you did it the best way you could.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol type="i">
+<li>Comment briefly on the comparison between your inferences for the mean and the median.</li>
+</ol>
+<p>Solution</p>
+<p>The upper-tail P-value is 0.0001, in the same ballpark as the <span class="math inline">\(t\)</span>-test (0.0005). The 95% confidence interval for the median difference is from 1 to 3,<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> again much like the <span class="math inline">\(t\)</span>-interval (1.1 to 3.9).</p>
+<p>This suggests that it doesn’t matter much which test we do, and therefore that the <span class="math inline">\(t\)</span>-test ought to be better because it uses the data better.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> This is more evidence that the outlier didn’t have that big of an effect.</p>
+<p>Extra: choosing a test on the basis of its P-value is <em>wrong</em>, because as soon as you introduce a choice on that basis, your P-value looks lower than it should; a P-value is based on you doing one test and only that one test. It is reasonable to note, as I did, that the two P-values are about the same and then choose between the tests on <em>some other basis</em>, such as that the <span class="math inline">\(t\)</span>-test uses the data better.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>My hat stays on my head.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I learned yesterday that the Welsh word for “ironing” is <em>smwddio</em>, which seems weird until you say it out loud: it sounds like “smoothio”.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Give the P-value, and round it off to about this accuracy so that your reader can see easily (i) how it compares to 0.05, and (ii) about how big it is. More than two decimal places is too many.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>But see the Extra.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>I think I mentioned elsewhere that the P-value of the sign test, as it depends on the null median for a fixed data set, only changes at a data point. Therefore, the ends of a CI for the median must be data points.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>It uses the actual data values, not just whether each one is positive or negative.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>If the P-values had come out very different, that would be telling you that it matters which one you use, and you would need to go back and look at your plot to decide. Often, this happens when there is something wrong with the <span class="math inline">\(t\)</span>-test, but not necessarily.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./mood-median.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./normal-quantile.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
