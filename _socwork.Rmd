@@ -1,0 +1,345 @@
+##  Salaries of social workers
+
+
+ Another salary-prediction question: does the number of years
+of work experience that a social worker has help to predict their 
+salary? Data for 50 social workers are in
+[link](http://ritsokiguess.site/datafiles/socwork.txt). 
+
+
+
+(a) Read the data into R. Check that you have 50 observations on
+two variables. Also do something to check that the years of
+experience and annual salary figures look reasonable overall.
+
+
+Solution
+
+
+```{r socwork-1 }
+my_url <- "http://ritsokiguess.site/datafiles/socwork.txt"
+soc <- read_delim(my_url, " ")
+soc
+```
+
+ 
+
+That checks that we have the right *number* of observations; to
+check that we have sensible *values*, something like
+`summary` is called for:
+
+```{r socwork-2 }
+summary(soc)
+```
+
+ 
+
+A person working in any field cannot have a negative number of years
+of experience, and cannot have more than about 40 years of experience
+(or else they would have retired). Our experience numbers fit
+that. Salaries had better be five or six figures, and salaries for
+social workers are not generally all that high, so these figures look
+reasonable. 
+
+A rather more `tidyverse` way is this:
+
+```{r socwork-3 }
+soc %>% 
+  summarize(across(everything(), 
+                   list(min = \(x) min(x),  max = \(x) max(x))))
+```
+
+ 
+
+This gets the minimum and maximum of all the variables. I would have
+liked them arranged in a nice rectangle (`min` and `max`
+as rows, the variables as columns), but that's not how this came out. We fix that shortly.
+
+The code so far uses `across`. This means to do something across multiple columns. In this case, we want to do the calculation on *all* the columns, so we use the select-helper `everything`. You can use any of the other select-helpers like `starts_with`, or you could do something like `where(is.numeric)` to do your summaries only on the quantitative columns (which would also work here). The thing after the `everything()` means "for each column selected, work out the  `min` and `max` of it"; `x` is our name for "the variable we are looking at at the moment".
+
+What, you want a nice rectangle? This is a pivot-longer, but a fancy version because the column names encode two kinds of things, a variable and a statistic. I took the view that I wanted variables in columns (as usual), and the different summary statistics in rows. This means that the first part of the column names we created above (eg. the `salary` part of `salary_min`) should stay in columns, and the rest of it should be pivoted longer. That means using the special name `.value` for the things that should stay as columns:
+
+```{r socwork-4}
+soc %>% 
+  summarize(across(everything(), 
+                   list(min = \(x) min(x),  max = \(x) max(x)))) %>% 
+  pivot_longer(everything(), 
+               names_to = c(".value", "statistic"), 
+               names_sep = "_"
+               )
+```
+
+Note that we're using two simpler tools here, rather than one complicated one: first we get the summary statistics, and once we have that, we can do some tidying to get it arranged the way we want.
+
+Your first guess is likely to be to make it *too* long:
+
+```{r}
+soc %>% 
+  summarize(across(everything(), 
+                   list(min = \(x) min(x),  max = \(x) max(x)))) %>% 
+  pivot_longer(everything(), 
+               names_to = c("variable", "statistic"), 
+               names_sep = "_", 
+               values_to = "value"
+               )
+```
+
+
+and then you'll have to make it wider, or recall that you can do the thing with `.value`.  We are working "columnwise", doing something for each column, no matter how many there are. My go-to for this stuff is [here](https://dplyr.tidyverse.org/articles/colwise.html).
+
+Another way to work is with the five-number summary. This gives a more nuanced picture of the data values we have.^[This might be overkill at this point, since we really only care about whether our data values are reasonable, and often just looking at the highest and lowest values will tell us that.] 
+
+The base-R five-number summary looks like this:
+
+```{r socwork-6 }
+qq <- quantile(soc$experience)
+qq
+```
+
+This is what's known as a "named vector". The numbers on the bottom are the summaries themselves, and the names above say which percentile you are looking at. Unfortunately, the `tidyverse` doesn't like names, so modelling after the above doesn't quite work:
+
+```{r socwork-7}
+soc %>% 
+  summarize(across(everything(), list(q = \(x) quantile(x))))
+```
+
+You can guess which percentile is which (they have to be in order), but this is not completely satisfactory. It also gives a warning because the summary is five numbers long, rather than only one (like the mean, for example), and this is not the preferred way to handle this.
+
+The warning mentions `reframe`, which is new (as in, less than a year old as I write this). Let's see how it goes here:
+
+```{r}
+soc %>% 
+  reframe(q_exp = quantile(experience), q_sal = quantile(salary))
+```
+
+The idea is that `reframe` is like `summarize`, but it is designed for when your summary function returns *more than one* number, not just one number per group like `mean` or `median` do.
+
+This is not quite the best (I don't see the percentiles and I have to repeat myself), but at least I no longer get a warning. Here's how you do it with `across`:
+
+```{r}
+soc %>% 
+  reframe(across(everything(), \(x) enframe(quantile(x)), .unpack = TRUE))
+```
+
+The `enframe` turns a "named vector" (that is, a thing like my `qq` above) into a dataframe with two columns, one called `name` with the names (percentiles), and one called `value` with the values. By using `across`, you get those two columns for *each* variable, and you can see which of the five numbers is which percentile in each case.
+
+
+$\blacksquare$
+
+(b) Make a scatterplot showing how salary depends on
+experience. Does the nature of the trend make sense?
+
+
+Solution
+
+
+The usual:
+
+```{r socwork-9 }
+ggplot(soc, aes(x = experience, y = salary)) + geom_point()
+```
+
+ 
+
+As experience goes up, salary also goes up, as you would expect. Also,
+the trend seems more or less straight.
+
+$\blacksquare$
+
+(c) Fit a regression predicting salary from experience, and
+display the results. Is the slope positive or negative? Does that
+make sense?
+
+
+Solution
+
+
+```{r socwork-10 }
+soc.1 <- lm(salary ~ experience, data = soc)
+summary(soc.1)
+```
+
+ 
+
+The slope is (significantly) positive, which squares with our guess
+(more experience goes with greater salary), and also the upward trend
+on the scatterplot. The value of the slope is about 2,000; this means
+that one more year of experience goes with about a \$2,000 increase in
+salary. 
+
+$\blacksquare$
+
+(d) Obtain and plot the residuals against the fitted values. What
+problem do you see?
+
+
+Solution
+
+
+The easiest way to do this with `ggplot` is to plot the
+*regression object* (even though it is not actually a data
+frame), and plot the `.fitted` and `.resid`
+columns in it, not forgetting the initial dots:
+
+```{r socwork-11 }
+ggplot(soc.1, aes(x = .fitted, y = .resid)) + geom_point()
+```
+
+       
+I see a "fanning-out": the residuals are getting bigger *in size* 
+(further away from zero) as the fitted values get bigger. That
+is, when the (estimated) salary gets larger, it also gets more
+variable. 
+
+Fanning-out is sometimes hard to see. What you can do if you suspect
+that it might have happened is to plot the *absolute value* of
+the residuals against the fitted values. The absolute value is the
+residual without its plus or minus sign, so if the residuals are
+getting bigger in size, their absolute values are getting bigger. That
+would look like this:
+
+```{r socwork-12 }
+ggplot(soc.1, aes(x = .fitted, y = abs(.resid))) + geom_point() + geom_smooth()
+```
+
+ 
+
+I added a smooth trend to this to help us judge whether the
+absolute-value-residuals are getting bigger as the fitted values get
+bigger. It looks to me as if the overall trend is an increasing one,
+apart from those few small fitted values that have larger-sized
+residuals. Don't get thrown off by the kinks in the smooth trend. Here
+is a smoother version:
+
+```{r socwork-13 }
+ggplot(soc.1, aes(x = .fitted, y = abs(.resid))) + geom_point() + geom_smooth(span = 2)
+```
+
+ 
+
+The larger fitted values, according to this, have residuals larger in size.
+
+The thing that controls the smoothness of the smooth trend is the
+value of `span` in `geom_smooth`. The default is
+0.75. The larger the value you use, the smoother the trend; the
+smaller, the more wiggly. I'm inclined to think that the default value
+is a bit too small. Possibly this value is too big, but it shows you
+the idea.
+
+$\blacksquare$
+
+(e) The problem you unearthed in the previous part is often helped
+by a transformation. Run Box-Cox on your data to find a suitable
+transformation. What transformation is suggested?
+
+
+Solution
+
+
+You'll need to load (and install if necessary) the package
+`MASS` that contains `boxcox`:
+
+```{r socwork-14 }
+library(MASS)
+```
+
+ 
+When you run this, you may see a warning containing the word "masked". I talk about that below.
+
+```{r socwork-15 }
+boxcox(salary ~ experience, data = soc)
+```
+
+ 
+
+That one looks like $\lambda=0$ or log. You could probably also
+justify fourth root (power 0.25), but log is a very common
+transformation, which people won't need much persuasion to accept.
+
+Extra: There's one annoyance with `MASS`: it has a `select`
+(which I have never used), and if you load `tidyverse` first
+and `MASS` second, as I have done here, when you mean to run
+the column-selection `select`, it will actually run the
+`select` that comes from `MASS`, and give you an error
+that you will have a terrible time debugging. That's what that
+"masked" message was when you loaded `MASS`. This is a great place to learn about the `conflicted` package. See [here](https://github.com/r-lib/conflicted) for how it works. (Scroll down to under the list of files.)
+
+If you want to insist on something like "the `select` that lives in `dplyr`", 
+you can do that by saying
+`dplyr::select`. But this is kind of cumbersome if you don't
+need to do it.
+
+$\blacksquare$
+
+(f)  Use your transformed response in a regression,
+showing the summary.
+
+
+Solution
+
+
+You can do the transformation right in the `lm`, as I do below, or if you prefer, you can create a new column that is the log-salary and then use that in the `lm`. Either way is good:
+
+```{r socwork-17 }
+soc.3 <- lm(log(salary) ~ experience, data = soc)
+summary(soc.3)
+```
+
+
+$\blacksquare$
+
+(g) Obtain and plot the residuals against the fitted values for
+this regression. Do you seem to have solved the problem with the
+previous residual plot?
+
+
+Solution
+
+
+As we did before, treating the regression object as if it were a
+data frame:
+
+```{r socwork-20 }
+ggplot(soc.3, aes(x = .fitted, y = .resid)) + geom_point()
+```
+
+       
+
+That, to my mind, is a horizontal band of points, so I would say yes,
+I have solved the fanning out.
+
+One concern I have about the residuals is that there seem to be a
+couple of very negative values: that is, are the residuals normally
+distributed as they should be? Well, that's easy enough to check:
+
+```{r socwork-21 }
+ggplot(soc.3, aes(sample = .resid)) + stat_qq() + stat_qq_line()
+```
+
+ 
+
+The issues here are that those bottom two values are a bit too low,
+and the top few values are a bit bunched up (that curve at the top).
+It is really not bad, though, so I am making the call that I don't
+think I needed to worry.
+Note that the transformation we found here is the same as the
+log-salary used by the management consultants in the
+backward-elimination question, and with the same effect: an extra year
+of experience goes with a *percent* increase in salary.
+
+What increase? Well, the slope is about 0.05, so adding a year of
+experience is predicted to increase log-salary by 0.05, or to
+multiply actual salary by 
+
+```{r socwork-22 }
+exp(0.05)
+```
+
+ 
+
+or to increase salary by about 5\%.^[Mathematically,  $e^x$ is approximately $1+x$ for small $x$, which winds up meaning that the  slope in a model like this, if it is small, indicates about the  percent increase in the response associated with a 1-unit change in  the explanatory variable. Note that this only works with $e^x$ and  natural logs, not base 10 logs or anything like that.]
+
+
+$\blacksquare$
+
+

@@ -71,6 +71,7 @@ Solution
 
 
 `count`, most easily:
+
 ```{r heat-r-2 }
 heat %>% count(code)
 ```
@@ -303,9 +304,9 @@ to extract the year from each of our dates.
 Solution
 
 
-This will need `lubridate`:
+This will need the `lubridate` package, but you don't need to load it specifically because it is now loaded with the `tidyverse`:
+
 ```{r heat-r-7 }
-library(lubridate)
 heat %>% select(-text) %>% mutate(year = year(date)) %>% sample_n(10)
 ```
 
@@ -313,6 +314,7 @@ heat %>% select(-text) %>% mutate(year = year(date)) %>% sample_n(10)
 That seems to have worked. I listed a random sample of rows to
 get back to previous years.
 Having convinced myself that it worked, let me save it:
+
 ```{r heat-r-8 }
 heat %>% select(-text) %>% mutate(year = year(date)) -> heat
 ```
@@ -332,6 +334,7 @@ Solution
 
 
 Count them again:
+
 ```{r heat-r-9 }
 heat %>% count(year)
 ```
@@ -343,7 +346,7 @@ heat-alert days are in the last few years, and most of the years with
 not many are near the start, so there is something of an upward
 trend. Having said that, 2014 is unusually low (that was a cool
 summer), and 2005 was unusually high. (Was that the
-summer of the big power outage? I forget.^[I looked it up. It  was 2003, my first summer in Ontario.])^[I realize as I write this that you may not be old enough to remember these years. Sometimes I forget how old I am.]
+summer of the big power outage? I forget.^[I looked it up. It  was 2003, my first summer in Ontario. I realize as I write this that you may not be old enough to remember these years. Sometimes I forget how old I am.]
 
 You could also reasonably say that there isn't much pattern: the
 number of heat-alert days goes up and down. In fact, anything that's
@@ -361,7 +364,7 @@ heat %>%
  
 The pattern is very scattered, as is commonly the case with
 environmental-science-type data, but there is a very small upward
-trend. So it seems that either answer is justified, either ``there is no trend'' or
+trend. So it seems that either answer is justified, either "there is no trend" or
 "there is something of an upward trend".
 
 The other thing I notice on this plot is that if there are a lot of
@@ -451,7 +454,7 @@ write_csv(heat, "heat.csv")
 
 After loading the package, I create a variable `url` that
 contains the URL for the JSON file. The `fromJSON` line takes
-something that is JSON (which could be text, a file or a URL) and
+something that is JSON (which could be in text, a file or a URL) and
 converts it to and saves it in a data frame. Finally, I save the data
 frame in a `.csv` file.  That's the `.csv` file you used. If you run that code, you'll get a `.csv` file of heat
 alerts right up to the present, and you can update my analysis.

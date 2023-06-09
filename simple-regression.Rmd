@@ -1,0 +1,110 @@
+# Simple regression
+
+```{r 12-simple-regression-1, eval=F}
+library(tidyverse)
+```
+
+```{r 12-simple-regression-2, child="_packages.qmd"}
+```
+
+
+```{r 12-simple-regression-3,child="_calirain_qq.Rmd"}
+```
+
+```{r 12-simple-regression-4,child="_ftccigar_qq.Rmd"}
+```
+
+
+```{r 12-simple-regression-5, child="_youngboys_qq.Rmd"}
+```
+
+
+
+```{r 12-simple-regression-6, child="_fbfriends_qq.Rmd"}
+```
+
+```{r 12-simple-regression-7, child="_carp_qq.Rmd"}
+```
+
+
+
+```{r 12-simple-regression-8, child="_socwork_qq.Rmd"}
+```
+
+```{r 12-simple-regression-9, child="_pinetrees_qq.Rmd"}
+```
+
+```{r 12-simple-regression-10, child="_tortoise_qq.Rmd"}
+```
+
+
+```{r 12-simple-regression-11, child="_coasters_qq.Rmd"}
+```
+
+```{r 12-simple-regression-12, child="_diabetic_qq.Rmd"}
+```
+
+```{r 12-simple-regression-13, child="_pizza_qq.Rmd"}
+```
+
+```{r 12-simple-regression-14, child="_fire_damage_qq.Rmd"}
+```
+
+
+```{r 12-simple-regression-15, child="_braking_qq.Rmd"}
+```
+
+```{r 12-simple-regression-16, child="_heightfoot_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 12-simple-regression-17,child="_calirain.Rmd"}
+```
+
+```{r 12-simple-regression-18,child="_ftccigar.Rmd"}
+```
+
+
+```{r 12-simple-regression-19, child="_youngboys.Rmd"}
+```
+
+
+
+```{r 12-simple-regression-20, child="_fbfriends.Rmd"}
+```
+
+```{r 12-simple-regression-21, child="_carp.Rmd"}
+```
+
+
+
+```{r 12-simple-regression-22, child="_socwork.Rmd"}
+```
+
+```{r 12-simple-regression-23, child="_pinetrees.Rmd"}
+```
+
+```{r 12-simple-regression-24, child="_tortoise.Rmd"}
+```
+
+
+```{r 12-simple-regression-25, child="_coasters.Rmd"}
+```
+
+```{r 12-simple-regression-26, child="_diabetic.Rmd"}
+```
+
+```{r 12-simple-regression-27, child="_pizza.Rmd"}
+```
+
+```{r 12-simple-regression-28, child="_fire_damage.Rmd"}
+```
+
+```{r 12-simple-regression-29, child="_braking.Rmd"}
+```
+
+```{r 12-simple-regression-30, child="_heightfoot.Rmd"}
+```
+

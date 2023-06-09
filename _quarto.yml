@@ -22,6 +22,7 @@ book:
     - coding.Rmd
     - dandruff.Rmd
     - tidying-data.Rmd
+    - simple-regression.Rmd
 format:
   html:
     theme: cosmo
