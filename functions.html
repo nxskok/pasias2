@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 20&nbsp; Functions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./vector-matrix.html" rel="next">
+<link href="./dates-and-times.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#making-some-r-functions" id="toc-making-some-r-functions" class="nav-link active" data-scroll-target="#making-some-r-functions"><span class="header-section-number">20.1</span> Making some R functions</a></li>
+  <li><a href="#the-collatz-sequence" id="toc-the-collatz-sequence" class="nav-link" data-scroll-target="#the-collatz-sequence"><span class="header-section-number">20.2</span> The Collatz sequence</a></li>
+  <li><a href="#coefficient-of-variation" id="toc-coefficient-of-variation" class="nav-link" data-scroll-target="#coefficient-of-variation"><span class="header-section-number">20.3</span> Coefficient of Variation</a></li>
+  <li><a href="#rescaling" id="toc-rescaling" class="nav-link" data-scroll-target="#rescaling"><span class="header-section-number">20.4</span> Rescaling</a></li>
+  <li><a href="#making-some-r-functions-1" id="toc-making-some-r-functions-1" class="nav-link" data-scroll-target="#making-some-r-functions-1"><span class="header-section-number">20.5</span> Making some R functions</a></li>
+  <li><a href="#the-collatz-sequence-1" id="toc-the-collatz-sequence-1" class="nav-link" data-scroll-target="#the-collatz-sequence-1"><span class="header-section-number">20.6</span> The Collatz sequence</a></li>
+  <li><a href="#coefficient-of-variation-1" id="toc-coefficient-of-variation-1" class="nav-link" data-scroll-target="#coefficient-of-variation-1"><span class="header-section-number">20.7</span> Coefficient of Variation</a></li>
+  <li><a href="#rescaling-1" id="toc-rescaling-1" class="nav-link" data-scroll-target="#rescaling-1"><span class="header-section-number">20.8</span> Rescaling</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="making-some-r-functions" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="making-some-r-functions"><span class="header-section-number">20.1</span> Making some R functions</h2>
+<p>Let’s write some simple R functions to convert temperatures, and later to play with text.</p>
+<ol type="a">
+<li><p>A temperature in Celsius is converted to one in Kelvin by adding 273.15. (A temperature of <span class="math inline">\(-273.15\)</span> Celsius, 0 Kelvin, is the “absolute zero” temperature that nothing can be colder than.) Write a function called <code>c_to_k</code> that converts an input Celsius temperature to one in Kelvin, and test that it works.</p></li>
+<li><p>Write a function to convert a Fahrenheit temperature to Celsius. The way you do that is to subtract 32 and then multiply by <span class="math inline">\(5/9\)</span>.</p></li>
+<li><p><em>Using the functions you already wrote</em>, write a function to convert an input Fahrenheit temperature to Kelvin.</p></li>
+<li><p>Rewrite your Fahrenheit-to-Celsius convertor to take a suitable default value and check that it works as a default.</p></li>
+<li><p>What happens if you feed your Fahrenheit-to-Celsius convertor a <em>vector</em> of Fahrenheit temperatures? What if you use it in a <code>mutate</code>?</p></li>
+<li><p>Write another function called <code>wrap</code> that takes two arguments: a piece of text called <code>text</code>, which defaults to <code>hello</code>, and another piece of text called <code>outside</code>, which defaults to <code>*</code>. The function returns <code>text</code> with the text <code>outside</code> placed before and after, so that calling the function with the defaults should return <code>*hello*</code>. To do this, you can use <code>str_c</code> from <code>stringr</code> (loaded with the <code>tidyverse</code>) which places its text arguments side by side and glues them together into one piece of text. Test your function briefly.</p></li>
+<li><p>What happens if you want to change the default <code>outside</code> but use the default for <code>text</code>? How do you make sure that happens? Explore.</p></li>
+<li><p>What happens if you feed your function <code>wrap</code> a vector for either of its arguments? What about if you use it in a <code>mutate</code>?</p></li>
+</ol>
+</section>
+<section id="the-collatz-sequence" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="the-collatz-sequence"><span class="header-section-number">20.2</span> The Collatz sequence</h2>
+<p>The Collatz sequence is a sequence of integers <span class="math inline">\(x_1, x_2, \ldots\)</span> defined in a deceptively simple way: if <span class="math inline">\(x_n\)</span> is the current term of the sequence, then <span class="math inline">\(x_{n+1}\)</span> is defined as <span class="math inline">\(x_n/2\)</span> if <span class="math inline">\(x_n\)</span> is even, and <span class="math inline">\(3x_n+1\)</span> if <span class="math inline">\(x_n\)</span> is odd. We are interested in understanding how this sequence behaves; for example, what happens to it as <span class="math inline">\(n\)</span> gets large, for different choices of the first term <span class="math inline">\(x_1\)</span>? We will explore this numerically with R; the ambitious among you might like to look into the mathematics of it.</p>
+<ol type="a">
+<li><p>What happens to the sequence when it reaches 4? What would be a sensible way of defining where it ends? Explain briefly.</p></li>
+<li><p>Write an R function called <code>is_odd</code> that returns <code>TRUE</code> if its input is an odd number and <code>FALSE</code> if it is even (you can assume that the input is an integer and not a decimal number). To do <em>that</em>, you can use the function <code>%%</code> where <code>a %% b</code> is the remainder when <code>a</code> is divided by <code>b</code>. To think about oddness or evenness, consider the remainder when you divide by 2.</p></li>
+<li><p>Write an R function called <code>hotpo1</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that takes an integer as input and returns the next number in the Collatz sequence. To do this, use the function you just wrote that determines whether a number is even or odd.</p></li>
+<li><p>Now write a function <code>hotpo</code> that will return the whole Collatz sequence for an input <span class="math inline">\(x_1\)</span>. For this, assume that you will eventually get to 1.</p></li>
+<li><p>Write two (very small) functions that take an entire sequence as input and return (i) the length of the sequence and (ii) the maximum value it attains.</p></li>
+<li><p>Make a data frame consisting of the values 11 through 20, and, using <code>tidyverse</code> ideas, obtain a data frame containing the Collatz sequences starting at each of those values, along with their lengths and their maximum values. Which sequence is longest? Which one goes up highest?</p></li>
+</ol>
+</section>
+<section id="coefficient-of-variation" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="coefficient-of-variation"><span class="header-section-number">20.3</span> Coefficient of Variation</h2>
+<p>The coefficient of variation of a vector <code>x</code> is defined as the standard deviation of <code>x</code> divided by the mean of <code>x</code>.</p>
+<ol type="a">
+<li><p>Write a function called <code>cv</code> that calculates the coefficient of variation of its input and returns the result. You should use base R’s functions that reliably compute the pieces that you need.</p></li>
+<li><p>Use your function to find the coefficient of variation of the set of integers 1 through 5.</p></li>
+<li><p>Define a vector as follows:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.8</span>, <span class="sc">-</span><span class="fl">1.8</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="fl">1.2</span>, <span class="fl">4.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What is its coefficient of variation, according to your function? Does this make sense? Why did this happen? Explain briefly.</p>
+<ol start="4" type="a">
+<li>Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector <code>v</code> above. Hint: you might need to add <code>error=TRUE</code> to your chunk header to allow your document to preview/knit (inside the curly brackets at the top of the chunk, after a comma).</li>
+</ol>
+</section>
+<section id="rescaling" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="rescaling"><span class="header-section-number">20.4</span> Rescaling</h2>
+<p>Suppose we have this vector of values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">11</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 14 11</code></pre>
+</div>
+</div>
+<p>We want to scale these so that the smallest value is 0 and the largest is 1. We are going to be doing this a lot, so we are going to write a function that will work for any input.</p>
+<ol type="a">
+<li><p>Using a copy of my <code>z</code>, work out <code>min(z)</code> and <code>max(z)</code>. What do they do? Explain (very) briefly.</p></li>
+<li><p>What do these lines of code do, using the same <code>z</code> that I had? Run them and see, and describe briefly what <code>s</code> contains.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(z)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(z)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (z <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li><p>Write a function called <code>rescale</code> that implements the calculation above, for any input vector called <code>x</code>. (Note that I changed the name.)</p></li>
+<li><p>Test your function on my <code>z</code>, and on another vector of your choosing. Explain briefly why the answer you get from your vector makes sense.</p></li>
+<li><p>What happens if your input to <code>rescale</code> is a vector of numbers all the same? Give an example. Rewrite your function to intercept this case and give a helpful error message.</p></li>
+<li><p>Make a dataframe (containing any numeric values), and in it create a new column containing the rescaled version of one of its columns, using your function. Show your result.</p></li>
+<li><p>We might want to rescale the input not to be between 0 and 1, but between two values <code>a</code> and <code>b</code> that we specify as input. If <code>a</code> and/or <code>b</code> are not given, we want to use the values 0 for <code>a</code> and 1 for <code>b</code>. Rewrite your function to rescale the input to be between <code>a</code> and <code>b</code> instead of 0 and 1. Hint: allow your function to produce values between 0 and 1 as before, and then note that if all the values in a vector <code>s</code> are between 0 and 1, then all the values in <code>a+(b-a)*s</code> are between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p></li>
+<li><p>Test your new function two or more times, on input where you know or can guess what the output is going to be. In each case, explain briefly why your output makes sense.</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="making-some-r-functions-1" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="making-some-r-functions-1"><span class="header-section-number">20.5</span> Making some R functions</h2>
+<p>Let’s write some simple R functions to convert temperatures, and later to play with text.</p>
+<ol type="a">
+<li>A temperature in Celsius is converted to one in Kelvin by adding 273.15. (A temperature of <span class="math inline">\(-273.15\)</span> Celsius, 0 Kelvin, is the “absolute zero” temperature that nothing can be colder than.) Write a function called <code>c_to_k</code> that converts an input Celsius temperature to one in Kelvin, and test that it works.</li>
+</ol>
+<p>Solution</p>
+<p>This is mostly an exercise in structuring your function correctly. Let’s call the input <code>C</code> (uppercase C, since lowercase c has a special meaning to R): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>c_to_k <span class="ot">&lt;-</span> <span class="cf">function</span>(C) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  C <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c_to_k</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 273.15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_to_k</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 293.15</code></pre>
+</div>
+<p>:::</p>
+<p>This is the simplest way to do it: the last line of the function, if calculated but not saved, is the value that gets returned to the outside world. The checks suggest that it worked.</p>
+<p>If you’re used to Python or similar, you might prefer to calculate the value to be returned and then return it. You can do that in R too:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>c_to_k <span class="ot">&lt;-</span> <span class="cf">function</span>(C) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  K <span class="ot">&lt;-</span> C <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(K)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c_to_k</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 273.15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_to_k</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 293.15</code></pre>
+</div>
+</div>
+<p>That works just as well, and for the rest of this question, you can go either way.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Write a function to convert a Fahrenheit temperature to Celsius. The way you do that is to subtract 32 and then multiply by <span class="math inline">\(5/9\)</span>.</li>
+</ol>
+<p>Solution</p>
+<p>On the model of the previous one, we should call this <code>f_to_c</code>. I’m going to return the last line, but you can save the calculated value and return that instead: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(F) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  (F <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_c</span>(<span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_c</span>(<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_c</span>(<span class="dv">68</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+<p>:::</p>
+<p>Americans are very good at saying things like “temperatures in the 50s”, which don’t mean much to me, so I like to have benchmarks to work with: these are the Fahrenheit versions of 0, 10, and 20 Celsius.</p>
+<p>Thus “in the 50s” means “between about 10 and 15 Celsius”.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li><em>Using the functions you already wrote</em>, write a function to convert an input Fahrenheit temperature to Kelvin.</li>
+</ol>
+<p>Solution</p>
+<p>This implies that you can piggy-back on the functions you just wrote, which goes as below. First you convert the Fahrenheit to Celsius, and then you convert <em>that</em> to Kelvin. (This is less error-prone than trying to use algebra to get a formula for this conversion and then implementing that): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>f_to_k <span class="ot">&lt;-</span> <span class="cf">function</span>(F) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> <span class="fu">f_to_c</span>(F)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  K <span class="ot">&lt;-</span> <span class="fu">c_to_k</span>(C)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(K)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_k</span>(<span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 273.15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_k</span>(<span class="dv">68</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 293.15</code></pre>
+</div>
+<p>:::</p>
+<p>These check because in Celsius they are 0 and 20 and we found the Kelvin equivalents of those to be these values earlier.</p>
+<p>I wrote this one with a <code>return</code> because I thought it made the structure clearer: run one function, save the result, run another function, save the result, then return what you’ve got.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Rewrite your Fahrenheit-to-Celsius convertor to take a suitable default value and check that it works as a default.</li>
+</ol>
+<p>Solution</p>
+<p>You can choose any default you like. I’ll take a default of 68 (what I would call “a nice day”): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">F =</span> <span class="dv">68</span>) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  (F <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_c</span>(<span class="dv">68</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+<p>:::</p>
+<p>The change is in the top line of the function. You see the result: if we run it without an input, we get the same answer as if the input had been 68.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>What happens if you feed your Fahrenheit-to-Celsius convertor a <em>vector</em> of Fahrenheit temperatures? What if you use it in a <code>mutate</code>?</li>
+</ol>
+<p>Solution</p>
+<p>Try it and see: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>temps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30 40 50 60 70 80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_to_c</span>(temps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.111111  4.444444 10.000000 15.555556 21.111111 26.666667</code></pre>
+</div>
+<p>:::</p>
+<p>Each of the Fahrenheit temperatures gets converted into a Celsius one. This is perhaps more useful in a data frame, thus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">temps =</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">celsius =</span> <span class="fu">f_to_c</span>(temps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["temps"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["celsius"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"30","2":"-1.111111"},{"1":"40","2":"4.444444"},{"1":"50","2":"10.000000"},{"1":"60","2":"15.555556"},{"1":"70","2":"21.111111"},{"1":"80","2":"26.666667"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>All the temperatures are side-by-side with their equivalents.</p>
+<p>Here’s another way to do the above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>temps <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">value =</span> <span class="st">"fahrenheit"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">celsius =</span> <span class="fu">f_to_c</span>(temps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["int"],"align":["right"]},{"label":["fahrenheit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["celsius"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"30","3":"-1.111111"},{"1":"2","2":"40","3":"4.444444"},{"1":"3","2":"50","3":"10.000000"},{"1":"4","2":"60","3":"15.555556"},{"1":"5","2":"70","3":"21.111111"},{"1":"6","2":"80","3":"26.666667"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><code>enframe</code> creates a two-column data frame out of a vector (like <code>temps</code>). A vector can have “names”, in which case they’ll be used as the <code>name</code> column; the values will go in a column called <code>value</code> unless you rename it, as I did.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Write another function called <code>wrap</code> that takes two arguments: a piece of text called <code>text</code>, which defaults to <code>hello</code>, and another piece of text called <code>outside</code>, which defaults to <code>*</code>. The function returns <code>text</code> with the text <code>outside</code> placed before and after, so that calling the function with the defaults should return <code>*hello*</code>. To do this, you can use <code>str_c</code> from <code>stringr</code> (loaded with the <code>tidyverse</code>) which places its text arguments side by side and glues them together into one piece of text. Test your function briefly.</li>
+</ol>
+<p>Solution</p>
+<p>This: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>wrap <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">text =</span> <span class="st">"hello"</span>, <span class="at">outside =</span> <span class="st">"*"</span>) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_c</span>(outside, text, outside)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>I can run this with the defaults:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "*hello*"</code></pre>
+</div>
+</div>
+<p>or with text of my choosing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="st">"goodbye"</span>, <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "_goodbye_"</code></pre>
+</div>
+</div>
+<p>I think that’s what I meant by “test briefly”.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>What happens if you want to change the default <code>outside</code> but use the default for <code>text</code>? How do you make sure that happens? Explore.</li>
+</ol>
+<p>Solution</p>
+<p>The obvious thing is this, which doesn’t work: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "*!*"</code></pre>
+</div>
+<p>:::</p>
+<p>This takes <em><code>text</code></em> to be <code>!</code>, and <code>outside</code> to be the default. How do we get <code>outside</code> to be <code>!</code> instead? The key is to specify the input by name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">outside =</span> <span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "!hello!"</code></pre>
+</div>
+</div>
+<p>This correctly uses the default for <code>text</code>.</p>
+<p>If you specify inputs without names, they are taken to be in the order that they appear in the function definition. As soon as they get out of order, which typically happens by using the default for something early in the list, as we did here for <code>text</code>, you have to specify names for anything that comes after that. These are the names you put on the function’s top line.</p>
+<p>You can always use names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">text =</span> <span class="st">"thing"</span>, <span class="at">outside =</span> <span class="st">"**"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "**thing**"</code></pre>
+</div>
+</div>
+<p>and if you use names, they don’t even have to be in order:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">outside =</span> <span class="st">"!?"</span>, <span class="at">text =</span> <span class="st">"fred"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "!?fred!?"</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>What happens if you feed your function <code>wrap</code> a vector for either of its arguments? What about if you use it in a <code>mutate</code>?</li>
+</ol>
+<p>Solution</p>
+<p>Let’s try: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>mytext <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">text =</span> mytext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "*a*" "*b*" "*c*"</code></pre>
+</div>
+<p>:::</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>myout <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"*"</span>, <span class="st">"!"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">outside =</span> myout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "*hello*" "!hello!"</code></pre>
+</div>
+</div>
+<p>If one of the inputs is a vector, the other one gets “recycled” as many times as the vector is long. What if they’re both vectors?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>mytext2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(mytext2, myout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `str_c()`:
+! Can't recycle `..1` (size 2) to match `..2` (size 4).</code></pre>
+</div>
+</div>
+<p>This gives an error because <code>str_c</code> won’t let you recycle things that are both vectors.</p>
+<p>The <code>mutate</code> thing is easier, because all the columns in a data frame have to be the same length. <code>LETTERS</code> is a vector with the uppercase letters in it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">mytext =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">myout =</span> <span class="fu">c</span>(<span class="st">"*"</span>, <span class="st">"**"</span>, <span class="st">"!"</span>, <span class="st">"!!"</span>, <span class="st">"_"</span>, <span class="st">"__"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">newthing =</span> <span class="fu">wrap</span>(mytext, myout))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mytext"],"name":[1],"type":["chr"],"align":["left"]},{"label":["myout"],"name":[2],"type":["chr"],"align":["left"]},{"label":["newthing"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"*","3":"*A*"},{"1":"B","2":"**","3":"**B**"},{"1":"C","2":"!","3":"!C!"},{"1":"D","2":"!!","3":"!!D!!"},{"1":"E","2":"_","3":"_E_"},{"1":"F","2":"__","3":"__F__"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="the-collatz-sequence-1" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="the-collatz-sequence-1"><span class="header-section-number">20.6</span> The Collatz sequence</h2>
+<p>The Collatz sequence is a sequence of integers <span class="math inline">\(x_1, x_2, \ldots\)</span> defined in a deceptively simple way: if <span class="math inline">\(x_n\)</span> is the current term of the sequence, then <span class="math inline">\(x_{n+1}\)</span> is defined as <span class="math inline">\(x_n/2\)</span> if <span class="math inline">\(x_n\)</span> is even, and <span class="math inline">\(3x_n+1\)</span> if <span class="math inline">\(x_n\)</span> is odd. We are interested in understanding how this sequence behaves; for example, what happens to it as <span class="math inline">\(n\)</span> gets large, for different choices of the first term <span class="math inline">\(x_1\)</span>? We will explore this numerically with R; the ambitious among you might like to look into the mathematics of it.</p>
+<ol type="a">
+<li>What happens to the sequence when it reaches 4? What would be a sensible way of defining where it ends? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>When the sequence reaches 4 (that is, when its current term is 4), the next term is 2 and the one after that is 1. Then the following term is 4 again (<span class="math inline">\((3 \times 1)+1\)</span>) and then it repeats indefinitely, <span class="math inline">\(4, 2, 1, 4, 2, 1, \ldots\)</span>. I think a sensible way to define where the sequence ends is to say “when it reaches 1”, since if you start at 2 you’ll never reach 4 (so “when it reaches 4” won’t work), and it seems at least plausible that it will hit the cycle 4, 2, 1 sometime.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Write an R function called <code>is_odd</code> that returns <code>TRUE</code> if its input is an odd number and <code>FALSE</code> if it is even (you can assume that the input is an integer and not a decimal number). To do <em>that</em>, you can use the function <code>%%</code> where <code>a %% b</code> is the remainder when <code>a</code> is divided by <code>b</code>. To think about oddness or evenness, consider the remainder when you divide by 2.</li>
+</ol>
+<p>Solution</p>
+<p>Let’s try this out. For example, 5 is odd and 6 is even, so ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">%%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">%%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<p>:::</p>
+<p>When a number is odd, its remainder on dividing by 2 is 1, and when even, the remainder is 0. There is an additional shortcut here in that 1 is the numeric value of <code>TRUE</code> and 0 of <code>FALSE</code>, so all we have to do is calculate the remainder on dividing by 2, turn it into a <code>logical</code>, and return it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>is_odd <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> x <span class="sc">%%</span> <span class="dv">2</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.logical</span>(r)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You probably haven’t seen <code>as.logical</code> before, but it’s the same idea as <code>as.numeric</code>: turn something that looks like a <code>TRUE</code> or <code>FALSE</code> into something that actually <em>is</em>.</p>
+<p>We should test it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_odd</span>(<span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_odd</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_odd</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>0 is usually considered an even number, so this is good.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Write an R function called <code>hotpo1</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> that takes an integer as input and returns the next number in the Collatz sequence. To do this, use the function you just wrote that determines whether a number is even or odd.</li>
+</ol>
+<p>Solution</p>
+<p>The logic is “if the input is odd, return 3 times it plus 1, otherwise return half of it”. The R structure is an <code>if-then-else</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>hotpo1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is_odd</span>(x)) <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>In R, the condition that is tested goes in brackets, and then if the value-if-true and the value-if-false are single statements, you just type them. (If they are more complicated than that, you put them in curly brackets.) Now you see the value of writing <code>is_odd</code> earlier; this code almost looks like the English-language description of the sequence. If we had not written <code>is_odd</code> before, the condition would have looked something like</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>) <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which would have been a lot harder to read.</p>
+<p>All right, let’s try that out:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo1</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo1</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo1</span>(<span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+</div>
+<p>That looks all right so far.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Now write a function <code>hotpo</code> that will return the whole Collatz sequence for an input <span class="math inline">\(x_1\)</span>. For this, assume that you will eventually get to 1.</li>
+</ol>
+<p>Solution</p>
+<p>This is a loop, but not a <code>for</code> loop (or something that we could do <code>rowwise</code>), because we don’t know how many times we have to go around. This is the kind of thing that we should use a <code>while</code> loop for: “keep going while a condition is true”. In this case, we should keep going if we haven’t reached 1 yet. If we haven’t reached 1, we should generate the next value of the sequence and glue it onto what we have so far. To initialize the sequence, we start with the input value. There is an R trick to glue a value onto the sequence, which is to use <code>c</code> with a vector and a value, and save it back into the vector: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>hotpo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  sequence <span class="ot">&lt;-</span> x</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  term <span class="ot">&lt;-</span> x</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (term <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>    term <span class="ot">&lt;-</span> <span class="fu">hotpo1</span>(term)</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="fu">c</span>(sequence, term)</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>  sequence</span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>I use <code>term</code> to hold the current term of the sequence, and overwrite it with the next one (since I don’t need the old one any more).</p>
+<p>Does it work?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 2 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 12  6  3 10  5 16  8  4  2  1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo</span>(<span class="dv">97</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]   97  292  146   73  220  110   55  166   83  250  125  376  188   94   47
+ [16]  142   71  214  107  322  161  484  242  121  364  182   91  274  137  412
+ [31]  206  103  310  155  466  233  700  350  175  526  263  790  395 1186  593
+ [46] 1780  890  445 1336  668  334  167  502  251  754  377 1132  566  283  850
+ [61]  425 1276  638  319  958  479 1438  719 2158 1079 3238 1619 4858 2429 7288
+ [76] 3644 1822  911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154  577 1732
+ [91]  866  433 1300  650  325  976  488  244  122   61  184   92   46   23   70
+[106]   35  106   53  160   80   40   20   10    5   16    8    4    2    1</code></pre>
+</div>
+</div>
+<p>97 is a wild ride, but it does eventually get to 1.</p>
+<p>Extra: where I originally saw this, which was “Metamagical Themas” by Douglas Hofstadter, he was illustrating the programming language Lisp and the process of recursion, whereby you define a function in terms of itself. This one is a natural for that, because the Collatz sequence starting at <span class="math inline">\(x\)</span> is <span class="math inline">\(x\)</span> along with the Collatz sequence starting at the next term. For example, if you start at 12, the next term is 6, so that the Collatz sequence starting at 12 is 12 followed by the Collatz sequence starting at 6. There is no dependence any further back. You can do recursion in R also; there is no problem with a function calling itself:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>hotpo_rec <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) <span class="dv">1</span> <span class="cf">else</span> <span class="fu">c</span>(x, <span class="fu">hotpo_rec</span>(<span class="fu">hotpo1</span>(x)))</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recursive functions have two parts: a “base case” that says how you know you are done (the 1 here), and a “recursion” that says how you move to a simpler case, here working out the next term, getting the whole sequence for that, and gluing the input onto the front. It seems paradoxical that you define a function in terms of itself, but what you are doing is calling a simpler sequence, in this case one that is length one shorter than the sequence for the original input. Thus, we hope,<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> we will eventually reach 1.</p>
+<p>Does it work?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo_rec</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 12  6  3 10  5 16  8  4  2  1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo_rec</span>(<span class="dv">97</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]   97  292  146   73  220  110   55  166   83  250  125  376  188   94   47
+ [16]  142   71  214  107  322  161  484  242  121  364  182   91  274  137  412
+ [31]  206  103  310  155  466  233  700  350  175  526  263  790  395 1186  593
+ [46] 1780  890  445 1336  668  334  167  502  251  754  377 1132  566  283  850
+ [61]  425 1276  638  319  958  479 1438  719 2158 1079 3238 1619 4858 2429 7288
+ [76] 3644 1822  911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154  577 1732
+ [91]  866  433 1300  650  325  976  488  244  122   61  184   92   46   23   70
+[106]   35  106   53  160   80   40   20   10    5   16    8    4    2    1</code></pre>
+</div>
+</div>
+<p>It does.</p>
+<p>Recursive functions are often simple to understand, but they are not always very efficient. They can take a lot of memory, because they have to handle the intermediate calls to the function, which they have to save to use later (in the case of <code>hotpo_rec(97)</code> there are a lot of those). Recursive functions are often paired with a technique called “memoization”, where each time you calculate the function’s value, you <em>save</em> it in another array. The first thing you do in the recursive function is to check whether you already have the answer, in which case you just look it up and return it. It was a lot of work here to calculate the sequence from 97, but if we had saved the results, we would already have the answers for 292, 146, 73, 220 and so on, and getting those later would be a table lookup rather than another recursive calculation.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Write two (very small) functions that take an entire sequence as input and return (i) the length of the sequence and (ii) the maximum value it attains.</li>
+</ol>
+<p>Solution</p>
+<p>These are both one-liners. Call the input whatever you like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>hotpo_len <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence) <span class="fu">length</span>(sequence)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>hotpo_max <span class="ot">&lt;-</span> <span class="cf">function</span>(sequence) <span class="fu">max</span>(sequence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because they are one-liners, you don’t even need the curly brackets, although there’s no problem if they are there.</p>
+<p>Testing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo_len</span>(<span class="fu">hotpo</span>(<span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hotpo_max</span>(<span class="fu">hotpo</span>(<span class="dv">97</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9232</code></pre>
+</div>
+</div>
+<p>This checks with what we had before.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Make a data frame consisting of the values 11 through 20, and, using <code>tidyverse</code> ideas, obtain a data frame containing the Collatz sequences starting at each of those values, along with their lengths and their maximum values. Which sequence is longest? Which one goes up highest?</li>
+</ol>
+<p>Solution</p>
+<p>This one uses <code>rowwise</code> ideas:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  rowwise <span class="sc">%&gt;%</span> </span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sequence =</span> <span class="fu">list</span>(<span class="fu">hotpo</span>(x))) <span class="sc">%&gt;%</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">hotpo_len</span>(sequence)) <span class="sc">%&gt;%</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high =</span> <span class="fu">hotpo_max</span>(sequence))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["sequence"],"name":[2],"type":["list"],"align":["right"]},{"label":["length"],"name":[3],"type":["int"],"align":["right"]},{"label":["high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"11","2":"<dbl [15]>","3":"15","4":"52"},{"1":"12","2":"<dbl [10]>","3":"10","4":"16"},{"1":"13","2":"<dbl [10]>","3":"10","4":"40"},{"1":"14","2":"<dbl [18]>","3":"18","4":"52"},{"1":"15","2":"<dbl [18]>","3":"18","4":"160"},{"1":"16","2":"<dbl [5]>","3":"5","4":"16"},{"1":"17","2":"<dbl [13]>","3":"13","4":"52"},{"1":"18","2":"<dbl [21]>","3":"21","4":"52"},{"1":"19","2":"<dbl [21]>","3":"21","4":"88"},{"1":"20","2":"<dbl [8]>","3":"8","4":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>First, we obtain a list-column containing the sequences (which is why its calculation needs a <code>list</code> around it), then two ordinary columns of their lengths and their maximum values.</p>
+<p>The sequences for 18 and 19 are the longest, but the sequence for 15 goes up the highest.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="coefficient-of-variation-1" class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="coefficient-of-variation-1"><span class="header-section-number">20.7</span> Coefficient of Variation</h2>
+<p>The coefficient of variation of a vector <code>x</code> is defined as the standard deviation of <code>x</code> divided by the mean of <code>x</code>.</p>
+<ol type="a">
+<li>Write a function called <code>cv</code> that calculates the coefficient of variation of its input and returns the result. You should use base R’s functions that reliably compute the pieces that you need.</li>
+</ol>
+<p>Solution</p>
+<p>I like to make a function skeleton first to be sure I remember all the pieces. You can do this by making a code chunk, typing <code>fun</code>, waiting a moment, and selecting the “snippet” that is offered to you. That gives you this, with your cursor on <code>name</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="cf">function</span>(variables) {</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Give your function a name (I asked you to use <code>cv</code>), hit tab, enter a name like x for the input, hit tab again, and then fill in the body of the function, to end up with something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I think this is best, for reasons discussed below.</p>
+<p>Some observations:</p>
+<ul>
+<li>in the last line of the function, you calculate something, and that something is the thing that gets returned. You <em>do not</em> need to save it in a variable, because then you have to return that variable by having its name alone on the last line.</li>
+<li>R has a <code>return()</code> function, but it is <em>bad style</em> to use it to return a value at the end of a function. The time to use it is when you test something early in the function and want to return early with a value like zero or missing without doing any actual calculation. Looking ahead a bit, you might want to return “missing” if the mean is zero <em>before</em> dividing by it, which you could do like this, this being <em>good</em> style:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>cv2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (mean_x <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>use the built-in <code>mean</code> and <code>sd</code> rather than trying to roll your own, because they have been tested by many users over a long time and they work. That’s what I meant by “pieces” in the question.</p></li>
+<li><p>you might be tempted to do something like this:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>cv3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">mean</span>(x)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will work, but it is not a good habit to get into, and thus not best as an answer to this question. This one line of code says three things: “work out the SD of <code>x</code>”, “work out the mean of <code>x</code>”, and “divide them by each other”. It is much clearer, for anyone else reading the code (including yourself in six months when you have forgotten what you were thinking) to have the three things one per line, so that anyone reading the code sees that each line does one thing and what that one thing is. There is a reason why production code and <a href="https://en.wikipedia.org/wiki/Code_golf">code golf</a> are two very different things. Code that is easy to read is also easy to maintain, either by you or others.</p>
+<ul>
+<li>using something other than <code>mean</code> and <code>sd</code> as the names of your intermediate results is a good idea because these names are already used by R (as the names of the functions that compute the mean and SD). Redefining names that R uses can make other code behave unpredictably and cause hard-to-find bugs.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ul>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Use your function to find the coefficient of variation of the set of integers 1 through 5.</li>
+</ol>
+<p>Solution</p>
+<p>This can be as simple as</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5270463</code></pre>
+</div>
+</div>
+<p>or, equally good, define this into a vector first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5270463</code></pre>
+</div>
+</div>
+<p>or, displaying a little less understanding, type the five numbers into the vector first (or directly as input to the function):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5270463</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5270463</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Define a vector as follows:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.8</span>, <span class="sc">-</span><span class="fl">1.8</span>, <span class="sc">-</span><span class="fl">0.8</span>, <span class="fl">1.2</span>, <span class="fl">4.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What is its coefficient of variation, according to your function? Does this make sense? Why did this happen? Explain briefly.</p>
+<p>Solution</p>
+<p>Try it and see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.248491e+16</code></pre>
+</div>
+</div>
+<p>A very large number, much bigger than any of the data values; with these human-sized numbers, we’d expect a human-sized coefficient of variation as well.</p>
+<p>What actually happened was that the mean of <code>v</code> is this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.440892e-17</code></pre>
+</div>
+</div>
+<p>Zero, or close enough, so that in calculating the coefficient of variation, we divided by something that was (almost) zero and got a result that was (almost) infinite.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>The possibility of getting a zero mean is why most people only calculate a coefficient of variation if all of the numbers are positive, which brings us to the next part:</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector <code>v</code> above. Hint: you might need to add <code>error=TRUE</code> to your chunk header to allow your document to preview/knit (inside the curly brackets at the top of the chunk, after a comma).</li>
+</ol>
+<p>Solution</p>
+<p>This is a case for <code>stopifnot</code>, or of <code>if</code> coupled with <code>stop</code>. Check this up front, as the first thing you do before you calculate anything else. As to what to check, there are several possibilities:</p>
+<ul>
+<li>stop if any of the numbers are negative</li>
+<li>continue if all of the numbers are positive</li>
+<li>stop if the <em>smallest</em> number is negative (the smallest number is negative if and only if not all the numbers are positive)</li>
+</ul>
+<p>R has functions <code>any</code> and <code>all</code> that do what you’d expect:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(w<span class="sc">&gt;</span><span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(w<span class="sc">&lt;</span><span class="fl">4.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>Are there any numbers greater than 3.5 (yes, 4 and 5); are all the numbers less than 4.5 (no, 5 isn’t).</p>
+<p>Cite your sources for these if you use either of them, since this is the first place in the course that I’m mentioning either of them.</p>
+<p>Remember that if you use <code>stopifnot</code>, the condition that goes in there is what has to be true if the function is to run; if you use <code>if</code> and <code>stop</code>, the condition is what will <em>stop</em> the function running. With that in mind, I would code my three possibilities above this way. First off, here’s the original:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>then, stop if any of the numbers are negative:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(x<span class="sc">&lt;</span><span class="dv">0</span>)) <span class="fu">stop</span>(<span class="st">"A value is negative"</span>)</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): A value is negative</code></pre>
+</div>
+</div>
+<p>continue if all the numbers are positive</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(x<span class="sc">&gt;</span><span class="dv">0</span>))</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): all(x &gt; 0) is not TRUE</code></pre>
+</div>
+</div>
+<p>stop if the smallest value is negative</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">min</span>(x)<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"Smallest value is negative"</span>)</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): Smallest value is negative</code></pre>
+</div>
+</div>
+<p>There are (at least) three other possibilities: you can negate the logical condition and interchange <code>if/stop</code> and <code>stopifnot</code>, thus (at the expense of some clarity of reading):</p>
+<p>continue if it is not true that any of the numbers are negative</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">any</span>(x<span class="sc">&lt;</span><span class="dv">0</span>))</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): !any(x &lt; 0) is not TRUE</code></pre>
+</div>
+</div>
+<p>(you might be thinking of De Morgan’s laws here)</p>
+<p>stop if it is not true that all the numbers are positive</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(x<span class="sc">&gt;</span><span class="dv">0</span>)) <span class="fu">stop</span>(<span class="st">"Not all values are positive"</span>)</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): Not all values are positive</code></pre>
+</div>
+</div>
+<p>continue if the smallest value is not negative</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">min</span>(x)<span class="sc">&gt;=</span><span class="dv">0</span>)</span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): min(x) &gt;= 0 is not TRUE</code></pre>
+</div>
+</div>
+<p>or another way to do the last one, a more direct negation of the condition, which at my guess needs some extra brackets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span>(<span class="fu">min</span>(x)<span class="sc">&lt;</span><span class="dv">0</span>))</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>sd_x<span class="sc">/</span>mean_x</span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cv</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in cv(v): !(min(x) &lt; 0) is not TRUE</code></pre>
+</div>
+</div>
+<p>This one is hard to parse: what does that last message mean? I would take a negative off each side and read it as “min of x is negative is TRUE”, but that takes extra effort.</p>
+<p>I said that last one needed some extra brackets. This is, I thought, to get the order of operations right (operator precedence); it turns out not to matter because “not” has lower precedence than most other things, so that these do actually work (the “not” is evaluated <em>after</em> the less-than and the other things, so last of all here, even though it appears to be “glued” to the <code>min</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">min</span>(v)<span class="sc">&lt;</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">min</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)<span class="sc">&lt;</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>See <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">this</a> for details. See especially the second set of examples, the ones beginning with “Special operators”, and see especially-especially the comment at the bottom of these examples! That is to say, <em>you</em> should put in the extra brackets unless you also make the case that they are not needed, because anyone reading your code is guaranteed to be confused by it when they read it (including you in six months, because you <em>will not</em> remember the operator priority of “not”).</p>
+<p>My take is that one of the first three of the seven possibilities for coding <code>stopifnot</code> or <code>if</code> with <code>stop</code> is the best, since these more obviously encode the condition for continuing or stopping as appropriate. There are two things here: one is that you have to get the code right, but the second is that you have to get the code <em>clear</em>, so that it is obvious to anyone reading it that it does the right thing (once again, this includes you in six months). On that score, the first three alternatives are a direct expression of what you want to achieve, and the last four make it look as if you found a way of coding it that worked and stopped there, without thinking about whether there were any other, clearer or more expressive, possibilities.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="rescaling-1" class="level2" data-number="20.8">
+<h2 data-number="20.8" class="anchored" data-anchor-id="rescaling-1"><span class="header-section-number">20.8</span> Rescaling</h2>
+<p>Suppose we have this vector of values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">11</span>)</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 14 11</code></pre>
+</div>
+</div>
+<p>We want to scale these so that the smallest value is 0 and the largest is 1. We are going to be doing this a lot, so we are going to write a function that will work for any input.</p>
+<ol type="a">
+<li>Using a copy of my <code>z</code>, work out <code>min(z)</code> and <code>max(z)</code>. What do they do? Explain (very) briefly.</li>
+</ol>
+<p>Solution</p>
+<p>Simply this – define <code>z</code> first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">11</span>)</span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14</code></pre>
+</div>
+</div>
+<p>They are respectively (and as you would guess) the smallest and largest of the values in <code>z</code>. (A nice gentle warmup, but I wanted to get you on the right track for what is coming up.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>What do these lines of code do, using the same <code>z</code> that I had? Run them and see, and describe briefly what <code>s</code> contains.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(z)</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(z)</span>
+<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (z <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Solution</p>
+<p>Here we go:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(z)</span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(z)</span>
+<span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (z <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb140-4"><a href="#cb140-4" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 1.00 0.25</code></pre>
+</div>
+</div>
+<p>The lowest value became 0, the highest 1, and the other one to something in between. Saying this shows the greatest insight.</p>
+<p>Extra: the reason for doing it in three steps rather than one (see below) is (i) it makes it clearer what is going on (and thus makes it less likely that you make a mistake), and (ii) it is more efficient, since my way only finds the minimum once instead of twice. Compare this approach with mine above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>(z <span class="sc">-</span> <span class="fu">min</span>(z)) <span class="sc">/</span> (<span class="fu">max</span>(z) <span class="sc">-</span> <span class="fu">min</span>(z))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 1.00 0.25</code></pre>
+</div>
+</div>
+<p>More complicated with all the brackets, and two <code>min(z)</code>. Admittedly the difference here will be thousandths of a second, but why call a function twice when you don’t have to?</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Write a function called <code>rescale</code> that implements the calculation above, for any input vector called <code>x</code>. (Note that I changed the name.)</li>
+</ol>
+<p>Solution</p>
+<p>Write a function skeleton:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and inside the curly brackets put the code from above, replacing <code>z</code> with <code>x</code> everywhere:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb145-4"><a href="#cb145-4" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb145-5"><a href="#cb145-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You’ll need to make sure your function returns something to the outside world. Either don’t save the last line in <code>s</code> (as I did here), or save it in <code>s</code> and then return <code>s</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb146-4"><a href="#cb146-4" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb146-5"><a href="#cb146-5" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb146-6"><a href="#cb146-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or use <code>return()</code> if you must, but be aware that this is bad style in R (unlike Python, where you need it). The approved way of using <code>return</code> in R is when you are returning something <em>earlier</em> than the last line of a function, for example, you are testing a simple case first and returning the value that goes with that, before getting down to the serious computation.</p>
+<p>Extra: in the spirit of what’s coming up below, you might check first whether the maximum and minimum are the same and return something else if that’s the case:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>rescale0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (lo <span class="sc">==</span> hi) <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb147-5"><a href="#cb147-5" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb147-6"><a href="#cb147-6" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb147-7"><a href="#cb147-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is good style; in this case, if <code>lo</code> and <code>hi</code> are the same, we want to return something else (zero) to the outside world, and <em>then</em> we do the calculation, knowing that <code>lo</code> and <code>hi</code> are different, so that we are sure we are not dividing by zero (but I get ahead of myself).</p>
+<p>Doing it this way, there is something to be careful of: a function ought to return a predictable <em>type</em> of thing: numbers, in this case. If you have your function return <em>text</em> on error, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>rescale0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb148-3"><a href="#cb148-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb148-4"><a href="#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (lo <span class="sc">==</span> hi) <span class="fu">return</span>(<span class="st">"High and low need to be different"</span>)</span>
+<span id="cb148-5"><a href="#cb148-5" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb148-6"><a href="#cb148-6" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb148-7"><a href="#cb148-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>then you can get into trouble:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale0</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 1.00 0.25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale0</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "High and low need to be different"</code></pre>
+</div>
+</div>
+<p>The first one is numbers and the second one is text.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Test your function on my <code>z</code>, and on another vector of your choosing. Explain briefly why the answer you get from your vector makes sense.</li>
+</ol>
+<p>Solution</p>
+<p>On my <code>z</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 1.00 0.25</code></pre>
+</div>
+</div>
+<p>The same values as I got before, so that works.</p>
+<p>For your vector, use whatever you like. I think it makes sense to have the values already in order, to make it easier to check. Here’s one possibility:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4 5 6</code></pre>
+</div>
+</div>
+<p>and then</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 0.25 0.50 0.75 1.00</code></pre>
+</div>
+</div>
+<p>The smallest value is 2, which goes to zero; the largest is 6, which goes to 1, and the others are equally spaced between in both the input and the output.</p>
+<p>Another possibility is to use a vector with values whose largest and smallest you can clearly see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>)</span>
+<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.10 0.11 1.00 0.00 0.20</code></pre>
+</div>
+</div>
+<p>Clearly the smallest value is 0 and the largest is 100. These become 0 and 1, and these particular values make it easy to see what happened: each of the other values got divided by 100.</p>
+<p>Some discussion is needed here, in that you need to say something convincing about why your answer is right.</p>
+<p>Extra: This is why I had you use a name <em>other than</em> <code>z</code> for the input to your function. The function can be used on any input, not just the <code>z</code> that we tested it on. There’s another R-specific reason, which is that you need to be careful about using the named inputs <em>only</em>. Consider this function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a>ff <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> z</span>
+<span id="cb161-3"><a href="#cb161-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb161-4"><a href="#cb161-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-5"><a href="#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ff</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20 24 21</code></pre>
+</div>
+</div>
+<p>Where did <code>z</code> come from? R <em>used the <code>z</code> we had before</em>, which is rather dangerous: what if we had a <code>z</code> lying around from some completely different work? Much better to have a function work with only inputs in the top line:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a>ff <span class="ot">&lt;-</span> <span class="cf">function</span>(x, z) {</span>
+<span id="cb163-2"><a href="#cb163-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> z</span>
+<span id="cb163-3"><a href="#cb163-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb163-4"><a href="#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ff</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ff</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in ff(10): argument "z" is missing, with no default</code></pre>
+</div>
+</div>
+<p>The first time, the two inputs are added together, but the second time it tells you it was expecting a value to use for <code>z</code> and didn’t see one. Much safer.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>What happens if your input to <code>rescale</code> is a vector of numbers all the same? Give an example. Rewrite your function to intercept this case and give a helpful error message.</li>
+</ol>
+<p>Solution</p>
+<p>First, try it and see. Any collection of values all the same will do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NaN NaN NaN</code></pre>
+</div>
+</div>
+<p><code>NaN</code> stands for “not a number”. The way we got it is that the minimum and maximum were the same, so our function ended up dividing by zero (in fact, working out zero divided by zero). This is, in R terms, not even an error, but the answer is certainly not helpful.</p>
+<p>The easiest way to check inputs is to use <code>stopifnot</code> to express what should be <em>true</em> if the function is to proceed. Here, we want the maximum and minimum to be different, so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb169-4"><a href="#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(hi <span class="sc">!=</span> lo)</span>
+<span id="cb169-5"><a href="#cb169-5" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb169-6"><a href="#cb169-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb169-7"><a href="#cb169-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in rescale(c(3, 3, 3)): hi != lo is not TRUE</code></pre>
+</div>
+</div>
+<p>This is much clearer: I only have to recall what my <code>hi</code> and <code>lo</code> are to see what the problem is.</p>
+<p>Extra 1: by calculating and saving the min and max up front, I still only need to calculate them once. If you do it this way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb171-2"><a href="#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(x) <span class="sc">!=</span> <span class="fu">min</span>(x))</span>
+<span id="cb171-3"><a href="#cb171-3" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> <span class="fu">min</span>(x)) <span class="sc">/</span> (<span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))</span>
+<span id="cb171-4"><a href="#cb171-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb171-5"><a href="#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in rescale(c(3, 3, 3)): max(x) != min(x) is not TRUE</code></pre>
+</div>
+</div>
+<p>you get a slightly more informative error message, but you have calculated the max <em>twice</em> and the min <em>three times</em> for no reason.</p>
+<p>Extra 2: <code>stopifnot</code> is shorthand for this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb173"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb173-2"><a href="#cb173-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb173-3"><a href="#cb173-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb173-4"><a href="#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hi <span class="sc">==</span> lo) <span class="fu">stop</span>(<span class="st">"min and max are the same!"</span>)</span>
+<span id="cb173-5"><a href="#cb173-5" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb173-6"><a href="#cb173-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb173-7"><a href="#cb173-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in rescale(c(3, 3, 3)): min and max are the same!</code></pre>
+</div>
+</div>
+<p>I didn’t show you this, so if you use <code>stop</code>, you must tell me where you found out about it. This is better than returning some text (see <code>rescale0</code> above) or printing a message: it’s an error, so you want to make it look like an error. I am very sympathetic to being persuaded that this is <em>better</em> than <code>stopifnot</code>, because you can customize the message (and, also, you don’t have to go through the double-negative contortions of <code>stopifnot</code>). Another way to use <code>stopifnot</code> and get a customized message is this one (that I only learned about right when you were writing this Assignment):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb175-2"><a href="#cb175-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb175-3"><a href="#cb175-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb175-4"><a href="#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="st">"high and low must be different"</span> <span class="ot">=</span> (hi <span class="sc">!=</span> lo))</span>
+<span id="cb175-5"><a href="#cb175-5" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb175-6"><a href="#cb175-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb175-7"><a href="#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in rescale(c(3, 3, 3)): high and low must be different</code></pre>
+</div>
+</div>
+<p>This is called a “named argument”, and the name, if given, is used as an error message.</p>
+<p>Extra 3: returning to my <code>rescale0</code> from above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>rescale0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function(x) {
+lo &lt;- min(x)
+hi &lt;- max(x)
+if (lo == hi) return("High and low need to be different")
+s &lt;- (x - lo) / (hi - lo)
+s
+}
+&lt;bytecode: 0x5644b82b9f98&gt;</code></pre>
+</div>
+</div>
+<p>this can get you into trouble if you use it in a dataframe. This is a bit complicated, since it has to use list-columns. Here we go:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(z, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["list"],"align":["right"]}],"data":[{"1":"<dbl [3]>"},{"1":"<dbl [3]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Just to check that this does contain what you think it does:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(z, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"10"},{"1":"14"},{"1":"11"},{"1":"3"},{"1":"3"},{"1":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>So now, for each of those two input vectors, what happens when we run <code>rescale0</code> on them? This is <code>rowwise</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(z, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb181-2"><a href="#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb181-3"><a href="#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ans =</span> <span class="fu">list</span>(<span class="fu">rescale0</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["list"],"align":["right"]},{"label":["ans"],"name":[2],"type":["list"],"align":["right"]}],"data":[{"1":"<dbl [3]>","2":"<dbl [3]>"},{"1":"<dbl [3]>","2":"<chr [1]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The first <code>ans</code> is a vector of 3 numbers, and the second one is one piece of text (the “error message”). I was actually surprised it got this far. So what happens when we <code>unnest</code> the second column?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb182"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(z, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb182-2"><a href="#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb182-3"><a href="#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ans =</span> <span class="fu">list</span>(<span class="fu">rescale0</span>(x))) <span class="sc">%&gt;%</span> </span>
+<span id="cb182-4"><a href="#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(ans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `list_unchop()`:
+! Can't combine `x[[1]]` &lt;double&gt; and `x[[2]]` &lt;character&gt;.</code></pre>
+</div>
+</div>
+<p>Now we get a confusing error: it’s <em>here</em> that combining some numbers and some text in one column of a dataframe doesn’t work. To forestall this, we need to go back and rewrite <code>rescale0</code> to not mix things up. Having it return an error, as the latest version of <code>rescale</code> does, gives an error here too, but at least we know what it means:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(z, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb184-3"><a href="#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ans =</span> <span class="fu">list</span>(<span class="fu">rescale</span>(x))) <span class="sc">%&gt;%</span> </span>
+<span id="cb184-4"><a href="#cb184-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(ans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `mutate()`:
+ℹ In argument: `ans = list(rescale(x))`.
+ℹ In row 2.
+Caused by error in `rescale()`:
+! high and low must be different</code></pre>
+</div>
+</div>
+<p>because this is the error we anticipated: it says “somewhere within the list-column <code>x</code>, specifically in its second row, is a vector where everything is the same”.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Make a dataframe (containing any numeric values), and in it create a new column containing the rescaled version of one of its columns, using your function. Show your result.</li>
+</ol>
+<p>Solution</p>
+<p>This is less difficult than you might be expecting: make a dataframe with at least one numeric column, and use <code>mutate</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y=</span><span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["y"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"2"},{"1":"3"},{"1":"4"},{"1":"5"},{"1":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>and then</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb187"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">s=</span><span class="fu">rescale</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["y"],"name":[1],"type":["int"],"align":["right"]},{"label":["s"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"0.00"},{"1":"3","2":"0.25"},{"1":"4","2":"0.50"},{"1":"5","2":"0.75"},{"1":"6","2":"1.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>You can supply the values for what I called <code>y</code>, or use random numbers. It’s easier for you to check that it has worked if your column playing the role of my <code>y</code> has not too many values in it.</p>
+<p>Extra: this is actually already in the <code>tidyverse</code> under the name <code>percent_rank</code> (“percentile ranks”):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">s =</span> <span class="fu">percent_rank</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["y"],"name":[1],"type":["int"],"align":["right"]},{"label":["s"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"0.00"},{"1":"3","2":"0.25"},{"1":"4","2":"0.50"},{"1":"5","2":"0.75"},{"1":"6","2":"1.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The value 5, for example, is at the 75th percentile.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>We might want to rescale the input not to be between 0 and 1, but between two values <code>a</code> and <code>b</code> that we specify as input. If <code>a</code> and/or <code>b</code> are not given, we want to use the values 0 for <code>a</code> and 1 for <code>b</code>. Rewrite your function to rescale the input to be between <code>a</code> and <code>b</code> instead of 0 and 1. Hint: allow your function to produce values between 0 and 1 as before, and then note that if all the values in a vector <code>s</code> are between 0 and 1, then all the values in <code>a+(b-a)*s</code> are between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</li>
+</ol>
+<p>Solution</p>
+<p>I’m showing you my thought process in this one. The answer I want from you is the one at the end.</p>
+<p>So, start by copying and pasting what you had before:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>rescale <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb189-3"><a href="#cb189-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb189-4"><a href="#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(hi <span class="sc">!=</span> lo)</span>
+<span id="cb189-5"><a href="#cb189-5" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb189-6"><a href="#cb189-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On the top line, add the extra inputs and their default values. I also changed the name of my function, for reasons you’ll see later:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>rescale2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">1</span>) {</span>
+<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(hi <span class="sc">!=</span> lo)</span>
+<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Save the last line, since we have to do something else with it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb191"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>rescale2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">1</span>) {</span>
+<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb191-4"><a href="#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(hi <span class="sc">!=</span> lo)</span>
+<span id="cb191-5"><a href="#cb191-5" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb191-6"><a href="#cb191-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and finally add the calculation in the hint, which we don’t need to save because we are returning it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb192"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>rescale2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">1</span>) {</span>
+<span id="cb192-2"><a href="#cb192-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb192-3"><a href="#cb192-3" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb192-4"><a href="#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(hi <span class="sc">!=</span> lo)</span>
+<span id="cb192-5"><a href="#cb192-5" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> (x <span class="sc">-</span> lo) <span class="sc">/</span> (hi <span class="sc">-</span> lo)</span>
+<span id="cb192-6"><a href="#cb192-6" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> (b<span class="sc">-</span>a) <span class="sc">*</span> s</span>
+<span id="cb192-7"><a href="#cb192-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This complete function is what I want to see from you. (You should keep the <code>stopifnot</code>, because this function will have the exact same problem as the previous one if all the values in <code>x</code> are the same.)</p>
+<p>A better way is to observe that you can call functions inside functions. The function above is now a bit messy since it has several steps. Something that corresponds better to my hint is to call the original <code>rescale</code> first, and then modify its result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb193"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>rescale3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">a=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">1</span>) {</span>
+<span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">rescale</span>(x)</span>
+<span id="cb193-3"><a href="#cb193-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> (b<span class="sc">-</span>a) <span class="sc">*</span> s</span>
+<span id="cb193-4"><a href="#cb193-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The logic to this is rather clearly “rescale the input to be between 0 and 1, then rescale <em>that</em> to be between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.” My <code>rescale2</code> does exactly the same thing, but it’s much less clear that it does so, unless you happen to have in your head how <code>rescale</code> works. (I think you are more likely to remember, sometime in the future, what <code>rescale</code> <em>does</em>, compared to precisely how it <em>works</em>.)</p>
+<p>That is why <code>rescale3</code> is better than <code>rescale2</code>. Remember that you can, and generally should, use functions that have already been written (by you or someone else) as part of functions that do more complex things. See also my second point below.</p>
+<p>Extra: there are two important principles about why functions are important:</p>
+<ol type="1">
+<li>they allow you to re-do a calculation on many different inputs (the point I’ve been making up to now)</li>
+<li>by abstracting a calculation into a thing with a name, it makes it easier to understand that calculation’s role in something bigger. The only thing we had to remember in <code>rescale3</code> is what the last line did, because the name of the function called on the first line tells us what happens there. This is much easier than remembering what the first four lines of <code>rescale2</code> do.</li>
+</ol>
+<p>The second principle here is what psychologists call “chunking”: you view a thing like my function <code>rescale</code> as a single item, rather than as four separate lines of code, and then that single item can be part of something larger (like my <code>rescale3</code>), and you have a smaller number of things to keep track of.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>Test your new function two or more times, on input where you know or can guess what the output is going to be. In each case, explain briefly why your output makes sense.</li>
+</ol>
+<p>Solution</p>
+<p>I’ll start by using the default values for <code>a</code> and <code>b</code> (so I don’t have to specify them):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb194"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale2</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 0.25 0.50 0.75 1.00</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb196"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale3</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 0.25 0.50 0.75 1.00</code></pre>
+</div>
+</div>
+<p>I did both of the variants of my function; of course, you’ll only have one variant.</p>
+<p>We got the same answer as before for the same input, so the default values <span class="math inline">\(a=0, b=1\)</span> look as if they have been used.</p>
+<p>Let’s try a different one:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb198"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">12</span>)</span>
+<span id="cb198-2"><a href="#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale2</span>(v, <span class="dv">10</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 26 30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb200"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale3</span>(v, <span class="dv">10</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 26 30</code></pre>
+</div>
+</div>
+<p>The lowest value in <code>v</code> has become 10, and the highest has become 30. (Also, the in-between value 11 was closer to 12 than to 7, and it has become something closer to 30 than to 10.)</p>
+<p>Extra: you can also name any of your inputs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb202"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale3</span>(<span class="at">x=</span>v, <span class="at">a=</span><span class="dv">10</span>, <span class="at">b=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 26 30</code></pre>
+</div>
+</div>
+<p>and if you name them, you can shuffle the order too:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb204"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb204-1"><a href="#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale3</span>(<span class="at">a=</span><span class="dv">10</span>, <span class="at">b=</span><span class="dv">30</span>, <span class="at">x=</span>v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 26 30</code></pre>
+</div>
+</div>
+<p>The point of doing more than one test is to check that different aspects of your function all work. Therefore, the best testing here checks that the defaults work, and that the answer is sensible for some different <code>a</code> and <code>b</code> (to check that this works as well).</p>
+<p>When you write your version of <code>rescale</code> with the optional inputs, it’s best if you do it so that the things you have to supply (the vector of numbers) is <em>first</em>. If you put <code>a</code> and <code>b</code> first, when you want to omit them, you’ll have to call the input vector by name, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb206"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb206-1"><a href="#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale3</span>(<span class="at">x=</span>v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0 0.8 1.0</code></pre>
+</div>
+</div>
+<p>because otherwise the input vector will be taken to be <code>a</code>, not what you want.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><em>Hotpo</em> is short for half or triple-plus-one.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>R style is to use the last line of the function for the return value, unless you are jumping out of the function before the end, in which case use <code>return</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><em>Hotpo</em> is short for half or triple-plus-one.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Nobody knows whether you <em>always</em> get to 1, but also nobody has ever found a case where you don’t. Collatz’s conjecture, that you will get to 1 eventually, is known to be true for all starting <span class="math inline">\(x_1\)</span> up to some absurdly large number, but not for <em>all</em> starting points.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>I should have been more careful in my functions to make sure everything was integers, and, in particular, to do integer division by 2 because I knew that this division was going to come out even.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This is something I’ve done in the past and been bitten by, so I am trying to get myself not to do it any more.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>In computing with decimal numbers, things are almost never exactly zero or exactly infinite; they are very small or very big. The mean here, which you would calculate to be zero, is less than the so-called machine epsilon, which is about 10 to the minus 16 in R (R works in double precision). A mean that small is, to the computer, indistinguishable from zero. It came out that way because the last value is added to a total that is by that point negative, and so you have a loss of accuracy because of subtracting nearly equal quantities. I learned all about this stuff in my first real computer science course, which I think was a numerical math course, some absurd number of years ago. It looks as if this gets taught in CSCC37 these days.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./dates-and-times.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./vector-matrix.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
