@@ -1,0 +1,290 @@
+##  The effects of Substance A
+
+
+ In a dose-response experiment, animals (or
+cell cultures or human subjects) are exposed to some toxic substance,
+and we observe how many of them show some sort of response. In this
+experiment, a mysterious Substance A is exposed at various doses to
+100 cells at each dose, and the number of cells at each dose that
+suffer damage is recorded. The doses were 10, 20, ... 70 (mg), and
+the number of damaged cells out of 100 were respectively 10, 28, 53,
+77, 91, 98, 99.
+
+
+
+(a) Find a way to get these data into R, and show that you have
+managed to do so successfully.
+
+
+Solution
+
+
+There's not much data here, so we don't need to create a file,
+although you can do so if you like (in the obvious way: type the
+doses and damaged cell numbers into a `.txt` file or
+spreadsheet and read in with the appropriate `read_`
+function). 
+Or, use a `tribble`:
+
+```{r doseresponse-1 }
+dr <- tribble(
+  ~dose, ~damaged,
+  10, 10,
+  20, 28,
+  30, 53,
+  40, 77,
+  50, 91,
+  60, 98,
+  70, 99
+)
+dr
+```
+
+       
+Or, make a data frame with the values typed in:
+
+```{r doseresponse-2 }
+dr2 <- tibble(
+  dose = seq(10, 70, 10),
+  damaged = c(10, 28, 53, 77, 91, 98, 99)
+)
+dr2
+```
+
+ 
+
+`seq` fills a sequence "10 to 70 in steps of 10", or you can
+just list the doses.
+
+I like this better than making two columns *not* attached to a
+data frame, but that will work as well.
+
+For these, find a way you like, and stick with it.
+
+    
+
+$\blacksquare$
+
+(b) Would you expect to see a significant effect of dose for
+these data?
+Explain briefly.
+
+
+Solution
+
+
+The number of damaged cells goes up sharply as the dose goes up
+(from a very small number to almost all of them). So I'd expect
+to see a strongly significant effect of dose. This is far from
+something that would happen by chance.
+ 
+
+$\blacksquare$
+
+(c) Fit a logistic regression modelling the probability of a
+cell being damaged as it depends on dose. Display the
+results. (Comment on them is coming later.)
+
+
+Solution
+
+
+This has a bunch of observations at each dose (100 cells, in
+fact), so we need to do the two-column response thing: the
+successes in the first column and the failures in the
+second. This means that we first need to calculate the number of
+cells at each dose that were not damaged, by subtracting the
+number that *were* damaged from 100. R makes this easier
+than you'd think, as
+you see. A `mutate` is the way to
+go: create a new column in `dr` and save back in
+`dr` (because I like living on the edge):
+
+```{r doseresponse-3 }
+dr <- dr %>% mutate(undamaged = 100 - damaged)
+dr
+```
+
+       
+
+The programmer in you is probably complaining "but, 100 is a number and `damaged` is a vector of 7 numbers. How does R know to subtract *each one* from 100?" Well, R has what's known as
+"recycling rules": if you try to add or subtract (or elementwise
+multiply or divide) two vectors of different lengths, it recycles the
+smaller one by repeating it until it's as long as the longer one. So
+rather than `100-damaged` giving an error, it does what you
+want.^[The usual application of this is to combine a number  with a vector. If you try to subtract a length-2 vector from a  length-6 vector, R will repeat the shorter one three times and do  the subtraction, but if you try to subtract a length-2 vector from a length-*7* vector, where you'd have to repeat the shorter one a fractional number of times, R will do it, but you'll get a warning, because this is probably *not* what you wanted. Try it and see.]
+
+I took the risk of saving the new data frame over the old one. If it
+had failed for some reason, I could have started again.
+
+Now we have to make our response "matrix" with two columns, using `cbind`:
+
+```{r doseresponse-4 }
+response <- with(dr, cbind(damaged, undamaged))
+response
+```
+
+ 
+
+Note that each row adds up to 100, since there were 100 cells at each
+dose. This is actually trickier than it looks: the two things in
+`cbind` are columns (vectors), and `cbind` glues them
+together to make an R `matrix`:
+
+```{r doseresponse-5 }
+class(response)
+```
+
+ 
+
+which is what `glm` needs here, even though it looks a lot like
+a data frame (which wouldn't work here). This *would* be a data
+frame:
+
+```{r doseresponse-6 }
+dr %>% select(damaged, undamaged) %>% class()
+```
+
+ 
+
+and would therefore be the wrong thing to give `glm`. So I had
+to do it with `cbind`, or use some other trickery, like this:
+
+```{r doseresponse-7 }
+dr %>%
+  select(damaged, undamaged) %>%
+  as.matrix() -> resp
+class(resp)
+```
+
+ 
+
+Now we fit our model:
+
+```{r doseresponse-8 }
+cells.1 <- glm(response ~ dose, family = "binomial", data = dr)
+summary(cells.1)
+```
+
+ 
+    
+
+$\blacksquare$
+
+(d) Does your output indicate that the probability of damage
+really does *increase* with dose? (There are two things here:
+is there really an effect, and which way does it go?)
+
+
+Solution
+
+
+The slope of `dose` is significantly nonzero (P-value
+less than $2.2 \times 10^{-16}$, which is as small as it can
+be). The slope itself is *positive*, which means that as
+dose goes up, the probability of damage goes up. 
+That's all I needed, but if you want to press on: the slope is
+0.113, so an increase of 1 in dose goes with an increase of
+0.113 in the *log-odds* of damage. Or it multiplies the
+odds of damage by $\exp(0.113)$. Since 0.113 is small, this is
+about $1.113$ (mathematically, $e^x\simeq 1+x$ if $x$ is small),
+so that the increase is about 11\%. 
+If you like, you can get a rough CI for the slope by going up
+and down twice its standard error (this is the usual
+approximately-normal thing). Here that would be
+```{r doseresponse-9 }
+0.113323 + c(-2, 2) * 0.008315
+```
+
+       
+
+I thought about doing that in my head, but thought better of it, since
+I have R just sitting here. The interval is short (we have lots of
+data) and definitely does not contain zero.
+    
+
+$\blacksquare$
+
+(e) Obtain predicted damage probabilities for some representative doses. 
+
+
+Solution
+
+Pick some representative doses first, and then use them as `newdata`. The ones in the original data are fine (there are only seven of them):
+
+```{r}
+p <- cbind(predictions(cells.1, newdata = dr))
+p
+```
+
+I saved mine to use again later, but you don't have to unless *you* want to use your predictions again later.
+
+$\blacksquare$
+
+(f) Draw a graph of the predicted probabilities, and to that add the observed proportions of damage at each dose. Hints: you will have to calculate the observed proportions first. See [here](https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html), near the bottom, to find out how to add data to one of these graphs. The `geom_point` line is the one you need.
+
+Looking at  the predicted probabilities, would you say that
+the model fits well? Explain briefly.
+
+
+Solution
+
+This ought to be based on `plot_cap`, but that doesn't work here because of the `response` that's not part of the dataframe. So we will be making this ourselves. Let's start with a plot of the predictions, using the prediction we did just now:
+
+```{r}
+ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  geom_line() + geom_ribbon(alpha = 0.3)
+```
+
+This is not a smooth curve like the ones `plot_cap` makes, but that's all right, because we want to compare the predictions with the data.
+
+Let's take a look at our original dataframe:
+
+```{r}
+dr
+```
+
+To that we need to add a column of proportion damaged, which is `damaged` divided by `damaged` plus `undamaged`. This last ought to be 100, but data can go missing for any number of reasons, so it pays not to assume that they add up to 100 every time:
+
+```{r}
+dr %>% mutate(prop = damaged / (damaged + undamaged)) -> dr2
+dr2
+```
+
+Check. I saved this to add to the graph later.
+
+
+Now you can add a `geom_point` with a `data =` and an `aes`, making the points red, except that the obvious doesn't quite work:
+
+```{r}
+#| error: true
+ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  geom_line() + geom_ribbon(alpha = 0.3) +
+  geom_point(data = dr2, aes(x =  dose, y = prop), colour = "red")
+```
+
+The message is not helpful, but I can tell you where it comes from. When you add something to a plot like this, all the things in the original `ggplot` are "inherited" by anything else that you add to the plot, so that you either have to overwrite them with something new (as I did with `x` and `y`) or you get the previous values, one of which was evidently `conf.low`. To override this behaviour, which we don't want because *we* have nothing called `conf.low` in our data, add `inherit.aes = FALSE` to the `geom_point`:^[This is done in the `geom_point` on the website, which is where I learned about it.]
+
+```{r}
+ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
+  geom_line() + geom_ribbon(alpha = 0.3) +
+  geom_point(data = dr2, aes(x =  dose, y = prop), colour = "red", inherit.aes = FALSE)
+```
+
+I also made the data points red (you don't need to, but if you want to, put the colour *outside* the `aes`, to make it clear that the colour is not determined by any of the variables in your dataframe).
+
+The predicted
+probabilities ought to be close to the observed proportions. They are in fact *very* close to them, so the model
+fits very well indeed.
+
+Your actual words are a judgement call, so precisely what you
+say doesn't matter so much, but *I* think this model fit is
+actually closer than you could even hope to expect, it's that
+good. But, your call. I think your answer ought to contain
+"close" or "fits well" at the very least. 
+     
+$\blacksquare$
+
+
+
+

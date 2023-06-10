@@ -1,0 +1,35 @@
+# Bayesian Statistics with Stan
+
+Packages for this chapter:
+
+```{r 27-stan-1, eval = FALSE}
+library(tidyverse)
+library(cmdstanr)
+library(posterior)
+library(bayesplot)
+```
+
+```{r 27-stan-2, child="_packages.qmd", warning=F}
+```
+
+
+```{r 27-stan-3, child="_binomial_stan_qq.Rmd"}
+```
+
+```{r 27-stan-4, child="_regression_stan_qq.Rmd"}
+```
+
+```{r 27-stan-5, child="_bayesp_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 27-stan-6, child="_binomial_stan.Rmd"}
+```
+
+```{r 27-stan-7, child="_regression_stan.Rmd"}
+```
+
+```{r 27-stan-8, child="_bayesp.Rmd"}
+```
+

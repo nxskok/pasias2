@@ -177,7 +177,7 @@ throws %>%
   pivot_longer(baseball:softball, names_to="ball", values_to="distance") %>% 
   ggplot(aes(x = ball, y = distance, group = fs, colour = fs)) +
   geom_point() + geom_line() +
-  guides(colour = F)
+  guides(colour = "none")
 ```
 
        

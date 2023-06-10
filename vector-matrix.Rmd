@@ -1,0 +1,18 @@
+# Vector and matrix algebra
+
+```{r 51-vector-matrix-1, eval=F}
+library(tidyverse)
+```
+
+```{r 51-vector-matrix-2, child="_packages.qmd"}
+```
+
+```{r 51-vector-matrix-3, child="_reg_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 51-vector-matrix-4, child="_reg.Rmd"}
+```
+

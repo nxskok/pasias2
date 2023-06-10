@@ -1,0 +1,401 @@
+##  Being satisfied with hospital
+
+
+ A hospital administrator collects data to study the
+effect, if any, of a patient's age, the severity of their
+illness, and their anxiety level, on the patient's satisfaction with
+their hospital experience. The data, in the file
+[link](http://ritsokiguess.site/datafiles/satisfaction.txt), are
+for 46 patients in a survey. The columns are: patient's satisfaction
+score `satis`, on a scale of 0 to 100; the patient's `age` (in
+years), the `severity` of the patient's illness (also on a
+0--100 scale), and the patient's `anxiety` score on a standard
+anxiety test (scale of 0--5). Higher scores mean greater satisfaction,
+increased severity of illness and more anxiety.
+
+
+
+(a) Read in the data and check that you have four columns in
+your data frame, one for each of your variables.   
+ 
+Solution
+
+ This one requires a little thought
+first. The data values are aligned in columns, and so are the
+column headers. Thus, `read_table` is what we need:
+```{r hospital-1 }
+my_url <- "http://ritsokiguess.site/datafiles/satisfaction.txt"
+satisf <- read_table(my_url)
+satisf
+```
+
+     
+
+46 rows and 4 columns: satisfaction score (response), age, severity
+and anxiety (explanatory).
+
+There is a small question about what to call the data
+frame. Basically, anything other than `satis` will do, since
+there will be confusion if your data frame has the same name as one of
+its columns.
+ 
+$\blacksquare$
+
+(b) <a name="part:scatmat">*</a> Obtain scatterplots of the response variable
+`satis` against each of the other variables.
+ 
+Solution
+
+
+The obvious way is to do these one after the other:
+```{r hospital-2, fig.height=3, fig.width=4}
+ggplot(satisf, aes(x = age, y = satis)) + geom_point()
+ggplot(satisf, aes(x = severity, y = satis)) + geom_point()
+ggplot(satisf, aes(x = anxiety, y = satis)) + geom_point()
+```
+
+       
+
+This is fine, but there is also a way of getting all three plots with
+*one* `ggplot`. This uses the `facet_wrap` trick,
+but to set *that* up, we have to have all the $x$-variables in
+*one* column, with an extra column labelling which $x$-variable
+that value was. This uses `pivot_longer`. The right way to do this is
+in a pipeline:
+
+```{r hospital-3 }
+satisf %>%
+  pivot_longer(-satis, names_to="xname", values_to="x") %>%
+  ggplot(aes(x = x, y = satis)) + geom_point() +
+  facet_wrap(~xname, scales = "free", ncol = 2)
+```
+
+ 
+
+Steps: collect together the columns age through anxiety into one column
+whose values go in `x`, with names in `xname`, then plot this new
+`x` against satisfaction score, with a separate facet for each
+different $x$ (in `xname`). 
+
+What's the difference
+between `facet_grid` and `facet_wrap`? The difference is that with
+`facet_wrap`, we are letting `ggplot` arrange the
+facets how it wants to. In this case, we didn't care which explanatory
+variable went on which facet, just as long as we saw all of them
+somewhere. Inside `facet_wrap` there are *no dots*: a
+squiggle, followed by the name(s) of the variable(s) that
+distinguish(es) the facets.^[If there are more than one, they  should be separated by plus signs as in `lm`. Each facet then  has as many labels as variables. I haven't actually done this  myself, but from looking at examples, I think this is the way it  works.] 
+The only "design" decision I made here was that the facets
+should be arranged somehow in two columns, but I didn't care which
+ones should be where.
+
+In `facet_grid`, you have a variable that you want to be
+displayed in rows or in columns (not just in "different facets"). 
+I'll show you how that works here. Since I am going to draw
+two plots, I should save the long data frame first and re-use it,
+rather than calculating it twice (so that I ought now to go back and
+do the other one using the saved data frame, really):
+
+```{r hospital-4 }
+satisf %>% 
+  pivot_longer(age:anxiety, names_to="xname", 
+               values_to="x") -> satisf.long
+satisf.long
+```
+
+ 
+
+If, at this or any stage, you get confused, the way to un-confuse
+yourself is to *fire up R Studio and do this yourself*. You have
+all the data and code you need. If you do it yourself, you can run
+pipes one line at a time, inspect things, and so on.
+
+First, making a *row* of plots, so that `xname` is the $x$
+of the facets:
+
+```{r hospital-5 }
+ggplot(satisf.long, aes(x = x, y = satis)) + geom_point() +
+  facet_grid(. ~ xname, scales = "free")
+```
+
+ 
+
+I find these too tall and skinny to see the trends, as on the first
+`facet_wrap` plot.
+
+And now, making a *column* of plots, with `xname` as $y$:
+
+```{r hospital-6 }
+ggplot(satisf.long, aes(x = x, y = satis)) + geom_point() +
+  facet_grid(xname ~ ., scales = "free")
+```
+
+ 
+
+This one looks weird because the three $x$-variables are on different
+scales. The effect of the `scales="free"` is to allow the
+`satis` scale to vary, but the `x` scale cannot because
+the facets are all in a line. Compare this:
+
+```{r hospital-7 }
+ggplot(satisf.long, aes(x = x, y = satis)) + geom_point() +
+  facet_wrap(~xname, ncol = 1, scales = "free")
+```
+
+ 
+
+This time, the $x$ scales came out different (and suitable), but I
+still like squarer plots better for judging relationships.
+ 
+$\blacksquare$
+
+(c) In your scatterplots of (<a href="#part:scatmat">here</a>), which
+relationship appears to be the strongest one?
+ 
+Solution
+
+
+All the trends appear to be downward ones, but
+I think `satis` and `age` is the strongest
+trend. The other ones look more scattered to me. 
+ 
+$\blacksquare$
+
+(d) <a name="part:corrmat">*</a> Create a correlation matrix for all four 
+variables. Does your strongest trend of the previous part have the
+strongest correlation?
+ 
+Solution
+
+
+This is a matter of running the whole data frame through `cor`:
+```{r hospital-8 }
+cor(satisf)
+```
+
+     
+
+Ignoring the correlations of variables with themselves, the
+correlation of `satisf` with `age`, the one I picked
+out, is the strongest (the most negative trend). If you picked one of
+the other trends as the strongest, you need to note how close it is to
+the maximum correlation: for example, if you picked `satis`
+and `severity`, that's the second highest correlation (in
+size).
+ 
+$\blacksquare$
+
+(e) Run a regression predicting satisfaction from the other
+three variables, and display the output.
+ 
+Solution
+
+
+```{r hospital-9 }
+satisf.1 <- lm(satis ~ age + severity + anxiety, data = satisf)
+summary(satisf.1)
+```
+
+     
+ 
+$\blacksquare$
+
+(f) Does the regression fit well overall? How can you tell?
+ 
+Solution
+
+
+For this, look at R-squared, which is 0.682 (68.2\%). This is one
+of those things to have an opinion about. I'd say this is good but
+not great. I would not call it "poor", since there definitely
+*is* a relationship, even if it's not a stupendously good one.
+ 
+$\blacksquare$
+
+(g) Test the null hypothesis that none of your explanatory
+variables help, against the alternative that one or more of them
+do. (You'll need an appropriate P-value. Which one is it?) What do
+you conclude?
+ 
+Solution
+
+
+This one is the (global) $F$-test, whose P-value is at the
+bottom. It translates to 0.000000000154, so this is
+*definitely* small, and we reject the null. Thus, one or more
+of `age`, `severity` and `anxiety` helps to
+predict satisfaction. (I would like to see this last sentence,
+rather than just "reject the null".)
+ 
+$\blacksquare$
+
+(h) The correlation between `severity` and
+`satis` is not small, but in my regression I found that
+`severity` was nowhere near significant. Why is this? Explain briefly.
+\clearpage
+ 
+Solution
+
+
+The key thing to observe is that the $t$-test in the regression
+says how important a variable is 
+*given the others that are already in the regression*, or, if you prefer, how much that
+variable *adds* to the regression, on top of the ones that
+are already there. So here, we are saying
+that `severity` has nothing to add, given that the
+regression already includes the others. (That is, high correlation
+and strong significance don't always go together.)
+For a little more insight, look at the correlation matrix of
+(<a href="#part:corrmat">here</a>) again. The strongest trend with
+`satis` is with `age`, and indeed `age` is
+the one obviously significant  variable in the regression. The
+trend of `severity` with `satis` is somewhat
+downward, and you might otherwise have guessed that this is strong
+enough to be significant. But see that `severity`
+*also* has a clear relationship with `age`. A patient
+with low severity of disease is probably also younger, and we know
+that younger patients are likely to be more satisfied. Thus
+severity has nothing (much) to add.
+
+Extra 1:
+The multiple regression is actually doing something clever
+here. Just looking at the correlations, it appears that all three
+variables are helpful, but the regression is saying that once you
+have looked at `age` ("controlled for age"),
+severity of illness does not have an impact: the correlation of
+`severity` with `satis` is as big as it is almost
+entirely because of `age`. 
+This gets into the      domain of "partial correlation". If you like videos, you can 
+see [link](https://www.youtube.com/watch?v=LF0WAVBIhNA) for
+this. I prefer regression, myself, since I find it clearer.
+`anxiety`
+tells a different story: this is close to significant (or
+*is* significant at the $\alpha=0.10$ level), so the
+regression is saying that `anxiety` *does* appear to
+have something to say about `satis` over and above
+`age`. This is rather odd, to my mind, since
+`anxiety` has only a slightly stronger correlation with
+`satis` and about the same with `age` as
+`severity` does. But the regression is telling the story to
+believe, because it handles all the inter-correlations, not just
+the ones between pairs of variables.
+
+I thought it would be rather interesting to do some predictions
+here. Let's predict satisfaction for all combinations of high and
+low age, severity and anxiety. I'll use the quartiles for high and
+low. 
+
+The easiest way to get those is via `summary`:
+
+```{r}
+summary(satisf)
+```
+
+and then use `datagrid` to make combinations for prediction:
+
+```{r}
+new <- datagrid(model = satisf.1, age = c(33, 44.5), 
+                severity = c(48, 53.5), anxiety = c(2.15, 2.4))
+new
+```
+
+Eight rows for the $2^3 = 8$ combinations. Then get the predictions for these:
+
+```{r}
+cbind(predictions(satisf.1, newdata = new))
+```
+
+Extra 2: the standard errors vary quite a bit. The smallest ones are where age, severity, and anxiety are all high or all low (the last row and the first one). This is where most of the data is, because the three explanatory variables are positively correlated with each other (if you know that one of them is high, the others will probably be high too). The other standard errors are higher because there is not much data "nearby", and so we don't know as much about the quality of the predictions there.
+
+Extra 3: we had to copy the quartile values into the new dataframe we were making (to predict from), which ought to have caused you some concern, since there was no guarantee that we copied them correctly. It would be better to make a dataframe with just the quartiles, and feed that into `datagrid`. Here's how we can do that.
+
+```{r}
+satisf %>% 
+  summarize(across(-satis,
+                   \(x) quantile(x, c(0.25, 0.75)))) -> d
+d
+```
+
+To summarize several columns at once, use `across`. This one reads "for each column that is not `satis`, work out the first and third quartiles (25th and 75th percentiles) of it. Recall that the first input to `quantile` is what to compute percentiles of, and the optional^[If you don't give it, you get the five-number summary.] second input is which percentiles to compute. Also, when `summarize` is fed a summary that is more than one number long (two quartiles, here) it will automatically be unnested longer, which happens to be exactly what we want here.
+
+So now, we need to take the columns from here and feed them into `datagrid`. The way to do that is to use `with`:
+
+```{r}
+new <- with(d, datagrid(model = satisf.1, age = age, severity = severity, anxiety = anxiety))
+new
+```
+
+The clunky repetition is needed because the first (eg.) `age` in `age = age` is the name that the column in `new` is going to get, and the second `age` is the thing that supplies the values to be combined (the column of `d` called `age`). This is exactly the same `new` that we had before, and so the predictions will be exactly the same as they were before.
+
+$\blacksquare$
+
+(i) Carry out a backward elimination to determine which of
+`age`, `severity` and `anxiety` are needed to
+predict satisfaction. What do you get? Use $\alpha = 0.10$.
+
+
+
+Solution
+
+
+This means starting with the regression containing all the explanatory
+variables, which is the one I called `satisf.1`:
+
+```{r hospital-26 }
+summary(satisf.1)
+```
+
+ 
+
+Pull out the least-significant (highest P-value) variable, which here
+is `severity`. We already decided that this had nothing to add:
+
+```{r hospital-27 }
+satisf.2 <- update(satisf.1, . ~ . - severity)
+summary(satisf.2)
+```
+
+
+
+If you like, copy and paste the first `lm`, edit it to get rid
+of `severity`, and run it again. But when I have a 
+"small change" to make to a model, I like to use `update`.
+
+
+
+Having taken `severity` out, `anxiety` has become
+significant (at $\alpha = 0.10$). Since all of the explanatory variables are now
+significant, this is where we stop. If we're predicting satisfaction,
+we need to know both a patient's age and their anxiety score: being
+older or more anxious is associated with a *decrease* in satisfaction.
+
+There is also a function `step` that will do this for you:
+
+```{r hospital-28 }
+step(satisf.1, direction = "backward", test = "F")
+```
+
+ 
+
+with the same result.^[This is because we used $\alpha = 0.10$. `step` tends to keep explanatory variables that you might consider marginal because it uses AIC (see below) rather than P-values directly.] This function doesn't actually use P-values;
+instead it uses a thing called AIC. At each step, the variable with
+the lowest AIC comes out, and when `<none>` bubbles up to the
+top, that's when you stop. The `test="F"` means 
+"include an $F$-test", but the procedure still uses AIC (it just shows you an
+$F$-test each time as well).  In this case, the other variables were
+in the same order throughout, but they don't have to be (in the same
+way that removing one variable from a multiple regression can
+dramatically change the P-values of the ones that remain). Here, at
+the first step, `<none>` and `anxiety` were pretty
+close, but when `severity` came out, taking out nothing was a
+*lot* better than taking out `anxiety`.
+
+The `test="F"` on the end gets you the P-values. Using the
+$F$-test is right for regressions; for things like logistic regression
+that we see later, `test="Chisq"` is the right one to 
+use.^[This is "F" in quotes, meaning $F$-test, not "F" without quotes, which means FALSE.]
+
+$\blacksquare$
+
+
+

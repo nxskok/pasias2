@@ -1,0 +1,39 @@
+# Multiple regression
+
+```{r 35-multiple-regression-1, eval=F}
+library(tidyverse)
+```
+
+```{r 35-multiple-regression-2, child="_packages.qmd"}
+```
+
+
+```{r 35-multiple-regression-3, child="_hospital_qq.Rmd"}
+```
+
+
+```{r 35-multiple-regression-5, child="_mathsal_qq.Rmd"}
+```
+
+```{r 35-multiple-regression-6, child="_gpa_qq.Rmd"}
+```
+
+```{r 35-multiple-regression-7, child="_mercury_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 35-multiple-regression-8, child="_hospital.Rmd"}
+```
+
+```{r 35-multiple-regression-10, child="_mathsal.Rmd"}
+```
+
+```{r 35-multiple-regression-11, child="_gpa.Rmd"}
+```
+
+```{r 35-multiple-regression-12, child="_mercury.Rmd"}
+```
+
+note to author: the datafile for _chemical.Rmd seems no longer to be readable.

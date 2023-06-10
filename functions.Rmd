@@ -1,0 +1,38 @@
+# Functions
+
+```{r 14-functions-1, eval=F}
+library(tidyverse)
+```
+
+```{r 14-functions-2, child="_packages.qmd"}
+```
+
+
+```{r 14-functions-3, child="_func_qq.Rmd"}
+```
+
+```{r 14-functions-4, child="_hotpo_qq.Rmd"}
+```
+
+
+```{r 14-functions-5, child="_cv_qq.Rmd"}
+```
+
+```{r 14-functions-6, child="_rescale_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 14-functions-7, child="_func.Rmd"}
+```
+
+```{r 14-functions-8, child="_hotpo.Rmd"}
+```
+
+```{r 14-functions-9, child="_cv.Rmd"}
+```
+
+```{r 14-functions-10, child="_rescale.Rmd"}
+```
+

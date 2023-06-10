@@ -1,0 +1,23 @@
+# Regression with categorical variables
+
+```{r 36-regression-categorical-1, eval=F}
+library(tidyverse)
+```
+
+```{r 36-regression-categorical-2, child="_packages.qmd"}
+```
+
+```{r 36-regression-categorical-3, child="_crickets-b_qq.Rmd"}
+```
+
+```{r 36-regression-categorical-4, child="_pulsemarch_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 36-regression-categorical-5, child="_crickets-b.Rmd"}
+```
+
+```{r 36-regression-categorical-6, child="_pulsemarch.Rmd"}
+```
+

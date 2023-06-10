@@ -202,7 +202,7 @@ new
 and then
 
 ```{r}
-pp <- predictions(damage.1, newdata = new)
+pp <- cbind(predictions(damage.1, newdata = new))
 pp
 ```
 

@@ -1,0 +1,175 @@
+## Bootstrapping the IRS data
+
+ You might recall the IRS data from when we were learning about the sign test. The idea was that we wanted to see how long "on average" it took people to fill out a tax form. The data are in [http://ritsokiguess.site/datafiles/irs.txt](http://ritsokiguess.site/datafiles/irs.txt).
+
+
+
+(a) Read in and display (some of) the data. There is only one column of data, so you can pretend the values are separated by anything.
+
+Solution
+
+
+Pretty much any of the `read_` functions will work, even this one:
+
+```{r boot-irs-1}
+my_url <- "http://ritsokiguess.site/datafiles/irs.txt"
+irs <- read_table(my_url)
+irs
+```
+
+One column called `Time`.
+
+
+$\blacksquare$
+
+
+(b) Obtain a bootstrap distribution of the sample *median*.
+
+Solution
+
+
+The lecture notes use the exact same dataset, so you can borrow ideas from there:
+
+Set up a dataframe with one row for each bootstrap sample you're going to draw, 1000 in this case:
+
+```{r boot-irs-2}
+tibble(sim = 1:1000)
+```
+
+Create a column with a new bootstrap sample for each `sim`. This means doing `rowwise` *first* and then wrapping the sampling in `list` because you are creating a list-column of samples:
+
+```{r boot-irs-3}
+tibble(sim = 1:1000) %>% 
+rowwise() %>% 
+mutate(sample = list(sample(irs$Time, replace = TRUE)))
+```
+
+Each thing in `sample` has 30 observations in it (one bootstrap sample). If you want, you can `unnest` to take a look at the values; they should be the ones in the dataset, possibly with extra repeats.
+
+Next, work out the median of each bootstrapped sample, which is simple because we are still working rowwise:
+
+```{r boot-irs-4}
+tibble(sim = 1:1000) %>% 
+rowwise() %>% 
+mutate(sample = list(sample(irs$Time, replace = TRUE))) %>% 
+mutate(my_median = median(sample)) -> bs
+bs
+```
+
+As you realize, `bs` stands for "bootstrap". Of course.
+
+
+$\blacksquare$
+
+
+(c) Make a suitable graph of the bootstrap distribution of the median. What seems odd about it? Why did that happen? (Hint: use more bins on your plot than usual, like 50.)
+
+Solution
+
+
+The medians are already in a dataframe, so go straight ahead:
+
+```{r stainachin}
+ggplot(bs, aes(x = my_median)) + geom_histogram(bins = 50)
+```
+
+What we are seeing at this resolution is that the distribution is *very* irregular, with funny holes in it, more than you would expect even with this many bins. By way of comparison, the bootstrap distribution of the *mean* looks a lot smoother:
+
+```{r rom}
+tibble(sim = 1:1000) %>% 
+  rowwise() %>% 
+  mutate(my_sample = list(sample(irs$Time, replace = TRUE))) %>% 
+  mutate(my_mean = mean(my_sample)) %>% 
+  ggplot(aes(x = my_mean)) + geom_histogram(bins = 50)
+```
+This is somewhat irregular, because we really have too many bins, but there are not nearly so many holes and irregular heights as on the plot for the median. I had you use a lot of bins in this special case because I wanted you to see just how irregular the bootstrapped distribution for the median really was.
+
+So why did that happen? Think about what the sample median is for 30 observations: it is the mean of the 15th and 16th smallest values when you arrange them in order. A bootstrap sample must contain the same values as the original dataset (just probably not the same frequencies of them). So the median of a bootstrap sample must be the average of two of the values in the original dataset, and probably two that were close together. What that means is that there are *not very many possible medians* of the bootstrap samples, and they form a clearly discrete rather than a continuous distribution. (The sample mean, on the other hand, uses all the values in the bootstrap sample, and so there are a lot more possible bootstrap means than bootstrap medians; the distribution of those is as good as continuous.)
+
+What this means is that bootstrapping for medians is odd (it always looks like this), but that's what the bootstrap distribution looks like.
+
+
+$\blacksquare$
+
+
+(d) Find 95% percentile and bootstrap-$t$ intervals for the population median. (Hint: your dataframe of bootstrapped medians may still be `rowwise`, so you might need to run `ungroup` first.)
+
+Solution
+
+
+The percentile interval comes from the middle 95% of the bootstrap distribution of medians. The dataframe `bs` is still rowwise, so we have to undo that first to do it the obvious way:
+
+```{r boot-irs-5}
+bs %>% 
+  ungroup() %>% 
+  summarize(ci1 = quantile(my_median, 0.025),
+            ci2 = quantile(my_median, 0.975))
+```
+
+Or, pull out just that column and find the two quantiles of that, for which there are two ways, the base R way:
+
+```{r boot-irs-6}
+quantile(bs$my_median, c(0.025, 0.975))
+```
+
+and the slightly odd-looking:
+
+```{r boot-irs-7}
+bs %>% pull(my_median) %>% 
+  quantile(c(0.025, 0.975))
+```
+
+All of these get you to the same place. There is even one more:
+
+```{r boot-irs-8}
+bs %>% 
+  ungroup() %>% 
+  reframe(ci = quantile(my_median, c(0.025, 0.975)))
+```
+
+This is `reframe` rather than `summarize` because `quantile` in this case returns two numbers, the two percentiles we want, and `summarize` expects only one. (This is newish behaviour.) Another way is to use `summarize`, but wrap the call to `quantile` in `list` so that it returns only one thing (the list, containing two numbers, but bundled up in one list). Then you need to `unnest` it to see the values:
+
+
+```{r boot-irs-9}
+bs %>% 
+  ungroup() %>% 
+  summarize(ci = list(quantile(my_median, c(0.025, 0.975)))) %>% 
+  unnest(ci)  
+```
+
+If you had `rowwise` in the back of your mind, you might have tried this. Try it up to but *not* including the `unnest` to see how it works.
+
+For the bootstrap $t$, estimate the population median as the sample median:
+
+```{r boot-irs-10}
+med <- median(irs$Time)
+med
+```
+
+get its standard error from the SD of the bootstrap distribution of medians:
+
+```{r boot-irs-11}
+se <- sd(bs$my_median)
+se
+```
+
+then go up and down twice this (or 1.96 if you believe in $z$): 
+
+```{r boot-irs-12}
+med + c(-2, 2)*se
+```
+
+Extra: in this case, we also have the CI for the median that came out of the sign test:
+
+```{r boot-irs-13}
+library(smmr)
+ci_median(irs, Time)
+```
+
+This one is actually very close to the bootstrap percentile interval, while the bootstrap $t$ interval is higher at both ends.
+
+
+$\blacksquare$
+
+
+

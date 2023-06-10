@@ -1,0 +1,309 @@
+##  Making it over the mountains
+
+
+ In 1846, the Donner party (Donner and Reed
+families) left Springfield, Illinois for California in covered
+wagons. After reaching Fort Bridger, Wyoming, the leaders decided to
+find a new route to Sacramento. They became stranded in the eastern
+Sierra Nevada mountains at a place now called Donner Pass, when the
+region was hit by heavy snows in late October. By the time the
+survivors were rescued on April 21, 1847, 40 out of 87 had died.
+
+After the rescue, the age and gender of each person in the party was
+recorded, along with whether they survived or not. The data are in
+[link](http://ritsokiguess.site/datafiles/donner.txt). 
+
+
+
+(a) Read in the data and display its structure. Does that agree
+with the description in the previous paragraph?
+
+
+Solution
+
+
+Nothing very new here:
+```{r donner-1 }
+my_url <- "http://ritsokiguess.site/datafiles/donner.txt"
+donner <- read_delim(my_url, " ")
+donner
+```
+
+     
+
+The ages look like ages, and the other variables are categorical as
+promised, with the right levels. So this looks sensible.
+
+I usually write (or rewrite) the data description myself, but the one
+I found for these data at
+[link](https://onlinecourses.science.psu.edu/stat504/node/159) was so
+nice that I used it as is. You can see that the data format used on
+that website is not as nice as ours. (I did some work to make it look
+nicer for you, with proper named categories rather than 0 and 1.)
+    
+$\blacksquare$
+
+(b) Make graphical or numerical summaries for each pair of
+variables. That is, you should make a graph or numerical summary for
+each of 
+`age` vs. `gender`, `age` vs.\
+`survived` and `gender` vs. `survived`. In choosing the
+kind of graph or summary that you will use, bear in mind that
+`survived` and `gender` are factors with two
+levels. 
+
+
+Solution
+
+
+Thinking about graphs first: we have two numeric-vs-factor graphs
+(the ones involving `age`), which I think should be
+boxplots, though they could be something like side-by-side
+histograms (if you are willing to grapple with
+`facet_grid`). The other two variables are both
+factors, so a good graph for them would be something
+like a grouped bar plot (as in the question about parasites earlier).
+If you prefer numerical summaries: you could do mean age (or some
+other summary of age) for each group defined by gender or
+survivorship, and you could do a cross-tabulation of frequencies
+for gender and survival. I'll take any mixture of graphs and
+numerical summaries that addresses each pair of variables somehow
+and summarizes them in a sensible way.
+Starting with `age` vs. `gender`:
+```{r donner-2 }
+ggplot(donner, aes(x = gender, y = age)) + geom_boxplot()
+```
+
+     
+
+or:
+
+```{r donner-3 }
+ggplot(donner, aes(x = age)) + geom_histogram(bins = 10) + facet_grid(gender ~ .)
+```
+
+
+or:
+
+```{r donner-4 }
+donner %>% group_by(gender) %>% summarize(m = mean(age))
+```
+
+ 
+
+Age vs. `survived` is the same idea:
+
+```{r donner-5 }
+ggplot(donner, aes(x = survived, y = age)) + geom_boxplot()
+```
+
+     
+
+or:
+
+```{r donner-6 }
+ggplot(donner, aes(x = age)) + geom_histogram(bins = 10) + facet_grid(survived ~ .)
+```
+
+
+or:
+
+```{r donner-7 }
+donner %>% group_by(survived) %>% summarize(m = mean(age))
+```
+
+ 
+
+For `survived` against `gender`, the obvious thing is a
+cross-tabulation, gotten like this:
+
+```{r donner-8 }
+with(donner, table(gender, survived))
+```
+
+ 
+
+or like this:
+
+```{r donner-9 }
+donner %>% group_by(gender, survived) %>% summarize(n = n())
+```
+
+ 
+
+For a graph, borrow the grouped bar-plot idea from the parasites question:
+
+```{r donner-10 }
+ggplot(donner, aes(x = gender, fill = survived)) + geom_bar(position = "dodge")
+```
+
+ 
+
+I think this way around for `x` and `fill` is better,
+since we want to ask something like "out of the females, how many survived" 
+(that is, gender is explanatory and survival response). 
+    
+$\blacksquare$
+
+(c) For each of the three graphs or summaries in the previous
+question, what do they tell you about the relationship between the
+pair of variables concerned? Explain briefly.
+
+
+Solution
+
+
+I think the graphs are the easiest thing to interpret, but use
+whatever you got:
+
+
+* The females on average were younger than the males. (This
+was still true with the medians, even though those very old
+males might have pulled the mean up.)
+
+* The people who survived were on average younger than those
+who didn't (or, the older people tended not to survive).
+
+* A greater proportion of females survived than males.
+
+A relevant point about each relationship is good.
+    
+$\blacksquare$
+
+(d) Fit a logistic regression predicting survival from age and
+gender. Display the summary.
+
+
+Solution
+
+
+Each row of the data frame is one person, so we can use the
+`survived` column without going through that two-column
+response business.
+However, the response variable `survived` is a categorical
+variable expressed as text, so we need to make it into a
+`factor` first. Either create a new variable that is the
+factor version of `survived`, or do it right in the `glm`:
+```{r donner-11 }
+donner.1 <- glm(factor(survived) ~ age + gender, family = "binomial", data = donner)
+summary(donner.1)
+```
+
+   
+We ought to take a moment to think about what is being predicted here:
+
+```{r donner-12 }
+levels(factor(donner$survived))
+```
+
+ 
+
+The baseline is the first of these, `no`, and the thing that is
+predicted is the probability of the second one, `yes` (that is,
+the probability of surviving).
+    
+$\blacksquare$
+
+(e) Do both explanatory variables have an impact on survival?
+Does that seem to be consistent with your numerical or graphical
+summaries? Explain briefly.
+
+
+
+Solution
+
+
+Both explanatory variables have a P-value (just) less than 0.05, so
+they both have an impact on survival: taking either one of them out
+of the logistic regression would be a mistake.
+To see if this makes sense, go back to your plots or summaries, the
+ones involving survival. For age, the mean or median age of the
+survivors was less than for the people who died, by five year
+(median) or eight years (mean), so it makes sense that there would
+be an age effect. For gender, two-thirds of the women survived and
+two-thirds of the men died, so there ought to be a gender effect and is.
+  
+$\blacksquare$
+
+(f) Are the men typically older, younger or about the same age as
+the women? Considering this, explain carefully what the negative
+`gendermale` slope in your logistic regression means.
+
+
+
+Solution
+
+
+The men are typically older than the women. 
+The negative (and significant) `gendermale` slope means that
+the probability of a male surviving is less than that of a woman
+*of the same age*. Or, though the males are typically
+older, *even after you allow for that*, the males have worse
+survival. (`genderfemale` is the baseline.)
+You need to get at the idea of "all else equal" when you're
+assessing regression slopes of any kind: regular regression,
+logistic regression or survival analysis (coming up later). That's
+why I said "carefully" in the question. If I say "carefully" or
+"precisely", a complete answer is looking for a specific thing to
+show that you understand the issue completely.
+  
+$\blacksquare$
+
+(g) Obtain predicted probabilities
+of survival for each combination of some representative ages and of the two genders in this dataset.
+
+Solution
+
+Make a dataframe containing some ages (you pick them) and the two genders, in combination, using `datagrid`:
+
+```{r}
+summary(donner)
+```
+
+```{r}
+new <- datagrid(model = donner.1, age = c(15, 25, 30, 40, 65), gender = c("female", "male"))
+new
+```
+
+
+```{r}
+cbind(predictions(donner.1, newdata = new))
+```
+
+(There are five ages chosen, something like a five-number summary, and two genders here, so ten predictions.)
+
+These, remember, are predicted probabilities of *surviving*. 
+
+  
+$\blacksquare$
+
+(h) Do your predictions support your conclusions from earlier
+about the effects of age and gender? Explain briefly.
+
+
+
+Solution
+
+
+We said before that the probability of survival was lower if the age
+was higher. This is confirmed here: for example, look at the odd-numbered rows 1, 3, 5, 7, 9, which are all females of increasing ages; the probability of
+survival decreases. (Or look at males, in the even-numbered rows; the
+effect is the same.)
+
+To see the effect of gender, look at two predictions of different
+genders but the same age (eg. rows 1 and 2). The female is always
+predicted to have the higher survival probability. This is also what
+we saw before. The effect of gender is substantial, but not strongly
+significant, because we only have 45 observations, not so many when
+all we know about each person is whether they survived or not.
+I wanted you to think about these different ways to understand the
+model, and to understand that they all say the same thing, in
+different ways (and thus you can look at whichever of them is most
+convenient or comprehensible). For the logistic and survival models,
+I find looking at predictions to be the easiest way to understand
+what the model is saying.
+  
+$\blacksquare$
+
+
+

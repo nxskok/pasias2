@@ -14,7 +14,7 @@ coast (in miles).
 
 (a) Read the data into R. You'll have to be careful here, since the
 values are space-delimited, but sometimes by more than one space, to
-make the columns line up.  `read_table2`, with filename or
+make the columns line up.  `read_table`, with filename or
 url, will read it in.
 One of the variables
 is called `rainfall`, so as long as you *do not* call
@@ -28,16 +28,11 @@ I used `rains` as the name of my data frame:
 
 ```{r calirain-1 }
 my_url="http://ritsokiguess.site/datafiles/calirain.txt"
-rains=read_table2(my_url)
+rains=read_table(my_url)
 ```
 
  
-
 I have the right number of rows and columns.
-
-There is also `read_table`, but that requires *all* the
-columns, including the header row, to be lined up. You can try that
-here and see how it fails.
 
 I don't need you to investigate the data yet (that happens in the next
 part), but this is interesting (to me):
@@ -49,7 +44,7 @@ rains
  
 
 Some of the station names are two words, but they have been smooshed
-into one word, so that `read_table2` will recognize them as a
+into one word, so that `read_table` will recognize them as a
 single thing. Someone had already done that for us, so I didn't even
 have to do it myself. 
 

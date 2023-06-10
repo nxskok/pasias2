@@ -1,0 +1,38 @@
+# The Bootstrap
+
+Packages for this chapter:
+
+```{r 26-bootstrap-1, eval=F}
+library(tidyverse)
+library(bootstrap)
+```
+
+```{r 26-bootstrap-2, child="_packages.qmd", warning=F}
+```
+
+```{r 26-bootstrap-3, child="_bootstrap_qq.Rmd"}
+```
+
+```{r 26-bootstrap-4, child="_bootstrap_median_qq.Rmd"}
+```
+
+```{r 26-bootstrap-5, child="_eyesight_qq.Rmd"}
+```
+
+```{r 26-bootstrap-6, child="_boot-irs_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 26-bootstrap-7, child="_bootstrap.Rmd"}
+```
+
+```{r 26-bootstrap-8, child="_bootstrap_median.Rmd"}
+```
+
+```{r 26-bootstrap-9, child="_eyesight.Rmd"}
+```
+
+```{r 26-bootstrap-10, child="_boot-irs.Rmd"}
+```
+
