@@ -1,0 +1,303 @@
+##  High School and Beyond
+
+
+ A survey called High School and Beyond was given to a large
+number of American high school seniors (grade 12) by the National
+Center of Education Statistics. The data set at
+[link](http://ritsokiguess.site/datafiles/hsb.csv) is a random
+sample of 200 of those students.
+
+The variables collected are:
+
+
+
+* `gender`: student's gender, female or male.
+
+* `race`: the student's race (African-American,
+Asian,^[I'm always amused at how Americans put all Asians    into one group.]  Hispanic, White).
+
+* `ses`: Socio-economic status of student's family (low,
+middle, or high)
+
+* `schtyp`: School type, public or private.
+
+* `prog`: Student's program, general, academic, or
+vocational. 
+
+* `read`: Score on standardized reading test.
+
+* `write`: Score on standardized writing test.
+
+* `math`: Score on standardized math test.
+
+* `science`: Score on standardized science test.
+
+* `socst`: Score on standardized social studies test.
+
+
+
+Our aim is to see how socio-economic status is related to the other
+variables. 
+
+
+
+(a) Read in and display (some of) the data.
+
+Solution
+
+
+This is a `.csv` file (I tried to make it easy for you):
+
+```{r hsb-1 }
+my_url <- "http://ritsokiguess.site/datafiles/hsb.csv"
+hsb <- read_csv(my_url)
+hsb
+```
+
+       
+$\blacksquare$
+
+(b) Explain briefly why an ordinal logistic regression is
+appropriate for our aims.
+
+Solution
+
+
+The response variable `ses` is categorical, with
+categories that come in order (low less than middle less than
+high). 
+
+$\blacksquare$
+
+(c) Fit an ordinal logistic regression predicting
+socio-economic status from the scores on the five standardized
+tests. (You don't need to display the results.) You will probably
+go wrong the first time. What kind of thing does your response
+variable have to be? 
+
+Solution
+
+
+It has to be an `ordered` factor, which you can create in
+the data frame (or outside, if you prefer):
+```{r hsb-2 }
+hsb <- hsb %>% mutate(ses = ordered(ses, c("low", "middle", "high")))
+hsb
+```
+
+  
+
+`ses` is now `ord`. Good. Now fit the model:
+
+
+
+```{r hsb-3}
+ses.1 <- polr(ses ~ read + write + math + science + socst, data = hsb)
+```
+
+       
+
+No errors is good.
+
+$\blacksquare$
+
+(d) Remove any non-significant explanatory variables one at a
+time. Use `drop1` to decide which one to remove next.
+
+Solution
+
+
+```{r hsb-4 }
+drop1(ses.1, test = "Chisq")
+```
+
+       
+
+I would have expected the AIC column to come out in order, but it
+doesn't. Never mind. Scan for the largest P-value, which belongs to
+`read`. (This also has the lowest AIC.) So, remove `read`:
+
+```{r hsb-5 }
+ses.2 <- update(ses.1, . ~ . - read)
+drop1(ses.2, test = "Chisq")
+```
+
+ 
+
+Note how the P-value for `science` has come down a long way.
+
+A close call, but `math` goes next.  The `update`
+doesn't take long to type:
+
+```{r hsb-6 }
+ses.3 <- update(ses.2, . ~ . - math)
+drop1(ses.3, test = "Chisq")
+```
+
+ 
+
+`science` has become significant now (probably because it was
+strongly correlated with at least one of the variables we removed (at
+my guess, `math`). That is, we didn't need both
+`science` and `math`, but we *do* need *one* of
+them. 
+
+I think we can guess what will happen now: `write` comes out,
+and the other two variables will stay, so that'll be where we stop:
+
+```{r hsb-7 }
+ses.4 <- update(ses.3, . ~ . - write)
+drop1(ses.4, test = "Chisq")
+```
+
+ 
+
+Indeed so. We need just the science and social studies test scores to
+predict socio-economic status.
+
+Using AIC to decide on which variable to remove next will give the
+same answer here, but I would like to see the `test=` part in
+your `drop1` to give P-values (expect to lose something, but
+not too much, if that's not there).
+
+Extras: I talked about correlation among the explanatory variables
+earlier, which I can explore:
+
+```{r hsb-8 }
+hsb %>% select(read:socst) %>% cor()
+```
+
+ 
+
+The first time I did this, I forgot that I had `MASS` loaded
+(for the `polr`), and so, to get the right `select`, I
+needed to say which one I wanted.
+
+Anyway, the correlations are all moderately high. There's nothing that
+stands out as being much higher than the others. The lowest two are
+between social studies and math, and social studies and science. That
+would be part of the reason that social studies needs to stay. The
+highest correlation is between math and reading, which surprises me
+(they seem to be different skills).
+
+So there was not as much insight there as I expected.
+
+The other thing is that you can use `step` for the
+variable-elimination task as well:
+
+```{r hsb-9, size="footnotesize"}
+ses.5 <- step(ses.1, direction = "backward", test = "Chisq")
+```
+
+ 
+
+I would accept you doing it this way, again *as long as you have
+the `test=` there as well*.
+
+$\blacksquare$
+
+(e) The quartiles of the `science` test score are 44 
+and 58. The quartiles of the `socst` test score are 46 and 61. Make
+a data frame that has all combinations of those quartiles. If your best
+regression had any other explanatory variables in it, also put the
+*means* of those variables into this data frame.
+
+
+Solution
+
+
+This is what `datagrid` does by default (from package `marginaleffects`):
+
+```{r}
+new <- datagrid(model = ses.5, science = c(44, 58), socst = c(46, 61))
+new
+```
+
+
+This explicitly fills in mean values or most frequent categories for all the other variables in the dataset, even though those other variables are not in the model. The two variables you actually care about are over on the right. 
+
+Since there are only two variables left, this `new` data frame has only
+$2^2=4$ rows.
+
+There is a veiled hint here that these are the two variables that
+should have remained in your regression. If that was not what you got,
+the means of the other variables in the model will go automatically into your `new`:
+
+```{r}
+datagrid(model = ses.1, science = c(44, 58), socst = c(46, 61))
+```
+
+so you don't have to do anything extra.
+
+$\blacksquare$
+
+(f) Use the data frame you created in the previous part, together
+with your best model, to obtain predicted probabilities of being in
+each `ses` category. Display these predicted probabilities so that they are easy to read.
+
+
+Solution
+
+
+This is `predictions`, and we've done the setup. My best model
+was called `ses.4`. 
+
+```{r hsb-12 }
+cbind(predictions(ses.4, newdata = new)) %>% 
+  select(group, estimate, science, socst) 
+```
+
+`predictions` always works by having *one* column of predictions. That isn't the best layout here, though; we want to see the three predicted probabilities for a particular value of `science` and `socst` all in one row, which means pivoting-wider:
+
+```{r}
+cbind(predictions(ses.4, newdata = new)) %>% 
+  select(group, estimate, science, socst) %>% 
+  pivot_wider(names_from = group, values_from = estimate)
+```
+
+
+
+The easiest strategy seems to be to run `predictions` first, see that it comes out long, and then wonder how to fix it. Then pick the columns you care about: the predicted `group`, the predictions, and the columns for science and social science, and then pivot wider. 
+   
+
+$\blacksquare$
+
+(g) What is the effect of an increased science score on the
+likelihood of a student being in the different socioeconomic groups,
+all else equal?  Explain briefly. In your explanation, state clearly
+how you are using your answer to the previous part.
+
+
+Solution
+
+
+Use your predictions; hold the `socst` score constant (that's
+the all else equal part). So compare the first and third rows (or,
+if you like, the second and fourth rows) of your predictions and see
+what happens as the science score goes from 44 to 58.
+What I see is that the probability of being `low` goes
+noticeably *down* as the science score increases, the
+probability of `middle` stays about the same, and the
+probability of `high` goes `up` (by about the same
+amount as the probability of `low` went down). 
+In other words, an increased science score goes with an increased
+chance of `high` (and a decreased chance of `low`).
+If your best model doesn't have `science` in it, then you
+need to say something like "`science` has no effect on   socio-economic status", 
+consistent with what you concluded before: if
+you took it out, it's because you thought it had no effect.
+Extra: the effect of an increased social studies score is almost
+exactly the same as an increased science score (so I didn't ask you
+about that). From a social-science  point of view, this makes
+perfect sense: the higher the social-economic stratum a student
+comes from, the better they are likely to do in school. 
+I've been phrasing this as "association", because really the cause
+and effect is the other way around: a student's family socioeconomic
+status is explanatory, and school performance is response. But this
+was the nicest example I could find of an ordinal response data set.
+
+$\blacksquare$
+
+
+
+

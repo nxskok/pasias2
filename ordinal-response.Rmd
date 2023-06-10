@@ -1,0 +1,48 @@
+# Logistic regression with ordinal response
+
+```{r 16-ordinal-response-1, eval=F}
+library(MASS)
+library(tidyverse)
+```
+```{r 16-ordinal-response-2, child="_packages.qmd"}
+```
+
+```{r 16-ordinal-response-3, child="_mobile_qq.Rmd"}
+```
+
+
+```{r 16-ordinal-response-4, child="_nonmissing_qq.Rmd"}
+```
+
+
+
+```{r 16-ordinal-response-5, child="_hsb_qq.Rmd"}
+```
+
+
+```{r 16-ordinal-response-6, child="_steak_qq.Rmd"}
+```
+
+```{r 16-ordinal-response-7, child="_steak-data_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 16-ordinal-response-8, child="_mobile.Rmd"}
+```
+
+
+```{r 16-ordinal-response-9, child="_nonmissing.Rmd"}
+```
+
+
+
+```{r 16-ordinal-response-10, child="_hsb.Rmd"}
+```
+
+
+```{r 16-ordinal-response-11, child="_steak.Rmd"}
+```
+
+```{r 16-ordinal-response-12, child="_steak-data.Rmd"}
+```

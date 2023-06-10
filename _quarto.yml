@@ -31,6 +31,7 @@ book:
     - bootstrap.Rmd
     - stan.Rmd
     - logistic-regression.Rmd
+    - ordinal-response.Rmd
 format:
   html:
     theme: cosmo

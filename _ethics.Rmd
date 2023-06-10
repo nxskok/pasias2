@@ -70,7 +70,7 @@ variables in the data set are these:
 * `scenario` of research benefits that the student read.
 
 
-A more detailed discussion^("[If you can believe it.] of this
+A more detailed discussion^[If you can believe it.] of this
 study is at
 [link](http://core.ecu.edu/psyc/wuenschk/MV/Multreg/Logistic-SPSS.PDF). 
 
@@ -85,6 +85,7 @@ Solution
 
 
 So, like this, using the name `decide` in my case:
+
 ```{r ethics-1 }
 my_url <- "https://raw.githubusercontent.com/nxskok/datafiles/master/decision.csv"
 decide <- read_csv(my_url)
@@ -110,6 +111,7 @@ Solution
 
 Turn the response into a `factor` somehow, either by
 creating a new variable in the data frame or like this:
+
 ```{r ethics-2 }
 decide.1 <- glm(factor(decision) ~ gender, data = decide, family = "binomial")
 summary(decide.1)
@@ -124,6 +126,7 @@ the next part, and we'll revisit this slope coefficient in a moment.
 Categorical *explanatory* variables are perfectly all right
 as text.
 Should I have used `drop1` to assess the significance? Maybe:
+
 ```{r ethics-3 }
 drop1(decide.1, test = "Chisq")
 ```
