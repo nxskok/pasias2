@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./ordinal-response.html" rel="next">
 <link href="./stan.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -284,6 +285,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
     </ul>
@@ -1822,12 +1829,13 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <li><p><code>gender</code> of student</p></li>
 <li><p><code>scenario</code> of research benefits that the student read.</p></li>
 </ul>
-<p>A more detailed discussion^(“[If you can believe it.] of this study is at <a href="http://core.ecu.edu/psyc/wuenschk/MV/Multreg/Logistic-SPSS.PDF">link</a>.</p>
+<p>A more detailed discussion<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> of this study is at <a href="http://core.ecu.edu/psyc/wuenschk/MV/Multreg/Logistic-SPSS.PDF">link</a>.</p>
 <ol type="a">
 <li>Read in the data and check by looking at the structure of your data frame that you have something sensible. <em>Do not</em> call your data frame <code>decision</code>, since that’s the name of one of the variables in it.</li>
 </ol>
 <p>Solution</p>
-<p>So, like this, using the name <code>decide</code> in my case: ::: {.cell}</p>
+<p>So, like this, using the name <code>decide</code> in my case:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/nxskok/datafiles/master/decision.csv"</span></span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>decide <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1849,14 +1857,15 @@ dbl (2): idealism, relativism
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The variables are all the right things and of the right types: the decision, gender and the scenario are all text (representing categorical variables), and idealism and relativism, which were scores on a test, are quantitative (numerical). There are, as promised, 315 observations.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Fit a logistic regression predicting <code>decision</code> from <code>gender</code>. Is there an effect of gender?</li>
 </ol>
 <p>Solution</p>
-<p>Turn the response into a <code>factor</code> somehow, either by creating a new variable in the data frame or like this: ::: {.cell}</p>
+<p>Turn the response into a <code>factor</code> somehow, either by creating a new variable in the data frame or like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>decide<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">factor</span>(decision) <span class="sc">~</span> gender, <span class="at">data =</span> decide, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(decide<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1880,8 +1889,9 @@ AIC: 403.91
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-<p>:::</p>
-<p>The P-value for gender is <span class="math inline">\(6.5 \times 10^{-7}\)</span>, which is very small, so there is definitely an effect of gender. It’s not immediately clear what kind of effect it is: that’s the reason for the next part, and we’ll revisit this slope coefficient in a moment. Categorical <em>explanatory</em> variables are perfectly all right as text. Should I have used <code>drop1</code> to assess the significance? Maybe: ::: {.cell}</p>
+</div>
+<p>The P-value for gender is <span class="math inline">\(6.5 \times 10^{-7}\)</span>, which is very small, so there is definitely an effect of gender. It’s not immediately clear what kind of effect it is: that’s the reason for the next part, and we’ll revisit this slope coefficient in a moment. Categorical <em>explanatory</em> variables are perfectly all right as text. Should I have used <code>drop1</code> to assess the significance? Maybe:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(decide<span class="fl">.1</span>, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1891,7 +1901,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The thing is, this gives us a P-value but not a slope, which we might have wanted to try to interpret. Also, the P-value in <code>summary</code> is so small that it is likely to be still significant in <code>drop1</code> as well.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -2212,7 +2222,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 <p>The story from here is the same: as relativism increases (move from left to right), the probability of <code>stop</code> decreases, but as idealism increases (from the red line up to the purple one), the probability of <code>stop</code> <em>increases</em>.</p>
 <p>That’s quite enough discussion of the question, except that the data didn’t come to me in the form that you see them, so I figured I would like to share the story of the data processing as well. I think this is important because in your future work you are likely to spend a lot of your time getting data from how you receive it to something suitable for analysis.</p>
-<p>These data came from a psychology study (with, probably, the students in a class serving as experimental subjects). Social scientists like to use SPSS software, so the data came to me as an SPSS <code>.sav</code> file.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> The least-fuss way of handling this that I could think of was to use <code>import</code> from the <code>rio</code> package, which I think I mentioned before:</p>
+<p>These data came from a psychology study (with, probably, the students in a class serving as experimental subjects). Social scientists like to use SPSS software, so the data came to me as an SPSS <code>.sav</code> file.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> The least-fuss way of handling this that I could think of was to use <code>import</code> from the <code>rio</code> package, which I think I mentioned before:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
 <span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"/home/ken/Downloads/Logistic.sav"</span>)</span>
@@ -2625,7 +2635,7 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <li>We are going to make a large number of predictions. Create and save a data frame that contains predictions for all combinations of representative values for all the variables in the model that came out of <code>step</code>. By “representative” I mean all the values for a categorical variable, and the five-number summary for a numeric variable. (Note that you will get a <em>lot</em> of predictions.)</li>
 </ol>
 <p>Solution</p>
-<p>The hard work is in listing all the variables. The easiest way to make sure you have them all is to look at the <code>summary</code> of your best model (mine was called <code>heart.3</code>) first, and copy them from the <code>Call</code> at the top. This is easier than looking at the table of Coefficients (or <code>tidy</code> output) because for categorical variables like <code>pain.type</code> you will have to distinguish the name of the variable from its levels. For example, the table of Coefficients has <code>pain.typeatypical</code> and <code>pain.typenonanginal</code>. Is it obvious to you where the variable name ends and its level begins?<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<p>The hard work is in listing all the variables. The easiest way to make sure you have them all is to look at the <code>summary</code> of your best model (mine was called <code>heart.3</code>) first, and copy them from the <code>Call</code> at the top. This is easier than looking at the table of Coefficients (or <code>tidy</code> output) because for categorical variables like <code>pain.type</code> you will have to distinguish the name of the variable from its levels. For example, the table of Coefficients has <code>pain.typeatypical</code> and <code>pain.typenonanginal</code>. Is it obvious to you where the variable name ends and its level begins?<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
 <p>All right, let’s set up our dataframe to predict from. This needs the five-number summary of quantitative variables (via <code>quantile</code>), and the levels of the categorical ones (via <code>levels(factor())</code>). Take a deep breath and begin:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> heart<span class="fl">.3</span>, </span>
@@ -2706,7 +2716,7 @@ Number of Fisher Scoring iterations: 6</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["heart.disease"],"name":[6],"type":["chr"],"align":["left"]},{"label":["sex"],"name":[7],"type":["chr"],"align":["left"]},{"label":["pain.type"],"name":[8],"type":["chr"],"align":["left"]},{"label":["resting.bp"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["serum.chol"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["max.hr"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["oldpeak"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["slope"],"name":[13],"type":["chr"],"align":["left"]},{"label":["colored"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["thal"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"21791","2":"0.21418840","3":"4.131863e-01","4":"0.011970748","5":"0.8597873","6":"no","7":"female","8":"atypical","9":"140","10":"126","11":"133.0","12":"6.2","13":"downsloping","14":"0","15":"normal"},{"1":"101743","2":"0.47804155","3":"9.549512e-01","4":"0.041594806","5":"0.9508049","6":"no","7":"male","8":"typical","9":"130","10":"280","11":"153.5","12":"0.0","13":"downsloping","14":"3","15":"fixed"},{"1":"81943","2":"0.34029141","3":"5.531175e-01","4":"0.054699323","5":"0.8213704","6":"no","7":"male","8":"nonanginal","9":"94","10":"213","11":"166.0","12":"1.6","13":"upsloping","14":"3","15":"fixed"},{"1":"38725","2":"0.55242644","3":"8.963189e-01","4":"0.049490177","5":"0.9669518","6":"no","7":"female","8":"nonanginal","9":"200","10":"213","11":"166.0","12":"1.6","13":"downsloping","14":"3","15":"fixed"},{"1":"35733","2":"0.88111011","3":"1.842675e-01","4":"0.278126171","5":"0.9930341","6":"no","7":"female","8":"nonanginal","9":"140","10":"213","11":"71.0","12":"6.2","13":"flat","14":"0","15":"reversible"},{"1":"84710","2":"0.03929536","3":"7.103198e-05","4":"0.008379359","5":"0.1652667","6":"no","7":"male","8":"nonanginal","9":"120","10":"213","11":"202.0","12":"0.8","13":"flat","14":"0","15":"normal"},{"1":"86359","2":"0.62125449","3":"7.570337e-01","4":"0.066592581","5":"0.9741688","6":"no","7":"male","8":"nonanginal","9":"120","10":"564","11":"202.0","12":"1.6","13":"flat","14":"1","15":"fixed"},{"1":"44824","2":"0.05907662","3":"1.134466e-01","4":"0.002034539","5":"0.6591248","6":"no","7":"female","8":"typical","9":"120","10":"280","11":"71.0","12":"0.0","13":"downsloping","14":"1","15":"fixed"},{"1":"86337","2":"0.98354753","3":"9.387900e-03","4":"0.731872035","5":"0.9992368","6":"no","7":"male","8":"nonanginal","9":"120","10":"564","11":"202.0","12":"0.8","13":"flat","14":"3","15":"reversible"},{"1":"65867","2":"0.98875051","3":"5.974542e-03","4":"0.783294374","5":"0.9995323","6":"no","7":"male","8":"asymptomatic","9":"200","10":"213","11":"202.0","12":"6.2","13":"flat","14":"1","15":"normal"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["heart.disease"],"name":[6],"type":["chr"],"align":["left"]},{"label":["sex"],"name":[7],"type":["chr"],"align":["left"]},{"label":["pain.type"],"name":[8],"type":["chr"],"align":["left"]},{"label":["resting.bp"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["serum.chol"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["max.hr"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["oldpeak"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["slope"],"name":[13],"type":["chr"],"align":["left"]},{"label":["colored"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["thal"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"43498","2":"0.02214710","3":"0.0386562967","4":"0.0006246262","5":"0.4507667","6":"no","7":"female","8":"typical","9":"120","10":"126","11":"153.5","12":"6.2","13":"downsloping","14":"0","15":"fixed"},{"1":"92161","2":"0.18572266","3":"0.2312677884","4":"0.0198793508","5":"0.7194835","6":"no","7":"male","8":"nonanginal","9":"200","10":"126","11":"166.0","12":"0.8","13":"flat","14":"0","15":"fixed"},{"1":"15614","2":"0.18844606","3":"0.3161890262","4":"0.0131858850","5":"0.8013983","6":"no","7":"female","8":"atypical","9":"94","10":"280","11":"202.0","12":"1.6","13":"downsloping","14":"3","15":"normal"},{"1":"79663","2":"0.87573596","3":"0.1036510526","4":"0.4015470071","5":"0.9866702","6":"no","7":"male","8":"atypical","9":"200","10":"245","11":"153.5","12":"1.6","13":"flat","14":"1","15":"fixed"},{"1":"76998","2":"0.89969748","3":"0.1555826539","4":"0.3027896611","5":"0.9946313","6":"no","7":"male","8":"atypical","9":"140","10":"245","11":"153.5","12":"6.2","13":"upsloping","14":"0","15":"reversible"},{"1":"26874","2":"0.99937921","3":"0.0003770912","4":"0.9648946948","5":"0.9999894","6":"no","7":"female","8":"atypical","9":"200","10":"564","11":"166.0","12":"6.2","13":"downsloping","14":"3","15":"reversible"},{"1":"101879","2":"0.58773496","3":"0.7850707347","4":"0.1002995600","5":"0.9480004","6":"no","7":"male","8":"typical","9":"130","10":"280","11":"166.0","12":"0.8","13":"downsloping","14":"3","15":"normal"},{"1":"18219","2":"0.09177018","3":"0.0111149545","4":"0.0169295251","5":"0.3721981","6":"no","7":"female","8":"atypical","9":"120","10":"280","11":"166.0","12":"1.6","13":"upsloping","14":"0","15":"reversible"},{"1":"19514","2":"0.12230462","3":"0.1071537106","4":"0.0125142990","5":"0.6050903","6":"no","7":"female","8":"atypical","9":"130","10":"213","11":"71.0","12":"1.6","13":"upsloping","14":"0","15":"normal"},{"1":"105938","2":"0.99897475","3":"0.0001059979","4":"0.9677760525","5":"0.9999684","6":"no","7":"male","8":"typical","9":"200","10":"213","11":"71.0","12":"6.2","13":"flat","14":"3","15":"normal"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -3037,7 +3047,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <li>Obtain the predicted probabilities that an infant will successfully breastfeed for a representative collection of gestational ages.</li>
 </ol>
 <p>Solution</p>
-<p>Pick some gestational ages, like the median and quartiles, or just pick some values like 25, 30, 35:<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+<p>Pick some gestational ages, like the median and quartiles, or just pick some values like 25, 30, 35:<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb196"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> breastfeed<span class="fl">.1</span>, <span class="at">gest.age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>))</span>
 <span id="cb196-2"><a href="#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">predictions</span>(breastfeed<span class="fl">.1</span>, <span class="at">newdata =</span> new))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3318,7 +3328,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </section>
 <section id="who-needs-the-most-intensive-care-1" class="level2" data-number="24.19">
 <h2 data-number="24.19" class="anchored" data-anchor-id="who-needs-the-most-intensive-care-1"><span class="header-section-number">24.19</span> Who needs the most intensive care?</h2>
-<p>The “APACHE II” is a scale for assessing patients who arrive in the intensive care unit (ICU) of a hospital. These are seriously ill patients who may die despite the ICU’s best attempts. APACHE stands for “Acute Physiology And Chronic Health Evaluation”.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> The scale score is calculated from several physiological measurements such as body temperature, heart rate and the Glasgow coma scale, as well as the patient’s age. The final result is a score between 0 and 71, with a higher score indicating more severe health issues. Is it true that a patient with a higher APACHE II score has a higher probability of dying?</p>
+<p>The “APACHE II” is a scale for assessing patients who arrive in the intensive care unit (ICU) of a hospital. These are seriously ill patients who may die despite the ICU’s best attempts. APACHE stands for “Acute Physiology And Chronic Health Evaluation”.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> The scale score is calculated from several physiological measurements such as body temperature, heart rate and the Glasgow coma scale, as well as the patient’s age. The final result is a score between 0 and 71, with a higher score indicating more severe health issues. Is it true that a patient with a higher APACHE II score has a higher probability of dying?</p>
 <p>Data from one hospital are in <a href="http://ritsokiguess.site/datafiles/apache.txt">link</a>. The columns are: the APACHE II score, the total number of patients who had that score, and the number of patients with that score who died.</p>
 <ol type="a">
 <li>Read in and display the data (however much of it displays). Why are you convinced that have the right thing?</li>
@@ -3815,7 +3825,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <p><img src="logistic-regression_files/figure-html/ha2-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>A small majority of people who took the anger management did not have a second heart attack, while a small minority of those who did not, did.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> But with these small numbers, the difference, even though it points the way we would have guessed, is not large enough to be significant:</p>
+<p>A small majority of people who took the anger management did not have a second heart attack, while a small minority of those who did not, did.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> But with these small numbers, the difference, even though it points the way we would have guessed, is not large enough to be significant:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb257"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb257-1"><a href="#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(ha, <span class="fu">table</span>(anger, second))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -3844,11 +3854,12 @@ anger n y
 <li id="fn9"><p>When you have one observation per line, the predictions are of the <em>second</em> of the two levels of the response variable. When you make that two-column response, the predictions are of the probability of being in the <em>first</em> column. That’s what it is. As the young people say, don’t @ me.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p>When you have higher-order terms, you have to keep the lower-order ones as well: higher powers, or interactions (as we see in ANOVA later).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn11"><p>I get confused about the difference between morals and ethics. [This is a very short description of that difference:] (http://smallbusiness.chron.com/differences-between-ethical-issues-moral-issues-business-48134.html). The basic idea is that morals are part of who you are, derived from religion, philosophy etc. Ethics are how you act in a particular situation: that is, your morals, what you believe, inform your ethics, what you do. That’s why the students had to play the role of an ethics committee, rather than a morals committee; presumably the researcher had good morals, but an ethics committee had to evaluate what he was planning to do, rather than his character as a person.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>If you took STAB23, you’ll have used PSPP, which is a free version of SPSS.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>If it is for you, go right ahead, but for me it wasn’t.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p>I realize I am extrapolating with these values.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>As with many of these acronyms, you get the idea that the acronym came first and they devised some words to fit it.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p>Read that carefully.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>If you can believe it.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>If you took STAB23, you’ll have used PSPP, which is a free version of SPSS.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>If it is for you, go right ahead, but for me it wasn’t.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>I realize I am extrapolating with these values.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>As with many of these acronyms, you get the idea that the acronym came first and they devised some words to fit it.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Read that carefully.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -4093,6 +4104,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./ordinal-response.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

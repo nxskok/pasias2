@@ -287,6 +287,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -896,8 +902,8 @@ $p_values
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">15</span>)  </span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 43.30882 39.29738 36.87915 38.24656 52.23808 48.93958 31.85894 73.64644
- [9] 61.75182 55.27685</code></pre>
+<pre><code> [1] 30.17079 64.00529 49.19231 68.83447 59.37662 57.36909 53.65464 66.93529
+ [9] 50.22649 45.52094</code></pre>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -912,7 +918,7 @@ $p_values
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x < 40"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"6"},{"1":"TRUE","2":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["x < 40"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"9"},{"1":"TRUE","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -932,7 +938,7 @@ $p_values
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"4","2":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"1","2":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -946,7 +952,7 @@ $p_values
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"4","2":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"1","2":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -958,7 +964,7 @@ $p_values
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">is_rejected=</span>(the_min<span class="sc">&lt;=</span><span class="dv">1</span> <span class="sc">|</span> the_min<span class="sc">==</span><span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(is_rejected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>You might be wondering where the “1 or less” came from. Getting a P-value for the sign test involves the binomial distribution: if the null is correct, each data value is independently either above or below 40, with probability 0.5 of each, so the number of values below 40 (say) is binomial with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(p=0.5\)</span>. The P-value for 1 observed value below 40 and the rest above is</p>
