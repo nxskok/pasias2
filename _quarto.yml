@@ -1,6 +1,7 @@
 project:
   type: book
-
+execute:
+  freeze: auto
 book:
   title: "Problems and Solutions in Applied Statistics (2nd ed)"
   author: "Ken Butler"
