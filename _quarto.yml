@@ -33,6 +33,7 @@ book:
     - stan.Rmd
     - logistic-regression.Rmd
     - ordinal-response.Rmd
+    - nominal-response.Rmd
 format:
   html:
     theme: cosmo

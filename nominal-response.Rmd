@@ -1,0 +1,47 @@
+# Logistic regression with nominal response
+
+```{r 37-nominal-response-1, eval=F}
+library(nnet)
+library(tidyverse)
+```
+```{r 37-nominal-response-2, child="_packages.qmd"}
+```
+
+```{r 37-nominal-response-3, child="_nonmissing_qq.Rmd"}
+```
+
+```{r 37-nominal-response-4, child="_ess_qq.Rmd"}
+```
+
+```{r 37-nominal-response-5, child="_alligator_qq.Rmd"}
+```
+
+```{r 37-nominal-response-6, child="_sfcrime_qq.Rmd"}
+```
+
+```{r 37-nominal-response-7, child="_sfcrime-data_qq.Rmd"}
+```
+
+```{r 37-nominal-response-8, child="_oz-multi_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 37-nominal-response-9, child="_nonmissing.Rmd"}
+```
+
+```{r 37-nominal-response-10, child="_ess.Rmd"}
+```
+
+```{r 37-nominal-response-11, child="_alligator.Rmd"}
+```
+
+```{r 37-nominal-response-12, child="_sfcrime.Rmd"}
+```
+
+```{r 37-nominal-response-13, child="_sfcrime-data.Rmd"}
+```
+
+```{r 37-nominal-response-14, child="_oz-multi.Rmd"}
+```
+
