@@ -1,0 +1,37 @@
+# Survival analysis
+
+```{r 17-survival-analysis-1, eval=F}
+library(survival)
+library(tidyverse)
+library(survminer)
+```
+
+```{r 17-survival-analysis-2, child="_packages.qmd"}
+```
+
+```{r 17-survival-analysis-3, child="_worcester_qq.Rmd"}
+```
+
+```{r 17-survival-analysis-4, child="_drug-treatment_qq.Rmd"}
+```
+
+```{r 17-survival-analysis-5, child="_myeloma_qq.Rmd"}
+```
+
+```{r 17-survival-analysis-6, child="_ovarian_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 17-survival-analysis-7, child="_worcester.Rmd"}
+```
+
+```{r 17-survival-analysis-8, child="_drug-treatment.Rmd"}
+```
+
+```{r 17-survival-analysis-9, child="_myeloma.Rmd"}
+```
+
+```{r 17-survival-analysis-10, child="_ovarian.Rmd"}
+```
+
