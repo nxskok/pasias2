@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.340" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) – 35  Drawing maps with Leaflet</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 35&nbsp; Drawing maps with Leaflet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +56,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./kmeans-cluster.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,14 +96,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
-<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
 <script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
 <script src="site_libs/leaflet-binding-2.1.2/leaflet.js"></script>
-<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -96,22 +111,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./maps.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -125,9 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="/">
-      Problems and Solutions in Applied Statistics (2nd ed)
-      </a> 
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -139,234 +147,245 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/getting_used.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>Getting used to R and R Studio</span></span></a>
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/reading-in.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>Reading in data</span></span></a>
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>Data exploration</span></span></a>
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>One-sample inference</span></span></a>
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>Two-sample inference</span></span></a>
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>Power and sample size</span></span></a>
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>The sign test</span></span></a>
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>Mood median test</span></span></a>
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>Matched pairs t and sign test</span></span></a>
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>Normal quantile plots</span></span></a>
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>Analysis of variance</span></span></a>
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>Writing reports</span></span></a>
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>13</span>  <span class='chapter-title'>Learning to code</span></span></a>
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>14</span>  <span class='chapter-title'>Treating dandruff</span></span></a>
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>15</span>  <span class='chapter-title'>Tidying data</span></span></a>
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>16</span>  <span class='chapter-title'>Simple regression</span></span></a>
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>17</span>  <span class='chapter-title'>Multiple regression</span></span></a>
+  <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>18</span>  <span class='chapter-title'>Regression with categorical variables</span></span></a>
+  <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>19</span>  <span class='chapter-title'>Dates and times</span></span></a>
+  <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>20</span>  <span class='chapter-title'>Functions</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>21</span>  <span class='chapter-title'>Vector and matrix algebra</span></span></a>
+  <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>22</span>  <span class='chapter-title'>The Bootstrap</span></span></a>
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>23</span>  <span class='chapter-title'>Bayesian Statistics with Stan</span></span></a>
+  <a href="./stan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>24</span>  <span class='chapter-title'>Logistic regression</span></span></a>
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>25</span>  <span class='chapter-title'>Logistic regression with ordinal response</span></span></a>
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>26</span>  <span class='chapter-title'>Logistic regression with nominal response</span></span></a>
+  <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>27</span>  <span class='chapter-title'>Survival analysis</span></span></a>
+  <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>28</span>  <span class='chapter-title'>Analysis of variance revisited</span></span></a>
+  <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>29</span>  <span class='chapter-title'>Analysis of covariance</span></span></a>
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>30</span>  <span class='chapter-title'>Multivariate analysis of variance</span></span></a>
+  <a href="./manova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>31</span>  <span class='chapter-title'>Repeated measures</span></span></a>
+  <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>32</span>  <span class='chapter-title'>Discriminant analysis</span></span></a>
+  <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>33</span>  <span class='chapter-title'>Hierarchical cluster analysis</span></span></a>
+  <a href="./cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>34</span>  <span class='chapter-title'>K-means cluster analysis</span></span></a>
+  <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/maps.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class='chapter-number'>35</span>  <span class='chapter-title'>Drawing maps with Leaflet</span></span></a>
+  <a href="./maps.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#making-a-map-of-wisconsin" id="toc-making-a-map-of-wisconsin" class="nav-link active" data-scroll-target="#making-a-map-of-wisconsin"><span class="header-section-number">35.1</span> Making a map of Wisconsin</a></li>
+  <li><a href="#the-cross-city-line" id="toc-the-cross-city-line" class="nav-link" data-scroll-target="#the-cross-city-line"><span class="header-section-number">35.2</span> The Cross-City Line</a></li>
+  <li><a href="#the-brain-of-a-cat-revisited" id="toc-the-brain-of-a-cat-revisited" class="nav-link" data-scroll-target="#the-brain-of-a-cat-revisited"><span class="header-section-number">35.3</span> The brain of a cat, revisited</a></li>
+  <li><a href="#making-a-map-of-wisconsin-1" id="toc-making-a-map-of-wisconsin-1" class="nav-link" data-scroll-target="#making-a-map-of-wisconsin-1"><span class="header-section-number">35.4</span> Making a map of Wisconsin</a></li>
+  <li><a href="#the-cross-city-line-1" id="toc-the-cross-city-line-1" class="nav-link" data-scroll-target="#the-cross-city-line-1"><span class="header-section-number">35.5</span> The Cross-City Line</a></li>
+  <li><a href="#the-brain-of-a-cat-revisited-1" id="toc-the-brain-of-a-cat-revisited-1" class="nav-link" data-scroll-target="#the-brain-of-a-cat-revisited-1"><span class="header-section-number">35.6</span> The brain of a cat, revisited</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">35</span>  <span class="chapter-title">Drawing maps with Leaflet</span></h1>
+<h1 class="title"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></h1>
 </div>
 
 
@@ -380,37 +399,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 </header>
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#making-a-map-of-wisconsin" id="toc-making-a-map-of-wisconsin"><span class="header-section-number">35.1</span> Making a map of Wisconsin</a></li>
-  <li><a href="#the-cross-city-line" id="toc-the-cross-city-line"><span class="header-section-number">35.2</span> The Cross-City Line</a></li>
-  <li><a href="#the-brain-of-a-cat-revisited" id="toc-the-brain-of-a-cat-revisited"><span class="header-section-number">35.3</span> The brain of a cat, revisited</a></li>
-  <li><a href="#making-a-map-of-wisconsin-1" id="toc-making-a-map-of-wisconsin-1"><span class="header-section-number">35.4</span> Making a map of Wisconsin</a></li>
-  <li><a href="#the-cross-city-line-1" id="toc-the-cross-city-line-1"><span class="header-section-number">35.5</span> The Cross-City Line</a></li>
-  <li><a href="#the-brain-of-a-cat-revisited-1" id="toc-the-brain-of-a-cat-revisited-1"><span class="header-section-number">35.6</span> The brain of a cat, revisited</a></li>
-  </ul>
-</nav>
+
 <p>Packages for this chapter:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="making-a-map-of-wisconsin" class="level2" data-number="35.1">
-<h2 data-number="35.1"><span class="header-section-number">35.1</span> Making a map of Wisconsin</h2>
+<h2 data-number="35.1" class="anchored" data-anchor-id="making-a-map-of-wisconsin"><span class="header-section-number">35.1</span> Making a map of Wisconsin</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/wisconsin.txt">link</a> contains the road distances (in miles) between 12 cities in Wisconsin and neighbouring states. We are going to try to draw a map of the area using Leaflet.</p>
 <ol type="a">
 <li><p>Read in the data, displaying the data that you read in.</p></li>
-<li><p>Make a dataframe containing the names of the locations (get rid of the columns containing distances), and add a column of the abbreviations of the states they are in. All of them are in Wisconsin (WI), except for the last three: Dubuque is in Iowa (IA), St. Paul is in Minnesota (MN) and Chicago is in Illinois (IL).</p></li>
+<li><p>Make a dataframe containing the names of the locations (get rid of the columns containing distances), and add a column of the abbreviations of the states they are in. All of them are in Wisconsin (WI), except for the last three: Dubuque is in Iowa (IA), St.&nbsp;Paul is in Minnesota (MN) and Chicago is in Illinois (IL).</p></li>
 <li><p>Create a new column in which the abbreviation for the state is glued on to the end of each <code>location</code>, separated by a space.</p></li>
 <li><p>Look up the latitudes and longitudes of these twelve places.</p></li>
 <li><p>Obtain a Leaflet map of the area containing these twelve cities.</p></li>
 </ol>
 </section>
 <section id="the-cross-city-line" class="level2" data-number="35.2">
-<h2 data-number="35.2"><span class="header-section-number">35.2</span> The Cross-City Line</h2>
+<h2 data-number="35.2" class="anchored" data-anchor-id="the-cross-city-line"><span class="header-section-number">35.2</span> The Cross-City Line</h2>
 <p>When I went to university (in Birmingham, England, a long time ago), I was very excited because I would be travelling to campus by train. My journey was on the Cross-City Line, a metro-type service with lots of stops short distances apart, but run in those days by diesel trains (the electrification came later).</p>
 <p>A list of the stations on the line is in http://ritsokiguess.site/datafiles/cross-city.csv. There is one column in the data file, called <code>station</code>. We are going to draw a map of these.</p>
 <ol type="a">
@@ -422,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="the-brain-of-a-cat-revisited" class="level2" data-number="35.3">
-<h2 data-number="35.3"><span class="header-section-number">35.3</span> The brain of a cat, revisited</h2>
+<h2 data-number="35.3" class="anchored" data-anchor-id="the-brain-of-a-cat-revisited"><span class="header-section-number">35.3</span> The brain of a cat, revisited</h2>
 <p>Earlier, we looked at an ethics study that had to do with a fictional brain of a fictional cat. I said there was actually a <em>town</em> called Catbrain. It’s in England, near Bristol, and seems to be home to a street of car dealerships.</p>
 <ol type="a">
 <li><p>Find the latitude and longitude of “Catbrain UK” (though I don’t think there are any others).</p></li>
@@ -433,17 +441,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>My solutions follow:</p>
 </section>
 <section id="making-a-map-of-wisconsin-1" class="level2" data-number="35.4">
-<h2 data-number="35.4"><span class="header-section-number">35.4</span> Making a map of Wisconsin</h2>
+<h2 data-number="35.4" class="anchored" data-anchor-id="making-a-map-of-wisconsin-1"><span class="header-section-number">35.4</span> Making a map of Wisconsin</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/wisconsin.txt">link</a> contains the road distances (in miles) between 12 cities in Wisconsin and neighbouring states. We are going to try to draw a map of the area using Leaflet.</p>
 <ol type="a">
 <li>Read in the data, displaying the data that you read in.</li>
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">&quot;http://ritsokiguess.site/datafiles/wisconsin.txt&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wisc <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/wisconsin.txt"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wisc <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Missing column names filled in: &#39;X14&#39; [14]</code></pre>
+<pre><code>Warning: Missing column names filled in: 'X14' [14]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
@@ -465,11 +473,11 @@ cols(
   X14 = col_logical()
 )</code></pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wisc</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Appleton"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Beloit"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Fort.Atkinson"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Madison"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Marshfield"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Milwaukee"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Monroe"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Superior"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Wausau"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Dubuque"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["St.Paul"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Chicago"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["X14"],"name":[14],"type":["lgl"],"align":["right"]}],"data":[{"1":"Appleton","2":"0","3":"130","4":"98","5":"102","6":"103","7":"100","8":"149","9":"315","10":"91","11":"196","12":"257","13":"186","14":"NA"},{"1":"Beloit","2":"130","3":"0","4":"33","5":"50","6":"185","7":"73","8":"33","9":"377","10":"186","11":"94","12":"304","13":"97","14":"NA"},{"1":"Fort.Atkinson","2":"98","3":"33","4":"0","5":"36","6":"164","7":"54","8":"58","9":"359","10":"166","11":"119","12":"287","13":"113","14":"NA"},{"1":"Madison","2":"102","3":"50","4":"36","5":"0","6":"138","7":"77","8":"47","9":"330","10":"139","11":"95","12":"258","13":"146","14":"NA"},{"1":"Marshfield","2":"103","3":"185","4":"164","5":"138","6":"0","7":"184","8":"170","9":"219","10":"45","11":"186","12":"161","13":"276","14":"NA"},{"1":"Milwaukee","2":"100","3":"73","4":"54","5":"77","6":"184","7":"0","8":"107","9":"394","10":"181","11":"168","12":"322","13":"92","14":"NA"},{"1":"Monroe","2":"149","3":"33","4":"58","5":"47","6":"170","7":"107","8":"0","9":"362","10":"186","11":"61","12":"289","13":"130","14":"NA"},{"1":"Superior","2":"315","3":"377","4":"359","5":"330","6":"219","7":"394","8":"362","9":"0","10":"223","11":"351","12":"162","13":"467","14":"NA"},{"1":"Wausau","2":"91","3":"186","4":"166","5":"139","6":"45","7":"181","8":"186","9":"223","10":"0","11":"215","12":"175","13":"275","14":"NA"},{"1":"Dubuque","2":"196","3":"94","4":"119","5":"95","6":"186","7":"168","8":"61","9":"351","10":"215","11":"0","12":"274","13":"184","14":"NA"},{"1":"St.Paul","2":"257","3":"304","4":"287","5":"258","6":"161","7":"322","8":"289","9":"162","10":"175","11":"274","12":"0","13":"395","14":"NA"},{"1":"Chicago","2":"186","3":"97","4":"113","5":"146","6":"276","7":"93","8":"130","9":"467","10":"275","11":"184","12":"395","13":"0","14":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -478,19 +486,19 @@ cols(
 <p>The first time I did this, I had a blank line on the end of the data file, so I had a blank <code>location</code> and missing values for all the distances for it. I tidied that up before sharing the file with you, though.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
-<li>Make a dataframe containing the names of the locations (get rid of the columns containing distances), and add a column of the abbreviations of the states they are in. All of them are in Wisconsin (WI), except for the last three: Dubuque is in Iowa (IA), St. Paul is in Minnesota (MN) and Chicago is in Illinois (IL).</li>
+<li>Make a dataframe containing the names of the locations (get rid of the columns containing distances), and add a column of the abbreviations of the states they are in. All of them are in Wisconsin (WI), except for the last three: Dubuque is in Iowa (IA), St.&nbsp;Paul is in Minnesota (MN) and Chicago is in Illinois (IL).</li>
 </ol>
 <p>Solution</p>
 <p>There seems to be a bit of base R attached to this, however you do it. I am going to create a dataframe pretending they are all in Wisconsin, and then fix it up afterwards:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="st">&quot;WI&quot;</span>) <span class="ot">-&gt;</span> wisc</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wisc</span></code></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="st">"WI"</span>) <span class="ot">-&gt;</span> wisc</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI"},{"1":"Beloit","2":"NA","3":"WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI"},{"1":"Madison","2":"NA","3":"WI"},{"1":"Marshfield","2":"NA","3":"WI"},{"1":"Milwaukee","2":"NA","3":"WI"},{"1":"Monroe","2":"NA","3":"WI"},{"1":"Superior","2":"NA","3":"WI"},{"1":"Wausau","2":"NA","3":"WI"},{"1":"Dubuque","2":"NA","3":"WI"},{"1":"St.Paul","2":"NA","3":"WI"},{"1":"Chicago","2":"NA","3":"WI"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -499,14 +507,14 @@ cols(
 <p>(I checked that in this question I didn’t need the road distances for anything, so I saved it back into the original dataframe. Also, the <code>select</code> is unnecessarily fancy: I could have just selected the <code>location</code> column, but this one says “don’t select any of the columns that are numeric”.)</p>
 <p>Now we have to fix up the states of the last three places, which is where the base R seems to come in (but see the Extra):</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wisc<span class="sc">$</span>state[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;IA&quot;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wisc<span class="sc">$</span>state[<span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="st">&quot;MN&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wisc<span class="sc">$</span>state[<span class="dv">12</span>] <span class="ot">&lt;-</span> <span class="st">&quot;IL&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>wisc</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wisc<span class="sc">$</span>state[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">"IA"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wisc<span class="sc">$</span>state[<span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="st">"MN"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wisc<span class="sc">$</span>state[<span class="dv">12</span>] <span class="ot">&lt;-</span> <span class="st">"IL"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI"},{"1":"Beloit","2":"NA","3":"WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI"},{"1":"Madison","2":"NA","3":"WI"},{"1":"Marshfield","2":"NA","3":"WI"},{"1":"Milwaukee","2":"NA","3":"WI"},{"1":"Monroe","2":"NA","3":"WI"},{"1":"Superior","2":"NA","3":"WI"},{"1":"Wausau","2":"NA","3":"WI"},{"1":"Dubuque","2":"NA","3":"IA"},{"1":"St.Paul","2":"NA","3":"MN"},{"1":"Chicago","2":"NA","3":"IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -515,13 +523,13 @@ cols(
 <p>The states of the last three locations are now correct.</p>
 <p>Extra: I didn’t know about the following until literally just now, but there is a <code>tidyverse</code> way to do this as well (that may look familiar to those of you that know about SQL). Let’s start by pretending again that everything is in Wisconsin:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="st">&quot;WI&quot;</span>) <span class="ot">-&gt;</span> wisc2</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>wisc2</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="st">"WI"</span>) <span class="ot">-&gt;</span> wisc2</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>wisc2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI"},{"1":"Beloit","2":"NA","3":"WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI"},{"1":"Madison","2":"NA","3":"WI"},{"1":"Marshfield","2":"NA","3":"WI"},{"1":"Milwaukee","2":"NA","3":"WI"},{"1":"Monroe","2":"NA","3":"WI"},{"1":"Superior","2":"NA","3":"WI"},{"1":"Wausau","2":"NA","3":"WI"},{"1":"Dubuque","2":"NA","3":"WI"},{"1":"St.Paul","2":"NA","3":"WI"},{"1":"Chicago","2":"NA","3":"WI"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -529,17 +537,17 @@ cols(
 </div>
 <p>and then change the ones that need changing. What you do is to make a little dataframe of the ones that need changing:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>changes <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>changes <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>location, <span class="sc">~</span>state,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Dubuque&quot;</span>, <span class="st">&quot;IA&quot;</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;St.Paul&quot;</span>, <span class="st">&quot;MN&quot;</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Chicago&quot;</span>, <span class="st">&quot;IL&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dubuque"</span>, <span class="st">"IA"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"St.Paul"</span>, <span class="st">"MN"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Chicago"</span>, <span class="st">"IL"</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>changes</span></code></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>changes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["state"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Dubuque","2":"IA"},{"1":"St.Paul","2":"MN"},{"1":"Chicago","2":"IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -548,11 +556,11 @@ cols(
 <p>Note that the columns in here have <em>exactly</em> the same names as the ones in the original dataframe where everything was in Wisconsin.</p>
 <p>I did this by copy-pasting the city names whose states needed changing out of the display of my <code>wisc2</code>. You might think that a left join is what we need now, and it almost is. Note that I want to match the locations but <em>not</em> the states:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wisc2 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(changes, <span class="at">by =</span> <span class="st">&quot;location&quot;</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wisc2 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(changes, <span class="at">by =</span> <span class="st">"location"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state.x"],"name":[3],"type":["chr"],"align":["left"]},{"label":["state.y"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI","4":"NA"},{"1":"Beloit","2":"NA","3":"WI","4":"NA"},{"1":"Fort.Atkinson","2":"NA","3":"WI","4":"NA"},{"1":"Madison","2":"NA","3":"WI","4":"NA"},{"1":"Marshfield","2":"NA","3":"WI","4":"NA"},{"1":"Milwaukee","2":"NA","3":"WI","4":"NA"},{"1":"Monroe","2":"NA","3":"WI","4":"NA"},{"1":"Superior","2":"NA","3":"WI","4":"NA"},{"1":"Wausau","2":"NA","3":"WI","4":"NA"},{"1":"Dubuque","2":"NA","3":"WI","4":"IA"},{"1":"St.Paul","2":"NA","3":"WI","4":"MN"},{"1":"Chicago","2":"NA","3":"WI","4":"IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -560,12 +568,12 @@ cols(
 </div>
 <p>and the story here is that if <code>state.y</code> has a value, use that, otherwise use the value in <code>state.x</code>. This can even be done: there is a function <code>coalesce</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that will do exactly that:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wisc2 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(changes, <span class="at">by =</span> <span class="st">&quot;location&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state=</span><span class="fu">coalesce</span>(state.y, state.x))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wisc2 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(changes, <span class="at">by =</span> <span class="st">"location"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state=</span><span class="fu">coalesce</span>(state.y, state.x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state.x"],"name":[3],"type":["chr"],"align":["left"]},{"label":["state.y"],"name":[4],"type":["chr"],"align":["left"]},{"label":["state"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Beloit","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Madison","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Marshfield","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Milwaukee","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Monroe","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Superior","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Wausau","2":"NA","3":"WI","4":"NA","5":"WI"},{"1":"Dubuque","2":"NA","3":"WI","4":"IA","5":"IA"},{"1":"St.Paul","2":"NA","3":"WI","4":"MN","5":"MN"},{"1":"Chicago","2":"NA","3":"WI","4":"IL","5":"IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -574,11 +582,11 @@ cols(
 <p>The idea behind <code>coalesce</code> is that you give it a list of columns, and the first one of those that is <em>not missing</em> gives its value to the new column. So I feed it <code>state.y</code> <em>first</em>, and then <code>state.x</code>, and the new <code>state</code> contains the right things. (Can you explain what happens if you do it the other way around?)</p>
 <p>But, there is a better way. Let’s go back to our all-Wisconsin dataframe:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wisc2</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wisc2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI"},{"1":"Beloit","2":"NA","3":"WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI"},{"1":"Madison","2":"NA","3":"WI"},{"1":"Marshfield","2":"NA","3":"WI"},{"1":"Milwaukee","2":"NA","3":"WI"},{"1":"Monroe","2":"NA","3":"WI"},{"1":"Superior","2":"NA","3":"WI"},{"1":"Wausau","2":"NA","3":"WI"},{"1":"Dubuque","2":"NA","3":"WI"},{"1":"St.Paul","2":"NA","3":"WI"},{"1":"Chicago","2":"NA","3":"WI"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -586,11 +594,11 @@ cols(
 </div>
 <p>and our dataframe of corrections to make:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>changes</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>changes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["state"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Dubuque","2":"IA"},{"1":"St.Paul","2":"MN"},{"1":"Chicago","2":"IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -598,16 +606,16 @@ cols(
 </div>
 <p>We can make those changes in one step, thus:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wisc2 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(changes) <span class="ot">-&gt;</span> wisc</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wisc2 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(changes) <span class="ot">-&gt;</span> wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Matching, by = &quot;location&quot;</code></pre>
+<pre><code>Matching, by = "location"</code></pre>
 </div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wisc</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI"},{"1":"Beloit","2":"NA","3":"WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI"},{"1":"Madison","2":"NA","3":"WI"},{"1":"Marshfield","2":"NA","3":"WI"},{"1":"Milwaukee","2":"NA","3":"WI"},{"1":"Monroe","2":"NA","3":"WI"},{"1":"Superior","2":"NA","3":"WI"},{"1":"Wausau","2":"NA","3":"WI"},{"1":"Dubuque","2":"NA","3":"IA"},{"1":"St.Paul","2":"NA","3":"MN"},{"1":"Chicago","2":"NA","3":"IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -623,12 +631,12 @@ cols(
 <p>Solution</p>
 <p>A couple of ways: a literal gluing, using <code>paste</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lookup =</span> <span class="fu">paste</span>(location, state))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lookup =</span> <span class="fu">paste</span>(location, state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]},{"label":["lookup"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI","4":"Appleton WI"},{"1":"Beloit","2":"NA","3":"WI","4":"Beloit WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI","4":"Fort.Atkinson WI"},{"1":"Madison","2":"NA","3":"WI","4":"Madison WI"},{"1":"Marshfield","2":"NA","3":"WI","4":"Marshfield WI"},{"1":"Milwaukee","2":"NA","3":"WI","4":"Milwaukee WI"},{"1":"Monroe","2":"NA","3":"WI","4":"Monroe WI"},{"1":"Superior","2":"NA","3":"WI","4":"Superior WI"},{"1":"Wausau","2":"NA","3":"WI","4":"Wausau WI"},{"1":"Dubuque","2":"NA","3":"IA","4":"Dubuque IA"},{"1":"St.Paul","2":"NA","3":"MN","4":"St.Paul MN"},{"1":"Chicago","2":"NA","3":"IL","4":"Chicago IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -636,12 +644,12 @@ cols(
 </div>
 <p>or the same idea using <code>str_c</code> from <code>stringr</code> (part of the tidyverse), only this time you have to supply the space yourself:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lookup =</span> <span class="fu">str_c</span>(location, <span class="st">&quot; &quot;</span>, state))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lookup =</span> <span class="fu">str_c</span>(location, <span class="st">" "</span>, state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["state"],"name":[3],"type":["chr"],"align":["left"]},{"label":["lookup"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"Appleton","2":"NA","3":"WI","4":"Appleton WI"},{"1":"Beloit","2":"NA","3":"WI","4":"Beloit WI"},{"1":"Fort.Atkinson","2":"NA","3":"WI","4":"Fort.Atkinson WI"},{"1":"Madison","2":"NA","3":"WI","4":"Madison WI"},{"1":"Marshfield","2":"NA","3":"WI","4":"Marshfield WI"},{"1":"Milwaukee","2":"NA","3":"WI","4":"Milwaukee WI"},{"1":"Monroe","2":"NA","3":"WI","4":"Monroe WI"},{"1":"Superior","2":"NA","3":"WI","4":"Superior WI"},{"1":"Wausau","2":"NA","3":"WI","4":"Wausau WI"},{"1":"Dubuque","2":"NA","3":"IA","4":"Dubuque IA"},{"1":"St.Paul","2":"NA","3":"MN","4":"St.Paul MN"},{"1":"Chicago","2":"NA","3":"IL","4":"Chicago IL"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -649,13 +657,13 @@ cols(
 </div>
 <p>or a way you might have forgotten, using <code>unite</code> (which is the inverse of <code>separate</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(lookup, <span class="fu">c</span>(location, state), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="ot">-&gt;</span> wisc</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>wisc</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(lookup, <span class="fu">c</span>(location, state), <span class="at">sep =</span> <span class="st">" "</span>) <span class="ot">-&gt;</span> wisc</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["lookup"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"Appleton WI","2":"NA"},{"1":"Beloit WI","2":"NA"},{"1":"Fort.Atkinson WI","2":"NA"},{"1":"Madison WI","2":"NA"},{"1":"Marshfield WI","2":"NA"},{"1":"Milwaukee WI","2":"NA"},{"1":"Monroe WI","2":"NA"},{"1":"Superior WI","2":"NA"},{"1":"Wausau WI","2":"NA"},{"1":"Dubuque IA","2":"NA"},{"1":"St.Paul MN","2":"NA"},{"1":"Chicago IL","2":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -669,16 +677,16 @@ cols(
 <p>Solution</p>
 <p>This is geocoding, with the disentangling afterwards that is (I hope) becoming familiar:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ll =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(lookup))) <span class="sc">%&gt;%</span> </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(ll) <span class="sc">%&gt;%</span> </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(coords) <span class="ot">-&gt;</span> wisc</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>wisc</span></code></pre></div>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["lookup"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["query"],"name":[3],"type":["chr"],"align":["left"]},{"label":["x"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["bbox"],"name":[6],"type":["list"],"align":["right"]}],"data":[{"1":"Appleton WI","2":"NA","3":"Appleton WI","4":"-88.40697","5":"44.26140","6":"<bbox>"},{"1":"Beloit WI","2":"NA","3":"Beloit WI","4":"-89.03178","5":"42.50833","6":"<bbox>"},{"1":"Fort.Atkinson WI","2":"NA","3":"Fort.Atkinson WI","4":"-88.83705","5":"42.92889","6":"<bbox>"},{"1":"Madison WI","2":"NA","3":"Madison WI","4":"-89.38376","5":"43.07476","6":"<bbox>"},{"1":"Marshfield WI","2":"NA","3":"Marshfield WI","4":"-90.17180","5":"44.66885","6":"<bbox>"},{"1":"Milwaukee WI","2":"NA","3":"Milwaukee WI","4":"-87.92250","5":"43.03499","6":"<bbox>"},{"1":"Monroe WI","2":"NA","3":"Monroe WI","4":"-90.63973","5":"43.94168","6":"<bbox>"},{"1":"Superior WI","2":"NA","3":"Superior WI","4":"-92.10408","5":"46.72077","6":"<bbox>"},{"1":"Wausau WI","2":"NA","3":"Wausau WI","4":"-89.62982","5":"44.95960","6":"<bbox>"},{"1":"Dubuque IA","2":"NA","3":"Dubuque IA","4":"-90.66480","5":"42.50062","6":"<bbox>"},{"1":"St.Paul MN","2":"NA","3":"St.Paul MN","4":"-93.09310","5":"44.94975","6":"<bbox>"},{"1":"Chicago IL","2":"NA","3":"Chicago IL","4":"-87.62442","5":"41.87556","6":"<bbox>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -692,32 +700,32 @@ cols(
 <p>Solution</p>
 <p>The usual:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> wisc) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> wisc) <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y) <span class="ot">-&gt;</span> locs</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>locs</span></code></pre></div>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>locs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2428be8d1fdea7e0ffd5" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-2428be8d1fdea7e0ffd5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[44.2613967,42.5083272,42.9288944,43.074761,44.6688524,43.0349931,43.9416755,46.7207737,44.9596017,42.5006243,44.9497487,41.8755616],[-88.4069744,-89.031784,-88.83705089999999,-89.3837613,-90.1717987,-87.92249700000001,-90.6397264,-92.10407960000001,-89.62982390000001,-90.6647985,-93.0931028,-87.6244212],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.8755616,46.7207737],"lng":[-93.0931028,-87.6244212]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-41b0192d3e6026cdc0b5" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-41b0192d3e6026cdc0b5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[44.2613967,42.5083272,42.9288944,43.074761,44.6688524,43.0349931,43.9416755,46.7207737,44.9596017,42.5006243,44.9497487,41.8755616],[-88.4069744,-89.031784,-88.83705089999999,-89.3837613,-90.1717987,-87.92249700000001,-90.6397264,-92.10407960000001,-89.62982390000001,-90.6647985,-93.0931028,-87.6244212],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.8755616,46.7207737],"lng":[-93.0931028,-87.6244212]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>The nice thing about this map is that you can play with it: zoom it (using the plus/minus on the map or your mouse wheel), or move it around by clicking and dragging. To identify the cities: well, the big ones are obvious, and you can zoom in to identify the others. (You have to zoom in quite a long way to find Monroe, and the geocoder seems to have found its airport, which is not actually in the city.)</p>
 <p>I like identifying the cities with circles, but there are other possibilities, such as “icon markers” that look like Google map pins:</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> wisc) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> wisc) <span class="sc">%&gt;%</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y) <span class="ot">-&gt;</span> locs</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>locs</span></code></pre></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>locs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5bfac0fef964f367a662" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-5bfac0fef964f367a662">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[44.2613967,42.5083272,42.9288944,43.074761,44.6688524,43.0349931,43.9416755,46.7207737,44.9596017,42.5006243,44.9497487,41.8755616],[-88.4069744,-89.031784,-88.83705089999999,-89.3837613,-90.1717987,-87.92249700000001,-90.6397264,-92.10407960000001,-89.62982390000001,-90.6647985,-93.0931028,-87.6244212],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.8755616,46.7207737],"lng":[-93.0931028,-87.6244212]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-59924241431e601d0b17" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-59924241431e601d0b17">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[44.2613967,42.5083272,42.9288944,43.074761,44.6688524,43.0349931,43.9416755,46.7207737,44.9596017,42.5006243,44.9497487,41.8755616],[-88.4069744,-89.031784,-88.83705089999999,-89.3837613,-90.1717987,-87.92249700000001,-90.6397264,-92.10407960000001,-89.62982390000001,-90.6647985,-93.0931028,-87.6244212],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.8755616,46.7207737],"lng":[-93.0931028,-87.6244212]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>You can even attach text to the markers that appears when you click on them, but that’s farther than I would go here.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
 <section id="the-cross-city-line-1" class="level2" data-number="35.5">
-<h2 data-number="35.5"><span class="header-section-number">35.5</span> The Cross-City Line</h2>
+<h2 data-number="35.5" class="anchored" data-anchor-id="the-cross-city-line-1"><span class="header-section-number">35.5</span> The Cross-City Line</h2>
 <p>When I went to university (in Birmingham, England, a long time ago), I was very excited because I would be travelling to campus by train. My journey was on the Cross-City Line, a metro-type service with lots of stops short distances apart, but run in those days by diesel trains (the electrification came later).</p>
 <p>A list of the stations on the line is in http://ritsokiguess.site/datafiles/cross-city.csv. There is one column in the data file, called <code>station</code>. We are going to draw a map of these.</p>
 <ol type="a">
@@ -726,21 +734,21 @@ cols(
 <p>Solution</p>
 <p>Nothing terribly unexpected here:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 24 Columns: 1
 ── Column specification ────────────────────────────────────────────────────────
-Delimiter: &quot;,&quot;
+Delimiter: ","
 chr (1): station
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>stations</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Redditch"},{"1":"Alvechurch"},{"1":"Barnt Green"},{"1":"Longbridge"},{"1":"Northfield"},{"1":"King's Norton"},{"1":"Bournville"},{"1":"Selly Oak"},{"1":"Birmingham University"},{"1":"Five Ways"},{"1":"Birmingham New Street"},{"1":"Duddeston"},{"1":"Aston"},{"1":"Gravelly Hill"},{"1":"Erdington"},{"1":"Chester Road"},{"1":"Wylde Green"},{"1":"Sutton Coldfield"},{"1":"Four Oaks"},{"1":"Butler's Lane"},{"1":"Blake Street"},{"1":"Shenstone"},{"1":"Lichfield City"},{"1":"Lichfield Trent Valley"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -753,13 +761,13 @@ chr (1): station
 <p>Solution</p>
 <p>I wrote this back into the original dataframe. Create a new one if you prefer:</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">longname =</span> <span class="fu">str_c</span>(station, <span class="st">&quot; station UK&quot;</span>)) <span class="ot">-&gt;</span> stations</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>stations</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">longname =</span> <span class="fu">str_c</span>(station, <span class="st">" station UK"</span>)) <span class="ot">-&gt;</span> stations</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["longname"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Redditch","2":"Redditch station UK"},{"1":"Alvechurch","2":"Alvechurch station UK"},{"1":"Barnt Green","2":"Barnt Green station UK"},{"1":"Longbridge","2":"Longbridge station UK"},{"1":"Northfield","2":"Northfield station UK"},{"1":"King's Norton","2":"King's Norton station UK"},{"1":"Bournville","2":"Bournville station UK"},{"1":"Selly Oak","2":"Selly Oak station UK"},{"1":"Birmingham University","2":"Birmingham University station UK"},{"1":"Five Ways","2":"Five Ways station UK"},{"1":"Birmingham New Street","2":"Birmingham New Street station UK"},{"1":"Duddeston","2":"Duddeston station UK"},{"1":"Aston","2":"Aston station UK"},{"1":"Gravelly Hill","2":"Gravelly Hill station UK"},{"1":"Erdington","2":"Erdington station UK"},{"1":"Chester Road","2":"Chester Road station UK"},{"1":"Wylde Green","2":"Wylde Green station UK"},{"1":"Sutton Coldfield","2":"Sutton Coldfield station UK"},{"1":"Four Oaks","2":"Four Oaks station UK"},{"1":"Butler's Lane","2":"Butler's Lane station UK"},{"1":"Blake Street","2":"Blake Street station UK"},{"1":"Shenstone","2":"Shenstone station UK"},{"1":"Lichfield City","2":"Lichfield City station UK"},{"1":"Lichfield Trent Valley","2":"Lichfield Trent Valley station UK"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -773,20 +781,20 @@ chr (1): station
 <p>Two steps: the first is to do the geocoding, and the second is to disentangle what comes back.</p>
 <p>First, then:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ll =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(longname))) <span class="ot">-&gt;</span> stations</span></code></pre></div>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ll =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(longname))) <span class="ot">-&gt;</span> stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>No results found for &quot;King&#39;s Norton station UK&quot;.</code></pre>
+<pre><code>No results found for "King's Norton station UK".</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>No results found for &quot;Butler&#39;s Lane station UK&quot;.</code></pre>
+<pre><code>No results found for "Butler's Lane station UK".</code></pre>
 </div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>stations</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["longname"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ll"],"name":[3],"type":["list"],"align":["right"]}],"data":[{"1":"Redditch","2":"Redditch station UK","3":"<named list [3]>"},{"1":"Alvechurch","2":"Alvechurch station UK","3":"<named list [3]>"},{"1":"Barnt Green","2":"Barnt Green station UK","3":"<named list [3]>"},{"1":"Longbridge","2":"Longbridge station UK","3":"<named list [3]>"},{"1":"Northfield","2":"Northfield station UK","3":"<named list [3]>"},{"1":"King's Norton","2":"King's Norton station UK","3":"<NULL>"},{"1":"Bournville","2":"Bournville station UK","3":"<named list [3]>"},{"1":"Selly Oak","2":"Selly Oak station UK","3":"<named list [3]>"},{"1":"Birmingham University","2":"Birmingham University station UK","3":"<named list [3]>"},{"1":"Five Ways","2":"Five Ways station UK","3":"<named list [3]>"},{"1":"Birmingham New Street","2":"Birmingham New Street station UK","3":"<named list [3]>"},{"1":"Duddeston","2":"Duddeston station UK","3":"<named list [3]>"},{"1":"Aston","2":"Aston station UK","3":"<named list [3]>"},{"1":"Gravelly Hill","2":"Gravelly Hill station UK","3":"<named list [3]>"},{"1":"Erdington","2":"Erdington station UK","3":"<named list [3]>"},{"1":"Chester Road","2":"Chester Road station UK","3":"<named list [3]>"},{"1":"Wylde Green","2":"Wylde Green station UK","3":"<named list [3]>"},{"1":"Sutton Coldfield","2":"Sutton Coldfield station UK","3":"<named list [3]>"},{"1":"Four Oaks","2":"Four Oaks station UK","3":"<named list [3]>"},{"1":"Butler's Lane","2":"Butler's Lane station UK","3":"<NULL>"},{"1":"Blake Street","2":"Blake Street station UK","3":"<named list [3]>"},{"1":"Shenstone","2":"Shenstone station UK","3":"<named list [3]>"},{"1":"Lichfield City","2":"Lichfield City station UK","3":"<named list [3]>"},{"1":"Lichfield Trent Valley","2":"Lichfield Trent Valley station UK","3":"<named list [3]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -794,13 +802,13 @@ chr (1): station
 </div>
 <p>The longitudes and latitudes are hidden in the list-column that I called <code>ll</code>, so the second step is to get them out:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> <span class="fu">unnest_wider</span>(ll) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> <span class="fu">unnest_wider</span>(ll) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(coords) <span class="ot">-&gt;</span> stations</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>stations</span></code></pre></div>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["longname"],"name":[2],"type":["chr"],"align":["left"]},{"label":["query"],"name":[3],"type":["chr"],"align":["left"]},{"label":["x"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["bbox"],"name":[6],"type":["list"],"align":["right"]}],"data":[{"1":"Redditch","2":"Redditch station UK","3":"Redditch station UK","4":"-1.945609","5":"52.30638","6":"<bbox>"},{"1":"Alvechurch","2":"Alvechurch station UK","3":"Alvechurch station UK","4":"-1.967988","5":"52.34683","6":"<bbox>"},{"1":"Barnt Green","2":"Barnt Green station UK","3":"Barnt Green station UK","4":"-1.992500","5":"52.36097","6":"<bbox>"},{"1":"Longbridge","2":"Longbridge station UK","3":"Longbridge station UK","4":"-1.981076","5":"52.39625","6":"<bbox>"},{"1":"Northfield","2":"Northfield station UK","3":"Northfield station UK","4":"-1.965125","5":"52.40830","6":"<bbox>"},{"1":"King's Norton","2":"King's Norton station UK","3":"NA","4":"NA","5":"NA","6":"<NULL>"},{"1":"Bournville","2":"Bournville station UK","3":"Bournville station UK","4":"-1.950100","5":"52.42931","6":"<bbox>"},{"1":"Selly Oak","2":"Selly Oak station UK","3":"Selly Oak station UK","4":"-1.935591","5":"52.44186","6":"<bbox>"},{"1":"Birmingham University","2":"Birmingham University station UK","3":"Birmingham University station UK","4":"-1.938284","5":"52.45118","6":"<bbox>"},{"1":"Five Ways","2":"Five Ways station UK","3":"Five Ways station UK","4":"-1.911762","5":"52.47122","6":"<bbox>"},{"1":"Birmingham New Street","2":"Birmingham New Street station UK","3":"Birmingham New Street station UK","4":"-1.898694","5":"52.47765","6":"<bbox>"},{"1":"Duddeston","2":"Duddeston station UK","3":"Duddeston station UK","4":"-1.871281","5":"52.48865","6":"<bbox>"},{"1":"Aston","2":"Aston station UK","3":"Aston station UK","4":"-1.088457","5":"51.48475","6":"<bbox>"},{"1":"Gravelly Hill","2":"Gravelly Hill station UK","3":"Gravelly Hill station UK","4":"-1.852708","5":"52.51539","6":"<bbox>"},{"1":"Erdington","2":"Erdington station UK","3":"Erdington station UK","4":"-1.835808","5":"52.52623","6":"<bbox>"},{"1":"Chester Road","2":"Chester Road station UK","3":"Chester Road station UK","4":"-2.879530","5":"53.19675","6":"<bbox>"},{"1":"Wylde Green","2":"Wylde Green station UK","3":"Wylde Green station UK","4":"-1.831425","5":"52.54563","6":"<bbox>"},{"1":"Sutton Coldfield","2":"Sutton Coldfield station UK","3":"Sutton Coldfield station UK","4":"-1.825255","5":"52.56472","6":"<bbox>"},{"1":"Four Oaks","2":"Four Oaks station UK","3":"Four Oaks station UK","4":"-1.828031","5":"52.57955","6":"<bbox>"},{"1":"Butler's Lane","2":"Butler's Lane station UK","3":"NA","4":"NA","5":"NA","6":"<NULL>"},{"1":"Blake Street","2":"Blake Street station UK","3":"Blake Street station UK","4":"-1.844660","5":"52.60438","6":"<bbox>"},{"1":"Shenstone","2":"Shenstone station UK","3":"Shenstone station UK","4":"-1.845452","5":"52.64073","6":"<bbox>"},{"1":"Lichfield City","2":"Lichfield City station UK","3":"Lichfield City station UK","4":"-1.825125","5":"52.68022","6":"<bbox>"},{"1":"Lichfield Trent Valley","2":"Lichfield Trent Valley station UK","3":"Lichfield Trent Valley station UK","4":"-1.801351","5":"52.68718","6":"<bbox>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -815,16 +823,16 @@ chr (1): station
 <p>Solution</p>
 <p>I used the pin markers (with <code>addMarkers</code>), though <code>addCircleMarkers</code> is as good. The code for drawing the map is always the same; the work here is in setting up the geocoding:</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> stations) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> stations) <span class="sc">%&gt;%</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y)</span></code></pre></div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in validateCoords(lng, lat, funcName): Data contains 2 rows with either
 missing or invalid lat/lon values and will be ignored</code></pre>
 </div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1d5d4e74f9b1e9c41175" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-1d5d4e74f9b1e9c41175">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[52.3063807,52.3468339,52.3609702,52.3962549,52.4082951,null,52.4293084,52.4418625,52.4511815,52.4712194,52.4776459,52.4886501,51.48475005,52.5153876,52.52622865,53.1967494,52.545628,52.5647207,52.5795454,null,52.6043776,52.6407269,52.6802201,52.6871811],[-1.9456089,-1.9679877,-1.9924997,-1.9810763,-1.9651246,null,-1.950100399067727,-1.9355913,-1.9382838,-1.9117618,-1.898694,-1.871281295548654,-1.088456993298687,-1.8527077,-1.835808436566283,-2.8795296,-1.8314247,-1.8252548,-1.8280314,null,-1.8446597,-1.845452230927924,-1.8251247,-1.801350617141852],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.48475005,53.1967494],"lng":[-2.8795296,-1.088456993298687]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a2fbaac0a8070dc65d3f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a2fbaac0a8070dc65d3f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[52.3063807,52.3468339,52.3609702,52.3962549,52.4082951,null,52.4293084,52.4418625,52.4511815,52.4712194,52.4776459,52.4886501,51.48475005,52.5153876,52.52622865,53.1967494,52.545628,52.5647207,52.5795454,null,52.6043776,52.6407269,52.6802201,52.6871811],[-1.9456089,-1.9679877,-1.9924997,-1.9810763,-1.9651246,null,-1.950100399067727,-1.9355913,-1.9382838,-1.9117618,-1.898694,-1.871281295548654,-1.088456993298687,-1.8527077,-1.835808436566283,-2.8795296,-1.8314247,-1.8252548,-1.8280314,null,-1.8446597,-1.845452230927924,-1.8251247,-1.801350617141852],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.48475005,53.1967494],"lng":[-2.8795296,-1.088456993298687]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>You might find that some of the markers are off a straight line through Birmingham. In these cases, the geocoder found a different place with (apparently) the same name, or a name that was close enough to similar. This seems to be different each time you run it, so you can try again.</p>
@@ -838,14 +846,14 @@ missing or invalid lat/lon values and will be ignored</code></pre>
 <p>If you zoom in enough, you’ll see where the railway line goes (a grey line). The points seem to be mainly close to it. But if you zoom in a bit more, some of the pins are right on the railway, and some of them are a bit off, because the geocoder found the centre of the place (or something else named after the place) rather than its railway station. For example, when I did it, Gravelly Hill station was right where it should be, but Aston was not.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>Extra: <code>geocode_OSM</code> uses a free geocoder called Nominatim. This has some options. The defaults are to return only the first “hit”, and to return just the coordinates and the “bounding box”. These can be changed. Let’s see what we can find for Aston:</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">where =</span> <span class="st">&quot;Aston UK&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">where =</span> <span class="st">"Aston UK"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">info =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(where, <span class="at">return.first.only =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">details =</span> <span class="cn">TRUE</span>))) <span class="ot">-&gt;</span> d</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>d         </span></code></pre></div>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>d         </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["where"],"name":[1],"type":["chr"],"align":["left"]},{"label":["info"],"name":[2],"type":["list"],"align":["right"]}],"data":[{"1":"Aston UK","2":"<list [10]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -853,12 +861,12 @@ missing or invalid lat/lon values and will be ignored</code></pre>
 </div>
 <p>There are now 10 things returned. Let’s unnest this and see what we have:</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(info) <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(info)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(info) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["where"],"name":[1],"type":["chr"],"align":["left"]},{"label":["query"],"name":[2],"type":["chr"],"align":["left"]},{"label":["coords"],"name":[3],"type":["list"],"align":["right"]},{"label":["bbox"],"name":[4],"type":["list"],"align":["right"]},{"label":["place_id"],"name":[5],"type":["chr"],"align":["left"]},{"label":["osm_type"],"name":[6],"type":["chr"],"align":["left"]},{"label":["osm_id"],"name":[7],"type":["chr"],"align":["left"]},{"label":["place_rank"],"name":[8],"type":["chr"],"align":["left"]},{"label":["display_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["class"],"name":[10],"type":["chr"],"align":["left"]},{"label":["type"],"name":[11],"type":["chr"],"align":["left"]},{"label":["importance"],"name":[12],"type":["chr"],"align":["left"]},{"label":["icon"],"name":[13],"type":["chr"],"align":["left"]}],"data":[{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"8905138","6":"node","7":"966630237","8":"18","9":"Aston, Birmingham, West Midlands Combined Authority, England, B6 5PL, United Kingdom","10":"place","11":"town","12":"0.51410998224359","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_place_town.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"298308314","6":"relation","7":"947997","8":"20","9":"Aston, Hope, High Peak, Derbyshire, England, United Kingdom","10":"boundary","11":"administrative","12":"0.46050193638341","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_boundary_administrative.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"123608495","6":"way","7":"76128761","8":"30","9":"St. Peter & St. Paul, Aston, Witton Lane, Aston, Birmingham, West Midlands Combined Authority, England, B6 6QA, United Kingdom","10":"amenity","11":"place_of_worship","12":"0.45389213702575","13":"https://nominatim.openstreetmap.org/ui/mapicons/place_of_worship_unknown3.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"298278221","6":"relation","7":"1440416","8":"20","9":"Aston, Cheshire West and Chester, England, United Kingdom","10":"boundary","11":"administrative","12":"0.44596057896493","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_boundary_administrative.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"64147308","6":"node","7":"5920221964","8":"30","9":"Aston, Lovers Walk, Aston, Birmingham, West Midlands Combined Authority, England, B6 7PR, United Kingdom","10":"railway","11":"station","12":"0.44157598227638","13":"https://nominatim.openstreetmap.org/ui/mapicons/transport_train_station2.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"3767374","6":"node","7":"487080921","8":"19","9":"Aston, Flintshire, Cymru / Wales, CH5 1UR, United Kingdom","10":"place","11":"village","12":"0.44129130556068","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_place_village.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"298603241","6":"relation","7":"3594185","8":"20","9":"Aston, East Hertfordshire, Hertfordshire, England, United Kingdom","10":"boundary","11":"administrative","12":"0.430735418475","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_boundary_administrative.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"111407","6":"node","7":"26127809","8":"19","9":"Aston, West Oxfordshire, Oxfordshire, England, OX18 2DL, United Kingdom","10":"place","11":"village","12":"0.42689306175332","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_place_village.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"15390598","6":"node","7":"1709823466","8":"19","9":"Aston, Cheshire East, England, CW5 8DH, United Kingdom","10":"place","11":"village","12":"0.38501","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_place_village.p.20.png"},{"1":"Aston UK","2":"Aston UK","3":"<dbl [2]>","4":"<bbox>","5":"347759746","6":"node","7":"337820108","8":"19","9":"Aston, Shropshire, England, SY4 5JH, United Kingdom","10":"place","11":"village","12":"0.38501","13":"https://nominatim.openstreetmap.org/ui/mapicons/poi_place_village.p.20.png"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -866,13 +874,13 @@ missing or invalid lat/lon values and will be ignored</code></pre>
 </div>
 <p>There are 10 locations it found matching “Aston UK”, and for each of those there is the information you see, a total of 12 columns’ worth in addition to the name of the place we are looking up. Perhaps the most interesting are the columns <code>class</code> and <code>type</code> near the end (keep scrolling right):</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(info) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(info) <span class="sc">%&gt;%</span> </span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(info) <span class="sc">%&gt;%</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(where, class, type)</span></code></pre></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(where, class, type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["where"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["type"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Aston UK","2":"place","3":"town"},{"1":"Aston UK","2":"boundary","3":"administrative"},{"1":"Aston UK","2":"amenity","3":"place_of_worship"},{"1":"Aston UK","2":"boundary","3":"administrative"},{"1":"Aston UK","2":"railway","3":"station"},{"1":"Aston UK","2":"place","3":"village"},{"1":"Aston UK","2":"boundary","3":"administrative"},{"1":"Aston UK","2":"place","3":"village"},{"1":"Aston UK","2":"place","3":"village"},{"1":"Aston UK","2":"place","3":"village"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -881,29 +889,29 @@ missing or invalid lat/lon values and will be ignored</code></pre>
 <p>You can see which one is the railway station.</p>
 <p>This makes me think that with sufficient patience we could do this for all our places, and pick out the one that is the station:</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 24 Columns: 1
 ── Column specification ────────────────────────────────────────────────────────
-Delimiter: &quot;,&quot;
+Delimiter: ","
 chr (1): station
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">longname =</span> <span class="fu">str_c</span>(station, <span class="st">&quot; UK&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>stations <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">longname =</span> <span class="fu">str_c</span>(station, <span class="st">" UK"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ll =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(longname, </span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">return.first.only =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">details =</span> <span class="cn">TRUE</span>))) <span class="ot">-&gt;</span> stations2</span></code></pre></div>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">details =</span> <span class="cn">TRUE</span>))) <span class="ot">-&gt;</span> stations2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>stations2</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>stations2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["longname"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ll"],"name":[3],"type":["list"],"align":["right"]}],"data":[{"1":"Redditch","2":"Redditch UK","3":"<list [9]>"},{"1":"Alvechurch","2":"Alvechurch UK","3":"<list [3]>"},{"1":"Barnt Green","2":"Barnt Green UK","3":"<list [2]>"},{"1":"Longbridge","2":"Longbridge UK","3":"<list [9]>"},{"1":"Northfield","2":"Northfield UK","3":"<list [10]>"},{"1":"King's Norton","2":"King's Norton UK","3":"<list [2]>"},{"1":"Bournville","2":"Bournville UK","3":"<list [8]>"},{"1":"Selly Oak","2":"Selly Oak UK","3":"<list [6]>"},{"1":"Birmingham University","2":"Birmingham University UK","3":"<named list [12]>"},{"1":"Five Ways","2":"Five Ways UK","3":"<list [10]>"},{"1":"Birmingham New Street","2":"Birmingham New Street UK","3":"<list [9]>"},{"1":"Duddeston","2":"Duddeston UK","3":"<list [2]>"},{"1":"Aston","2":"Aston UK","3":"<list [10]>"},{"1":"Gravelly Hill","2":"Gravelly Hill UK","3":"<list [10]>"},{"1":"Erdington","2":"Erdington UK","3":"<list [3]>"},{"1":"Chester Road","2":"Chester Road UK","3":"<list [10]>"},{"1":"Wylde Green","2":"Wylde Green UK","3":"<list [4]>"},{"1":"Sutton Coldfield","2":"Sutton Coldfield UK","3":"<list [10]>"},{"1":"Four Oaks","2":"Four Oaks UK","3":"<list [10]>"},{"1":"Butler's Lane","2":"Butler's Lane UK","3":"<list [3]>"},{"1":"Blake Street","2":"Blake Street UK","3":"<list [10]>"},{"1":"Shenstone","2":"Shenstone UK","3":"<list [10]>"},{"1":"Lichfield City","2":"Lichfield City UK","3":"<named list [12]>"},{"1":"Lichfield Trent Valley","2":"Lichfield Trent Valley UK","3":"<list [3]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -911,16 +919,16 @@ chr (1): station
 </div>
 <p>The number in the <code>ll</code> column tells you how many things the geocoder found that match the input <code>longname</code>. One of each of these is, we hope, a railway station.</p>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>stations2 <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(ll) <span class="sc">%&gt;%</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(ll, <span class="at">names_sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>stations2 <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(ll) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(ll, <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(station, ll_coords, ll_class, ll_type) <span class="sc">%&gt;%</span> </span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ll_class <span class="sc">==</span> <span class="st">&quot;railway&quot;</span>, ll_type <span class="sc">==</span> <span class="st">&quot;station&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ll_class <span class="sc">==</span> <span class="st">"railway"</span>, ll_type <span class="sc">==</span> <span class="st">"station"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(ll_coords) <span class="ot">-&gt;</span> d</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["x"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ll_class"],"name":[4],"type":["chr"],"align":["left"]},{"label":["ll_type"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Redditch","2":"-1.945609","3":"52.30638","4":"railway","5":"station"},{"1":"Alvechurch","2":"-1.967988","3":"52.34683","4":"railway","5":"station"},{"1":"Barnt Green","2":"-1.992500","3":"52.36097","4":"railway","5":"station"},{"1":"Longbridge","2":"-1.980761","3":"52.39701","4":"railway","5":"station"},{"1":"Northfield","2":"-1.965125","3":"52.40830","4":"railway","5":"station"},{"1":"Bournville","2":"-1.926668","3":"52.42739","4":"railway","5":"station"},{"1":"Selly Oak","2":"-1.935591","3":"52.44186","4":"railway","5":"station"},{"1":"Five Ways","2":"-1.913071","3":"52.47109","4":"railway","5":"station"},{"1":"Birmingham New Street","2":"-1.898694","3":"52.47765","4":"railway","5":"station"},{"1":"Duddeston","2":"-1.871281","3":"52.48849","4":"railway","5":"station"},{"1":"Aston","2":"-1.872046","3":"52.50442","4":"railway","5":"station"},{"1":"Gravelly Hill","2":"-1.852708","3":"52.51539","4":"railway","5":"station"},{"1":"Erdington","2":"-1.839225","3":"52.52857","4":"railway","5":"station"},{"1":"Chester Road","2":"-1.832458","3":"52.53579","4":"railway","5":"station"},{"1":"Wylde Green","2":"-1.831425","3":"52.54563","4":"railway","5":"station"},{"1":"Sutton Coldfield","2":"-1.825255","3":"52.56472","4":"railway","5":"station"},{"1":"Four Oaks","2":"-1.828031","3":"52.57955","4":"railway","5":"station"},{"1":"Blake Street","2":"-1.844660","3":"52.60438","4":"railway","5":"station"},{"1":"Shenstone","2":"-1.844333","3":"52.63922","4":"railway","5":"station"},{"1":"Lichfield Trent Valley","2":"-1.800131","3":"52.68696","4":"railway","5":"station"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -929,19 +937,19 @@ chr (1): station
 <p>If you want to see how this works, run it one line at a time.</p>
 <p>We almost got there. We’re missing University<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and Lichfield City stations, but it looks as if we got the rest:</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> d) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> d) <span class="sc">%&gt;%</span> </span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y)</span></code></pre></div>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e6cbb170447abf07abea" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-e6cbb170447abf07abea">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[52.3063807,52.3468339,52.3609702,52.3970107,52.4082951,52.4273889,52.4418625,52.4710941,52.4776459,52.4884888,52.5044169,52.5153876,52.5285663,52.5357946,52.545628,52.5647207,52.5795454,52.6043776,52.6392159,52.6869627],[-1.9456089,-1.9679877,-1.9924997,-1.9807611,-1.9651246,-1.9266683,-1.9355913,-1.9130708,-1.898694,-1.8712807,-1.8720459,-1.8527077,-1.8392253,-1.8324576,-1.8314247,-1.8252548,-1.8280314,-1.8446597,-1.8443329,-1.8001308],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[52.3063807,52.6869627],"lng":[-1.9924997,-1.8001308]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-264985cc0456d7188a91" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-264985cc0456d7188a91">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[52.3063807,52.3468339,52.3609702,52.3970107,52.4082951,52.4273889,52.4418625,52.4710941,52.4776459,52.4884888,52.5044169,52.5153876,52.5285663,52.5357946,52.545628,52.5647207,52.5795454,52.6043776,52.6392159,52.6869627],[-1.9456089,-1.9679877,-1.9924997,-1.9807611,-1.9651246,-1.9266683,-1.9355913,-1.9130708,-1.898694,-1.8712807,-1.8720459,-1.8527077,-1.8392253,-1.8324576,-1.8314247,-1.8252548,-1.8280314,-1.8446597,-1.8443329,-1.8001308],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[52.3063807,52.6869627],"lng":[-1.9924997,-1.8001308]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>If you zoom in, you’ll see that the ones we got are all the actual stations, and not the area from which the station takes its name.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
 <section id="the-brain-of-a-cat-revisited-1" class="level2" data-number="35.6">
-<h2 data-number="35.6"><span class="header-section-number">35.6</span> The brain of a cat, revisited</h2>
+<h2 data-number="35.6" class="anchored" data-anchor-id="the-brain-of-a-cat-revisited-1"><span class="header-section-number">35.6</span> The brain of a cat, revisited</h2>
 <p>Earlier, we looked at an ethics study that had to do with a fictional brain of a fictional cat. I said there was actually a <em>town</em> called Catbrain. It’s in England, near Bristol, and seems to be home to a street of car dealerships.</p>
 <ol type="a">
 <li>Find the latitude and longitude of “Catbrain UK” (though I don’t think there are any others).</li>
@@ -949,22 +957,22 @@ chr (1): station
 <p>Solution</p>
 <p>Make sure you have these two packages loaded:</p>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmaptools)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmaptools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To find the latitude and longitude of Catbrain:</p>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>catbrain <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">place =</span> <span class="st">&quot;Catbrain UK&quot;</span>)</span>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>catbrain <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">place =</span> <span class="st">"Catbrain UK"</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>catbrain <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ll =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(place))) <span class="sc">%&gt;%</span> </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(ll) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(coords) <span class="ot">-&gt;</span> catbrain</span></code></pre></div>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(coords) <span class="ot">-&gt;</span> catbrain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>catbrain</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>catbrain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["place"],"name":[1],"type":["chr"],"align":["left"]},{"label":["query"],"name":[2],"type":["chr"],"align":["left"]},{"label":["x"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bbox"],"name":[5],"type":["list"],"align":["right"]}],"data":[{"1":"Catbrain UK","2":"Catbrain UK","3":"-2.612466","4":"51.52288","5":"<bbox>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -978,13 +986,13 @@ chr (1): station
 <p>Solution</p>
 <p>That goes this way:</p>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> catbrain) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> catbrain) <span class="sc">%&gt;%</span> </span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y) <span class="ot">-&gt;</span> catbrain_map</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>catbrain_map</span></code></pre></div>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>catbrain_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-0d0efd3ab226948d1db3" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-0d0efd3ab226948d1db3">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[51.5228823,-2.6124662,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.5228823,51.5228823],"lng":[-2.6124662,-2.6124662]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8bf3767c24f6d2fef27b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8bf3767c24f6d2fef27b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[51.5228823,-2.6124662,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.5228823,51.5228823],"lng":[-2.6124662,-2.6124662]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>There are car dealerships are along Lysander Road. Zoom in to see them. Or zoom out to see where this is. You can keep zooming out until you know where you are, using the plus and minus buttons, or your mouse wheel.</p>
@@ -997,30 +1005,30 @@ chr (1): station
 <p>Solution</p>
 <p>I chose the cities below, mostly somewhere near Catbrain. You could fire up a Google map, zoom it out until it contains something you know, and pick some places you’ve heard of. (I happen to know British geography pretty well, so I just picked some mostly nearby places out of my head. I didn’t really want to pick London, but I figured this was the one <em>you</em> might know.)</p>
 <div class="cell" data-hash="maps_cache/html/catbrain-5_b41c82d1fd1b79d35ba60211c25666d6">
-<div class="sourceCode" id="cb47"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>catbrain2 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>catbrain2 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>where,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Catbrain UK&quot;</span>,</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bristol UK&quot;</span>,</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Taunton UK&quot;</span>,</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Newport UK&quot;</span>,</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Gloucester UK&quot;</span>,</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Cardiff UK&quot;</span>,</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Birmingham UK&quot;</span>,</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;London UK&quot;</span>,</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Caldicot UK&quot;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Catbrain UK"</span>,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bristol UK"</span>,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Taunton UK"</span>,</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Newport UK"</span>,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Gloucester UK"</span>,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cardiff UK"</span>,</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Birmingham UK"</span>,</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"London UK"</span>,</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Caldicot UK"</span></span>
 <span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>catbrain2 <span class="sc">%&gt;%</span></span>
 <span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ll =</span> <span class="fu">list</span>(<span class="fu">geocode_OSM</span>(where))) <span class="sc">%&gt;%</span> </span>
 <span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(ll) <span class="sc">%&gt;%</span> </span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(coords) <span class="ot">-&gt;</span> catbrain2</span></code></pre></div>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(coords) <span class="ot">-&gt;</span> catbrain2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>catbrain2</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>catbrain2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
+  <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["where"],"name":[1],"type":["chr"],"align":["left"]},{"label":["query"],"name":[2],"type":["chr"],"align":["left"]},{"label":["x"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bbox"],"name":[5],"type":["list"],"align":["right"]}],"data":[{"1":"Catbrain UK","2":"Catbrain UK","3":"-2.612466","4":"51.52288","5":"<bbox>"},{"1":"Bristol UK","2":"Bristol UK","3":"-2.597298","4":"51.45380","5":"<bbox>"},{"1":"Taunton UK","2":"Taunton UK","3":"-3.102909","4":"51.01479","5":"<bbox>"},{"1":"Newport UK","2":"Newport UK","3":"-2.997497","4":"51.58823","5":"<bbox>"},{"1":"Gloucester UK","2":"Gloucester UK","3":"-2.245819","4":"51.86537","5":"<bbox>"},{"1":"Cardiff UK","2":"Cardiff UK","3":"-3.179193","4":"51.48165","5":"<bbox>"},{"1":"Birmingham UK","2":"Birmingham UK","3":"-1.902691","4":"52.47970","5":"<bbox>"},{"1":"London UK","2":"London UK","3":"-0.127650","4":"51.50734","5":"<bbox>"},{"1":"Caldicot UK","2":"Caldicot UK","3":"-2.751763","4":"51.59125","5":"<bbox>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
@@ -1034,27 +1042,23 @@ chr (1): station
 <p>Solution</p>
 <p>The map-drawing is almost the same, just changing the dataframe:</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> catbrain2) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data =</span> catbrain2) <span class="sc">%&gt;%</span> </span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y)</span></code></pre></div>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>x, <span class="at">lat =</span> <span class="sc">~</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d4e6c409bf6e810fb7f8" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-d4e6c409bf6e810fb7f8">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[51.5228823,51.4538022,51.0147895,51.5882332,51.8653705,51.4816546,52.4796992,51.5073359,51.5912466],[-2.6124662,-2.5972985,-3.1029086,-2.9974967,-2.2458192,-3.1791934,-1.9026911,-0.12765,-2.7517629],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.0147895,52.4796992],"lng":[-3.1791934,-0.12765]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-390d4d85ca5969b762a5" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-390d4d85ca5969b762a5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[51.5228823,51.4538022,51.0147895,51.5882332,51.8653705,51.4816546,52.4796992,51.5073359,51.5912466],[-2.6124662,-2.5972985,-3.1029086,-2.9974967,-2.2458192,-3.1791934,-1.9026911,-0.12765,-2.7517629],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.0147895,52.4796992],"lng":[-3.1791934,-0.12765]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Now, if you have any sense of the geography of the UK, you know where you are. The big river (the Severn) is the border between England and Wales, so the places above and to the left of it are in Wales, including Caldicot (see question about Roman pottery).</p>
 <p>You can zoom this map <em>in</em> (once you have figured out which of the circles is Catbrain) and find Lysander Road again, and also the M5 (see below).</p>
 <p>More irrelevant extra: the M5 is one of the English “motorways” (like 400-series highways or US Interstates). The M5 goes from Birmingham to Exeter. You can tell that this is England because of the huge number of traffic circles, known there as “roundabouts”. One of the first things they teach you in British driving schools is how to handle roundabouts: which lane to approach them in, which (stick-shift) gear to be in, and when you’re supposed to signal where you’re going. I hope I still remember all that for when I next drive in England!</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Problems and Solutions in Applied Statistics (2nd ed)</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Problems and Solutions in Applied Statistics (2nd ed)</span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">34</span>  <span class="chapter-title">K-means cluster analysis</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Introduction</span> <span class="hidden" data-render-id="quarto-int-sidebar:/getting_used.html"><span class="chapter-number">1</span>  <span class="chapter-title">Getting used to R and R Studio</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/reading-in.html"><span class="chapter-number">2</span>  <span class="chapter-title">Reading in data</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/data-summaries.html"><span class="chapter-number">3</span>  <span class="chapter-title">Data exploration</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/one-sample-inference.html"><span class="chapter-number">4</span>  <span class="chapter-title">One-sample inference</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/two-sample-inference.html"><span class="chapter-number">5</span>  <span class="chapter-title">Two-sample inference</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/power.html"><span class="chapter-number">6</span>  <span class="chapter-title">Power and sample size</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/sign.html"><span class="chapter-number">7</span>  <span class="chapter-title">The sign test</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/mood-median.html"><span class="chapter-number">8</span>  <span class="chapter-title">Mood median test</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/matched-pairs-sign.html"><span class="chapter-number">9</span>  <span class="chapter-title">Matched pairs t and sign test</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/normal-quantile.html"><span class="chapter-number">10</span>  <span class="chapter-title">Normal quantile plots</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/analysis-of-variance.html"><span class="chapter-number">11</span>  <span class="chapter-title">Analysis of variance</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/reports.html"><span class="chapter-number">12</span>  <span class="chapter-title">Writing reports</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/coding.html"><span class="chapter-number">13</span>  <span class="chapter-title">Learning to code</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/dandruff.html"><span class="chapter-number">14</span>  <span class="chapter-title">Treating dandruff</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/tidying-data.html"><span class="chapter-number">15</span>  <span class="chapter-title">Tidying data</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/simple-regression.html"><span class="chapter-number">16</span>  <span class="chapter-title">Simple regression</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/multiple-regression.html"><span class="chapter-number">17</span>  <span class="chapter-title">Multiple regression</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/regression-categorical.html"><span class="chapter-number">18</span>  <span class="chapter-title">Regression with categorical variables</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/dates-and-times.html"><span class="chapter-number">19</span>  <span class="chapter-title">Dates and times</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/functions.html"><span class="chapter-number">20</span>  <span class="chapter-title">Functions</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/vector-matrix.html"><span class="chapter-number">21</span>  <span class="chapter-title">Vector and matrix algebra</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/bootstrap.html"><span class="chapter-number">22</span>  <span class="chapter-title">The Bootstrap</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/stan.html"><span class="chapter-number">23</span>  <span class="chapter-title">Bayesian Statistics with Stan</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/logistic-regression.html"><span class="chapter-number">24</span>  <span class="chapter-title">Logistic regression</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/ordinal-response.html"><span class="chapter-number">25</span>  <span class="chapter-title">Logistic regression with ordinal response</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/nominal-response.html"><span class="chapter-number">26</span>  <span class="chapter-title">Logistic regression with nominal response</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/survival-analysis.html"><span class="chapter-number">27</span>  <span class="chapter-title">Survival analysis</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/anova-revisited.html"><span class="chapter-number">28</span>  <span class="chapter-title">Analysis of variance revisited</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/ancova.html"><span class="chapter-number">29</span>  <span class="chapter-title">Analysis of covariance</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/manova.html"><span class="chapter-number">30</span>  <span class="chapter-title">Multivariate analysis of variance</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/repeated-measures.html"><span class="chapter-number">31</span>  <span class="chapter-title">Repeated measures</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/discriminant-analysis.html"><span class="chapter-number">32</span>  <span class="chapter-title">Discriminant analysis</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/cluster.html"><span class="chapter-number">33</span>  <span class="chapter-title">Hierarchical cluster analysis</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/kmeans-cluster.html"><span class="chapter-number">34</span>  <span class="chapter-title">K-means cluster analysis</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/maps.html"><span class="chapter-number">35</span>  <span class="chapter-title">Drawing maps with Leaflet</span></span> <span class="hidden" data-render-id="quarto-breadcrumbs-43653962e689e899d3ad07ded0f09be3"><span class="chapter-number">35</span>  <span class="chapter-title">Drawing maps with Leaflet</span></span></p>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">Problems and Solutions in Applied Statistics (2nd ed) - <span class="chapter-number">35</span>  <span class="chapter-title">Drawing maps with Leaflet</span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">Problems and Solutions in Applied Statistics (2nd ed) - <span class="chapter-number">35</span>  <span class="chapter-title">Drawing maps with Leaflet</span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">Problems and Solutions in Applied Statistics (2nd ed) - <span class="chapter-number">35</span>  <span class="chapter-title">Drawing maps with Leaflet</span></span> <span class="hidden" data-render-id="quarto-metasitename">Problems and Solutions in Applied Statistics (2nd ed)</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
+
+
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr />
+<hr>
 <ol>
 <li id="fn1"><p>I knew this existed, but I couldn’t remember what it was called, which made it hard to search for. My first port of call was <code>na_if</code>, which converts values to <code>NA</code>, the opposite of what I wanted. But from its See Also I got <code>na_replace</code>, and from the See Also of that, I found out what <code>coalesce</code> does.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>If you’re a soccer fan, this Aston is what Aston Villa is named after. See if you can find the team’s stadium Villa Park on your map, which is actually closer to Witton station on another line.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -1063,7 +1067,7 @@ chr (1): station
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1298,8 +1302,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a  href="/kmeans-cluster.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>34</span>  <span class='chapter-title'>K-means cluster analysis</span></span>
+      <a href="./kmeans-cluster.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1307,6 +1311,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav>
 </div> <!-- /content -->
 
-</body>
 
-</html>
+
+</body></html>
