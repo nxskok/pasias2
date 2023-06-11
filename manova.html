@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 30&nbsp; Multivariate analysis of variance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./repeated-measures.html" rel="next">
+<link href="./ancova.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manova.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manova.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#fabricated-data" id="toc-fabricated-data" class="nav-link active" data-scroll-target="#fabricated-data"><span class="header-section-number">30.1</span> Fabricated data</a></li>
+  <li><a href="#do-characteristics-of-urine-depend-on-obesity" id="toc-do-characteristics-of-urine-depend-on-obesity" class="nav-link" data-scroll-target="#do-characteristics-of-urine-depend-on-obesity"><span class="header-section-number">30.2</span> Do characteristics of urine depend on obesity?</a></li>
+  <li><a href="#how-do-height-and-weight-depend-on-sport-played-by-elite-athletes" id="toc-how-do-height-and-weight-depend-on-sport-played-by-elite-athletes" class="nav-link" data-scroll-target="#how-do-height-and-weight-depend-on-sport-played-by-elite-athletes"><span class="header-section-number">30.3</span> How do height and weight depend on sport played by elite athletes?</a></li>
+  <li><a href="#fabricated-data-1" id="toc-fabricated-data-1" class="nav-link" data-scroll-target="#fabricated-data-1"><span class="header-section-number">30.4</span> Fabricated data</a></li>
+  <li><a href="#do-characteristics-of-urine-depend-on-obesity-1" id="toc-do-characteristics-of-urine-depend-on-obesity-1" class="nav-link" data-scroll-target="#do-characteristics-of-urine-depend-on-obesity-1"><span class="header-section-number">30.5</span> Do characteristics of urine depend on obesity?</a></li>
+  <li><a href="#how-do-height-and-weight-depend-on-sport-played-by-elite-athletes-1" id="toc-how-do-height-and-weight-depend-on-sport-played-by-elite-athletes-1" class="nav-link" data-scroll-target="#how-do-height-and-weight-depend-on-sport-played-by-elite-athletes-1"><span class="header-section-number">30.6</span> How do height and weight depend on sport played by elite athletes?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Packages for this chapter:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="fabricated-data" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="fabricated-data"><span class="header-section-number">30.1</span> Fabricated data</h2>
+<p>The data in <a href="http://ritsokiguess.site/datafiles/simple-manova.txt">link</a> (probably made up) are measurements of two variables <code>y1</code> and <code>y2</code> on three groups, labelled <code>a</code>, <code>b</code> and <code>c</code>. We want to see whether <code>y1</code> or <code>y2</code> or some combination of them differ among the groups.</p>
+<ol type="a">
+<li><p>Read in the data and check that you have 12 observations on 2 numeric variables from 3 different groups.</p></li>
+<li><p>Run a one-way ANOVA predicting <code>y1</code> from <code>group</code>. Are there any significant differences in <code>y1</code> among the groups? If necessary, run Tukey. What do you conclude?</p></li>
+<li><p>Repeat all the previous part for <code>y2</code>.</p></li>
+<li><p>Make a plot of <code>y1</code> against <code>y2</code>, with the points distinguished by which group they are from.</p></li>
+<li><p>How is it that group <code>b</code> is not distinguishable on either <code>y1</code> or <code>y2</code> individually (from the ANOVAs), but <em>is</em> distinguishable on your graph? Explain briefly.</p></li>
+<li><p>Run a one-way multivariate analysis of variance, obtaining a P-value. Note the very small P-value.</p></li>
+</ol>
+</section>
+<section id="do-characteristics-of-urine-depend-on-obesity" class="level2" data-number="30.2">
+<h2 data-number="30.2" class="anchored" data-anchor-id="do-characteristics-of-urine-depend-on-obesity"><span class="header-section-number">30.2</span> Do characteristics of urine depend on obesity?</h2>
+<p>A study was made of the characteristics of urine of young men. The men were classified into four groups based on their degree of obesity. (The groups are labelled <code>a, b, c, d</code>.) Four variables were measured, <code>x</code> (which you can ignore), pigment creatinine, chloride and chlorine. The data are in <a href="http://ritsokiguess.site/datafiles/urine.csv">link</a> as a <code>.csv</code> file. There are 45 men altogether.</p>
+<ol type="a">
+<li><p>Read in the data and check that you have the right number of observations and the right variables.</p></li>
+<li><p>Make boxplots of each of the three variables of interest against obesity group.</p></li>
+<li><p>How, if at all, do the groups differ on the variables of interest?</p></li>
+<li><p>Run a multivariate analysis of variance, using the three variables of interest as response variables, and the obesity group as explanatory. (This is a so-called one-way MANOVA.)</p></li>
+<li><p>What do you conclude? Is this in line with what your boxplots said? Explain briefly.</p></li>
+</ol>
+</section>
+<section id="how-do-height-and-weight-depend-on-sport-played-by-elite-athletes" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="how-do-height-and-weight-depend-on-sport-played-by-elite-athletes"><span class="header-section-number">30.3</span> How do height and weight depend on sport played by elite athletes?</h2>
+<p>This question uses the data on Australian elite athletes, which can be found at <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a>. 202 elite athletes had various physical and physiological measurements taken, and for each athlete, their gender (in the column <code>Sex</code>) and the sport they play (<code>Sport</code>) was also noted. The data values are separated by <em>tabs</em>, meaning that <code>read_tsv</code> will read them in.</p>
+<ol type="a">
+<li><p>Read in the data and verify that you have 202 rows and 13 columns.</p></li>
+<li><p>We are going to see whether the height-weight combination of an athlete depends significantly on which sport they play and which gender they are. Explain (very) briefly why a multivariate analysis of variance will be necessary to do this.</p></li>
+<li><p>Create a response variable for a MANOVA. (You don’t need to show what you got, since it is rather big.) The columns you want are called <code>Ht</code> and <code>Wt</code>.</p></li>
+<li><p>Run a multivariate analysis of variance to see whether the height-weight combination depends significantly on gender, sport or the combination of both. Display the results. Use the small-m <code>manova</code> way to do this one.</p></li>
+<li><p>Briefly justify removing the interaction term from your previous model, and fit a model without it. You can use either <code>manova</code> or <code>Manova</code> for this; they should both work. (You only need to use one of them.) Display your results.</p></li>
+<li><p>See if you can make a graph that shows what’s going on here. Bear in mind that you have two quantitative variables and <em>two</em> categorical ones, so you will need to find a way to display everything. Hint: what would you do with two quantitative variables and <em>one</em> categorical one? Can you find a way to generalize that idea by displaying the other categorical variable differently? I think we have seen a couple of ideas that will work, somewhere in the lecture notes (but in a different context). Or you can search for ideas, of course. For full marks, obtain a plot which does not give you any warnings. (The grader will know which of the possible plots give warnings, and will deduct extra marks if you assert that a plot gives no warnings when in fact it does. That is to say, if you get any warnings, <em>you need to include those in what you hand in</em>).</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="fabricated-data-1" class="level2" data-number="30.4">
+<h2 data-number="30.4" class="anchored" data-anchor-id="fabricated-data-1"><span class="header-section-number">30.4</span> Fabricated data</h2>
+<p>The data in <a href="http://ritsokiguess.site/datafiles/simple-manova.txt">link</a> (probably made up) are measurements of two variables <code>y1</code> and <code>y2</code> on three groups, labelled <code>a</code>, <code>b</code> and <code>c</code>. We want to see whether <code>y1</code> or <code>y2</code> or some combination of them differ among the groups.</p>
+<ol type="a">
+<li>Read in the data and check that you have 12 observations on 2 numeric variables from 3 different groups.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/simple-manova.txt"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 12 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+chr (1): group
+dbl (2): y1, y2
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>simple</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["y1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"a","2":"2","3":"3"},{"1":"a","2":"3","3":"4"},{"1":"a","2":"5","3":"4"},{"1":"a","2":"2","3":"5"},{"1":"b","2":"4","3":"8"},{"1":"b","2":"5","3":"6"},{"1":"b","2":"5","3":"7"},{"1":"c","2":"7","3":"6"},{"1":"c","2":"8","3":"7"},{"1":"c","2":"10","3":"8"},{"1":"c","2":"9","3":"5"},{"1":"c","2":"7","3":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As promised: 12 observations, 2 numeric variables <code>y1</code> and <code>y2</code>, and one categorical variable (as text) containing three groups <code>a,b,c</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Run a one-way ANOVA predicting <code>y1</code> from <code>group</code>. Are there any significant differences in <code>y1</code> among the groups? If necessary, run Tukey. What do you conclude?</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simple<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">aov</span>(y1 <span class="sc">~</span> group, <span class="at">data =</span> simple)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+group        2  63.45   31.72    21.2 0.000393 ***
+Residuals    9  13.47    1.50                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(simple<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = y1 ~ group, data = simple)
+
+$group
+        diff        lwr      upr     p adj
+b-a 1.666667 -0.9417891 4.275122 0.2289181
+c-a 5.200000  2.9089670 7.491033 0.0003548
+c-b 3.533333  1.0391725 6.027494 0.0083999</code></pre>
+</div>
+</div>
+<p>The <span class="math inline">\(F\)</span>-test said that there were differences among the groups, so I ran Tukey and found that group <code>c</code> is significantly bigger on <code>y1</code> than the other two groups.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Repeat all the previous part for <code>y2</code>.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>simple<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">aov</span>(y2 <span class="sc">~</span> group, <span class="at">data =</span> simple)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+group        2  19.05   9.525   9.318 0.00642 **
+Residuals    9   9.20   1.022                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(simple<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = y2 ~ group, data = simple)
+
+$group
+    diff        lwr      upr     p adj
+b-a  3.0  0.8440070 5.155993 0.0093251
+c-a  2.4  0.5063697 4.293630 0.0157279
+c-b -0.6 -2.6615236 1.461524 0.7050026</code></pre>
+</div>
+</div>
+<p>Same idea: there is a difference, and Tukey reveals that this time group <code>a</code> is significantly <em>smaller</em> than the other groups on <code>y2</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Make a plot of <code>y1</code> against <code>y2</code>, with the points distinguished by which group they are from.</li>
+</ol>
+<p>Solution</p>
+<p><code>y1</code> and <code>y2</code> can be either way around, since they are both response variables (!):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simple, <span class="fu">aes</span>(<span class="at">x =</span> y1, <span class="at">y =</span> y2, <span class="at">colour =</span> group)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/manova1-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>How is it that group <code>b</code> is not distinguishable on either <code>y1</code> or <code>y2</code> individually (from the ANOVAs), but <em>is</em> distinguishable on your graph? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>Group <code>b</code> has the same kind of <code>y1</code> values as group <code>a</code> and the same kind of <code>y2</code> values as group <code>c</code>. This means looking at either variable singly is not enough to distinguish group <code>b</code>. But group <code>b</code> stands out on the graph as being “top left” of the picture. That means that <code>y1</code> has to be low <em>and</em> <code>y2</code> has to be high, both together, to pick out group <code>b</code>. That seems like a lot of work, but the important point that I want you to raise is that the points in group <code>b</code> are distinguished by a particular <em>combination</em> of values of <code>y1</code> and <code>y2</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Run a one-way multivariate analysis of variance, obtaining a P-value. Note the very small P-value.</li>
+</ol>
+<p>Solution</p>
+<p>This is just like the seed weight and yield example in class (deliberately so): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(simple, <span class="fu">cbind</span>(y1, y2))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>simple<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> group, <span class="at">data =</span> simple)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Df Pillai approx F num Df den Df    Pr(&gt;F)    
+group      2 1.3534   9.4196      4     18 0.0002735 ***
+Residuals  9                                            
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>:::</p>
+<p>The P-value here, 0.00027, is smaller than either of the P-values for the one-variable ANOVAs. This expresses the idea that the group difference is essentially multivariate (it depends on the <em>combination</em> of <code>y1</code> and <code>y2</code> values). I only wanted you to note that it is smaller than either of the other ANOVAs; you don’t need to say anything about why.</p>
+<p>For completeness, we should do Box’s M test as well:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">BoxM</span>(response, simple<span class="sc">$</span>group))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Box's M Test 
+
+Chi-Squared Value = 3.517357 , df = 6  and p-value: 0.742 </code></pre>
+</div>
+</div>
+<p>No problems here at all.</p>
+<p>We were in the fortunate position of being able to draw a picture, because we had only two response variables, and we could plot them against each other with the groups labelled. (If we had three response variables, like the peanuts example, we wouldn’t be able to do this, barring some kind of 3D-plotting procedure.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="do-characteristics-of-urine-depend-on-obesity-1" class="level2" data-number="30.5">
+<h2 data-number="30.5" class="anchored" data-anchor-id="do-characteristics-of-urine-depend-on-obesity-1"><span class="header-section-number">30.5</span> Do characteristics of urine depend on obesity?</h2>
+<p>A study was made of the characteristics of urine of young men. The men were classified into four groups based on their degree of obesity. (The groups are labelled <code>a, b, c, d</code>.) Four variables were measured, <code>x</code> (which you can ignore), pigment creatinine, chloride and chlorine. The data are in <a href="http://ritsokiguess.site/datafiles/urine.csv">link</a> as a <code>.csv</code> file. There are 45 men altogether.</p>
+<ol type="a">
+<li>Read in the data and check that you have the right number of observations and the right variables.</li>
+</ol>
+<p>Solution</p>
+<p><code>read_csv</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/urine.csv"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>urine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 45 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): obesity
+dbl (4): x, creatinine, chloride, chlorine
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>urine</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["obesity"],"name":[1],"type":["chr"],"align":["left"]},{"label":["x"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["creatinine"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["chloride"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["chlorine"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"a","2":"24","3":"17.6","4":"5.15","5":"7.5"},{"1":"a","2":"32","3":"13.4","4":"5.75","5":"7.1"},{"1":"a","2":"17","3":"20.3","4":"4.35","5":"2.3"},{"1":"a","2":"30","3":"22.3","4":"7.55","5":"4.0"},{"1":"a","2":"30","3":"20.5","4":"8.50","5":"2.0"},{"1":"a","2":"27","3":"18.5","4":"10.25","5":"2.0"},{"1":"a","2":"25","3":"12.1","4":"5.95","5":"16.8"},{"1":"a","2":"30","3":"12.0","4":"6.30","5":"14.5"},{"1":"a","2":"28","3":"10.1","4":"5.45","5":"0.9"},{"1":"a","2":"24","3":"14.7","4":"3.75","5":"2.0"},{"1":"a","2":"26","3":"14.8","4":"5.10","5":"0.4"},{"1":"a","2":"27","3":"14.4","4":"4.05","5":"3.8"},{"1":"b","2":"31","3":"18.1","4":"9.00","5":"14.5"},{"1":"b","2":"23","3":"19.7","4":"5.30","5":"12.5"},{"1":"b","2":"32","3":"16.9","4":"9.85","5":"8.0"},{"1":"b","2":"20","3":"23.7","4":"3.60","5":"4.9"},{"1":"b","2":"18","3":"19.2","4":"4.05","5":"0.2"},{"1":"b","2":"23","3":"18.0","4":"4.40","5":"3.6"},{"1":"b","2":"31","3":"14.8","4":"7.15","5":"12.0"},{"1":"b","2":"28","3":"15.6","4":"7.25","5":"5.2"},{"1":"b","2":"21","3":"16.2","4":"5.30","5":"10.2"},{"1":"b","2":"20","3":"14.1","4":"3.10","5":"8.5"},{"1":"b","2":"15","3":"17.5","4":"2.40","5":"9.6"},{"1":"b","2":"26","3":"14.1","4":"4.25","5":"6.9"},{"1":"b","2":"24","3":"19.1","4":"5.80","5":"4.7"},{"1":"b","2":"16","3":"22.5","4":"1.55","5":"3.5"},{"1":"c","2":"18","3":"17.0","4":"4.55","5":"1.9"},{"1":"c","2":"10","3":"12.5","4":"2.65","5":"0.7"},{"1":"c","2":"33","3":"21.5","4":"6.50","5":"8.3"},{"1":"c","2":"25","3":"22.2","4":"4.85","5":"9.3"},{"1":"c","2":"35","3":"13.0","4":"8.75","5":"13.0"},{"1":"c","2":"33","3":"13.0","4":"5.20","5":"18.3"},{"1":"c","2":"31","3":"10.9","4":"4.75","5":"10.5"},{"1":"c","2":"34","3":"12.0","4":"5.85","5":"14.5"},{"1":"c","2":"16","3":"22.8","4":"2.85","5":"3.3"},{"1":"c","2":"31","3":"16.5","4":"6.55","5":"6.3"},{"1":"c","2":"28","3":"18.4","4":"6.60","5":"4.9"},{"1":"d","2":"32","3":"12.5","4":"2.90","5":"22.5"},{"1":"d","2":"25","3":"8.7","4":"3.00","5":"19.5"},{"1":"d","2":"28","3":"9.4","4":"3.40","5":"1.3"},{"1":"d","2":"27","3":"15.0","4":"5.40","5":"20.0"},{"1":"d","2":"23","3":"12.9","4":"4.45","5":"1.0"},{"1":"d","2":"25","3":"12.1","4":"4.30","5":"5.0"},{"1":"d","2":"26","3":"13.2","4":"5.00","5":"3.0"},{"1":"d","2":"34","3":"11.5","4":"3.40","5":"5.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>The variables are as promised, and we do indeed have 45 rows.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Make boxplots of each of the three variables of interest against obesity group.</li>
+</ol>
+<p>Solution</p>
+<p>Just churn through it: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(urine, <span class="fu">aes</span>(<span class="at">x =</span> obesity, <span class="at">y =</span> creatinine)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/peppercorn-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(urine, <span class="fu">aes</span>(<span class="at">x =</span> obesity, <span class="at">y =</span> chlorine)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/peppercorn-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(urine, <span class="fu">aes</span>(<span class="at">x =</span> obesity, <span class="at">y =</span> chloride)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/peppercorn-3.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>This also works with facets, though it is different from the other ones we’ve done, in that we have to collect together the <span class="math inline">\(y\)</span>-variables first rather than the <span class="math inline">\(x\)</span>s:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>urine <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(creatinine<span class="sc">:</span>chlorine, <span class="at">names_to=</span><span class="st">"yname"</span>, <span class="at">values_to=</span><span class="st">"y"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> obesity, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>yname, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/urine-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I decided to throw a couple of things in here: first, the <code>scales="free"</code> thing since the <span class="math inline">\(y\)</span>-variables (this time) are on different scales, and second, the <code>ncol=2</code> to arrange the facets in (3 cells of) a <span class="math inline">\(2\times 2\)</span> grid, rather than having them come out tall and skinny.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> It’s unusual to have faceted boxplots, but this is one of those cases where it makes sense. (The key is different <span class="math inline">\(y\)</span>’s but the same <span class="math inline">\(x\)</span>, I think.)</p>
+<p>The conclusions about the boxplots are, of course, the same. I think it makes it easier to have the three boxplots side by side, but it’s up to you whether you think that gain is worth the extra coding.</p>
+<p>Extra: let’s take another look at that longer data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>urine <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(creatinine<span class="sc">:</span>chlorine, <span class="at">names_to=</span><span class="st">"yname"</span>, <span class="at">values_to=</span><span class="st">"y"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["obesity"],"name":[1],"type":["chr"],"align":["left"]},{"label":["x"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["yname"],"name":[3],"type":["chr"],"align":["left"]},{"label":["y"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"a","2":"24","3":"creatinine","4":"17.60"},{"1":"a","2":"24","3":"chloride","4":"5.15"},{"1":"a","2":"24","3":"chlorine","4":"7.50"},{"1":"a","2":"32","3":"creatinine","4":"13.40"},{"1":"a","2":"32","3":"chloride","4":"5.75"},{"1":"a","2":"32","3":"chlorine","4":"7.10"},{"1":"a","2":"17","3":"creatinine","4":"20.30"},{"1":"a","2":"17","3":"chloride","4":"4.35"},{"1":"a","2":"17","3":"chlorine","4":"2.30"},{"1":"a","2":"30","3":"creatinine","4":"22.30"},{"1":"a","2":"30","3":"chloride","4":"7.55"},{"1":"a","2":"30","3":"chlorine","4":"4.00"},{"1":"a","2":"30","3":"creatinine","4":"20.50"},{"1":"a","2":"30","3":"chloride","4":"8.50"},{"1":"a","2":"30","3":"chlorine","4":"2.00"},{"1":"a","2":"27","3":"creatinine","4":"18.50"},{"1":"a","2":"27","3":"chloride","4":"10.25"},{"1":"a","2":"27","3":"chlorine","4":"2.00"},{"1":"a","2":"25","3":"creatinine","4":"12.10"},{"1":"a","2":"25","3":"chloride","4":"5.95"},{"1":"a","2":"25","3":"chlorine","4":"16.80"},{"1":"a","2":"30","3":"creatinine","4":"12.00"},{"1":"a","2":"30","3":"chloride","4":"6.30"},{"1":"a","2":"30","3":"chlorine","4":"14.50"},{"1":"a","2":"28","3":"creatinine","4":"10.10"},{"1":"a","2":"28","3":"chloride","4":"5.45"},{"1":"a","2":"28","3":"chlorine","4":"0.90"},{"1":"a","2":"24","3":"creatinine","4":"14.70"},{"1":"a","2":"24","3":"chloride","4":"3.75"},{"1":"a","2":"24","3":"chlorine","4":"2.00"},{"1":"a","2":"26","3":"creatinine","4":"14.80"},{"1":"a","2":"26","3":"chloride","4":"5.10"},{"1":"a","2":"26","3":"chlorine","4":"0.40"},{"1":"a","2":"27","3":"creatinine","4":"14.40"},{"1":"a","2":"27","3":"chloride","4":"4.05"},{"1":"a","2":"27","3":"chlorine","4":"3.80"},{"1":"b","2":"31","3":"creatinine","4":"18.10"},{"1":"b","2":"31","3":"chloride","4":"9.00"},{"1":"b","2":"31","3":"chlorine","4":"14.50"},{"1":"b","2":"23","3":"creatinine","4":"19.70"},{"1":"b","2":"23","3":"chloride","4":"5.30"},{"1":"b","2":"23","3":"chlorine","4":"12.50"},{"1":"b","2":"32","3":"creatinine","4":"16.90"},{"1":"b","2":"32","3":"chloride","4":"9.85"},{"1":"b","2":"32","3":"chlorine","4":"8.00"},{"1":"b","2":"20","3":"creatinine","4":"23.70"},{"1":"b","2":"20","3":"chloride","4":"3.60"},{"1":"b","2":"20","3":"chlorine","4":"4.90"},{"1":"b","2":"18","3":"creatinine","4":"19.20"},{"1":"b","2":"18","3":"chloride","4":"4.05"},{"1":"b","2":"18","3":"chlorine","4":"0.20"},{"1":"b","2":"23","3":"creatinine","4":"18.00"},{"1":"b","2":"23","3":"chloride","4":"4.40"},{"1":"b","2":"23","3":"chlorine","4":"3.60"},{"1":"b","2":"31","3":"creatinine","4":"14.80"},{"1":"b","2":"31","3":"chloride","4":"7.15"},{"1":"b","2":"31","3":"chlorine","4":"12.00"},{"1":"b","2":"28","3":"creatinine","4":"15.60"},{"1":"b","2":"28","3":"chloride","4":"7.25"},{"1":"b","2":"28","3":"chlorine","4":"5.20"},{"1":"b","2":"21","3":"creatinine","4":"16.20"},{"1":"b","2":"21","3":"chloride","4":"5.30"},{"1":"b","2":"21","3":"chlorine","4":"10.20"},{"1":"b","2":"20","3":"creatinine","4":"14.10"},{"1":"b","2":"20","3":"chloride","4":"3.10"},{"1":"b","2":"20","3":"chlorine","4":"8.50"},{"1":"b","2":"15","3":"creatinine","4":"17.50"},{"1":"b","2":"15","3":"chloride","4":"2.40"},{"1":"b","2":"15","3":"chlorine","4":"9.60"},{"1":"b","2":"26","3":"creatinine","4":"14.10"},{"1":"b","2":"26","3":"chloride","4":"4.25"},{"1":"b","2":"26","3":"chlorine","4":"6.90"},{"1":"b","2":"24","3":"creatinine","4":"19.10"},{"1":"b","2":"24","3":"chloride","4":"5.80"},{"1":"b","2":"24","3":"chlorine","4":"4.70"},{"1":"b","2":"16","3":"creatinine","4":"22.50"},{"1":"b","2":"16","3":"chloride","4":"1.55"},{"1":"b","2":"16","3":"chlorine","4":"3.50"},{"1":"c","2":"18","3":"creatinine","4":"17.00"},{"1":"c","2":"18","3":"chloride","4":"4.55"},{"1":"c","2":"18","3":"chlorine","4":"1.90"},{"1":"c","2":"10","3":"creatinine","4":"12.50"},{"1":"c","2":"10","3":"chloride","4":"2.65"},{"1":"c","2":"10","3":"chlorine","4":"0.70"},{"1":"c","2":"33","3":"creatinine","4":"21.50"},{"1":"c","2":"33","3":"chloride","4":"6.50"},{"1":"c","2":"33","3":"chlorine","4":"8.30"},{"1":"c","2":"25","3":"creatinine","4":"22.20"},{"1":"c","2":"25","3":"chloride","4":"4.85"},{"1":"c","2":"25","3":"chlorine","4":"9.30"},{"1":"c","2":"35","3":"creatinine","4":"13.00"},{"1":"c","2":"35","3":"chloride","4":"8.75"},{"1":"c","2":"35","3":"chlorine","4":"13.00"},{"1":"c","2":"33","3":"creatinine","4":"13.00"},{"1":"c","2":"33","3":"chloride","4":"5.20"},{"1":"c","2":"33","3":"chlorine","4":"18.30"},{"1":"c","2":"31","3":"creatinine","4":"10.90"},{"1":"c","2":"31","3":"chloride","4":"4.75"},{"1":"c","2":"31","3":"chlorine","4":"10.50"},{"1":"c","2":"34","3":"creatinine","4":"12.00"},{"1":"c","2":"34","3":"chloride","4":"5.85"},{"1":"c","2":"34","3":"chlorine","4":"14.50"},{"1":"c","2":"16","3":"creatinine","4":"22.80"},{"1":"c","2":"16","3":"chloride","4":"2.85"},{"1":"c","2":"16","3":"chlorine","4":"3.30"},{"1":"c","2":"31","3":"creatinine","4":"16.50"},{"1":"c","2":"31","3":"chloride","4":"6.55"},{"1":"c","2":"31","3":"chlorine","4":"6.30"},{"1":"c","2":"28","3":"creatinine","4":"18.40"},{"1":"c","2":"28","3":"chloride","4":"6.60"},{"1":"c","2":"28","3":"chlorine","4":"4.90"},{"1":"d","2":"32","3":"creatinine","4":"12.50"},{"1":"d","2":"32","3":"chloride","4":"2.90"},{"1":"d","2":"32","3":"chlorine","4":"22.50"},{"1":"d","2":"25","3":"creatinine","4":"8.70"},{"1":"d","2":"25","3":"chloride","4":"3.00"},{"1":"d","2":"25","3":"chlorine","4":"19.50"},{"1":"d","2":"28","3":"creatinine","4":"9.40"},{"1":"d","2":"28","3":"chloride","4":"3.40"},{"1":"d","2":"28","3":"chlorine","4":"1.30"},{"1":"d","2":"27","3":"creatinine","4":"15.00"},{"1":"d","2":"27","3":"chloride","4":"5.40"},{"1":"d","2":"27","3":"chlorine","4":"20.00"},{"1":"d","2":"23","3":"creatinine","4":"12.90"},{"1":"d","2":"23","3":"chloride","4":"4.45"},{"1":"d","2":"23","3":"chlorine","4":"1.00"},{"1":"d","2":"25","3":"creatinine","4":"12.10"},{"1":"d","2":"25","3":"chloride","4":"4.30"},{"1":"d","2":"25","3":"chlorine","4":"5.00"},{"1":"d","2":"26","3":"creatinine","4":"13.20"},{"1":"d","2":"26","3":"chloride","4":"5.00"},{"1":"d","2":"26","3":"chlorine","4":"3.00"},{"1":"d","2":"34","3":"creatinine","4":"11.50"},{"1":"d","2":"34","3":"chloride","4":"3.40"},{"1":"d","2":"34","3":"chlorine","4":"5.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>You might say that there is one quantitative variable now, the thing we called <code>y</code>, and <em>two</em> categorical variables, <code>obesity</code> and <code>yname</code>. So why not make a grouped boxplot? All right:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>urine <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(creatinine<span class="sc">:</span>chlorine, <span class="at">names_to=</span><span class="st">"yname"</span>, <span class="at">values_to=</span><span class="st">"y"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>yname, <span class="at">y=</span>y, <span class="at">colour=</span>obesity)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/urine-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This actually looks a lot like the facetted boxplots (if you imagine drawing a box around each group of four boxplots and removing the <code>scales="free"</code> before). There is, as the saying goes, more than one way to skin a cat.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>How, if at all, do the groups differ on the variables of interest?</li>
+</ol>
+<p>Solution</p>
+<p>Any sensible comment here is good. You can take the approach that group D is lowest on creatinine and chloride, but there is not much to choose (given the amount of variability) on chlorine. Or you can say that groups B and C are generally highest, except for chloride where A is higher. Anything of this general kind is fine. The point here is that some of the groups appear to be different on some of the variables, which would make a multivariate analysis of variance (in a moment) come out significant.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Run a multivariate analysis of variance, using the three variables of interest as response variables, and the obesity group as explanatory. (This is a so-called one-way MANOVA.)</li>
+</ol>
+<p>Solution</p>
+<p>Create the response variable and run <code>manova</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(urine, <span class="fu">cbind</span>(creatinine, chlorine, chloride))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>urine<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> obesity, <span class="at">data =</span> urine)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(urine<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Df  Pillai approx F num Df den Df  Pr(&gt;F)  
+obesity    3 0.43144   2.2956      9    123 0.02034 *
+Residuals 41                                         
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>:::</p>
+<p>At some point, you should run Box’s M test, either here or at the start of the next part (before you get to your conclusions):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">BoxM</span>(response, urine<span class="sc">$</span>obesity))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Box's M Test 
+
+Chi-Squared Value = 30.8322 , df = 18  and p-value: 0.0301 </code></pre>
+</div>
+</div>
+<p>This P-value is small, but not, for this test, small enough to be a problem.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>What do you conclude? Is this in line with what your boxplots said? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>The null hypothesis (that each of the variables have the same mean for each of the groups) is rejected: that is, not all of the groups have the same mean on all of the variables. Based on the idea that there seemed to be differences between the groups in the boxplots, this makes sense. (That’s what I saw, anyway. There was a lot of variability within the groups, which is why the P-value didn’t come out smaller.)</p>
+<p>Extra: the other way of doing this is the following, using <code>Manova</code> from <code>car</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>response<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> obesity, <span class="at">data =</span> urine)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">Manova</span>(response<span class="fl">.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Type II MANOVA Tests:
+
+Sum of squares and products for error:
+            creatinine   chlorine   chloride
+creatinine  496.768761 -225.02136   4.507476
+chlorine   -225.021364 1431.85432  86.226818
+chloride      4.507476   86.22682 152.854274
+
+------------------------------------------
+ 
+Term: obesity 
+
+Sum of squares and products for the hypothesis:
+           creatinine  chlorine  chloride
+creatinine  181.07035 -66.72530  40.03686
+chlorine    -66.72530 103.80568 -41.37182
+chloride     40.03686 -41.37182  20.03773
+
+Multivariate Tests: obesity
+                 Df test stat approx F num Df    den Df    Pr(&gt;F)   
+Pillai            3 0.4314359 2.295559      9 123.00000 0.0203377 * 
+Wilks             3 0.6080320 2.395937      9  95.06636 0.0171207 * 
+Hotelling-Lawley  3 0.5800706 2.427703      9 113.00000 0.0146529 * 
+Roy               3 0.4336849 5.927027      3  41.00000 0.0018659 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>:::</p>
+<p><code>manova</code> gives you the Pillai test, but <code>Manova</code> gives you all four; here, they are all significant, but to different degrees.</p>
+<p>The result is the same, or at least consistent. You don’t need do this one here (though you can as an alternative), but when you come to repeated measures you <em>will</em> need to be able to use <code>Manova</code>.</p>
+<p>To understand the differences in the variables due to the groups, we need to run a discriminant analysis (coming up later).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="how-do-height-and-weight-depend-on-sport-played-by-elite-athletes-1" class="level2" data-number="30.6">
+<h2 data-number="30.6" class="anchored" data-anchor-id="how-do-height-and-weight-depend-on-sport-played-by-elite-athletes-1"><span class="header-section-number">30.6</span> How do height and weight depend on sport played by elite athletes?</h2>
+<p>This question uses the data on Australian elite athletes, which can be found at <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a>. 202 elite athletes had various physical and physiological measurements taken, and for each athlete, their gender (in the column <code>Sex</code>) and the sport they play (<code>Sport</code>) was also noted. The data values are separated by <em>tabs</em>, meaning that <code>read_tsv</code> will read them in.</p>
+<ol type="a">
+<li>Read in the data and verify that you have 202 rows and 13 columns.</li>
+</ol>
+<p>Solution</p>
+<p>As in the hint: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ais.txt"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 202 Columns: 13
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr  (2): Sex, Sport
+dbl (11): RCC, WCC, Hc, Hg, Ferr, BMI, SSF, %Bfat, LBM, Ht, Wt
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>athletes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Sex"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Sport"],"name":[2],"type":["chr"],"align":["left"]},{"label":["RCC"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["WCC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Hc"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Hg"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Ferr"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["BMI"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["SSF"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["%Bfat"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["LBM"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Ht"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Wt"],"name":[13],"type":["dbl"],"align":["right"]}],"data":[{"1":"female","2":"Netball","3":"4.56","4":"13.30","5":"42.2","6":"13.6","7":"20","8":"19.16","9":"49.0","10":"11.29","11":"53.14","12":"176.8","13":"59.90"},{"1":"female","2":"Netball","3":"4.15","4":"6.00","5":"38.0","6":"12.7","7":"59","8":"21.15","9":"110.2","10":"25.26","11":"47.09","12":"172.6","13":"63.00"},{"1":"female","2":"Netball","3":"4.16","4":"7.60","5":"37.5","6":"12.3","7":"22","8":"21.40","9":"89.0","10":"19.39","11":"53.44","12":"176.0","13":"66.30"},{"1":"female","2":"Netball","3":"4.32","4":"6.40","5":"37.7","6":"12.3","7":"30","8":"21.03","9":"98.3","10":"19.63","11":"48.78","12":"169.9","13":"60.70"},{"1":"female","2":"Netball","3":"4.06","4":"5.80","5":"38.7","6":"12.8","7":"78","8":"21.77","9":"122.1","10":"23.11","11":"56.05","12":"183.0","13":"72.90"},{"1":"female","2":"Netball","3":"4.12","4":"6.10","5":"36.6","6":"11.8","7":"21","8":"21.38","9":"90.4","10":"16.86","11":"56.45","12":"178.2","13":"67.90"},{"1":"female","2":"Netball","3":"4.17","4":"5.00","5":"37.4","6":"12.7","7":"109","8":"21.47","9":"106.9","10":"21.32","11":"53.11","12":"177.3","13":"67.50"},{"1":"female","2":"Netball","3":"3.80","4":"6.60","5":"36.5","6":"12.4","7":"102","8":"24.45","9":"156.6","10":"26.57","11":"54.41","12":"174.1","13":"74.10"},{"1":"female","2":"Netball","3":"3.96","4":"5.50","5":"36.3","6":"12.4","7":"71","8":"22.63","9":"101.1","10":"17.93","11":"55.97","12":"173.6","13":"68.20"},{"1":"female","2":"Netball","3":"4.44","4":"9.70","5":"41.4","6":"14.1","7":"64","8":"22.80","9":"126.4","10":"24.97","11":"51.62","12":"173.7","13":"68.80"},{"1":"female","2":"Netball","3":"4.27","4":"10.60","5":"37.7","6":"12.5","7":"68","8":"23.58","9":"114.0","10":"22.62","11":"58.27","12":"178.7","13":"75.30"},{"1":"female","2":"Netball","3":"3.90","4":"6.30","5":"35.9","6":"12.1","7":"78","8":"20.06","9":"70.0","10":"15.01","11":"57.28","12":"183.3","13":"67.40"},{"1":"female","2":"Netball","3":"4.02","4":"9.10","5":"37.7","6":"12.7","7":"107","8":"23.01","9":"77.0","10":"18.14","11":"57.30","12":"174.4","13":"70.00"},{"1":"female","2":"Netball","3":"4.39","4":"9.60","5":"38.3","6":"12.5","7":"39","8":"24.64","9":"148.9","10":"26.78","11":"54.18","12":"173.3","13":"74.00"},{"1":"female","2":"Netball","3":"4.52","4":"5.10","5":"38.8","6":"13.1","7":"58","8":"18.26","9":"80.1","10":"17.22","11":"42.96","12":"168.6","13":"51.90"},{"1":"female","2":"Netball","3":"4.25","4":"10.70","5":"39.5","6":"13.2","7":"127","8":"24.47","9":"156.6","10":"26.50","11":"54.46","12":"174.0","13":"74.10"},{"1":"female","2":"Netball","3":"4.46","4":"10.90","5":"39.7","6":"13.7","7":"102","8":"23.99","9":"115.9","10":"23.01","11":"57.20","12":"176.0","13":"74.30"},{"1":"female","2":"Netball","3":"4.40","4":"9.30","5":"40.4","6":"13.6","7":"86","8":"26.24","9":"181.7","10":"30.10","11":"54.38","12":"172.2","13":"77.80"},{"1":"female","2":"Netball","3":"4.83","4":"8.40","5":"41.8","6":"13.4","7":"40","8":"20.04","9":"71.6","10":"13.93","11":"57.58","12":"182.7","13":"66.90"},{"1":"female","2":"Netball","3":"4.23","4":"6.90","5":"38.3","6":"12.6","7":"50","8":"25.72","9":"143.5","10":"26.65","11":"61.46","12":"180.5","13":"83.80"},{"1":"female","2":"Netball","3":"4.24","4":"8.40","5":"37.6","6":"12.5","7":"58","8":"25.64","9":"200.8","10":"35.52","11":"53.46","12":"179.8","13":"82.90"},{"1":"female","2":"Netball","3":"3.95","4":"6.60","5":"38.4","6":"12.8","7":"33","8":"19.87","9":"68.9","10":"15.59","11":"54.11","12":"179.6","13":"64.10"},{"1":"female","2":"Netball","3":"4.03","4":"8.50","5":"37.7","6":"13.0","7":"51","8":"23.35","9":"103.6","10":"19.61","11":"55.35","12":"171.7","13":"68.85"},{"1":"female","2":"BBall","3":"3.96","4":"7.50","5":"37.5","6":"12.3","7":"60","8":"20.56","9":"109.1","10":"19.75","11":"63.32","12":"195.9","13":"78.90"},{"1":"female","2":"BBall","3":"4.41","4":"8.30","5":"38.2","6":"12.7","7":"68","8":"20.67","9":"102.8","10":"21.30","11":"58.55","12":"189.7","13":"74.40"},{"1":"female","2":"BBall","3":"4.14","4":"5.00","5":"36.4","6":"11.6","7":"21","8":"21.86","9":"104.6","10":"19.88","11":"55.36","12":"177.8","13":"69.10"},{"1":"female","2":"BBall","3":"4.11","4":"5.30","5":"37.3","6":"12.6","7":"69","8":"21.88","9":"126.4","10":"23.66","11":"57.18","12":"185.0","13":"74.90"},{"1":"female","2":"BBall","3":"4.45","4":"6.80","5":"41.5","6":"14.0","7":"29","8":"18.96","9":"80.3","10":"17.64","11":"53.20","12":"184.6","13":"64.60"},{"1":"female","2":"BBall","3":"4.10","4":"4.40","5":"37.4","6":"12.5","7":"42","8":"21.04","9":"75.2","10":"15.58","11":"53.77","12":"174.0","13":"63.70"},{"1":"female","2":"BBall","3":"4.31","4":"5.30","5":"39.6","6":"12.8","7":"73","8":"21.69","9":"87.2","10":"19.99","11":"60.17","12":"186.2","13":"75.20"},{"1":"female","2":"BBall","3":"4.42","4":"5.70","5":"39.9","6":"13.2","7":"44","8":"20.62","9":"97.9","10":"22.43","11":"48.33","12":"173.8","13":"62.30"},{"1":"female","2":"BBall","3":"4.30","4":"8.90","5":"41.1","6":"13.5","7":"41","8":"22.64","9":"75.1","10":"17.95","11":"54.57","12":"171.4","13":"66.50"},{"1":"female","2":"BBall","3":"4.51","4":"4.40","5":"41.6","6":"12.7","7":"44","8":"19.44","9":"65.1","10":"15.07","11":"53.42","12":"179.9","13":"62.90"},{"1":"female","2":"BBall","3":"4.71","4":"5.30","5":"41.4","6":"14.0","7":"38","8":"25.75","9":"171.1","10":"28.83","11":"68.53","12":"193.4","13":"96.30"},{"1":"female","2":"BBall","3":"4.62","4":"7.30","5":"43.8","6":"14.7","7":"26","8":"21.20","9":"76.8","10":"18.08","11":"61.85","12":"188.7","13":"75.50"},{"1":"female","2":"BBall","3":"4.35","4":"7.80","5":"41.4","6":"14.1","7":"30","8":"22.03","9":"117.8","10":"23.30","11":"48.32","12":"169.1","13":"63.00"},{"1":"female","2":"Row","3":"4.26","4":"6.20","5":"41.0","6":"13.9","7":"48","8":"25.44","9":"90.2","10":"17.71","11":"66.24","12":"177.9","13":"80.50"},{"1":"female","2":"Row","3":"4.63","4":"6.00","5":"43.7","6":"14.7","7":"30","8":"22.63","9":"97.2","10":"18.77","11":"57.92","12":"177.5","13":"71.30"},{"1":"female","2":"Row","3":"4.36","4":"5.80","5":"40.3","6":"13.3","7":"29","8":"21.86","9":"99.9","10":"19.83","11":"56.52","12":"179.6","13":"70.50"},{"1":"female","2":"Row","3":"3.91","4":"7.30","5":"37.6","6":"12.9","7":"43","8":"22.27","9":"125.9","10":"25.16","11":"54.78","12":"181.3","13":"73.20"},{"1":"female","2":"Row","3":"4.51","4":"8.30","5":"43.7","6":"14.7","7":"34","8":"21.27","9":"69.9","10":"18.04","11":"56.31","12":"179.7","13":"68.70"},{"1":"female","2":"Row","3":"4.37","4":"8.10","5":"41.8","6":"14.3","7":"53","8":"23.47","9":"98.0","10":"21.79","11":"62.96","12":"185.2","13":"80.50"},{"1":"female","2":"Row","3":"4.90","4":"6.90","5":"44.0","6":"14.5","7":"59","8":"23.19","9":"96.8","10":"22.25","11":"56.68","12":"177.3","13":"72.90"},{"1":"female","2":"Row","3":"4.46","4":"5.70","5":"39.2","6":"13.0","7":"43","8":"23.17","9":"80.3","10":"16.25","11":"62.39","12":"179.3","13":"74.50"},{"1":"female","2":"Row","3":"3.95","4":"3.30","5":"36.9","6":"12.5","7":"40","8":"24.54","9":"74.9","10":"16.38","11":"63.05","12":"175.3","13":"75.40"},{"1":"female","2":"Row","3":"4.46","4":"9.50","5":"41.5","6":"14.5","7":"92","8":"22.96","9":"83.0","10":"19.35","11":"56.05","12":"174.0","13":"69.50"},{"1":"female","2":"Row","3":"5.02","4":"6.40","5":"44.8","6":"15.2","7":"48","8":"19.76","9":"91.0","10":"19.20","11":"53.65","12":"183.3","13":"66.40"},{"1":"female","2":"Row","3":"4.26","4":"5.80","5":"41.2","6":"14.1","7":"77","8":"23.36","9":"76.2","10":"17.89","11":"65.45","12":"184.7","13":"79.70"},{"1":"female","2":"Row","3":"4.46","4":"5.60","5":"41.1","6":"14.3","7":"71","8":"22.67","9":"52.6","10":"12.20","11":"64.62","12":"180.2","13":"73.60"},{"1":"female","2":"Row","3":"4.16","4":"5.80","5":"39.8","6":"13.3","7":"37","8":"24.24","9":"111.1","10":"23.70","11":"60.05","12":"180.2","13":"78.70"},{"1":"female","2":"Row","3":"4.49","4":"7.60","5":"41.8","6":"14.4","7":"71","8":"24.21","9":"110.7","10":"24.69","11":"56.48","12":"176.0","13":"75.00"},{"1":"female","2":"Row","3":"4.21","4":"7.50","5":"38.4","6":"13.2","7":"73","8":"20.46","9":"74.7","10":"16.58","11":"41.54","12":"156.0","13":"49.80"},{"1":"female","2":"Row","3":"4.57","4":"6.60","5":"42.8","6":"14.5","7":"85","8":"20.81","9":"113.5","10":"21.47","11":"52.78","12":"179.7","13":"67.20"},{"1":"female","2":"Row","3":"4.87","4":"6.40","5":"44.8","6":"15.0","7":"64","8":"20.17","9":"99.8","10":"20.12","11":"52.72","12":"180.9","13":"66.00"},{"1":"female","2":"Row","3":"4.44","4":"10.10","5":"42.7","6":"14.0","7":"19","8":"23.06","9":"80.3","10":"17.51","11":"61.29","12":"179.5","13":"74.30"},{"1":"female","2":"Row","3":"4.45","4":"6.60","5":"42.6","6":"14.1","7":"39","8":"24.40","9":"109.5","10":"23.70","11":"59.59","12":"178.9","13":"78.10"},{"1":"female","2":"Row","3":"4.41","4":"5.90","5":"41.1","6":"13.5","7":"41","8":"23.97","9":"123.6","10":"22.39","11":"61.70","12":"182.1","13":"79.50"},{"1":"female","2":"Row","3":"4.87","4":"7.30","5":"44.1","6":"14.8","7":"13","8":"22.62","9":"91.2","10":"20.43","11":"62.46","12":"186.3","13":"78.50"},{"1":"female","2":"Swim","3":"4.36","4":"5.50","5":"41.4","6":"13.8","7":"82","8":"22.42","9":"71.3","10":"14.52","11":"55.39","12":"170.0","13":"64.80"},{"1":"female","2":"Swim","3":"4.07","4":"5.90","5":"39.5","6":"13.3","7":"25","8":"20.42","9":"54.6","10":"11.47","11":"52.23","12":"170.0","13":"59.00"},{"1":"female","2":"Swim","3":"4.17","4":"4.90","5":"38.9","6":"12.9","7":"86","8":"22.13","9":"88.2","10":"17.71","11":"59.33","12":"180.5","13":"72.10"},{"1":"female","2":"Swim","3":"4.23","4":"8.10","5":"38.2","6":"12.7","7":"22","8":"25.17","9":"95.4","10":"18.48","11":"61.63","12":"173.3","13":"75.60"},{"1":"female","2":"Swim","3":"4.46","4":"8.30","5":"42.2","6":"14.4","7":"30","8":"23.72","9":"47.5","10":"11.22","11":"63.39","12":"173.5","13":"71.40"},{"1":"female","2":"Swim","3":"4.38","4":"5.80","5":"42.0","6":"14.0","7":"27","8":"21.28","9":"55.6","10":"13.61","11":"60.22","12":"181.0","13":"69.70"},{"1":"female","2":"Swim","3":"4.31","4":"5.30","5":"41.1","6":"13.9","7":"60","8":"20.87","9":"62.9","10":"12.78","11":"55.73","12":"175.0","13":"63.90"},{"1":"female","2":"Swim","3":"4.51","4":"5.10","5":"40.9","6":"14.0","7":"115","8":"19.00","9":"52.5","10":"11.85","11":"48.57","12":"170.3","13":"55.10"},{"1":"female","2":"Swim","3":"4.13","4":"7.00","5":"39.7","6":"13.1","7":"124","8":"22.04","9":"62.6","10":"13.35","11":"51.99","12":"165.0","13":"60.00"},{"1":"female","2":"Field","3":"4.48","4":"9.50","5":"36.5","6":"13.3","7":"54","8":"20.12","9":"49.9","10":"11.77","11":"51.17","12":"169.8","13":"58.00"},{"1":"female","2":"T400m","3":"5.31","4":"9.50","5":"47.1","6":"15.9","7":"29","8":"21.35","9":"57.9","10":"11.07","11":"57.54","12":"174.1","13":"64.70"},{"1":"female","2":"Field","3":"4.58","4":"5.80","5":"42.1","6":"14.7","7":"164","8":"28.57","9":"109.6","10":"21.30","11":"68.86","12":"175.0","13":"87.50"},{"1":"female","2":"Field","3":"4.81","4":"6.80","5":"42.7","6":"15.3","7":"50","8":"26.95","9":"98.5","10":"20.10","11":"63.04","12":"171.1","13":"78.90"},{"1":"female","2":"Field","3":"4.51","4":"9.00","5":"39.7","6":"14.3","7":"36","8":"28.13","9":"136.3","10":"24.88","11":"63.03","12":"172.7","13":"83.90"},{"1":"female","2":"Field","3":"4.77","4":"7.10","5":"40.6","6":"14.6","7":"40","8":"26.85","9":"103.6","10":"19.26","11":"66.85","12":"175.6","13":"82.80"},{"1":"female","2":"Field","3":"5.33","4":"9.30","5":"47.0","6":"15.0","7":"62","8":"25.27","9":"102.8","10":"19.51","11":"59.89","12":"171.6","13":"74.40"},{"1":"female","2":"Field","3":"4.75","4":"7.50","5":"43.8","6":"15.2","7":"90","8":"31.93","9":"131.9","10":"23.01","11":"72.98","12":"172.3","13":"94.80"},{"1":"female","2":"T400m","3":"4.11","4":"7.30","5":"38.7","6":"12.4","7":"12","8":"16.75","9":"33.8","10":"8.07","11":"45.23","12":"171.4","13":"49.20"},{"1":"female","2":"TSprnt","3":"4.76","4":"7.60","5":"42.9","6":"13.4","7":"36","8":"19.54","9":"43.5","10":"11.05","11":"55.06","12":"178.0","13":"61.90"},{"1":"female","2":"T400m","3":"4.27","4":"6.90","5":"44.1","6":"14.7","7":"45","8":"20.42","9":"46.2","10":"12.39","11":"46.96","12":"162.0","13":"53.60"},{"1":"female","2":"T400m","3":"4.44","4":"6.10","5":"42.6","6":"13.9","7":"43","8":"22.76","9":"73.9","10":"15.95","11":"53.54","12":"167.3","13":"63.70"},{"1":"female","2":"T400m","3":"4.20","4":"6.50","5":"39.1","6":"13.0","7":"51","8":"20.12","9":"36.8","10":"9.91","11":"47.57","12":"162.0","13":"52.80"},{"1":"female","2":"T400m","3":"4.71","4":"6.90","5":"43.5","6":"13.8","7":"22","8":"22.35","9":"67.0","10":"16.20","11":"54.63","12":"170.8","13":"65.20"},{"1":"female","2":"T400m","3":"4.09","4":"6.40","5":"40.1","6":"13.2","7":"44","8":"19.16","9":"41.1","10":"9.02","11":"46.31","12":"163.0","13":"50.90"},{"1":"female","2":"T400m","3":"4.24","4":"6.60","5":"38.2","6":"12.6","7":"26","8":"20.77","9":"59.4","10":"14.26","11":"49.13","12":"166.1","13":"57.30"},{"1":"female","2":"T400m","3":"3.90","4":"6.00","5":"38.9","6":"13.5","7":"16","8":"19.37","9":"48.4","10":"10.48","11":"53.71","12":"176.0","13":"60.00"},{"1":"female","2":"TSprnt","3":"4.82","4":"7.60","5":"43.2","6":"14.4","7":"58","8":"22.37","9":"50.0","10":"11.64","11":"53.11","12":"163.9","13":"60.10"},{"1":"female","2":"T400m","3":"4.32","4":"6.80","5":"40.6","6":"13.7","7":"46","8":"17.54","9":"54.6","10":"12.16","11":"46.12","12":"173.0","13":"52.50"},{"1":"female","2":"T400m","3":"4.77","4":"7.20","5":"43.3","6":"14.8","7":"43","8":"19.06","9":"42.3","10":"10.53","11":"53.41","12":"177.0","13":"59.70"},{"1":"female","2":"TSprnt","3":"5.16","4":"8.20","5":"45.3","6":"14.7","7":"34","8":"20.30","9":"46.1","10":"10.15","11":"51.48","12":"168.0","13":"57.30"},{"1":"female","2":"TSprnt","3":"4.97","4":"7.80","5":"44.7","6":"14.2","7":"41","8":"20.15","9":"46.3","10":"10.74","11":"53.20","12":"172.0","13":"59.60"},{"1":"female","2":"Tennis","3":"4.00","4":"4.20","5":"36.6","6":"12.0","7":"57","8":"25.36","9":"109.0","10":"20.86","11":"56.58","12":"167.9","13":"71.50"},{"1":"female","2":"Tennis","3":"4.40","4":"4.00","5":"40.8","6":"13.9","7":"73","8":"22.12","9":"98.1","10":"19.64","11":"56.01","12":"177.5","13":"69.70"},{"1":"female","2":"Tennis","3":"4.38","4":"7.90","5":"39.8","6":"13.5","7":"88","8":"21.25","9":"80.6","10":"17.07","11":"46.52","12":"162.5","13":"56.10"},{"1":"female","2":"Tennis","3":"4.08","4":"6.60","5":"37.8","6":"12.1","7":"182","8":"20.53","9":"68.3","10":"15.31","11":"51.75","12":"172.5","13":"61.10"},{"1":"female","2":"Tennis","3":"4.98","4":"6.40","5":"44.8","6":"14.8","7":"80","8":"17.06","9":"47.6","10":"11.07","11":"42.15","12":"166.7","13":"47.40"},{"1":"female","2":"Tennis","3":"5.16","4":"7.20","5":"44.3","6":"14.5","7":"88","8":"18.29","9":"61.9","10":"12.92","11":"48.76","12":"175.0","13":"56.00"},{"1":"female","2":"Tennis","3":"4.66","4":"6.40","5":"40.9","6":"13.9","7":"109","8":"18.37","9":"38.2","10":"8.45","11":"41.93","12":"157.9","13":"45.80"},{"1":"female","2":"Gym","3":"4.19","4":"9.00","5":"39.0","6":"13.4","7":"69","8":"18.93","9":"43.5","10":"10.16","11":"42.95","12":"158.9","13":"47.80"},{"1":"female","2":"Gym","3":"4.53","4":"5.00","5":"40.7","6":"14.0","7":"41","8":"17.79","9":"56.8","10":"12.55","11":"38.30","12":"156.9","13":"43.80"},{"1":"female","2":"Gym","3":"4.09","4":"4.90","5":"36.0","6":"12.5","7":"66","8":"17.05","9":"41.6","10":"9.10","11":"34.36","12":"148.9","13":"37.80"},{"1":"female","2":"Gym","3":"4.42","4":"6.40","5":"42.8","6":"14.5","7":"63","8":"20.31","9":"58.9","10":"13.46","11":"39.03","12":"149.0","13":"45.10"},{"1":"male","2":"Swim","3":"5.13","4":"7.10","5":"46.8","6":"15.9","7":"34","8":"22.46","9":"44.5","10":"8.47","11":"61.00","12":"172.7","13":"67.00"},{"1":"male","2":"Swim","3":"4.83","4":"7.60","5":"45.2","6":"15.2","7":"97","8":"23.88","9":"41.8","10":"7.68","11":"69.00","12":"176.5","13":"74.40"},{"1":"male","2":"Swim","3":"5.09","4":"4.70","5":"46.6","6":"15.9","7":"55","8":"23.68","9":"33.7","10":"6.16","11":"74.00","12":"183.0","13":"79.30"},{"1":"male","2":"Swim","3":"5.17","4":"4.10","5":"44.9","6":"15.0","7":"76","8":"23.15","9":"50.9","10":"8.56","11":"80.00","12":"194.4","13":"87.50"},{"1":"male","2":"Swim","3":"5.11","4":"6.70","5":"46.1","6":"15.6","7":"93","8":"22.32","9":"40.5","10":"6.86","11":"78.00","12":"193.4","13":"83.50"},{"1":"male","2":"Swim","3":"5.03","4":"7.10","5":"45.1","6":"15.2","7":"46","8":"24.02","9":"51.2","10":"9.40","11":"71.00","12":"180.2","13":"78.00"},{"1":"male","2":"Swim","3":"5.32","4":"6.00","5":"47.5","6":"16.3","7":"155","8":"23.29","9":"54.4","10":"9.17","11":"71.00","12":"183.0","13":"78.00"},{"1":"male","2":"Swim","3":"4.75","4":"8.60","5":"45.5","6":"15.2","7":"99","8":"25.11","9":"52.3","10":"8.54","11":"78.00","12":"184.0","13":"85.00"},{"1":"male","2":"Swim","3":"5.34","4":"6.60","5":"48.6","6":"16.5","7":"35","8":"22.81","9":"57.0","10":"9.20","11":"77.00","12":"192.7","13":"84.70"},{"1":"male","2":"Swim","3":"4.87","4":"4.80","5":"44.9","6":"15.4","7":"124","8":"26.25","9":"65.3","10":"11.72","11":"81.00","12":"187.2","13":"92.00"},{"1":"male","2":"Swim","3":"5.33","4":"5.20","5":"47.8","6":"16.1","7":"176","8":"21.38","9":"52.0","10":"8.44","11":"66.00","12":"183.9","13":"72.30"},{"1":"male","2":"Swim","3":"4.81","4":"6.20","5":"45.2","6":"15.3","7":"107","8":"22.52","9":"42.7","10":"7.19","11":"77.00","12":"192.0","13":"83.00"},{"1":"male","2":"Swim","3":"4.32","4":"4.30","5":"41.6","6":"14.0","7":"177","8":"26.73","9":"35.2","10":"6.46","11":"91.00","12":"190.4","13":"96.90"},{"1":"male","2":"Row","3":"4.87","4":"8.20","5":"43.8","6":"15.0","7":"130","8":"23.57","9":"49.2","10":"9.00","11":"78.00","12":"190.7","13":"85.70"},{"1":"male","2":"Row","3":"5.04","4":"7.10","5":"44.0","6":"14.8","7":"64","8":"25.84","9":"61.8","10":"12.61","11":"75.00","12":"181.8","13":"85.40"},{"1":"male","2":"Row","3":"4.40","4":"5.30","5":"42.5","6":"14.5","7":"109","8":"24.06","9":"46.5","10":"9.03","11":"78.00","12":"188.3","13":"85.30"},{"1":"male","2":"Row","3":"4.95","4":"5.90","5":"45.4","6":"15.5","7":"125","8":"23.85","9":"34.8","10":"6.96","11":"87.00","12":"198.0","13":"93.50"},{"1":"male","2":"Row","3":"4.78","4":"9.30","5":"43.0","6":"14.7","7":"150","8":"25.09","9":"60.2","10":"10.05","11":"78.00","12":"186.0","13":"86.80"},{"1":"male","2":"Row","3":"5.21","4":"6.80","5":"44.5","6":"15.4","7":"115","8":"23.84","9":"48.1","10":"9.56","11":"79.00","12":"192.0","13":"87.90"},{"1":"male","2":"Row","3":"5.22","4":"8.40","5":"47.5","6":"16.2","7":"89","8":"25.31","9":"44.5","10":"9.36","11":"79.00","12":"185.6","13":"87.20"},{"1":"male","2":"Row","3":"5.18","4":"6.50","5":"45.4","6":"14.9","7":"93","8":"19.69","9":"54.0","10":"10.81","11":"48.00","12":"165.3","13":"53.80"},{"1":"male","2":"Row","3":"5.40","4":"6.80","5":"49.5","6":"17.3","7":"183","8":"26.07","9":"44.7","10":"8.61","11":"82.00","12":"185.6","13":"89.80"},{"1":"male","2":"Row","3":"4.92","4":"5.40","5":"46.2","6":"15.8","7":"84","8":"25.50","9":"64.9","10":"9.53","11":"82.00","12":"189.0","13":"91.10"},{"1":"male","2":"Row","3":"5.24","4":"7.50","5":"46.5","6":"15.5","7":"70","8":"23.69","9":"43.8","10":"7.42","11":"82.00","12":"193.4","13":"88.60"},{"1":"male","2":"Row","3":"5.09","4":"10.10","5":"44.9","6":"14.8","7":"118","8":"26.79","9":"58.3","10":"9.79","11":"83.00","12":"185.6","13":"92.30"},{"1":"male","2":"Row","3":"4.83","4":"5.00","5":"43.8","6":"15.1","7":"61","8":"25.61","9":"52.8","10":"8.97","11":"88.00","12":"194.6","13":"97.00"},{"1":"male","2":"Row","3":"5.22","4":"6.00","5":"46.6","6":"15.7","7":"72","8":"25.06","9":"43.1","10":"7.49","11":"83.00","12":"189.0","13":"89.50"},{"1":"male","2":"Row","3":"4.71","4":"8.00","5":"45.5","6":"15.6","7":"91","8":"24.93","9":"78.0","10":"11.95","11":"78.00","12":"188.1","13":"88.20"},{"1":"male","2":"BBall","3":"5.24","4":"7.20","5":"46.6","6":"15.9","7":"58","8":"22.96","9":"40.8","10":"7.35","11":"85.00","12":"200.4","13":"92.20"},{"1":"male","2":"BBall","3":"4.54","4":"5.90","5":"44.4","6":"15.6","7":"97","8":"20.69","9":"41.5","10":"7.16","11":"73.00","12":"195.3","13":"78.90"},{"1":"male","2":"BBall","3":"5.13","4":"5.80","5":"46.1","6":"15.9","7":"110","8":"23.97","9":"50.9","10":"8.77","11":"82.00","12":"194.1","13":"90.30"},{"1":"male","2":"BBall","3":"5.00","4":"6.70","5":"45.3","6":"15.7","7":"72","8":"24.64","9":"49.6","10":"9.56","11":"79.00","12":"187.9","13":"87.00"},{"1":"male","2":"BBall","3":"5.17","4":"8.00","5":"47.9","6":"16.4","7":"36","8":"25.93","9":"88.9","10":"14.53","11":"97.00","12":"209.4","13":"113.70"},{"1":"male","2":"BBall","3":"4.89","4":"7.50","5":"41.6","6":"14.4","7":"53","8":"23.69","9":"48.3","10":"8.51","11":"90.00","12":"203.4","13":"98.00"},{"1":"male","2":"BBall","3":"4.50","4":"9.20","5":"40.7","6":"13.7","7":"72","8":"25.38","9":"61.8","10":"10.64","11":"90.00","12":"198.7","13":"100.20"},{"1":"male","2":"BBall","3":"4.84","4":"8.30","5":"46.3","6":"15.9","7":"39","8":"22.68","9":"43.0","10":"7.06","11":"74.00","12":"187.1","13":"79.40"},{"1":"male","2":"BBall","3":"4.13","4":"8.90","5":"40.3","6":"13.5","7":"61","8":"23.36","9":"61.1","10":"8.87","11":"82.00","12":"196.6","13":"90.30"},{"1":"male","2":"BBall","3":"4.87","4":"7.40","5":"43.5","6":"15.0","7":"49","8":"22.44","9":"43.8","10":"7.88","11":"72.00","12":"186.1","13":"77.70"},{"1":"male","2":"BBall","3":"4.82","4":"6.40","5":"44.3","6":"14.8","7":"35","8":"22.57","9":"54.2","10":"9.20","11":"76.00","12":"192.8","13":"83.90"},{"1":"male","2":"BBall","3":"4.73","4":"6.70","5":"42.8","6":"14.9","7":"8","8":"19.81","9":"41.8","10":"7.19","11":"70.00","12":"195.2","13":"75.50"},{"1":"male","2":"T400m","3":"4.55","4":"5.55","5":"42.6","6":"14.4","7":"106","8":"21.19","9":"34.1","10":"6.06","11":"57.00","12":"169.1","13":"60.60"},{"1":"male","2":"T400m","3":"4.71","4":"7.20","5":"43.6","6":"14.0","7":"32","8":"20.39","9":"30.5","10":"5.63","11":"67.00","12":"186.6","13":"71.00"},{"1":"male","2":"T400m","3":"4.93","4":"7.30","5":"46.2","6":"15.1","7":"41","8":"21.12","9":"34.0","10":"6.59","11":"67.00","12":"184.4","13":"71.80"},{"1":"male","2":"T400m","3":"5.21","4":"7.50","5":"47.5","6":"16.5","7":"20","8":"21.89","9":"46.7","10":"9.50","11":"70.00","12":"187.3","13":"76.80"},{"1":"male","2":"Field","3":"5.09","4":"8.90","5":"46.3","6":"15.4","7":"44","8":"29.97","9":"71.1","10":"13.97","11":"88.00","12":"185.1","13":"102.70"},{"1":"male","2":"Field","3":"5.11","4":"9.60","5":"48.2","6":"16.7","7":"103","8":"27.39","9":"65.9","10":"11.66","11":"83.00","12":"185.5","13":"94.25"},{"1":"male","2":"Field","3":"4.94","4":"6.30","5":"45.7","6":"15.5","7":"50","8":"23.11","9":"34.3","10":"6.43","11":"74.00","12":"184.9","13":"79.00"},{"1":"male","2":"T400m","3":"4.87","4":"6.30","5":"45.8","6":"16.1","7":"41","8":"21.75","9":"34.6","10":"6.99","11":"62.00","12":"175.0","13":"66.60"},{"1":"male","2":"T400m","3":"4.41","4":"4.50","5":"44.2","6":"15.0","7":"101","8":"20.89","9":"31.8","10":"6.00","11":"67.00","12":"185.4","13":"71.80"},{"1":"male","2":"T400m","3":"4.86","4":"3.90","5":"44.9","6":"15.4","7":"73","8":"22.83","9":"34.5","10":"6.56","11":"70.00","12":"181.0","13":"74.80"},{"1":"male","2":"T400m","3":"4.91","4":"9.00","5":"46.3","6":"15.4","7":"56","8":"22.02","9":"31.0","10":"6.03","11":"64.00","12":"176.0","13":"68.20"},{"1":"male","2":"T400m","3":"4.93","4":"7.30","5":"45.2","6":"15.8","7":"74","8":"20.07","9":"32.6","10":"6.33","11":"58.00","12":"176.2","13":"62.30"},{"1":"male","2":"T400m","3":"4.20","4":"4.50","5":"41.2","6":"14.3","7":"58","8":"20.15","9":"31.5","10":"6.82","11":"57.00","12":"174.0","13":"61.00"},{"1":"male","2":"T400m","3":"5.10","4":"6.10","5":"45.3","6":"14.9","7":"87","8":"21.24","9":"32.6","10":"6.20","11":"73.00","12":"191.0","13":"77.50"},{"1":"male","2":"T400m","3":"4.50","4":"6.10","5":"42.2","6":"14.7","7":"139","8":"19.63","9":"31.0","10":"5.93","11":"54.00","12":"171.0","13":"57.40"},{"1":"male","2":"TSprnt","3":"4.89","4":"5.80","5":"45.5","6":"15.6","7":"82","8":"23.58","9":"28.0","10":"5.80","11":"67.00","12":"174.0","13":"71.40"},{"1":"male","2":"TSprnt","3":"5.13","4":"4.00","5":"44.1","6":"15.2","7":"87","8":"21.65","9":"33.7","10":"6.56","11":"66.00","12":"180.2","13":"70.30"},{"1":"male","2":"TSprnt","3":"4.88","4":"4.30","5":"45.6","6":"15.5","7":"80","8":"25.17","9":"30.3","10":"6.76","11":"75.00","12":"178.5","13":"80.20"},{"1":"male","2":"Field","3":"5.00","4":"8.20","5":"46.8","6":"14.7","7":"67","8":"23.25","9":"38.0","10":"7.22","11":"78.00","12":"190.3","13":"84.20"},{"1":"male","2":"Field","3":"5.48","4":"4.60","5":"49.4","6":"18.0","7":"132","8":"32.52","9":"55.7","10":"8.51","11":"102.00","12":"185.0","13":"111.30"},{"1":"male","2":"Field","3":"5.93","4":"6.40","5":"49.1","6":"16.1","7":"43","8":"22.59","9":"37.5","10":"7.72","11":"74.00","12":"189.0","13":"80.70"},{"1":"male","2":"Field","3":"5.01","4":"8.90","5":"46.0","6":"15.9","7":"212","8":"30.18","9":"112.5","10":"19.94","11":"78.00","12":"180.1","13":"97.90"},{"1":"male","2":"Field","3":"5.48","4":"6.20","5":"48.2","6":"16.3","7":"94","8":"34.42","9":"82.7","10":"13.91","11":"106.00","12":"189.2","13":"123.20"},{"1":"male","2":"TSprnt","3":"5.16","4":"8.40","5":"44.4","6":"15.5","7":"213","8":"21.86","9":"29.7","10":"6.10","11":"68.00","12":"182.6","13":"72.90"},{"1":"male","2":"TSprnt","3":"4.64","4":"9.00","5":"42.9","6":"14.9","7":"122","8":"23.99","9":"38.9","10":"7.52","11":"77.00","12":"186.0","13":"83.00"},{"1":"male","2":"TSprnt","3":"6.72","4":"7.10","5":"59.7","6":"19.2","7":"76","8":"24.81","9":"44.8","10":"9.56","11":"69.00","12":"174.9","13":"75.90"},{"1":"male","2":"T400m","3":"4.83","4":"6.60","5":"43.8","6":"14.3","7":"53","8":"21.68","9":"30.9","10":"6.06","11":"66.00","12":"180.6","13":"70.70"},{"1":"male","2":"T400m","3":"5.34","4":"7.60","5":"48.3","6":"16.2","7":"91","8":"21.04","9":"44.0","10":"7.35","11":"62.00","12":"178.6","13":"67.10"},{"1":"male","2":"T400m","3":"5.13","4":"4.60","5":"45.3","6":"16.8","7":"36","8":"23.12","9":"37.5","10":"6.00","11":"65.00","12":"173.0","13":"69.20"},{"1":"male","2":"T400m","3":"4.68","4":"4.80","5":"43.0","6":"14.8","7":"101","8":"20.76","9":"37.6","10":"6.92","11":"62.00","12":"179.7","13":"67.05"},{"1":"male","2":"TSprnt","3":"5.00","4":"5.20","5":"45.1","6":"15.1","7":"184","8":"23.13","9":"31.7","10":"6.33","11":"66.00","12":"174.6","13":"70.50"},{"1":"male","2":"TSprnt","3":"4.99","4":"7.20","5":"41.4","6":"14.9","7":"44","8":"22.35","9":"36.6","10":"5.90","11":"67.00","12":"178.0","13":"70.80"},{"1":"male","2":"T400m","3":"5.49","4":"5.90","5":"47.7","6":"15.9","7":"66","8":"22.28","9":"48.0","10":"8.84","11":"65.00","12":"178.5","13":"71.00"},{"1":"male","2":"TSprnt","3":"5.59","4":"7.90","5":"49.7","6":"17.2","7":"220","8":"23.55","9":"41.9","10":"8.94","11":"63.00","12":"171.3","13":"69.10"},{"1":"male","2":"T400m","3":"5.03","4":"6.60","5":"44.7","6":"15.9","7":"191","8":"19.85","9":"30.9","10":"6.53","11":"59.00","12":"178.0","13":"62.90"},{"1":"male","2":"TSprnt","3":"5.50","4":"6.40","5":"48.1","6":"16.5","7":"40","8":"26.51","9":"52.8","10":"9.40","11":"86.00","12":"189.1","13":"94.80"},{"1":"male","2":"Field","3":"5.11","4":"9.30","5":"45.4","6":"15.8","7":"189","8":"24.78","9":"43.2","10":"8.18","11":"87.00","12":"195.4","13":"94.60"},{"1":"male","2":"Field","3":"4.96","4":"8.30","5":"45.3","6":"15.7","7":"141","8":"33.73","9":"113.5","10":"17.41","11":"89.00","12":"179.1","13":"108.20"},{"1":"male","2":"Field","3":"5.01","4":"8.90","5":"46.0","6":"15.9","7":"212","8":"30.18","9":"96.9","10":"18.08","11":"80.00","12":"180.1","13":"97.90"},{"1":"male","2":"Field","3":"5.11","4":"8.70","5":"46.5","6":"16.3","7":"97","8":"23.31","9":"49.3","10":"9.86","11":"68.00","12":"179.6","13":"75.20"},{"1":"male","2":"TSprnt","3":"5.69","4":"10.80","5":"50.5","6":"18.5","7":"53","8":"24.51","9":"42.3","10":"7.29","11":"69.00","12":"174.7","13":"74.80"},{"1":"male","2":"WPolo","3":"4.63","4":"9.10","5":"42.1","6":"14.4","7":"126","8":"25.37","9":"96.3","10":"18.72","11":"77.00","12":"192.7","13":"94.20"},{"1":"male","2":"WPolo","3":"4.91","4":"10.20","5":"45.0","6":"15.2","7":"234","8":"23.67","9":"56.5","10":"10.12","11":"68.00","12":"179.3","13":"76.10"},{"1":"male","2":"WPolo","3":"4.95","4":"7.50","5":"44.5","6":"15.0","7":"50","8":"24.28","9":"105.7","10":"19.17","11":"77.00","12":"197.5","13":"94.70"},{"1":"male","2":"WPolo","3":"5.34","4":"10.00","5":"46.8","6":"16.2","7":"94","8":"25.82","9":"100.7","10":"17.24","11":"71.00","12":"182.7","13":"86.20"},{"1":"male","2":"WPolo","3":"5.16","4":"12.90","5":"47.6","6":"15.6","7":"156","8":"21.93","9":"56.8","10":"9.89","11":"72.00","12":"190.5","13":"79.60"},{"1":"male","2":"WPolo","3":"5.29","4":"12.70","5":"48.0","6":"16.2","7":"124","8":"23.38","9":"75.9","10":"13.06","11":"74.00","12":"191.0","13":"85.30"},{"1":"male","2":"WPolo","3":"5.02","4":"6.10","5":"43.6","6":"14.8","7":"87","8":"23.07","9":"52.8","10":"8.84","11":"68.00","12":"179.6","13":"74.40"},{"1":"male","2":"WPolo","3":"5.01","4":"9.80","5":"46.5","6":"15.8","7":"97","8":"25.21","9":"47.8","10":"8.87","11":"85.00","12":"192.6","13":"93.50"},{"1":"male","2":"WPolo","3":"5.03","4":"7.50","5":"43.6","6":"14.4","7":"102","8":"23.25","9":"76.0","10":"14.69","11":"75.00","12":"194.1","13":"87.60"},{"1":"male","2":"WPolo","3":"5.25","4":"7.40","5":"47.3","6":"15.8","7":"55","8":"22.93","9":"61.2","10":"8.64","11":"78.00","12":"193.0","13":"85.40"},{"1":"male","2":"WPolo","3":"5.08","4":"8.50","5":"46.3","6":"15.6","7":"117","8":"26.86","9":"75.6","10":"14.98","11":"86.00","12":"193.9","13":"101.00"},{"1":"male","2":"WPolo","3":"5.04","4":"6.00","5":"45.9","6":"15.0","7":"52","8":"21.26","9":"43.3","10":"7.82","11":"69.00","12":"187.7","13":"74.90"},{"1":"male","2":"WPolo","3":"4.63","4":"14.30","5":"44.8","6":"15.0","7":"133","8":"25.43","9":"49.5","10":"8.97","11":"79.00","12":"185.3","13":"87.30"},{"1":"male","2":"WPolo","3":"5.11","4":"7.00","5":"47.7","6":"15.8","7":"214","8":"24.54","9":"70.0","10":"11.63","11":"80.00","12":"191.5","13":"90.00"},{"1":"male","2":"WPolo","3":"5.34","4":"6.20","5":"49.8","6":"17.2","7":"143","8":"27.79","9":"75.7","10":"13.49","11":"82.00","12":"184.6","13":"94.70"},{"1":"male","2":"WPolo","3":"4.86","4":"8.90","5":"46.9","6":"15.8","7":"65","8":"23.58","9":"57.7","10":"10.25","11":"68.00","12":"179.9","13":"76.30"},{"1":"male","2":"WPolo","3":"4.90","4":"7.60","5":"45.6","6":"16.0","7":"90","8":"27.56","9":"67.2","10":"11.79","11":"82.00","12":"183.9","13":"93.20"},{"1":"male","2":"Tennis","3":"5.66","4":"8.30","5":"50.2","6":"17.7","7":"38","8":"23.76","9":"56.5","10":"10.05","11":"72.00","12":"183.5","13":"80.00"},{"1":"male","2":"Tennis","3":"5.03","4":"6.40","5":"42.7","6":"14.3","7":"122","8":"22.01","9":"47.6","10":"8.51","11":"68.00","12":"183.1","13":"73.80"},{"1":"male","2":"Tennis","3":"4.97","4":"8.80","5":"43.0","6":"14.9","7":"233","8":"22.34","9":"60.4","10":"11.50","11":"63.00","12":"178.4","13":"71.10"},{"1":"male","2":"Tennis","3":"5.38","4":"6.30","5":"46.0","6":"15.7","7":"32","8":"21.07","9":"34.9","10":"6.26","11":"72.00","12":"190.8","13":"76.70"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>202 rows and 13 columns indeed.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>We are going to see whether the height-weight combination of an athlete depends significantly on which sport they play and which gender they are. Explain (very) briefly why a multivariate analysis of variance will be necessary to do this.</li>
+</ol>
+<p>Solution</p>
+<p>We now have <em>two</em> response variables, height and weight, rather than just one. In order to do a test with more than one response variable, we need to use multivariate ANOVA rather than regular ANOVA. (The first sentence is enough.)</p>
+<p>Extra: the explanatory variables, sport and gender, are both categorical here, which makes a MANOVA work. If either of them had been quantitative, we would have needed to do a multivariate regression, which is beyond the scope of what we do in this course.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Create a response variable for a MANOVA. (You don’t need to show what you got, since it is rather big.) The columns you want are called <code>Ht</code> and <code>Wt</code>.</li>
+</ol>
+<p>Solution</p>
+<p>Use <code>cbind</code> to glue the two columns together: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(athletes, <span class="fu">cbind</span>(Ht, Wt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>Either way around, height or weight first, is good. Also good is the dollar sign, which you’ll need to do twice (and thus the <code>with</code> way is more elegant):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>response_a <span class="ot">&lt;-</span> <span class="fu">cbind</span>(athletes<span class="sc">$</span>Ht, athletes<span class="sc">$</span>Wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> <span class="fu">select</span>(Ht, Wt) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="ot">-&gt;</span> y </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Ht     Wt
+  [1,] 176.8  59.90
+  [2,] 172.6  63.00
+  [3,] 176.0  66.30
+  [4,] 169.9  60.70
+  [5,] 183.0  72.90
+  [6,] 178.2  67.90
+  [7,] 177.3  67.50
+  [8,] 174.1  74.10
+  [9,] 173.6  68.20
+ [10,] 173.7  68.80
+ [11,] 178.7  75.30
+ [12,] 183.3  67.40
+ [13,] 174.4  70.00
+ [14,] 173.3  74.00
+ [15,] 168.6  51.90
+ [16,] 174.0  74.10
+ [17,] 176.0  74.30
+ [18,] 172.2  77.80
+ [19,] 182.7  66.90
+ [20,] 180.5  83.80
+ [21,] 179.8  82.90
+ [22,] 179.6  64.10
+ [23,] 171.7  68.85
+ [24,] 195.9  78.90
+ [25,] 189.7  74.40
+ [26,] 177.8  69.10
+ [27,] 185.0  74.90
+ [28,] 184.6  64.60
+ [29,] 174.0  63.70
+ [30,] 186.2  75.20
+ [31,] 173.8  62.30
+ [32,] 171.4  66.50
+ [33,] 179.9  62.90
+ [34,] 193.4  96.30
+ [35,] 188.7  75.50
+ [36,] 169.1  63.00
+ [37,] 177.9  80.50
+ [38,] 177.5  71.30
+ [39,] 179.6  70.50
+ [40,] 181.3  73.20
+ [41,] 179.7  68.70
+ [42,] 185.2  80.50
+ [43,] 177.3  72.90
+ [44,] 179.3  74.50
+ [45,] 175.3  75.40
+ [46,] 174.0  69.50
+ [47,] 183.3  66.40
+ [48,] 184.7  79.70
+ [49,] 180.2  73.60
+ [50,] 180.2  78.70
+ [51,] 176.0  75.00
+ [52,] 156.0  49.80
+ [53,] 179.7  67.20
+ [54,] 180.9  66.00
+ [55,] 179.5  74.30
+ [56,] 178.9  78.10
+ [57,] 182.1  79.50
+ [58,] 186.3  78.50
+ [59,] 170.0  64.80
+ [60,] 170.0  59.00
+ [61,] 180.5  72.10
+ [62,] 173.3  75.60
+ [63,] 173.5  71.40
+ [64,] 181.0  69.70
+ [65,] 175.0  63.90
+ [66,] 170.3  55.10
+ [67,] 165.0  60.00
+ [68,] 169.8  58.00
+ [69,] 174.1  64.70
+ [70,] 175.0  87.50
+ [71,] 171.1  78.90
+ [72,] 172.7  83.90
+ [73,] 175.6  82.80
+ [74,] 171.6  74.40
+ [75,] 172.3  94.80
+ [76,] 171.4  49.20
+ [77,] 178.0  61.90
+ [78,] 162.0  53.60
+ [79,] 167.3  63.70
+ [80,] 162.0  52.80
+ [81,] 170.8  65.20
+ [82,] 163.0  50.90
+ [83,] 166.1  57.30
+ [84,] 176.0  60.00
+ [85,] 163.9  60.10
+ [86,] 173.0  52.50
+ [87,] 177.0  59.70
+ [88,] 168.0  57.30
+ [89,] 172.0  59.60
+ [90,] 167.9  71.50
+ [91,] 177.5  69.70
+ [92,] 162.5  56.10
+ [93,] 172.5  61.10
+ [94,] 166.7  47.40
+ [95,] 175.0  56.00
+ [96,] 157.9  45.80
+ [97,] 158.9  47.80
+ [98,] 156.9  43.80
+ [99,] 148.9  37.80
+[100,] 149.0  45.10
+[101,] 172.7  67.00
+[102,] 176.5  74.40
+[103,] 183.0  79.30
+[104,] 194.4  87.50
+[105,] 193.4  83.50
+[106,] 180.2  78.00
+[107,] 183.0  78.00
+[108,] 184.0  85.00
+[109,] 192.7  84.70
+[110,] 187.2  92.00
+[111,] 183.9  72.30
+[112,] 192.0  83.00
+[113,] 190.4  96.90
+[114,] 190.7  85.70
+[115,] 181.8  85.40
+[116,] 188.3  85.30
+[117,] 198.0  93.50
+[118,] 186.0  86.80
+[119,] 192.0  87.90
+[120,] 185.6  87.20
+[121,] 165.3  53.80
+[122,] 185.6  89.80
+[123,] 189.0  91.10
+[124,] 193.4  88.60
+[125,] 185.6  92.30
+[126,] 194.6  97.00
+[127,] 189.0  89.50
+[128,] 188.1  88.20
+[129,] 200.4  92.20
+[130,] 195.3  78.90
+[131,] 194.1  90.30
+[132,] 187.9  87.00
+[133,] 209.4 113.70
+[134,] 203.4  98.00
+[135,] 198.7 100.20
+[136,] 187.1  79.40
+[137,] 196.6  90.30
+[138,] 186.1  77.70
+[139,] 192.8  83.90
+[140,] 195.2  75.50
+[141,] 169.1  60.60
+[142,] 186.6  71.00
+[143,] 184.4  71.80
+[144,] 187.3  76.80
+[145,] 185.1 102.70
+[146,] 185.5  94.25
+[147,] 184.9  79.00
+[148,] 175.0  66.60
+[149,] 185.4  71.80
+[150,] 181.0  74.80
+[151,] 176.0  68.20
+[152,] 176.2  62.30
+[153,] 174.0  61.00
+[154,] 191.0  77.50
+[155,] 171.0  57.40
+[156,] 174.0  71.40
+[157,] 180.2  70.30
+[158,] 178.5  80.20
+[159,] 190.3  84.20
+[160,] 185.0 111.30
+[161,] 189.0  80.70
+[162,] 180.1  97.90
+[163,] 189.2 123.20
+[164,] 182.6  72.90
+[165,] 186.0  83.00
+[166,] 174.9  75.90
+[167,] 180.6  70.70
+[168,] 178.6  67.10
+[169,] 173.0  69.20
+[170,] 179.7  67.05
+[171,] 174.6  70.50
+[172,] 178.0  70.80
+[173,] 178.5  71.00
+[174,] 171.3  69.10
+[175,] 178.0  62.90
+[176,] 189.1  94.80
+[177,] 195.4  94.60
+[178,] 179.1 108.20
+[179,] 180.1  97.90
+[180,] 179.6  75.20
+[181,] 174.7  74.80
+[182,] 192.7  94.20
+[183,] 179.3  76.10
+[184,] 197.5  94.70
+[185,] 182.7  86.20
+[186,] 190.5  79.60
+[187,] 191.0  85.30
+[188,] 179.6  74.40
+[189,] 192.6  93.50
+[190,] 194.1  87.60
+[191,] 193.0  85.40
+[192,] 193.9 101.00
+[193,] 187.7  74.90
+[194,] 185.3  87.30
+[195,] 191.5  90.00
+[196,] 184.6  94.70
+[197,] 179.9  76.30
+[198,] 183.9  93.20
+[199,] 183.5  80.00
+[200,] 183.1  73.80
+[201,] 178.4  71.10
+[202,] 190.8  76.70</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Run a multivariate analysis of variance to see whether the height-weight combination depends significantly on gender, sport or the combination of both. Display the results. Use the small-m <code>manova</code> way to do this one.</li>
+</ol>
+<p>Solution</p>
+<p>The straightforward way is small-m <code>manova</code>. I don’t know what I should be calling my fitted model object, so I’m making something up. Don’t forget to use the right names for the variables, and to include an interaction: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> Sex <span class="sc">*</span> Sport, <span class="at">data =</span> athletes)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Df  Pillai approx F num Df den Df Pr(&gt;F)    
+Sex         1 0.52412  101.325      2    184 &lt;2e-16 ***
+Sport       9 0.87914   16.123     18    370 &lt;2e-16 ***
+Sex:Sport   6 0.04105    0.646     12    370 0.8023    
+Residuals 185                                          
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>:::</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"combo"</span>, <span class="fu">c</span>(Sex, Sport)) <span class="ot">-&gt;</span> athletes_combo</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">BoxM</span>(response, athletes_combo<span class="sc">$</span>combo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Box's M Test 
+
+Chi-Squared Value = 86.605 , df = 48  and p-value: 0.000537 </code></pre>
+</div>
+</div>
+<p>This test gives just small enough a P-value to be worried about (remembering that less than 0.001 is the problem zone). It seems unlikely, though, that the right test (whatever it is) would produce a significant interaction.</p>
+<p>The other way is apparently to use large-M <code>Manova</code> from package <code>car</code>. This goes as a two-stage process: fit an <code>lm</code> first with the same model formula as above, and then pass <em>that</em> into <code>Manova</code>. This way, you just display the final result, rather than passing it into <code>summary</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> Sex <span class="sc">*</span> Sport, <span class="at">data =</span> athletes)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Manova</span>(htwt<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in Anova.mlm(mod, ...): model is singular</code></pre>
+</div>
+</div>
+<p>Except that this doesn’t work, for reasons that I don’t understand. <code>htwt.2</code> is fine; it’s the <code>Manova</code> that is not working.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Briefly justify removing the interaction term from your previous model, and fit a model without it. You can use either <code>manova</code> or <code>Manova</code> for this; they should both work. (You only need to use one of them.) Display your results.</li>
+</ol>
+<p>Solution</p>
+<p>The interaction should come out, since it is not significant. (This is what I meant by “briefly.”) To do that, in each case, replace the <code>*</code> with a <code>+</code>, or use <code>update</code>. Most of those work: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> Sex <span class="sc">+</span> Sport, <span class="at">data =</span> athletes)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Df  Pillai approx F num Df den Df    Pr(&gt;F)    
+Sex         1 0.51888  102.454      2    190 &lt; 2.2e-16 ***
+Sport       9 0.86923   16.314     18    382 &lt; 2.2e-16 ***
+Residuals 191                                             
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>:::</p>
+<p>or</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(htwt<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> Sex<span class="sc">:</span>Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in if (projections) qr &lt;- lmcall$qr &lt;- TRUE: the condition has length &gt; 1</code></pre>
+</div>
+</div>
+<p>It seems that <code>manova</code> things don’t like <code>update</code>. If that happened to you, try it another way.</p>
+<p>or, with <code>Manova</code>, the same two ways:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> Sex <span class="sc">+</span> Sport, <span class="at">data =</span> athletes)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.7</span> <span class="ot">&lt;-</span> <span class="fu">Manova</span>(htwt<span class="fl">.6</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Type II MANOVA Tests:
+
+Sum of squares and products for error:
+         Ht        Wt
+Ht 6871.978  5842.771
+Wt 5842.771 13613.021
+
+------------------------------------------
+ 
+Term: Sex 
+
+Sum of squares and products for the hypothesis:
+         Ht       Wt
+Ht 4582.744 6146.078
+Wt 6146.078 8242.718
+
+Multivariate Tests: Sex
+                 Df test stat approx F num Df den Df     Pr(&gt;F)    
+Pillai            1 0.4427781 75.48862      2    190 &lt; 2.22e-16 ***
+Wilks             1 0.5572219 75.48862      2    190 &lt; 2.22e-16 ***
+Hotelling-Lawley  1 0.7946171 75.48862      2    190 &lt; 2.22e-16 ***
+Roy               1 0.7946171 75.48862      2    190 &lt; 2.22e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+------------------------------------------
+ 
+Term: Sport 
+
+Sum of squares and products for the hypothesis:
+         Ht        Wt
+Ht 6162.455  7070.085
+Wt 7070.085 13727.950
+
+Multivariate Tests: Sport
+                 Df test stat approx F num Df den Df     Pr(&gt;F)    
+Pillai            9 0.8692278 16.31358     18    382 &lt; 2.22e-16 ***
+Wilks             9 0.3132928 16.60578     18    380 &lt; 2.22e-16 ***
+Hotelling-Lawley  9 1.6093145 16.89780     18    378 &lt; 2.22e-16 ***
+Roy               9 1.0593835 22.48247      9    191 &lt; 2.22e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.8</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(htwt<span class="fl">.2</span>, . <span class="sc">~</span> . <span class="sc">-</span> Sex<span class="sc">:</span>Sport)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.9</span> <span class="ot">&lt;-</span> <span class="fu">Manova</span>(htwt<span class="fl">.8</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Type II MANOVA Tests:
+
+Sum of squares and products for error:
+         Ht        Wt
+Ht 6871.978  5842.771
+Wt 5842.771 13613.021
+
+------------------------------------------
+ 
+Term: Sex 
+
+Sum of squares and products for the hypothesis:
+         Ht       Wt
+Ht 4582.744 6146.078
+Wt 6146.078 8242.718
+
+Multivariate Tests: Sex
+                 Df test stat approx F num Df den Df     Pr(&gt;F)    
+Pillai            1 0.4427781 75.48862      2    190 &lt; 2.22e-16 ***
+Wilks             1 0.5572219 75.48862      2    190 &lt; 2.22e-16 ***
+Hotelling-Lawley  1 0.7946171 75.48862      2    190 &lt; 2.22e-16 ***
+Roy               1 0.7946171 75.48862      2    190 &lt; 2.22e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+------------------------------------------
+ 
+Term: Sport 
+
+Sum of squares and products for the hypothesis:
+         Ht        Wt
+Ht 6162.455  7070.085
+Wt 7070.085 13727.950
+
+Multivariate Tests: Sport
+                 Df test stat approx F num Df den Df     Pr(&gt;F)    
+Pillai            9 0.8692278 16.31358     18    382 &lt; 2.22e-16 ***
+Wilks             9 0.3132928 16.60578     18    380 &lt; 2.22e-16 ***
+Hotelling-Lawley  9 1.6093145 16.89780     18    378 &lt; 2.22e-16 ***
+Roy               9 1.0593835 22.48247      9    191 &lt; 2.22e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>These both work, and give the same answer. I think this is because the thing being <code>update</code>d is a regular <code>lm</code>; the <code>Manova</code> bit comes after, and is calculated from the <code>lm</code> fit.</p>
+<p>Any of these is good, and gets you the same answer.</p>
+<p>The way you run Box’s M test on these is on each explanatory variable separately:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">BoxM</span>(response, athletes<span class="sc">$</span>Sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Box's M Test 
+
+Chi-Squared Value = 3.98602 , df = 3  and p-value: 0.263 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">BoxM</span>(response, athletes<span class="sc">$</span>Sport))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Box's M Test 
+
+Chi-Squared Value = 68.16926 , df = 27  and p-value: 2.04e-05 </code></pre>
+</div>
+</div>
+<p>The second of these, the one for Sport, is small enough to be a problem, but the P-value in the MANOVA for Sport is extremely small, so we should be safe.</p>
+<p>Extra: more about the <code>summary</code> output from <code>Manova</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Type II MANOVA Tests:
+
+Sum of squares and products for error:
+         Ht        Wt
+Ht 6871.978  5842.771
+Wt 5842.771 13613.021
+
+------------------------------------------
+ 
+Term: Sex 
+
+Sum of squares and products for the hypothesis:
+         Ht       Wt
+Ht 4582.744 6146.078
+Wt 6146.078 8242.718
+
+Multivariate Tests: Sex
+                 Df test stat approx F num Df den Df     Pr(&gt;F)    
+Pillai            1 0.4427781 75.48862      2    190 &lt; 2.22e-16 ***
+Wilks             1 0.5572219 75.48862      2    190 &lt; 2.22e-16 ***
+Hotelling-Lawley  1 0.7946171 75.48862      2    190 &lt; 2.22e-16 ***
+Roy               1 0.7946171 75.48862      2    190 &lt; 2.22e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+------------------------------------------
+ 
+Term: Sport 
+
+Sum of squares and products for the hypothesis:
+         Ht        Wt
+Ht 6162.455  7070.085
+Wt 7070.085 13727.950
+
+Multivariate Tests: Sport
+                 Df test stat approx F num Df den Df     Pr(&gt;F)    
+Pillai            9 0.8692278 16.31358     18    382 &lt; 2.22e-16 ***
+Wilks             9 0.3132928 16.60578     18    380 &lt; 2.22e-16 ***
+Hotelling-Lawley  9 1.6093145 16.89780     18    378 &lt; 2.22e-16 ***
+Roy               9 1.0593835 22.48247      9    191 &lt; 2.22e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>There are actually <em>four</em> competing tests that generalize the one-response-variable <span class="math inline">\(F\)</span> statistic in different ways. If you go looking in a text on multivariate analysis, you’ll also see about all four of them, especially Wilks’s <span class="math inline">\(\Lambda\)</span> (that’s a capital lambda). They will generally agree in terms of conclusion, but you should probably at least glance at all of them.</p>
+<p>I am in danger of running out of numbers for my fitted models (and am definitely in danger of forgetting which one is which)!</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>See if you can make a graph that shows what’s going on here. Bear in mind that you have two quantitative variables and <em>two</em> categorical ones, so you will need to find a way to display everything. Hint: what would you do with two quantitative variables and <em>one</em> categorical one? Can you find a way to generalize that idea by displaying the other categorical variable differently? I think we have seen a couple of ideas that will work, somewhere in the lecture notes (but in a different context). Or you can search for ideas, of course. For full marks, obtain a plot which does not give you any warnings. (The grader will know which of the possible plots give warnings, and will deduct extra marks if you assert that a plot gives no warnings when in fact it does. That is to say, if you get any warnings, <em>you need to include those in what you hand in</em>).</li>
+</ol>
+<p>Solution</p>
+<p>This will probably involve a bit of digging. The starting point would be a scatterplot (the two quantitative variables) with the points distinguished by colour (one of the categorical variables). What other options do we have? If you look eg. at the navigation on the left of <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/size">link</a>, you’ll see that there are two likely possibilities: <code>shape</code> and <code>size</code>. <code>shape</code> uses a different plotting symbol for each value of a categorical variable; <code>size</code> draws the plotting symbol bigger or smaller according to the value of a categorical variable. The remaining question is the one of which aesthetic to “map” to which variable? To guide you in this, note that we have ten different sports and two different genders. In my opinion, colours are the easiest to distinguish a lot of, though even then 10 is pushing it, then plotting symbols. Symbol sizes are hard to distinguish a lot of, so it’s best to limit this (if you use it at all) to gender. With that in mind, I would go for this one: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">colour =</span> Sport, <span class="at">shape =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/hatzer-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>If you investigate, you’ll find that <code>ggplot</code> can handle about six different shapes (and we have ten sports), and it doesn’t care for using <code>size</code> to distinguish values of a categorical variable. It will try to draw the graph, but will give you a warning, such as these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">colour =</span> Sport, <span class="at">size =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using size for a discrete variable is not advised.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/delkofer-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">shape =</span> Sport, <span class="at">size =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using size for a discrete variable is not advised.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values because
+more than 6 becomes difficult to discriminate; you have 10. Consider
+specifying shapes manually if you must have them.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 72 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/vonhoedorff-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">shape =</span> Sport, <span class="at">colour =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values because
+more than 6 becomes difficult to discriminate; you have 10. Consider
+specifying shapes manually if you must have them.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 72 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/schmit-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Whatever plot you come up with, you can put height and weight on the other axes, since neither one of them is uniquely a response variable.</p>
+<p>Any of these graphs with warnings do the job, kind of, so they get 2 points.</p>
+<p>One of the many well-thought-out things about <code>ggplot2</code> is that making this graph was actually not difficult once you had figured out that you also had <code>shape</code> and <code>size</code> at your disposal. (In addition, <code>ggplot2</code> will help you make some aesthetic decisions about which variable is distinguished by what kind of thing. This will help you work towards a plot that doesn’t have any warnings. These warnings are pretty clear about what not to do, and by implication what you need to do instead. Colour, for example, is always safe warning-wise.)</p>
+<p>The model for this kind of graph that we saw is the plot of probability (of preferring different brands of a product) as it depended on age (two quantitative variables) for each brand and gender (two categorical variables). I had three brands and two genders there, so I used colour for brand and shape for gender, but it would have worked about as well if I’d used shape for brand and colour for gender.</p>
+<p>The warning message for <code>shape</code> contains the words ``specify shapes manually if you must have them’’. I was wondering how you can avoid that. Here’s how:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">shape =</span> Sport, <span class="at">colour =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/marklin-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I agree with <code>ggplot2</code> that this many shapes are hard to tell apart,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> but if you can figure this out, you achieve the goal of producing a plot with no warnings, so you get full marks. (We need 10 shapes because there are 10 different sports, so we have to specify 10 different values in <code>values=</code>: any 10 different values will do. A list of the possible shapes is in <a href="https://stackoverflow.com/questions/16813278/cycling-through-point-shapes-when-more-than-6-factor-levels">link</a>, at the bottom. You can even use regular letters, but you have to refer to them by numeric code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">shape =</span> Sport, <span class="at">colour =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">66</span>, <span class="dv">70</span>, <span class="dv">71</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">83</span>, <span class="dv">52</span>, <span class="dv">84</span>, <span class="dv">3</span>, <span class="dv">87</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="manova_files/figure-html/stahillin-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I had to find something for <code>TSprnt</code>, since all the letters appeared to be taken.</p>
+<p>On consideration, I like this last graph the best, because the letters are more or less reminders of which sport each point is (they are “mnemonic”, so you don’t have to look them up all the time, as with colours or shapes: you can eventually remember which is which).</p>
+<p>Whatever you come up with, expect: 3 marks if you get a plot with no warnings, 2 marks if you get a plot with warnings, 1 mark if you get a plot that would produce warnings but you don’t indicate that there are warnings, either by saying so or by including the warnings in what you hand in.</p>
+<p>I didn’t ask you to interpret your plot (just getting it was enough work), but there seems to be a common theme that, for sports played by both genders, that the athletes are in about the same place relative to the other ones in their gender (eg., the basketball players are tall and heavy, the field athletes are really heavy but not very tall), but male athletes are both taller and heavier than female athletes playing the same sport. This consistency of pattern was probably why the interaction was nowhere near significant: there are additive separate effects of sport and of gender on the height-weight combination.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Like one of those crazy drinks at Starbucks.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Having said that, the shapes are less anbiguous than the colours, because if you’re willing to study the legend, you can work out exactly which sport a shape belongs to, whereas the colours might be hard to tell apart at all.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ancova.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./repeated-measures.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 29&nbsp; Analysis of covariance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./manova.html" rel="next">
+<link href="./anova-revisited.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#productivity-and-research-and-development" id="toc-productivity-and-research-and-development" class="nav-link active" data-scroll-target="#productivity-and-research-and-development"><span class="header-section-number">29.1</span> Productivity and research-and-development</a></li>
+  <li><a href="#treating-leprosy" id="toc-treating-leprosy" class="nav-link" data-scroll-target="#treating-leprosy"><span class="header-section-number">29.2</span> Treating leprosy</a></li>
+  <li><a href="#productivity-and-research-and-development-1" id="toc-productivity-and-research-and-development-1" class="nav-link" data-scroll-target="#productivity-and-research-and-development-1"><span class="header-section-number">29.3</span> Productivity and research-and-development</a></li>
+  <li><a href="#treating-leprosy-1" id="toc-treating-leprosy-1" class="nav-link" data-scroll-target="#treating-leprosy-1"><span class="header-section-number">29.4</span> Treating leprosy</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Packages for this chapter:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="productivity-and-research-and-development" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="productivity-and-research-and-development"><span class="header-section-number">29.1</span> Productivity and research-and-development</h2>
+<p>An economist compiled data on productivity improvements for a sample of companies that produce electronic equipment. The companies were classified according to their expenditures on research and development in the last three years (classified as low, moderate, high). Productivity improvement is measured on a 0–100 scale, with most values being between 0 and 10. The economist also thought that last year’s productivity improvement would be relevant, and so recorded this as well.</p>
+<p>The data set can be found at <a href="http://ritsokiguess.site/datafiles/productivity.txt">link</a>.</p>
+<p>Feel free to use “R&amp;D” as an abbreviation for “research and development” in your answers below.</p>
+<ol type="a">
+<li><p>Read in and display at least some of the data.</p></li>
+<li><p>Plot productivity improvement for this year against last year, identifying the points by the level of research-and-development expenditure. On your plot, add regression lines for each expenditure group.</p></li>
+<li><p><a name="part:graph-comment">*</a> Look at your graph of the previous part. Do you think that (i) knowing last year’s productivity improvement tells you something about this year’s, (ii) the level of expenditure on research-and-development has an impact on this year’s productivity improvement, (iii) there is an interaction effect between R&amp;D expenditure and last year’s productivity increase on this year’s productivity increase? In each case, explain briefly.</p></li>
+<li><p>Fit an analysis of covariance model without interaction. Run the results through <code>drop1</code> with <code>test="F"</code> (the <code>F</code> must be in quotes). What do you conclude?</p></li>
+<li><p>Now look at the <code>summary</code> of your analysis of covariance model. Explain briefly how each of the <em>last three</em> numbers in the <code>Estimate</code> column are consistent with your graph.</p></li>
+<li><p>Add an interaction between <code>last</code> and <code>expenditure</code> to your analysis of covariance model. Test it for significance using <code>drop1</code>. In the light of what you have seen, does this surprise you? Explain briefly why you are or are not surprised.</p></li>
+</ol>
+</section>
+<section id="treating-leprosy" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="treating-leprosy"><span class="header-section-number">29.2</span> Treating leprosy</h2>
+<p>Two drugs are being tested in the treatment of leprosy. These are labelled A and D. There is also a control drug, labelled F. The response variable is a post-treatment score of leprosy bacilli (measured at six different sites on each patient). A lower score is better.</p>
+<p>Thus far, we have a standard one-way analysis of variance. But the researchers wanted greater precision in assessing the effects (if any) of the drugs, so they also measured a pre-treatment score of leprosy bacilli. The data are in the file <a href="http://ritsokiguess.site/datafiles/leprosy.txt">link</a>. The pre-treatment and post-treatment scores are labelled <code>pre</code> and <code>post</code> respectively.</p>
+<ol type="a">
+<li>Read in the data and check that you have apparently the right thing. ::: {.cell}</li>
+</ol>
+<p>:::</p>
+<ol start="2" type="a">
+<li><p><a name="part:lepro-scatter">*</a> Make a scatterplot of post-treatment score against pre-treatment score, with the points for each drug drawn in a different colour.</p></li>
+<li><p>Does it appear that including the pre-treatment score was a good idea? Explain briefly.</p></li>
+<li><p>What about this dataset suggests that analysis of covariance is a method worth trying?</p></li>
+<li><p>Fit an analysis of covariance model to predict post-treatment score. Include an interaction between your explanatory variables. (You don’t need to look at the output from the model.)</p></li>
+<li><p>Pass your fitted model of the last part into <code>drop1</code>. Is the interaction term significant?</p></li>
+<li><p>Fit a model without the interaction. Is this a sensible thing to do (in addition, that is, to the fact that I just asked you to do it)?</p></li>
+<li><p>Take a look at the <code>summary</code> of your preferred model. Is there a significant effect of pre-treatment score? Describe the effects of the different drugs on the post-treatment score. (Don’t do any tests for <code>drug</code>.) Does your comparison of drugs make sense?</p></li>
+<li><p>Obtain predicted values for <code>post</code> for each of the three drugs at <code>pre</code> scores 5, 12 and 20. To do this, obtain a new data frame that has all 9 combinations of drugs and <code>pre</code> scores, and then feed this into <code>predict</code> using your preferred model.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p>Now, plot the data with the fitted lines on.</p></li>
+<li><p>Are the lines on your plot parallel, with the same slopes? Is this what you would expect? Explain briefly.</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="productivity-and-research-and-development-1" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="productivity-and-research-and-development-1"><span class="header-section-number">29.3</span> Productivity and research-and-development</h2>
+<p>An economist compiled data on productivity improvements for a sample of companies that produce electronic equipment. The companies were classified according to their expenditures on research and development in the last three years (classified as low, moderate, high). Productivity improvement is measured on a 0–100 scale, with most values being between 0 and 10. The economist also thought that last year’s productivity improvement would be relevant, and so recorded this as well.</p>
+<p>The data set can be found at <a href="http://ritsokiguess.site/datafiles/productivity.txt">link</a>.</p>
+<p>Feel free to use “R&amp;D” as an abbreviation for “research and development” in your answers below.</p>
+<ol type="a">
+<li>Read in and display at least some of the data.</li>
+</ol>
+<p>Solution</p>
+<p>The data values are separated by one space, so let’s use <code>read_delim</code> and display whatever displays (probably the first ten lines): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/productivity.txt"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>productivity <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 27 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+chr (1): expenditure
+dbl (2): improvement, last
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>productivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["expenditure"],"name":[1],"type":["chr"],"align":["left"]},{"label":["improvement"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["last"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"low","2":"7.6","3":"8.2"},{"1":"low","2":"8.2","3":"7.9"},{"1":"low","2":"6.8","3":"7.0"},{"1":"low","2":"5.8","3":"5.7"},{"1":"low","2":"6.9","3":"7.2"},{"1":"low","2":"6.6","3":"7.0"},{"1":"low","2":"6.3","3":"6.5"},{"1":"low","2":"7.7","3":"7.9"},{"1":"low","2":"6.0","3":"6.3"},{"1":"moderate","2":"6.7","3":"8.8"},{"1":"moderate","2":"8.1","3":"10.0"},{"1":"moderate","2":"9.4","3":"10.7"},{"1":"moderate","2":"8.6","3":"10.0"},{"1":"moderate","2":"7.8","3":"9.7"},{"1":"moderate","2":"7.7","3":"9.4"},{"1":"moderate","2":"8.9","3":"10.6"},{"1":"moderate","2":"7.9","3":"9.8"},{"1":"moderate","2":"8.3","3":"10.0"},{"1":"moderate","2":"8.7","3":"10.3"},{"1":"moderate","2":"7.1","3":"8.9"},{"1":"moderate","2":"8.4","3":"10.0"},{"1":"high","2":"8.5","3":"11.5"},{"1":"high","2":"9.7","3":"12.2"},{"1":"high","2":"10.1","3":"12.8"},{"1":"high","2":"7.8","3":"11.0"},{"1":"high","2":"9.6","3":"12.3"},{"1":"high","2":"9.5","3":"12.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>There is a column classifying expenditure along with numerical values for productivity improvement for this year and last year (labelled <code>improvement</code> and <code>last</code>), so it looks as if we are good.</p>
+<p>You are free to give the data frame a shorter name to make it easier to keep typing it!</p>
+<p>Extra: those expenditure levels (that are currently text) will get sorted into alphabetical order unless we stop them. They are actually in the right order in the data file, so maybe we should turn them into a factor (with the levels in the right order) now:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>productivity <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">expenditure =</span> <span class="fu">fct_inorder</span>(expenditure)) <span class="ot">-&gt;</span> productivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you don’t do this, your answers below will be different from mine. Probably not in any kind of consequential way, but different nonetheless.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Plot productivity improvement for this year against last year, identifying the points by the level of research-and-development expenditure. On your plot, add regression lines for each expenditure group.</li>
+</ol>
+<p>Solution</p>
+<p>Two quantitative and one categorical variable, so plot the categorical variable using colour (or <code>shape</code> etc., if you know about that, but colour is the most obvious thing): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(productivity, <span class="fu">aes</span>(<span class="at">x =</span> last, <span class="at">y =</span> improvement, <span class="at">colour =</span> expenditure)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/productivity-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>The <code>se=F</code> is optional; no problem if you don’t include it. (If you miss it out, you’ll get those CI-of-mean-response grey envelopes around each line.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li><a name="part:graph-comment">*</a> Look at your graph of the previous part. Do you think that (i) knowing last year’s productivity improvement tells you something about this year’s, (ii) the level of expenditure on research-and-development has an impact on this year’s productivity improvement, (iii) there is an interaction effect between R&amp;D expenditure and last year’s productivity increase on this year’s productivity increase? In each case, explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>Taking the three things in turn: (i) knowing about last year’s productivity increase definitely helps, because the three trends definitely go up (extra: and are pretty much linear). (ii) knowing about the level of expenditure helps because the coloured trends are in different places (low on the left and high on the right, whatever colours they are for you). (iii) I am guessing there is no interaction because the three lines look more or less parallel (a judgement call: if you think that there <em>will</em> be an interaction because you think the lines are definitely not “approximately parallel” and therefore there is an interaction, that’s OK too).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Fit an analysis of covariance model without interaction. Run the results through <code>drop1</code> with <code>test="F"</code> (the <code>F</code> must be in quotes). What do you conclude?</li>
+</ol>
+<p>Solution</p>
+<p>This looks exactly like a regression with a categorical variable, and is. Just the two main effects, thus: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>improvement<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(improvement <span class="sc">~</span> last <span class="sc">+</span> expenditure, <span class="at">data =</span> productivity)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(improvement<span class="fl">.1</span>, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"NA","2":"NA","3":"1.317535","4":"-73.542006","5":"NA","6":"NA","_rn_":"<none>"},{"1":"1","2":"14.044687","3":"15.362222","4":"-9.225988","5":"245.17589","6":"9.273750e-14","_rn_":"last"},{"1":"2","2":"4.195826","3":"5.513361","4":"-38.893885","5":"36.62294","6":"7.095379e-08","_rn_":"expenditure"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>Both the P-values are small, so there is strong evidence of an effect on this year’s productivity increase of last year’s productivity increase and the level of R&amp;D expenditure.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Now look at the <code>summary</code> of your analysis of covariance model. Explain briefly how each of the <em>last three</em> numbers in the <code>Estimate</code> column are consistent with your graph.</li>
+</ol>
+<p>Solution</p>
+<p>To begin: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(improvement<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = improvement ~ last + expenditure, data = productivity)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.52812 -0.16385 -0.00046  0.08379  0.45730 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         -1.00804    0.50991  -1.977   0.0602 .  
+last                 1.11417    0.07116  15.658 9.27e-14 ***
+expendituremoderate -1.83316    0.22372  -8.194 2.84e-08 ***
+expenditurehigh     -3.14338    0.37115  -8.469 1.59e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2393 on 23 degrees of freedom
+Multiple R-squared:  0.9629,    Adjusted R-squared:  0.958 
+F-statistic: 198.8 on 3 and 23 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>:::</p>
+<p>The last three numbers in the Estimate column are slopes for the quantitative variable <code>last</code> and changes in intercept for the levels of the categorical variable <code>expenditure</code>. Specifically:</p>
+<ul>
+<li><p>the slope for <code>last</code> is positive, so if last year’s productivity increase is higher, this year’s will be higher as well. This matches the upward trends within each <code>expenditure</code> group on the graph.</p></li>
+<li><p><code>expenditure</code> is categorical, so everything is measured relative to the baseline. Mine is <code>low</code>, but yours is probably <code>high</code>.</p></li>
+<li><p>My two estimates for <code>expenditure</code> <code>high</code> and <code>moderate</code> are both negative, so when expenditure on R&amp;D is high or moderate, the productivity increase will be lower this year (for the same productivity increase last year). Going back to the graph, if you extend the lines for <code>moderate</code> and <code>high</code> to a middling <code>last</code> value of something like 10, the productivity increase this year will be higher when <code>expenditure</code> is low or moderate then when it is high, which is consistent with those slopes both being positive. (You don’t need to go to this detail, but you should say something convincing from the graph about how this year’s productivity increase is <em>higher</em> if R&amp;D expenditure is low or moderate compared to high.)</p></li>
+</ul>
+<p>Extra: the graph also indicates that the higher the <code>expenditure</code> on R&amp;D is, the more likely last year’s productivity improvement will be higher also. So in practice we are not likely to be comparing actual companies with different <code>expenditure</code> but the same <code>last</code>. Nonetheless, what I said is what those positive coefficients for <code>expenditure</code> actually mean. Be careful not to say that <code>low</code> is lowest because it’s on the left; it’s whether it’s higher or lower than the others <em>at the same value of <code>last</code></em> that matters.</p>
+<p>Extra extra: I asked you to do the test from <code>drop1</code> because there are three levels of <code>expenditure</code> (rather than just two), and the <code>summary</code> output only gives you a comparison with the baseline level, rather than comparing all three levels. I prefer to do the right test (using <code>drop1</code>) first, and then use <code>summary</code> to interpret what I have, or at least the parts of it that are significant.</p>
+<p>Extra extra extra: you would (or at least I would) expect a larger productivity increase to go with a <em>larger</em> expenditure on R&amp;D, but that’s not how it worked out. This is one of those cases where all else isn’t really equal.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Add an interaction between <code>last</code> and <code>expenditure</code> to your analysis of covariance model. Test it for significance using <code>drop1</code>. In the light of what you have seen, does this surprise you? Explain briefly why you are or are not surprised.</li>
+</ol>
+<p>Solution</p>
+<p>I like <code>update</code> for this (writing out the whole model is an alternative): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>improvement<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(improvement<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">+</span> last<span class="sc">:</span>expenditure)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(improvement<span class="fl">.2</span>, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"NA","2":"NA","3":"0.9571826","4":"-78.16915","5":"NA","6":"NA","_rn_":"<none>"},{"1":"2","2":"0.3603524","3":"1.3175350","4":"-73.54201","5":"3.952956","6":"0.03490941","_rn_":"last:expenditure"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>Yes, I too forgot the <code>test="F"</code> the first time.</p>
+<p>The interaction term is actually significant, at least at <span class="math inline">\(\alpha=0.05\)</span>. This is a surprise to me, because I thought those lines on the graph were pretty close to parallel, so I wasn’t expecting to see a significant interaction. (What I want from you here is to look back at your answer to (iii) in part (<a href="#part:graph-comment">here</a>), and to say how this small P-value is consistent or inconsistent with whatever you said there. If you said that the lines weren’t parallel enough, then this significant interaction should <em>not</em> be a surprise to you.)</p>
+<p>That’s all I’m after. I don’t need you to speculate on <em>why</em> the test came out significant. I will, in a moment, but you don’t need to.</p>
+<p>Extra: I didn’t expect the interaction to come out significant, but the P-value is not nearly so small as the ones we had before. I guess the explanation for this is that the data cluster pretty tightly about the lines in the graph, so that even a small difference in slopes can be signficant. You might argue that my red line is not <em>quite</em> as steep as the others, but the difference does look very small.</p>
+<p>Let’s take a look at the <code>summary</code> for my interaction model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(improvement<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = improvement ~ last + expenditure + last:expenditure, 
+    data = productivity)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.32417 -0.14885 -0.02465  0.13739  0.55556 
+
+Coefficients:
+                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)               0.27827    0.64967   0.428  0.67278    
+last                      0.93243    0.09124  10.220 1.32e-09 ***
+expendituremoderate      -4.50268    1.25959  -3.575  0.00179 ** 
+expenditurehigh          -7.14795    1.91223  -3.738  0.00121 ** 
+last:expendituremoderate  0.32217    0.14243   2.262  0.03444 *  
+last:expenditurehigh      0.40858    0.17549   2.328  0.02997 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2135 on 21 degrees of freedom
+Multiple R-squared:  0.973, Adjusted R-squared:  0.9666 
+F-statistic: 151.5 on 5 and 21 DF,  p-value: 9.763e-16</code></pre>
+</div>
+</div>
+<p>The last two Estimates, the ones beginning with <code>last:</code>, came from the interaction. Once again <code>low</code> is my baseline. These say how the <em>slopes</em> for <code>last</code> for the other groups differ from the slopes for <code>last</code> for <code>low</code> expenditure. (Yes, this is confusing. Read it again until you get it.)</p>
+<p>The biggest-size difference in slopes, about <span class="math inline">\(0.40\)</span>, is between low expenditure and high expenditure. This says that the line for high expenditure is this much more steep than the line for low expenditure. That’s where the non-parallelism is on the graph, such as it is. A small but significant difference in slopes. You can tell that the effect is small by looking in the Estimate column; those changes in slopes, <span class="math inline">\(0.40\)</span> and <span class="math inline">\(0.32\)</span>, are the smallest things in size out of everything in that column.</p>
+<p>Having seen this, you now realize that I did this question wrong (or, at least, I led you through it wrong). The right way to do this would have been to fit the interaction model <em>first</em>, see that it is significant, and then done some predictions to assess the effects of things:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(improvement<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"expenditure"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The three lines are not quite parallel, and evidently non-parallel enough to be significant. (This graph does not give you any sense of how much variability there is in the <em>slopes</em>; the at-least partial non-overlapping of the confidence envelopes tells you that there is a significant effect of <em>expenditure</em>, but it doesn’t tell you about the interaction.)</p>
+<p>The effect is more or less as we described it before: as <code>last</code> goes up (for fixed <code>expenditure</code>), the predicted productivity improvements for this year go up, and as <code>expenditure</code> level goes up, the predictions go <em>down</em>. But the rates at which they go up or down are different, which is the significant interaction coming into play. Having said that, they are not very different, so I cheated and pretended the interaction was not significant (or that I was using <span class="math inline">\(\alpha=0.01\)</span>), so that you would have something easier to interpret. Qualitatively, the story is the same either way, because the sizes of the interaction terms are small compared to the others. So, even though I cheated, you ended up with more or less the same conclusions doing it the way I asked you to do it, or doing it the way I just did it.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="treating-leprosy-1" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="treating-leprosy-1"><span class="header-section-number">29.4</span> Treating leprosy</h2>
+<p>Two drugs are being tested in the treatment of leprosy. These are labelled A and D. There is also a control drug, labelled F. The response variable is a post-treatment score of leprosy bacilli (measured at six different sites on each patient). A lower score is better.</p>
+<p>Thus far, we have a standard one-way analysis of variance. But the researchers wanted greater precision in assessing the effects (if any) of the drugs, so they also measured a pre-treatment score of leprosy bacilli. The data are in the file <a href="http://ritsokiguess.site/datafiles/leprosy.txt">link</a>. The pre-treatment and post-treatment scores are labelled <code>pre</code> and <code>post</code> respectively.</p>
+<ol type="a">
+<li>Read in the data and check that you have apparently the right thing.</li>
+</ol>
+<p>Solution</p>
+<p>Take a look at the data file. The values have multiple spaces between them, but they are aligned with each other and the column headings, so <code>read_table</code> is the thing: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/leprosy.txt"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lepro <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  drug = col_character(),
+  pre = col_double(),
+  post = col_double()
+)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 24 parsing failures.
+row col  expected    actual                                             file
+  1  -- 3 columns 4 columns 'http://ritsokiguess.site/datafiles/leprosy.txt'
+  2  -- 3 columns 4 columns 'http://ritsokiguess.site/datafiles/leprosy.txt'
+  3  -- 3 columns 4 columns 'http://ritsokiguess.site/datafiles/leprosy.txt'
+  4  -- 3 columns 4 columns 'http://ritsokiguess.site/datafiles/leprosy.txt'
+  5  -- 3 columns 4 columns 'http://ritsokiguess.site/datafiles/leprosy.txt'
+... ... ......... ......... ................................................
+See problems(...) for more details.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lepro <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">change =</span> pre<span class="sc">-</span>post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["drug"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pre"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["post"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["change"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"11","3":"6","4":"5"},{"1":"A","2":"6","3":"4","4":"2"},{"1":"D","2":"6","3":"0","4":"6"},{"1":"D","2":"8","3":"4","4":"4"},{"1":"F","2":"16","3":"13","4":"3"},{"1":"F","2":"16","3":"12","4":"4"},{"1":"A","2":"8","3":"0","4":"8"},{"1":"A","2":"10","3":"13","4":"-3"},{"1":"D","2":"6","3":"2","4":"4"},{"1":"D","2":"19","3":"14","4":"5"},{"1":"F","2":"13","3":"10","4":"3"},{"1":"F","2":"12","3":"5","4":"7"},{"1":"A","2":"5","3":"2","4":"3"},{"1":"A","2":"6","3":"1","4":"5"},{"1":"D","2":"7","3":"3","4":"4"},{"1":"D","2":"8","3":"9","4":"-1"},{"1":"F","2":"11","3":"18","4":"-7"},{"1":"F","2":"12","3":"16","4":"-4"},{"1":"A","2":"14","3":"8","4":"6"},{"1":"A","2":"11","3":"8","4":"3"},{"1":"D","2":"8","3":"1","4":"7"},{"1":"D","2":"5","3":"1","4":"4"},{"1":"F","2":"9","3":"5","4":"4"},{"1":"F","2":"7","3":"1","4":"6"},{"1":"A","2":"19","3":"11","4":"8"},{"1":"A","2":"3","3":"0","4":"3"},{"1":"D","2":"18","3":"18","4":"0"},{"1":"D","2":"15","3":"9","4":"6"},{"1":"F","2":"21","3":"23","4":"-2"},{"1":"F","2":"12","3":"20","4":"-8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>Call it what you like.</p>
+<p>That looks good, with variables of the right names.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li><a name="part:lepro-scatter">*</a> Make a scatterplot of post-treatment score against pre-treatment score, with the points for each drug drawn in a different colour.</li>
+</ol>
+<p>Solution</p>
+<p>This is the kind of thing that <code>ggplot</code> does without batting an eyelid: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lepro, <span class="fu">aes</span>(<span class="at">x =</span> pre, <span class="at">y =</span> post, <span class="at">colour =</span> drug)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/leprosy-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lepro, <span class="fu">aes</span>(<span class="at">x =</span> drug, <span class="at">y =</span> post)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Does it appear that including the pre-treatment score was a good idea? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>The overall trend on the scatterplot is that a higher <code>pre</code> tends to go with a higher <code>post</code>, regardless of drug, so including this information appears to be informative. I personally suspect that there’s some fan-out happening on the pre-post relationship, but I’m not planning to make you explore that.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>What about this dataset suggests that analysis of covariance is a method worth trying?</li>
+</ol>
+<p>Solution</p>
+<p>The key is a mixture of categorical and quantitative explanatory variables. Here we have a categorical variable <code>drug</code> and a quantitative one <code>pre</code>. If we had only one type of explanatory variable, we could do a regression or an ANOVA as appropriate. But we don’t. In some ways, it’s not worth making a fuss about the distinction, because regressions and ANOVAs are all linear models anyway. But you may see the term “analysis of covariance”, so it’s worth your while to know what it’s about.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Fit an analysis of covariance model to predict post-treatment score. Include an interaction between your explanatory variables. (You don’t need to look at the output from the model.)</li>
+</ol>
+<p>Solution</p>
+<p>This is what you’d guess. <code>lm</code> handles the interaction properly, even though <code>pre</code> is a quantitative variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lepro<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(post <span class="sc">~</span> pre <span class="sc">*</span> drug, <span class="at">data =</span> lepro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I wanted to take a look, so I did:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lepro<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = post ~ pre * drug, data = lepro)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-6.225 -2.437 -0.586  1.126  8.775 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  -1.6306     2.9455  -0.554   0.5850  
+pre           0.7452     0.2849   2.616   0.0152 *
+drugD        -2.9549     4.1246  -0.716   0.4806  
+drugF        -1.4780     5.4678  -0.270   0.7892  
+pre:drugD     0.3233     0.3846   0.841   0.4089  
+pre:drugF     0.4492     0.4458   1.008   0.3236  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.07 on 24 degrees of freedom
+Multiple R-squared:  0.6915,    Adjusted R-squared:  0.6272 
+F-statistic: 10.76 on 5 and 24 DF,  p-value: 1.63e-05</code></pre>
+</div>
+</div>
+<p>For testing the interaction, there are <em>two</em> slope coefficients that should be zero if there is no interaction. So we have to test this with <code>drop1</code>, which is next.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Pass your fitted model of the last part into <code>drop1</code>. Is the interaction term significant?</li>
+</ol>
+<p>Solution</p>
+<p>Just this: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lepro<span class="fl">.1</span>, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"NA","2":"NA","3":"397.5580","4":"89.52430","5":"NA","6":"NA","_rn_":"<none>"},{"1":"2","2":"19.64465","3":"417.2026","4":"86.97124","5":"0.5929594","6":"0.5605848","_rn_":"pre:drug"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>There is only a test for the interaction term because you can’t take out the main effects until you’ve taken out the interaction.</p>
+<p>The P-value for the interaction is very large (0.5606) so it is nowhere near significant. We can drop the interaction.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>Fit a model without the interaction. Is this a sensible thing to do (in addition, that is, to the fact that I just asked you to do it)?</li>
+</ol>
+<p>Solution</p>
+<p>Change the <code>*</code> to a <code>+</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lepro<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(post <span class="sc">~</span> pre <span class="sc">+</span> drug, <span class="at">data =</span> lepro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<p>Or use <code>update</code> (not much in it, here):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lepro<span class="fl">.2</span>a <span class="ot">&lt;-</span> <span class="fu">update</span>(lepro<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> pre<span class="sc">:</span>drug)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We just said that the interaction could come out, since it wasn’t significant, so this is exactly the model that we should be fitting.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>Take a look at the <code>summary</code> of your preferred model. Is there a significant effect of pre-treatment score? Describe the effects of the different drugs on the post-treatment score. (Don’t do any tests for <code>drug</code>.) Does your comparison of drugs make sense?</li>
+</ol>
+<p>Solution</p>
+<p>Mine was the no-interaction model <code>lepro.2</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lepro<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = post ~ pre + drug, data = lepro)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.4115 -2.3891 -0.5711  1.7237  8.5885 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -3.8808     1.9862  -1.954   0.0616 .  
+pre           0.9872     0.1645   6.001 2.45e-06 ***
+drugD         0.1090     1.7951   0.061   0.9521    
+drugF         3.4461     1.8868   1.826   0.0793 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.006 on 26 degrees of freedom
+Multiple R-squared:  0.6763,    Adjusted R-squared:  0.6389 
+F-statistic:  18.1 on 3 and 26 DF,  p-value: 1.501e-06</code></pre>
+</div>
+<p>:::</p>
+<p>The pre-treatment term is definitely significant, with a P-value of 0.0000025. So pre-treatment score definitely has an impact on post-treatment score.</p>
+<p>I didn’t ask you to test for significance of drugs. I just wanted you to assess their coefficients. Drug A is being used as the baseline, so its coefficient is zero. Drug D has a slightly positive coefficient (0.109) so its average bacilli score is slightly higher (for any pre-treatment score) than for drug A. Drug F, which was the placebo, has a slope of 3.446, so its average bacilli score is a fair bit higher than for either of the other drugs. This makes sense because a higher score is worse, and the two “real” drugs are both better than the fake one.</p>
+<p>Whether there is a real drug difference, I didn’t ask you to assess, but you could do it by <code>drop1</code> again, this way: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lepro<span class="fl">.2</span>, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"NA","2":"NA","3":"417.2026","4":"86.97124","5":"NA","6":"NA","_rn_":"<none>"},{"1":"1","2":"577.89740","3":"995.1000","4":"111.04938","5":"36.014475","6":"2.454330e-06","_rn_":"pre"},{"1":"2","2":"68.55371","3":"485.7563","4":"87.53529","5":"2.136128","6":"1.383793e-01","_rn_":"drug"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>This is actually not significant.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> This is one of those cases where the non-significant <code>drug</code> has a slightly <em>bigger</em> AIC than <code>&lt;none&gt;</code>, so <code>drop1</code> considers it best to leave it in the model.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol type="i">
+<li>Obtain predicted values for <code>post</code> for each of the three drugs at <code>pre</code> scores 5, 12 and 20. To do this, obtain a new data frame that has all 9 combinations of drugs and <code>pre</code> scores, and then feed this into <code>predict</code> using your preferred model.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ol>
+<p>Solution</p>
+<p>First, make the new data frame for predicting from, using <code>crossing</code>. I’m doing this in small steps for clarity: first, I define all the drugs and <code>pre</code> values, and then I feed them into <code>datagrid</code>: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>drugs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"D"</span>, <span class="st">"F"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>pres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">20</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> lepro<span class="fl">.2</span>, <span class="at">drug =</span> drugs, <span class="at">pre =</span> pres)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["post"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["drug"],"name":[2],"type":["chr"],"align":["left"]},{"label":["pre"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"7.9","2":"A","3":"5"},{"1":"7.9","2":"A","3":"12"},{"1":"7.9","2":"A","3":"20"},{"1":"7.9","2":"D","3":"5"},{"1":"7.9","2":"D","3":"12"},{"1":"7.9","2":"D","3":"20"},{"1":"7.9","2":"F","3":"5"},{"1":"7.9","2":"F","3":"12"},{"1":"7.9","2":"F","3":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>Now I obtain the predictions, from my best model <code>lepro.2</code>. I don’t need intervals or anything like that:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">predictions</span>(lepro<span class="fl">.2</span>, <span class="at">newdata =</span> new))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>preds <span class="sc">%&gt;%</span> <span class="fu">select</span>(drug, pre, estimate, conf.low, conf.high)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["drug"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pre"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"5","3":"1.055110","4":"-1.7884966","5":"3.898716"},{"1":"A","2":"12","3":"7.965396","4":"5.3344494","5":"10.596343"},{"1":"A","2":"20","3":"15.862867","4":"11.6125631","5":"20.113170"},{"1":"D","2":"5","3":"1.164081","4":"-1.7961211","5":"4.124283"},{"1":"D","2":"12","3":"8.074368","4":"5.5092373","5":"10.639498"},{"1":"D","2":"20","3":"15.971838","4":"11.9025779","5":"20.041098"},{"1":"F","2":"5","3":"4.501248","4":"0.9443557","5":"8.058140"},{"1":"F","2":"12","3":"11.411535","4":"8.9118746","5":"13.911195"},{"1":"F","2":"20","3":"19.309005","4":"15.9320080","5":"22.686002"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>I gave this a name in case I feel like using it again later.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="10" type="a">
+<li>Now, plot the data with the fitted lines on.</li>
+</ol>
+<p>Solution</p>
+<p>The starting point is to plot the predictions, which is <code>plot_cap</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(lepro<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The olive-coloured line is actually the red and green lines right next to each other. You can check from the previous part that the predictions for drugs A and D are very close together, with those for drug F (the placebo) being higher (worse).</p>
+<p>This is a <code>ggplot</code>, so we can add things to it. The idea is to say that the next thing to plot comes from some other dataframe, and to specify everything we need (that is, not to inherit from the original <code>ggplot</code> that is lurking within <code>plot_cap</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(lepro<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> lepro, <span class="fu">aes</span>(<span class="at">x =</span> pre, <span class="at">y =</span> post, <span class="at">colour =</span> drug), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is quite a lot of variability (which is why those confidence bands are so wide), but at least some of the blue points from drug F are above the others (worse), and there is very little to choose between drugs A and D.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="11" type="a">
+<li>Are the lines on your plot parallel, with the same slopes? Is this what you would expect? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>My lines are parallel. This is exactly what I would expect, since my best model has no interaction, and the interaction is what would make the lines <em>not</em> be parallel. If your best model <em>did</em> have the interaction term still in it, your predictions would have been these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(lepro<span class="fl">.1</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> lepro, <span class="fu">aes</span>(<span class="at">x =</span> pre, <span class="at">y =</span> post, <span class="at">colour =</span> drug), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ancova_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is, as you see, a substantial scatter in the points that would make it very difficult to prove that those three slopes are really different, even though the lines cross.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Analysis of covariance is just a linear model, so <em>predict</em> works the same here as in regression.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is why I didn’t ask you to test this, since it would have confused the story.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Analysis of covariance is just a linear model, so <em>predict</em> works the same here as in regression.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./anova-revisited.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./manova.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

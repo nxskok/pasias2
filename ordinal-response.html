@@ -305,6 +305,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -797,7 +845,8 @@ Or declare a preference with `conflict_prefer()`
 <li>Create a vector <code>v</code> that contains some numbers and some missing values, using <code>c()</code>. Put those values into a one-column data frame.</li>
 </ol>
 <p>Solution</p>
-<p>Like this. The arrangement of numbers and missing values doesn’t matter, as long as you have some of each: ::: {.cell}</p>
+<p>Like this. The arrangement of numbers and missing values doesn’t matter, as long as you have some of each:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="cn">NA</span>, <span class="dv">11</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">tibble</span>(v)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>mydata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -809,7 +858,7 @@ Or declare a preference with `conflict_prefer()`
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This has one column called <code>v</code>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -834,7 +883,8 @@ Or declare a preference with `conflict_prefer()`
 <li>The symbol <code>!</code> means “not” in R (and other programming languages). What does <code>!is.na(v)</code> do? Create a new column containing that.</li>
 </ol>
 <p>Solution</p>
-<p>Try it and see. Give it whatever name you like. My name reflects that I know what it’s going to do: ::: {.cell}</p>
+<p>Try it and see. Give it whatever name you like. My name reflects that I know what it’s going to do:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">notisna =</span> <span class="sc">!</span><span class="fu">is.na</span>(v))</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mydata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -845,14 +895,15 @@ Or declare a preference with `conflict_prefer()`
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This is the logical opposite of <code>is.na</code>: it’s true if there is a value, and false if it’s missing.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Use <code>filter</code> to display just the rows of your data frame that have a non-missing value of <code>v</code>.</li>
 </ol>
 <p>Solution</p>
-<p><code>filter</code> takes a column to say which rows to pick, in which case the column should contain something that either <em>is</em> <code>TRUE</code> or <code>FALSE</code>, or something that can be interpreted that way: ::: {.cell}</p>
+<p><code>filter</code> takes a column to say which rows to pick, in which case the column should contain something that either <em>is</em> <code>TRUE</code> or <code>FALSE</code>, or something that can be interpreted that way:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span> <span class="fu">filter</span>(notisna)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -862,7 +913,7 @@ Or declare a preference with `conflict_prefer()`
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>or you can provide <code>filter</code> something that can be calculated from what’s in the data frame, and also returns something that is either true or false:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -934,7 +985,8 @@ dbl (6): id, read, write, math, science, socst
 <li>Fit an ordinal logistic regression predicting socio-economic status from the scores on the five standardized tests. (You don’t need to display the results.) You will probably go wrong the first time. What kind of thing does your response variable have to be?</li>
 </ol>
 <p>Solution</p>
-<p>It has to be an <code>ordered</code> factor, which you can create in the data frame (or outside, if you prefer): ::: {.cell}</p>
+<p>It has to be an <code>ordered</code> factor, which you can create in the data frame (or outside, if you prefer):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>hsb <span class="ot">&lt;-</span> hsb <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ses =</span> <span class="fu">ordered</span>(ses, <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"middle"</span>, <span class="st">"high"</span>)))</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>hsb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -945,7 +997,7 @@ dbl (6): id, read, write, math, science, socst
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p><code>ses</code> is now <code>ord</code>. Good. Now fit the model:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ses<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">polr</span>(ses <span class="sc">~</span> read <span class="sc">+</span> write <span class="sc">+</span> math <span class="sc">+</span> science <span class="sc">+</span> socst, <span class="at">data =</span> hsb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1156,7 +1208,9 @@ Re-fitting to get Hessian</code></pre>
 <li>What is the effect of an increased science score on the likelihood of a student being in the different socioeconomic groups, all else equal? Explain briefly. In your explanation, state clearly how you are using your answer to the previous part.</li>
 </ol>
 <p>Solution</p>
-<p>Use your predictions; hold the <code>socst</code> score constant (that’s the all else equal part). So compare the first and third rows (or, if you like, the second and fourth rows) of your predictions and see what happens as the science score goes from 44 to 58. What I see is that the probability of being <code>low</code> goes noticeably <em>down</em> as the science score increases, the probability of <code>middle</code> stays about the same, and the probability of <code>high</code> goes <code>up</code> (by about the same amount as the probability of <code>low</code> went down). In other words, an increased science score goes with an increased chance of <code>high</code> (and a decreased chance of <code>low</code>). If your best model doesn’t have <code>science</code> in it, then you need to say something like “<code>science</code> has no effect on socio-economic status”, consistent with what you concluded before: if you took it out, it’s because you thought it had no effect. Extra: the effect of an increased social studies score is almost exactly the same as an increased science score (so I didn’t ask you about that). From a social-science point of view, this makes perfect sense: the higher the social-economic stratum a student comes from, the better they are likely to do in school. I’ve been phrasing this as “association”, because really the cause and effect is the other way around: a student’s family socioeconomic status is explanatory, and school performance is response. But this was the nicest example I could find of an ordinal response data set.</p>
+<p>Use your predictions; hold the <code>socst</code> score constant (that’s the all else equal part). So compare the first and third rows (or, if you like, the second and fourth rows) of your predictions and see what happens as the science score goes from 44 to 58. What I see is that the probability of being <code>low</code> goes noticeably <em>down</em> as the science score increases, the probability of <code>middle</code> stays about the same, and the probability of <code>high</code> goes <code>up</code> (by about the same amount as the probability of <code>low</code> went down). In other words, an increased science score goes with an increased chance of <code>high</code> (and a decreased chance of <code>low</code>).</p>
+<p>If your best model doesn’t have <code>science</code> in it, then you need to say something like “<code>science</code> has no effect on socio-economic status”, consistent with what you concluded before: if you took it out, it’s because you thought it had no effect.</p>
+<p>Extra: the effect of an increased social studies score is almost exactly the same as an increased science score (so I didn’t ask you about that). From a social-science point of view, this makes perfect sense: the higher the social-economic stratum a student comes from, the better they are likely to do in school. I’ve been phrasing this as “association”, because really the cause and effect is the other way around: a student’s family socioeconomic status is explanatory, and school performance is response. But this was the nicest example I could find of an ordinal response data set.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
 <section id="how-do-you-like-your-steak-1" class="level2" data-number="25.9">
