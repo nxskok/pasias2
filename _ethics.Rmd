@@ -262,6 +262,7 @@ Solution
 The obvious way of doing this is to type out the entire model,
 with the two new variables on the end. You have to remember to
 turn `decision` into a `factor` again:
+
 ```{r ethics-8 }
 decide.2 <- glm(factor(decision) ~ gender + idealism + relativism,
   data = decide, family = "binomial"
@@ -303,6 +304,7 @@ Solution
 
 
 To my mind, `update` wins hands down here:
+
 ```{r ethics-11 }
 decide.3 <- update(decide.2, . ~ . + scenario)
 ```
@@ -330,6 +332,7 @@ Solution
 
 
 These are the models that you fit in the last two parts:
+
 ```{r ethics-12 }
 anova(decide.2, decide.3, test = "Chisq")
 ```
@@ -373,6 +376,7 @@ Solution
 
 
 All right. This is the model I called `decide.3`:
+
 ```{r ethics-14 }
 summary(decide.3)
 ```
@@ -463,8 +467,10 @@ saying that the research should stop. The slope coefficient for
 `relativity` is negative, so it's the other way around: a
 higher relativity score goes with a *lower* chance of saying
 that the research should stop.
+
 That's all I needed, but as an extra, we can look back at the
 description of these scales in the question.
+
 The `relativism` one was that a person believed that the
 most moral action depends on the situation (as opposed to a person
 having something like religious faith that asserts universal moral

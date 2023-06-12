@@ -55,6 +55,7 @@ Solution
 
 
 A `.csv` file, so:
+
 ```{r heart-2 }
 my_url <- "https://raw.githubusercontent.com/nxskok/datafiles/master/heartf.csv"
 heart <- read_csv(my_url)
@@ -104,6 +105,7 @@ Solution
 
 A lot of typing, since there are so many variables. Don't forget
 that the response variable *must* be a factor:
+
 ```{r heart-3 }
 heart.1 <- glm(factor(heart.disease) ~ age + sex + pain.type + resting.bp + serum.chol +
   high.blood.sugar + electro + max.hr + angina + oldpeak + slope + colored + thal,
@@ -215,6 +217,7 @@ Solution
 
 `update` is the obvious choice here, since we're making a
 small change to a *very* big model:
+
 ```{r heart-6 }
 heart.2 <- update(heart.1, . ~ . - high.blood.sugar)
 drop1(heart.2, test = "Chisq")
@@ -243,6 +246,7 @@ Solution
 
 
 The hints ought to lead you to this:
+
 ```{r heart-7, size="tiny"}
 heart.3 <- step(heart.1, direction = "backward", test = "Chisq")
 ```

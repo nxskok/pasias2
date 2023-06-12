@@ -26,6 +26,7 @@ Solution
 
 
 Data values separated by one space, so:
+
 ```{r apache-1 }
 my_url <- "http://ritsokiguess.site/datafiles/apache.txt"
 icu <- read_delim(my_url, " ")
@@ -85,6 +86,7 @@ that didn't happen (survived). We don't actually have the numbers
 of survivals, but we can calculate these by subtracting from the
 numbers of patients (since a patient must have either lived or
 died): 
+
 ```{r apache-2 }
 response <- icu %>%
   mutate(survivals = patients - deaths) %>%

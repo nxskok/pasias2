@@ -18,6 +18,7 @@ Solution
 This is mostly an exercise in structuring your function
 correctly. Let's call the input `C` (uppercase C, since
 lowercase c has a special meaning to R):
+
 ```{r func-1 }
 c_to_k <- function(C) {
   C + 273.15
@@ -61,6 +62,7 @@ Solution
 On the model of the previous one, we should call this
 `f_to_c`. I'm going to return the last line, but you can
 save the calculated value and return that instead:
+
 ```{r func-3 }
 f_to_c <- function(F) {
   (F - 32) * 5 / 9
@@ -91,6 +93,7 @@ wrote, which goes as below. First you convert the Fahrenheit to
 Celsius, and then you convert *that* to Kelvin. (This is less
 error-prone than trying to use algebra to get a formula for this
 conversion and then implementing that):
+
 ```{r func-4 }
 f_to_k <- function(F) {
   C <- f_to_c(F)
@@ -120,6 +123,7 @@ Solution
 
 You can choose any default you like. I'll take a default of 68
 (what I would call "a nice day"):
+
 ```{r func-5 }
 f_to_c <- function(F = 68) {
   (F - 32) * 5 / 9
@@ -144,6 +148,7 @@ Solution
 
 
 Try it and see:
+
 ```{r func-6 }
 temps <- seq(30, 80, 10)
 temps
@@ -197,6 +202,7 @@ Solution
 
 
 This:
+
 ```{r func-9 }
 wrap <- function(text = "hello", outside = "*") {
   str_c(outside, text, outside)
@@ -233,6 +239,7 @@ Solution
 
 
 The obvious thing is this, which doesn't work:
+
 ```{r func-12 }
 wrap("!")
 ```
@@ -283,6 +290,7 @@ Solution
 
 
 Let's try:
+
 ```{r func-16 }
 mytext <- c("a", "b", "c")
 wrap(text = mytext)

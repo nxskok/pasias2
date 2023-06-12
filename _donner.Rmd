@@ -23,6 +23,7 @@ Solution
 
 
 Nothing very new here:
+
 ```{r donner-1 }
 my_url <- "http://ritsokiguess.site/datafiles/donner.txt"
 donner <- read_delim(my_url, " ")
@@ -70,6 +71,7 @@ for gender and survival. I'll take any mixture of graphs and
 numerical summaries that addresses each pair of variables somehow
 and summarizes them in a sensible way.
 Starting with `age` vs. `gender`:
+
 ```{r donner-2 }
 ggplot(donner, aes(x = gender, y = age)) + geom_boxplot()
 ```
@@ -131,7 +133,7 @@ donner %>% group_by(gender, survived) %>% summarize(n = n())
 
  
 
-For a graph, borrow the grouped bar-plot idea from the parasites question:
+For a graph, borrow the grouped bar-plot idea:
 
 ```{r donner-10 }
 ggplot(donner, aes(x = gender, fill = survived)) + geom_bar(position = "dodge")
@@ -184,6 +186,7 @@ However, the response variable `survived` is a categorical
 variable expressed as text, so we need to make it into a
 `factor` first. Either create a new variable that is the
 factor version of `survived`, or do it right in the `glm`:
+
 ```{r donner-11 }
 donner.1 <- glm(factor(survived) ~ age + gender, family = "binomial", data = donner)
 summary(donner.1)

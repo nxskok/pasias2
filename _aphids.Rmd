@@ -39,6 +39,7 @@ current favourite is the `tidyverse`-approved
 inserting column headings and commas in the right places. The
 columns don't have to line up, since it's the commas that
 determine where one value ends and the next one begins:
+
 ```{r aphids-1 }
 dead_bugs <- tribble(
   ~log_conc, ~exposed, ~killed,
@@ -61,6 +62,7 @@ If you are clever in R
 Studio, you can insert a column of commas all at once (using
 "multiple cursors").
 I used to do it like this. I make vectors of each column using `c` and then glue the columns together into a data frame:
+
 ```{r aphids-2 }
 log_conc <- c(0.96, 1.33, 1.63, 2.04, 2.32)
 exposed <- c(50, 48, 46, 49, 50)
@@ -149,6 +151,7 @@ the second needs to be the number of "failures" (insects that
 survived). We don't actually have the latter, but we know how many
 insects were exposed in total to each dose, so we can work it
 out. Like this:
+
 ```{r aphids-5 }
 dead_bugs %>%
   mutate(survived = exposed - killed) %>%
@@ -188,6 +191,7 @@ Solution
 
 
 I think you know how to do this by now:
+
 ```{r aphids-7 }
 bugs.1 <- glm(response ~ log_conc, family = "binomial", data = dead_bugs)
 summary(bugs.1)

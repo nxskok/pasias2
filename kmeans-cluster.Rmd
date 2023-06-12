@@ -1,0 +1,47 @@
+# K-means cluster analysis
+
+Packages for this chapter:
+
+```{r 39-kmeans-cluster-1, eval=F}
+library(MASS)
+library(ggbiplot)
+library(tidyverse)
+```
+
+```{r 39-kmeans-cluster-2, child="_packages.qmd"}
+```
+
+
+```{r 39-kmeans-cluster-3, child="_ais-km_qq.Rmd"}
+```
+
+```{r 39-kmeans-cluster-4, child="_decathlon_qq.Rmd"}
+``` 
+
+```{r 39-kmeans-cluster-5, child="_swiss-cluster_qq.Rmd"}
+```
+
+
+```{r 39-kmeans-cluster-6, child="_carc_qq.Rmd"}
+```
+
+```{r 39-kmeans-cluster-7,child="_beer_qq.Rmd"}
+``` 
+
+My solutions follow:
+
+```{r 39-kmeans-cluster-8, child="_ais-km.Rmd"}
+```
+
+```{r 39-kmeans-cluster-9, child="_decathlon.Rmd"}
+``` 
+
+```{r 39-kmeans-cluster-10, child="_swiss-cluster.Rmd"}
+```
+
+
+```{r 39-kmeans-cluster-11, child="_carc.Rmd"}
+```
+
+```{r 39-kmeans-cluster-12,child="_beer.Rmd"}
+``` 

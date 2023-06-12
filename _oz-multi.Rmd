@@ -22,6 +22,7 @@ Solution
 
 The data values are separated by tabs, so `read_tsv` is
 the thing:
+
 ```{r oz-multi-1 }
 my_url <- "http://ritsokiguess.site/datafiles/ais.txt"
 athletes <- read_tsv(my_url)

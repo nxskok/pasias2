@@ -29,7 +29,7 @@ My solutions follow:
 ```{r 17-survival-analysis-8, child="_drug-treatment.Rmd"}
 ```
 
-```{r 17-survival-analysis-9, child="_myeloma.Rmd"}
+```{r 17-survival-analysis-9, child="_myeloma.Rmd"} 
 ```
 
 ```{r 17-survival-analysis-10, child="_ovarian.Rmd"}

@@ -23,6 +23,7 @@ Solution
  This one requires a little thought
 first. The data values are aligned in columns, and so are the
 column headers. Thus, `read_table` is what we need:
+
 ```{r hospital-1 }
 my_url <- "http://ritsokiguess.site/datafiles/satisfaction.txt"
 satisf <- read_table(my_url)
@@ -48,6 +49,7 @@ Solution
 
 
 The obvious way is to do these one after the other:
+
 ```{r hospital-2, fig.height=3, fig.width=4}
 ggplot(satisf, aes(x = age, y = satis)) + geom_point()
 ggplot(satisf, aes(x = severity, y = satis)) + geom_point()
@@ -169,6 +171,7 @@ Solution
 
 
 This is a matter of running the whole data frame through `cor`:
+
 ```{r hospital-8 }
 cor(satisf)
 ```

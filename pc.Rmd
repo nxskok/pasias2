@@ -1,0 +1,24 @@
+# Principal Components
+
+Packages for this chapter:
+
+```{r 24-pc-1, eval=F}
+library(ggbiplot)
+library(tidyverse)
+```
+
+```{r 24-pc-2, child="_packages.qmd"}
+```
+
+```{r 24-pc-3, child="_weather_2014_qq.Rmd"}
+``` 
+
+
+My solutions follow:
+
+```{r 24-pc-4, child="_weather_2014.Rmd"}
+``` 
+
+
+	
+

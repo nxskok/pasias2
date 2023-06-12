@@ -80,6 +80,7 @@ Solution
 
 It has to be an `ordered` factor, which you can create in
 the data frame (or outside, if you prefer):
+
 ```{r hsb-2 }
 hsb <- hsb %>% mutate(ses = ordered(ses, c("low", "middle", "high")))
 hsb
@@ -282,10 +283,12 @@ probability of `high` goes `up` (by about the same
 amount as the probability of `low` went down). 
 In other words, an increased science score goes with an increased
 chance of `high` (and a decreased chance of `low`).
+
 If your best model doesn't have `science` in it, then you
 need to say something like "`science` has no effect on   socio-economic status", 
 consistent with what you concluded before: if
 you took it out, it's because you thought it had no effect.
+
 Extra: the effect of an increased social studies score is almost
 exactly the same as an increased science score (so I didn't ask you
 about that). From a social-science  point of view, this makes

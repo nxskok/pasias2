@@ -36,7 +36,6 @@ My solutions follow:
 ```
 
 
-
 ```{r 16-ordinal-response-10, child="_hsb.Rmd"}
 ```
 

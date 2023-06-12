@@ -1,0 +1,44 @@
+# Hierarchical cluster analysis
+
+Packages for this chapter:
+
+```{r 22-cluster-1, eval=F}
+library(MASS)
+library(ggbiplot)
+library(tidyverse)
+```
+
+```{r 22-cluster-2, child="_packages.qmd"}
+```
+
+
+```{r 22-cluster-3, child="_seabed_qq.Rmd"}
+```
+
+
+```{r 22-cluster-4,child="_fruits_qq.Rmd"}
+``` 
+
+```{r 22-cluster-5,child="_species_qq.Rmd"}
+```
+
+
+```{r 22-cluster-6, child="_pittsburgh_qq.Rmd"}
+``` 
+
+My solutions follow:
+
+```{r 22-cluster-7, child="_seabed.Rmd"}
+```
+
+
+```{r 22-cluster-8,child="_fruits.Rmd"}
+``` 
+
+```{r 22-cluster-9,child="_species.Rmd"}
+```
+
+
+```{r 22-cluster-10, child="_pittsburgh.Rmd"}
+``` 
+

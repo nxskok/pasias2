@@ -200,6 +200,7 @@ Solution
 
 
 Go down to the console and type something like
+
 ```{r binomial-stan-1}
 binomial <- cmdstan_model("binomial.stan")
 ```
@@ -227,6 +228,7 @@ Solution
 
 Look in your `data` section, and see what you need to provide values for. 
 The order doesn't matter; make a list with the named pieces and their values, in some order. You need values for these four things:
+
 ```{r binomial-stan-2 }
 binomial_data <- list(n = 277, x = 69, alpha = 2, beta = 2)
 ```
@@ -260,6 +262,7 @@ My process:
 
 * Find the 2.5 and 97.5 percentiles of the beta distribution for each of those values. 
 The "inverse CDF" (the value $x$ that has this much of the probability below it) is what we want here; this is obtained in R by putting `q` in front of the name of the distribution. For example, does this make sense to you?
+
 ```{r binomial-stan-4 }
 qnorm(0.025)
 ```
@@ -283,6 +286,7 @@ Solution
 
    
 This is what I got:
+
 ```{r binomial-stan-5 }
 binomial_fit <- binomial$sample(binomial_data)
 binomial_fit
@@ -313,6 +317,7 @@ Solution
 
 
 If you remember this well enough, you can do it by hand, but there's no need:
+
 ```{r binomial-stan-6 }
 prop.test(69, 277)
 ```

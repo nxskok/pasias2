@@ -1,0 +1,172 @@
+##  Do characteristics of urine depend on obesity?
+
+
+ A study was made of the characteristics of urine of young
+men. The men were classified into four groups based on their degree of
+obesity. (The groups are labelled `a, b, c, d`.) Four variables
+were measured, `x` (which you can ignore), pigment creatinine,
+chloride and chlorine. The data are in
+[link](http://ritsokiguess.site/datafiles/urine.csv) as a
+`.csv` file. There are 45 men altogether.
+
+
+
+(a) Read in the data and check that you have the right number
+of observations and the right variables.
+ 
+Solution
+
+
+`read_csv`:
+
+```{r urine-1 }
+my_url <- "http://ritsokiguess.site/datafiles/urine.csv"
+urine <- read_csv(my_url)
+urine
+```
+
+     
+
+The variables are as promised, and we do indeed have 45 rows. 
+ 
+$\blacksquare$
+
+(b) Make boxplots of each of the three variables of interest
+against obesity group. 
+ 
+Solution
+
+
+Just churn through it:
+
+```{r peppercorn}
+ggplot(urine, aes(x = obesity, y = creatinine)) + geom_boxplot()
+ggplot(urine, aes(x = obesity, y = chlorine)) + geom_boxplot()
+ggplot(urine, aes(x = obesity, y = chloride)) + geom_boxplot()
+```
+
+     
+
+This also works with facets, though it is different from the other
+ones we've done, in that we have to collect together the $y$-variables
+first rather than the $x$s:
+
+```{r urine-2 }
+urine %>%
+  pivot_longer(creatinine:chlorine, names_to="yname", values_to="y") %>%
+  ggplot(aes(x = obesity, y = y)) + geom_boxplot() +
+  facet_wrap(~yname, scales = "free", ncol = 2)
+```
+
+ 
+
+I decided to throw a couple of things in here: first, the
+`scales="free"` thing since the $y$-variables (this time) are
+on different scales, and second, the `ncol=2` to arrange the
+facets in (3 cells of) a $2\times 2$ grid, rather than having them
+come out tall and skinny.^[Like one of those crazy drinks at  Starbucks.] It's unusual to have faceted boxplots, but this is one
+of those cases where it makes sense. (The key is different $y$'s but
+the same $x$, I think.)
+
+The conclusions about the boxplots are, of course, the same. I think
+it makes it easier to have the three boxplots side by side, but it's
+up to you whether you think that gain is worth the extra coding.
+
+Extra: let's take another look at that longer data frame:
+
+```{r urine-3}
+urine %>%
+  pivot_longer(creatinine:chlorine, names_to="yname", values_to="y") 
+```
+
+You might say that there is one quantitative variable now, the thing we called `y`, and *two* categorical variables, `obesity` and `yname`. So why not make a grouped boxplot? All right:
+
+```{r urine-4}
+urine %>%
+  pivot_longer(creatinine:chlorine, names_to="yname", values_to="y") %>%
+  ggplot(aes(x=yname, y=y, colour=obesity)) + geom_boxplot()
+```
+
+This actually looks a lot like the facetted boxplots (if you imagine drawing a box around each group of four boxplots and removing the `scales="free"` before). There is, as the saying goes, more than one way to skin a cat.
+
+$\blacksquare$
+
+(c) How, if at all, do the groups differ on the variables of interest?
+ 
+Solution
+
+
+Any sensible comment here is good. You can take the approach that
+group D is lowest on creatinine and chloride, but there is not
+much to choose (given the amount of variability) on chlorine. Or
+you can say that groups B and C are generally highest, except for
+chloride where A is higher. Anything of this general kind is fine.
+The point here is that some of the groups appear to be different
+on some of the variables, which would make a multivariate analysis
+of variance (in a moment) come out significant.
+ 
+$\blacksquare$
+
+(d) Run a multivariate analysis of variance, using the three
+variables of interest as response variables, and the obesity group
+as explanatory. (This is a so-called one-way MANOVA.)
+ 
+Solution
+
+
+Create the response variable and run `manova`:
+
+```{r urine-5 }
+response <- with(urine, cbind(creatinine, chlorine, chloride))
+urine.1 <- manova(response ~ obesity, data = urine)
+summary(urine.1)
+```
+
+At some point, you should run Box's M test, either here or at the start of the next part (before you get to your conclusions):
+
+```{r}
+summary(BoxM(response, urine$obesity))
+```
+
+This P-value is small, but not, for this test, small enough to be a problem.
+     
+ 
+$\blacksquare$
+
+(e) What do you conclude? Is this in line with what your
+boxplots said? Explain briefly.
+ 
+Solution
+
+
+The null hypothesis (that each of the variables have the same mean
+for each of the groups) is rejected: that is, not all of the
+groups have the same mean on all of the variables.
+Based on the idea that there seemed to be differences between the
+groups in the boxplots, this makes sense. (That's what I saw,
+anyway. There was a lot of variability within the groups, which is
+why the P-value didn't come out smaller.)
+
+Extra: the other way of doing this is the following, using
+`Manova` from `car`:
+
+```{r urine-6 }
+response.1 <- lm(response ~ obesity, data = urine)
+summary(Manova(response.1))
+```
+
+`manova` gives you the Pillai test, but `Manova` gives you all four; here, they are all significant, but to different degrees.
+
+The result is the same, or at least consistent. You don't need do this one here (though you
+can as an alternative), but when you come to repeated measures you
+*will* need to be able to use `Manova`.
+
+To understand the differences in the variables due to the groups, we
+need to run a discriminant analysis (coming up later).
+
+ 
+$\blacksquare$
+
+
+
+

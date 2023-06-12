@@ -27,6 +27,7 @@ Solution
 
 
 No great challenge here, I hope:
+
 ```{r breastfeed-1 }
 my_url <- "http://ritsokiguess.site/datafiles/breastfeed.csv"
 breastfeed <- read_csv(my_url)
@@ -130,6 +131,7 @@ successes in the first column and failures in the second, and then
 predict *that* from gestational age. (That's why this was
 three marks rather than two.)
 So, let's make the `response` first:
+
 ```{r breastfeed-4 }
 response <- with(breastfeed, cbind(bf.yes, bf.no))
 response

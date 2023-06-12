@@ -1,0 +1,57 @@
+# Analysis of variance revisited
+
+Packages for this chapter:
+
+```{r 18-anova-revisited-1, eval=F}
+library(MASS)
+library(car)
+library(tidyverse)
+```
+
+```{r 18-anova-revisited-2, child="_packages.qmd"}
+```
+
+
+```{r 18-anova-revisited-3, child="_acidrain_qq.Rmd"}
+```
+
+```{r 18-anova-revisited-4, child="_hayfever_qq.Rmd"}
+```
+
+```{r 18-anova-revisited-5,child="_caffeine-contrast_qq.Rmd"}
+```
+
+```{r 18-anova-revisited-6, child="_studyhours_qq.Rmd"}
+```
+
+```{r 18-anova-revisited-7,child="_mental-context_qq.Rmd"}
+```
+
+```{r 18-anova-revisited-8, child="_shirts_qq.Rmd"}
+```
+
+
+
+My solutions follow:
+
+```{r 18-anova-revisited-9, child="_acidrain.Rmd"}
+```
+
+```{r 18-anova-revisited-10, child="_hayfever.Rmd"}
+```
+
+```{r 18-anova-revisited-11,child="_caffeine-contrast.Rmd"}
+```
+
+```{r 18-anova-revisited-12, child="_studyhours.Rmd"}
+```
+
+```{r 18-anova-revisited-13,child="_mental-context.Rmd"}
+```
+
+```{r 18-anova-revisited-14, child="_shirts.Rmd"}
+```
+
+
+
+

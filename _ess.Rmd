@@ -26,6 +26,7 @@ Solution
 
 The obvious way. Printing it out will display some of the data
 and tell you how many rows and columns you have:
+
 ```{r ess-1 }
 my_url <- "http://ritsokiguess.site/datafiles/ess.csv"
 ess <- read_csv(my_url)

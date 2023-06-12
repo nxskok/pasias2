@@ -53,6 +53,7 @@ High school comes before university, so high school should be
 explanatory and university should be the response. (High school
 grades are used as an admission criterion to university, so we
 would hope they would have some predictive value.)
+
 ```{r gpa-2 }
 ggplot(gpa, aes(x = high_GPA, y = univ_GPA)) + geom_point() +
   geom_smooth()
@@ -106,6 +107,7 @@ Solution
 
 
 Just this, therefore:
+
 ```{r gpa-3 }
 gpa.1 <- lm(univ_GPA ~ high_GPA, data = gpa)
 summary(gpa.1)
@@ -317,6 +319,7 @@ Since we added *two* explanatory variables, the $t$-tests in
 `gpa.2` don't apply (they tell us whether we can take out
 *one* $x$-variable). We might have some suspicions, but that's
 all they are.  So we have to do `anova`:
+
 ```{r gpa-15 }
 anova(gpa.1, gpa.2)
 ```
@@ -352,6 +355,7 @@ Solution
 In the model of (<a href="#part:all">here</a>), `math_SAT` was the
 least significant, so that comes out first. (I use
 `update` but I'm not insisting that you do:)
+
 ```{r gpa-16 }
 gpa.3 <- update(gpa.2, . ~ . - math_SAT)
 summary(gpa.3)
@@ -366,6 +370,7 @@ This is a *different* model than the one of
 with high-school GPA only was not significantly worse than the
 model containing everything. (This goes to show that
 model-building doesn't always have nice clear answers.)
+
 In the model I called `gpa.2`, neither of the SAT
 scores were anywhere near significant (considered singly), but
 as soon as we took out one of the SAT scores (my model
@@ -377,9 +382,11 @@ you won't necessarily get consistent
 results. Admittedly, it's a close decision whether to
 keep or remove `verb_SAT`, since its P-value is
 close to 0.05.
+
 The other way of tackling this one is via `step`, which
 does the backward elimination for you (not that it was much
 work here):
+
 ```{r gpa-17 }
 step(gpa.2, direction = "backward", test = "F")
 ```
@@ -418,7 +425,9 @@ better skills with words would be helpful. So I'm surprised.
 Here, I'm looking for some kind of discussion about what's in
 the final backward-elimination model, and what you would
 expect to be true of computer science students. 
+
 Let's look at the final model from the backward elimination again:
+
 ```{r gpa-18 }
 summary(gpa.3)
 ```

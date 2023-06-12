@@ -38,10 +38,8 @@ lot of crime categories, so we will focus on the top four
 
 Some of the model-fitting takes a while (you'll see why below). If
 you're using R Markdown, you can wait for the models to fit each time
-you re-run your document, or insert `cache=T` in the top line
-of your code chunk (the one with `r` in curly brackets in it,
-above the actual code). Put a comma and the `cache=T` inside
-the curly brackets.  What that does is to re-run that code chunk only
+you re-run your document, or insert `#| cache: true` below the top line
+of your code chunk (above the first line of actual code).   What that does is to re-run that code chunk only
 if it changes; if it hasn't changed it will use the saved results from
 last time it was run. That can save you a lot of waiting around.
 
@@ -55,7 +53,9 @@ Solution
 
 
 The usual:
-```{r napoli,cache=T}
+
+```{r napoli}
+#| cache: true
 my_url <- "http://utsc.utoronto.ca/~butler/d29/sfcrime1.csv"
 sfcrime <- read_csv(my_url)
 sfcrime
@@ -83,6 +83,7 @@ The modelling part is easy enough, as long as you can get the
 uppercase letters in the right places:
 
 ```{r roma}
+#| cache: true
 sfcrime.1 <- multinom(Category ~ DayOfWeek + PdDistrict, data=sfcrime)
 ```
 
@@ -99,7 +100,9 @@ Solution
 
 
 Same idea. Write it out, or use `update`:
+
 ```{r sfcrime-1 }
+#| cache: true
 sfcrime.2 <- update(sfcrime.1, . ~ . - DayOfWeek)
 ```
 
@@ -177,6 +180,7 @@ new
 Good. And then predict for just these. This is slow, but not as slow as predicting for all districts. I'm saving the result of this slow part, so that it doesn't matter if I change my mind later about what to do with it. I want to make sure that I don't have to do it again, is all:^[The same thing applies if you are doing something like webscraping, that is to say downloading stuff from the web that you then want to do something with. Download it *once* and save it, then you can take as long as you need to decide what you're doing with it.]
 
 ```{r pred1}
+#| cache: true
 p <- cbind(predictions(sfcrime.1, newdata = new, type = "probs"))
 p
 ```
@@ -239,6 +243,7 @@ new
 and then as we just did. I'm going to be a bit more selective about the columns I keep this time, since the display will be a bit wider and I don't want it to be too big for the page:
 
 ```{r pred2}
+#| cache: true
 p <- cbind(predictions(sfcrime.1, newdata = new, type = "probs"))
 p
 ```
@@ -269,8 +274,8 @@ The way to assess this is to fit a model with interaction (we will see
 more of this when we revisit ANOVA later), and compare the fit. This one takes longer to fit:
 
 ```{r model-three-one} 
+#| cache: true
 sfcrime.3 <- update(sfcrime.1, . ~ . + DayOfWeek * PdDistrict)
-# anova(sfcrime.1,sfcrime.3)
 ```
 
  
@@ -280,6 +285,7 @@ times around and stopped (since that's the default limit). We can make
 it go a bit further thus:
 
 ```{r model-three-two}
+#| cache: true
 sfcrime.3 <- update(sfcrime.1, .~.+DayOfWeek*PdDistrict, maxit=300)
 anova(sfcrime.1, sfcrime.3)
 ```
@@ -298,6 +304,7 @@ have all the machinery for the predictions, and we just have to apply
 them to this model. The only thing is waiting for it to finish!
 
 ```{r preds3}
+#| cache: true
 p <- cbind(predictions(sfcrime.3, newdata = new, type = "probs"))
 p
 ```

@@ -27,6 +27,7 @@ download it and save it on your computer, then upload it to
 `rstudio.cloud`), possibly using `file.choose` to
 help R find it. I put my copy in the same project folder as I was
 working in, so I just need the file name:
+
 ```{r mizuna-r-1 }
 library(readxl)
 mizuna <- read_excel("mizuna.xlsx")
@@ -37,8 +38,8 @@ mizuna
 
 The dates *did* get read properly. `dttm` is
 "date-time", so I guess it's allowing for the possibility that my
-dates had times attached as well. Unlike with SAS (as we see later),
-the years came out right.
+dates had times attached as well. 
+The years do actually come out right.
 
 $\blacksquare$
 
@@ -68,6 +69,7 @@ This is `water` again. The way to do this is to load
 `ggrepel`, then add `geom_text_repel` to the
 plot, by adding `label=water` to the *original*
 `aes`:
+
 ```{r mizuna-r-3 }
 library(ggrepel)
 ggplot(mizuna, aes(x = date, y = height, label = water)) +
@@ -83,7 +85,8 @@ me wonder whether this would work better (I explain `alpha` afterwards):
 ```{r mizuna-r-4 }
 library(ggrepel)
 ggplot(mizuna, aes(x = date, y = height, label = water)) +
-  geom_point() + geom_line() + geom_label_repel(colour = "red", alpha = 0.7)
+  geom_point() + geom_line() + geom_label_repel(colour = "red", 
+                                                alpha = 0.7)
 ```
 
  

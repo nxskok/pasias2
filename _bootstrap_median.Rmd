@@ -32,6 +32,7 @@ Solution
 
 
 Input to `ci_median` is data frame and column:
+
 ```{r bootstrap-median-2 }
 ci_median(aircon, hours)
 ```
@@ -111,6 +112,7 @@ Solution
 
 
 Yet more copying and pasting (from the previous question):
+
 ```{r bootstrap-median-7 }
 theta <- function(x) {
   median(x)
@@ -120,11 +122,11 @@ bca <- bca_all$confpoints
 bca
 ```
 
-     
+My 95% BCa interval is from 12.5 to 115.     
 
 Again, I seem to need to define the tiny function, while you can probably call `bcanon(hours, 1000, median)`. Try it and see.
 
-My BCa interval is a little longer than the bootstrap percentile
+My BCa interval is the same as the bootstrap percentile
 interval and a little shorter than the one that came from the sign
 test. I would guess that the BCa interval is the most trustworthy of
 the three, though there is here not that much difference between

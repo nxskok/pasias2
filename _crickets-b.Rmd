@@ -55,6 +55,7 @@ Solution
 
 
 Drag your mind way back to this:
+
 ```{r crickets-b-3 }
 t.test(pulse_rate ~ species, data = crickets)
 ```
@@ -77,6 +78,7 @@ Solution
 
 Hang onto the "pulse rate depends on species" idea and try
 that in `lm`:
+
 ```{r crickets-b-4 }
 pulse.0 <- lm(pulse_rate ~ species, data = crickets)
 summary(pulse.0)
@@ -121,6 +123,7 @@ Solution
 
 One of the wonderful things about `ggplot` is that doing
 the obvious thing works:
+
 ```{r crickets-b-6 }
 ggplot(crickets, aes(x = temperature, y = pulse_rate, colour = species)) +
   geom_point()
@@ -175,6 +178,7 @@ Solution
 
 This is actually a so-called "analysis of covariance model",
 which properly belongs in D29, but it's really just a regression:
+
 ```{r crickets-b-7 }
 pulse.1 <- lm(pulse_rate ~ species + temperature, data = crickets)
 summary(pulse.1)
@@ -298,6 +302,7 @@ Solution
 
 First, the plot of residuals against fitted values (after all,
 it *is* a regression):
+
 ```{r crickets-b-12 }
 ggplot(pulse.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```

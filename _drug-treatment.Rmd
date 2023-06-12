@@ -307,6 +307,7 @@ Solution
 
 
 The hint is meant to suggest to you that looking at `drop1` is the right way to go:
+
 ```{r drug-treatment-15, error=T}
 drop1(drugusers.1, test = "Chisq")
 ```
@@ -334,6 +335,7 @@ out.^[The researchers were probably relieved that there        was not quite a s
 `update`, but there is no
 problem about copying-pasting your `coxph` and taking out
 what you no longer need.
+
 ```{r drug-treatment-16 }
 drugusers.2 <- update(drugusers.1, . ~ . - site - herco)
 ```
@@ -453,6 +455,7 @@ Solution
 
 `survfit` is the survival analysis version of
 `predict` and works the same way, so this is all you need:
+
 ```{r drug-treatment-20 }
 pp <- survfit(drugusers.2, new, data = drugusers)
 ```
@@ -472,6 +475,7 @@ Solution
 
 
 This:
+
 ```{r drug-treatment-21 }
 ggsurvplot(pp, conf.int = F)
 ```

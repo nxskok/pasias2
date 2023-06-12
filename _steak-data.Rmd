@@ -1,7 +1,6 @@
 ##  How do you like your steak -- the data
 
 
-  <a name="q:steak-data">*</a> 
 This question takes you through the data preparation for one
 of the other questions. You don't have to do *this*
 question, but you may find it interesting or useful.
@@ -97,6 +96,7 @@ Solution
 
 I see missing values, starting in the very first row.
 Running the data frame through `summary` gives this, either as `summary(steak0)` or this way:
+
 ```{r steak-data-2 }
 steak0 %>% summary()
 ```
@@ -186,6 +186,7 @@ Extra (within "extra extra": I hope you are keeping track): this
 is a bit tricky to investigate more thoroughly, because the text
 variables might have missing values in them, and they won't show
 up unless we turn them into a factor first:
+
 ```{r steak-data-8 }
 steak0 %>%
   mutate(across(where(is.character), \(x) factor(x))) %>%
@@ -230,6 +231,7 @@ the rows with non-missing values. This can be done by saving the
 result of `complete.cases` in a variable first; `filter`
 can take anything that produces a true or a false for each row, and
 will return the rows for which the thing it was fed was true.
+
 ```{r cca}
 cc <- complete.cases(steak0)
 steak0 %>% filter(cc) -> steak.complete
@@ -276,6 +278,7 @@ Solution
 
 This is `write_csv`, using my output from 
 `drop_na`:
+
 ```{r steak-data-11 }
 write_csv(steak, "steak1.csv")
 ```

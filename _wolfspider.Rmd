@@ -33,10 +33,11 @@ the headers are not aligned with them.)
 Solution
 
 
-The nature of the file means that you need `read_table2`:
+The nature of the file means that you need `read_table`:
+
 ```{r wolfspider-1 }
 my_url <- "http://ritsokiguess.site/datafiles/spiders.txt"
-spider <- read_table2(my_url)
+spider <- read_table(my_url)
 spider
 ```
 
@@ -83,6 +84,7 @@ Solution
 
 The presence or absence of spiders is our response. This is
 actually text at the moment:
+
 ```{r wolfspider-2 }
 spider
 ```

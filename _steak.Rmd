@@ -111,8 +111,9 @@ Solution
 
 
 This is the most direct way to find out:
+
 ```{r steak-3 }
-preps <- steak %>% distinct(steak_prep) %>% pull(steak_prep)
+steak %>% distinct(steak_prep) %>% pull(steak_prep) -> preps
 preps
 ```
 
@@ -185,6 +186,7 @@ Solution
 
 The thing you have to be careful about is that you use the
 *ordered* factor that you just created as the response:
+
 ```{r finetti,cache=T}
 steak.1 <- polr(steak_prep_ord ~ educ + female + lottery_a, data = steak)
 ```
@@ -228,6 +230,7 @@ Solution
 
 You could type or copy-paste the whole model again, but
 `update` is quicker:
+
 ```{r steak-9 }
 steak.2 <- update(steak.1, . ~ . - female)
 ```
@@ -350,6 +353,7 @@ Solution
 
 The fitting part is the challenge, since the testing part is
 `anova` again. The direct fit is this:
+
 ```{r fiorentina,cache=T}
 steak.3 <- polr(steak_prep_ord ~ 1, data = steak)
 ```
@@ -444,6 +448,7 @@ people like their steaks, and we didn't even consider those. Why did
 I choose what I did here? Well, I wanted to fit a regression predicting
 steak preference from everything else, do a big backward
 elimination, but:
+
 ```{r udinese,cache=T, error=T}
 steak.5 <- polr(steak_prep_ord ~ ., data = steak)
 ```

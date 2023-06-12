@@ -42,6 +42,6 @@ My solutions follow:
 ```{r 37-nominal-response-13, child="_sfcrime-data.Rmd"}
 ```
 
-```{r 37-nominal-response-14, child="_oz-multi.Rmd"}
+```{r 37-nominal-response-14, child="_oz-multi.Rmd"} 
 ```
 

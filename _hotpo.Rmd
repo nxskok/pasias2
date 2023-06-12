@@ -43,6 +43,7 @@ Solution
 
 
 Let's try this out. For example, 5 is odd and 6 is even, so
+
 ```{r hotpo-1 }
 5 %% 2
 6 %% 2
@@ -97,6 +98,7 @@ Solution
 The logic is "if the input is odd, return 3 times it plus 1, otherwise return half of it". 
 The R structure is an
 `if-then-else`: 
+
 ```{r hotpo-4 }
 hotpo1 <- function(x) {
   if (is_odd(x)) 3 * x + 1 else x / 2
@@ -153,6 +155,7 @@ sequence and glue it onto what we have so far. To initialize the
 sequence, we start with the input value. There is an R trick to
 glue a value onto the sequence, which is to use `c` with a
 vector and a value, and save it back into the vector:
+
 ```{r hotpo-7 }
 hotpo <- function(x) {
   sequence <- x

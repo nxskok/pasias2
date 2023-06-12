@@ -1,0 +1,32 @@
+# Analysis of covariance
+
+Packages for this chapter:
+
+```{r 38-ancova-1, eval=F}
+library(MASS)
+library(car)
+library(tidyverse)
+```
+
+```{r 38-ancova-2, child="_packages.qmd"}
+```
+
+
+
+```{r 38-ancova-3, child="_productivity_qq.Rmd"}
+```
+
+```{r 38-ancova-4, child="_leprosy_qq.Rmd" }
+```
+
+
+My solutions follow:
+
+```{r 38-ancova-5, child="_productivity.Rmd"}
+```
+
+```{r 38-ancova-6, child="_leprosy.Rmd"}  
+```
+
+
+

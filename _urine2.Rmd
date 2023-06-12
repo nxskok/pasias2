@@ -1,0 +1,424 @@
+##  Urine and obesity: what makes a difference?
+
+
+ A study was made of the characteristics of urine of young
+men. The men were classified into four groups based on their degree of
+obesity. (The groups are labelled `a, b, c, d`.) Four variables
+were measured, `x` (which you can ignore), pigment creatinine,
+chloride and chlorine. The data are in
+[link](http://ritsokiguess.site/datafiles/urine.csv) as a
+`.csv` file. There are 45 men altogether.
+
+Yes, you may have seen this one before. What you found was something like this:
+
+```{r urine2-1 }
+my_url <- "http://ritsokiguess.site/datafiles/urine.csv"
+urine <- read_csv(my_url)
+response <- with(urine, cbind(creatinine, chlorine, chloride))
+urine.1 <- manova(response ~ obesity, data = urine)
+summary(urine.1)
+summary(BoxM(response, urine$obesity))
+```
+
+ 
+
+Our aim is to understand why this result was significant. (Remember that the P-value on Box's M test is not small enough to be worried about.)
+
+
+
+(a) Read in the data again (copy the code from above) and
+obtain a discriminant analysis.
+ 
+Solution
+
+
+As above, plus:
+
+```{r urine2-2 }
+urine.1 <- lda(obesity ~ creatinine + chlorine + chloride, data = urine)
+urine.1
+```
+
+     
+$\blacksquare$ 
+
+(b) How many linear discriminants were you expecting? Explain briefly.
+ 
+Solution
+
+
+There are 3 variables and 4 groups, so the smaller of 3 and
+$4-1=3$: that is, 3.
+ 
+$\blacksquare$
+
+(c) Why do you think we should pay attention to the first two
+linear discriminants but not the third? Explain briefly.
+ 
+Solution
+
+ The first two "proportion of
+trace" values are a lot bigger than the third (or, the third
+one is close to 0).
+ 
+$\blacksquare$
+
+(d) Plot the first two linear discriminant scores (against each
+other), with each obesity group being a different colour.
+ 
+Solution
+
+ First obtain the predictions, and
+then make a data frame out of the original data and the
+predictions. 
+
+```{r urine2-3 }
+urine.pred <- predict(urine.1)
+d <- cbind(urine, urine.pred)
+head(d)
+```
+
+             
+
+`urine` produced the first five columns and `urine.pred`
+produced the rest.
+
+To go a more tidyverse way, we can combine the original data frame and
+the predictions using `bind_cols`, but we have to be more
+careful that the things we are gluing together are both data frames:
+
+```{r urine2-4 }
+class(urine)
+class(urine.pred)
+```
+
+ 
+
+`urine` is a `tibble` all right, but `urine.pred` is a `list`. What does it look like?
+
+```{r urine2-5 }
+glimpse(urine.pred)
+```
+
+ 
+A data frame is a list for which all the items are the same length,
+but some of the things in here are matrices. You can tell because they
+have a number of rows, 45, *and* a number of columns, 3 or
+4. They *do* have the right number of rows, though, so something
+like `as.data.frame` (a base R function) will smoosh them all
+into one data frame, grabbing the columns from the matrices:
+
+```{r urine2-6 }
+head(as.data.frame(urine.pred))
+```
+
+ 
+
+You see that the columns that came from matrices have gained two-part names, the first part from the name of the matrix, the second part from the column name within that matrix. Then we can do this:
+
+```{r urine2-7 }
+dd <- bind_cols(urine, as.data.frame(urine.pred))
+dd
+```
+
+ 
+
+If you want to avoid base R altogether, though, and go straight to
+`bind_cols`, you have to be more careful about the types of
+things. `bind_cols` *only* works with vectors and data
+frames, not matrices, so that is what it is up to you to make sure you
+have. That means pulling out the pieces, turning them from matrices
+into data frames, and then gluing everything back together:
+
+```{r urine2-8, error=T}
+post <- as_tibble(urine.pred$posterior)
+ld <- as_tibble(urine.pred$x)
+ddd <- bind_cols(urine, class = urine.pred$class, ld, post)
+ddd
+```
+
+ 
+That's a lot of work, but you might say that it's worth it because you
+are now absolutely sure what kind of thing everything is. I also had
+to be slightly careful with the vector of `class` values; in
+`ddd` it has to have a name, so I have to make sure I give it
+one.^[If you run into an error like "Argument 2 must have names" here, that means that the second thing, `class`, needs  to have a name and doesn't have one.]
+Any of these ways (in general) is good. The last way is a more
+careful approach, since you are making sure things are of the right
+type rather than relying on R to convert them for you, but I don't
+mind which way you go.
+Now make the plot, making sure that you are using columns with the right names. I'm using my first data frame, with the two-part names:
+
+```{r urine2-9, error=T}
+ggplot(d, aes(x = x.LD1, y = x.LD2, colour = obesity)) + geom_point()
+```
+
+ 
+ 
+$\blacksquare$
+
+(e) <a name="part:plot">*</a> Looking at your plot, discuss how (if at all) the
+discriminants separate the obesity groups. (Where does each
+obesity group fall on the plot?)
+ 
+Solution
+
+ My immediate reaction was
+"they don't much". If you look a bit more closely, the
+`b` group, in green, is on the right (high
+`LD1`) and the `d` group (purple) is on the
+left (low `LD1`). The `a` group, red, is
+mostly at the top (high `LD2`) but the `c`
+group, blue, really is all over the place.
+
+The way to tackle interpreting a plot like this is to look
+for each group individually and see if that group is only
+or mainly found on a certain part of the plot. 
+
+This can be rationalized by looking at 
+the "coefficients of linear discriminants" on the output. `LD1` is
+low if creatinine and chloride are low (it has nothing
+much to do with `chlorine` since that coefficient
+is near zero). Group `d` is lowest on both
+creatinine and chloride, so that will be lowest on
+`LD1`.  `LD2` is high if `chloride`
+is high, or `creatinine` and `chlorine` are
+low. Out of the groups `a, b, c`, `a` has
+the highest mean on chloride and lowest means on the other
+two variables, so this should be highest on `LD2`
+and (usually) is.
+
+Looking at the means is only part of the story; if the
+individuals within a group are very variable, as they are
+here (especially group `c`), then that group will
+appear all over the plot. The table of means only says how
+the *average* individual within a group stacks up.
+
+```{r urine2-10 }
+ggbiplot(urine.1, groups = urine$obesity)
+```
+
+ 
+
+This shows (in a way that is perhaps easier to see) how the linear
+discriminants are related to the original variables, and thus how the
+groups differ in terms of the original variables.^[This was why  we were doing discriminant analysis in the first place.] 
+Most of the B's are high creatinine and high chloride (on the right); most of the D's are low on both (on the left). LD2 has a bit of `chloride`, but not much of anything else.
+Extra: the way we used to do this was with "base graphics", which involved plotting the `lda` output itself:
+
+```{r urine2-11 }
+plot(urine.1)
+```
+
+ 
+
+which is a plot of each discriminant score against each other
+one. You can plot just the first two, like this:
+
+```{r urine2-12 }
+plot(urine.1, dimen = 2)
+```
+
+ 
+This is easier than using `ggplot`, but (i) less flexible and
+(ii) you have to figure out how it works rather than doing things the
+standard `ggplot` way. So I went with constructing a data frame
+from the predictions, and then
+`ggplot`ting that. It's a matter of taste which way is better.
+ 
+$\blacksquare$
+
+(f) <a name="part:table">*</a> Obtain a table showing observed and predicted obesity
+groups. Comment on the accuracy of the predictions.
+ 
+Solution
+
+
+Make a table, one way or another:
+
+```{r urine2-13, error=T}
+tab <- with(d, table(obesity, class))
+tab
+```
+
+   
+
+`class` is always the *predicted* group in these. You can
+also name things in `table`.
+Or, if you prefer (equally good), the `tidyverse` way of
+counting all the combinations of true `obesity` and predicted
+`class`, which can be done all in one go, or in
+two steps by saving the data frame first. I'm saving my results for
+later:
+
+```{r urine2-14 }
+d %>% count(obesity, class) -> tab
+tab
+```
+
+ 
+or if you prefer to make it look more like a table of frequencies:
+
+```{r urine2-15 }
+tab %>% pivot_wider(names_from=class, values_from=n, values_fill = list(n=0))
+```
+
+ 
+
+The thing on the end fills in zero frequencies as such (they would
+otherwise be `NA`, which they are not: we know they are zero).
+My immediate reaction to this is "it's terrible"! But at least some
+of the men have their obesity group correctly predicted: 7 of the
+$7+3+2+0=12$ 
+men that are actually in group `a` are predicted to be in
+`a`; 9 of the 14 actual `b`'s are predicted to be
+`b`'s; 5 of the 8 actual `d`'s are predicted to be
+`d`'s. These are not so awful. But only 1 of the 11
+`c`'s is correctly predicted to be a `c`!
+
+As for what I want to see: I am looking for some kind of statement
+about how good you think the predictions are (the word "terrible" is
+fine for this) with some kind of support for your statement. For
+example, "the predictions are not that good, but at least group B is predicted with some accuracy (9 out of 14)."
+
+I think looking at how well the individual groups were predicted is
+the most incisive way of getting at this, because the `c` men
+are the hardest to get right and the others are easier, but you could
+also think about an overall misclassification rate. This comes most
+easily from the "tidy" table:
+
+```{r urine2-16 }
+tab %>% count(correct = (obesity == class), wt = n)
+```
+
+ 
+You can count anything, not just columns that already exist. This one
+is a kind of combined mutate-and-count to create the (logical) column
+called `correct`. 
+
+It's a shortcut for this:
+
+```{r urine2-17 }
+tab %>%
+  mutate(is_correct = (obesity == class)) %>%
+  count(is_correct, wt = n)
+```
+
+ 
+If I don't put the `wt`, `count` counts the number of
+*rows* for which the true and predicted obesity group is the
+same. But that's not what I want here: I want the number of
+*observations* totalled up, which is what the `wt=`
+does. It says "use the things in the given column as weights", which
+means to total them up rather than count up the number of rows.
+
+This says that 22 men were classified correctly and 23 were gotten
+wrong. We can find the proportions correct and wrong:
+
+```{r urine2-18, error=T}
+tab %>%
+  count(correct = (obesity == class), wt = n) %>%
+  mutate(proportion = n / sum(n))
+```
+
+ 
+
+and we see that 51\% of men had their obesity group predicted
+wrongly. This is the overall misclassification rate, which is a simple
+summary of how good a job the discriminant analysis did.
+
+There is a subtlety here. `n` has changed its meaning in the
+middle of this calculation! In `tab`, `n` is counting
+the number of obesity observed and predicted combinations, but now it
+is counting the number of men classified correctly and
+incorrectly. The `wt=n` uses the first `n`, but the
+`mutate` line uses the *new* `n`, the result of the
+`count` line here. (I think `count` used to use
+`nn` for the result of the second `count`, so that you
+could tell them apart, but it no longer seems to do so.)
+
+I said above that the obesity groups were not equally easy to
+predict. A small modification of the above will get the
+misclassification rates by (true) obesity group. This is done by
+putting an appropriate `group_by` in at the front, before we
+do any summarizing:
+
+```{r urine2-19, error=T}
+tab %>%
+  group_by(obesity) %>%
+  count(correct = (obesity == class), wt = n) %>%
+  mutate(proportion = n / sum(n))
+```
+
+ 
+
+This gives the proportion wrong and correct for each (true) obesity
+group. I'm going to do the one more cosmetic thing to make it easier to
+read, a kind of "untidying":
+
+```{r urine2-20, error=T}
+tab %>%
+  group_by(obesity) %>%
+  count(correct = (obesity == class), wt = n) %>%
+  mutate(proportion = n / sum(n)) %>%
+  select(-n) %>%
+  pivot_wider(names_from=correct, values_from=proportion)
+```
+
+ 
+
+Looking down the ``TRUE`` column, groups A, B and D were gotten
+about 60\% correct (and 40\% wrong), but group C is much worse. The
+overall misclassification rate is made bigger by the fact that C is so
+hard to predict.
+
+Find out for yourself what happens if I fail to remove the `n`
+column before doing the `pivot_wider`.
+
+A slightly more elegant look is obtained this way, by making nicer
+values than TRUE and FALSE:
+
+```{r urine2-21, error=T}
+tab %>%
+  group_by(obesity) %>%
+  mutate(prediction_stat = ifelse(obesity == class, "correct", "wrong")) %>%
+  count(prediction_stat, wt = n) %>%
+  mutate(proportion = n / sum(n)) %>%
+  select(-n) %>%
+  pivot_wider(names_from=prediction_stat, values_from=proportion)
+```
+
+ 
+ 
+$\blacksquare$
+
+(g) Do your conclusions from (<a href="#part:plot">here</a>) and
+(<a href="#part:table">here</a>) appear to be consistent?
+ 
+Solution
+
+
+On the plot of (<a href="#part:plot">here</a>), we said that there was a
+lot of scatter, but that groups `a`, `b` and
+`d` tended to be found at the top, right and left
+respectively of the plot. That suggests that these three
+groups should be somewhat predictable. The `c`'s, on
+the other hand, were all over the place on the plot, and
+were mostly predicted wrong.
+
+The idea is that the stories you pull from the plot and the
+predictions should be more or less consistent. There are
+several ways you might say that: another approach is to say
+that the observations are all over the place on the plot,
+and the predictions are all bad. This is not as insightful
+as my comments above, but if that's what the plot told you,
+that's what the predictions would seem to be saying as
+well. (Or even, the predictions are not so bad compared to
+the apparently random pattern on the plot, if that's what
+you saw. There are different ways to say something more or
+less sensible.)
+ 
+$\blacksquare$
+
+
+

@@ -1,0 +1,50 @@
+# Multidimensional Scaling
+
+Packages for this chapter:
+
+```{r 23-mds-1, eval=F}
+library(ggbiplot)
+library(tidyverse)
+library(ggrepel)
+```
+
+```{r 23-mds-2, child="_packages.qmd"}
+```
+
+
+```{r 23-mds-3, child="_wisconsin_qq.Rmd"}
+``` 
+
+
+```{r 23-mds-4, child="_stimuli_qq.Rmd"}
+```
+  
+```{r 23-mds-5, child="_letterrec_qq.Rmd"}
+``` 
+
+
+```{r 23-mds-6, child="_beermds_qq.Rmd"}
+```   
+
+```{r 23-mds-7, child="_stimuli2_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 23-mds-8, child="_wisconsin.Rmd"}
+``` 
+
+
+```{r 23-mds-9, child="_stimuli.Rmd"}
+```
+  
+```{r 23-mds-10, child="_letterrec.Rmd"}
+``` 
+
+
+```{r 23-mds-11, child="_beermds.Rmd"}
+```   
+
+```{r 23-mds-12, child="_stimuli2.Rmd"}
+```
+

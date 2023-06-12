@@ -42,6 +42,7 @@ Solution
 
 
 ```{r sfcrime-data-1}
+#| cache: true
 my_url <- "http://utsc.utoronto.ca/~butler/d29/sfcrime.csv"
 sfcrime <- read_csv(my_url)
 sfcrime
@@ -85,8 +86,8 @@ by `arrange` to sort:
 
 ```{r sfcrime-data-2 }
 sfcrime %>% group_by(Category) %>%
-summarize(count=n()) %>%
-arrange(desc(count))
+  summarize(count=n()) %>%
+  arrange(desc(count))
 ```
 
  
@@ -95,7 +96,7 @@ or this one does the same thing and saves a step:
 
 ```{r sfcrime-data-3 }
 sfcrime %>% count(Category) %>%
-arrange(desc(n))
+  arrange(desc(n))
 ```
 
  
@@ -206,7 +207,7 @@ at a time for membership in the set in `my.crimes`, so this:
 
 ```{r sfcrime-data-6, error=T}
 sfcrime %>% filter(Category %in% my.crimes) %>%
-select(c(Category,DayOfWeek,PdDistrict)) -> sfcrimea
+  select(c(Category,DayOfWeek,PdDistrict)) -> sfcrimea
 sfcrimea
 ```
 

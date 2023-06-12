@@ -20,6 +20,7 @@ Solution
 
 
 This is `read_delim`:
+
 ```{r whas-1 }
 my_url <- "http://ritsokiguess.site/datafiles/whas500.txt"
 whas <- read_delim(my_url, " ")
@@ -54,12 +55,8 @@ demonstrate that it worked.
 Solution
 
 
-Load `lubridate` first:
-```{r whas-2 }
-library(lubridate)
-```
+You can load `lubridate` first, but there is no need since it is now part of the `tidyverse`.
 
-       
 
 These dates are day-month-year, so we need `dmy` from
 `lubridate`: 
@@ -134,6 +131,7 @@ what R's internal storage is for dates (it might be seconds or
 milliseconds or anything, not necessarily days),
 so subtracting them requires care; you have to divide by the
 length of a day (in whatever units), thus:
+
 ```{r whas-6 }
 whas3 <- whas2 %>% mutate(
   diff1 = (dis - admit) / ddays(1),
@@ -201,6 +199,7 @@ Solution
 
 The easiest way to make a factor is to wrap `fstat`, which
 is a numeric 0 or 1, in `factor()`:
+
 ```{r whas-9 }
 ggplot(whas3, aes(x = factor(fstat), y = lenfol)) + geom_boxplot()
 ```

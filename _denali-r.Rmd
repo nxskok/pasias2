@@ -32,6 +32,7 @@ the top.
 This used to be exactly the kind of thing that
 `read_table` would read, but no longer. We start with the usual
 `library(tidyverse)`:
+
 ```{r denali-r-1 }
 library(tidyverse)
 my_url <- "http://ritsokiguess.site/datafiles/caribou.txt"
@@ -113,6 +114,7 @@ now. They appear to be month-day-year, American
 style.^[Not a surprise since Denali National Park is in  Alaska.]  
 Thus the function needed is `mdy`. It doesn't matter
 whether the months are names or numbers:
+
 ```{r denali-r-2 }
 denali %>% mutate(date = mdy(date)) -> denali
 denali
@@ -137,6 +139,7 @@ Solution
 
 
 This involves digging in the `lubridate` help to find out how to extract things from a date. It turns out that `wday` extracts the day of the week from a date, by default as a number, and `month` gets the month, also by default as a number:
+
 ```{r denali-r-3 }
 denali %>% mutate(mon = month(date), wd = wday(date))
 ```
@@ -180,6 +183,7 @@ Solution
 
 
 Nothing terribly surprising here:
+
 ```{r denali-r-6 }
 ggplot(denali, aes(x = caribou, y = wolf)) + geom_point()
 ```
@@ -255,6 +259,7 @@ Solution
 Make a scatterplot, with the survey date as explanatory
 variable, and caribou population as response (since time always
 goes on the $x$-axis):
+
 ```{r denali-r-10 }
 ggplot(denali, aes(x = date, y = caribou)) + geom_point() + geom_line()
 ```
@@ -285,6 +290,7 @@ populations, just of different animals. One way of plotting both
 populations is to `pivot_longer` them up into one longer column, and
 then plot them against time, with the two animals distinguished
 by colour:
+
 ```{r denali-r-11 }
 denali %>%
   pivot_longer(caribou:wolf, names_to="animal", values_to="population") %>%

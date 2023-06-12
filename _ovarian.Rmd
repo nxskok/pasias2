@@ -23,11 +23,11 @@ ovarian
  
 
 There are indeed 26 rows. This is a `data.frame` rather than a
-`tibble`, so you see the whole thing, in case you were
+`tibble`, so you might see the whole thing, in case you were
 expecting something like this:
 
 ```{r ovarian-2 }
-ovarian %>% as.tibble()
+ovarian %>% as_tibble()
 ```
 
  
@@ -70,6 +70,7 @@ I always forget whether the second thing in `Surv` has to
 be 1 or 0 if the event happened. The help says that it needs to be
 1 or `TRUE` if the event (death) happened, which is what
 `fustat` is, so we can use it as it is:
+
 ```{r ovarian-3 }
 y <- with(ovarian, Surv(futime, fustat))
 y
@@ -78,9 +79,9 @@ y
      
 
 This creates a separate variable `y` outside of any data
-frame. This is how it has to be done, because although `y`
+frame. This is how, in the past, it had to be done, because although `y`
 looks as if it is 26 long (one per patient), it's actually more
-complicated than that:
+complicated than that. But adding it as a column to a dataframe now works just fine:
 
 ```{r ovarian-4, error=T}
 ovarian %>% mutate(y = Surv(futime, fustat)) -> ov2
@@ -89,28 +90,14 @@ ov2
 
  
 
-This doesn't work, because internally `y` is a `matrix` with two columns:
+Internally `y` is a `matrix` with two columns:
 
 ```{r ovarian-5 }
 print.default(y)
 ```
 
- 
+but everything is handled properly when you add it to a dataframe (note the `Surv` at the top of the column to indicated that it is a survival-time object, encoding a survival time and survivorship status both).
 
-The `attr(,"class")` thing at the bottom of this says that `y` is actually  a `Surv` object, which is how it knows to display as it does, as 26 values some of which have plusses.^[Internally, printing a `Surv` thing calls the method `print.Surv`, which is defined in the `survival` package.]
-
-The way R works out the length of something is its total number of
-entries, which for this matrix is $26 \times 2=52$. The only things
-you can add via `mutate` to a data frame with 26 rows have
-length 26 (since everything in a data frame has to be the same length)
-or length 1 (in which case it is repeated 26 times).
-
-With some cajoling, you can get this into a data frame, but with more
-cajoling than seems necessary. It's much easier to leave it as a
-separate thing outside a data frame.^[In some respects, it's  like that two-column response in logistic regression, where each row of the data frame represents several observations pooled together.]
-
-I gave `ov2` a "temporary" name because I am not going to use
-it again.
 
 $\blacksquare$
 
@@ -164,6 +151,7 @@ Solution
 
 
 The hint suggests something like this:
+
 ```{r ovarian-6 }
 time.1 <- coxph(y ~ age + factor(rx), data = ovarian)
 summary(time.1)
@@ -185,6 +173,14 @@ summary(time.1a)
 
 The answer is the same either way. 
 The `data=.` means "use the data frame that came out of the previous step, the one with `rxf` in it."
+
+Alternatively, use the dataframe I called `ov2` with `y` in it:
+
+```{r}
+time.1b <- coxph(y ~ age + factor(rx), data = ov2)
+summary(time.1b)
+```
+
 
 $\blacksquare$
 
@@ -308,6 +304,7 @@ Solution
 
 The plot is just the same idea as the one in the notes. Make sure
 you have `survminer` installed and loaded:
+
 ```{r ovarian-10 }
 ggcoxdiagnostics(time.1) + geom_smooth()
 ```
@@ -349,7 +346,9 @@ Solution
 I imagine you can guess what we are going to be doing with these:
 predictions, so we'll call the data frame `new` when we get
 there. 
+
 Quartiles first:
+
 ```{r ovarian-11 }
 quantile(ovarian$age)
 ```
@@ -378,9 +377,7 @@ remembering that "treatment" is called `rx` here:
 ```{r ovarian-13 }
 ages <- c(50.17, 62.38)
 rxs <- c(1, 2)
-new <- crossing(age = ages, rx = rxs)
-new
-datagrid(age= ages, rx = rxs, model = time.1)
+new <- datagrid(model = time.1, age = ages, rx = rxs)
 ```
 
  
@@ -397,7 +394,8 @@ Solution
 
 
 The magic word here is `survfit`. The structure is the same
-as for `predict`:
+as for `predictions`:
+
 ```{r ovarian-14 }
 s <- survfit(time.1, new, data = ovarian)
 summary(s)
@@ -436,6 +434,7 @@ Solution
 
 Thus. The `conf.int=F` means to skip the confidence interval
 "envelopes" that I find make the plot rather messy:
+
 ```{r ovarian-15 }
 ggsurvplot(s, conf.int = FALSE)
 ```
@@ -456,6 +455,7 @@ The best survival curve, in terms of surviving longest, is up and to
 the right, so the green one is best and the blue one is
 worst.^[In other cases, having the event happen sooner is    better. For example, you might be poisoning rats, in which case    you want them to die quicker. Or the event might be something    desirable like becoming qualified to fly an airplane. In those    cases, down and to the left is better.] To figure out which those
 are, we have to go back to the data frame we created:
+
 ```{r ovarian-16 }
 new
 ```

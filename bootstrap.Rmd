@@ -33,6 +33,6 @@ My solutions follow:
 ```{r 26-bootstrap-9, child="_eyesight.Rmd"}
 ```
 
-```{r 26-bootstrap-10, child="_boot-irs.Rmd"}
+```{r 26-bootstrap-10, child="_boot-irs.Rmd"} 
 ```
 

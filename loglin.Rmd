@@ -1,0 +1,30 @@
+# Frequency table analysis
+
+Packages for this chapter:
+
+```{r 25-loglin-1, eval=F}
+library(tidyverse)
+```
+```{r 25-loglin-2, child="_packages.qmd"}
+```
+
+```{r 25-loglin-3, child="_college-plans_qq.Rmd"}
+```
+
+```{r 25-loglin-4, child="_vote_qq.Rmd"}
+```
+
+```{r 25-loglin-5, child="_brand_m_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 25-loglin-6, child="_college-plans.Rmd"}
+```
+
+```{r 25-loglin-7, child="_vote.Rmd"}
+```
+
+```{r 25-loglin-8, child="_brand_m.Rmd"}
+```
+

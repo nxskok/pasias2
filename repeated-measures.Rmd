@@ -1,0 +1,53 @@
+# Repeated measures
+
+Packages for this chapter:
+
+```{r 20-repeated-measures-1, eval=F}
+library(car)
+library(lme4)
+library(tidyverse)
+```
+
+```{r 20-repeated-measures-2, child="_packages.qmd"}
+```
+
+
+```{r 20-repeated-measures-3, child="_ratweight_qq.Rmd"}
+```
+
+
+```{r 20-repeated-measures-4,child="_geriatrics_qq.Rmd"}
+``` 
+
+```{r 20-repeated-measures-5, child="_airport_qq.Rmd"}
+``` 
+
+```{r 20-repeated-measures-6, child="_bodyfat2_qq.Rmd"}
+``` 
+
+```{r 20-repeated-measures-7, child="_king_qq.Rmd"}
+``` 
+
+```{r 20-repeated-measures-8, child="_rm_qq.Rmd"}
+``` 
+
+My solutions follow:
+
+```{r 20-repeated-measures-9, child="_ratweight.Rmd"}
+```
+
+
+```{r 20-repeated-measures-10,child="_geriatrics.Rmd"}
+``` 
+
+```{r 20-repeated-measures-11, child="_airport.Rmd"}
+``` 
+
+```{r 20-repeated-measures-12, child="_bodyfat2.Rmd"}
+``` 
+
+```{r 20-repeated-measures-13, child="_king.Rmd"}
+``` 
+
+```{r 20-repeated-measures-14, child="_rm.Rmd"}
+``` 

@@ -280,6 +280,7 @@ Solution
 
 
 Thus:
+
 ```{r regression-stan-2 }
 my_url <- "https://raw.githubusercontent.com/nxskok/pasias/master/vocab.txt"
 vocabulary <- read_delim(my_url, " ")

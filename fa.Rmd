@@ -1,0 +1,33 @@
+# Factor Analysis
+
+Packages for this chapter:
+
+```{r 42-fa-1, eval=F}
+library(ggbiplot)
+library(tidyverse)
+```
+
+```{r 42-fa-2, child="_packages.qmd"}
+```
+
+```{r 42-fa-3, child="_ipip_qq.Rmd"}
+``` 
+
+```{r 42-fa-4, child="_corrmat_qq.Rmd"}
+```   
+
+```{r 42-fa-5, child="_airpollution_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 42-fa-6, child="_ipip.Rmd"}
+``` 
+
+```{r 42-fa-7, child="_corrmat.Rmd"}
+```   
+
+```{r 42-fa-8, child="_airpollution.Rmd"}
+```
+
+

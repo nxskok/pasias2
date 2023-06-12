@@ -30,6 +30,7 @@ mobile
  
 With multiple columns that are all frequencies, this is a job for
 `pivot_longer`:
+
 ```{r mobile-2 }
 mobile %>% 
   pivot_longer(very.unsat:very.sat, 
@@ -88,6 +89,7 @@ The hint is to look at the column `satisfied` in
 `mobile.long` and note that the satisfaction categories
 appear in the data *in the order that we want*. This is good
 news, because we can use `fct_inorder` like this:
+
 ```{r mobile-4 }
 mobile.long %>%
   mutate(satis = fct_inorder(satisfied)) -> mobile.long
@@ -109,6 +111,7 @@ Success.
 Extra: so now you are asking, what if the levels are in the *wrong* order in the data? Well, below is what you used to have to do, and it will work for this as well.
 I'll first find what levels of satisfaction I have. This
 can be done by counting them, or by finding the distinct ones:
+
 ```{r mobile-6 }
 mobile.long %>% count(satisfied)
 ```
@@ -279,6 +282,7 @@ This is a comparison of the model with both variables
 (`mobile.1`) and the model with `gender` removed
 (`mobile.3`). Use `anova` for this, smaller
 (fewer-$x$) model first:
+
 ```{r mobile-16 }
 anova(mobile.3, mobile.1)
 ```
@@ -305,6 +309,7 @@ Solution
 
 Exactly the same idea as the last part. In my case, I'm comparing
 models `mobile.2` and `mobile.1`:
+
 ```{r mobile-17 }
 anova(mobile.2, mobile.1)
 ```
@@ -339,10 +344,13 @@ and gender), and an appropriate `type`.
  
 Solution
 
+xxx use predictions
+
 
 My model containing both $x$s was `mobile.1`, the data frame
 read in from the file was called `mobile`, and I  need
 `type="p"` to get probabilities:
+
 ```{r mobile-18 }
 probs <- predict(mobile.1, mobile, type = "p")
 mobile %>%

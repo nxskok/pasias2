@@ -1,0 +1,33 @@
+# Multivariate analysis of variance
+
+Packages for this chapter:
+
+```{r 19-manova-1, eval=F}
+library(car)
+library(tidyverse)
+```
+
+```{r 19-manova-2, child="_packages.qmd"}
+```
+
+
+```{r 19-manova-3,child="_manova1_qq.Rmd"}
+``` 
+
+```{r 19-manova-4,child="_urine_qq.Rmd"}
+```   
+
+```{r 19-manova-5, child="_athletes-manova_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 19-manova-6,child="_manova1.Rmd"}
+``` 
+
+```{r 19-manova-7,child="_urine.Rmd"}
+```   
+
+```{r 19-manova-8, child="_athletes-manova.Rmd"}
+```
+

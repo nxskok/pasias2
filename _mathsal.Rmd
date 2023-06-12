@@ -27,6 +27,7 @@ Solution
 
 This is a tricky one. There are aligned columns, but *the column headers are not aligned with them*. 
 Thus `read_table2` is what you need.
+
 ```{r mathsal-1 }
 my_url <- "http://ritsokiguess.site/datafiles/mathsal.txt"
 salaries <- read_table2(my_url)
@@ -64,6 +65,7 @@ and that will definitely work. But you can do it in one go if
 you think about facets, and about having all the $x$-values in
 one column (and the names of the $x$-variables in another
 column):
+
 ```{r ivybridge}
 salaries %>%
   pivot_longer(-salary, names_to="xname", values_to="x") %>%
@@ -100,6 +102,7 @@ call.
 Note that all the relationships are more or less linear (no
 obvious curves here). We could also investigate the relationships
 among the explanatory variables:
+
 ```{r mathsal-3 }
 cor(salaries)
 ```
@@ -159,6 +162,7 @@ take any, even one, of the variables out: doing so would make the
 regression much worse.
 If you need convincing of that, see what happens when we take
 the variable with the highest P-value out --- this is `workqual`:
+
 ```{r mathsal-5 }
 salaries.2 <- lm(salary ~ experience + pubsucc, data = salaries)
 summary(salaries.2)
@@ -209,6 +213,7 @@ I think it would be a big mistake. Taking even one of these
 variables out of the regression is a bad idea (from the
 $t$-tests), so taking out more than one would be a *really* bad idea.
 To perform a test, fit the model without these two explanatory variables:
+
 ```{r mathsal-6 }
 salaries.3 <- lm(salary ~ experience, data = salaries)
 ```
@@ -243,6 +248,7 @@ Solution
 
 I intended that (i) should just be a matter of looking at residuals
 vs.\ fitted values:
+
 ```{r mathsal-8 }
 ggplot(salaries.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```

@@ -1,0 +1,63 @@
+# Discriminant analysis
+
+Packages for this chapter:
+
+```{r 21-discriminant-analysis-1, eval=F}
+library(ggbiplot)
+library(MASS)
+library(tidyverse)
+library(car)
+```
+
+(Note: `ggbiplot` loads `plyr`, which overlaps a lot with `dplyr`
+(`filter`, `select` etc.). We want the `dplyr` stuff elsewhere, so we
+load `ggbiplot` *first*, and the things in `plyr` get hidden, as shown
+in the Conflicts. This, despite appearances, is what we want.)
+
+```{r 21-discriminant-analysis-2, child="_packages.qmd"}
+```
+
+
+```{r 21-discriminant-analysis-3,child="_swiss-money_qq.Rmd"}
+``` 
+
+```{r 21-discriminant-analysis-4,child="_urine2_qq.Rmd"}
+``` 
+
+```{r 21-discriminant-analysis-5,child="_manova1a_qq.Rmd"}
+``` 
+  
+```{r 21-discriminant-analysis-6, child="_jobs_qq.Rmd"}
+```
+
+```{r 21-discriminant-analysis-7, child="_adhd_qq.Rmd"}
+```
+
+```{r 21-discriminant-analysis-8, child="_cornseed_qq.Rmd"}
+``` 
+
+```{r 21-discriminant-analysis-9, child="_athletes-d_qq.Rmd"}
+``` 
+
+My solutions follow:
+
+```{r 21-discriminant-analysis-10,child="_swiss-money.Rmd"}
+``` 
+
+```{r 21-discriminant-analysis-11,child="_urine2.Rmd"}
+``` 
+
+```{r 21-discriminant-analysis-12,child="_manova1a.Rmd"}
+``` 
+  
+```{r 21-discriminant-analysis-13, child="_jobs.Rmd"}
+```
+
+```{r 21-discriminant-analysis-14, child="_adhd.Rmd"}
+```
+
+```{r 21-discriminant-analysis-15, child="_cornseed.Rmd"}
+``` 
+
+```{r 21-discriminant-analysis-16, child="_athletes-d.Rmd"}
+``` 

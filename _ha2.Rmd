@@ -181,6 +181,7 @@ P-values.
 `anxiety` is significant, so it definitely has an effect on
 the probability of a second heart attack. The pattern is clear
 enough even with this small data set. Here's a visual:
+
 ```{r ha2-7 }
 ggplot(ha, aes(x = second, y = anxiety)) + geom_boxplot()
 ```

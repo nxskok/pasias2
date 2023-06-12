@@ -18,6 +18,7 @@ Solution
 
 Like this. The arrangement of numbers and missing values doesn't
 matter, as long as you have some of each:
+
 ```{r nonmissing-1 }
 v <- c(1, 2, NA, 4, 5, 6, 9, NA, 11)
 mydata <- tibble(v)
@@ -57,6 +58,7 @@ Solution
 
 Try it and see. Give it whatever name you like. My name reflects
 that I know what it's going to do:
+
 ```{r nonmissing-3 }
 mydata <- mydata %>% mutate(notisna = !is.na(v))
 mydata
@@ -80,6 +82,7 @@ Solution
 which case the column should contain something that either *is*
 `TRUE` or `FALSE`, or something that can be
 interpreted that way:
+
 ```{r nonmissing-4 }
 mydata %>% filter(notisna)
 ```
