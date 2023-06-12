@@ -486,7 +486,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read the spreadsheet data.</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>read_excel</code> from package <code>readxl</code>. I’m not sure what will happen to the dates yet. Note that this needs a “local” copy of the spreadsheet (that is, you have to download it and save it on your computer, then upload it to <code>rstudio.cloud</code>), possibly using <code>file.choose</code> to help R find it. I put my copy in the same project folder as I was working in, so I just need the file name: ::: {.cell}</p>
+<p>This is <code>read_excel</code> from package <code>readxl</code>. I’m not sure what will happen to the dates yet. Note that this needs a “local” copy of the spreadsheet (that is, you have to download it and save it on your computer, then upload it to <code>rstudio.cloud</code>), possibly using <code>file.choose</code> to help R find it. I put my copy in the same project folder as I was working in, so I just need the file name:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mizuna <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"mizuna.xlsx"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mizuna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -498,8 +499,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 </div>
 </div>
-<p>:::</p>
-<p>The dates <em>did</em> get read properly. <code>dttm</code> is “date-time”, so I guess it’s allowing for the possibility that my dates had times attached as well. Unlike with SAS (as we see later), the years came out right.</p>
+</div>
+<p>The dates <em>did</em> get read properly. <code>dttm</code> is “date-time”, so I guess it’s allowing for the possibility that my dates had times attached as well. The years do actually come out right.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Make a plot of <code>height</code> against your dates, with the points joined by lines.</li>
@@ -516,19 +517,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Label each point on the plot with the amount of water added up to that point.</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>water</code> again. The way to do this is to load <code>ggrepel</code>, then add <code>geom_text_repel</code> to the plot, by adding <code>label=water</code> to the <em>original</em> <code>aes</code>: ::: {.cell}</p>
+<p>This is <code>water</code> again. The way to do this is to load <code>ggrepel</code>, then add <code>geom_text_repel</code> to the plot, by adding <code>label=water</code> to the <em>original</em> <code>aes</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mizuna, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> height, <span class="at">label =</span> water)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>(<span class="at">colour =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/mizuna-r-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>I made the text red, so that you can see it more easily. It “repels” away from the points, but not from the lines joining them. Which makes me wonder whether this would work better (I explain <code>alpha</code> afterwards):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mizuna, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> height, <span class="at">label =</span> water)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_label_repel</span>(<span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_label_repel</span>(<span class="at">colour =</span> <span class="st">"red"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/mizuna-r-4-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -577,7 +580,8 @@ dbl (2): cesarean, vaginal
 <li>Create a column of actual dates and also a column of cesarean rates, as defined above. Store your new data frame in a variable and display it. For the dates, assume that each date is of the 1st of the month that it belongs to.</li>
 </ol>
 <p>Solution</p>
-<p>The easiest way is to use <code>str_c</code> or <code>paste</code> to create a text date with year, month and day in some order, and then to use the appropriate function from <code>lubridate</code> to turn that into an actual <code>date</code>. If you use <code>str_c</code>, you (probably) need the <code>sep</code> thing to make sure the values get a space between them; <code>paste</code> does this automatically. (The next question is whether <code>ymd</code> or whatever can cope without spaces, but I’m not exploring that.) The cesarean rate is <code>cesarean</code> divided by <code>cesarean</code> plus <code>vaginal</code>: ::: {.cell}</p>
+<p>The easiest way is to use <code>str_c</code> or <code>paste</code> to create a text date with year, month and day in some order, and then to use the appropriate function from <code>lubridate</code> to turn that into an actual <code>date</code>. If you use <code>str_c</code>, you (probably) need the <code>sep</code> thing to make sure the values get a space between them; <code>paste</code> does this automatically. (The next question is whether <code>ymd</code> or whatever can cope without spaces, but I’m not exploring that.) The cesarean rate is <code>cesarean</code> divided by <code>cesarean</code> plus <code>vaginal</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> births <span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datestr =</span> <span class="fu">str_c</span>(<span class="st">"2012"</span>, month, <span class="st">"1"</span>, <span class="at">sep =</span> <span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
@@ -592,7 +596,7 @@ dbl (2): cesarean, vaginal
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>If you don’t like that, create columns that contain 2012 and 1 all the way down. If you set a column name equal to a single value, that single value gets repeated the right number of times:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>births <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2012</span>, <span class="at">day =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -628,7 +632,8 @@ dbl (2): cesarean, vaginal
 <li>Plot the cesarean rate against time, with a smooth trend. Do you see an upward trend, a downward trend, no trend, or something else?</li>
 </ol>
 <p>Solution</p>
-<p>This is a scatterplot with time on the <span class="math inline">\(x\)</span> axis: ::: {.cell}</p>
+<p>This is a scatterplot with time on the <span class="math inline">\(x\)</span> axis:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(b3, <span class="fu">aes</span>(<span class="at">x =</span> thedate, <span class="at">y =</span> cesarean_rate)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
@@ -636,7 +641,7 @@ dbl (2): cesarean, vaginal
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/tann-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>I like this better than joining the points by lines, since we already have a trend on the plot, but you can do that in some contrasting way:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(b3, <span class="fu">aes</span>(<span class="at">x =</span> thedate, <span class="at">y =</span> cesarean_rate)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -710,7 +715,8 @@ sample estimates:
 </ol>
 <p>Solution</p>
 <p>This looks at first sight as if it’s separated by spaces, but most of the data values are separated by <em>more than one</em> space. If you look further, you’ll see that the values are <em>lined up in columns</em>, with the variable names aligned at the top.</p>
-<p>This used to be exactly the kind of thing that <code>read_table</code> would read, but no longer. We start with the usual <code>library(tidyverse)</code>: ::: {.cell}</p>
+<p>This used to be exactly the kind of thing that <code>read_table</code> would read, but no longer. We start with the usual <code>library(tidyverse)</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/caribou.txt"</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>denali <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -744,7 +750,7 @@ See problems(...) for more details.</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The spaces within the names have spilled into the next column, so that the dates and first names are (mostly) correct, but the initials should stay with the names.</p>
 <p>The right thing now is <code>read_fwf</code>, where <code>fwf</code> stands for “fixed-width format”</p>
 <div class="cell">
@@ -814,7 +820,8 @@ date       name             caribou wolf
 </ol>
 <p>Solution</p>
 <p>What you do is to look at the format of the dates as they are now. They appear to be month-day-year, American style.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a><br>
-Thus the function needed is <code>mdy</code>. It doesn’t matter whether the months are names or numbers: ::: {.cell}</p>
+Thus the function needed is <code>mdy</code>. It doesn’t matter whether the months are names or numbers:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>denali <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">mdy</span>(date)) <span class="ot">-&gt;</span> denali</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>denali</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -825,7 +832,7 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>I lived on the edge and overwrote both my column and the whole data frame.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <p>The dates are displayed in ISO format, year-month-day. You see at the top of the column that they now really <em>are</em> dates, not just pieces of text that look like dates.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -833,7 +840,8 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
 <li>Create new columns containing the days of the week and the month names for the dates.</li>
 </ol>
 <p>Solution</p>
-<p>This involves digging in the <code>lubridate</code> help to find out how to extract things from a date. It turns out that <code>wday</code> extracts the day of the week from a date, by default as a number, and <code>month</code> gets the month, also by default as a number: ::: {.cell}</p>
+<p>This involves digging in the <code>lubridate</code> help to find out how to extract things from a date. It turns out that <code>wday</code> extracts the day of the week from a date, by default as a number, and <code>month</code> gets the month, also by default as a number:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>denali <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">mon =</span> <span class="fu">month</span>(date), <span class="at">wd =</span> <span class="fu">wday</span>(date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -843,7 +851,7 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This is not what we wanted, though; we wanted the names of the months and of the days. To fix that, add <code>label=T</code> to both functions:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>denali <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">mon =</span> <span class="fu">month</span>(date, <span class="at">label =</span> T), <span class="at">wd =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -877,12 +885,13 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
 <li>Enough playing around with dates. Make a scatterplot of caribou population (explanatory) against wolf population (response). Do you see any relationship?</li>
 </ol>
 <p>Solution</p>
-<p>Nothing terribly surprising here: ::: {.cell}</p>
+<p>Nothing terribly surprising here:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(denali, <span class="fu">aes</span>(<span class="at">x =</span> caribou, <span class="at">y =</span> wolf)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/denali-r-6-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>If you like, add a smooth trend to it:<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(denali, <span class="fu">aes</span>(<span class="at">x =</span> caribou, <span class="at">y =</span> wolf)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -924,19 +933,21 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
 <li>Make a plot of caribou population against time (this is done the obvious way). What seems to be happening to the caribou population over time?</li>
 </ol>
 <p>Solution</p>
-<p>Make a scatterplot, with the survey date as explanatory variable, and caribou population as response (since time always goes on the <span class="math inline">\(x\)</span>-axis): ::: {.cell}</p>
+<p>Make a scatterplot, with the survey date as explanatory variable, and caribou population as response (since time always goes on the <span class="math inline">\(x\)</span>-axis):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(denali, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> caribou)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/denali-r-10-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>I used an ordinary <code>geom_line</code> this time, to connect neighbouring years, as is often done with a time series. The overall trend is downward, though the 1999 value might be a low from which the population is recovering.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="7" type="a">
 <li>The caribou and wolf populations over time are really “time series”. See if you can make a plot of <em>both</em> the caribou and wolf populations against time. You can make two <span class="math inline">\(y\)</span>-axes, one for caribou and one for wolf; this will probably require some research on your part to figure out.</li>
 </ol>
 <p>Solution</p>
-<p>The obvious starting point is to note that both the <code>caribou</code> and <code>wolf</code> columns are animal populations, just of different animals. One way of plotting both populations is to <code>pivot_longer</code> them up into one longer column, and then plot them against time, with the two animals distinguished by colour: ::: {.cell}</p>
+<p>The obvious starting point is to note that both the <code>caribou</code> and <code>wolf</code> columns are animal populations, just of different animals. One way of plotting both populations is to <code>pivot_longer</code> them up into one longer column, and then plot them against time, with the two animals distinguished by colour:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>denali <span class="sc">%&gt;%</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(caribou<span class="sc">:</span>wolf, <span class="at">names_to=</span><span class="st">"animal"</span>, <span class="at">values_to=</span><span class="st">"population"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> population, <span class="at">colour =</span> animal)) <span class="sc">+</span></span>
@@ -944,7 +955,7 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/denali-r-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This is not quite the story, though, because the caribou and wolf populations are on different scales. The caribou population is numbered in hundreds, while the wolf population is an actual count.</p>
 <p>The surveys are late in the year, so the one that is nearly in 1996 is actually the 1995 survey.</p>
 <p>What would be nice would be to have a secondary <span class="math inline">\(y\)</span>-axis, so that there were two <span class="math inline">\(y\)</span>-scales, one for each animal. This is very easy to manipulate, though (you can change either scale and get a very different-looking graph), so we ought to be careful.</p>
@@ -1004,7 +1015,8 @@ Thus the function needed is <code>mdy</code>. It doesn’t matter whether the mo
 <li>Read the data into R. The reading-in part is straightforward, but check what type of thing each column is. Is that what it should be?</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>read_delim</code>: ::: {.cell}</p>
+<p>This is <code>read_delim</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/whas500.txt"</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>whas <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1026,7 +1038,7 @@ dbl (19): id, age, gender, hr, sysbp, diasbp, bmi, cvd, afb, sho, chf, av3, ...
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>To see what type everything is, note that when you display a <code>tibble</code>, the type of all the columns on the screen is displayed at the top. Click the little right-arrow to see more columns and to check their type.</p>
 <p>All the numbers are properly integer (<code>int</code>) or decimal (<code>dbl</code>) numbers, but the date columns are <code>chr</code> or text. This means that they haven’t been read as <code>Date</code>s (because they were not in year-month-day order). This is (as we will see) unlike SAS, which determined that they were dates, and even used the first 20 rows of the file to determine what format of dates they were.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1034,17 +1046,15 @@ dbl (19): id, age, gender, hr, sysbp, diasbp, bmi, cvd, afb, sho, chf, av3, ...
 <li>The date columns should be R dates. They are not year-month-day, so converting them via <code>as.Date</code> (which is what <code>read_delim</code> tries to do) will not work. Load the <code>lubridate</code> package, and create new columns in your data frame that are properly dates. Save your data frame, and list it to demonstrate that it worked.</li>
 </ol>
 <p>Solution</p>
-<p>Load <code>lubridate</code> first: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+<p>You can load <code>lubridate</code> first, but there is no need since it is now part of the <code>tidyverse</code>.</p>
 <p>These dates are day-month-year, so we need <code>dmy</code> from <code>lubridate</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admit =</span> <span class="fu">dmy</span>(admitdate),</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dis =</span> <span class="fu">dmy</span>(disdate),</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> <span class="fu">dmy</span>(fdate)</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> whas2</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(whas2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">admit =</span> <span class="fu">dmy</span>(admitdate),</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dis =</span> <span class="fu">dmy</span>(disdate),</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> <span class="fu">dmy</span>(fdate)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> whas2</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(whas2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 500
 Columns: 25
@@ -1079,7 +1089,7 @@ $ f         &lt;date&gt; 2002-12-31, 2002-12-31, 2002-12-31, 1997-12-11, 2002-12
 <p>The indentation is up to you. I think it’s nice to make the creations of the three new variables line up. You can also make the opening and closing brackets on the long <code>mutate</code> aligned, or you can do as I have done here and put two closing brackets on the end. The rationale for this is that each of the variable definition lines in the <code>mutate</code> ends either with a comma or an extra closing bracket, the latter being on the last line. Your choice here is a matter of taste or (in your working life) the coding norms of the team you’re working with.</p>
 <p>Extra: you may have been offended by the repetition above. It so happens that these columns’ names all end in <code>date</code> and they are the only ones that do, so we can use a “select helper” to select only them, and then submit all of them to a <code>mutate</code> via <code>across</code>, which goes like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"date"</span>), \(date) <span class="fu">dmy</span>(date))) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"date"</span>), \(date) <span class="fu">dmy</span>(date))) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 500
 Columns: 22
@@ -1110,8 +1120,8 @@ $ fstat     &lt;dbl&gt; 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0,
 <p>One line, as you see, not three. The English-language version of this reads “for each of the columns whose name ends with <code>date</code>, work out <code>dmy</code> of it”, that is to say, convert it into a date. We can use any of the select-helpers in this, including listing the column numbers or names; in this case our date variables all ended with <code>date</code>.</p>
 <p>This overwrites the original date columns (you can see that they are now <code>date</code>s), but you can give them new names thus. This is inside the <code>across</code> inside the <code>mutate</code>, so it needs two close-brackets after (the probable reason for the error if you get one):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"date"</span>), \(date) <span class="fu">dmy</span>(date), </span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">.names =</span> <span class="st">"{.col}_d"</span>)) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"date"</span>), \(date) <span class="fu">dmy</span>(date), </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">.names =</span> <span class="st">"{.col}_d"</span>)) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 500
 Columns: 25
@@ -1148,13 +1158,14 @@ $ fdate_d     &lt;date&gt; 2002-12-31, 2002-12-31, 2002-12-31, 1997-12-11, 2002-
 <li>Create three new variables <code>diff1, diff2, diff3</code> that are the numbers of days between each of your dates, and save the data frame in which they have been created. Verify that at least some of them are the same as <code>los</code> and <code>lenfol</code>.</li>
 </ol>
 <p>Solution</p>
-<p>I don’t know what R’s internal storage is for dates (it might be seconds or milliseconds or anything, not necessarily days), so subtracting them requires care; you have to divide by the length of a day (in whatever units), thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="ot">&lt;-</span> whas2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff1 =</span> (dis <span class="sc">-</span> admit) <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>),</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff2 =</span> (f <span class="sc">-</span> admit) <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>),</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff3 =</span> (f <span class="sc">-</span> dis) <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(whas3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I don’t know what R’s internal storage is for dates (it might be seconds or milliseconds or anything, not necessarily days), so subtracting them requires care; you have to divide by the length of a day (in whatever units), thus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="ot">&lt;-</span> whas2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff1 =</span> (dis <span class="sc">-</span> admit) <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>),</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff2 =</span> (f <span class="sc">-</span> admit) <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>),</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff3 =</span> (f <span class="sc">-</span> dis) <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(whas3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 500
 Columns: 28
@@ -1187,19 +1198,19 @@ $ diff1     &lt;dbl&gt; 5, 5, 5, 10, 6, 1, 5, 4, 4, 5, 5, 10, 7, 21, 4, 1, 13, 1
 $ diff2     &lt;dbl&gt; 2178, 2172, 2190, 297, 2131, 1, 2122, 1496, 920, 2175, 2173,…
 $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2168,…</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The extra <code>d</code> on the front of <code>ddays</code> indicates that these are what is known to <code>lubridate</code> as “durations”: a period of time 1 day long that could be any day (as opposed to “June 1, 1970” which is 1 day long, but tied to a particular day).</p>
 <p><code>los</code> should be the number of days in hospital, what I calculated as <code>diff1</code>, and <code>lenfol</code> should be the time from being admitted to last followup, which is my <code>diff2</code>. My output from <code>glimpse</code> confirms that.</p>
 <p>Extra: of course, checking that the first few values match is a nice confirmation, but is not actually a <em>proof</em>. For that, we should compare all 500 values, and it would be best to do it in such a way that R is comparing all 500 values for us, since it would be a lot more reliable than the human eye. R has a function <code>all.equal</code> which does exactly that. By way of warmup:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(x, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(x, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Mean relative difference: 0.25"</code></pre>
 </div>
@@ -1207,11 +1218,11 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <p>I thought the second one was just going to say <code>FALSE</code>, but it gave us a message instead, saying how close <code>x</code> and <code>z</code> were on average, so that we could decide whether they were close enough to call equal, or, as in this case, not.</p>
 <p>Anyway:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(whas3, <span class="fu">all.equal</span>(lenfol, diff2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(whas3, <span class="fu">all.equal</span>(lenfol, diff2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(whas3, <span class="fu">all.equal</span>(los, diff1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(whas3, <span class="fu">all.equal</span>(los, diff1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -1222,17 +1233,18 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <li>Construct side-by-side boxplots of the length of followup by each followup status. You’ll need to make sure that the followup status, as it gets fed into <code>ggplot</code>, is a <code>factor</code>, or, at least, not the number that it is now.</li>
 </ol>
 <p>Solution</p>
-<p>The easiest way to make a factor is to wrap <code>fstat</code>, which is a numeric 0 or 1, in <code>factor()</code>: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(whas3, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(fstat), <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The easiest way to make a factor is to wrap <code>fstat</code>, which is a numeric 0 or 1, in <code>factor()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(whas3, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(fstat), <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/whas-9-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Or create a factor version of <code>fstat</code> first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ffstat =</span> <span class="fu">factor</span>(fstat)) <span class="sc">%&gt;%</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ffstat, <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ffstat =</span> <span class="fu">factor</span>(fstat)) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ffstat, <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/whas-10-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1240,9 +1252,9 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <p>I think the second way looks better, because you get a cleaner <span class="math inline">\(x\)</span>-axis on your plot. But if you’re doing this for exploration, rather than as something that’s going to appear in a report for your boss, the first way is fine.</p>
 <p><code>ggplot</code> also treats text stuff as categorical where needed, so this also works:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cfstat =</span> <span class="fu">as.character</span>(fstat)) <span class="sc">%&gt;%</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cfstat, <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cfstat =</span> <span class="fu">as.character</span>(fstat)) <span class="sc">%&gt;%</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cfstat, <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/whas-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1250,7 +1262,7 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <p>Extra: this is an example of what’s called “survival data”: the purpose of the study was to see what affected how long a person survived after a heart attack. Each patient was followed up for the number of days in <code>lenfol</code>, but followup could have stopped for two (or more) reasons: the patient died (indicated by <code>fstat</code> being 1), or something else happened to them (<code>fstat</code> is 0), such as moving away from where the study was conducted, getting another disease, the funding for this study running out, or simply losing touch with the people doing the study. Such a patient is called “lost to followup” or “censored”, and all we know about their survival is that they were still alive when last seen, but we don’t know how long they lived after that.</p>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, lenfol, fstat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, lenfol, fstat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1262,7 +1274,7 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 </div>
 <p>The patient with id 4 died after 297 days, but patients 1 through 3 lived for over 2000 days and were still alive when last seen. My guess for patients 1 through 3 is that the study ended and they were still alive:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">maxfol =</span> <span class="fu">max</span>(lenfol)<span class="sc">/</span><span class="fl">365.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>whas <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">maxfol =</span> <span class="fu">max</span>(lenfol)<span class="sc">/</span><span class="fl">365.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1276,9 +1288,9 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <p>We’re not going to analyze these data, but if we were, we would want to take advantage of the information in the patient who lived for “at least 2178 days”. Looking only at the patients who we knew to have died would be wasteful and might introduce a bias; for example, if we were comparing several treatments, and one of the treatments was so good that almost everybody on it was still alive at the end, we would want to have a strong inference that this treatment was the best.</p>
 <p>With that in mind, let’s redraw our boxplot with better labels for the followup status:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span> </span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_status =</span> <span class="fu">ifelse</span>(fstat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"died"</span>, <span class="st">"censored"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> followup_status, <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span> </span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_status =</span> <span class="fu">ifelse</span>(fstat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"died"</span>, <span class="st">"censored"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> followup_status, <span class="at">y =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/whas-14-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1286,21 +1298,21 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <p>Now we have a clearer sense of what is going on. Out of the patients who died, some of them survived a long time, but most of them died fairly quickly. Out of the patients who were censored, the times they were observed were all over the place, which suggests that (at least for the ones still in the study at the end) they joined the study at all kinds of different times.</p>
 <p>Another graph that is possible here is a facetted histogram:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span> </span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_status =</span> <span class="fu">ifelse</span>(fstat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"died"</span>, <span class="st">"censored"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>followup_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_status =</span> <span class="fu">ifelse</span>(fstat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"died"</span>, <span class="st">"censored"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lenfol)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>followup_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/whas-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The right-skewed distribution of times to death is what we saw from the boxplot, but what is that periodic thing on the left? Let’s convert the days to years and draw again:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span> </span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_status =</span> <span class="fu">ifelse</span>(fstat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"died"</span>, <span class="st">"censored"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_years =</span> lenfol<span class="sc">/</span><span class="fl">365.25</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> followup_years)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>followup_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>whas3 <span class="sc">%&gt;%</span> </span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_status =</span> <span class="fu">ifelse</span>(fstat <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"died"</span>, <span class="st">"censored"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">followup_years =</span> lenfol<span class="sc">/</span><span class="fl">365.25</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> followup_years)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>followup_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/whas-16-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1317,8 +1329,8 @@ $ diff3     &lt;dbl&gt; 2173, 2167, 2185, 287, 2125, 0, 2117, 1492, 916, 2170, 2
 <p>Solution</p>
 <p>The usual, to start:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/sleeping.csv"</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/sleeping.csv"</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 7 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -1329,7 +1341,7 @@ dttm (2): bed.time, rise.time
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>sleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>sleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1349,7 +1361,7 @@ dttm (2): bed.time, rise.time
 <p>Solution</p>
 <p>Since these are genuine date-times, you can take the difference, but the unit is not predictable. Internally, these are stored as a number of <em>seconds</em>, but it displays a “nice” unit:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> rise.time <span class="sc">-</span> bed.time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> rise.time <span class="sc">-</span> bed.time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1361,8 +1373,8 @@ dttm (2): bed.time, rise.time
 </div>
 <p>In this case, we did get a number of hours, but in the next part, we are going to do a calculation like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> rise.time <span class="sc">-</span> bed.time) <span class="sc">%&gt;%</span> </span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">ratio =</span> sleep.time <span class="sc">/</span> in_bed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> rise.time <span class="sc">-</span> bed.time) <span class="sc">%&gt;%</span> </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">ratio =</span> sleep.time <span class="sc">/</span> in_bed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `mutate()`:
 ℹ In argument: `ratio = sleep.time/in_bed`.
@@ -1372,7 +1384,7 @@ Caused by error in `/.difftime`:
 </div>
 <p>and this doesn’t work because you can’t divide a number by a time. (What would its units be?) So we have to turn <code>in_bed</code> into a number, and to do that we can divide by the number of seconds in an hour:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> (rise.time <span class="sc">-</span> bed.time) <span class="sc">/</span> <span class="fu">dhours</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> (rise.time <span class="sc">-</span> bed.time) <span class="sc">/</span> <span class="fu">dhours</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1390,9 +1402,9 @@ Caused by error in `/.difftime`:
 <p>Solution</p>
 <p>Divide the sleep time by the in-bed time and multiply by 100. To answer the last part of the question, you might think of sorting these in descending order as well:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> (rise.time <span class="sc">-</span> bed.time) <span class="sc">/</span> <span class="fu">dhours</span>(<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">efficiency =</span> sleep.time <span class="sc">/</span> in_bed <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">desc</span>(efficiency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed =</span> (rise.time <span class="sc">-</span> bed.time) <span class="sc">/</span> <span class="fu">dhours</span>(<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">efficiency =</span> sleep.time <span class="sc">/</span> in_bed <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">desc</span>(efficiency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1410,7 +1422,7 @@ Caused by error in `/.difftime`:
 <p>Solution</p>
 <p>The idea here is to display the time between going to bed and getting up as an interval, using <code>%--%</code>, and then turn that into a period:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed_hms =</span> <span class="fu">as.period</span>(bed.time <span class="sc">%--%</span> rise.time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">in_bed_hms =</span> <span class="fu">as.period</span>(bed.time <span class="sc">%--%</span> rise.time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1427,7 +1439,7 @@ Caused by error in `/.difftime`:
 <p>Solution</p>
 <p>If you just pull out the times, some of them will be at the end of the day and some will be at the beginning. Extracting the hours, minutes and seconds is one way:<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1439,8 +1451,8 @@ Caused by error in `/.difftime`:
 </div>
 <p>You could convert these into fractional hours to make a histogram of:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1452,9 +1464,9 @@ Caused by error in `/.difftime`:
 </div>
 <p>but if you make a histogram of these, this is what you get:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bed_time_hours)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bed_time_hours)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/sleeping-9-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1462,10 +1474,10 @@ Caused by error in `/.difftime`:
 <p>but this makes no sense because the bedtimes after midnight are on the end of the previous day, not the beginning of the next one!</p>
 <p>With that in mind, let’s move the bedtimes that are, say, before 3:00am to the end of the previous day by adding 24 to them before we make the graph:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> <span class="fu">ifelse</span>(bed_time_hours <span class="sc">&lt;</span> <span class="dv">3</span>, bed_time_hours <span class="sc">+</span> <span class="dv">24</span>, bed_time_hours)) <span class="sc">%&gt;%</span> </span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bed_time_hours)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> <span class="fu">ifelse</span>(bed_time_hours <span class="sc">&lt;</span> <span class="dv">3</span>, bed_time_hours <span class="sc">+</span> <span class="dv">24</span>, bed_time_hours)) <span class="sc">%&gt;%</span> </span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bed_time_hours)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/sleeping-10-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1473,10 +1485,10 @@ Caused by error in `/.difftime`:
 <p>This gives a sense of where the bedtimes are. If you’re used to reading the 24-hour clock, you’ll know that 23 is 11:00pm, and you’ll have a sense that some of the bedtimes were 11 or a bit earlier and some were around midnight. (I like the 24-hour clock.) There are only 7 observations, so the graph you get won’t look very nice as a histogram, but at least this one says something about when the student went to bed, in a way that puts times just after midnight next to times just before. You should give some thought about the number of bins; with only 7 observations, even 5 bins is pushing it, but this looked nicer to me than 4 bins.</p>
 <p>If you’re more used to the 12-hour clock, you’ll want to convert the times to something between 10 and 12. You can do this with an <code>ifelse</code> as above, subtracting 12 from the ones before midnight and adding 12 to the ones after. Or you can recognize this as modulo arithmetic (the clock is a classic case: what is 10:00pm plus 3 hours?) A little thought will reveal that subtracting (or adding) 12 hours and taking the result modulo 24 would do it: the pre-midnight bedtimes will get turned into a number like 10 or 11, and the post-midnight ones to 12 and a bit. R has a modulo operator, which is <code>%%</code> (cite your source: mine was <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/Arithmetic.html">this</a>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> (bed_time_hours <span class="sc">-</span> <span class="dv">12</span>) <span class="sc">%%</span> <span class="dv">24</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bed_time_hours)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">h =</span> <span class="fu">hour</span>(bed.time), <span class="at">m =</span> <span class="fu">minute</span>(bed.time), <span class="at">s =</span> <span class="fu">second</span>(bed.time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> h <span class="sc">+</span> m <span class="sc">/</span> <span class="dv">60</span> <span class="sc">+</span> s <span class="sc">/</span> (<span class="dv">60</span><span class="sc">*</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">bed_time_hours =</span> (bed_time_hours <span class="sc">-</span> <span class="dv">12</span>) <span class="sc">%%</span> <span class="dv">24</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bed_time_hours)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/sleeping-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1485,7 +1497,7 @@ Caused by error in `/.difftime`:
 <p>I think the best graph uses the fact that date-times plot nicely, so if we keep them as date-times, the <span class="math inline">\(x\)</span>-scale will look nice. The problem is that they are times on <em>different</em> days. What if we faked it up so that they were all on the <em>same</em> day (or, at least, consecutive days, to account for the ones after midnight)?</p>
 <p>Let’s look at our dataframe again:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>sleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>sleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1497,7 +1509,7 @@ Caused by error in `/.difftime`:
 </div>
 <p>The <code>rise.time</code> values are all a.m., and on consecutive days, so if we subtract consecutive numbers of days from the <code>bed.time</code>s, we’ll put them all on appropriate days too:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">time_of_bed =</span> bed.time <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">time_of_bed =</span> bed.time <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1509,8 +1521,8 @@ Caused by error in `/.difftime`:
 </div>
 <p>These are all around the midnight at the end of September 1, so some of them are in the early hours of September 2. Now, if we make a histogram of <em>those</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">time_of_bed =</span> bed.time <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time_of_bed)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">time_of_bed =</span> bed.time <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time_of_bed)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/sleeping-14-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1518,9 +1530,9 @@ Caused by error in `/.difftime`:
 <p>Now the <span class="math inline">\(x\)</span>-axis formatting looks like a time, and spills seamlessly into the next day. (There was no real range of dates, so the formatting is of the times only.)</p>
 <p>One more embellishment, idea from <a href="https://www.r-bloggers.com/2018/06/customizing-time-and-date-scales-in-ggplot2/">here</a>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">time_of_bed =</span> bed.time <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time_of_bed)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_datetime</span>(<span class="at">date_labels =</span> <span class="st">"%l:%M %p"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">time_of_bed =</span> bed.time <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time_of_bed)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_datetime</span>(<span class="at">date_labels =</span> <span class="st">"%l:%M %p"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="dates-and-times_files/figure-html/sleeping-15-1.png" class="img-fluid" width="672"></p>
 </div>

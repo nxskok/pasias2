@@ -502,7 +502,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A temperature in Celsius is converted to one in Kelvin by adding 273.15. (A temperature of <span class="math inline">\(-273.15\)</span> Celsius, 0 Kelvin, is the “absolute zero” temperature that nothing can be colder than.) Write a function called <code>c_to_k</code> that converts an input Celsius temperature to one in Kelvin, and test that it works.</li>
 </ol>
 <p>Solution</p>
-<p>This is mostly an exercise in structuring your function correctly. Let’s call the input <code>C</code> (uppercase C, since lowercase c has a special meaning to R): ::: {.cell}</p>
+<p>This is mostly an exercise in structuring your function correctly. Let’s call the input <code>C</code> (uppercase C, since lowercase c has a special meaning to R):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>c_to_k <span class="ot">&lt;-</span> <span class="cf">function</span>(C) {</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  C <span class="sc">+</span> <span class="fl">273.15</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -514,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 293.15</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This is the simplest way to do it: the last line of the function, if calculated but not saved, is the value that gets returned to the outside world. The checks suggest that it worked.</p>
 <p>If you’re used to Python or similar, you might prefer to calculate the value to be returned and then return it. You can do that in R too:</p>
 <div class="cell">
@@ -537,7 +538,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Write a function to convert a Fahrenheit temperature to Celsius. The way you do that is to subtract 32 and then multiply by <span class="math inline">\(5/9\)</span>.</li>
 </ol>
 <p>Solution</p>
-<p>On the model of the previous one, we should call this <code>f_to_c</code>. I’m going to return the last line, but you can save the calculated value and return that instead: ::: {.cell}</p>
+<p>On the model of the previous one, we should call this <code>f_to_c</code>. I’m going to return the last line, but you can save the calculated value and return that instead:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(F) {</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  (F <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -553,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Americans are very good at saying things like “temperatures in the 50s”, which don’t mean much to me, so I like to have benchmarks to work with: these are the Fahrenheit versions of 0, 10, and 20 Celsius.</p>
 <p>Thus “in the 50s” means “between about 10 and 15 Celsius”.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -561,7 +563,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Using the functions you already wrote</em>, write a function to convert an input Fahrenheit temperature to Kelvin.</li>
 </ol>
 <p>Solution</p>
-<p>This implies that you can piggy-back on the functions you just wrote, which goes as below. First you convert the Fahrenheit to Celsius, and then you convert <em>that</em> to Kelvin. (This is less error-prone than trying to use algebra to get a formula for this conversion and then implementing that): ::: {.cell}</p>
+<p>This implies that you can piggy-back on the functions you just wrote, which goes as below. First you convert the Fahrenheit to Celsius, and then you convert <em>that</em> to Kelvin. (This is less error-prone than trying to use algebra to get a formula for this conversion and then implementing that):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>f_to_k <span class="ot">&lt;-</span> <span class="cf">function</span>(F) {</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> <span class="fu">f_to_c</span>(F)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  K <span class="ot">&lt;-</span> <span class="fu">c_to_k</span>(C)</span>
@@ -575,7 +578,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 293.15</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>These check because in Celsius they are 0 and 20 and we found the Kelvin equivalents of those to be these values earlier.</p>
 <p>I wrote this one with a <code>return</code> because I thought it made the structure clearer: run one function, save the result, run another function, save the result, then return what you’ve got.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -583,7 +586,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Rewrite your Fahrenheit-to-Celsius convertor to take a suitable default value and check that it works as a default.</li>
 </ol>
 <p>Solution</p>
-<p>You can choose any default you like. I’ll take a default of 68 (what I would call “a nice day”): ::: {.cell}</p>
+<p>You can choose any default you like. I’ll take a default of 68 (what I would call “a nice day”):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">F =</span> <span class="dv">68</span>) {</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  (F <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -595,14 +599,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The change is in the top line of the function. You see the result: if we run it without an input, we get the same answer as if the input had been 68.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>What happens if you feed your Fahrenheit-to-Celsius convertor a <em>vector</em> of Fahrenheit temperatures? What if you use it in a <code>mutate</code>?</li>
 </ol>
 <p>Solution</p>
-<p>Try it and see: ::: {.cell}</p>
+<p>Try it and see:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>temps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -612,7 +617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.111111  4.444444 10.000000 15.555556 21.111111 26.666667</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Each of the Fahrenheit temperatures gets converted into a Celsius one. This is perhaps more useful in a data frame, thus:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">temps =</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
@@ -648,11 +653,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Write another function called <code>wrap</code> that takes two arguments: a piece of text called <code>text</code>, which defaults to <code>hello</code>, and another piece of text called <code>outside</code>, which defaults to <code>*</code>. The function returns <code>text</code> with the text <code>outside</code> placed before and after, so that calling the function with the defaults should return <code>*hello*</code>. To do this, you can use <code>str_c</code> from <code>stringr</code> (loaded with the <code>tidyverse</code>) which places its text arguments side by side and glues them together into one piece of text. Test your function briefly.</li>
 </ol>
 <p>Solution</p>
-<p>This: ::: {.cell}</p>
+<p>This:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>wrap <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">text =</span> <span class="st">"hello"</span>, <span class="at">outside =</span> <span class="st">"*"</span>) {</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_c</span>(outside, text, outside)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>I can run this with the defaults:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -673,12 +679,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>What happens if you want to change the default <code>outside</code> but use the default for <code>text</code>? How do you make sure that happens? Explore.</li>
 </ol>
 <p>Solution</p>
-<p>The obvious thing is this, which doesn’t work: ::: {.cell}</p>
+<p>The obvious thing is this, which doesn’t work:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "*!*"</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This takes <em><code>text</code></em> to be <code>!</code>, and <code>outside</code> to be the default. How do we get <code>outside</code> to be <code>!</code> instead? The key is to specify the input by name:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">outside =</span> <span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -707,13 +714,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>What happens if you feed your function <code>wrap</code> a vector for either of its arguments? What about if you use it in a <code>mutate</code>?</li>
 </ol>
 <p>Solution</p>
-<p>Let’s try: ::: {.cell}</p>
+<p>Let’s try:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>mytext <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">text =</span> mytext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "*a*" "*b*" "*c*"</code></pre>
 </div>
-<p>:::</p>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>myout <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"*"</span>, <span class="st">"!"</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap</span>(<span class="at">outside =</span> myout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -759,7 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Write an R function called <code>is_odd</code> that returns <code>TRUE</code> if its input is an odd number and <code>FALSE</code> if it is even (you can assume that the input is an integer and not a decimal number). To do <em>that</em>, you can use the function <code>%%</code> where <code>a %% b</code> is the remainder when <code>a</code> is divided by <code>b</code>. To think about oddness or evenness, consider the remainder when you divide by 2.</li>
 </ol>
 <p>Solution</p>
-<p>Let’s try this out. For example, 5 is odd and 6 is even, so ::: {.cell}</p>
+<p>Let’s try this out. For example, 5 is odd and 6 is even, so</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">%%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
@@ -768,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>When a number is odd, its remainder on dividing by 2 is 1, and when even, the remainder is 0. There is an additional shortcut here in that 1 is the numeric value of <code>TRUE</code> and 0 of <code>FALSE</code>, so all we have to do is calculate the remainder on dividing by 2, turn it into a <code>logical</code>, and return it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>is_odd <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
@@ -798,11 +807,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Write an R function called <code>hotpo1</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> that takes an integer as input and returns the next number in the Collatz sequence. To do this, use the function you just wrote that determines whether a number is even or odd.</li>
 </ol>
 <p>Solution</p>
-<p>The logic is “if the input is odd, return 3 times it plus 1, otherwise return half of it”. The R structure is an <code>if-then-else</code>: ::: {.cell}</p>
+<p>The logic is “if the input is odd, return 3 times it plus 1, otherwise return half of it”. The R structure is an <code>if-then-else</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>hotpo1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is_odd</span>(x)) <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="sc">/</span> <span class="dv">2</span></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>In R, the condition that is tested goes in brackets, and then if the value-if-true and the value-if-false are single statements, you just type them. (If they are more complicated than that, you put them in curly brackets.) Now you see the value of writing <code>is_odd</code> earlier; this code almost looks like the English-language description of the sequence. If we had not written <code>is_odd</code> before, the condition would have looked something like</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>) <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -829,7 +839,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Now write a function <code>hotpo</code> that will return the whole Collatz sequence for an input <span class="math inline">\(x_1\)</span>. For this, assume that you will eventually get to 1.</li>
 </ol>
 <p>Solution</p>
-<p>This is a loop, but not a <code>for</code> loop (or something that we could do <code>rowwise</code>), because we don’t know how many times we have to go around. This is the kind of thing that we should use a <code>while</code> loop for: “keep going while a condition is true”. In this case, we should keep going if we haven’t reached 1 yet. If we haven’t reached 1, we should generate the next value of the sequence and glue it onto what we have so far. To initialize the sequence, we start with the input value. There is an R trick to glue a value onto the sequence, which is to use <code>c</code> with a vector and a value, and save it back into the vector: ::: {.cell}</p>
+<p>This is a loop, but not a <code>for</code> loop (or something that we could do <code>rowwise</code>), because we don’t know how many times we have to go around. This is the kind of thing that we should use a <code>while</code> loop for: “keep going while a condition is true”. In this case, we should keep going if we haven’t reached 1 yet. If we haven’t reached 1, we should generate the next value of the sequence and glue it onto what we have so far. To initialize the sequence, we start with the input value. There is an R trick to glue a value onto the sequence, which is to use <code>c</code> with a vector and a value, and save it back into the vector:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>hotpo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  sequence <span class="ot">&lt;-</span> x</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  term <span class="ot">&lt;-</span> x</span>
@@ -839,7 +850,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>  sequence</span>
 <span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>I use <code>term</code> to hold the current term of the sequence, and overwrite it with the next one (since I don’t need the old one any more).</p>
 <p>Does it work?</p>
 <div class="cell">
@@ -1453,7 +1464,7 @@ if (lo == hi) return("High and low need to be different")
 s &lt;- (x - lo) / (hi - lo)
 s
 }
-&lt;bytecode: 0x559b8818a710&gt;</code></pre>
+&lt;bytecode: 0x560128ae4ba0&gt;</code></pre>
 </div>
 </div>
 <p>this can get you into trouble if you use it in a dataframe. This is a bit complicated, since it has to use list-columns. Here we go:</p>

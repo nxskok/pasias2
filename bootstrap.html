@@ -489,7 +489,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read in the data, and observe that you have the correct number of rows. (Note that the failure times are in ascending order).</li>
 </ol>
 <p>Solution</p>
-<p>This is a <code>.csv</code> so <code>read_csv</code> is the thing: ::: {.cell}</p>
+<p>This is a <code>.csv</code> so <code>read_csv</code> is the thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/nxskok/pasias/master/air_conditioning.csv"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>aircon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -510,7 +511,7 @@ dbl (2): failure, hours
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Twelve rows (12 failure times).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -712,12 +713,13 @@ dbl (2): failure, hours
 <li>Use <code>smmr</code> to get a confidence interval for the median (based on the sign test).</li>
 </ol>
 <p>Solution</p>
-<p>Input to <code>ci_median</code> is data frame and column: ::: {.cell}</p>
+<p>Input to <code>ci_median</code> is data frame and column:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci_median</span>(aircon, hours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]   7.002319 129.998291</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Obtain the bootstrap distribution of the sample median. Make a normal quantile plot of it. What do you notice? Explain briefly.</li>
@@ -765,7 +767,8 @@ dbl (2): failure, hours
 <li>Obtain a 95% BCa interval. Compare it with the two other intervals you found.</li>
 </ol>
 <p>Solution</p>
-<p>Yet more copying and pasting (from the previous question): ::: {.cell}</p>
+<p>Yet more copying and pasting (from the previous question):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median</span>(x)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -783,9 +786,10 @@ dbl (2): failure, hours
 [7,] 0.950     100.0
 [8,] 0.975     115.0</code></pre>
 </div>
-<p>:::</p>
+</div>
+<p>My 95% BCa interval is from 12.5 to 115.</p>
 <p>Again, I seem to need to define the tiny function, while you can probably call <code>bcanon(hours, 1000, median)</code>. Try it and see.</p>
-<p>My BCa interval is a little longer than the bootstrap percentile interval and a little shorter than the one that came from the sign test. I would guess that the BCa interval is the most trustworthy of the three, though there is here not that much difference between them. All the intervals are again very long, a reflection of the small sample size and large variability.</p>
+<p>My BCa interval is the same as the bootstrap percentile interval and a little shorter than the one that came from the sign test. I would guess that the BCa interval is the most trustworthy of the three, though there is here not that much difference between them. All the intervals are again very long, a reflection of the small sample size and large variability.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
 <section id="comparing-eyesight-1" class="level2" data-number="22.7">

@@ -495,7 +495,8 @@ dbl (2): temperature, pulse_rate
 <li>Do a two-sample <span class="math inline">\(t\)</span>-test to see whether the mean pulse rates differ between species. What do you conclude?</li>
 </ol>
 <p>Solution</p>
-<p>Drag your mind way back to this: ::: {.cell}</p>
+<p>Drag your mind way back to this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(pulse_rate <span class="sc">~</span> species, <span class="at">data =</span> crickets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -510,14 +511,15 @@ sample estimates:
 mean in group exclamationis        mean in group niveus 
                    85.58571                    62.42941 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>There is strong evidence of a difference in means (a P-value around 0.00001), and the confidence interval says that the mean chirp rate is higher for <em>exclamationis</em>. That is, not just for the crickets that were observed here, but for <em>all</em> crickets of these two species.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Can you do that two-sample <span class="math inline">\(t\)</span>-test as a regression?</li>
 </ol>
 <p>Solution</p>
-<p>Hang onto the “pulse rate depends on species” idea and try that in <code>lm</code>: ::: {.cell}</p>
+<p>Hang onto the “pulse rate depends on species” idea and try that in <code>lm</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pulse<span class="fl">.0</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(pulse_rate <span class="sc">~</span> species, <span class="at">data =</span> crickets)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pulse<span class="fl">.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -540,7 +542,7 @@ Residual standard error: 12.41 on 29 degrees of freedom
 Multiple R-squared:  0.4797,    Adjusted R-squared:  0.4617 
 F-statistic: 26.74 on 1 and 29 DF,  p-value: 1.579e-05</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>I had to use “model 0” for this since I already have a <code>pulse.1</code> below and I didn’t want to go down and renumber everything.</p>
 <p>Look along the <code>speciesniveus</code> line. Ignoring the fact that it is negative, the <span class="math inline">\(t\)</span>-statistic is almost the same as before (5.17 vs.<br>
 5.22) and so is the P-value (<span class="math inline">\(1.4 \times 10^{-5}\)</span> vs.&nbsp;<span class="math inline">\(1.6 \times 10^{-5}\)</span>).</p>
@@ -567,13 +569,14 @@ mean in group exclamationis        mean in group niveus
 <li>The analysis in the last part did not use temperature, however. Is it possible that temperature also has an effect? To assess this, draw a scatterplot of pulse rate against temperature, with the points distinguished, somehow, by the species they are from.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 </ol>
 <p>Solution</p>
-<p>One of the wonderful things about <code>ggplot</code> is that doing the obvious thing works: ::: {.cell}</p>
+<p>One of the wonderful things about <code>ggplot</code> is that doing the obvious thing works:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crickets, <span class="fu">aes</span>(<span class="at">x =</span> temperature, <span class="at">y =</span> pulse_rate, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="regression-categorical_files/figure-html/crickets-b-6-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>What does the plot tell you that the <span class="math inline">\(t\)</span>-test doesn’t? How would you describe differences in pulse rates between species now?</li>
@@ -585,7 +588,8 @@ mean in group exclamationis        mean in group niveus
 <li>Fit a regression predicting pulse rate from species and temperature. Compare the P-value for species in this regression to the one from the <span class="math inline">\(t\)</span>-test. What does that tell you?</li>
 </ol>
 <p>Solution</p>
-<p>This is actually a so-called “analysis of covariance model”, which properly belongs in D29, but it’s really just a regression: ::: {.cell}</p>
+<p>This is actually a so-called “analysis of covariance model”, which properly belongs in D29, but it’s really just a regression:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pulse<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(pulse_rate <span class="sc">~</span> species <span class="sc">+</span> temperature, <span class="at">data =</span> crickets)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pulse<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -609,7 +613,7 @@ Residual standard error: 1.786 on 28 degrees of freedom
 Multiple R-squared:  0.9896,    Adjusted R-squared:  0.9888 
 F-statistic:  1331 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The P-value for species is now <span class="math inline">\(6.27\times 10^{-14}\)</span> or 0.00000000000006, which is even less than the P-value of 0.00001 that came out of the <span class="math inline">\(t\)</span>-test. That is to say, when you know temperature, you can be even more sure of your conclusion that there is a difference between the species.</p>
 <p>The R-squared for this regression is almost 99%, which says that if you know both temperature and species, you can predict the pulse rate almost exactly.</p>
 <p>In the regression output, the slope for species is about <span class="math inline">\(-10\)</span>. It is labelled <code>speciesniveus</code>. Since species is categorical, <code>lm</code> uses the first category, <em>exclamationis</em>, as the baseline and expresses each other species relative to that. Since the slope is about <span class="math inline">\(-10\)</span>, it says that at any given temperature, the mean pulse rate for <em>niveus</em> is about 10 less than for <em>exclamationis</em>. This is pretty much what the scatterplot told us.</p>
@@ -684,12 +688,13 @@ F-statistic: 898.9 on 3 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Make suitable residual plots for the regression <code>pulse.1</code>.</li>
 </ol>
 <p>Solution</p>
-<p>First, the plot of residuals against fitted values (after all, it <em>is</em> a regression): ::: {.cell}</p>
+<p>First, the plot of residuals against fitted values (after all, it <em>is</em> a regression):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pulse<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="regression-categorical_files/figure-html/crickets-b-12-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This looks nice and random.</p>
 <p>Now, we plot the residuals against the explanatory variables. There are two, temperature and species, but the latter is categorical. We’ll have some extra issues around species, but before we get to that, we have to remember that the data and the output from the regression are in different places when we plot them. There are different ways to get around that. Perhaps the simplest is to use <code>pulse.1</code> as our “default” data frame and then get <code>temperature</code> from the right place:</p>
 <div class="cell">

@@ -572,7 +572,8 @@ c-b -0.6 -2.6615236 1.461524 0.7050026</code></pre>
 <li>Run a one-way multivariate analysis of variance, obtaining a P-value. Note the very small P-value.</li>
 </ol>
 <p>Solution</p>
-<p>This is just like the seed weight and yield example in class (deliberately so): ::: {.cell}</p>
+<p>This is just like the seed weight and yield example in class (deliberately so):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(simple, <span class="fu">cbind</span>(y1, y2))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>simple<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> group, <span class="at">data =</span> simple)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -583,7 +584,7 @@ Residuals  9
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The P-value here, 0.00027, is smaller than either of the P-values for the one-variable ANOVAs. This expresses the idea that the group difference is essentially multivariate (it depends on the <em>combination</em> of <code>y1</code> and <code>y2</code> values). I only wanted you to note that it is smaller than either of the other ANOVAs; you don’t need to say anything about why.</p>
 <p>For completeness, we should do Box’s M test as well:</p>
 <div class="cell">
@@ -605,7 +606,8 @@ Chi-Squared Value = 3.517357 , df = 6  and p-value: 0.742 </code></pre>
 <li>Read in the data and check that you have the right number of observations and the right variables.</li>
 </ol>
 <p>Solution</p>
-<p><code>read_csv</code>: ::: {.cell}</p>
+<p><code>read_csv</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/urine.csv"</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>urine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -627,14 +629,15 @@ dbl (4): x, creatinine, chloride, chlorine
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The variables are as promised, and we do indeed have 45 rows.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Make boxplots of each of the three variables of interest against obesity group.</li>
 </ol>
 <p>Solution</p>
-<p>Just churn through it: ::: {.cell}</p>
+<p>Just churn through it:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(urine, <span class="fu">aes</span>(<span class="at">x =</span> obesity, <span class="at">y =</span> creatinine)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="manova_files/figure-html/peppercorn-1.png" class="img-fluid" width="672"></p>
@@ -647,7 +650,7 @@ dbl (4): x, creatinine, chloride, chlorine
 <div class="cell-output-display">
 <p><img src="manova_files/figure-html/peppercorn-3.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This also works with facets, though it is different from the other ones we’ve done, in that we have to collect together the <span class="math inline">\(y\)</span>-variables first rather than the <span class="math inline">\(x\)</span>s:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>urine <span class="sc">%&gt;%</span></span>
@@ -694,7 +697,8 @@ dbl (4): x, creatinine, chloride, chlorine
 <li>Run a multivariate analysis of variance, using the three variables of interest as response variables, and the obesity group as explanatory. (This is a so-called one-way MANOVA.)</li>
 </ol>
 <p>Solution</p>
-<p>Create the response variable and run <code>manova</code>: ::: {.cell}</p>
+<p>Create the response variable and run <code>manova</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(urine, <span class="fu">cbind</span>(creatinine, chlorine, chloride))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>urine<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> obesity, <span class="at">data =</span> urine)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(urine<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -705,7 +709,7 @@ Residuals 41
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>At some point, you should run Box’s M test, either here or at the start of the next part (before you get to your conclusions):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">BoxM</span>(response, urine<span class="sc">$</span>obesity))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -722,7 +726,8 @@ Chi-Squared Value = 30.8322 , df = 18  and p-value: 0.0301 </code></pre>
 </ol>
 <p>Solution</p>
 <p>The null hypothesis (that each of the variables have the same mean for each of the groups) is rejected: that is, not all of the groups have the same mean on all of the variables. Based on the idea that there seemed to be differences between the groups in the boxplots, this makes sense. (That’s what I saw, anyway. There was a lot of variability within the groups, which is why the P-value didn’t come out smaller.)</p>
-<p>Extra: the other way of doing this is the following, using <code>Manova</code> from <code>car</code>: ::: {.cell}</p>
+<p>Extra: the other way of doing this is the following, using <code>Manova</code> from <code>car</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>response<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> obesity, <span class="at">data =</span> urine)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">Manova</span>(response<span class="fl">.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -754,7 +759,7 @@ Roy               3 0.4336849 5.927027      3  41.00000 0.0018659 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p><code>manova</code> gives you the Pillai test, but <code>Manova</code> gives you all four; here, they are all significant, but to different degrees.</p>
 <p>The result is the same, or at least consistent. You don’t need do this one here (though you can as an alternative), but when you come to repeated measures you <em>will</em> need to be able to use <code>Manova</code>.</p>
 <p>To understand the differences in the variables due to the groups, we need to run a discriminant analysis (coming up later).</p>
@@ -767,7 +772,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>Read in the data and verify that you have 202 rows and 13 columns.</li>
 </ol>
 <p>Solution</p>
-<p>As in the hint: ::: {.cell}</p>
+<p>As in the hint:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ais.txt"</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -789,7 +795,7 @@ dbl (11): RCC, WCC, Hc, Hg, Ferr, BMI, SSF, %Bfat, LBM, Ht, Wt
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>202 rows and 13 columns indeed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -803,9 +809,10 @@ dbl (11): RCC, WCC, Hc, Hg, Ferr, BMI, SSF, %Bfat, LBM, Ht, Wt
 <li>Create a response variable for a MANOVA. (You don’t need to show what you got, since it is rather big.) The columns you want are called <code>Ht</code> and <code>Wt</code>.</li>
 </ol>
 <p>Solution</p>
-<p>Use <code>cbind</code> to glue the two columns together: ::: {.cell}</p>
+<p>Use <code>cbind</code> to glue the two columns together:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(athletes, <span class="fu">cbind</span>(Ht, Wt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>Either way around, height or weight first, is good. Also good is the dollar sign, which you’ll need to do twice (and thus the <code>with</code> way is more elegant):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>response_a <span class="ot">&lt;-</span> <span class="fu">cbind</span>(athletes<span class="sc">$</span>Ht, athletes<span class="sc">$</span>Wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1027,7 +1034,8 @@ dbl (11): RCC, WCC, Hc, Hg, Ferr, BMI, SSF, %Bfat, LBM, Ht, Wt
 <li>Run a multivariate analysis of variance to see whether the height-weight combination depends significantly on gender, sport or the combination of both. Display the results. Use the small-m <code>manova</code> way to do this one.</li>
 </ol>
 <p>Solution</p>
-<p>The straightforward way is small-m <code>manova</code>. I don’t know what I should be calling my fitted model object, so I’m making something up. Don’t forget to use the right names for the variables, and to include an interaction: ::: {.cell}</p>
+<p>The straightforward way is small-m <code>manova</code>. I don’t know what I should be calling my fitted model object, so I’m making something up. Don’t forget to use the right names for the variables, and to include an interaction:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> Sex <span class="sc">*</span> Sport, <span class="at">data =</span> athletes)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1039,7 +1047,7 @@ Residuals 185
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<p>:::</p>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">%&gt;%</span> </span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"combo"</span>, <span class="fu">c</span>(Sex, Sport)) <span class="ot">-&gt;</span> athletes_combo</span>
@@ -1065,7 +1073,8 @@ Chi-Squared Value = 86.605 , df = 48  and p-value: 0.000537 </code></pre>
 <li>Briefly justify removing the interaction term from your previous model, and fit a model without it. You can use either <code>manova</code> or <code>Manova</code> for this; they should both work. (You only need to use one of them.) Display your results.</li>
 </ol>
 <p>Solution</p>
-<p>The interaction should come out, since it is not significant. (This is what I meant by “briefly.”) To do that, in each case, replace the <code>*</code> with a <code>+</code>, or use <code>update</code>. Most of those work: ::: {.cell}</p>
+<p>The interaction should come out, since it is not significant. (This is what I meant by “briefly.”) To do that, in each case, replace the <code>*</code> with a <code>+</code>, or use <code>update</code>. Most of those work:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">manova</span>(response <span class="sc">~</span> Sex <span class="sc">+</span> Sport, <span class="at">data =</span> athletes)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(htwt<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1076,7 +1085,7 @@ Residuals 191
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>or</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>htwt<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(htwt<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> Sex<span class="sc">:</span>Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1261,12 +1270,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>See if you can make a graph that shows what’s going on here. Bear in mind that you have two quantitative variables and <em>two</em> categorical ones, so you will need to find a way to display everything. Hint: what would you do with two quantitative variables and <em>one</em> categorical one? Can you find a way to generalize that idea by displaying the other categorical variable differently? I think we have seen a couple of ideas that will work, somewhere in the lecture notes (but in a different context). Or you can search for ideas, of course. For full marks, obtain a plot which does not give you any warnings. (The grader will know which of the possible plots give warnings, and will deduct extra marks if you assert that a plot gives no warnings when in fact it does. That is to say, if you get any warnings, <em>you need to include those in what you hand in</em>).</li>
 </ol>
 <p>Solution</p>
-<p>This will probably involve a bit of digging. The starting point would be a scatterplot (the two quantitative variables) with the points distinguished by colour (one of the categorical variables). What other options do we have? If you look eg. at the navigation on the left of <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/size">link</a>, you’ll see that there are two likely possibilities: <code>shape</code> and <code>size</code>. <code>shape</code> uses a different plotting symbol for each value of a categorical variable; <code>size</code> draws the plotting symbol bigger or smaller according to the value of a categorical variable. The remaining question is the one of which aesthetic to “map” to which variable? To guide you in this, note that we have ten different sports and two different genders. In my opinion, colours are the easiest to distinguish a lot of, though even then 10 is pushing it, then plotting symbols. Symbol sizes are hard to distinguish a lot of, so it’s best to limit this (if you use it at all) to gender. With that in mind, I would go for this one: ::: {.cell}</p>
+<p>This will probably involve a bit of digging. The starting point would be a scatterplot (the two quantitative variables) with the points distinguished by colour (one of the categorical variables). What other options do we have?</p>
+<p>If you look eg. at the navigation on the left of <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/size">link</a>, you’ll see that there are two likely possibilities: <code>shape</code> and <code>size</code>. <code>shape</code> uses a different plotting symbol for each value of a categorical variable; <code>size</code> draws the plotting symbol bigger or smaller according to the value of a categorical variable.</p>
+<p>The remaining question is the one of which aesthetic to “map” to which variable? To guide you in this, note that we have ten different sports and two different genders. In my opinion, colours are the easiest to distinguish a lot of, though even then 10 is pushing it, then plotting symbols. Symbol sizes are hard to distinguish a lot of, so it’s best to limit this (if you use it at all) to gender. With that in mind, I would go for this one:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">colour =</span> Sport, <span class="at">shape =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="manova_files/figure-html/hatzer-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>If you investigate, you’ll find that <code>ggplot</code> can handle about six different shapes (and we have ten sports), and it doesn’t care for using <code>size</code> to distinguish values of a categorical variable. It will try to draw the graph, but will give you a warning, such as these:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(athletes, <span class="fu">aes</span>(<span class="at">x =</span> Ht, <span class="at">y =</span> Wt, <span class="at">colour =</span> Sport, <span class="at">size =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -461,7 +461,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read in the data and check that you have a column for each variable and a column of frequencies.</li>
 </ol>
 <p>Solution</p>
-<p>Delimited by one space: ::: {.cell}</p>
+<p>Delimited by one space:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/college-plans.txt"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wisc <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -483,7 +484,7 @@ dbl (1): frequency
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>As promised. We only have 16 observations, because we have all possible combinations of categorical variable combinations, 4 social strata, times 2 levels of encouragement, times 2 levels of college plans.</p>
 <p>Each line of the data file summarizes a number of students, not just one. For example, the first line says that 749 students were in the lower social stratum, received low encouragement and have no college plans. If we sum up the frequencies, we should get 5199 because there were that many students altogether:</p>
 <div class="cell">
@@ -512,7 +513,8 @@ dbl (1): frequency
 <li>Find out which terms (interactions) could be removed. Do you think removing any of them is a good idea?</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>drop1</code>. If you forget the <code>test=</code>, you won’t get any P-values: ::: {.cell}</p>
+<p>This is <code>drop1</code>. If you forget the <code>test=</code>, you won’t get any P-values:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(wisc<span class="fl">.1</span>, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -522,22 +524,24 @@ dbl (1): frequency
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This P-value is not small, so the three-way interaction can be removed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Remove anything you can, and fit again. Hint: <code>update</code>.</li>
 </ol>
 <p>Solution</p>
-<p>In this kind of modelling, it’s easier to describe what changes should be made to get from one model to another, rather than writing out the whole thing from scratch again. Anyway, the three-way interaction can come out: ::: {.cell}</p>
+<p>In this kind of modelling, it’s easier to describe what changes should be made to get from one model to another, rather than writing out the whole thing from scratch again. Anyway, the three-way interaction can come out:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wisc<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(wisc<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> social.stratum<span class="sc">:</span>encouragement<span class="sc">:</span>college.plans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>Continue to examine what can be removed, and if reasonable, remove it, until you need to stop. Which terms are left in your final model?</li>
 </ol>
 <p>Solution</p>
-<p>Start with <code>drop1</code>: ::: {.cell}</p>
+<p>Start with <code>drop1</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(wisc<span class="fl">.2</span>, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -547,7 +551,7 @@ dbl (1): frequency
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>These are all strongly significant, so they have to stay. There is nothing else we can remove. All the two-way interactions have to stay in the model.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
@@ -606,7 +610,8 @@ encouragement        no       yes
 <li>Read in the data and display (some of) the data frame.</li>
 </ol>
 <p>Solution</p>
-<p>Space-delimited: ::: {.cell}</p>
+<p>Space-delimited:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/voting.txt"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>vote0 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -628,14 +633,15 @@ dbl (1): id
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>I gave it a “disposable” name, since we make the “real” data set shortly.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>There is no frequency column here, because each row of the data frame only represents one voter. Count up the frequencies for each combo of the categorical variables, and save it (this is the data frame that we will use for the analysis). Display the first few rows of the result. Do you now have something that you need?</li>
 </ol>
 <p>Solution</p>
-<p>I changed my mind about how to do this from last year. Using <code>count</code> is alarmingly more direct than the method I had before: ::: {.cell}</p>
+<p>I changed my mind about how to do this from last year. Using <code>count</code> is alarmingly more direct than the method I had before:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>votes <span class="ot">&lt;-</span> vote0 <span class="sc">%&gt;%</span> <span class="fu">count</span>(class, age, sex, vote)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>votes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -646,7 +652,7 @@ dbl (1): id
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Exactly the right thing now: note the new column <code>n</code> with frequencies in it. (Without a column of frequencies we can’t fit a log-linear model.) There are now only 58 combinations of the four categorical variables, as opposed to 1247 rows in the original data set (with, inevitably, a lot of repeats).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -661,7 +667,8 @@ dbl (1): id
 <li>Refine your model by taking out suitable non-significant terms, in multiple steps. What model do you finish with?</li>
 </ol>
 <p>Solution</p>
-<p>Alternating <code>drop1</code> and <code>update</code> until everything remaining is significant: ::: {.cell}</p>
+<p>Alternating <code>drop1</code> and <code>update</code> until everything remaining is significant:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(vote<span class="fl">.1</span>, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -671,7 +678,7 @@ dbl (1): id
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Not anywhere near significant, so out it comes:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>vote<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(vote<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> class<span class="sc">:</span>age<span class="sc">:</span>sex<span class="sc">:</span>vote)</span>
@@ -823,7 +830,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <li>Obtain sub-tables that explain how <code>vote</code> depends on any of the things it’s related to.</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>xtabs</code> again. The 3-way interaction is a bit tricky, so we’ll do the simple one first: ::: {.cell}</p>
+<p>This is <code>xtabs</code> again. The 3-way interaction is a bit tricky, so we’ll do the simple one first:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(n <span class="sc">~</span> vote <span class="sc">+</span> sex, <span class="at">data =</span> votes) <span class="sc">%&gt;%</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="at">margin =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -832,7 +840,7 @@ vote              female      male
   conservative 0.5474339 0.4543974
   labour       0.4525661 0.5456026</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The female voters slightly preferred to vote Conservative and the male voters slightly preferred to vote Labour. This is a small effect, but I guess the large number of voters made it big enough to be significant.</p>
 <p>I took it this way around because <code>vote</code> is the outcome, and therefore I want to address things like “if a voter is female, how likely are they to vote Labour”, rather than conditioning the other way around (which would be “if a voter voted Labour, how likely are they to be female”, which doesn’t make nearly so much sense).</p>
 <p>Then the tricky one:</p>

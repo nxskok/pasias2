@@ -577,7 +577,8 @@ Chicago            467    275     184     395</code></pre>
 <li>Obtain a vector containing the city names. (This is easy, and not really necessary, but it was here before when I did things a different way.)</li>
 </ol>
 <p>Solution</p>
-<p>The <code>location</code> column of the data frame you read in from the file: ::: {.cell}</p>
+<p>The <code>location</code> column of the data frame you read in from the file:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> wisc<span class="sc">$</span>location</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -585,7 +586,7 @@ Chicago            467    275     184     395</code></pre>
  [5] "Marshfield"    "Milwaukee"     "Monroe"        "Superior"     
  [9] "Wausau"        "Dubuque"       "St.Paul"       "Chicago"      </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Run a (metric) multidimensional scaling on the data, to obtain a two-dimensional representation of the cities. (You don’t need to look at the results yet.)</li>
@@ -599,7 +600,8 @@ Chicago            467    275     184     395</code></pre>
 <li>Plot the results of the multidimensional scaling, labelling the cities with their names. Use your judgement to decide where to place the city names, and how to make sure the whole city names are shown on the map.</li>
 </ol>
 <p>Solution</p>
-<p>Let’s see what <code>wisc.1</code> has in it, and make a data frame of the right thing: ::: {.cell}</p>
+<p>Let’s see what <code>wisc.1</code> has in it, and make a data frame of the right thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wisc<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    [,1]       [,2]
@@ -610,7 +612,7 @@ Madison        -44.68148 -11.252521
 Marshfield      80.61250  27.097882
 Milwaukee     -102.87582  49.849552</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Two unnamed columns (the display indicates that it’s a <code>matrix</code> rather than a data frame). As we saw in class, if we make a data frame out of this, the columns will get names <code>X1</code> and <code>X2</code>. Those are perfectly good names for coordinates. The city names on the left of <code>wisc.1</code> are actually row names rather than an actual genuine column. It’s probably best <em>not</em> to assume that they will make it through the transition to a data frame, so we’ll explicitly create a column called <code>city</code> with the city names (that we saved before):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(wisc<span class="fl">.1</span>, <span class="at">city =</span> cities)</span>
@@ -642,14 +644,15 @@ Milwaukee     -102.87582  49.849552</code></pre>
 <li>Are cities close together on your map also close together in real life? Give an example or two.</li>
 </ol>
 <p>Solution</p>
-<p>On the map, the trio of cities Madison, Beloit and Fort Atkinson are closest together. How far apart are they actually? Well, you can go back to the original file (or display of what I called <code>d</code>) and find them, or you can do this: ::: {.cell}</p>
+<p>On the map, the trio of cities Madison, Beloit and Fort Atkinson are closest together. How far apart are they actually? Well, you can go back to the original file (or display of what I called <code>d</code>) and find them, or you can do this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Appleton"      "Beloit"        "Fort.Atkinson" "Madison"      
  [5] "Marshfield"    "Milwaukee"     "Monroe"        "Superior"     
  [9] "Wausau"        "Dubuque"       "St.Paul"       "Chicago"      </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Cities 2, 3 and 4, so:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -733,7 +736,8 @@ attr(,"Upper")
 <li>Calculate something that demonstrates that a one-dimensional map of the cities is a much worse representation than the two-dimensional one that we made before. (I’m planning to get to this in class, but if we skip it, don’t worry about this part.)</li>
 </ol>
 <p>Solution</p>
-<p>Run again with <code>eig=T</code> and take a look at <code>GOF</code> (uppercase): ::: {.cell}</p>
+<p>Run again with <code>eig=T</code> and take a look at <code>GOF</code> (uppercase):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cmdscale</span>(d, <span class="dv">2</span>, <span class="at">eig =</span> T)<span class="sc">$</span>GOF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9129333 0.9315871</code></pre>
@@ -742,7 +746,7 @@ attr(,"Upper")
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.7916925 0.8078690</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The goodness-of-fit of the two-dimensional solution is pretty good,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> but that of the one-dimensional solution (which arranges all the cities along a line) is pretty awful in comparison.</p>
 <p>How awful? Let’s find out. I should have saved it from just above, but now I have to do it again. For the plot, <code>ones</code> is a string of ones, as many as there are cities.</p>
 <div class="cell">
@@ -784,9 +788,10 @@ attr(,"Upper")
 <li>Look at the data, and read in the file appropriately. Do you have something square in shape, apart from any columns of object names? Do your columns have the same names as the objects?</li>
 </ol>
 <p>Solution</p>
-<p>Looking at the file first, there are <em>no column names</em>. So we have to tell <code>read_delim</code> that: ::: {.cell}</p>
+<p>Looking at the file first, there are <em>no column names</em>. So we have to tell <code>read_delim</code> that:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/stimuli.txt"</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>stimuli <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>, <span class="at">col_names =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>stimuli <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 17 Columns: 18
 ── Column specification ────────────────────────────────────────────────────────
@@ -806,7 +811,7 @@ dbl (17): X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16,...
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>I have 17 rows and 18 columns, but one of the columns is the column of object names. So I really do have the same number of rows and columns of dissimilarities: that is, it <em>is</em> square in shape apart from the names.</p>
 <p>The columns <em>do not</em> have the same names as the objects; R has used the <code>X1, X2, ...</code> names that it uses when you do not have column headers.</p>
 <p>I could have supplied the object names to <code>col_names</code>, but that is a lot more work than what we do below.</p>
@@ -815,7 +820,8 @@ dbl (17): X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16,...
 <li>Obtain the names of the objects. Note that they are rather long.</li>
 </ol>
 <p>Solution</p>
-<p>The object names are in the first column, <code>X1</code>, of the data frame: ::: {.cell}</p>
+<p>The object names are in the first column, <code>X1</code>, of the data frame:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>objects <span class="ot">&lt;-</span> stimuli<span class="sc">$</span>X1</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>objects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -826,14 +832,15 @@ dbl (17): X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16,...
 [13] "blockofstyrofoam"       "unglazedceramictile"    "velvet"                
 [16] "waxpaper"               "glossypaintedwood"     </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>I’m saving these for later.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Set the column names of your data frame to be your object names, using <code>names</code>. Before you rush to do that, figure out how many column names you need, and supply values for any extra ones. Check that your data frame now has the right column names.</li>
 </ol>
 <p>Solution</p>
-<p>I have 18 columns to name (including the column of object names), but only 17 names, so I need to supply an extra one: ::: {.cell}</p>
+<p>I have 18 columns to name (including the column of object names), but only 17 names, so I need to supply an extra one:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"object"</span>, objects)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>stimuli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -844,16 +851,17 @@ dbl (17): X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16,...
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li><a name="part:distances">*</a><br>
 Convert your data frame into a distance object. Take a look at the (rather long) result.</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>as.dist</code>, since we have distances (dissimilarities) already. Don’t forget to take off the first column! ::: {.cell}</p>
+<p>This is <code>as.dist</code>, since we have distances (dissimilarities) already. Don’t forget to take off the first column!</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> stimuli <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">as.dist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>I can try and show it all here, tiny, but even then it’s long because the column names are long:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">getOption</span>(<span class="st">"width"</span>)</span>
@@ -920,7 +928,8 @@ glossypaintedwood          26       12</code></pre>
 <li>Obtain and plot a (metric) multidimensional scaling map of these data. Label the points with the name of the object they represent. (Note that <code>geom_text_repel</code> has an option <code>size</code> that controls the size of the text.)</li>
 </ol>
 <p>Solution</p>
-<p>This is the procedure. Talking about it is coming in a minute. ::: {.cell}</p>
+<p>This is the procedure. Talking about it is coming in a minute.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(d, <span class="dv">2</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(d<span class="fl">.1</span>, <span class="at">stim =</span> objects) <span class="sc">%&gt;%</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> stim)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -928,7 +937,7 @@ glossypaintedwood          26       12</code></pre>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/stimuli-6-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><code>cmdscale</code> gets the coordinates to plot, then we plot them, and then we place the object names next to the points. I’m not quite sure what the scale is for <code>size</code>, but <code>size=2</code> worked for me here, making the text a bit smaller (so that the labels don’t overlap), but not so small that you can’t read it. You’ll probably have to experiment to find a <code>size</code> that you like.</p>
 <p>If you forget the <code>2</code> after the distance matrix in <code>cmdscale</code>, you’ll get a two-dimensional solution anyway (since two dimensions is the default). The output is an array of coordinates in two dimensions:</p>
 <div class="cell">
@@ -973,13 +982,14 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <li>Obtain a measure of goodness of fit for this multidimensional scaling map.</li>
 </ol>
 <p>Solution</p>
-<p>This means fitting again, but this time with <code>eig=T</code>, and pulling out the thing called <code>GOF</code>. You can omit the 2, since that’s the default 2 dimensions: ::: {.cell}</p>
+<p>This means fitting again, but this time with <code>eig=T</code>, and pulling out the thing called <code>GOF</code>. You can omit the 2, since that’s the default 2 dimensions:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(d, <span class="dv">2</span>, <span class="at">eig =</span> T)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.2</span><span class="sc">$</span>GOF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4019251 0.4110603</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>I didn’t ask you to comment on this, but the adjective that came to my mind was “disappointing”. I think that’s to do with the upper-limit-30 thing again. Also, this time (unlike with Wisconsin) there was no “right answer”, so maybe it just isn’t going to be very good. If you looked at several pairs of points above, you might have noticed that the correspondence between map distance and actual distance isn’t very good; this is the same issue.</p>
 <p>I was curious about whether 3 dimensions would be any better:</p>
 <div class="cell">
@@ -995,13 +1005,14 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <li>Obtain a cluster analysis for the same data, using Ward’s method. Obtain a dendrogram. What seems to be an appropriate number of clusters? Mark them on your dendrogram too.</li>
 </ol>
 <p>Solution</p>
-<p>This seems to be a throwback to last week, but I have my reasons, which you’ll see in a moment: ::: {.cell}</p>
+<p>This seems to be a throwback to last week, but I have my reasons, which you’ll see in a moment:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"ward.D"</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/stimuli-10-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>That looks like 5 clusters to me (chopping the tree at a height of 30). Drawing them:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.3</span>)</span>
@@ -1023,7 +1034,10 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <li><p>Together at the top of the plot.</p></li>
 <li><p>Together at the top right.</p></li>
 </ul>
-<p>If you had a different number of clusters, work with what you have, and if you have done that, you’ll be good. My general conclusion from the above is that my five clusters are mostly distinct from each other, but the MDS map really only has four. (If you look at the dendrogram, the two clusters that are not really distinct from each other were the last ones to be split.) This is a lot more detail than you need. What I want to see is some kind of association of clusters with (hopefully) nearby points on the map, some kind of discussion of whether the clusters are really distinct groupings on the map, and a sense of whether you feel the clusters are consistent with what appears on the map. Extra: this is where I have to say I cheated. I thought this would be hard to do by trying to match those names in the clusters with the ones on the MDS map. So I put myself through some short-term R coding pain for some substantial long-term gain. I was thinking, “can I extract the clusters from this analysis, and plot them on the MDS map in different colours?” That would go like this: ::: {.cell}</p>
+<p>If you had a different number of clusters, work with what you have, and if you have done that, you’ll be good.</p>
+<p>My general conclusion from the above is that my five clusters are mostly distinct from each other, but the MDS map really only has four. (If you look at the dendrogram, the two clusters that are not really distinct from each other were the last ones to be split.) This is a lot more detail than you need. What I want to see is some kind of association of clusters with (hopefully) nearby points on the map, some kind of discussion of whether the clusters are really distinct groupings on the map, and a sense of whether you feel the clusters are consistent with what appears on the map.</p>
+<p>Extra: this is where I have to say I cheated. I thought this would be hard to do by trying to match those names in the clusters with the ones on the MDS map. So I put myself through some short-term R coding pain for some substantial long-term gain. I was thinking, “can I extract the clusters from this analysis, and plot them on the MDS map in different colours?” That would go like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>clusters <span class="ot">&lt;-</span> <span class="fu">cutree</span>(d<span class="fl">.3</span>, <span class="dv">5</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(d<span class="fl">.1</span>, <span class="at">names =</span> stimuli[, <span class="dv">1</span>], <span class="at">cluster =</span> <span class="fu">factor</span>(clusters)) <span class="sc">%&gt;%</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> objects, <span class="at">colour =</span> cluster)) <span class="sc">+</span></span>
@@ -1032,7 +1046,7 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/stimuli-12-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The first line obtains the clusters as numbers, which I then had to turn into a factor (to make the plot different colours). I copied the rest from above, and then I added to them, colouring the points according to what cluster they belonged to. Three of my “rough” objects have broken off into a cluster of their own; they are, kind of, in their own little area on the map.</p>
 <p>Another, non-graphical, way of doing this is to list the MDS coordinates along with the clusters, probably sorted by cluster:</p>
 <div class="cell">
@@ -1124,7 +1138,8 @@ X3 -0.3512713  0.09616153 0.19930252</code></pre>
 <li>Read in the confusion matrix and convert it to dissimilarities and then to a <code>dist</code> object, displaying the <code>dist</code> object that you obtain.</li>
 </ol>
 <p>Solution</p>
-<p><code>read_table</code> to read in the data, having first noted that we have aligned columns with spaces between: ::: {.cell}</p>
+<p><code>read_table</code> to read in the data, having first noted that we have aligned columns with spaces between:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/letterrec.txt"</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1161,7 +1176,7 @@ See problems(...) for more details.</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The first column didn’t have a heading, so <code>read_table</code> filled in <code>X1</code> for it (there was data down below, so it needed to have a name). This is in contrast to something like <code>read_delim</code>, where you have to have as many headers as columns. In <code>read_table</code>, you know where the headers have to be, so if any are missing they can be filled in, but with <code>read_delim</code> you don’t have that knowledge, so you have to have exactly the right number of headers, one per data column exactly.</p>
 <p>These are similarities, so convert to dissimilarities by subtracting from 21. This is a shortcut way to do that, once you’ve gotten rid of everything that is not numbers:</p>
 <div class="cell">
@@ -1267,7 +1282,8 @@ glossypaintedwood                    29                  26     26       12</cod
 <li>Run a multidimensional scaling, with the default two dimensions, on your <code>dist</code> object, and display the results. (Making a graph is coming later.)</li>
 </ol>
 <p>Solution</p>
-<p>This: ::: {.cell}</p>
+<p>This:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(d)</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1290,7 +1306,7 @@ velvet                   6.3768882  10.477972
 waxpaper                13.1702265   1.677039
 glossypaintedwood       11.2914904   5.331796</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Or you can do it with <code>eig=T</code>, which gets you some more information:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.1</span>a <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(d, <span class="at">eig =</span> T)</span>
@@ -1339,12 +1355,13 @@ $GOF
 <li>Obtain a vector of the names of the letters that were confused in this study.</li>
 </ol>
 <p>Solution</p>
-<p>Easiest way is to pull out the first column of the data frame that you read in from the file (if you can remember what it was called): ::: {.cell}</p>
+<p>Easiest way is to pull out the first column of the data frame that you read in from the file (if you can remember what it was called):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>letter_names <span class="ot">&lt;-</span> letters<span class="sc">$</span>X1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Unknown or uninitialised column: `X1`.</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>That silly column name <code>X1</code> that <code>read_table</code> supplied.</p>
 <p>Extra: You can even get the letter names from the thing I called <code>d</code>, but I can’t remember how, so I have to cheat. I said that <code>d</code> has a “print method”<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> that controls how it looks:</p>
 <div class="cell">
@@ -1494,12 +1511,13 @@ attr(,"Upper")
 <li>Plot your multidimensional scaling map. To do this, first create a data frame containing the points you want to plot and their labels, and then plot the points labelled by the right thing.</li>
 </ol>
 <p>Solution</p>
-<p>The “labels” need to be the letter names, which is why I made you find them in the previous part. I’m going to do this with a pipe, or else I’ll create <em>another</em> thing called <code>d</code> and overwrite the one I wanted to keep, again: ::: {.cell}</p>
+<p>The “labels” need to be the letter names, which is why I made you find them in the previous part. I’m going to do this with a pipe, or else I’ll create <em>another</em> thing called <code>d</code> and overwrite the one I wanted to keep, again:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(d<span class="fl">.1</span>, <span class="at">names =</span> letter_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in data.frame(d.1, names = letter_names): arguments imply differing number of rows: 17, 0</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>So far so good. The coordinates have gained names <code>X1</code> and <code>X2</code> (as they did before, but I wanted to check). This is what happens when you turn a matrix with nameless columns into a data frame. So I can proceed:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(d<span class="fl">.1</span>, <span class="at">names =</span> letter_names) <span class="sc">%&gt;%</span></span>
@@ -1532,7 +1550,8 @@ attr(,"Upper")
 <li>Verify that your chosen pair of letters was often confused in the data.</li>
 </ol>
 <p>Solution</p>
-<p>The data we read in from the file was this: ::: {.cell}</p>
+<p>The data we read in from the file was this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>letters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1542,7 +1561,7 @@ attr(,"Upper")
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Then look for your pair of letters:</p>
 <p>These are four of the biggest numbers in the matrix, which is as it should be. You need to find the number of confusions for your pair of letters and assert that it is large (compared to the others).</p>
 <p>These are actually not <em>all</em> the large ones: M and W, H and N, M and N are also large (which lends some support to these letters being a foursome<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> rather than two pairs).</p>
@@ -1631,13 +1650,10 @@ glossypaintedwood                    29                  26     26       12</cod
 <li>Noting that we want to assess distances between brands of beer, read in the data and do whatever you need to do to work out distances between the beers. Show your result.</li>
 </ol>
 <p>Solution</p>
-<p>This is really a copy of last time. We need to transpose the data frame to get the beers in <em>rows</em> (<code>dist</code> works on distances between rows), then feed everything but the student IDs into <code>dist</code>: ::: {.cell}</p>
+<p>This is really a copy of last time. We need to transpose the data frame to get the beers in <em>rows</em> (<code>dist</code> works on distances between rows), then feed everything but the student IDs into <code>dist</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/beer.txt"</span></span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">read_table2</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `read_table2()` was deprecated in readr 2.0.0.
-ℹ Please use `read_table()` instead.</code></pre>
-</div>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 ── Column specification ────────────────────────────────────────────────────────
@@ -1655,7 +1671,7 @@ cols(
   SierraN = col_double()
 )</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>beer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>beer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1664,11 +1680,11 @@ cols(
   </script>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> beer <span class="sc">%&gt;%</span></span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>student) <span class="sc">%&gt;%</span></span>
-<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> beer <span class="sc">%&gt;%</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>student) <span class="sc">%&gt;%</span></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>I did it the funny-looking way. The cluster analysis question offers an alternative.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -1676,8 +1692,8 @@ cols(
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>beer<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>beer<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>initial  value 13.344792 
 iter   5 value 10.855662
@@ -1692,7 +1708,7 @@ converged</code></pre>
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>beer<span class="fl">.1</span><span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>beer<span class="fl">.1</span><span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.32195</code></pre>
 </div>
@@ -1705,15 +1721,15 @@ converged</code></pre>
 <p>Solution</p>
 <p>This is slightly different from class, where I plotted the languages actually <em>at</em> their locations. But here, the beer names are longer, so we should plot the points and label them. I’d make a data frame first, and probably pipe it into the plot, thus. Don’t forget we have to get the names of the 10 beers, and not the 32 students! The names of the columns of the data frame include an identifier column for the students, so skip the first one:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>beer_names <span class="ot">&lt;-</span> beer <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>student) <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>beer_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>beer_names <span class="ot">&lt;-</span> beer <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>student) <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>beer_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "AnchorS"  "Bass"     "Becks"    "Corona"   "GordonB"  "Guinness"
  [7] "Heineken" "PetesW"   "SamAdams" "SierraN" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(beer<span class="fl">.1</span><span class="sc">$</span>points, <span class="at">beer =</span> beer_names) <span class="sc">%&gt;%</span></span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> beer)) <span class="sc">+</span></span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(beer<span class="fl">.1</span><span class="sc">$</span>points, <span class="at">beer =</span> beer_names) <span class="sc">%&gt;%</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> beer)) <span class="sc">+</span></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/beermds-4-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1723,8 +1739,9 @@ converged</code></pre>
 <li>Find a pair of beers close together on your map. Are they similar in terms of student ratings? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>I think Sam Adams and Gordon Biersch, right in the middle of the map. We can pull them out by name: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>beer <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(SamAdams, GordonB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I think Sam Adams and Gordon Biersch, right in the middle of the map. We can pull them out by name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>beer <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(SamAdams, GordonB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1733,27 +1750,27 @@ converged</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>These are, with a few exceptions (the most glaring being the 18th student), within a couple of points of each other. So I would say they are similar. Another way to show this is to make a scatterplot of them, and draw on it the line where the ratings are the same. Since the ratings are whole numbers, they are likely to be duplicated, so I “jitter” them as I plot them, to prevent overplotting:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, <span class="fu">aes</span>(<span class="at">x =</span> SamAdams, <span class="at">y =</span> GordonB)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, <span class="fu">aes</span>(<span class="at">x =</span> SamAdams, <span class="at">y =</span> GordonB)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/adkjalkjdsg-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Are they close to the line, or not? Dunno. Maybe I should plot the ratings of some far-apart beers, and see whether it looks any different, for example <code>Becks</code> and <code>SierraN</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, <span class="fu">aes</span>(<span class="at">x =</span> Becks, <span class="at">y =</span> SierraN)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, <span class="fu">aes</span>(<span class="at">x =</span> Becks, <span class="at">y =</span> SierraN)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/adkjalkjdsh-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Not much. I was expecting something a lot more impressive. Another way is to summarize the rating <em>differences</em> for the pairs of beers:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> <span class="fu">with</span>(beer, SamAdams <span class="sc">-</span> GordonB)</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> <span class="fu">with</span>(beer, SamAdams <span class="sc">-</span> GordonB)</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 -3.0000 -1.0000  0.0000  0.1562  1.0000  6.0000 </code></pre>
@@ -1761,8 +1778,8 @@ converged</code></pre>
 </div>
 <p>and</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> <span class="fu">with</span>(beer, Becks <span class="sc">-</span> SierraN)</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> <span class="fu">with</span>(beer, Becks <span class="sc">-</span> SierraN)</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   -8.00   -4.00   -1.50   -1.75    0.00    3.00 </code></pre>
@@ -1788,12 +1805,13 @@ converged</code></pre>
 <li>Obtain and display the distance matrix that you used last time for these data. (I don’t care whether you run all the code again, or whether you just produce the matrix from where you had it before on R Studio. Correct is all I care about.)</li>
 </ol>
 <p>Solution</p>
-<p>Copied and pasted from last time: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/stimuli.txt"</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>stimuli <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>, <span class="at">col_names =</span> F)</span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>objects <span class="ot">&lt;-</span> stimuli<span class="sc">$</span>X1</span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"object"</span>, objects)</span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>stimuli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Copied and pasted from last time:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/stimuli.txt"</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>stimuli <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>, <span class="at">col_names =</span> F)</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>objects <span class="ot">&lt;-</span> stimuli<span class="sc">$</span>X1</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"object"</span>, objects)</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>stimuli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1802,16 +1820,16 @@ converged</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>That gets a data frame with the right column names. Then:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> stimuli <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">as.dist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> stimuli <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">as.dist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and just to check:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">getOption</span>(<span class="st">"width"</span>)</span>
-<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">132</span>)</span>
-<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">getOption</span>(<span class="st">"width"</span>)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">132</span>)</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                       innersurfaceofpinebark brick cardboard cork rubbereraser felt leatherwallet rigidplasticsheet
 brick                                      22                                                                       
@@ -1865,7 +1883,7 @@ velvet
 waxpaper                   27         
 glossypaintedwood          26       12</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -1873,7 +1891,7 @@ glossypaintedwood          26       12</code></pre>
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>initial  value 25.537169 
 iter   5 value 20.521473
@@ -1883,7 +1901,7 @@ converged</code></pre>
 </div>
 <p>I’m going to remind myself of what this has in it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "points" "stress"</code></pre>
 </div>
@@ -1894,21 +1912,23 @@ converged</code></pre>
 <li><a name="part:stress">*</a> Obtain a number that says how well the map reproduces the distances in the data, and comment on that number.</li>
 </ol>
 <p>Solution</p>
-<p>What you need here is the “stress”: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.1</span><span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What you need here is the “stress”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.1</span><span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20.2161</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This is just over 20%, which is described in the notes as “poor”. We should thus be skeptical about the map that this produces.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Plot the non-metric multidimensional scaling map. Label each point with its (full) object name, sized suitably.</li>
 </ol>
 <p>Solution</p>
-<p>Make a data frame first of things to plot, the points and the names. I’m going to plot the names smaller). I am <em>not</em> naming this data frame <code>d</code>, in an attempt to avoid overwriting things I want to keep: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>stimuli.<span class="fl">1.</span>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(stimuli<span class="fl">.1</span><span class="sc">$</span>points, <span class="at">names =</span> objects)</span>
-<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>stimuli.<span class="fl">1.</span>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make a data frame first of things to plot, the points and the names. I’m going to plot the names smaller). I am <em>not</em> naming this data frame <code>d</code>, in an attempt to avoid overwriting things I want to keep:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>stimuli.<span class="fl">1.</span>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(stimuli<span class="fl">.1</span><span class="sc">$</span>points, <span class="at">names =</span> objects)</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>stimuli.<span class="fl">1.</span>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1917,12 +1937,12 @@ converged</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The repeated stimuli down the left are row names, but since they’re row names, we won’t be able to use them in <code>ggplot</code>.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
 <p>Remember that we are turning a matrix and a column into a data frame, so we need either the more forgiving <code>data.frame</code>, or to turn <code>points</code> into a data frame first, which would go like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(stimuli<span class="fl">.1</span><span class="sc">$</span>points) <span class="sc">%&gt;%</span></span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> objects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(stimuli<span class="fl">.1</span><span class="sc">$</span>points) <span class="sc">%&gt;%</span></span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> objects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1934,10 +1954,10 @@ converged</code></pre>
 </div>
 <p>This time, the columns are called <code>V1</code> and <code>V2</code>, since that’s what <code>as_tibble</code> does. Also note the slightly different look: fewer decimals, since displaying a tibble rounds numerical things to three significant digits. Back to my data frame <code>stimuli.1.d</code>. The points have acquired names <code>X1</code> and <code>X2</code>, as usual, so we have all we need:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stimuli.<span class="fl">1.</span>d, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> names)) <span class="sc">+</span></span>
-<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stimuli.<span class="fl">1.</span>d, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> names)) <span class="sc">+</span></span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/hon-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1962,17 +1982,18 @@ converged</code></pre>
 <li>Consider again your conclusions in parts (<a href="#part:stress">here</a>) and (<a href="#part:incons">here</a>). Explain briefly how they are consistent.</li>
 </ol>
 <p>Solution</p>
-<p>The stress is rather high, which means that the map distances and actual distances may not correspond very well. This is also exactly what we found in the last part, by finding one (or two) pairs of objects that were really close in actuality, but not so much on the map. The point here is that a high stress <em>means</em> that distances in real life and on the map won’t correspond very well. That’s what I want you to say. Extra: another way to assess this is with a Shepard<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> diagram. That would go like this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>stimuli.sh <span class="ot">&lt;-</span> <span class="fu">Shepard</span>(d, stimuli<span class="fl">.1</span><span class="sc">$</span>points)</span>
-<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli.sh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The stress is rather high, which means that the map distances and actual distances may not correspond very well. This is also exactly what we found in the last part, by finding one (or two) pairs of objects that were really close in actuality, but not so much on the map. The point here is that a high stress <em>means</em> that distances in real life and on the map won’t correspond very well. That’s what I want you to say. Extra: another way to assess this is with a Shepard<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> diagram. That would go like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>stimuli.sh <span class="ot">&lt;-</span> <span class="fu">Shepard</span>(d, stimuli<span class="fl">.1</span><span class="sc">$</span>points)</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli.sh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "x"  "y"  "yf"</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>In here, we plot the actual distances <code>x</code> against the map distances <code>y</code>, making a data frame first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(stimuli.sh, <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">%&gt;%</span></span>
-<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(stimuli.sh, <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">%&gt;%</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/sporers-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1983,8 +2004,9 @@ converged</code></pre>
 <li>Would a three-dimensional map work better than a two-dimensional one, bearing in mind that a three-dimensional map will need something like <code>rgl</code> to interpret? Calculate something that will help you decide, and explain what you think.</li>
 </ol>
 <p>Solution</p>
-<p>The calculation part is to figure out the stress value for a three-dimensional map, and compare it with the 20% that we had before. <code>k=3</code> gets the three dimensions: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The calculation part is to figure out the stress value for a three-dimensional map, and compare it with the 20% that we had before. <code>k=3</code> gets the three dimensions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>initial  value 14.934110 
 iter   5 value 11.280474
@@ -1996,15 +2018,15 @@ converged</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.859657</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>What this does is to obtain the map and throw all of it away except for the stress value.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
 <p>I think this stress value, just under 10%, or on the “fair” end of “good”, is a worthwhile improvement over the just-over-20% that we had in two dimensions. So I think this is worth the trouble of having to use a 3-dimensional plotting tool like <code>rgl</code> to interpret it with. You might agree with me, or you might not: for example, you might be looking for a bigger improvement. Either is good, as far as I’m concerned, as long as your answer does something to balance the smaller stress value<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> with the difficulty of interpreting it.</p>
 <p>The kind of <code>rgl</code> code you’ll need is something like this (not tested):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgl)</span>
-<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>points</span>
-<span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot3d</span>(stimuli<span class="fl">.2</span>)</span>
-<span id="cb140-4"><a href="#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(stimuli<span class="fl">.2</span>, <span class="at">text =</span> object.abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgl)</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>points</span>
+<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot3d</span>(stimuli<span class="fl">.2</span>)</span>
+<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(stimuli<span class="fl">.2</span>, <span class="at">text =</span> object.abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What you should find, looking at this (try it!) is that objects close together in this 3-dimensional place are more nearly close together in actuality as well, because of the in my opinion notably smaller stress value.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -2025,7 +2047,7 @@ converged</code></pre>
 <li id="fn9"><p>The way that a multicoloured function like <code>print</code> works is that when you ask to show something, like <code>d</code>, R first looks to see what kind of thing you want to show (by calling <code>class</code>), and determines that it is a <code>dist</code> object. Then it looks to see if there is a function called <code>print.dist</code> (there is), and if there is, it calls that (to produce that nice display). If there isn’t, it calls <code>print.default</code>, which just displays its input without doing anything special. This is why printing the output from an <code>lm</code> looks very different from printing a data frame: the first calls <code>print.lm</code> and the second calls <code>print.data.frame</code>, or <code>print.tbl_df</code> for a tibble.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p>Set of four. Match-play golf has a game called <em>foursomes</em> where the two players on each team take it in turns to hit the ball, as opposed to the game called <em>fourballs</em>, where each of the two players plays their own ball, and the team’s score on a hole is the better of the two players’ scores.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn11"><p>In the future, I’ll make everyone turn matrices into data frames first so that we won’t deal with old-fashioned data frames, row names and the like.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>This always makes me think of the number 190 (now 985) bus, but that’s the wrong spelling. Spelled like this, this is also the name of the illustrator of the original pre-Disney Winnie-the-Pooh stories. <a href="https://en.wikipedia.org/wiki/E._H._Shepard">See here</a>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>This always makes me think of the number 985 bus, but that’s the wrong spelling. Spelled like this, this is also the name of the illustrator of the original pre-Disney Winnie-the-Pooh stories. <a href="https://en.wikipedia.org/wiki/E._H._Shepard">See here</a>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn13"><p>Which seems like a very SAS way of doing things.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn14"><p>Using more dimensions will <em>certainly</em> decrease the stress, in the same way that adding an <span class="math inline">\(x\)</span>-variable to a regression will increase R-squared; it’s the same issue, of whether the change is big enough to be worth having.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>

@@ -572,7 +572,8 @@ dbl (4): very.unsat, unsat, sat, very.sat
 </div>
 </div>
 </div>
-<p>With multiple columns that are all frequencies, this is a job for <code>pivot_longer</code>: ::: {.cell}</p>
+<p>With multiple columns that are all frequencies, this is a job for <code>pivot_longer</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mobile <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(very.unsat<span class="sc">:</span>very.sat, </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to=</span><span class="st">"satisfied"</span>, </span>
@@ -586,7 +587,7 @@ dbl (4): very.unsat, unsat, sat, very.sat
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Yep, all good. See how <code>mobile.long</code> contains what it should? (For those keeping track, the original data frame had 8 rows and 4 columns to collect up, and the new one has <span class="math inline">\(8\times 4=32\)</span> rows.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -611,10 +612,11 @@ dbl (4): very.unsat, unsat, sat, very.sat
 <li>If your intended response variable is not a factor, create a factor in your data frame with levels in the right order. Hint: look at the order your levels are <em>in the data</em>.</li>
 </ol>
 <p>Solution</p>
-<p>My intended response <code>satisfied</code> is text, not a factor, so I need to do this part. The hint is to look at the column <code>satisfied</code> in <code>mobile.long</code> and note that the satisfaction categories appear in the data <em>in the order that we want</em>. This is good news, because we can use <code>fct_inorder</code> like this: ::: {.cell}</p>
+<p>My intended response <code>satisfied</code> is text, not a factor, so I need to do this part. The hint is to look at the column <code>satisfied</code> in <code>mobile.long</code> and note that the satisfaction categories appear in the data <em>in the order that we want</em>. This is good news, because we can use <code>fct_inorder</code> like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mobile.long <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">satis =</span> <span class="fu">fct_inorder</span>(satisfied)) <span class="ot">-&gt;</span> mobile.long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>If you check, by looking at the data frame, <code>satis</code> is a <code>factor</code>, and you can also do this to verify that its levels are in the right order:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(mobile.long, <span class="fu">levels</span>(satis))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -623,7 +625,8 @@ dbl (4): very.unsat, unsat, sat, very.sat
 </div>
 </div>
 <p>Success.</p>
-<p>Extra: so now you are asking, what if the levels are in the <em>wrong</em> order in the data? Well, below is what you used to have to do, and it will work for this as well. I’ll first find what levels of satisfaction I have. This can be done by counting them, or by finding the distinct ones: ::: {.cell}</p>
+<p>Extra: so now you are asking, what if the levels are in the <em>wrong</em> order in the data? Well, below is what you used to have to do, and it will work for this as well. I’ll first find what levels of satisfaction I have. This can be done by counting them, or by finding the distinct ones:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mobile.long <span class="sc">%&gt;%</span> <span class="fu">count</span>(satisfied)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -633,7 +636,7 @@ dbl (4): very.unsat, unsat, sat, very.sat
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>or</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mobile.long <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(satisfied)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -747,7 +750,8 @@ dbl (4): very.unsat, unsat, sat, very.sat
 <li>Use <code>anova</code> to decide whether we are justified in removing <code>gender</code> from a model containing both <code>gender</code> and <code>age.group</code>. Compare your P-value with the one from <code>drop1</code>.</li>
 </ol>
 <p>Solution</p>
-<p>This is a comparison of the model with both variables (<code>mobile.1</code>) and the model with <code>gender</code> removed (<code>mobile.3</code>). Use <code>anova</code> for this, smaller (fewer-<span class="math inline">\(x\)</span>) model first: ::: {.cell}</p>
+<p>This is a comparison of the model with both variables (<code>mobile.1</code>) and the model with <code>gender</code> removed (<code>mobile.3</code>). Use <code>anova</code> for this, smaller (fewer-<span class="math inline">\(x\)</span>) model first:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mobile<span class="fl">.3</span>, mobile<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -757,7 +761,7 @@ dbl (4): very.unsat, unsat, sat, very.sat
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The P-value is (just) less than 0.05, so the models are significantly different. That means that the model with both variables in fits significantly better than the model with only <code>age.group</code>, and therefore that taking <code>gender</code> out is a mistake.</p>
 <p>The P-value is identical to the one from <code>drop1</code> (because they are both doing the same test).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -765,7 +769,8 @@ dbl (4): very.unsat, unsat, sat, very.sat
 <li>Use <code>anova</code> to see whether we are justified in removing <code>age.group</code> from a model containing both <code>gender</code> and <code>age.group</code>. Compare your P-value with the one from <code>drop1</code> above.</li>
 </ol>
 <p>Solution</p>
-<p>Exactly the same idea as the last part. In my case, I’m comparing models <code>mobile.2</code> and <code>mobile.1</code>: ::: {.cell}</p>
+<p>Exactly the same idea as the last part. In my case, I’m comparing models <code>mobile.2</code> and <code>mobile.1</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mobile<span class="fl">.2</span>, mobile<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -775,7 +780,7 @@ dbl (4): very.unsat, unsat, sat, very.sat
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This one is definitely significant, so I need to keep <code>age.group</code> for sure. Again, the P-value is the same as the one in <code>drop1</code>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="8" type="a">
@@ -788,7 +793,9 @@ dbl (4): very.unsat, unsat, sat, very.sat
 <li>Obtain predicted probabilities of a customer falling in the various satisfaction categories, as it depends on gender and age group. To do that, you need to feed <code>predict</code> three things: the fitted model that contains both age group and gender, the data frame that you read in from the file back in part (<a href="#part:gather">here</a>) (which contains all the combinations of age group and gender), and an appropriate <code>type</code>.</li>
 </ol>
 <p>Solution</p>
-<p>My model containing both <span class="math inline">\(x\)</span>s was <code>mobile.1</code>, the data frame read in from the file was called <code>mobile</code>, and I need <code>type="p"</code> to get probabilities: ::: {.cell}</p>
+<p>xxx use predictions</p>
+<p>My model containing both <span class="math inline">\(x\)</span>s was <code>mobile.1</code>, the data frame read in from the file was called <code>mobile</code>, and I need <code>type="p"</code> to get probabilities:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(mobile<span class="fl">.1</span>, mobile, <span class="at">type =</span> <span class="st">"p"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>mobile <span class="sc">%&gt;%</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gender, age.group) <span class="sc">%&gt;%</span></span>
@@ -801,7 +808,7 @@ dbl (4): very.unsat, unsat, sat, very.sat
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This worked for me, but this might happen to you, with the same commands as above:</p>
 <div class="cell">
 <div class="cell-output cell-output-error">
@@ -1204,7 +1211,7 @@ Re-fitting to get Hessian</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["science"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["socst"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"high","2":"0.1681377","3":"44","4":"46"},{"1":"low","2":"0.3262510","3":"44","4":"46"},{"1":"middle","2":"0.5056113","3":"44","4":"46"},{"1":"high","2":"0.2963671","3":"44","4":"61"},{"1":"low","2":"0.1885566","3":"44","4":"61"},{"1":"middle","2":"0.5150763","3":"44","4":"61"},{"1":"high","2":"0.2491112","3":"58","4":"46"},{"1":"low","2":"0.2278105","3":"58","4":"46"},{"1":"middle","2":"0.5230783","3":"58","4":"46"},{"1":"high","2":"0.4087507","3":"58","4":"61"},{"1":"low","2":"0.1240155","3":"58","4":"61"},{"1":"middle","2":"0.4672338","3":"58","4":"61"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["science"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["socst"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"low","2":"0.3262510","3":"44","4":"46"},{"1":"low","2":"0.1885566","3":"44","4":"61"},{"1":"low","2":"0.2278105","3":"58","4":"46"},{"1":"low","2":"0.1240155","3":"58","4":"61"},{"1":"middle","2":"0.5056113","3":"44","4":"46"},{"1":"middle","2":"0.5150763","3":"44","4":"61"},{"1":"middle","2":"0.5230783","3":"58","4":"46"},{"1":"middle","2":"0.4672338","3":"58","4":"61"},{"1":"high","2":"0.1681377","3":"44","4":"46"},{"1":"high","2":"0.2963671","3":"44","4":"61"},{"1":"high","2":"0.2491112","3":"58","4":"46"},{"1":"high","2":"0.4087507","3":"58","4":"61"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1222,7 +1229,7 @@ Re-fitting to get Hessian</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["science"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["socst"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["high"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["middle"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"44","2":"46","3":"0.1681377","4":"0.3262510","5":"0.5056113"},{"1":"44","2":"61","3":"0.2963671","4":"0.1885566","5":"0.5150763"},{"1":"58","2":"46","3":"0.2491112","4":"0.2278105","5":"0.5230783"},{"1":"58","2":"61","3":"0.4087507","4":"0.1240155","5":"0.4672338"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["science"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["socst"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["middle"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["high"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"44","2":"46","3":"0.3262510","4":"0.5056113","5":"0.1681377"},{"1":"44","2":"61","3":"0.1885566","4":"0.5150763","5":"0.2963671"},{"1":"58","2":"46","3":"0.2278105","4":"0.5230783","5":"0.2491112"},{"1":"58","2":"61","3":"0.1240155","4":"0.4672338","5":"0.4087507"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1298,13 +1305,14 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 <li>What are the levels of <code>steak_prep</code>, <em>in the order that R thinks they are in?</em> If they are not in a sensible order, create an ordered factor where the levels are in a sensible order.</li>
 </ol>
 <p>Solution</p>
-<p>This is the most direct way to find out: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>preps <span class="ot">&lt;-</span> steak <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(steak_prep) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(steak_prep)</span>
+<p>This is the most direct way to find out:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>steak <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(steak_prep) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(steak_prep) <span class="ot">-&gt;</span> preps</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>preps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Medium rare" "Rare"        "Medium"      "Medium Well" "Well"       </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This is almost the right order (<code>distinct</code> uses the order in the data frame). We just need to switch the first two around, and then we’ll be done:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>preps1 <span class="ot">&lt;-</span> preps[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)]</span>
@@ -1340,9 +1348,10 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 <li>Fit a model predicting preferred steak preparation in an ordinal logistic regression from <code>educ</code>, <code>female</code> and <code>lottery_a</code>. This ought to be easy from your previous work, but you have to be careful about one thing. No need to print out the results.</li>
 </ol>
 <p>Solution</p>
-<p>The thing you have to be careful about is that you use the <em>ordered</em> factor that you just created as the response: ::: {.cell hash=‘ordinal-response_cache/html/finetti_d7574b2da18db544ba132ea378564b61’}</p>
+<p>The thing you have to be careful about is that you use the <em>ordered</em> factor that you just created as the response:</p>
+<div class="cell" data-hash="ordinal-response_cache/html/finetti_d7574b2da18db544ba132ea378564b61">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>steak<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">polr</span>(steak_prep_ord <span class="sc">~</span> educ <span class="sc">+</span> female <span class="sc">+</span> lottery_a, <span class="at">data =</span> steak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>Run <code>drop1</code> on your fitted model, with <code>test="Chisq"</code>. Which explanatory variable should be removed first, if any? Bear in mind that the variable with the <em>smallest</em> AIC should come out first, in case your table doesn’t get printed in order.</li>
@@ -1366,9 +1375,10 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 <li>Remove the variable that should come out first, using <code>update</code>. (If all the variables should stay, you can skip this part.)</li>
 </ol>
 <p>Solution</p>
-<p>You could type or copy-paste the whole model again, but <code>update</code> is quicker: ::: {.cell}</p>
+<p>You could type or copy-paste the whole model again, but <code>update</code> is quicker:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>steak<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(steak<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>That’s all.</p>
 <p>I wanted to get some support for my <code>drop1</code> above (since I was a bit worried about those out-of-order rows). Now that we have fitted a model with <code>female</code> and one without, we can compare them using <code>anova</code>:</p>
 <div class="cell">
@@ -1432,7 +1442,7 @@ Re-fitting to get Hessian</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["educ"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lottery_a"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["Medium"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Medium Well"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Medium rare"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Rare"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Well"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Bachelor degree","3":"FALSE","4":"3.347391e-01","5":"1.719854e-01","6":"3.832425e-01","7":"5.191314e-02","8":"0.05811984"},{"1":"2","2":"Bachelor degree","3":"TRUE","4":"3.468434e-01","5":"2.008621e-01","6":"3.386213e-01","7":"4.181795e-02","8":"0.07185531"},{"1":"3","2":"Graduate degree","3":"FALSE","4":"2.920587e-01","5":"1.215881e-01","6":"4.691799e-01","7":"7.954891e-02","8":"0.03762435"},{"1":"4","2":"Graduate degree","3":"TRUE","4":"3.158550e-01","5":"1.452132e-01","6":"4.277303e-01","7":"6.444488e-02","8":"0.04675658"},{"1":"5","2":"High school degree","3":"FALSE","4":"3.334805e-01","5":"1.697854e-01","6":"3.867857e-01","7":"5.280801e-02","8":"0.05714038"},{"1":"6","2":"High school degree","3":"TRUE","4":"3.461457e-01","5":"1.984932e-01","6":"3.421527e-01","7":"4.254661e-02","8":"0.07066175"},{"1":"7","2":"Less than high school degree","3":"FALSE","4":"4.001373e-06","5":"1.997966e-05","6":"1.111878e-06","7":"8.507263e-08","8":"0.99997482"},{"1":"8","2":"Less than high school degree","3":"TRUE","4":"3.189298e-06","5":"1.592489e-05","6":"8.862222e-07","7":"6.780714e-08","8":"0.99997993"},{"1":"9","2":"Some college or Associate degree","3":"FALSE","4":"3.303218e-01","5":"1.646121e-01","6":"3.951981e-01","7":"5.499694e-02","8":"0.05487110"},{"1":"10","2":"Some college or Associate degree","3":"TRUE","4":"3.442957e-01","5":"1.929005e-01","6":"3.505796e-01","7":"4.433010e-02","8":"0.06789415"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["educ"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lottery_a"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["Rare"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Medium rare"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Medium"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Medium Well"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Well"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Bachelor degree","3":"FALSE","4":"5.191314e-02","5":"3.832425e-01","6":"3.347391e-01","7":"1.719854e-01","8":"0.05811984"},{"1":"2","2":"Bachelor degree","3":"TRUE","4":"4.181795e-02","5":"3.386213e-01","6":"3.468434e-01","7":"2.008621e-01","8":"0.07185531"},{"1":"3","2":"Graduate degree","3":"FALSE","4":"7.954891e-02","5":"4.691799e-01","6":"2.920587e-01","7":"1.215881e-01","8":"0.03762435"},{"1":"4","2":"Graduate degree","3":"TRUE","4":"6.444488e-02","5":"4.277303e-01","6":"3.158550e-01","7":"1.452132e-01","8":"0.04675658"},{"1":"5","2":"High school degree","3":"FALSE","4":"5.280801e-02","5":"3.867857e-01","6":"3.334805e-01","7":"1.697854e-01","8":"0.05714038"},{"1":"6","2":"High school degree","3":"TRUE","4":"4.254661e-02","5":"3.421527e-01","6":"3.461457e-01","7":"1.984932e-01","8":"0.07066175"},{"1":"7","2":"Less than high school degree","3":"FALSE","4":"8.507263e-08","5":"1.111878e-06","6":"4.001373e-06","7":"1.997966e-05","8":"0.99997482"},{"1":"8","2":"Less than high school degree","3":"TRUE","4":"6.780714e-08","5":"8.862222e-07","6":"3.189298e-06","7":"1.592489e-05","8":"0.99997993"},{"1":"9","2":"Some college or Associate degree","3":"FALSE","4":"5.499694e-02","5":"3.951981e-01","6":"3.303218e-01","7":"1.646121e-01","8":"0.05487110"},{"1":"10","2":"Some college or Associate degree","3":"TRUE","4":"4.433010e-02","5":"3.505796e-01","6":"3.442957e-01","7":"1.929005e-01","8":"0.06789415"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1453,7 +1463,7 @@ Re-fitting to get Hessian</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["educ"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lottery_a"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["Medium"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Medium Well"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Medium rare"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Rare"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Well"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Bachelor degree","3":"FALSE","4":"0.335","5":"0.172","6":"0.383","7":"0.052","8":"0.058"},{"1":"2","2":"Bachelor degree","3":"TRUE","4":"0.347","5":"0.201","6":"0.339","7":"0.042","8":"0.072"},{"1":"3","2":"Graduate degree","3":"FALSE","4":"0.292","5":"0.122","6":"0.469","7":"0.080","8":"0.038"},{"1":"4","2":"Graduate degree","3":"TRUE","4":"0.316","5":"0.145","6":"0.428","7":"0.064","8":"0.047"},{"1":"5","2":"Highschooldegre","3":"FALSE","4":"0.333","5":"0.170","6":"0.387","7":"0.053","8":"0.057"},{"1":"6","2":"Highschooldegre","3":"TRUE","4":"0.346","5":"0.198","6":"0.342","7":"0.043","8":"0.071"},{"1":"7","2":"Lssthnhghschldg","3":"FALSE","4":"0.000","5":"0.000","6":"0.000","7":"0.000","8":"1.000"},{"1":"8","2":"Lssthnhghschldg","3":"TRUE","4":"0.000","5":"0.000","6":"0.000","7":"0.000","8":"1.000"},{"1":"9","2":"SmcllgorAssctdg","3":"FALSE","4":"0.330","5":"0.165","6":"0.395","7":"0.055","8":"0.055"},{"1":"10","2":"SmcllgorAssctdg","3":"TRUE","4":"0.344","5":"0.193","6":"0.351","7":"0.044","8":"0.068"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["educ"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lottery_a"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["Rare"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Medium rare"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Medium"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Medium Well"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Well"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Bachelor degree","3":"FALSE","4":"0.052","5":"0.383","6":"0.335","7":"0.172","8":"0.058"},{"1":"2","2":"Bachelor degree","3":"TRUE","4":"0.042","5":"0.339","6":"0.347","7":"0.201","8":"0.072"},{"1":"3","2":"Graduate degree","3":"FALSE","4":"0.080","5":"0.469","6":"0.292","7":"0.122","8":"0.038"},{"1":"4","2":"Graduate degree","3":"TRUE","4":"0.064","5":"0.428","6":"0.316","7":"0.145","8":"0.047"},{"1":"5","2":"Highschooldegre","3":"FALSE","4":"0.053","5":"0.387","6":"0.333","7":"0.170","8":"0.057"},{"1":"6","2":"Highschooldegre","3":"TRUE","4":"0.043","5":"0.342","6":"0.346","7":"0.198","8":"0.071"},{"1":"7","2":"Lssthnhghschldg","3":"FALSE","4":"0.000","5":"0.000","6":"0.000","7":"0.000","8":"1.000"},{"1":"8","2":"Lssthnhghschldg","3":"TRUE","4":"0.000","5":"0.000","6":"0.000","7":"0.000","8":"1.000"},{"1":"9","2":"SmcllgorAssctdg","3":"FALSE","4":"0.055","5":"0.395","6":"0.330","7":"0.165","8":"0.055"},{"1":"10","2":"SmcllgorAssctdg","3":"TRUE","4":"0.044","5":"0.351","6":"0.344","7":"0.193","8":"0.068"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1466,9 +1476,10 @@ Re-fitting to get Hessian</code></pre>
 <li>Is it reasonable to remove <em>all</em> the remaining explanatory variables from your best model so far? Fit a model with no explanatory variables, and do a test. (In R, if the right side of the squiggle is a <code>1</code>, that means “just an intercept”. Or you can remove whatever remains using <code>update</code>.) What do you conclude? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>The fitting part is the challenge, since the testing part is <code>anova</code> again. The direct fit is this: ::: {.cell hash=‘ordinal-response_cache/html/fiorentina_ed4e97251ec455c039297573b7860ac6’}</p>
+<p>The fitting part is the challenge, since the testing part is <code>anova</code> again. The direct fit is this:</p>
+<div class="cell" data-hash="ordinal-response_cache/html/fiorentina_ed4e97251ec455c039297573b7860ac6">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>steak<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">polr</span>(steak_prep_ord <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> steak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>and the <code>update</code> version is this, about equally long, starting from <code>steak.2</code> since that is the best model so far:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>steak<span class="fl">.3</span>a <span class="ot">&lt;-</span> <span class="fu">update</span>(steak<span class="fl">.2</span>, . <span class="sc">~</span> . <span class="sc">-</span> educ <span class="sc">-</span> lottery_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1531,7 +1542,8 @@ Re-fitting to get Hessian</code></pre>
 </ol>
 <p>Solution</p>
 <p>The article says that <em>nothing</em> has anything to do with steak preference. Whether you agree or not depends on what you thought above about dropping those last two variables. So say something consistent with what you said in the previous part. Two points for saying that the author said “nothing has any effect”, and one point for how your findings square with that.</p>
-<p>Extra: now that you have worked through this great long question, this is where I tell you that I simplified things a fair bit for you! There were lots of other variables that might have had an impact on how people like their steaks, and we didn’t even consider those. Why did I choose what I did here? Well, I wanted to fit a regression predicting steak preference from everything else, do a big backward elimination, but: ::: {.cell hash=‘ordinal-response_cache/html/udinese_6ddded22f5b8aa1bb87b651e1aab89d5’}</p>
+<p>Extra: now that you have worked through this great long question, this is where I tell you that I simplified things a fair bit for you! There were lots of other variables that might have had an impact on how people like their steaks, and we didn’t even consider those. Why did I choose what I did here? Well, I wanted to fit a regression predicting steak preference from everything else, do a big backward elimination, but:</p>
+<div class="cell" data-hash="ordinal-response_cache/html/udinese_6ddded22f5b8aa1bb87b651e1aab89d5">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>steak<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">polr</span>(steak_prep_ord <span class="sc">~</span> ., <span class="at">data =</span> steak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: glm.fit: algorithm did not converge</code></pre>
@@ -1539,7 +1551,7 @@ Re-fitting to get Hessian</code></pre>
 <div class="cell-output cell-output-error">
 <pre><code>Error in polr(steak_prep_ord ~ ., data = steak): attempt to find suitable starting values failed</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The <code>.</code> in place of explanatory variables means “all the other variables”, including the nonsensical personal ID. That saved me having to type them all out.</p>
 <p>Unfortunately, however, it didn’t work. The problem is a numerical one. Regular regression has a well-defined procedure, where the computer follows through the steps and gets to the answer, every time. Once you go beyond regression, however, the answer is obtained by a step-by-step method: the computer makes an initial guess, tries to improve it, then tries to improve it again, until it can’t improve things any more, at which point it calls it good. The problem here is that <code>polr</code> cannot even get the initial guess! (It apparently is known to suck at this, in problems as big and complicated as this one.)</p>
 <p>I don’t normally recommend forward selection, but I wonder whether it works here:</p>
@@ -1566,7 +1578,7 @@ Re-fitting to get Hessian</code></pre>
 </section>
 <section id="how-do-you-like-your-steak-the-data-1" class="level2" data-number="25.10">
 <h2 data-number="25.10" class="anchored" data-anchor-id="how-do-you-like-your-steak-the-data-1"><span class="header-section-number">25.10</span> How do you like your steak – the data</h2>
-<p><a name="q:steak-data"><em></em></a><em> This question takes you through the data preparation for one of the other questions. You don’t have to do </em>this* question, but you may find it interesting or useful.</p>
+<p>This question takes you through the data preparation for one of the other questions. You don’t have to do <em>this</em> question, but you may find it interesting or useful.</p>
 <p>When you order a steak in a restaurant, the server will ask you how you would like it cooked, or to be precise, <em>how much</em> you would like it cooked: rare (hardly cooked at all), through medium rare, medium, medium well to well (which means “well done”, so that the meat has only a little red to it). Could you guess how a person likes their steak cooked, from some other information about them? The website <a href="fivethirtyeight.com">link</a> commissioned a survey where they asked a number of people how they preferred their steak, along with as many other things as they could think of to ask. (Many of the variables below are related to risk-taking, which was something the people designing the survey thought might have something to do with liking steak rare.) The variables of interest are all factors or true/false:</p>
 <ul>
 <li><p><code>respondent_ID</code>: a ten-digit number identifying each person who responded to the survey.</p></li>
@@ -1621,7 +1633,8 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 <li>What do you immediately notice about your data frame? Run <code>summary</code> on the entire data frame. Would you say you have a lot of missing values, or only a few?</li>
 </ol>
 <p>Solution</p>
-<p>I see missing values, starting in the very first row. Running the data frame through <code>summary</code> gives this, either as <code>summary(steak0)</code> or this way: ::: {.cell}</p>
+<p>I see missing values, starting in the very first row. Running the data frame through <code>summary</code> gives this, either as <code>summary(steak0)</code> or this way:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>steak0 <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> respondent_id       lottery_a         smoke          alcohol       
@@ -1653,7 +1666,7 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
                                                          
                                                          </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Make a call about whether you think that’s a lot of missing values or only a few. This might not be all of them, because missing text doesn’t show here (we see later how to make it show up).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -1774,7 +1787,8 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 </div>
 </div>
 </div>
-<p>What’s the difference? The rows where <code>complete.cases</code> is FALSE have one (or more) missing values in them; where <code>complete.cases</code> is TRUE the rows have no missing values. (Depending on the rows you choose, you may not see the missing value(s), as I didn’t.) Extra (within “extra extra”: I hope you are keeping track): this is a bit tricky to investigate more thoroughly, because the text variables might have missing values in them, and they won’t show up unless we turn them into a factor first: ::: {.cell}</p>
+<p>What’s the difference? The rows where <code>complete.cases</code> is FALSE have one (or more) missing values in them; where <code>complete.cases</code> is TRUE the rows have no missing values. (Depending on the rows you choose, you may not see the missing value(s), as I didn’t.) Extra (within “extra extra”: I hope you are keeping track): this is a bit tricky to investigate more thoroughly, because the text variables might have missing values in them, and they won’t show up unless we turn them into a factor first:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>steak0 <span class="sc">%&gt;%</span></span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), \(x) <span class="fu">factor</span>(x))) <span class="sc">%&gt;%</span></span>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1820,7 +1834,7 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
  (Other)           :133  
  NA's              : 38  </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>There are missing values everywhere. What the <code>where</code> does is to do something for each column where the first thing is true: here, if the column is text, then replace it by the factor version of itself. This makes for a better summary, one that shows how many observations are in each category, and, more important for us, how many are missing (a lot).</p>
 <p>All right, so there are 15 columns, so let’s investigate missingness in our rows by looking at the columns 1 through 8 and then 9 through 15, so they all fit on the screen. Recall that you can <code>select</code> columns by number:</p>
 <div class="cell">
@@ -1847,10 +1861,11 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 </div>
 </div>
 <p>In this case, the first three rows have no missing values anywhere, and the last three rows have exactly one missing value. This corresponds to what we would expect, with <code>complete.cases</code> identifying rows that have any missing values.</p>
-<p>What we now need to do is to obtain a data frame that contains only the rows with non-missing values. This can be done by saving the result of <code>complete.cases</code> in a variable first; <code>filter</code> can take anything that produces a true or a false for each row, and will return the rows for which the thing it was fed was true. ::: {.cell}</p>
+<p>What we now need to do is to obtain a data frame that contains only the rows with non-missing values. This can be done by saving the result of <code>complete.cases</code> in a variable first; <code>filter</code> can take anything that produces a true or a false for each row, and will return the rows for which the thing it was fed was true.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">complete.cases</span>(steak0)</span>
 <span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>steak0 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cc) <span class="ot">-&gt;</span> steak.complete</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>A quick check that we got rid of the missing values:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>steak.complete</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1910,9 +1925,10 @@ lgl (9): lottery_a, smoke, alcohol, gamble, skydiving, speed, cheated, steak...
 <li>Write the data into a <code>.csv</code> file, with a name like <code>steak1.csv</code>. Open this file in a spreadsheet and (quickly) verify that you have the right columns and no missing values.</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>write_csv</code>, using my output from <code>drop_na</code>: ::: {.cell}</p>
+<p>This is <code>write_csv</code>, using my output from <code>drop_na</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(steak, <span class="st">"steak1.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>Open up Excel, or whatever you have, and take a look. You should have all the right columns, and, scrolling down, no visible missing values.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 

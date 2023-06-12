@@ -539,22 +539,24 @@ dbl (30): s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, ...
 <li>Create a distance object out of your dissimilarities, bearing in mind that the values are distances (well, dissimilarities) already.</li>
 </ol>
 <p>Solution</p>
-<p>This one needs <code>as.dist</code> to convert already-distances into a <code>dist</code> object. (<code>dist</code> would have <em>calculated</em> distances from things that were not distances/dissimilarities yet.) ::: {.cell}</p>
+<p>This one needs <code>as.dist</code> to convert already-distances into a <code>dist</code> object. (<code>dist</code> would have <em>calculated</em> distances from things that were not distances/dissimilarities yet.)</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(seabed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>If you check, you’ll see that the site names are being used to label rows <em>and</em> columns of the dissimilarity matrix as displayed. The lack of row names is not hurting us.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Fit a cluster analysis using single-linkage, and display a dendrogram of the results.</li>
 </ol>
 <p>Solution</p>
-<p>This: ::: {.cell}</p>
+<p>This:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"single"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/seabed-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This is a base-graphics plot, it not having any of the nice <code>ggplot</code> things. But it does the job.</p>
 <p>Single-linkage tends to produce “stringy” clusters, since the individual being added to a cluster only needs to be close to one thing in the cluster. Here, that manifests itself in sites getting added to clusters one at a time: for example, sites 25 and 26 get joined together into a cluster, and then in sequence sites 6, 16, 27, 30 and 22 get joined on to it (rather than any of those sites being formed into clusters first).</p>
 <p>You might<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> be wondering what else is in that <code>hclust</code> object, and what it’s good for. Let’s take a look:</p>
@@ -615,13 +617,14 @@ dbl (30): s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, ...
 <li>Now fit a cluster analysis using Ward’s method, and display a dendrogram of the results.</li>
 </ol>
 <p>Solution</p>
-<p>Same thing, with small changes. The hard part is getting the name of the <code>method</code> right: ::: {.cell}</p>
+<p>Same thing, with small changes. The hard part is getting the name of the <code>method</code> right:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"ward.D"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.2</span>, <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/seabed-6-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The site numbers were a bit close together, so I printed them out smaller than usual size (which is what the <code>cex</code> and a number less than 1 is doing: 70% of normal size).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> This time, there is a greater tendency for sites to be joined into small clusters first, then these small clusters are joined together. It’s not perfect, but there is a greater tendency for it to happen here.</p>
 <p>This shows up in <code>merge</code> too:</p>
 <div class="cell">
@@ -665,13 +668,14 @@ dbl (30): s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, ...
 <li><a name="part:prefclust">*</a> On the Ward’s method clustering, how many clusters would you choose to divide the sites into? Draw rectangles around those clusters.</li>
 </ol>
 <p>Solution</p>
-<p>You may need to draw the plot again. In any case, a second line of code draws the rectangles. I think three clusters is good, but you can have a few more than that if you like: ::: {.cell}</p>
+<p>You may need to draw the plot again. In any case, a second line of code draws the rectangles. I think three clusters is good, but you can have a few more than that if you like:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.2</span>, <span class="at">cex =</span> <span class="fl">0.7</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(d<span class="fl">.2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/seabed-8-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>What I want to see is a not-unreasonable choice of number of clusters (I think you could go up to about six), and then a depiction of that number of clusters on the plot. This is six clusters:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.2</span>, <span class="at">cex =</span> <span class="fl">0.7</span>)</span>
@@ -719,7 +723,8 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
 <li>Go back to your Ward method dendrogram with the red rectangles and find two sites in the same cluster. Display the original data for your two sites and see if you can explain why they are in the same cluster. It doesn’t matter which two sites you choose; the grader will merely check that your results look reasonable.</li>
 </ol>
 <p>Solution</p>
-<p>I want my two sites to be very similar, so I’m looking at two sites that were joined into a cluster very early on, sites <code>s3</code> and <code>s20</code>. As I said, I don’t mind which ones you pick, but being in the same cluster will be easiest to justify if you pick sites that were joined together early. Then you need to display just those rows of the original data (that you just read in), which is a <code>filter</code> with an “or” in it: ::: {.cell}</p>
+<p>I want my two sites to be very similar, so I’m looking at two sites that were joined into a cluster very early on, sites <code>s3</code> and <code>s20</code>. As I said, I don’t mind which ones you pick, but being in the same cluster will be easiest to justify if you pick sites that were joined together early. Then you need to display just those rows of the original data (that you just read in), which is a <code>filter</code> with an “or” in it:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>seabed.z <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">"s3"</span> <span class="sc">|</span> site <span class="sc">==</span> <span class="st">"s20"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -729,7 +734,7 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>I think this odd-looking thing also works:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>seabed.z <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"s3"</span>, <span class="st">"s20"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -866,7 +871,8 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
 </div>
 </div>
 </div>
-<p>This is a one-row data frame, not a vector as our function expects. Do we need to worry about it? First, grab the right columns, so that we will know what our function has to do: ::: {.cell}</p>
+<p>This is a one-row data frame, not a vector as our function expects. Do we need to worry about it? First, grab the right columns, so that we will know what our function has to do:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>seabed.z <span class="sc">%&gt;%</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">"s3"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(a<span class="sc">:</span>e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -878,14 +884,15 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
   </script>
 </div>
 </div>
-<p>:::</p>
-<p>That leads us to this function, which is a bit repetitious, but for two repeats I can handle it. I haven’t done anything about the fact that <code>x</code> and <code>y</code> below are actually data frames: ::: {.cell}</p>
+</div>
+<p>That leads us to this function, which is a bit repetitious, but for two repeats I can handle it. I haven’t done anything about the fact that <code>x</code> and <code>y</code> below are actually data frames:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>braycurtis.spec <span class="ot">&lt;-</span> <span class="cf">function</span>(d, i, j) {</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> i) <span class="sc">%&gt;%</span> <span class="fu">select</span>(a<span class="sc">:</span>e) <span class="ot">-&gt;</span> x</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> j) <span class="sc">%&gt;%</span> <span class="fu">select</span>(a<span class="sc">:</span>e) <span class="ot">-&gt;</span> y</span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">braycurtis</span>(x, y)</span>
 <span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>The first time I did this, I had the <code>filter</code> and the <code>select</code> in the opposite order, so I was neatly <em>removing</em> the column I wanted to <code>filter</code> by <em>before</em> I did the <code>filter</code>!</p>
 <p>The first two lines pull out columns <code>a</code> through <code>e</code> of (respectively) sites <code>i</code> and <code>j</code>.</p>
 <p>If I were going to create more than two things like <code>x</code> and <code>y</code>, I would have hived that off into a separate function as well, but I didn’t.</p>
@@ -921,7 +928,8 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
 </div>
 </div>
 </div>
-<p>Now, think about what to do in English first: “for each of the sites in <code>site1</code>, and for each of the sites in <code>site2</code>, taken in parallel, work out the Bray-Curtis distance.” This is, I hope, making you think of <code>rowwise</code>: ::: {.cell}</p>
+<p>Now, think about what to do in English first: “for each of the sites in <code>site1</code>, and for each of the sites in <code>site2</code>, taken in parallel, work out the Bray-Curtis distance.” This is, I hope, making you think of <code>rowwise</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>site_pairs <span class="sc">%&gt;%</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bray_curtis =</span> <span class="fu">braycurtis.spec</span>(seabed.z, site1, site2)) <span class="ot">-&gt;</span> bc</span>
@@ -934,7 +942,7 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>(you might notice that this takes a noticeable time to run.)</p>
 <p>This is a “long” data frame, but for the cluster analysis, we need a wide one with sites in rows and columns, so let’s create that:</p>
 <div class="cell">
@@ -949,7 +957,8 @@ dbl (8): a, b, c, d, e, depth, pollution, temp
 </div>
 </div>
 <p>That’s the data frame I shared with you.</p>
-<p>The more Python-like way of doing it is a loop inside a loop. This works in R, but it has more housekeeping and a few possibly unfamiliar ideas. We are going to work with a <code>matrix</code>, and we access elements of a matrix with two numbers inside square brackets, a row number and a column number. We also have to initialize our matrix that we’re going to fill with Bray-Curtis distances; I’ll fill it with <span class="math inline">\(-1\)</span> values, so that if any are left at the end, I’ll know I missed something. ::: {.cell}</p>
+<p>The more Python-like way of doing it is a loop inside a loop. This works in R, but it has more housekeeping and a few possibly unfamiliar ideas. We are going to work with a <code>matrix</code>, and we access elements of a matrix with two numbers inside square brackets, a row number and a column number. We also have to initialize our matrix that we’re going to fill with Bray-Curtis distances; I’ll fill it with <span class="math inline">\(-1\)</span> values, so that if any are left at the end, I’ll know I missed something.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">30</span>)</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>) {</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>) {</span>
@@ -996,7 +1005,7 @@ s4 0.5454545 0.8446602
 s5 0.3125000 0.4796748
 s6 0.5357143 0.2163743</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Because my loops work with site <em>numbers</em> and my function works with site <em>names</em>, I have to remember to refer to the site names when I call my function. I also have to supply row and column names (the site names).</p>
 <p>That looks all right. Are all my Bray-Curtis distances between 0 and 1? I can smoosh my matrix into a vector and summarize it:</p>
 <div class="cell">
@@ -1124,7 +1133,8 @@ Blueberry       3       2       2       3        2          0
 </code></pre>
 <p>I copied this into a file <code>fruits.txt</code>. Note that (i) I have aligned my columns, so that I will be able to use <code>read_table</code> later, and (ii) I have given the first column a name, since <code>read_table</code> wants the same number of column names as columns.</p>
 <p>Extra: yes, you can do this in R too. We’ve seen some of the tricks before.</p>
-<p>Let’s start by reading in my table of fruits and properties, which I saved in <a href="http://ritsokiguess.site/datafiles/fruit1.txt">link</a>: ::: {.cell}</p>
+<p>Let’s start by reading in my table of fruits and properties, which I saved in <a href="http://ritsokiguess.site/datafiles/fruit1.txt">link</a>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/fruit1.txt"</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>fruit1 <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1149,7 +1159,7 @@ cols(
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>We don’t need the first column, so we’ll get rid of it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>fruit2 <span class="ot">&lt;-</span> fruit1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Property)</span>
@@ -1307,7 +1317,8 @@ Blueberry      3      2      2    3          2         0</code></pre>
 <li>Do a hierarchical cluster analysis using complete linkage. Display your dendrogram.</li>
 </ol>
 <p>Solution</p>
-<p>First, we need to take one of our matrices of dissimilarities and turn it into a <code>dist</code> object. Since I asked you to save yours into a file, let’s start from there. Mine is aligned columns: ::: {.cell}</p>
+<p>First, we need to take one of our matrices of dissimilarities and turn it into a <code>dist</code> object. Since I asked you to save yours into a file, let’s start from there. Mine is aligned columns:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>dissims <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">"fruits.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
@@ -1331,7 +1342,7 @@ cols(
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Then turn it into a <code>dist</code> object. The first step is to take off the first column, since <code>as.dist</code> can get the names from the columns:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>dissims <span class="sc">%&gt;%</span></span>
@@ -1415,14 +1426,15 @@ cols(
 </div>
 <p>Since there are seven columns, this dataframe has seven “things” in it. This is the “array extent” that the error message talks about. But the first thing in <code>dimnames</code>, the row names, which the error message calls <code>'dimnames' [1]</code>, only has six things in it. End of aside.</p>
 <p>This one is <code>as.dist</code> rather than <code>dist</code> since you already have dissimilarities and you want to arrange them into the right type of thing. <code>dist</code> is for <em>calculating</em> dissimilarities, which we did before, so we don’t want to do that now.</p>
-<p>Now, after all that work, the actual cluster analysis and dendrogram: ::: {.cell}</p>
+<p>Now, after all that work, the actual cluster analysis and dendrogram:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>fruits<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"complete"</span>)</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fruits<span class="fl">.1</span>)</span>
 <span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(fruits<span class="fl">.1</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/hkadh-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>How many clusters, of what fruits, do you seem to have? Explain briefly.</li>
@@ -1440,14 +1452,15 @@ cols(
 strawberry    3       2
 blueberry     3       2
 </code></pre>
-<p>The largest of those is 3, so that’s the complete-linkage distance. That’s also what the dendrogram says. (Likewise, the smallest of those is 2, so 2 is the single-linkage distance.) That is to say, the largest distance or dissimilarity from anything in one cluster to anything in the other is 3, and the smallest is 2. I don’t mind which pair of clusters you take, as long as you spell out the dissimilarity (distance) between each fruit in each cluster, and take the maximum of those. Besides, if your dissimilarities are different from mine, your complete-linkage distance could be different from mine also. The grader will have to use her judgement!<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a><br>
-The important point is that you assess the dissimilarities between fruits in one cluster and fruits in the other. The dissimilarities between fruits in the same cluster don’t enter into it.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> As it happens, all my complete-linkage distances between clusters (of at least 2 fruits) are 3. The single-linkage ones are different, though: ::: {.cell}</p>
+<p>The largest of those is 3, so that’s the complete-linkage distance. That’s also what the dendrogram says. (Likewise, the smallest of those is 2, so 2 is the single-linkage distance.) That is to say, the largest distance or dissimilarity from anything in one cluster to anything in the other is 3, and the smallest is 2. I don’t mind which pair of clusters you take, as long as you spell out the dissimilarity (distance) between each fruit in each cluster, and take the maximum of those. Besides, if your dissimilarities are different from mine, your complete-linkage distance could be different from mine also. The grader will have to use her judgement!<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p>The important point is that you assess the dissimilarities between fruits in one cluster and fruits in the other. The dissimilarities between fruits in the same cluster don’t enter into it.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> As it happens, all my complete-linkage distances between clusters (of at least 2 fruits) are 3. The single-linkage ones are different, though:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>fruits<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"single"</span>)</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fruits<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/lhsdjhad-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>All the single-linkage cluster distances are 2. (OK, so this wasn’t a very interesting example, but I wanted to give you one where you could calculate what was going on.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
@@ -1458,7 +1471,8 @@ The important point is that you assess the dissimilarities between fruits in one
 <li>Read the data into a data frame and take a look at it.</li>
 </ol>
 <p>Solution</p>
-<p>Nothing much new here: ::: {.cell}</p>
+<p>Nothing much new here:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/species.txt"</span></span>
 <span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1480,7 +1494,7 @@ dbl (8): Man, Monkey, Horse, Pig, Pigeon, Tuna, Mould, Fungus
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>This is a square array of dissimilarities between the eight species.</p>
 <p>The data set came from the 1960s, hence the use of “Man” rather than “human”. It probably also came from the UK, judging by the spelling of <code>Mould</code>.</p>
 <p>(I gave the first column the name <code>what</code> so that you could safely use <code>species</code> for the whole data frame.)</p>
@@ -1489,7 +1503,8 @@ dbl (8): Man, Monkey, Horse, Pig, Pigeon, Tuna, Mould, Fungus
 <li>Bearing in mind that the values you read in are <em>already</em> dissimilarities, convert them into a <code>dist</code> object suitable for running a cluster analysis on, and display the results. (Note that you need to get rid of any columns that don’t contain numbers.)</li>
 </ol>
 <p>Solution</p>
-<p>The point here is that the values you have are <em>already</em> dissimilarities, so no conversion of the numbers is required. Thus this is a job for <code>as.dist</code>, which merely changes how it looks. Use a pipeline to get rid of the first column first: ::: {.cell}</p>
+<p>The point here is that the values you have are <em>already</em> dissimilarities, so no conversion of the numbers is required. Thus this is a job for <code>as.dist</code>, which merely changes how it looks. Use a pipeline to get rid of the first column first:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>what) <span class="sc">%&gt;%</span></span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.dist</span>() <span class="ot">-&gt;</span> d</span>
@@ -1504,7 +1519,7 @@ Tuna    31     32    27  25     27
 Mould   63     62    64  64     59   72      
 Fungus  66     65    68  67     66   69    61</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This doesn’t display anything that it doesn’t need to: we know that the dissimilarity between a species and itself is zero (no need to show that), and that the dissimilarity between B and A is the same as between A and B, so no need to show everything twice. It might look as if you are missing a row and a column, but one of the species (Fungus) appears only in a row and one of them (Man) only in a column.</p>
 <p>This also works, to select only the numerical columns:</p>
 <div class="cell">
@@ -1529,25 +1544,27 @@ Fungus  66     65    68  67     66   69    61</code></pre>
 <li>Run a cluster analysis using single-linkage and obtain a dendrogram.</li>
 </ol>
 <p>Solution</p>
-<p>Something like this: ::: {.cell}</p>
+<p>Something like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>species<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"single"</span>)</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(species<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/species-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Run a cluster analysis using Ward’s method and obtain a dendrogram.</li>
 </ol>
 <p>Solution</p>
-<p>Not much changes here in the code, but the result is noticeably different: ::: {.cell}</p>
+<p>Not much changes here in the code, but the result is noticeably different:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>species<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"ward.D"</span>)</span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(species<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/species-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Don’t forget to take care with the <code>method</code>: it has to be <code>ward</code> in lowercase (even though it’s someone’s name) followed by a D in uppercase.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
@@ -1560,13 +1577,14 @@ Fungus  66     65    68  67     66   69    61</code></pre>
 <li>Looking at your clustering for Ward’s method, what seems to be a sensible number of clusters? Draw boxes around those clusters.</li>
 </ol>
 <p>Solution</p>
-<p>Pretty much any number of clusters bigger than 1 and smaller than 8 is ok here, but I would prefer to see something between 2 and 5, because a number of clusters of that sort offers (i) some insight (“these things are like these other things”) and (ii) a number of clusters of that sort is supported by the data. To draw those clusters, you need <code>rect.hclust</code>, and before that you’ll need to plot the cluster object again. For 2 clusters, that would look like this: ::: {.cell}</p>
+<p>Pretty much any number of clusters bigger than 1 and smaller than 8 is ok here, but I would prefer to see something between 2 and 5, because a number of clusters of that sort offers (i) some insight (“these things are like these other things”) and (ii) a number of clusters of that sort is supported by the data. To draw those clusters, you need <code>rect.hclust</code>, and before that you’ll need to plot the cluster object again. For 2 clusters, that would look like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(species<span class="fl">.2</span>)</span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(species<span class="fl">.2</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/species-6-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This one is “mould and fungus vs.&nbsp;everything else”. (My red boxes seem to have gone off the side, sorry.)</p>
 <p>Or we could go to the other end of the scale:</p>
 <div class="cell">
@@ -1582,13 +1600,14 @@ Fungus  66     65    68  67     66   69    61</code></pre>
 <li>List which cluster each species is in, for your preferred number of clusters (from Ward’s method).</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>cutree</code>. For 2 clusters it would be this: ::: {.cell}</p>
+<p>This is <code>cutree</code>. For 2 clusters it would be this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cutree</span>(species<span class="fl">.2</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Man Monkey  Horse    Pig Pigeon   Tuna  Mould Fungus 
      1      1      1      1      1      1      2      2 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>For 5 it would be this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cutree</span>(species<span class="fl">.2</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1656,7 +1675,8 @@ dbl  (2): location, lanes
 <li>Verify that there are missing values in this dataset. To see them, convert the text columns temporarily to <code>factor</code>s using <code>mutate</code>, and pass the resulting data frame into <code>summary</code>.</li>
 </ol>
 <p>Solution</p>
-<p>I called my data frame <code>bridges0</code>, so this: ::: {.cell}</p>
+<p>I called my data frame <code>bridges0</code>, so this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>bridges0 <span class="sc">%&gt;%</span></span>
 <span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), \(x) <span class="fu">factor</span>(x))) <span class="sc">%&gt;%</span></span>
 <span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1686,7 +1706,7 @@ dbl  (2): location, lanes
  (Other) :11  
  NA's    : 2  </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>There are missing values all over the place. <code>length</code> has the most, but <code>lanes</code> and <code>span</code> also have a fair few.</p>
 <p><code>mutate</code> requires <code>across</code> and a logical condition, something that is true or false, about each column, and then something to do with it. In words, “for each column that is text, replace it (temporarily) with the factor version of itself.”</p>
 <p>Extra: I think the reason <code>summary</code> doesn’t handle text stuff very well is that, originally, text columns that were read in from files <em>got turned into</em> factors, and if you didn’t want that to happen, you had to explicitly stop it yourself. Try mentioning <code>stringsAsFactors=F</code> to a veteran R user, and watch their reaction, or try it yourself by reading in a data file with text columns using <code>read.table</code> instead of <code>read_delim</code>. (This will read in an old-fashioned data frame, so pipe it through <code>as_tibble</code> to see what the columns are.)</p>
@@ -1696,7 +1716,8 @@ dbl  (2): location, lanes
 <li>Use <code>drop_na</code> to remove any rows of the data frame with missing values in them. How many rows do you have left?</li>
 </ol>
 <p>Solution</p>
-<p>This is as simple as: ::: {.cell}</p>
+<p>This is as simple as:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>bridges0 <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="ot">-&gt;</span> bridges</span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>bridges</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1707,14 +1728,15 @@ dbl  (2): location, lanes
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>I have 70 rows left (out of the original 108).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>We are going to assess the dissimilarity between two bridges by the number of the categorical variables they <em>disagree</em> on. This is called a “simple matching coefficient”, and is the same thing we did in the question about clustering fruits based on their properties. This time, though, we want to count matches in things that are <em>rows</em> of our data frame (properties of two different bridges), so we will need to use a strategy like the one I used in calculating the Bray-Curtis distances. First, write a function that takes as input two vectors <code>v</code> and <code>w</code> and counts the number of their entries that differ (comparing the first with the first, the second with the second, , the last with the last. I can think of a quick way and a slow way, but either way is good.) To test your function, create two vectors (using <code>c</code>) of the same length, and see whether it correctly counts the number of corresponding values that are different.</li>
 </ol>
 <p>Solution</p>
-<p>The slow way is to loop through the elements of each vector, using square brackets to pull out the ones you want, checking them for differentness, then updating a counter which gets returned at the end. If you’ve done Python, this is exactly the strategy you’d use there: ::: {.cell}</p>
+<p>The slow way is to loop through the elements of each vector, using square brackets to pull out the ones you want, checking them for differentness, then updating a counter which gets returned at the end. If you’ve done Python, this is exactly the strategy you’d use there:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>count_diff <span class="ot">&lt;-</span> <span class="cf">function</span>(v, w) {</span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(v)</span>
 <span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(v) <span class="sc">==</span> <span class="fu">length</span>(w)) <span class="co"># I explain this below</span></span>
@@ -1724,7 +1746,7 @@ dbl  (2): location, lanes
 <span id="cb130-7"><a href="#cb130-7" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb130-8"><a href="#cb130-8" aria-hidden="true" tabindex="-1"></a>  count</span>
 <span id="cb130-9"><a href="#cb130-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>This function makes no sense if <code>v</code> and <code>w</code> are of different lengths, since we’re comparing <em>corresponding</em> elements of them. The <code>stopifnot</code> line checks to see whether <code>v</code> and <code>w</code> have the same number of things in them, and stops with an informative error if they are of different lengths. (The thing inside the <code>stopifnot</code> is what has to be <em>true</em>.)</p>
 <p>Does it work?</p>
 <div class="cell">
@@ -1818,7 +1840,8 @@ dbl  (2): location, lanes
 <li>Create a matrix or data frame of pairwise dissimilarities between each pair of bridges (using only the ones with no missing values). Use loops, or <code>crossing</code> and <code>rowwise</code>, as you prefer. Display the first six rows of your matrix (using <code>head</code>) or the first few rows of your data frame. (The whole thing is big, so don’t display it all.)</li>
 </ol>
 <p>Solution</p>
-<p>First thing, either way, is to find out how many bridges we have left: ::: {.cell}</p>
+<p>First thing, either way, is to find out how many bridges we have left:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>bridges</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1828,7 +1851,7 @@ dbl  (2): location, lanes
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <ol start="70" type="1">
 <li>So the loops (and the <code>crossing</code>) will go up to 70. Loops first:</li>
 </ol>
@@ -1928,9 +1951,10 @@ dbl  (2): location, lanes
 <li>Turn your matrix or data frame into a <code>dist</code> object. (If you couldn’t create a matrix or data frame of dissimilarities, read them in from <a href="https://raw.githubusercontent.com/nxskok/datafiles/master/mm.csv">link</a>.) Do not display your distance object.</li>
 </ol>
 <p>Solution</p>
-<p>The only tricky thing is that the data frame that I called <code>mm</code> has an extra column called <code>i</code> that needs to be removed first. This also applies if you need to read it in from the file. Thus: ::: {.cell}</p>
+<p>The only tricky thing is that the data frame that I called <code>mm</code> has an extra column called <code>i</code> that needs to be removed first. This also applies if you need to read it in from the file. Thus:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>or</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>mm <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>i) <span class="sc">%&gt;%</span> <span class="fu">as.dist</span>() <span class="ot">-&gt;</span> d2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2177,26 +2201,28 @@ dbl (71): i, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ...
 <li>Run a cluster analysis using Ward’s method, and display a dendrogram. The labels for the bridges (rows of the data frame) may come out too big; experiment with a <code>cex</code> less than 1 on the plot so that you can see them.</li>
 </ol>
 <p>Solution</p>
-<p>Home stretch now. I found that <code>cex=0.3</code> was good for me, though I had to enlarge the graph to see the bridge numbers: ::: {.cell}</p>
+<p>Home stretch now. I found that <code>cex=0.3</code> was good for me, though I had to enlarge the graph to see the bridge numbers:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>bridges<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d1, <span class="at">method =</span> <span class="st">"ward.D"</span>)</span>
 <span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bridges<span class="fl">.1</span>, <span class="at">cex =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/pittsburgh-22-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><code>cex</code> stands for “character expansion”. This is one of the myriad of things you could adjust on the old base graphics (of which this is an example). If you wanted to make text <em>bigger</em>, you’d set <code>cex</code> to a value bigger than 1.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol type="i">
 <li>How many clusters do you think is reasonable for these data? Draw them on your plot.</li>
 </ol>
 <p>Solution</p>
-<p>I think you could go with any number from about 3 to something like 15, but my choice is 5. What you want is for the bridges within a cluster to be similar and bridges in different clusters to be different, however you judge that. ::: {.cell}</p>
+<p>I think you could go with any number from about 3 to something like 15, but my choice is 5. What you want is for the bridges within a cluster to be similar and bridges in different clusters to be different, however you judge that.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bridges<span class="fl">.1</span>, <span class="at">cex =</span> <span class="fl">0.3</span>)</span>
 <span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(bridges<span class="fl">.1</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cluster_files/figure-html/pittsburgh-23-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Whatever number of clusters you go with, draw a corresponding number of red rectangles.</p>
 <p>Note that the low-numbered bridges are all in my first cluster, as I suspected they would be.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>

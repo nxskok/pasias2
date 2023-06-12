@@ -525,7 +525,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read in the data and check that you have a column of <code>drug</code> and five columns of rat weights at different times.</li>
 </ol>
 <p>Solution</p>
-<p>A <code>.csv</code> file, so <code>read_csv</code>. (I typed the data from Christensen (2001) into a spreadsheet.) ::: {.cell}</p>
+<p>A <code>.csv</code> file, so <code>read_csv</code>. (I typed the data from Christensen (2001) into a spreadsheet.)</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ratweight.csv"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -547,7 +548,7 @@ dbl (6): rat, Time0, Time1, Time2, Time3, Time4
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>There are 27 rats altogether, each measured five times (labelled time 0 through 4). The rats are also labelled <code>rat</code> (the first column), which will be useful later.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -560,10 +561,11 @@ dbl (6): rat, Time0, Time1, Time2, Time3, Time4
 <li>Create a suitable response variable and fit a suitable <code>lm</code> as the first step of the repeated-measures analysis.</li>
 </ol>
 <p>Solution</p>
-<p>The response variable is the same idea as for any MANOVA: just glue the columns together: ::: {.cell}</p>
+<p>The response variable is the same idea as for any MANOVA: just glue the columns together:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(weights, <span class="fu">cbind</span>(Time0, Time1, Time2, Time3, Time4))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>weights<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> drug, <span class="at">data =</span> weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>weights <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"Time"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="ot">-&gt;</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -574,7 +576,8 @@ dbl (6): rat, Time0, Time1, Time2, Time3, Time4
 <li>Load the package <code>car</code> and run a suitable <code>Manova</code>. To do this, you will need to set up the right thing for <code>idata</code> and <code>idesign</code>.</li>
 </ol>
 <p>Solution</p>
-<p>Something like this: ::: {.cell}</p>
+<p>Something like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">colnames</span>(response)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>times</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -591,7 +594,7 @@ dbl (6): rat, Time0, Time1, Time2, Time3, Time4
 </div>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>weights<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">Manova</span>(weights<span class="fl">.1</span>, <span class="at">idata =</span> times.df, <span class="at">idesign =</span> <span class="sc">~</span>times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>The thought process is that the columns of the response (<code>Time.0</code> through <code>Time.4</code>) are all times. This is the “within-subject design” part of it: within a rat, the different response values are at different times. That’s the only part of it that is within subjects. The different drugs are a “between-subjects” factor: each rat only gets one of the drugs.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
@@ -776,7 +779,7 @@ drug:times 0.3436277 1.757377e-06</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rat"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["drug"],"name":[2],"type":["chr"],"align":["left"]},{"label":["timex"],"name":[3],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"13","2":"thiouracil","3":"Time1","4":"75","5":"1"},{"1":"4","2":"thyroxin","3":"Time3","4":"148","5":"3"},{"1":"3","2":"thyroxin","3":"Time1","4":"75","5":"1"},{"1":"17","2":"thiouracil","3":"Time1","4":"72","5":"1"},{"1":"1","2":"thyroxin","3":"Time0","4":"59","5":"0"},{"1":"26","2":"control","3":"Time4","4":"140","5":"4"},{"1":"7","2":"thyroxin","3":"Time2","4":"105","5":"2"},{"1":"12","2":"thiouracil","3":"Time2","4":"101","5":"2"},{"1":"7","2":"thyroxin","3":"Time4","4":"171","5":"4"},{"1":"27","2":"control","3":"Time4","4":"169","5":"4"},{"1":"20","2":"control","3":"Time1","4":"77","5":"1"},{"1":"9","2":"thiouracil","3":"Time4","4":"122","5":"4"},{"1":"16","2":"thiouracil","3":"Time3","4":"90","5":"3"},{"1":"21","2":"control","3":"Time0","4":"49","5":"0"},{"1":"12","2":"thiouracil","3":"Time3","4":"123","5":"3"},{"1":"11","2":"thiouracil","3":"Time4","4":"122","5":"4"},{"1":"13","2":"thiouracil","3":"Time3","4":"100","5":"3"},{"1":"18","2":"control","3":"Time0","4":"57","5":"0"},{"1":"24","2":"control","3":"Time3","4":"110","5":"3"},{"1":"8","2":"thiouracil","3":"Time1","4":"86","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rat"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["drug"],"name":[2],"type":["chr"],"align":["left"]},{"label":["timex"],"name":[3],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"21","2":"control","3":"Time2","4":"100","5":"2"},{"1":"27","2":"control","3":"Time2","4":"110","5":"2"},{"1":"15","2":"thiouracil","3":"Time0","4":"58","5":"0"},{"1":"3","2":"thyroxin","3":"Time0","4":"56","5":"0"},{"1":"27","2":"control","3":"Time1","4":"82","5":"1"},{"1":"17","2":"thiouracil","3":"Time4","4":"122","5":"4"},{"1":"21","2":"control","3":"Time3","4":"129","5":"3"},{"1":"4","2":"thyroxin","3":"Time0","4":"59","5":"0"},{"1":"12","2":"thiouracil","3":"Time4","4":"140","5":"4"},{"1":"10","2":"thiouracil","3":"Time4","4":"133","5":"4"},{"1":"27","2":"control","3":"Time4","4":"169","5":"4"},{"1":"12","2":"thiouracil","3":"Time2","4":"101","5":"2"},{"1":"27","2":"control","3":"Time3","4":"139","5":"3"},{"1":"14","2":"thiouracil","3":"Time2","4":"95","5":"2"},{"1":"18","2":"control","3":"Time2","4":"114","5":"2"},{"1":"6","2":"thyroxin","3":"Time3","4":"116","5":"3"},{"1":"18","2":"control","3":"Time3","4":"139","5":"3"},{"1":"25","2":"control","3":"Time2","4":"112","5":"2"},{"1":"3","2":"thyroxin","3":"Time2","4":"108","5":"2"},{"1":"8","2":"thiouracil","3":"Time1","4":"86","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -787,7 +790,8 @@ drug:times 0.3436277 1.757377e-06</code></pre>
 <li>Obtain an interaction plot. Putting <code>time</code> as the <code>x</code> will put time along the horizontal axis, which is the way we’re used to seeing such things. Begin by calculating the mean <code>weight</code> for each <code>time</code>-<code>drug</code> combination.</li>
 </ol>
 <p>Solution</p>
-<p><code>group_by</code>, <code>summarize</code> and <code>ggplot</code>, the latter using the data frame that came out of the <code>summarize</code>. The second factor <code>drug</code> goes as the <code>colour</code> and <code>group</code> both, since <code>time</code> has grabbed the <code>x</code> spot: ::: {.cell}</p>
+<p><code>group_by</code>, <code>summarize</code> and <code>ggplot</code>, the latter using the data frame that came out of the <code>summarize</code>. The second factor <code>drug</code> goes as the <code>colour</code> and <code>group</code> both, since <code>time</code> has grabbed the <code>x</code> spot:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>weights.long <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, drug) <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.weight =</span> <span class="fu">mean</span>(weight)) <span class="sc">%&gt;%</span></span>
@@ -800,7 +804,7 @@ drug:times 0.3436277 1.757377e-06</code></pre>
 <div class="cell-output-display">
 <p><img src="repeated-measures_files/figure-html/ratweight-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="8" type="a">
 <li>How does this plot show why the interaction was significant? Explain briefly.</li>
@@ -906,21 +910,23 @@ dbl (5): subject, t1, t2, t3, t4
 <li>Create a response variable and fit a suitable <code>lm</code> as the first stage of the repeated-measures analysis.</li>
 </ol>
 <p>Solution</p>
-<p>This: ::: {.cell}</p>
+<p>This:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(geriatrics, <span class="fu">cbind</span>(t1, t2, t3, t4))</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>geriatrics<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> treatment, <span class="at">data =</span> geriatrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>There is no need to look at this, since we are going to feed it into <code>Manova</code> in a moment, but in case you’re curious, you see (in <code>summary</code>) a regression of each of the four columns in <code>response</code> on <code>treatment</code>, one by one.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Run a suitable <code>Manova</code>. There is some setup first. Make sure you do that.</li>
 </ol>
 <p>Solution</p>
-<p>Make sure <code>car</code> is loaded, and do the <code>idata</code> and <code>idesign</code> thing: ::: {.cell}</p>
+<p>Make sure <code>car</code> is loaded, and do the <code>idata</code> and <code>idesign</code> thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">colnames</span>(response)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>times.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">times=</span><span class="fu">factor</span>(times))</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>geriatrics<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">Manova</span>(geriatrics<span class="fl">.1</span>, <span class="at">idata =</span> times.df, <span class="at">idesign =</span> <span class="sc">~</span>times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>In case you’re curious, <code>response</code> is an R <code>matrix</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -934,7 +940,8 @@ dbl (5): subject, t1, t2, t3, t4
 <li>Display the results of your repeated-measures analysis. What do you conclude? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>Its <code>summary</code> will get you what you want: ::: {.cell}</p>
+<p>Its <code>summary</code> will get you what you want:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(geriatrics<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in summary.Anova.mlm(geriatrics.2): HF eps &gt; 1 treated as 1</code></pre>
@@ -1074,7 +1081,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 times           1.086414 2.377839e-09
 treatment:times 1.086414 3.826914e-08</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>As is the way, start at the bottom and go up to Mauchly’s test for sphericity. No problem here, so you can use the P-value for interaction on the univariate test as is ($3.8 ^{-8}). By way of comparison, the Huynh-Feldt adjusted P-value is exactly the same (not actually adjusted at all), which makes sense because there was no lack of sphericity. The multivariate tests for the interaction have P-values that vary, but they are all (i) a bit bigger than the univariate one, and (ii) still significant.</p>
 <p>Thus, the interaction is significant, so the effects of the treatments are different at different times. (It makes most sense to say it this way around, since treatment is something that was controlled and time was not.)</p>
 <p>You, I hope, know better than to look at the main effects when there is a significant interaction!</p>
@@ -1105,7 +1112,8 @@ treatment:times 1.086414 3.826914e-08</code></pre>
 <li>Calculate and save the mean interaction percents for each time-treatment combination.</li>
 </ol>
 <p>Solution</p>
-<p><code>group_by</code> followed by <code>summarize</code>, as ever: ::: {.cell}</p>
+<p><code>group_by</code> followed by <code>summarize</code>, as ever:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>geriatrics.long <span class="sc">%&gt;%</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment, time) <span class="sc">%&gt;%</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(intpct)) <span class="ot">-&gt;</span> means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1122,7 +1130,7 @@ treatment:times 1.086414 3.826914e-08</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="7" type="a">
 <li>Make an interaction plot. Arrange things so that time goes across the page. Use your data frame of means that you just calculated.</li>
@@ -1331,7 +1339,9 @@ treatment:times 1.0546 4.777491e-04</code></pre>
 </div>
 </div>
 <p>The procedure, as before: Mauchly’s test is not significant, so you can look at the univariate test for interaction. For comparison, the P-values for interaction in the multivariate test (all the same) are quite a bit bigger but still significant.</p>
-<p>There is still an interaction, but it’s not as significant as it was before. I think it is still significant because the shape of the two time trends is not the same: the red <code>bt</code> group goes up further and down further. I was musing that the higher values are also more variable, which would suggest a transformation, but I haven’t explored that. If the interaction had turned out to be nonsignificant this way? You might think about trying to remove it from the model, except that in this kind of model, <code>treatment</code> is a “between-subjects factor” and <code>times</code> is a “within-subjects factor”, so they are different kinds of things. What you do in that case is to ignore the non-significant interaction and interpret the main effects: there is no way to “gain df for error” like we did in two-way ANOVA. Supposing, in this case, that we were using <span class="math inline">\(\alpha=0.01\)</span>, we would say that the interaction is not significant. Then we look at the main effects: there is no effect of treatment, but there is an effect of time. Or, to put it another way, once you allow for an effect of time, there is no difference between the two remaining treatments.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>There is still an interaction, but it’s not as significant as it was before. I think it is still significant because the shape of the two time trends is not the same: the red <code>bt</code> group goes up further and down further. I was musing that the higher values are also more variable, which would suggest a transformation, but I haven’t explored that.</p>
+<p>If the interaction had turned out to be nonsignificant this way? You might think about trying to remove it from the model, except that in this kind of model, <code>treatment</code> is a “between-subjects factor” and <code>times</code> is a “within-subjects factor”, so they are different kinds of things. What you do in that case is to ignore the non-significant interaction and interpret the main effects: there is no way to “gain df for error” like we did in two-way ANOVA.</p>
+<p>Supposing, in this case, that we were using <span class="math inline">\(\alpha=0.01\)</span>, we would say that the interaction is not significant. Then we look at the main effects: there is no effect of treatment, but there is an effect of time. Or, to put it another way, once you allow for an effect of time, there is no difference between the two remaining treatments.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
 <p>Thinking back to our spaghetti plot, we are now comparing the red and blue treatments. They both go up at time 2 and down afterwards, which is the time effect, but even once you allow for this time trend, there is too much scatter to be able to infer a difference between the treatments.</p>
 <p>Extra (maybe I could branch off into another question sometime?) I was thinking that this is not terribly clear, so I thought I would fake up some data where there is a treatment effect and a time effect (but no interaction), and draw a spaghetti plot, so you can see the difference, idealized somewhat of course. Let’s try to come up with something with the same kind of time effect, up at time 2 and then down afterwards, that is the same for two drugs A and B. Here’s what I came up with:</p>
 <div class="cell">
@@ -1678,7 +1688,8 @@ dbl (6): epi_1, epi_2, epi_3, epi_4, location, child
 <li>The spaghetti plot was hard to interpret because there are so many children. Calculate the mean epinephrine levels for each location-time combination, and make an interaction plot with time on the <span class="math inline">\(x\)</span>-axis and location as the second factor.</li>
 </ol>
 <p>Solution</p>
-<p>We’ve done this before: ::: {.cell}</p>
+<p>We’ve done this before:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>airport.long <span class="sc">%&gt;%</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">parse_number</span>(when)) <span class="sc">%&gt;%</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">floc =</span> <span class="fu">factor</span>(location)) <span class="sc">%&gt;%</span></span>
@@ -1693,7 +1704,7 @@ dbl (6): epi_1, epi_2, epi_3, epi_4, location, child
 <div class="cell-output-display">
 <p><img src="repeated-measures_files/figure-html/airport-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>I wanted the actual numerical times, so I made them again. Also, it seemed to be easier to create a factor version of the numeric location up front, and then use it several times later. I’m actually not sure that you need it here, since <code>group_by</code> works with the distinct values of a variable, whatever they are, and <code>group</code> in a boxplot may or may not insist on something other than a number. I should try it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>airport.long <span class="sc">%&gt;%</span></span>
@@ -1738,7 +1749,8 @@ dbl (6): epi_1, epi_2, epi_3, epi_4, location, child
 <li>Run a repeated-measures analysis of variance and display the results. Go back to your original data frame, the one you read in from the file, for this. You’ll need to make sure your numeric <code>location</code> gets treated as a <code>factor</code>.</li>
 </ol>
 <p>Solution</p>
-<p>The usual process. I’ll try the other way I used of making the <code>response</code>: ::: {.cell}</p>
+<p>The usual process. I’ll try the other way I used of making the <code>response</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>airport <span class="sc">%&gt;%</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(epi_1<span class="sc">:</span>epi_4) <span class="sc">%&gt;%</span></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="ot">-&gt;</span> response</span>
@@ -1882,14 +1894,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 times                  0.9827628 8.418534e-17
 factor(location):times 0.9827628 3.571900e-13</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol type="i">
 <li>What do you conclude from the MANOVA? Is that consistent with your graphs? Explain briefly.</li>
 </ol>
 <p>Solution</p>
 <p>Start with Mauchly’s test near the bottom. This is not quite significant (for the interaction), so we are entitled to look at the univariate test for interaction, which is <span class="math inline">\(2.3 \times 10^{-13}\)</span>, extremely significant. If you want a comparison, look at the Huynh-Feldt adjustment for the interaction, which is almost exactly the same (<span class="math inline">\(3.57 \times 10^{-13}\)</span>), or the multivariate tests for the interaction (almost the same again).</p>
-<p>So, we start and end with the significant interaction: there is an effect of location, but the nature of that effect depends on time. This is the same as we saw in the interaction plot: from time 2 on, the mean epinephrine levels for the children near the new airport were clearly higher. If you stare at the spaghetti plot, you <em>might</em> come to the same conclusion. Or you might not! I suppose those red dots at time 2 are mostly at the top, and generally so afterwards, whereas at time 1 they are all mixed up with the blue ones. Interactions of this sort in this kind of analysis are very common. There is an “intervention” or “treatment”, and the time points are chosen so that the first one is before the treatment happens, and the other time points are after. Then, the results are very similar for the first time point, and very different after that, rather than being (say) always higher for the treatment group by about the same amount for all times (in which case there would be no interaction). So, you have some choices in practice as to how you might go. You might do the MANOVA, get a significant interaction, and draw an interaction plot to see why. You might stop there, or you might do something like what we did in class: having seen that the first time point is different from the others for reasons that you can explain, do the analysis again, but omitting the first time point. For the MANOVA, that means tweaking your definition of your <code>response</code> to omit the first time point. The rest of it stays the same, though you might want to change your model numbers rather than re-using the old ones as I did: ::: {.cell}</p>
+<p>So, we start and end with the significant interaction: there is an effect of location, but the nature of that effect depends on time. This is the same as we saw in the interaction plot: from time 2 on, the mean epinephrine levels for the children near the new airport were clearly higher.</p>
+<p>If you stare at the spaghetti plot, you <em>might</em> come to the same conclusion. Or you might not! I suppose those red dots at time 2 are mostly at the top, and generally so afterwards, whereas at time 1 they are all mixed up with the blue ones.</p>
+<p>Interactions of this sort in this kind of analysis are very common. There is an “intervention” or “treatment”, and the time points are chosen so that the first one is before the treatment happens, and the other time points are after. Then, the results are very similar for the first time point, and very different after that, rather than being (say) always higher for the treatment group by about the same amount for all times (in which case there would be no interaction).</p>
+<p>So, you have some choices in practice as to how you might go. You might do the MANOVA, get a significant interaction, and draw an interaction plot to see why. You might stop there, or you might do something like what we did in class: having seen that the first time point is different from the others for reasons that you can explain, do the analysis again, but omitting the first time point. For the MANOVA, that means tweaking your definition of your <code>response</code> to omit the first time point. The rest of it stays the same, though you might want to change your model numbers rather than re-using the old ones as I did:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>airport <span class="sc">%&gt;%</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(epi_2<span class="sc">:</span>epi_4) <span class="sc">%&gt;%</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="ot">-&gt;</span> response</span>
@@ -2028,7 +2044,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 times                  1.000731 0.327069634
 factor(location):times 1.000731 0.007305714</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The interaction is still significant. The sphericity test is not significant, so you can use the 0.0073 in the univariate tests as your P-value (note that the Huynh-Feldt adjustment is actually not adjusted at all).</p>
 <p>So there is still not a consistent effect of being near the new airport on epinephrine levels: that is to say, the effect of the new airport <em>still</em> varies over time. That might be because (looking at the interaction plot) for the children near the new airport, the mean epinephrine level went up again between times 2 and 3, whereas for the control children it (for some reason) went dramatically down over the same time period.</p>
 <p>We have lots of data here (200 children), so the significant interaction effect also might not be very big.</p>
@@ -2406,7 +2422,8 @@ times 0.8669702 1.838348e-06</code></pre>
 <li>Read in the data and check that you have a sensible number of rows and columns.</li>
 </ol>
 <p>Solution</p>
-<p>This kind of thing: ::: {.cell}</p>
+<p>This kind of thing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/bodyfat.txt"</span></span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>bodyfat <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -2427,14 +2444,15 @@ dbl (3): athlete, xray, ultrasound
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>16 rows (athletes) and 3 columns, one for each measurement method and one labelling the athletes. All good.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Carry out a suitable (matched-pairs) <span class="math inline">\(t\)</span>-test to determine whether the means are the same or different.</li>
 </ol>
 <p>Solution</p>
-<p>Feed the two columns into <code>t.test</code> along with <code>paired=T</code>. Remember that this is (in effect) a one-sample <span class="math inline">\(t\)</span>-test, so that you can’t use a <code>data=</code>. You therefore have to wrap everything in a <code>with</code>: ::: {.cell}</p>
+<p>Feed the two columns into <code>t.test</code> along with <code>paired=T</code>. Remember that this is (in effect) a one-sample <span class="math inline">\(t\)</span>-test, so that you can’t use a <code>data=</code>. You therefore have to wrap everything in a <code>with</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(bodyfat, <span class="fu">t.test</span>(xray, ultrasound, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2449,7 +2467,7 @@ sample estimates:
 mean difference 
        -0.09375 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The test we want is two-sided, so we didn’t have to take any special steps to get that.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -2537,7 +2555,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ol>
 <p>Solution</p>
 <p>The P-value for <code>methods</code>, which is testing the same thing as the matched pairs, is 0.7623, which is actually <em>identical</em> to the matched pairs <span class="math inline">\(t\)</span>-test, and so the conclusion is identical also. That is, there is no difference between the two methods for measuring body fat. This goes to show that repeated measures gives the same answer as a matched-pairs <span class="math inline">\(t\)</span>-test in the situation where they both apply. But repeated measures is, as we have seen, a lot more general.</p>
-<p>Since this really is repeated measures, we ought to be able to use a mixed model here too. We need “long” or “tidy” format, which we don’t have yet. One pipe to save them all, to paraphrase Lord of the Rings<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> — put all the fat measurements in one column with a label saying which <code>method</code> they were obtained with; create a column which is the athlete number as a factor; fit the linear mixed model; see what we can drop from it: ::: {.cell}</p>
+<p>Since this really is repeated measures, we ought to be able to use a mixed model here too. We need “long” or “tidy” format, which we don’t have yet. One pipe to save them all, to paraphrase Lord of the Rings<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> — put all the fat measurements in one column with a label saying which <code>method</code> they were obtained with; create a column which is the athlete number as a factor; fit the linear mixed model; see what we can drop from it:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>bodyfat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -2560,7 +2579,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Once again, there is no difference between methods, and though the P-value is different from the matched pairs or profile analysis, it is very close to those.</p>
 <p>If you’re not clear about the tidy data frame used for input to <code>lmer</code>, pull the top two lines off the pipeline and see what they produce:</p>
 <div class="cell">
@@ -2595,7 +2614,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>Read in the data and note that you have what was promised in the question.</li>
 </ol>
 <p>Solution</p>
-<p>The usual: ::: {.cell}</p>
+<p>The usual:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/king.csv"</span></span>
 <span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>king <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -2617,16 +2637,17 @@ dbl (7): id, i1, i2, i3, i4, i5, i6
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>There are 24 rats (rows). The columns label the rat (<code>id</code>) and the times at which motor activity was measured (<code>i1</code> through <code>i6</code>). The remaining column, <code>context</code>, describes how the rats were treated before experiment day, with the levels being the same ones given in the question.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>We are going to do a repeated-measures analysis using the “profile” method shown in class. Create a suitable response variable for this method.</li>
 </ol>
 <p>Solution</p>
-<p><code>cbind</code> the appropriate columns together, to make a matrix: ::: {.cell}</p>
+<p><code>cbind</code> the appropriate columns together, to make a matrix:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(king, <span class="fu">cbind</span>(i1, i2, i3, i4, i5, i6))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>This is the “simple” but tedious way, and produces a matrix because the <code>i1</code> through <code>i6</code> are vectors (single columns):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2677,7 +2698,8 @@ dbl (7): id, i1, i2, i3, i4, i5, i6
 <li>Fit the repeated-measures ANOVA. This will involve fitting an <code>lm</code> first, if you have not already done so.</li>
 </ol>
 <p>Solution</p>
-<p>Fit the <code>lm</code> first, and then pass that into <code>Manova</code> from <code>car</code>: ::: {.cell}</p>
+<p>Fit the <code>lm</code> first, and then pass that into <code>Manova</code> from <code>car</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>king<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> context, <span class="at">data =</span> king)</span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>king<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">Manova</span>(king<span class="fl">.1</span>, <span class="at">idata =</span> times.df, <span class="at">idesign =</span> <span class="sc">~</span>times)</span>
 <span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(king<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2828,7 +2850,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 times         0.8573896 6.269000e-17
 context:times 0.8573896 1.422381e-03</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
 <li>What do you conclude from your repeated-measures ANOVA? Explain briefly, in the context of the data.</li>
@@ -2842,7 +2864,8 @@ context:times 0.8573896 1.422381e-03</code></pre>
 <li>To understand the results of the previous part, we are going to make a spaghetti plot. In preparation for that, we need to save the data in “long format” with one observation on <em>one</em> time point in each row. Arrange that, and show by displaying (some of) the data that you have done so.</li>
 </ol>
 <p>Solution</p>
-<p>This is <code>pivot_longer</code> yet again: gather up columns <code>i1</code> through <code>i6</code> and call them something like <code>activity</code>: ::: {.cell}</p>
+<p>This is <code>pivot_longer</code> yet again: gather up columns <code>i1</code> through <code>i6</code> and call them something like <code>activity</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>king <span class="sc">%&gt;%</span> </span>
 <span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(i1<span class="sc">:</span>i6, <span class="at">names_to=</span><span class="st">"time"</span>, <span class="at">values_to=</span><span class="st">"activity"</span>) <span class="ot">-&gt;</span> king.long</span>
 <span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>king.long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2854,33 +2877,36 @@ context:times 0.8573896 1.422381e-03</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Displaying the top 10 rows of the resulting data frame is a good way to display “some of” it. You can always look at more if you like. There are more rows and fewer columns than there were before, which is encouraging. <code>pivot_longer</code> collects up all the time and activity values for the first rat, then the second, and so on.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="8" type="a">
 <li>Make a spaghetti plot: that is, plot motor activity against the time points, joining the points for each <em>rat</em> by lines, and colouring the points and lines according to the <em>context</em>.</li>
 </ol>
 <p>Solution</p>
-<p>That means this, using <code>group</code> to indicate which points to join by lines, since it’s different from the <code>colour</code>: ::: {.cell}</p>
+<p>That means this, using <code>group</code> to indicate which points to join by lines, since it’s different from the <code>colour</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(king.long, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> activity, <span class="at">colour =</span> context, <span class="at">group =</span> id)) <span class="sc">+</span></span>
 <span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="repeated-measures_files/figure-html/king-9-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
-<p>I’d say the <code>geom_point</code> is optional, so that this is also good, perhaps better even: ::: {.cell}</p>
+</div>
+<p>I’d say the <code>geom_point</code> is optional, so that this is also good, perhaps better even:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(king.long, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> activity, <span class="at">colour =</span> context, <span class="at">group =</span> id)) <span class="sc">+</span></span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="repeated-measures_files/figure-html/king-10-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol type="i">
 <li>Looking at your spaghetti plot, why do you think your repeated-measures ANOVA came out as it did? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>What you’re after is an explanation of how the <em>patterns</em> over time are different for the three <code>context</code>s. If you can find something that says that, I’m good. For example, even though all of the rats experienced a decrease in motor activity between times 1 and 2, the rats in the <code>same</code> group didn’t decrease as much. Or, the rats in the <code>same</code> group continued to decrease beyond time 2, whereas the rats in the <code>control</code> and <code>different</code> groups tended to level off after time 2, not decreasing so much after that. If you like, you can draw an interaction plot by working out the means for each <code>context</code>-<code>time</code> group first: ::: {.cell}</p>
+<p>What you’re after is an explanation of how the <em>patterns</em> over time are different for the three <code>context</code>s. If you can find something that says that, I’m good. For example, even though all of the rats experienced a decrease in motor activity between times 1 and 2, the rats in the <code>same</code> group didn’t decrease as much. Or, the rats in the <code>same</code> group continued to decrease beyond time 2, whereas the rats in the <code>control</code> and <code>different</code> groups tended to level off after time 2, not decreasing so much after that. If you like, you can draw an interaction plot by working out the means for each <code>context</code>-<code>time</code> group first:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>king.long <span class="sc">%&gt;%</span></span>
 <span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(context, time) <span class="sc">%&gt;%</span></span>
 <span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(activity)) <span class="sc">%&gt;%</span></span>
@@ -2893,7 +2919,7 @@ context:times 0.8573896 1.422381e-03</code></pre>
 <div class="cell-output-display">
 <p><img src="repeated-measures_files/figure-html/king-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This seems to illustrate the same things as I found on the spaghetti plot. It gains in clarity by only looking at means, but loses by not considering the variability. Your call.</p>
 <p>This kind of thing also runs with <code>lmer</code> from package <code>lme4</code>. It uses the long data frame, thus, treating <code>id</code> (identifying the rats) as a random effect:</p>
 <div class="cell">
@@ -2929,7 +2955,8 @@ context:times 0.8573896 1.422381e-03</code></pre>
 <li>Read in the data values. Are they tidy or untidy? Explain briefly. (The data values are separated by <em>tabs</em>, like the Australian athlete data.)</li>
 </ol>
 <p>Solution</p>
-<p>We therefore need <code>read_tsv</code>. I’m not quite sure what to call this one: ::: {.cell}</p>
+<p>We therefore need <code>read_tsv</code>. I’m not quite sure what to call this one:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/rm.txt"</span></span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>treatments <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -2951,20 +2978,21 @@ dbl (2): subject, y
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Find a way to display what you have, so you can decide whether it is tidy or not. Each observation of <code>y</code> is in a row by itself, so this is tidy, or long format. You might even call this extra-tidy, because each person is spread over three rows, one for each time point. Looking ahead, this is ideal for making a graph, or for doing the advanced version of the analysis with <code>lme4</code>, but it is not so good for our MANOVA way of doing a repeated measures analysis. That we will have to prepare for.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Make a spaghetti plot: that is, a plot of <code>y</code> against time, with the observations for the same individual joined by lines which are coloured according to the treatment that individual received.</li>
 </ol>
 <p>Solution</p>
-<p>The individuals are labelled in <code>subject</code> and the treatments are in <code>trt</code>, which means we need to do this: ::: {.cell}</p>
+<p>The individuals are labelled in <code>subject</code> and the treatments are in <code>trt</code>, which means we need to do this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(treatments, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> y, <span class="at">colour =</span> trt, <span class="at">group =</span> subject)) <span class="sc">+</span></span>
 <span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="repeated-measures_files/figure-html/bock-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>I’m going to be all smug and tell you that I got this right first time. (I’m telling you this because it doesn’t happen often.) If it didn’t come out that way for you, no stress: figure out what went wrong, fix it, and no one is any the wiser. On a spaghetti plot, you want to join together the points that belong to the same <em>subject</em>, and you want to colour them by <em>treatment</em>, so <code>colour</code> needs to be <code>trt</code> and <code>group</code> needs to be <code>subject</code>, since otherwise <em>all</em> the observations on the same treatment will get connected by lines, which is not what you want. You can use <code>group</code> in other contexts too, but for us we would normally distinguish groups by colour, and here we have two grouping variables (subject and treatment), which we want to distinguish in different ways.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
@@ -2998,10 +3026,11 @@ dbl (2): subject, y
 <li>Run a repeated-measures ANOVA the <code>Manova</code> way. What do you conclude from it?</li>
 </ol>
 <p>Solution</p>
-<p>Create the response variable first, and use it in an <code>lm</code>: ::: {.cell}</p>
+<p>Create the response variable first, and use it in an <code>lm</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">with</span>(tr2, <span class="fu">cbind</span>(T1, T2, T3))</span>
 <span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>treatment<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> trt, <span class="at">data =</span> tr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>Now we have to construct the within-subject stuff, for which we need to get the different times we have. You can type them in again (fine here), or get them from the <code>response</code> you just made:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">colnames</span>(response)</span>
@@ -3155,7 +3184,8 @@ trt:times 0.6461293 6.137921e-03</code></pre>
 <p>Extra: we used the MANOVA way of doing the repeated-measures analysis. There is another way, “mixed models”, which is in some ways less familiar and in some ways more.</p>
 <p>In any analysis of variance, there are two kinds of effects of things you may care about: fixed effects and random effects. Fixed effects are things like the treatment and time here, where the ones you look at are the only ones you are interested in (in this study at least). If you had wanted to assess another treatment, you would have designed it into the study; if you cared about other times, you would have measured <code>y</code> at those times too. The subjects, though, are different: they are a random sample of all possible people, and you want your results to generalize to the population of all people of whom your subjects are a sample.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> So subjects are a different kind of thing and they have what are called random effects. When each subject only gives one measurement, as in all the things we’ve seen so far,<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> it doesn’t matter how you treat (statistically) the subjects, but when each subject gives <em>more</em> than one measurement, it does matter. Which is why we have to do the <code>idesign</code> stuff in the MANOVA, or what you will see below.</p>
 <p>A model with both fixed and random effects is called a mixed model.</p>
-<p>We’re going to make the assumption that the effect of being one subject rather than another is to move the value of <code>y</code> up or down by a fixed amount regardless of treatment or time, on average (each subject is different, but <em>within</em> a subject the random effect is the same size). That seems reasonable, given the spaghetti plot, where some subjects seemed to give consistently larger or smaller values of <code>y</code> than others. This is a so-called “random-intercepts” model. In the package <code>lme4</code>, there is a function <code>lmer</code> that looks like <code>lm</code>, except for the way in which you specify the random effects. It looks like this, noting that <em>it works with the tidy data frame</em> that we read in from the file and made the spaghetti plot out of: ::: {.cell}</p>
+<p>We’re going to make the assumption that the effect of being one subject rather than another is to move the value of <code>y</code> up or down by a fixed amount regardless of treatment or time, on average (each subject is different, but <em>within</em> a subject the random effect is the same size). That seems reasonable, given the spaghetti plot, where some subjects seemed to give consistently larger or smaller values of <code>y</code> than others. This is a so-called “random-intercepts” model. In the package <code>lme4</code>, there is a function <code>lmer</code> that looks like <code>lm</code>, except for the way in which you specify the random effects. It looks like this, noting that <em>it works with the tidy data frame</em> that we read in from the file and made the spaghetti plot out of:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>treatment<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">lmer</span>(y <span class="sc">~</span> trt <span class="sc">*</span> time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> subject), <span class="at">data =</span> treatments)</span>
 <span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(treatment<span class="fl">.4</span>, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -3166,7 +3196,7 @@ trt:times 0.6461293 6.137921e-03</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The way to read that model is “<code>y</code> depends on the combination of treatment and time and also on a random intercept for each subject”. This is the way in which the model captures the idea that each subject is different.</p>
 <p>You don’t get a test for the random effects; you are <em>assuming</em> that the subjects will be different from each other and you want to <em>adjust</em> for that, rather than testing for it.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> All you get is tests for the fixed effects that are currently up for grabs, in this case the interaction, which is strongly significant.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>

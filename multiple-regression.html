@@ -507,7 +507,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read in the data and check that you have four columns in your data frame, one for each of your variables.</li>
 </ol>
 <p>Solution</p>
-<p>This one requires a little thought first. The data values are aligned in columns, and so are the column headers. Thus, <code>read_table</code> is what we need: ::: {.cell}</p>
+<p>This one requires a little thought first. The data values are aligned in columns, and so are the column headers. Thus, <code>read_table</code> is what we need:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/satisfaction.txt"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>satisf <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -529,7 +530,7 @@ cols(
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>46 rows and 4 columns: satisfaction score (response), age, severity and anxiety (explanatory).</p>
 <p>There is a small question about what to call the data frame. Basically, anything other than <code>satis</code> will do, since there will be confusion if your data frame has the same name as one of its columns.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -537,7 +538,8 @@ cols(
 <li><a name="part:scatmat">*</a> Obtain scatterplots of the response variable <code>satis</code> against each of the other variables.</li>
 </ol>
 <p>Solution</p>
-<p>The obvious way is to do these one after the other: ::: {.cell}</p>
+<p>The obvious way is to do these one after the other:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(satisf, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> satis)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="multiple-regression_files/figure-html/hospital-2-1.png" class="img-fluid" width="384"></p>
@@ -550,7 +552,7 @@ cols(
 <div class="cell-output-display">
 <p><img src="multiple-regression_files/figure-html/hospital-2-3.png" class="img-fluid" width="384"></p>
 </div>
-<p>:::</p>
+</div>
 <p>This is fine, but there is also a way of getting all three plots with <em>one</em> <code>ggplot</code>. This uses the <code>facet_wrap</code> trick, but to set <em>that</em> up, we have to have all the <span class="math inline">\(x\)</span>-variables in <em>one</em> column, with an extra column labelling which <span class="math inline">\(x\)</span>-variable that value was. This uses <code>pivot_longer</code>. The right way to do this is in a pipeline:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>satisf <span class="sc">%&gt;%</span></span>
@@ -616,7 +618,8 @@ cols(
 <li><a name="part:corrmat">*</a> Create a correlation matrix for all four variables. Does your strongest trend of the previous part have the strongest correlation?</li>
 </ol>
 <p>Solution</p>
-<p>This is a matter of running the whole data frame through <code>cor</code>: ::: {.cell}</p>
+<p>This is a matter of running the whole data frame through <code>cor</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              satis        age   severity    anxiety
@@ -625,7 +628,7 @@ age      -0.7736828  1.0000000  0.4666091  0.4976945
 severity -0.5874444  0.4666091  1.0000000  0.7945275
 anxiety  -0.6023105  0.4976945  0.7945275  1.0000000</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Ignoring the correlations of variables with themselves, the correlation of <code>satisf</code> with <code>age</code>, the one I picked out, is the strongest (the most negative trend). If you picked one of the other trends as the strongest, you need to note how close it is to the maximum correlation: for example, if you picked <code>satis</code> and <code>severity</code>, that’s the second highest correlation (in size).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
@@ -866,7 +869,8 @@ Coefficients:
 <li>Read in the data and check that you have a sensible number of rows and the right number of columns. (What does “a sensible number of rows” mean here?)</li>
 </ol>
 <p>Solution</p>
-<p>This is a tricky one. There are aligned columns, but <em>the column headers are not aligned with them</em>. Thus <code>read_table2</code> is what you need. ::: {.cell}</p>
+<p>This is a tricky one. There are aligned columns, but <em>the column headers are not aligned with them</em>. Thus <code>read_table2</code> is what you need.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/mathsal.txt"</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>salaries <span class="ot">&lt;-</span> <span class="fu">read_table2</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -892,7 +896,7 @@ cols(
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>24 observations (“only a relatively small number”) and 4 columns, one for the response and one each for the explanatory variables.</p>
 <p>Or, if you like,</p>
 <div class="cell">
@@ -907,7 +911,8 @@ cols(
 <li>Make scatterplots of <code>salary</code> against each of the three explanatory variables. If you can, do this with <em>one</em> <code>ggplot</code>.</li>
 </ol>
 <p>Solution</p>
-<p>The obvious way to do this is as three separate scatterplots, and that will definitely work. But you can do it in one go if you think about facets, and about having all the <span class="math inline">\(x\)</span>-values in one column (and the names of the <span class="math inline">\(x\)</span>-variables in another column): ::: {.cell}</p>
+<p>The obvious way to do this is as three separate scatterplots, and that will definitely work. But you can do it in one go if you think about facets, and about having all the <span class="math inline">\(x\)</span>-values in one column (and the names of the <span class="math inline">\(x\)</span>-variables in another column):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>salaries <span class="sc">%&gt;%</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>salary, <span class="at">names_to=</span><span class="st">"xname"</span>, <span class="at">values_to=</span><span class="st">"x"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> salary)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -915,7 +920,7 @@ cols(
 <div class="cell-output-display">
 <p><img src="multiple-regression_files/figure-html/ivybridge-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>If you don’t see how that works, run it yourself, one line at a time.</p>
 <p>I was thinking ahead a bit while I was coding that: I wanted the three plots to come out about square, and I wanted the plots to have their own scales. The last thing in the <code>facet_wrap</code> does the latter, and arranging the plots in two columns (thinking of the plots as a set of four with one missing) gets them more or less square.</p>
 <p>If you don’t think of those, try it without, and then fix up what you don’t like.</p>
@@ -924,7 +929,8 @@ cols(
 <li>Comment briefly on the direction and strength of each relationship with <code>salary</code>.</li>
 </ol>
 <p>Solution</p>
-<p>To my mind, all of the three relationships are going uphill (that’s the “direction” part). <code>experience</code> is the strongest, and <code>pubsucc</code> looks the weakest (that’s the “strength” part). If you want to say there is no relationship with <code>pubsucc</code>, that’s fine too. This is a judgement call. Note that all the relationships are more or less linear (no obvious curves here). We could also investigate the relationships among the explanatory variables: ::: {.cell}</p>
+<p>To my mind, all of the three relationships are going uphill (that’s the “direction” part). <code>experience</code> is the strongest, and <code>pubsucc</code> looks the weakest (that’s the “strength” part). If you want to say there is no relationship with <code>pubsucc</code>, that’s fine too. This is a judgement call. Note that all the relationships are more or less linear (no obvious curves here). We could also investigate the relationships among the explanatory variables:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(salaries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              salary  workqual experience   pubsucc
@@ -933,7 +939,7 @@ workqual   0.6670958 1.0000000  0.4669511 0.3227612
 experience 0.8585582 0.4669511  1.0000000 0.2537530
 pubsucc    0.5581960 0.3227612  0.2537530 1.0000000</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Mentally cut off the first row and column (<code>salary</code> is the response). None of the remaining correlations are all that high, so we ought not to have any multicollinearity problems.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
@@ -977,7 +983,8 @@ F-statistic: 68.12 on 3 and 20 DF,  p-value: 1.124e-10</code></pre>
 <li>Would you consider removing any of the variables from this regression? Why, or why not?</li>
 </ol>
 <p>Solution</p>
-<p>Look at the P-values attached to each variable. These are all very small: 0.003, 0.00000003 and 0.0003, way smaller than 0.05. So it would be a mistake to take any, even one, of the variables out: doing so would make the regression much worse. If you need convincing of that, see what happens when we take the variable with the highest P-value out — this is <code>workqual</code>: ::: {.cell}</p>
+<p>Look at the P-values attached to each variable. These are all very small: 0.003, 0.00000003 and 0.0003, way smaller than 0.05. So it would be a mistake to take any, even one, of the variables out: doing so would make the regression much worse. If you need convincing of that, see what happens when we take the variable with the highest P-value out — this is <code>workqual</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>salaries<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> experience <span class="sc">+</span> pubsucc, <span class="at">data =</span> salaries)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(salaries<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1001,7 +1008,7 @@ Residual standard error: 2.137 on 21 degrees of freedom
 Multiple R-squared:  0.8609,    Adjusted R-squared:  0.8477 
 F-statistic:    65 on 2 and 21 DF,  p-value: 1.01e-09</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>R-squared has gone down from 91% to 86%: maybe not so much in the grand scheme of things, but it is noticeably less. Perhaps better, since we are comparing models with different numbers of explanatory variables, is to compare the <em>adjusted</em> R-squared: this has gone down from 90% to 85%. The fact that this has gone down <em>at all</em> is enough to say that taking out <code>workqual</code> was a mistake.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>Another way of seeing whether a variable has anything to add in a regression containing the others is a <strong>partial regression plot</strong>. We take the residuals from <code>salaries.2</code> above and plot them against the variable we removed, namely <code>workqual</code>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> If <code>workqual</code> has nothing to add, there will be no pattern; if it <em>does</em> have something to add, there will be a trend. Like this. I use <code>augment</code> from <code>broom</code>:</p>
 <div class="cell">
@@ -1019,9 +1026,10 @@ F-statistic:    65 on 2 and 21 DF,  p-value: 1.01e-09</code></pre>
 <li>Do you think it would be a mistake to take <em>both</em> of <code>workqual</code> and <code>pubsucc</code> out of the regression? Do a suitable test. Was your guess right?</li>
 </ol>
 <p>Solution</p>
-<p>I think it would be a big mistake. Taking even one of these variables out of the regression is a bad idea (from the <span class="math inline">\(t\)</span>-tests), so taking out more than one would be a <em>really</em> bad idea. To perform a test, fit the model without these two explanatory variables: ::: {.cell}</p>
+<p>I think it would be a big mistake. Taking even one of these variables out of the regression is a bad idea (from the <span class="math inline">\(t\)</span>-tests), so taking out more than one would be a <em>really</em> bad idea. To perform a test, fit the model without these two explanatory variables:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>salaries<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(salary <span class="sc">~</span> experience, <span class="at">data =</span> salaries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <p>and then use <code>anova</code> to compare the two regressions, smaller model first:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(salaries<span class="fl">.3</span>, salaries<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1040,12 +1048,13 @@ F-statistic:    65 on 2 and 21 DF,  p-value: 1.01e-09</code></pre>
 <li>Back in part (<a href="#regone">here</a>), you fitted a regression with all three explanatory variables. By making suitable plots, assess whether there is any evidence that (i) that the linear model should be a curve, (ii) that the residuals are not normally distributed, (iii) that there is “fan-out”, where the residuals are getting bigger <em>in size</em> as the fitted values get bigger? Explain briefly how you came to your conclusions in each case.</li>
 </ol>
 <p>Solution</p>
-<p>I intended that (i) should just be a matter of looking at residuals vs.&nbsp;fitted values: ::: {.cell}</p>
+<p>I intended that (i) should just be a matter of looking at residuals vs.&nbsp;fitted values:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(salaries<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="multiple-regression_files/figure-html/mathsal-8-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>There is no appreciable pattern on here, so no evidence of a curve (or apparently of any other problems).</p>
 <p>Extra: you might read this that we should check residuals against the <span class="math inline">\(x\)</span>-variables as well, which is a similar trick to the above one for plotting response against each of the explanatories. There is one step first, though: use <code>augment</code> from <code>broom</code> first to get a dataframe with the original <span class="math inline">\(x\)</span>-variables <em>and</em> the residuals in it. The following thus looks rather complicated, and if it confuses you, run the code a piece at a time to see what it’s doing:</p>
 <div class="cell">
@@ -1123,7 +1132,8 @@ dbl (5): high_GPA, math_SAT, verb_SAT, comp_GPA, univ_GPA
 <li><a name="part:hsu-scatter">*</a> Make a scatterplot of high school GPA against university GPA. Which variable should be the response and which explanatory? Explain briefly. Add a smooth trend to your plot.</li>
 </ol>
 <p>Solution</p>
-<p>High school comes before university, so high school should be explanatory and university should be the response. (High school grades are used as an admission criterion to university, so we would hope they would have some predictive value.) ::: {.cell}</p>
+<p>High school comes before university, so high school should be explanatory and university should be the response. (High school grades are used as an admission criterion to university, so we would hope they would have some predictive value.)</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpa, <span class="fu">aes</span>(<span class="at">x =</span> high_GPA, <span class="at">y =</span> univ_GPA)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1132,7 +1142,7 @@ dbl (5): high_GPA, math_SAT, verb_SAT, comp_GPA, univ_GPA
 <div class="cell-output-display">
 <p><img src="multiple-regression_files/figure-html/gpa-2-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
 <li>Describe any relationship on your scatterplot: its direction, its strength and its shape. Justify your description briefly.</li>
@@ -1150,7 +1160,8 @@ dbl (5): high_GPA, math_SAT, verb_SAT, comp_GPA, univ_GPA
 <li><a name="part:highonly">*</a> Fit a linear regression for predicting university GPA from high-school GPA and display the results.</li>
 </ol>
 <p>Solution</p>
-<p>Just this, therefore: ::: {.cell}</p>
+<p>Just this, therefore:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>gpa<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(univ_GPA <span class="sc">~</span> high_GPA, <span class="at">data =</span> gpa)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gpa<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1173,7 +1184,7 @@ Residual standard error: 0.2814 on 103 degrees of freedom
 Multiple R-squared:  0.6077,    Adjusted R-squared:  0.6039 
 F-statistic: 159.6 on 1 and 103 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>Extra: this question goes on too long, so I didn’t ask you to look at the residuals from this model, but my comments earlier suggested that we might have had some problems with fanning-in (the variability of predictions getting less as the high-school GPA increases). In case you are interested, I’ll look at this here. First, residuals against fitted values:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpa<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1349,7 +1360,8 @@ F-statistic: 55.77 on 3 and 101 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Test whether adding the two SAT scores has improved the prediction of university GPA. What do you conclude?</li>
 </ol>
 <p>Solution</p>
-<p>Since we added <em>two</em> explanatory variables, the <span class="math inline">\(t\)</span>-tests in <code>gpa.2</code> don’t apply (they tell us whether we can take out <em>one</em> <span class="math inline">\(x\)</span>-variable). We might have some suspicions, but that’s all they are. So we have to do <code>anova</code>: ::: {.cell}</p>
+<p>Since we added <em>two</em> explanatory variables, the <span class="math inline">\(t\)</span>-tests in <code>gpa.2</code> don’t apply (they tell us whether we can take out <em>one</em> <span class="math inline">\(x\)</span>-variable). We might have some suspicions, but that’s all they are. So we have to do <code>anova</code>:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(gpa<span class="fl">.1</span>, gpa<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1359,7 +1371,7 @@ F-statistic: 55.77 on 3 and 101 DF,  p-value: &lt; 2.2e-16</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>If you put the models the other way around, you’ll get a negative <span class="math inline">\(F\)</span>-statistic and degrees of freedom, which doesn’t make much sense (although the test will still work).</p>
 <p>The null hypothesis here is that the two models fit equally well. Since the P-value is not small, we do not reject that null hypothesis, and therefore we conclude that the two models <em>do</em> fit equally well, and therefore we prefer the smaller one, the one that predicts university GPA from just high-school GPA. (Or, equivalently, we conclude that those two SAT scores don’t add anything to the prediction of how well a student will do at university, once you know their high-school GPA.)</p>
 <p>This might surprise you, given what the SATs are supposed to be <em>for</em>. But that’s what the data say.</p>
@@ -1368,7 +1380,8 @@ F-statistic: 55.77 on 3 and 101 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Carry out a backward elimination starting out from your model in part (<a href="#part:all">here</a>). Which model do you end up with? Is it the same model as you fit in (<a href="#part:highonly">here</a>)?</li>
 </ol>
 <p>Solution</p>
-<p>In the model of (<a href="#part:all">here</a>), <code>math_SAT</code> was the least significant, so that comes out first. (I use <code>update</code> but I’m not insisting that you do:) ::: {.cell}</p>
+<p>In the model of (<a href="#part:all">here</a>), <code>math_SAT</code> was the least significant, so that comes out first. (I use <code>update</code> but I’m not insisting that you do:)</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>gpa<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(gpa<span class="fl">.2</span>, . <span class="sc">~</span> . <span class="sc">-</span> math_SAT)</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gpa<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1392,8 +1405,11 @@ Residual standard error: 0.2774 on 102 degrees of freedom
 Multiple R-squared:  0.6227,    Adjusted R-squared:  0.6153 
 F-statistic: 84.18 on 2 and 102 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>:::</p>
-<p>Here is where we have to stop, since both high-school GPA and verbal SAT score are significant, and so taking either of them out would be a bad idea. This is a <em>different</em> model than the one of (<a href="#part:highonly">here</a>). This is the case, even though the model with high-school GPA only was not significantly worse than the model containing everything. (This goes to show that model-building doesn’t always have nice clear answers.) In the model I called <code>gpa.2</code>, neither of the SAT scores were anywhere near significant (considered singly), but as soon as we took out one of the SAT scores (my model <code>gpa.3</code>), the other one became significant. This goes to show that you shouldn’t take out more than one explanatory variable based on the results of the <span class="math inline">\(t\)</span>-tests, and even if you test to see whether you should have taken out both of the SAT, you won’t necessarily get consistent results. Admittedly, it’s a close decision whether to keep or remove <code>verb_SAT</code>, since its P-value is close to 0.05. The other way of tackling this one is via <code>step</code>, which does the backward elimination for you (not that it was much work here): ::: {.cell}</p>
+</div>
+<p>Here is where we have to stop, since both high-school GPA and verbal SAT score are significant, and so taking either of them out would be a bad idea. This is a <em>different</em> model than the one of (<a href="#part:highonly">here</a>). This is the case, even though the model with high-school GPA only was not significantly worse than the model containing everything. (This goes to show that model-building doesn’t always have nice clear answers.)</p>
+<p>In the model I called <code>gpa.2</code>, neither of the SAT scores were anywhere near significant (considered singly), but as soon as we took out one of the SAT scores (my model <code>gpa.3</code>), the other one became significant. This goes to show that you shouldn’t take out more than one explanatory variable based on the results of the <span class="math inline">\(t\)</span>-tests, and even if you test to see whether you should have taken out both of the SAT, you won’t necessarily get consistent results. Admittedly, it’s a close decision whether to keep or remove <code>verb_SAT</code>, since its P-value is close to 0.05.</p>
+<p>The other way of tackling this one is via <code>step</code>, which does the backward elimination for you (not that it was much work here):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(gpa<span class="fl">.2</span>, <span class="at">direction =</span> <span class="st">"backward"</span>, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=-264.6
@@ -1426,7 +1442,7 @@ Coefficients:
 (Intercept)     high_GPA     verb_SAT  
    0.683872     0.562833     0.001265  </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>This gives the same result as we did from our backward elimination. The tables with AIC in them are each step of the elimination, and the variable at the top is the one that comes out next. (When <code>&lt;none&gt;</code> gets to the top, that’s when you stop.) What happened is that the two SAT scores started off highest, but once we removed <code>math_SAT</code>, <code>verb_SAT</code> jumped below <code>&lt;none&gt;</code> and so the verbal SAT score had to stay.</p>
 <p>Both the P-value and the AIC say that the decision about keeping or removing <code>verb_SAT</code> is very close.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1434,7 +1450,9 @@ Coefficients:
 <li>These students were studying computer science at university. Do you find your backward-elimination result sensible or surprising, given this? Explain briefly.</li>
 </ol>
 <p>Solution</p>
-<p>I would expect computer science students to be strong students generally, good at math and possibly not so good with words. So it is not surprising that high-school GPA figures into the prediction, but I would expect math SAT score to have an impact also, and it does not. It is also rather surprising that verbal SAT score predicts success at university for these computer science students; you wouldn’t think that having better skills with words would be helpful. So I’m surprised. Here, I’m looking for some kind of discussion about what’s in the final backward-elimination model, and what you would expect to be true of computer science students. Let’s look at the final model from the backward elimination again: ::: {.cell}</p>
+<p>I would expect computer science students to be strong students generally, good at math and possibly not so good with words. So it is not surprising that high-school GPA figures into the prediction, but I would expect math SAT score to have an impact also, and it does not. It is also rather surprising that verbal SAT score predicts success at university for these computer science students; you wouldn’t think that having better skills with words would be helpful. So I’m surprised. Here, I’m looking for some kind of discussion about what’s in the final backward-elimination model, and what you would expect to be true of computer science students.</p>
+<p>Let’s look at the final model from the backward elimination again:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gpa<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1457,7 +1475,7 @@ Residual standard error: 0.2774 on 102 degrees of freedom
 Multiple R-squared:  0.6227,    Adjusted R-squared:  0.6153 
 F-statistic: 84.18 on 2 and 102 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The two slope estimates are both positive, meaning that, all else equal, a higher value for each explanatory variable goes with a higher university GPA. This indicates that a higher verbal SAT score goes with a higher university GPA: this is across all the university courses that a student takes, which you would expect to be math and computer science courses for a Comp Sci student, but might include a few electives or writing courses. Maybe what is happening is that the math SAT score is telling the same story as the high-school GPA for these students, and the verbal SAT score is saying something different. (For example, prospective computer science students are mostly likely to have high math SAT scores, so there’s not much information there.)</p>
 <p>I think I need to look at the correlations:</p>
 <div class="cell">
