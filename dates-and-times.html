@@ -1040,7 +1040,7 @@ dbl (19): id, age, gender, hr, sysbp, diasbp, bmi, cvd, afb, sho, chf, av3, ...
 </div>
 </div>
 <p>To see what type everything is, note that when you display a <code>tibble</code>, the type of all the columns on the screen is displayed at the top. Click the little right-arrow to see more columns and to check their type.</p>
-<p>All the numbers are properly integer (<code>int</code>) or decimal (<code>dbl</code>) numbers, but the date columns are <code>chr</code> or text. This means that they haven’t been read as <code>Date</code>s (because they were not in year-month-day order). This is (as we will see) unlike SAS, which determined that they were dates, and even used the first 20 rows of the file to determine what format of dates they were.</p>
+<p>All the numbers are properly integer (<code>int</code>) or decimal (<code>dbl</code>) numbers, but the date columns are <code>chr</code> or text. This means that they haven’t been read as <code>Date</code>s (because they were not in year-month-day order).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>The date columns should be R dates. They are not year-month-day, so converting them via <code>as.Date</code> (which is what <code>read_delim</code> tries to do) will not work. Load the <code>lubridate</code> package, and create new columns in your data frame that are properly dates. Save your data frame, and list it to demonstrate that it worked.</li>
