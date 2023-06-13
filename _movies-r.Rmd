@@ -93,9 +93,6 @@ movies %>%
 
  
 
-When we do this problem in SAS, you'll see the Tukey get handled a
-different way, one that you might find more appealing.
-  
 $\blacksquare$
 
 (d) Make a graph to assess whether this ANOVA is

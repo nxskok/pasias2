@@ -236,14 +236,14 @@ conclusion. Being consistent is the most important thing. (In this
 case, note that the P-values are very different. We'll get to that
 shortly.)
 
-If we were doing this in SAS, as we see later, we'd get a test at the
-bottom of the output that compares the two variances. I feel that it's
+You might think we should do a test
+that compares the two variances, so that then we'd know which flavour of test to do. Such tests exist, but I feel that it's
 just as good to eyeball the spreads and make a call about whether they
 are "reasonably close". Or even, to always do the
 Welch-Satterthwaite test on the basis that it is pretty good even if
 the two populations have the same variance. (If this last point of
 view is one that you share, you ought to say something about that when
-you do your $t$-test.)
+you do your $t$-test.) The problem is that doing a test to decide which test to do can change the actual P-value from what the output of your second test says; the second test, as far as R is concerned, is done without knowledge that you did another test first.
 
 Extra: I guess this is a good place to say something about tests for comparing
 variances, given that you might be pondering that. There are

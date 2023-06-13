@@ -652,11 +652,11 @@ variables.
 The approach I've taken in this course is for historical reasons. That
 is to say, *my* history, not because the historical perspective
 is necessarily the best one.  It began with doing repeated measures in
-SAS (this was like nine years ago), and the only way I could get my
+SAS (this was many years ago; I don't teach SAS any more), and the only way I could get my
 head around that was the profile-analysis way. I'm not even sure there
 was software for doing mixed models in those days, certainly not in
 SAS. Besides, random effects scared me back then. Anyway, when I
-moved things over to R (this must have been about six years ago), I
+moved things over to R, I
 realized I was using basically the same idea in R: make it into a
 MANOVA and tweak things as needed. So I developed things by showing
 you MANOVA first as ANOVA when you have lots of $y$-variables instead
@@ -685,7 +685,9 @@ which means that testing for it has always been kind of flakey and the
 standard theory doesn't work for it (the technical term is 
 "on the boundary of the parameter space", and the theory applies when the
 null-hypothesis value is strictly *inside* the set of possible
-values the parameter can take). Back when we did this stuff by
+values the parameter can take). 
+
+Back when we did this stuff by
 hand,^[I understand psychology students *still* do this  kind of stuff by hand.] we had to figure out whether we were testing
 a fixed or a random effect, and there were rules, involving things
 called "expected mean squares", that told you how to get the tests

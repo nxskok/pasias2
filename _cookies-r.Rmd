@@ -114,7 +114,6 @@ This time, we're doing a one-sided test, specifically an
 median is *greater than* 1100. The results are exactly what we
 got "by hand": 15 values above and one below, and a P-value (look
 along the `upper` line) of 0.00026.
- The two-sided P-value of 0.00052 rounds to the same 0.0005 as SAS got.
 
 Alternatively, you can do this:
 

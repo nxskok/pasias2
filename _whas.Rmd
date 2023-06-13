@@ -37,10 +37,7 @@ and to check their type.
 All the numbers are properly integer (`int`) or decimal
 (`dbl`) numbers, but the date columns are `chr` or
 text. This means that they haven't been read as `Date`s
-(because they were not in year-month-day order).  This is (as we will
-see) unlike SAS, which determined that they were dates, and even used
-the first 20 rows of the file to determine what format of dates they
-were.
+(because they were not in year-month-day order).  
 
 $\blacksquare$
 

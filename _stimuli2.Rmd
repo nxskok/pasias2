@@ -289,7 +289,7 @@ isoMDS(d, k = 3)$stress
      
 
 What this does is to obtain the map and throw all of it away except
-for the stress value.^[Which seems like a very SAS way of doing  things.] 
+for the stress value.^[Which is a very SAS way of doing  things: compute a whole bunch of stuff, most of which you ignore.] 
 
 I think this stress value, just under 10\%, or on the "fair" end of
 "good", is a worthwhile improvement over the just-over-20\% that we
