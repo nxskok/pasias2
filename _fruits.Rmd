@@ -189,7 +189,7 @@ This is good to go into the cluster analysis (happening later).
 There is a `tidyverse` way to do this also. It's actually a lot
 like the loop way in its conception, but the coding looks
 different. We start by making all combinations of the fruit names with
-each other, which is `crossing`:
+each other, which is `crossing`:^[This is like `datagrid`, but without a model.]
 
 ```{r fruits-7 }
 combos <- crossing(fruit = fruit_names, other = fruit_names)

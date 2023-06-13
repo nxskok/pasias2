@@ -465,7 +465,7 @@ summary(jobs)
 ```
 
        
-There's no need for `crossing` here because I'm not doing
+There's no need for `datagrid` or `crossing` here because I'm not doing
 combinations  of things. (I might have done that here, to get a sense
 for example of "what effect does a higher score on `outdoor` have on the likelihood of a person doing each job?". But I didn't.)
 

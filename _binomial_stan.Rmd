@@ -251,7 +251,7 @@ crossing(alpha = 1:10, beta = 1:10) %>%
   arrange(sse)
 ```
 
- 
+(`crossing`) does all possible combinations of its inputs; `expand.grid` would also do the same thing.)
 
 This says that $\alpha=4, \beta=8$ is a pretty good choice.^[Alpha and beta don't have to be integers; you could use *seq* to create sequences of values for alpha and beta that include decimal numbers.]
 
