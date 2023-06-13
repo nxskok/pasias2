@@ -7,7 +7,7 @@ my_url <- "http://ritsokiguess.site/datafiles/cross-city.csv"
 ```
 
 
-A list of the stations on the line is in `r my_url`. There is one column in the data file, called `station`. We are going to draw a map of these.
+A list of the stations on the line is in [`r my_url`](`r my_url`). There is one column in the data file, called `station`. We are going to draw a map of these.
 
 (a) Read in and display (some of) the station names.
 

@@ -34,6 +34,19 @@ book:
     - logistic-regression.Rmd
     - ordinal-response.Rmd
     - nominal-response.Rmd
+    - survival-analysis.Rmd
+    - anova-revisited.Rmd
+    - ancova.Rmd
+    - manova.Rmd
+    - repeated-measures.Rmd
+    - discriminant-analysis.Rmd
+    - cluster.Rmd
+    - kmeans-cluster.Rmd
+    - maps.Rmd
+    - mds.Rmd
+    - pc.Rmd
+    - fa.Rmd
+    - loglin.Rmd
 format:
   html:
     theme: cosmo
