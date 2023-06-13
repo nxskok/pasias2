@@ -987,8 +987,8 @@ $p_values
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">15</span>)  </span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 62.02945 54.74487 64.72967 72.84055 62.28247 51.32017 53.69754 34.19823
- [9] 53.11150 34.76511</code></pre>
+<pre><code> [1] 47.87934 41.67998 57.19393 57.54598 64.27342 74.84882 49.22764 53.42529
+ [9] 49.02646 52.29714</code></pre>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1003,7 +1003,7 @@ $p_values
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x < 40"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"8"},{"1":"TRUE","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["x < 40"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1023,7 +1023,7 @@ $p_values
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"2","2":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"10","2":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1037,7 +1037,7 @@ $p_values
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"2","2":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["the_min"],"name":[1],"type":["int"],"align":["right"]},{"label":["is_rejected"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"10","2":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1049,7 +1049,7 @@ $p_values
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">is_rejected=</span>(the_min<span class="sc">&lt;=</span><span class="dv">1</span> <span class="sc">|</span> the_min<span class="sc">==</span><span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(is_rejected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>You might be wondering where the “1 or less” came from. Getting a P-value for the sign test involves the binomial distribution: if the null is correct, each data value is independently either above or below 40, with probability 0.5 of each, so the number of values below 40 (say) is binomial with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(p=0.5\)</span>. The P-value for 1 observed value below 40 and the rest above is</p>
