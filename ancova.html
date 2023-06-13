@@ -815,7 +815,7 @@ F-statistic:  18.1 on 3 and 26 DF,  p-value: 1.501e-06</code></pre>
 <li>Obtain predicted values for <code>post</code> for each of the three drugs at <code>pre</code> scores 5, 12 and 20. To do this, obtain a new data frame that has all 9 combinations of drugs and <code>pre</code> scores, and then feed this into <code>predict</code> using your preferred model.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
 </ol>
 <p>Solution</p>
-<p>First, make the new data frame for predicting from, using <code>crossing</code>. I’m doing this in small steps for clarity: first, I define all the drugs and <code>pre</code> values, and then I feed them into <code>datagrid</code>:</p>
+<p>First, make the new data frame for predicting from. I’m doing this in small steps for clarity: first, I define all the drugs and <code>pre</code> values, and then I feed them into <code>datagrid</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>drugs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"D"</span>, <span class="st">"F"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">20</span>)</span>
