@@ -232,8 +232,7 @@ your preferred model.^[Analysis of covariance is just a linear  model, so *predi
 Solution
 
 
-First, make the new data frame for predicting from, using
-`crossing`. I'm doing this in small steps for clarity:
+First, make the new data frame for predicting from. I'm doing this in small steps for clarity:
 first, I define all the drugs and `pre` values, and then I
 feed them into `datagrid`:
 
