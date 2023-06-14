@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 7d020731-35bd-40b7-a70b-285f9f73682f
+      url: 'https://gregarious-stroopwafel-365802.netlify.app'

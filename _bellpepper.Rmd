@@ -72,20 +72,16 @@ The distribution of water content in field `b` is actually
 bimodal, which is probably the explanation of the funny thing with the
 median. What actually seems to be happening (at least for these data)
 is that the water content in field B is either about the same as field
-A, or a lot less (nothing in between).  I can borrow an idea from
-earlier to find the five-number summaries for each field:
+A, or a lot less (nothing in between).  We can find the five-number summaries for each field. The strategy is to use `reframe` (rather than summarize, because the five-number summary is five numbers rather than one), and pivot wider to make a nice display:
 
-```{r bellpepper-4 }
-pepper %>%
-  nest(-field) %>%
-  rowwise() %>% 
-  mutate(qq = list(enframe(quantile(data$water))))%>%
-  unnest(qq) %>%
-  select(-data) %>% 
+
+```{r}
+quantile_df <- function(x) { enframe(quantile(x))}
+pepper %>% 
+  group_by(field) %>% 
+  reframe(quantile_df(water)) %>% 
   pivot_wider(names_from=name, values_from=value)
 ```
-
- 
 
 This is a weird one: all the quantiles are greater for field A
 *except* for the median.
