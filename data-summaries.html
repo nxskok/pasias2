@@ -1004,12 +1004,11 @@ $ `Date&amp;Time` &lt;chr&gt; "April 30 at 11:30 AM", "May 11 at 9:33 AM", "May 
 </div>
 </div>
 <p>That hugs the line pretty well, so I would call it close to normally-distributed. It bulges away from the line because there are more values just below 120 than you would expect for a normal. This corresponds to the histogram bar centred just below 120 being taller than you would have expected.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
-<p>Extra: looking <em>way</em> ahead (to almost the end of the R stuff), this is how you handle the dates and times:</p>
+<p>Extra: looking <em>way</em> ahead, this is how you handle the dates and times:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>nenana <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">longdt =</span> <span class="fu">str_c</span>(Year, <span class="st">" "</span>, <span class="st">`</span><span class="at">Date&amp;Time</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datetime =</span> <span class="fu">ymd_hm</span>(longdt, <span class="at">tz =</span> <span class="st">"America/Anchorage"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>nenana <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">longdt =</span> <span class="fu">str_c</span>(Year, <span class="st">" "</span>, <span class="st">`</span><span class="at">Date&amp;Time</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">datetime =</span> <span class="fu">ymd_hm</span>(longdt, <span class="at">tz =</span> <span class="st">"America/Anchorage"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1019,6 +1018,7 @@ $ `Date&amp;Time` &lt;chr&gt; "April 30 at 11:30 AM", "May 11 at 9:33 AM", "May 
 </div>
 </div>
 </div>
+<p>The function <code>ymd_hm</code> is from the <code>lubridate</code> package, which gets loaded with the tidyverse. Its job is to read a piece of text that contains a year, month, day, hour, and minute in that order, and to convert it into an R date-time.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
 <p>I am not doing any further analysis with these, so just displaying them is good.</p>
 <p>I have to do a preliminary step to get the date-times <em>with</em> their year in one place. <code>str_c</code> glues pieces of text together: in this case, the year, a space, and then the rest of the <code>Date&amp;Time</code>. I stored this in <code>longdt</code>. The second <code>mutate</code> is the business end of it: <code>ymd_hm</code> takes a piece of text containing a year, month (by name or number), day, hours, minutes <em>in that order</em>, and extracts those things from it, storing the whole thing as an R date-time. Note that the AM/PM was handled properly. The benefit of doing that is we can extract anything from the dates, such as the month or day of week, or take differences between the dates. Or even check that the Julian dates were calculated correctly (the <code>lubridate</code> function is called <code>yday</code> for “day of year”):</p>
 <div class="cell">
@@ -1388,7 +1388,7 @@ dbl (1): mark
 <p><img src="data-summaries_files/figure-html/paignton-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Remember: on a regular boxplot,<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> the groups go across (<span class="math inline">\(x\)</span>), the variable measured goes up (<span class="math inline">\(y\)</span>).</p>
+<p>Remember: on a regular boxplot,<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> the groups go across (<span class="math inline">\(x\)</span>), the variable measured goes up (<span class="math inline">\(y\)</span>).</p>
 <p>Extra: this might work:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(marks, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> score)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
@@ -1525,7 +1525,7 @@ dbl (1): mark
 </div>
 </div>
 <p>I have to be a little bit careful about which data frame I want the <code>score</code> to come from: the ones hidden in <code>data</code>, which are the things we’re for-eaching over.</p>
-<p>This obtains a new list-column called <code>qq</code>, with the five-number summary for each group.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p>This obtains a new list-column called <code>qq</code>, with the five-number summary for each group.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
 <p>Now we want to display the quantiles. This is the easiest way:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>marks <span class="sc">%&gt;%</span></span>
@@ -1807,13 +1807,13 @@ chr (1): Year Rainfall
 <li>Do you think that the official was right to use the word “unprecedented” to describe the 1997 rainfall? Justify your answer briefly.</li>
 </ol>
 <p>Solution</p>
-<p>“Unprecedented” means “never seen before” or “never having happened or existed in the past”.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> That came out of my head; <a href="https://www.dictionary.com/browse/unprecedented">this link</a> has a very similar “never before known or experienced”).</p>
+<p>“Unprecedented” means “never seen before” or “never having happened or existed in the past”.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> That came out of my head; <a href="https://www.dictionary.com/browse/unprecedented">this link</a> has a very similar “never before known or experienced”).</p>
 <p>If you look back at your histogram, there are several years that had over about 30 inches of rain: five or six, depending on your histogram. One of them was 1997, but there were others too, so 1997 was in no way “unprecedented”.</p>
 <p>Another approach that you have seen is to <code>View</code> your dataframe:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(rain)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>That will come out as a separate tab in your R Studio and you can look at it (yourself; it won’t appear in the Preview). You can look at the 1997 rainfall (29.69 inches) and count how many were bigger than that, 4 of them. Or, save yourself some effort<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> and sort the rainfall values in descending order (with the biggest one first), by clicking on the little arrows next to Rainfall (twice). Mine looks like this:</p>
+<p>That will come out as a separate tab in your R Studio and you can look at it (yourself; it won’t appear in the Preview). You can look at the 1997 rainfall (29.69 inches) and count how many were bigger than that, 4 of them. Or, save yourself some effort<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and sort the rainfall values in descending order (with the biggest one first), by clicking on the little arrows next to Rainfall (twice). Mine looks like this:</p>
 <p><img src="Screenshot_2020-09-11_15-17-51.png" style="height:50.0%"></p>
 <p>Later, we learn how to sort in code, which goes like this (to sort highest first):</p>
 <div class="cell">
@@ -1998,10 +1998,11 @@ chr (2): laptop, score
 <li id="fn4"><p>I explain the missing values below.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>If there had been a weeks of gestation, we could have figured out whether it was premature or not, according to whether the weeks of gestation was less than 37.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>That is to say, the principal deviation from normality is not the hole on the histogram, the bar centred around 123 being too short, but that the bar centred just below 120 is too <em>tall</em>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Boxplots can also go across the page, but for us, they don’t.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>It’s actually a coincidence that the five-number summary and Ken’s class both have five values in them.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Searching for “define” followed by a word is a good way to find out exactly what that word means, if you are not sure, but you should at least say where you got the definition from if you had to look it up.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>When you have a computer at your disposal, it’s worth taking a few minutes to figure out how to use it to make your life easier.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>R has a special class for date-times. Internally, they are recorded as seconds since Jan 1, 1970 at midnight, but they display in a human-readable form and can also be used on (typically the <span class="math inline">\(x\)</span>-axis of) graphs and will plot properly with sensible axis labels. That isn’t very helpful here, since we have the Julian dates, but can be helpful elsewhere.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Boxplots can also go across the page, but for us, they don’t.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>It’s actually a coincidence that the five-number summary and Ken’s class both have five values in them.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Searching for “define” followed by a word is a good way to find out exactly what that word means, if you are not sure, but you should at least say where you got the definition from if you had to look it up.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>When you have a computer at your disposal, it’s worth taking a few minutes to figure out how to use it to make your life easier.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
