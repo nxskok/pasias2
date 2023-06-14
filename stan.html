@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>stan</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="stan_files/libs/clipboard/clipboard.min.js"></script>
+<script src="stan_files/libs/quarto-html/quarto.js"></script>
+<script src="stan_files/libs/quarto-html/popper.min.js"></script>
+<script src="stan_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="stan_files/libs/quarto-html/anchor.min.js"></script>
+<link href="stan_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="stan_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="stan_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="stan_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="stan_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="bayesian-statistics-with-stan" class="level1">
+<h1>Bayesian Statistics with Stan</h1>
+<p>Packages for this chapter:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<section id="estimating-proportion-in-favour-from-a-survey" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-proportion-in-favour-from-a-survey">Estimating proportion in favour from a survey</h2>
+<p>You are probably familiar with the kind of surveys where you are given a statement, like “I am the kind of person that finishes a task they start”, and you have to express your agreement or disagreement with it. Usually, you are given a five-point or seven-point scale on which you express your level of agreement (from “strongly agree” through “neither agree nor disagree” to “strongly disagree”, for example). Here, we will simplify things a little and only allow respondents to agree or disagree. So the kind of data you would have is a number of people that took part, and the number of these that said “agree”.</p>
+<p>Common assumptions that are made in this kind of analysis are: (i) the responses are independent of each other, and (ii) each respondent has the same unknown probability of agreeing. You might quibble about (ii), but the assumption we are making here is that we know <em>nothing</em> about the respondents apart from whether they agreed or disagreed. (In practice, we’d collect all kinds of demographic information about each respondent, and this might give us a clue about how they’ll respond, but here we’re keeping it simple.) Under our assumptions, the number of respondents that agree has a binomial distribution with <span class="math inline">\(n\)</span> being our sample size, and <span class="math inline">\(p\)</span> being the probability we are trying to estimate. Let’s estimate <span class="math inline">\(p\)</span> using Stan: that is to say, let’s obtain the posterior distribution of <span class="math inline">\(p\)</span>.</p>
+<ol type="a">
+<li><p>In R Studio, open a new Stan file (with File, New File, Stan File). You’ll see a template file of Stan code. Edit the <code>model</code> section to reflect that you have observed a number of successes <code>x</code> that we are modelling to have a binomial distribution with number of trials <code>n</code> and success probability <code>p</code>.</p></li>
+<li><p>In the line of Stan code you wrote, there should be three variables. Which of these are parameters and which are data? Explain briefly.</p></li>
+<li><p>I hope you found that there is only one parameter, <code>p</code>, in this problem. We know that <span class="math inline">\(0 \le p \le 1\)</span>, and we need a prior distribution for it. A common choice is a beta distribution. Look at the Stan manual, <a href="https://mc-stan.org/docs/2_18/functions-reference/beta-distribution.html">link</a>. The density function is given in 19.1.1. It has two parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span>. <span class="math inline">\(B(\alpha, \beta)\)</span> given there is a constant. Add to your <code>model</code> section to express that <code>p</code> has a prior distribution with parameters <code>alpha</code> and <code>beta</code>. (<code>alpha</code> and <code>beta</code> will be input data when we run this code.)</p></li>
+<li><p>Above your <code>model</code> section, complete a <code>parameters</code> section that says what kind of variable <code>p</code> is. If <code>p</code> has upper or lower limits, put these in as well. You can edit the <code>parameters</code> section that is in the template.</p></li>
+<li><p>Everything else is <code>data</code>. Complete a <code>data</code> section (edit the one in the template) to say what type of thing everything else is, including limits if it has any. Don’t forget the parameters in the prior distribution!</p></li>
+<li><p>Save your code, if you haven’t already. I used the filename <code>binomial.stan</code>. In your Stan code window, at the top right, you’ll see a button marked Check. This checks whether your code is syntactically correct. Click it.</p></li>
+<li><p>Compile your model. (This may take a minute or so, depending on how fast your R Studio is.) When the spinny thing stops spinning, it’s done.</p></li>
+<li><p>In most surveys, the probability to be estimated is fairly close to 0.5. A beta prior with <span class="math inline">\(\alpha=\beta=2\)</span> expresses the idea that any value of <code>p</code> is possible, but values near 0.5 are more likely.</p></li>
+</ol>
+<p>A survey of 277 randomly selected adult female shoppers was taken. 69 of them agreed that when an advertised item is not available at the local supermarket, they request a raincheck.</p>
+<p>Using the above information, set up a data <code>list</code> suitable for input to a run of <code>stan</code>.</p>
+<ol type="i">
+<li>Sample from the posterior distribution of <code>p</code> with these data, and display your results.</li>
+</ol>
+<ol start="10" type="a">
+<li><p>Obtain a 90% posterior interval for the probability that a randomly chosen adult female shopper will request a raincheck.</p></li>
+<li><p>Obtain a 95% (frequentist) confidence interval for <code>p</code>, and compare the results. (Hint: <code>prop.test</code>.) Comment briefly.</p></li>
+<li><p>(optional) This is one of those problems where you can obtain the answer analytically. What is the posterior distribution of <span class="math inline">\(p\)</span>, using a prior <span class="math inline">\(beta(\alpha, \beta)\)</span> distribution for <span class="math inline">\(p\)</span> and observing <span class="math inline">\(x\)</span> successes out of <span class="math inline">\(n\)</span> trials?</p></li>
+</ol>
+</section>
+<section id="bayesian-regression" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-regression">Bayesian regression</h2>
+<p>In this question, we will develop Stan code to run a simple linear regression, and later apply it to some data (and do a bit of elicitation of prior distributions along the way).</p>
+<ol type="a">
+<li><p>Create a <code>.stan</code> file that will run a simple linear regression predicting a variable <code>y</code> from a variable <code>x</code>, estimating an intercept <code>a</code> and a slope <code>b</code>. Use normal prior distributions for <code>a</code> and <code>b</code>, and allow the means and SDs of the prior distributions for <code>a</code> and <code>b</code> to be specified (as data, later). The regression model says that the response <code>y</code> has a normal distribution with mean <code>a+bx</code> and SD <code>sigma</code> which is also estimated. Give this a prior chi-squared distribution with a prior mean that is also input.</p></li>
+<li><p>Check your Stan code for syntactic correctness, and when it is correct, compile it.</p></li>
+<li><p>We are going to be analyzing some data on vocabulary size (the number of words known) by children of different ages. It is suspected that the relationship between age and vocabulary size is approximately linear. You go consult with an early childhood expert, and they tell you this:</p></li>
+</ol>
+<ul>
+<li><p>In children of age up to about six, vocabulary almost always increases by between 300 and 700 words per year.</p></li>
+<li><p>I can’t talk about vocabulary of children of age 0, because children don’t start learning to talk until age about 18 months (1.5 years).</p></li>
+<li><p>Children of age 1.5 years almost always have a vocabulary between 0 and 500 words (depending on exactly what age they started talking.)</p></li>
+<li><p>Even if we know a child’s age, our prediction of their vocabulary size might be off by as much as 200 words.</p></li>
+</ul>
+<p>Use this information to obtain parameters for your prior distributions.</p>
+<ol start="4" type="a">
+<li><p>Some data were collected on age and vocabulary size of 10 randomly selected children, shown here: <a href="https://raw.githubusercontent.com/nxskok/pasias/master/vocab.txt">link</a>. Read in and display the data; the values are separated by single spaces.</p></li>
+<li><p>Use this dataset, along with your prior distribution from above, to obtain posterior distributions for intercept, slope and error SD. What is the 95% posterior interval for the slope?</p></li>
+<li><p>Plot a histogram of the posterior distribution of the slope. Does its shape surprise you? Explain briefly.</p></li>
+<li><p>What can we say about the vocabulary size of a randomly selected child of age 5 (a new one, not the one in the original data set)? Use an appropriate predictive distribution.</p></li>
+</ol>
+</section>
+<section id="estimating-p-the-bayesian-way" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-p-the-bayesian-way">Estimating <span class="math inline">\(p\)</span> the Bayesian way</h2>
+<p>A binomial experiment with 8 trials produces the following results: success, failure, success, success, failure, success, success, success. (Each result is therefore a Bernoulli trial.) The person who gave you the data says that the success probability is most likely somewhere near 0.5, but might be near 0 or 1. The aim of this question is to estimate the success probability using Bayesian methods.</p>
+<p>In this question, use <code>cmdstanr</code> (see <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html">this site</a> for instructions). Documentation for Stan is <a href="https://mc-stan.org/docs/2_26/reference-manual/index.html">here</a>. You will probably want to be running R on your own computer.</p>
+<ol type="a">
+<li><p>Write a Stan program that will estimate the success probability <span class="math inline">\(p\)</span>. To do this, start with the likelihood (Stan has a function <code>bernoulli</code> that takes one parameter, the success probability). The data, as 1s and 0s, will be in a vector <code>x</code>. Use a beta distribution with unknown parameters as a prior for <code>p</code>. (We will worry later what those parameters should be.)</p></li>
+<li><p>Compile your code, correcting any errors until it compiles properly.</p></li>
+<li><p>The person who brought you the data told you that the success probability <code>p</code> should be somewhere near 0.5 (and is less likely to be close to 0 or 1). Use this information to pick a prior distribution for <code>p</code>. (The exact answer you get doesn’t really matter, but try to interpret the statement in some kind of sensible way.)</p></li>
+<li><p>Create an R <code>list</code> that contains all your <code>data</code> for your Stan model. Remember that Stan expects the data in <code>x</code> to be 0s and 1s.</p></li>
+<li><p>Run your Stan model to obtain a simulated posterior distribution, using all the other defaults.</p></li>
+<li><p>Make a plot of the posterior distribution of the probability of success. (Use the <code>posterior</code> and <code>bayesplot</code> packages if convenient.)</p></li>
+<li><p>The posterior predictive distribution is rather odd here: the only possible values that can be observed are 0 and 1. Nonetheless, obtain the posterior predictive distribution for these data, and explain briefly why it is not surprising that it came out as it did.</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="estimating-proportion-in-favour-from-a-survey-1" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-proportion-in-favour-from-a-survey-1">Estimating proportion in favour from a survey</h2>
+<p>You are probably familiar with the kind of surveys where you are given a statement, like “I am the kind of person that finishes a task they start”, and you have to express your agreement or disagreement with it. Usually, you are given a five-point or seven-point scale on which you express your level of agreement (from “strongly agree” through “neither agree nor disagree” to “strongly disagree”, for example). Here, we will simplify things a little and only allow respondents to agree or disagree. So the kind of data you would have is a number of people that took part, and the number of these that said “agree”.</p>
+<p>Common assumptions that are made in this kind of analysis are: (i) the responses are independent of each other, and (ii) each respondent has the same unknown probability of agreeing. You might quibble about (ii), but the assumption we are making here is that we know <em>nothing</em> about the respondents apart from whether they agreed or disagreed. (In practice, we’d collect all kinds of demographic information about each respondent, and this might give us a clue about how they’ll respond, but here we’re keeping it simple.) Under our assumptions, the number of respondents that agree has a binomial distribution with <span class="math inline">\(n\)</span> being our sample size, and <span class="math inline">\(p\)</span> being the probability we are trying to estimate. Let’s estimate <span class="math inline">\(p\)</span> using Stan: that is to say, let’s obtain the posterior distribution of <span class="math inline">\(p\)</span>.</p>
+<ol type="a">
+<li>In R Studio, open a new Stan file (with File, New File, Stan File). You’ll see a template file of Stan code. Edit the <code>model</code> section to reflect that you have observed a number of successes <code>x</code> that we are modelling to have a binomial distribution with number of trials <code>n</code> and success probability <code>p</code>.</li>
+</ol>
+<p>Solution</p>
+<p>This is quicker to do than to ask for. Make a guess at this:</p>
+<pre><code>
+model {
+  // likelihood
+  x ~ binomial(n, p);
+}</code></pre>
+<p>and then check the manual <a href="https://mc-stan.org/docs/2_18/functions-reference/binomial-distribution.html">link</a>, looking for Sampling Statement, to make sure that this is what is expected. It is. (I got to this page by googling “Stan binomial distribution”.)</p>
+<p>The “likelihood” line with the two slashes is a comment, C++ style. It is optional, but I like to have it to keep things straight.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>In the line of Stan code you wrote, there should be three variables. Which of these are parameters and which are data? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>The way to think about this is to ask yourself which of <code>x</code>, <code>n</code>, and <code>p</code> are being given to the Stan code as data, and which you are trying to estimate. The only thing we are estimating here is <code>p</code>, so that is a parameter. The number of trials <code>n</code> and the number of successes <code>x</code> are data that you will observe (treated as “given” or “fixed” in the Bayesian framework).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>I hope you found that there is only one parameter, <code>p</code>, in this problem. We know that <span class="math inline">\(0 \le p \le 1\)</span>, and we need a prior distribution for it. A common choice is a beta distribution. Look at the Stan manual, <a href="https://mc-stan.org/docs/2_18/functions-reference/beta-distribution.html">link</a>. The density function is given in 19.1.1. It has two parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span>. <span class="math inline">\(B(\alpha, \beta)\)</span> given there is a constant. Add to your <code>model</code> section to express that <code>p</code> has a prior distribution with parameters <code>alpha</code> and <code>beta</code>. (<code>alpha</code> and <code>beta</code> will be input data when we run this code.)</li>
+</ol>
+<p>Solution</p>
+<p>Your <code>model</code> section should now look like this:</p>
+<pre><code>
+model {
+  // prior
+  p ~ beta(alpha, beta);
+  // likelihood
+  x ~ binomial(n, p);
+}
+</code></pre>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Above your <code>model</code> section, complete a <code>parameters</code> section that says what kind of variable <code>p</code> is. If <code>p</code> has upper or lower limits, put these in as well. You can edit the <code>parameters</code> section that is in the template.</li>
+</ol>
+<p>Solution</p>
+<p><code>p</code> is a real variable taking values between 0 and 1, so this:</p>
+<pre><code>
+parameters {
+  real&lt;lower=0, upper=1&gt; p;
+}
+</code></pre>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Everything else is <code>data</code>. Complete a <code>data</code> section (edit the one in the template) to say what type of thing everything else is, including limits if it has any. Don’t forget the parameters in the prior distribution!</li>
+</ol>
+<p>Solution</p>
+<p>We said before that <code>n</code> and <code>x</code> were (genuine) data. These are positive integers; also <code>x</code> cannot be bigger than <code>n</code> (why not?). In the data section also go the parameters <code>alpha</code> and <code>beta</code> of the prior distribution. These are real numbers bigger than zero. These two together give us this:</p>
+<pre><code>
+data {
+  int&lt;lower=0&gt; n;
+  int&lt;lower=0, upper=n&gt; x;
+  real&lt;lower=0&gt; alpha;
+  real&lt;lower=0&gt; beta;
+}
+</code></pre>
+<p>Putting in lower and upper limits, if you have them, will help because if you happen to enter data that does not respect the limits, you’ll get an error right there, and you won’t waste time sampling.</p>
+<p>It is more important to put in limits in the <code>parameters</code> section, because that is telling the sampler not to go there (eg. a value of <span class="math inline">\(p\)</span> outside <span class="math inline">\([0,1]\)</span>).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Save your code, if you haven’t already. I used the filename <code>binomial.stan</code>. In your Stan code window, at the top right, you’ll see a button marked Check. This checks whether your code is syntactically correct. Click it.</li>
+</ol>
+<p>Solution</p>
+<p>This appeared in my console:</p>
+<pre><code>
+&gt; rstan:::rstudio_stanc("binomial.stan")
+binomial.stan is syntactically correct.
+</code></pre>
+<p>If you don’t see this, there is some kind of code error. You’ll then see some output that points you to a line of your code. The error is either there or at the end of the previous line (eg. you forgot a semicolon). Here is a typical one:</p>
+<pre><code>
+&gt; rstan:::rstudio_stanc("binomial.stan")
+SYNTAX ERROR, MESSAGE(S) FROM PARSER:
+error in 'model377242ac03ef_binomial' at line 24, column 0
+-------------------------------------------------
+22: parameters {
+23:   real&lt;lower=0, upper=1&gt; p
+24: }
+^
+25: 
+-------------------------------------------------
+
+PARSER EXPECTED: ";"
+Error in stanc(filename, allow_undefined = TRUE) : 
+failed to parse Stan model 'binomial' due to the above error.
+</code></pre>
+<p>The compiler (or at least the code checker) was expecting a semicolon, and when it got to the close-curly-bracket on line 24, that was where it knew that the semicolon was missing (and thus it objected there and not earlier).</p>
+<p>The above was on my own computer. When I tried it on <code>r.datatools</code>, I thought I had everything correct but I got an error message like this:</p>
+<pre><code>
+Error in sink(type = "output") : invalid connection
+</code></pre>
+<p>that I couldn’t get rid of. This might happen to you also.</p>
+<p>If you get an error (other than the above), fix it and check again. Repeat until your code is “syntactically correct”. (That means that it will compile, but not that it will necessarily do what you want.) This process is an integral part of coding, so get used to it. It doesn’t matter how many errors you make; what matters is that you find and correct them all.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>Compile your model. (This may take a minute or so, depending on how fast your R Studio is.) When the spinny thing stops spinning, it’s done.</li>
+</ol>
+<p>Solution</p>
+<p>Go down to the console and type something like</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>binomial <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(<span class="st">"binomial.stan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If it doesn’t work, make sure you installed and loaded <code>cmdstanr</code> first, with <code>install.packages</code> and <code>library</code> respectively.</p>
+<p>If it sits there and does nothing for a while, this is actually a good sign. If it finds an error, it will tell you. If you get your command prompt <code>&gt;</code> back without it saying anything, that means it worked. (This is a Unix thing: no comment means no error.)</p>
+<p>If you happen to compile it a second time, without changing anything in the Stan code, it won’t make you wait while it compiles again: it will say “Model executable is up to date!”.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>In most surveys, the probability to be estimated is fairly close to 0.5. A beta prior with <span class="math inline">\(\alpha=\beta=2\)</span> expresses the idea that any value of <code>p</code> is possible, but values near 0.5 are more likely.</li>
+</ol>
+<p>A survey of 277 randomly selected adult female shoppers was taken. 69 of them agreed that when an advertised item is not available at the local supermarket, they request a raincheck.</p>
+<p>Using the above information, set up a data <code>list</code> suitable for input to a run of <code>stan</code>.</p>
+<p>Solution</p>
+<p>Look in your <code>data</code> section, and see what you need to provide values for. The order doesn’t matter; make a list with the named pieces and their values, in some order. You need values for these four things:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>binomial_data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">n =</span> <span class="dv">277</span>, <span class="at">x =</span> <span class="dv">69</span>, <span class="at">alpha =</span> <span class="dv">2</span>, <span class="at">beta =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extra: in case you are wondering where the parameters for the prior came from: in this case, I looked on the Wikipedia page for the beta distribution and saw that <span class="math inline">\(\alpha=\beta=2\)</span> is a good shape, so I used that. In practice, getting a reasonable prior is a more difficult problem, called “elicitation”. What you have to do is ask a subject matter expert what they think <code>p</code> might be, giving you a range of values such as a guessed-at 95% confidence interval, like “I think <code>p</code> is almost certainly between 0.1 and 0.6”. Then <em>you</em> as a statistician have to choose values for <code>alpha</code> and <code>beta</code> that match this, probably by trial and error. The <code>beta</code> distribution is part of R, so this is doable, for example like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crossing</span>(<span class="at">alpha =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">beta =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">lower =</span> <span class="fu">qbeta</span>(<span class="fl">0.025</span>, alpha, beta),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">upper =</span> <span class="fu">qbeta</span>(<span class="fl">0.975</span>, alpha, beta)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sse =</span> (lower <span class="sc">-</span> <span class="fl">0.1</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (upper <span class="sc">-</span> <span class="fl">0.6</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(sse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 5
+   alpha  beta  lower upper      sse
+   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+ 1     4     8 0.109  0.610 0.000181
+ 2     3     7 0.0749 0.600 0.000632
+ 3     4     9 0.0992 0.572 0.000793
+ 4     5    10 0.128  0.581 0.00112 
+ 5     5     9 0.139  0.614 0.00169 
+ 6     3     6 0.0852 0.651 0.00280 
+ 7     3     8 0.0667 0.556 0.00303 
+ 8     4     7 0.122  0.652 0.00322 
+ 9     4    10 0.0909 0.538 0.00391 
+10     6    10 0.163  0.616 0.00428 
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+<p>(<code>crossing</code>) does all possible combinations of its inputs; <code>expand.grid</code> would also do the same thing.)</p>
+<p>This says that <span class="math inline">\(\alpha=4, \beta=8\)</span> is a pretty good choice.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>My process:</p>
+<ul>
+<li><p>Pick some values of <code>alpha</code> and <code>beta</code> to try, and make all possible combinations of them.</p></li>
+<li><p>Find the 2.5 and 97.5 percentiles of the beta distribution for each of those values. The “inverse CDF” (the value <span class="math inline">\(x\)</span> that has this much of the probability below it) is what we want here; this is obtained in R by putting <code>q</code> in front of the name of the distribution. For example, does this make sense to you?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.959964</code></pre>
+</div>
+</div>
+<ul>
+<li><p>We want the lower limit to be close to 0.1 <em>and</em> the upper limit to be close to 0.6. Working out the sum of squared errors for each <code>alpha</code>-<code>beta</code> combo is a way to do this; if <code>sse</code> is small, that combination of <code>alpha</code> and <code>beta</code> gave lower and upper limits close to 0.1 and 0.6.</p></li>
+<li><p>Arrange the <code>sse</code> values smallest to largest. The top rows are the best choices of <code>alpha</code> and <code>beta</code>.</p></li>
+</ul>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol type="i">
+<li>Sample from the posterior distribution of <code>p</code> with these data, and display your results.</li>
+</ol>
+<p>Solution</p>
+<p>This is what I got:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>binomial_fit <span class="ot">&lt;-</span> binomial<span class="sc">$</span><span class="fu">sample</span>(binomial_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Running MCMC with 4 sequential chains...
+
+Chain 1 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 1 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 1 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 1 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 1 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 1 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 1 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 1 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 1 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 1 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 1 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 1 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 1 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 1 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 1 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 1 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 1 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 1 finished in 0.0 seconds.
+Chain 2 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 2 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 2 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 2 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 2 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 2 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 2 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 2 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 2 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 2 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 2 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 2 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 2 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 2 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 2 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 2 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 2 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 2 finished in 0.0 seconds.
+Chain 3 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 3 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 3 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 3 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 3 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 3 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 3 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 3 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 3 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 3 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 3 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 3 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 3 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 3 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 3 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 3 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 3 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 3 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 3 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 3 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 3 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 3 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 3 finished in 0.0 seconds.
+Chain 4 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 4 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 4 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 4 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 4 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 4 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 4 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 4 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 4 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 4 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 4 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 4 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 4 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 4 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 4 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 4 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 4 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 4 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 4 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 4 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 4 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 4 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 4 finished in 0.0 seconds.
+
+All 4 chains finished successfully.
+Mean chain execution time: 0.0 seconds.
+Total execution time: 0.7 seconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>binomial_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> variable    mean  median   sd  mad      q5     q95 rhat ess_bulk ess_tail
+     lp__ -159.35 -159.08 0.69 0.34 -160.80 -158.84 1.00     1696     2004
+     p       0.25    0.25 0.03 0.03    0.21    0.30 1.00     1398     1880</code></pre>
+</div>
+</div>
+<p>Your results should be similar, though probably not identical, to mine. (There is a lot of randomness involved here.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="10" type="a">
+<li>Obtain a 90% posterior interval for the probability that a randomly chosen adult female shopper will request a raincheck.</li>
+</ol>
+<p>Solution</p>
+<p>Read off the <code>q5</code> and <code>q95</code> values for <code>p</code>. Mine are 0.21 and 0.29.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="11" type="a">
+<li>Obtain a 95% (frequentist) confidence interval for <code>p</code>, and compare the results. (Hint: <code>prop.test</code>.) Comment briefly.</li>
+</ol>
+<p>Solution</p>
+<p>If you remember this well enough, you can do it by hand, but there’s no need:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">69</span>, <span class="dv">277</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    1-sample proportions test with continuity correction
+
+data:  69 out of 277, null probability 0.5
+X-squared = 68.751, df = 1, p-value &lt; 2.2e-16
+alternative hypothesis: true p is not equal to 0.5
+95 percent confidence interval:
+ 0.2001721 0.3051278
+sample estimates:
+        p 
+0.2490975 </code></pre>
+</div>
+</div>
+<p>My 95% intervals are very close.</p>
+<p>Numerically, this is because the only (material) difference between them is the presence of the prior in the Bayesian approach. We have quite a lot of data, though, so the choice of prior is actually not that important (“the data overwhelm the prior”). I could have used <code>alpha=8, beta=4</code> that I obtained in the Extra above, and it wouldn’t have made any noticeable difference.</p>
+<p>Conceptually, though, the interpretations of these intervals are very different: the Bayesian posterior interval really does say “the probability of <span class="math inline">\(p\)</span> being between 0.20 and 0.31 is 0.95”, while for the confidence interval you have to talk about repeated sampling: “the procedure producing the 95% confidence interval will contain the true value of <span class="math inline">\(p\)</span> in 95% of all possible samples”. This might seem clunky in comparison; a Bayesian would tell you that the interpretation of the posterior interval is what you want the interpretation of the confidence interval to be!</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="12" type="a">
+<li>(optional) This is one of those problems where you can obtain the answer analytically. What is the posterior distribution of <span class="math inline">\(p\)</span>, using a prior <span class="math inline">\(beta(\alpha, \beta)\)</span> distribution for <span class="math inline">\(p\)</span> and observing <span class="math inline">\(x\)</span> successes out of <span class="math inline">\(n\)</span> trials?</li>
+</ol>
+<p>Solution</p>
+<p>With this stuff, you can throw away any constants.</p>
+<p>The likelihood is (proportional to) <span class="math display">\[ p^x (1-p)^{n-x}.\]</span> There is a binomial coefficient that I threw away.</p>
+<p>Look up the form of the beta density if you don’t know it (or look above): the prior for <span class="math inline">\(p\)</span> is proportional to</p>
+<p><span class="math display">\[ p^{\alpha-1} (1-p)^{\beta-1}.\]</span></p>
+<p>Posterior is proportional to likelihood times prior:</p>
+<p><span class="math display">\[ p^{x + \alpha - 1} (1-p)^{n-x +\beta - 1}\]</span></p>
+<p>which is recognized as a beta distribution with parameters <span class="math inline">\(x+\alpha\)</span>, <span class="math inline">\(n-x+\beta\)</span>. Typically (unless you are very sure about <span class="math inline">\(p\)</span> a priori (that is, before collecting any data)), <span class="math inline">\(x\)</span> and <span class="math inline">\(n-x\)</span> will be much larger than <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, so this will look a lot like a binomial likelihood, which is why the confidence interval and posterior interval in our example came out very similar. I leave it to you to decide which you prefer: algebra and intelligence (and luck, often), or writing code to sample from the posterior. I know what I prefer!</p>
+<p>Extra: one of the people behind Stan is on Twitter with handle <code>@betanalpha</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="bayesian-regression-1" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-regression-1">Bayesian regression</h2>
+<p>In this question, we will develop Stan code to run a simple linear regression, and later apply it to some data (and do a bit of elicitation of prior distributions along the way).</p>
+<ol type="a">
+<li>Create a <code>.stan</code> file that will run a simple linear regression predicting a variable <code>y</code> from a variable <code>x</code>, estimating an intercept <code>a</code> and a slope <code>b</code>. Use normal prior distributions for <code>a</code> and <code>b</code>, and allow the means and SDs of the prior distributions for <code>a</code> and <code>b</code> to be specified (as data, later). The regression model says that the response <code>y</code> has a normal distribution with mean <code>a+bx</code> and SD <code>sigma</code> which is also estimated. Give this a prior chi-squared distribution with a prior mean that is also input.</li>
+</ol>
+<p>Solution</p>
+<p>This is a lot. Breathe. Pause. Then, in R Studio, File, New File and Stan File. Leave the template there, and change what you need as you go. I would start with the model part. The likelihood part says that <code>y</code> has a normal distribution with mean <code>a+bx</code> and SD <code>sigma</code>, thus:</p>
+<pre><code>
+// likelihood
+y ~ normal(a+b*x, sigma);
+</code></pre>
+<p>There is a subtlety here that I’ll get to later, but this is the easiest way to begin. Next, take a look at what’s here. <code>x</code> and <code>y</code> are data, and the other things, <code>a</code>, <code>b</code>, <code>sigma</code> are parameters. These last three need prior distributions. I said to use normal distributions for the first two, and a chi-squared distribution for the last one. (In practice, of course, you get to choose these, in consultation with the subject matter expert, but these are likely to be pretty reasonable.) I’ve given the parameters of these prior distributions longish names, so I hope I’m trading more typing for less confusion:</p>
+<pre><code>
+model {
+  // prior
+  a ~ normal(prior_int_mean, prior_int_sd);
+  b ~ normal(prior_slope_mean, prior_slope_sd);
+  sigma ~ chi_square(prior_sigma_mean);
+  // likelihood
+  y ~ normal(a+b*x, sigma);
+}
+</code></pre>
+<p>The chi-squared distribution is written that way in Stan, and has only one parameter, a degrees of freedom that is also its mean.</p>
+<p>Our three parameters then need to be declared, in the <code>parameters</code> section. <code>a</code> and <code>b</code> can be any real number, while <code>sigma</code> has to be positive:</p>
+<pre><code>
+parameters {
+  real a;
+  real b;
+  real&lt;lower=0&gt; sigma;
+}
+</code></pre>
+<p>Everything else is data, and we have a <em>lot</em> of data this time:</p>
+<pre><code>
+data {
+  int&lt;lower=0&gt; n;
+  vector[n] x;
+  vector[n] y;
+  real prior_int_mean;
+  real&lt;lower=0&gt; prior_int_sd;
+  real prior_slope_mean;
+  real&lt;lower=0&gt; prior_slope_sd;
+  real&lt;lower=0&gt; prior_sigma_mean;
+}
+</code></pre>
+<p>The five things at the bottom are the prior distribution parameters, which we are going to be eliciting later. The means for intercept and slope can be anything; the prior SDs have to be positive, and so does the prior mean for <code>sigma</code>, since it’s actually a degrees of freedom that has to be positive.</p>
+<p>Now we come to two pieces of subtlety. The first is that the <code>x</code> and <code>y</code> are going to have some (unknown) number of values in them, but we need to declare them with some length. The solution to that is to have the number of observations <code>n</code> also be part of the data. Once we have that, we can declare <code>x</code> and <code>y</code> to be of length <code>n</code> with no problems.</p>
+<p>The second piece of subtlety is that you were probably expecting this:</p>
+<pre><code>
+real x[n];
+real y[n];
+</code></pre>
+<p>This is usually what you need, but the problem is that when you work out <code>a+b*x</code> later on, it <em>doesn’t work</em> because you are trying to multiply an array of values <code>x</code> by a single value <code>b</code>. (Try it.) There are two ways around this: (i), if you instead declare <code>x</code> and <code>y</code> to be (real) vectors of length <code>n</code>, Stan borrows from R’s multiplication of a vector by a scalar and it works, by multiplying <em>each element</em> of the vector by the scalar. Or, (ii), you can go back to declaring <code>x</code> and <code>y</code> as real things of length <code>n</code>, and use a loop to get <em>each</em> y from its corresponding <code>x</code>, like this:</p>
+<pre><code>
+for (i in 1:n) {
+  y[i] ~ normal(a + b * x[i], sigma)
+}
+
+</code></pre>
+<p>and this works because <code>a</code>, <code>b</code>, and <code>x[i]</code> are all scalar. I have to say that I don’t really understand the distinction between <code>real x[n]</code> and <code>vector[n] x</code>, except that sometimes one works and the other doesn’t.</p>
+<p>The manual tells you that the <code>vector</code> way is “much faster”, though in a simple problem like this one I doubt that it makes any noticeable difference.</p>
+<p>My code looks like this, in total:</p>
+<pre><code>
+data {
+  int&lt;lower=0&gt; n;
+  vector[n] x;
+  vector[n] y;
+  real prior_int_mean;
+  real&lt;lower=0&gt; prior_int_sd;
+  real prior_slope_mean;
+  real&lt;lower=0&gt; prior_slope_sd;
+  real&lt;lower=0&gt; prior_sigma_mean;
+}
+
+parameters {
+  real a;
+  real b;
+  real&lt;lower=0&gt; sigma;
+}
+
+model {
+  // prior
+  a ~ normal(prior_int_mean, prior_int_sd);
+  b ~ normal(prior_slope_mean, prior_slope_sd);
+  sigma ~ chi_square(prior_sigma_mean);
+  // likelihood
+  y ~ normal(a+b*x, sigma);
+}
+
+</code></pre>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Check your Stan code for syntactic correctness, and when it is correct, compile it.</li>
+</ol>
+<p>Solution</p>
+<p>Click the Check button top right of the window where your Stan code is. If it finds any errors, correct them and try again.</p>
+<p>To compile, the usual thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(<span class="st">"reg.stan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and wait for it to do its thing. With luck, Check will have found all the errors and this will quietly (eventually) do its job.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>We are going to be analyzing some data on vocabulary size (the number of words known) by children of different ages. It is suspected that the relationship between age and vocabulary size is approximately linear. You go consult with an early childhood expert, and they tell you this:</li>
+</ol>
+<ul>
+<li><p>In children of age up to about six, vocabulary almost always increases by between 300 and 700 words per year.</p></li>
+<li><p>I can’t talk about vocabulary of children of age 0, because children don’t start learning to talk until age about 18 months (1.5 years).</p></li>
+<li><p>Children of age 1.5 years almost always have a vocabulary between 0 and 500 words (depending on exactly what age they started talking.)</p></li>
+<li><p>Even if we know a child’s age, our prediction of their vocabulary size might be off by as much as 200 words.</p></li>
+</ul>
+<p>Use this information to obtain parameters for your prior distributions.</p>
+<p>Solution</p>
+<p>This is the typical kind of way in which you would elicit a prior distribution; you try to turn what the expert tells you into something you can use.</p>
+<p>Let’s assume that the “almost always” above corresponds to a 95% confidence interval, and since our intercept and slope have prior normal distributions, this is, to the accuracy that we are working, mean plus/minus 2 SD. (You can make different assumptions and you’ll get a somewhat different collection of prior distributions.)</p>
+<p>The first statement talks about the change in vocabulary size per year. This is talking about the slope. The supposed 95% confidence interval given translates to <span class="math inline">\(500 \pm 2(100)\)</span>, so the prior mean for the slope is 500 and the prior SD is 100.</p>
+<p>Not so hard. The problems start with the second one.</p>
+<p>We want a prior mean and SD for the intercept, that is, for the mean and SD of vocabulary size at age 0, but the expert (in their second statement) is telling us this makes no sense. The third statement says that at age 1.5, a 95% CI for vocabulary size is <span class="math inline">\(250 \pm 2(125)\)</span>. You can go a number of different ways from here, but a simple one is use our best guess for the slope, 500, to project back 1.5 years from here by decreasing the mean by <span class="math inline">\((500)(1.5)=750\)</span>, that is, to <span class="math inline">\(-500 \pm 2(125)\)</span>.</p>
+<p>The last one we need is the prior mean for <code>sigma</code>. This is what the last statement is getting at. Up to you whether you think this is an estimate of <code>sigma</code> or twice sigma. Let’s take 200 as a prior estimate of <code>sigma</code>, to be safe.</p>
+<p>You see that getting a useful prior depends on asking the right questions and making good use of the answers you get.</p>
+<p>Some people like to use “ignorance” priors, where you assign equal probability to all possible values of the parameter. I don’t, because these are saying that a slope of 10 million is just as likely as a slope of 1, regardless of the actual circumstances; you will almost always have <em>some</em> idea of what you are expecting. It might be vague, but it won’t be infinitely vague.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Some data were collected on age and vocabulary size of 10 randomly selected children, shown here: <a href="https://raw.githubusercontent.com/nxskok/pasias/master/vocab.txt">link</a>. Read in and display the data; the values are separated by single spaces.</li>
+</ol>
+<p>Solution</p>
+<p>Thus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/nxskok/pasias/master/vocab.txt"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>vocabulary <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 10 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (2): age, vocab
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>vocabulary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+     age vocab
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1   1.5   100
+ 2   2     250
+ 3   2.5   460
+ 4   3     890
+ 5   3.5  1210
+ 6   4    1530
+ 7   4.5  1840
+ 8   5    2060
+ 9   5.5  2300
+10   6    2500</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Use this dataset, along with your prior distribution from above, to obtain posterior distributions for intercept, slope and error SD. What is the 95% posterior interval for the slope?</li>
+</ol>
+<p>Solution</p>
+<p>Two parts: set up the data, and then sample it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>reg_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">10</span>, <span class="at">x =</span> vocabulary<span class="sc">$</span>age, <span class="at">y =</span> vocabulary<span class="sc">$</span>vocab,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_int_mean =</span> <span class="sc">-</span><span class="dv">500</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_int_sd =</span> <span class="dv">125</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_slope_mean =</span> <span class="dv">500</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_slope_sd =</span> <span class="dv">100</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_sigma_mean =</span> <span class="dv">200</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>reg<span class="fl">.1</span> <span class="ot">&lt;-</span> reg<span class="sc">$</span><span class="fu">sample</span>(reg_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Running MCMC with 4 sequential chains...
+
+Chain 1 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 1 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 1 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 1 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 1 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 1 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 1 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 1 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 1 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 1 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 1 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 1 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 1 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 1 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 1 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 1 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 1 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 1 finished in 0.1 seconds.
+Chain 2 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 2 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 2 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 2 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 2 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 2 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 2 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 2 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 2 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 2 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 2 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 2 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 2 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 2 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 2 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 2 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 2 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 2 finished in 0.1 seconds.
+Chain 3 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 3 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 3 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 3 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 3 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 3 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 3 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 3 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 3 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 3 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 3 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 3 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 3 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 3 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 3 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 3 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 3 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 3 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 3 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 3 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 3 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 3 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 3 finished in 0.1 seconds.
+Chain 4 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 4 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 4 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 4 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 4 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 4 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 4 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 4 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 4 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 4 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 4 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 4 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 4 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 4 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 4 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 4 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 4 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 4 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 4 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 4 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 4 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 4 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 4 finished in 0.1 seconds.
+
+All 4 chains finished successfully.
+Mean chain execution time: 0.1 seconds.
+Total execution time: 0.8 seconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>reg<span class="fl">.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> variable    mean  median    sd   mad      q5     q95 rhat ess_bulk ess_tail
+    lp__   373.71  374.05  1.24  1.02  371.32  375.06 1.00     1768     2405
+    a     -614.61 -614.75 98.59 99.01 -779.26 -457.84 1.00     1490     1483
+    b      521.32  520.68 26.89 26.63  477.16  566.26 1.00     1449     1781
+    sigma  188.80  187.80 19.06 18.95  158.63  222.06 1.00     2158     2208</code></pre>
+</div>
+</div>
+<p>One line per parameter (plus the log-posterior distribution, not very useful to us). To get a 95% posterior interval for the slope, use the 2.5 and 97.5 percentiles of the posterior for <code>b</code>, which are 467 and 572. (This is about <span class="math inline">\(520 \pm 52\)</span>, rounding crudely, while the prior distribution said <span class="math inline">\(500 \pm 200\)</span>, so the data have allowed us to estimate the slope a fair bit more accurately.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Plot a histogram of the posterior distribution of the slope. Does its shape surprise you? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>This is most easily <code>mcmc_hist</code> from <code>bayesplot</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(reg<span class="fl">.1</span><span class="sc">$</span><span class="fu">draws</span>(<span class="st">"b"</span>), <span class="at">binwidth =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/regression-stan-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I’m guessing you have a better intuition for <code>bins</code> as opposed to <code>binwidth</code> (the latter being what you need here), so you can try it without giving a <code>binwidth</code> at all (and getting way too many bins), and then see if you can figure out what <code>binwidth</code> should be to get you a sensible number of bins. This one looks pretty good to me.</p>
+<p>The shape is very normal. This is because everything is normal: the prior and the data-generating process both, so it is not surprising at all that the posterior came out normal. (You may remember from your regression course that if you have a normal regression model, the slope also has a normal distribution.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>What can we say about the vocabulary size of a randomly selected child of age 5 (a new one, not the one in the original data set)? Use an appropriate predictive distribution.</li>
+</ol>
+<p>Solution</p>
+<p>If you have done a regression course, you might recognize this as being the Bayesian version of a prediction interval. How might we make a predictive distribution for this? Well, first we need to extract the sampled values from the posteriors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_draws_df</span>(reg<span class="fl">.1</span><span class="sc">$</span><span class="fu">draws</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="ot">-&gt;</span> sims</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>sims</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 7
+    lp__     a     b sigma .chain .iteration .draw
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt;
+ 1  372. -670.  563.  215.      1          1     1
+ 2  372. -663.  564.  212.      1          2     2
+ 3  374. -699.  545.  206.      1          3     3
+ 4  375. -674.  539.  197.      1          4     4
+ 5  372. -730.  516.  199.      1          5     5
+ 6  375. -595.  528.  202.      1          6     6
+ 7  373. -647.  555.  202.      1          7     7
+ 8  374. -751.  541.  173.      1          8     8
+ 9  374. -605.  495.  180.      1          9     9
+10  374. -573.  523.  172.      1         10    10
+# ℹ 3,990 more rows</code></pre>
+</div>
+</div>
+<p>and now we need to simulate some response values for our notional child of age 5. That means simulating for an <code>x</code> of 5, using each of those values of <code>a</code>, <code>b</code> and <code>sigma</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sims <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sim_vocab =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, a <span class="sc">+</span> b <span class="sc">*</span> <span class="dv">5</span>, sigma)) <span class="ot">-&gt;</span> sims2</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>sims2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 8
+# Rowwise: 
+    lp__     a     b sigma .chain .iteration .draw sim_vocab
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;
+ 1  372. -670.  563.  215.      1          1     1     2264.
+ 2  372. -663.  564.  212.      1          2     2     1870.
+ 3  374. -699.  545.  206.      1          3     3     1941.
+ 4  375. -674.  539.  197.      1          4     4     1988.
+ 5  372. -730.  516.  199.      1          5     5     1847.
+ 6  375. -595.  528.  202.      1          6     6     2011.
+ 7  373. -647.  555.  202.      1          7     7     2077.
+ 8  374. -751.  541.  173.      1          8     8     2061.
+ 9  374. -605.  495.  180.      1          9     9     1621.
+10  374. -573.  523.  172.      1         10    10     2112.
+# ℹ 3,990 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sims2, <span class="fu">aes</span>(<span class="at">x =</span> sim_vocab)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/regression-stan-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>That’s the distribution of the vocabulary size of children aged 5. We can get a 95% interval from this the usual way: find the 2.5 and 97.5 percentiles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(sims2, <span class="fu">quantile</span>(sim_vocab, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    2.5%    97.5% 
+1582.921 2397.443 </code></pre>
+</div>
+</div>
+<p>The actual child of age 5 that we observed had a vocabulary of 2060 words, squarely in the middle of this interval.</p>
+<p>Is the posterior predictive interval like the prediction interval?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>vocabulary<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(vocab <span class="sc">~</span> age, <span class="at">data =</span> vocabulary)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">age =</span> <span class="dv">5</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(vocabulary<span class="fl">.1</span>, new, <span class="at">interval =</span> <span class="st">"p"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 2027.939 1818.223 2237.656</code></pre>
+</div>
+</div>
+<p>It seems a bit wider.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="estimating-p-the-bayesian-way-1" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-p-the-bayesian-way-1">Estimating <span class="math inline">\(p\)</span> the Bayesian way</h2>
+<p>A binomial experiment with 8 trials produces the following results: success, failure, success, success, failure, success, success, success. (Each result is therefore a Bernoulli trial.) The person who gave you the data says that the success probability is most likely somewhere near 0.5, but might be near 0 or 1. The aim of this question is to estimate the success probability using Bayesian methods.</p>
+<p>In this question, use <code>cmdstanr</code> (see <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html">this site</a> for instructions). Documentation for Stan is <a href="https://mc-stan.org/docs/2_26/reference-manual/index.html">here</a>. You will probably want to be running R on your own computer.</p>
+<ol type="a">
+<li>Write a Stan program that will estimate the success probability <span class="math inline">\(p\)</span>. To do this, start with the likelihood (Stan has a function <code>bernoulli</code> that takes one parameter, the success probability). The data, as 1s and 0s, will be in a vector <code>x</code>. Use a beta distribution with unknown parameters as a prior for <code>p</code>. (We will worry later what those parameters should be.)</li>
+</ol>
+<p>Solution</p>
+<p>File, New and Stan. Leave the template program there if you like, as a reminder of what to do. In the <code>model</code> section is where the likelihood goes, like this:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<pre><code>model {
+// likelihood
+x ~ bernoulli(p);
+}</code></pre>
+<p>The right one here is <code>bernoulli</code> since your data are Bernoulli trials (successes and failures, coded as 1s and 0s). If you had a summarized total number of successes and a number of trials, then that would be binomial. It actually doesn’t make any difference which way you do it, but it’s probably easier to think about it this way because it’s more like the Poisson one in lecture.</p>
+<p>Thinking ahead, <code>x</code> is going to be data, and <code>p</code> is a parameter, so <code>p</code> will need a prior distribution. The standard one for a Bernoulli success probability is a beta distribution. This is actually the conjugate prior, if you have learned about those: if <code>p</code> has a beta prior and the likelihood is Bernoulli, then the posterior is also beta. Back in the days when algebra was your only hope for this kind of thing, conjugate priors were very helpful, but now that we can sample from any posterior, the fact that a prior is conjugate is neither here nor there. Having said that, the beta distribution is a nice choice for a prior for this, because it is restricted to <span class="math inline">\([0, 1]\)</span> the same way that a Bernoulli <code>p</code> is.</p>
+<p>I’m going leave the prior parameters for <code>p</code> unknown for now; we’ll just call them <code>a</code> and <code>b</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Here’s our completed <code>model</code> section:</p>
+<pre><code>model {
+// prior
+p ~ beta(a, b);
+// likelihood
+x ~ bernoulli(p);
+}</code></pre>
+<p><code>a</code> and <code>b</code> are not parameters; they are some numbers that we will supply, so they will be part of the <code>data</code> section. Leaving them unspecified like this, rather than hard-coding them, is good coding practice, since the code we finish with can be used for any Bernoulli estimation problem, not just the one we happen to have.</p>
+<p>There is only one parameter, <code>p</code>, so the <code>parameters</code> section is short:</p>
+<pre><code>parameters {
+real&lt;lower=0,upper=1&gt; p;
+}</code></pre>
+<p>We know that <code>p</code> must be between 0 and 1, so we specify that here so that the sampler doesn’t stray into impossible values for <code>p</code>.</p>
+<p>That goes before the <code>model</code> section. Everything else is data. We also want to avoid hard-coding the number of observations, so we will also have an <code>n</code> as data, which we declare first, so we can declare the array of values <code>x</code> to be of length <code>n</code>:</p>
+<pre><code>data {
+int&lt;lower=0&gt; n;
+real a;
+real b;
+int&lt;lower=0, upper=1&gt; x[n];
+}</code></pre>
+<p><code>x</code> is an integer array of length <code>n</code>. This is how you declare one of those: the type is first, along with any limits, and then the length of the array is appended in square brackets to the name of the array.</p>
+<p>Arrange your code in a file with extension <code>.stan</code>, with data first, parameters second, and model third. I called mine <code>bernoulli.stan</code>.</p>
+<p>Extra: there are two ways to declare a <em>real</em>-valued array <code>y</code>: as <code>real y[n]</code>, or as <code>vector[n] y</code>. Sometimes it matters which way you do it (and I don’t have a clear sense of when it matters). The two ways differ in what you can do with them.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Compile your code, correcting any errors until it compiles properly.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+
+</div>
+<p><code>cmdstanr</code> goes like this:</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(<span class="st">"bernoulli.stan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>m2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>data {
+  int&lt;lower=0&gt; n;
+  real a;
+  real b;
+  array[n] int&lt;lower=0, upper=1&gt; x;
+}
+
+parameters {
+  real&lt;lower=0,upper=1&gt; p;
+}
+
+model {
+  // prior
+  p ~ beta(a, b);
+  // likelihood
+  x ~ bernoulli(p);
+}</code></pre>
+</div>
+</div>
+<p>If it doesn’t compile, you have some fixing up to do. The likely first problem is that you have missed a semicolon somewhere. The error message will at least give you a hint about where the problem is. Fix any errors you see and try again. If you end up with a different error message, that at least is progress.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>The person who brought you the data told you that the success probability <code>p</code> should be somewhere near 0.5 (and is less likely to be close to 0 or 1). Use this information to pick a prior distribution for <code>p</code>. (The exact answer you get doesn’t really matter, but try to interpret the statement in some kind of sensible way.)</li>
+</ol>
+<p>Solution</p>
+<p>I don’t know how much intuition you have for what beta distributions look like, so let’s play around a bit. Let’s imagine we have a random variable <span class="math inline">\(Y\)</span> that has a beta distribution. This distribution has two parameters, usually called <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Let’s draw some pictures and see if we can find something that would serve as a prior. R has <code>dbeta</code> that is the beta distribution density function.</p>
+<p>Start by choosing some values for <span class="math inline">\(Y\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 0.00 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14
+ [16] 0.15 0.16 0.17 0.18 0.19 0.20 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29
+ [31] 0.30 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.40 0.41 0.42 0.43 0.44
+ [46] 0.45 0.46 0.47 0.48 0.49 0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59
+ [61] 0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.70 0.71 0.72 0.73 0.74
+ [76] 0.75 0.76 0.77 0.78 0.79 0.80 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89
+ [91] 0.90 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1.00</code></pre>
+</div>
+</div>
+<p>then work out <code>dbeta</code> of these for your choice of parameters, then plot it. I’m going straight to a function for this, since I anticipate doing it several times. This <code>y</code> and the two parameters should be input to the function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>plot_beta <span class="ot">&lt;-</span> <span class="cf">function</span>(y, a, b) {</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">y=</span>y) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">density =</span> <span class="fu">dbeta</span>(y, a, b)) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> density)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_beta</span>(y, <span class="dv">1</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The beta with parameters 1 and 1 is a uniform distribution. (If you look up the beta density function, you’ll see why that is.)</p>
+<p>Let’s try another:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_beta</span>(y, <span class="dv">3</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This one is skewed to the left. You might guess that having the second parameter bigger would make it skewed to the right:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_beta</span>(y, <span class="dv">3</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>which indeed is the case. If you try some other values, you’ll see that this pattern with the skewness continues to hold. Furthermore, the right-skewed distributions have their peak to the <em>left</em> of 0.5, and the left-skewed ones have their peak to the <em>right</em> of 0.5.</p>
+<p>Therefore, you would think, having the two parameters the same would give a symmetric distribution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_beta</span>(y, <span class="dv">2</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note that the peak is now at 0.5, which is what we wanted.</p>
+<p>The question called for a prior distribution of values “somewhere near 0.5”, and you could reasonably say that this does the job. What does 3 and 3 look like?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_beta</span>(y, <span class="dv">3</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is more concentrated around 0.5, and as you increase the two parameter values while keeping them equal, it gets more concentrated still:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_beta</span>(y, <span class="dv">20</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>For our purposes, this is undoubtedly too concentrated around 0.5; there is no chance of <span class="math inline">\(y\)</span> being outside <span class="math inline">\([0.25, 0.75]\)</span>. I would go with parameters 2 and 2 or maybe 3 and 3. As I said, pretty much any choice of parameter values that are both the same is at least somewhat justifiable.</p>
+<p>If you don’t want to go through all of this, find some pictures of beta distributions with different parameters, and pick one you like. The <a href="https://en.wikipedia.org/wiki/Beta_distribution">Wikipedia page</a> is one place (from which you would probably pick 2 and 2). <a href="https://www.researchgate.net/figure/Beta-distribution-probability-density-function_fig3_220556911">Here is another</a>, from which you might pick 5 and 5.</p>
+<p>In practice, you would have some back-and-forth with the person who brought you the data, and try to match what they are willing to say about <code>p</code>, without looking at the data, to what you know or can find out about the beta distribution. This process is called “prior elicitation”.</p>
+<p>Extra: if you have ever obtained the posterior distribution in this case by algebra, you might recall that the effect of the prior distribution is to add some “fake” Bernoulli trials to the data. With <span class="math inline">\(a=b=2\)</span>, for example, you imagine <span class="math inline">\(2+2-2 = 2\)</span> fake trials, with <span class="math inline">\(2-1=1\)</span> success and <span class="math inline">\(2-1=1\)</span> failure, to add to the data. This brings the estimate of <code>p</code> a little closer to 0.5 than it would be with just plain maximum likelihood.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Create an R <code>list</code> that contains all your <code>data</code> for your Stan model. Remember that Stan expects the data in <code>x</code> to be 0s and 1s.</li>
+</ol>
+<p>Solution</p>
+<p>Turn those successes and failures in the question into a vector of 0 and 1 values, with 1 being success (you wanted to estimate the probability of success): they were success, failure, success, success, failure, success, success, success.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 0 1 1 0 1 1 1</code></pre>
+</div>
+</div>
+<p>Then make a “named list” of inputs to your Stan program, including the parameter values for the prior distribution (I went with 2 and 2):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>stan_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="at">n =</span> <span class="dv">8</span>,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="at">a =</span> <span class="dv">2</span>,</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="at">b =</span> <span class="dv">2</span>,</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> x</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>stan_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$n
+[1] 8
+
+$a
+[1] 2
+
+$b
+[1] 2
+
+$x
+[1] 1 0 1 1 0 1 1 1</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Run your Stan model to obtain a simulated posterior distribution, using all the other defaults.</li>
+</ol>
+<p>Solution</p>
+<p>The <code>cmdstanr</code> way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> m2<span class="sc">$</span><span class="fu">sample</span>(<span class="at">data =</span> stan_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Running MCMC with 4 sequential chains...
+
+Chain 1 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 1 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 1 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 1 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 1 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 1 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 1 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 1 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 1 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 1 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 1 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 1 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 1 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 1 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 1 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 1 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 1 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 1 finished in 0.0 seconds.
+Chain 2 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 2 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 2 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 2 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 2 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 2 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 2 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 2 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 2 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 2 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 2 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 2 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 2 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 2 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 2 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 2 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 2 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 2 finished in 0.0 seconds.
+Chain 3 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 3 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 3 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 3 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 3 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 3 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 3 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 3 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 3 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 3 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 3 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 3 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 3 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 3 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 3 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 3 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 3 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 3 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 3 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 3 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 3 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 3 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 3 finished in 0.0 seconds.
+Chain 4 Iteration:    1 / 2000 [  0%]  (Warmup) 
+Chain 4 Iteration:  100 / 2000 [  5%]  (Warmup) 
+Chain 4 Iteration:  200 / 2000 [ 10%]  (Warmup) 
+Chain 4 Iteration:  300 / 2000 [ 15%]  (Warmup) 
+Chain 4 Iteration:  400 / 2000 [ 20%]  (Warmup) 
+Chain 4 Iteration:  500 / 2000 [ 25%]  (Warmup) 
+Chain 4 Iteration:  600 / 2000 [ 30%]  (Warmup) 
+Chain 4 Iteration:  700 / 2000 [ 35%]  (Warmup) 
+Chain 4 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+Chain 4 Iteration:  900 / 2000 [ 45%]  (Warmup) 
+Chain 4 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+Chain 4 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
+Chain 4 Iteration: 1100 / 2000 [ 55%]  (Sampling) 
+Chain 4 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
+Chain 4 Iteration: 1300 / 2000 [ 65%]  (Sampling) 
+Chain 4 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+Chain 4 Iteration: 1500 / 2000 [ 75%]  (Sampling) 
+Chain 4 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
+Chain 4 Iteration: 1700 / 2000 [ 85%]  (Sampling) 
+Chain 4 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+Chain 4 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
+Chain 4 Iteration: 2000 / 2000 [100%]  (Sampling) 
+Chain 4 finished in 0.0 seconds.
+
+All 4 chains finished successfully.
+Mean chain execution time: 0.0 seconds.
+Total execution time: 0.6 seconds.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>fit2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> variable  mean median   sd  mad    q5   q95 rhat ess_bulk ess_tail
+     lp__ -8.18  -7.88 0.75 0.33 -9.66 -7.64 1.00     1926     2095
+     p     0.67   0.68 0.13 0.14  0.44  0.87 1.00     1371     1602</code></pre>
+</div>
+</div>
+<p>This one gives you a 90% posterior interval instead of a 95% one, but the posterior mean is 0.66, as before, and the interval says that <code>p</code> is likely bigger than about 0.4; the data did not narrow it down much apart from that.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Make a plot of the posterior distribution of the probability of success. (Use the <code>posterior</code> and <code>bayesplot</code> packages if convenient.)</li>
+</ol>
+<p>Solution</p>
+<p>This means extracting the sampled values of <span class="math inline">\(p\)</span> first. The <code>cmdstanr</code> way is not very convenient, at least at first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span>a <span class="ot">&lt;-</span> fit2<span class="sc">$</span><span class="fu">draws</span>()</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(bern<span class="fl">.2</span>a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 'draws_array' num [1:1000, 1:4, 1:2] -8.38 -9.05 -7.74 -8.44 -9.31 ...
+ - attr(*, "dimnames")=List of 3
+  ..$ iteration: chr [1:1000] "1" "2" "3" "4" ...
+  ..$ chain    : chr [1:4] "1" "2" "3" "4"
+  ..$ variable : chr [1:2] "lp__" "p"</code></pre>
+</div>
+</div>
+<p>This is a 3-dimensional array (sample by chain by variable). For plotting and so on, we really want this as a dataframe. At this point, I would use the <code>posterior</code> and <code>bayesplot</code> packages, which you should install following the instructions for <code>cmdstanr</code> at the top of <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html#running-mcmc-1">this page</a>. Put the names of the extra two packages in place of the <code>cmdstanr</code> that you see there.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To get the samples as a dataframe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(fit2<span class="sc">$</span><span class="fu">draws</span>())</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A draws_df: 1000 iterations, 4 chains, and 2 variables
+   lp__    p
+1  -8.4 0.49
+2  -9.1 0.43
+3  -7.7 0.60
+4  -8.4 0.49
+5  -9.3 0.40
+6  -8.1 0.52
+7  -7.9 0.57
+8  -7.9 0.76
+9  -8.0 0.77
+10 -8.9 0.85
+# ... with 3990 more draws
+# ... hidden reserved variables {'.chain', '.iteration', '.draw'}</code></pre>
+</div>
+</div>
+<p>You don’t even need to go this far to make a plot of the posterior distribution, because <code>bayesplot</code> does it automatically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(fit2<span class="sc">$</span><span class="fu">draws</span>(<span class="st">"p"</span>), <span class="at">binwidth =</span>  <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Rather annoyingly, this plot function passes <code>binwidth</code> on to <code>geom_histogram</code>, but not <code>bins</code>!</p>
+<p>This is skewed to the left. The reason for the skewness here is that the upper limit for <span class="math inline">\(p\)</span> is 1, and there is a reasonable chance of <span class="math inline">\(p\)</span> being close to 1, so the distribution is skewed in the opposite direction. There is basically no chance of <span class="math inline">\(p\)</span> being close to zero. If we had had more data, it is more likely that the values of <span class="math inline">\(p\)</span> near 0 and 1 would be ruled out, and then we might have ended up with something more symmetric.</p>
+<p>Extra: If you remember the algebra for this, the posterior distribution for <code>p</code> actually has a beta distribution, with parameters <span class="math inline">\(2+6=8\)</span> and <span class="math inline">\(2+2=4\)</span>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Our simulated posterior looks to have the right kind of shape to be this, being skewed to the left.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>The posterior predictive distribution is rather odd here: the only possible values that can be observed are 0 and 1. Nonetheless, obtain the posterior predictive distribution for these data, and explain briefly why it is not surprising that it came out as it did.</li>
+</ol>
+<p>Solution</p>
+<p>With <code>cmdstanr</code>, start from what I called <code>bern.2</code>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>The way to obtain the (sampled) posterior predictive distribution is to get the posterior distribution of values of <span class="math inline">\(p\)</span> in a dataframe, and make a new column as random values from the data-generating mechanism (here Bernoulli). This is easier to do and then talk about:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">rbernoulli</span>(<span class="dv">4000</span>, p)) <span class="ot">-&gt;</span> ppd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `x = rbernoulli(4000, p)`.
+Caused by warning:
+! `rbernoulli()` was deprecated in purrr 1.0.0.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>ppd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 6
+    lp__     p .chain .iteration .draw x    
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;lgl&gt;
+ 1 -8.38 0.492      1          1     1 TRUE 
+ 2 -9.05 0.426      1          2     2 TRUE 
+ 3 -7.74 0.604      1          3     3 FALSE
+ 4 -8.44 0.486      1          4     4 FALSE
+ 5 -9.31 0.405      1          5     5 TRUE 
+ 6 -8.14 0.525      1          6     6 FALSE
+ 7 -7.87 0.571      1          7     7 FALSE
+ 8 -7.89 0.757      1          8     8 TRUE 
+ 9 -7.95 0.768      1          9     9 TRUE 
+10 -8.91 0.851      1         10    10 FALSE
+# ℹ 3,990 more rows</code></pre>
+</div>
+</div>
+<p>The values of <code>x</code> in the last column are TRUE for success and FALSE for failure (they could have been 1 and 0). Thus, the first <code>x</code> is a Bernoulli trial with success probability the first value of <code>p</code>, the second one uses the second value of <code>p</code>, and so on. Most of the success probabilities are bigger than 0.5, so most of the posterior predictive distribution is successes.</p>
+<p>It seems to go better if you turn <code>bern.2</code> into a <code>tibble</code> before generating <code>x</code>.</p>
+<p>A bar chart would be an appropriate plot (you can either think of <code>x</code> as categorical, or as a discrete 0 or 1):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ppd, <span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>which shows the majority of successes in the posterior predictive distribution. The idea is that the data and the posterior predictive distribution ought to be similar, and we did indeed have a majority of successes in our data as well.</p>
+<p>You might have been perplexed by the 4000 in the code above. <code>bernoulli</code> is vectorized, meaning that if you give it a vector of values for <code>p</code>, it will generate Bernoulli trials for each one in turn, and the whole result should be 4000 values long altogether. We’ll see a way around that in a moment, but you could also do this using <code>rbinom</code> (random binomials) if you do it right:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">rbinom</span>(<span class="dv">4000</span>, <span class="dv">1</span>, p)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 6
+    lp__     p .chain .iteration .draw     x
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1 -8.38 0.492      1          1     1     1
+ 2 -9.05 0.426      1          2     2     0
+ 3 -7.74 0.604      1          3     3     1
+ 4 -8.44 0.486      1          4     4     0
+ 5 -9.31 0.405      1          5     5     1
+ 6 -8.14 0.525      1          6     6     1
+ 7 -7.87 0.571      1          7     7     1
+ 8 -7.89 0.757      1          8     8     0
+ 9 -7.95 0.768      1          9     9     0
+10 -8.91 0.851      1         10    10     1
+# ℹ 3,990 more rows</code></pre>
+</div>
+</div>
+<p>There are 4000 random binomials altogether, and <em>each one</em> has one trial. This is confusing, and a less confusing way around this is to work one row at time with <code>rowwise</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">rbernoulli</span>(<span class="dv">1</span>, p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 6
+# Rowwise: 
+    lp__     p .chain .iteration .draw x    
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;lgl&gt;
+ 1 -8.38 0.492      1          1     1 FALSE
+ 2 -9.05 0.426      1          2     2 TRUE 
+ 3 -7.74 0.604      1          3     3 FALSE
+ 4 -8.44 0.486      1          4     4 TRUE 
+ 5 -9.31 0.405      1          5     5 FALSE
+ 6 -8.14 0.525      1          6     6 FALSE
+ 7 -7.87 0.571      1          7     7 TRUE 
+ 8 -7.89 0.757      1          8     8 TRUE 
+ 9 -7.95 0.768      1          9     9 FALSE
+10 -8.91 0.851      1         10    10 TRUE 
+# ℹ 3,990 more rows</code></pre>
+</div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">1</span>, p)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 6
+# Rowwise: 
+    lp__     p .chain .iteration .draw     x
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1 -8.38 0.492      1          1     1     1
+ 2 -9.05 0.426      1          2     2     0
+ 3 -7.74 0.604      1          3     3     1
+ 4 -8.44 0.486      1          4     4     0
+ 5 -9.31 0.405      1          5     5     0
+ 6 -8.14 0.525      1          6     6     1
+ 7 -7.87 0.571      1          7     7     1
+ 8 -7.89 0.757      1          8     8     1
+ 9 -7.95 0.768      1          9     9     1
+10 -8.91 0.851      1         10    10     1
+# ℹ 3,990 more rows</code></pre>
+</div>
+</div>
+<p>Extra: I’d also like to put in a plug for the <code>tidybayes</code> package. This works best with <code>rstan</code>, though it will work with <code>cmdstanr</code> also. The first thing it will help you with is setting up the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x) <span class="sc">%&gt;%</span> <span class="fu">compose_data</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] 1 0 1 1 0 1 1 1
+
+$n
+[1] 8</code></pre>
+</div>
+</div>
+<p>Starting from a dataframe of data (our <code>x</code>), this returns you a list that you can submit as <code>data =</code> to <code>sampling</code>. Note that it counts how many observations you have, on the basis that you’ll be sending this to Stan as well (we did).</p>
+<p>Another thing that this will do is to handle categorical variables. Say you had something like this, with <code>g</code> being a group label:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span>g, <span class="sc">~</span>y,</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="st">"a"</span>, <span class="dv">10</span>,</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="st">"a"</span>, <span class="dv">11</span>,</span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="st">"a"</span>, <span class="dv">12</span>,</span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="st">"b"</span>, <span class="dv">13</span>,</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="st">"b"</span>, <span class="dv">14</span>,</span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="st">"b"</span>, <span class="dv">15</span></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="fu">compose_data</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$g
+[1] 1 1 1 2 2 2
+
+$n_g
+[1] 2
+
+$y
+[1] 10 11 12 13 14 15
+
+$n
+[1] 6</code></pre>
+</div>
+</div>
+<p>Knowing that Stan only has <code>real</code> and <code>int</code>, it labels the groups with numbers, and keeps track of how many groups there are as well as how many observations. These are all things that Stan needs to know. See slides 32 and 34 of my lecture notes, where I prepare to fit an ANOVA model. The <code>tidybayes</code> way is, I have to say, much cleaner than the way I did it in the lecture notes. After you have fitted the model, <code>tidybayes</code> lets you go back and re-associate the real group names with the ones Stan used, so that you could get a posterior mean and interval for each of the two groups.</p>
+<p>After obtaining the posterior distribution, <code>tidybayes</code> also helps in understanding it. This is how you get hold of the sampled values. Install <code>laRs</code> using</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Agasax/laRs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(laRs) </span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread_draws</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,000 × 4
+   .chain .iteration .draw     p
+    &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+ 1      1          1     1 0.492
+ 2      1          2     2 0.426
+ 3      1          3     3 0.604
+ 4      1          4     4 0.486
+ 5      1          5     5 0.405
+ 6      1          6     6 0.525
+ 7      1          7     7 0.571
+ 8      1          8     8 0.757
+ 9      1          9     9 0.768
+10      1         10    10 0.851
+# ℹ 3,990 more rows</code></pre>
+</div>
+</div>
+<p>which you can then summarize:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> <span class="fu">spread_draws</span>(p) <span class="sc">%&gt;%</span> </span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median_hdi</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+      p .lower .upper .width .point .interval
+  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+1 0.677  0.410  0.905   0.95 median hdi      </code></pre>
+</div>
+</div>
+<p>The median of the posterior distribution, along with a 95% Bayesian posterior interval based on the highest posterior density. There are other possibilities.</p>
+<p>Or you can plot it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread_draws</span>(p) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> p)) <span class="sc">+</span> <span class="fu">stat_slab</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>(a density plot)</p>
+<p>or, posterior predictive distribution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>bern<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread_draws</span>(p) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">rbernoulli</span>(<span class="dv">1</span>, p)) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="stan_files/figure-html/bayesp-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><a href="https://mjskay.github.io/tidybayes/articles/tidybayes.html">This</a> is a nice introduction to <code>tidybayes</code>, with a running example.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Alpha and beta don’t have to be integers; you could use <em>seq</em> to create sequences of values for alpha and beta that include decimal numbers.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The comment line, with two slashes on the front, is optional but will help you keep track of what’s what.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We’ll come back later to the question of what a and b should be for our situation.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The first 2 in each case is the parameter of the prior distribution and the second number is the number of successes or failures observed in the data.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>I am writing this a couple of days after the Ever Given was freed from blocking the Suez Canal. One of the memes I saw about this was actually a meme-upon-a-meme: on the picture of the tiny tractor and the huge ship, someone had superimposed that picture of Bernie Sanders sitting on his chair. Feel the <code>bern.2</code>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
