@@ -1,0 +1,39 @@
+
+## Contraction of heart muscle
+
+An experiment was carried out on heart muscle in rats. The original description of the experiment was as follows:
+
+> The purpose of this experiment was to assess the influence of calcium in solution on the contraction of heart muscle in rats. The left auricle of 21 rat hearts was isolated and on several occasions a constant-length strip of tissue was electrically stimulated and dipped into various concentrations of calcium chloride solution, after which the shortening of the strip was accurately measured as the response.
+
+The data are in [http://ritsokiguess.site/datafiles/regression2_muscle.csv](http://ritsokiguess.site/datafiles/regression2_muscle.csv). There are three columns:
+
+- `Strip`: a label for the strip of tissue treated with calcium chloride (text, ignored by us)
+- `Conc`: the concentration of calcium chloride, in suitable units
+- `Length`: the change in length (shortening) of the strip of tissue, mm.
+
+There are actually 60 measurements, so some of them came from the same rat, a fact that we ignore in this question.
+
+(a) Read in and display (some of) the data.
+
+
+(b) Make a suitable graph of the two quantitative variables, with a smooth trend.
+
+
+(c) Why does your plot suggest that a regression with a squared term would be useful? Fit a suitable regression, and display the results.
+
+
+
+(d) How do you know that adding the squared term was a good idea (or, was not a good idea, depending how your output came out)?
+
+
+(e) For concentrations of 2, 3, and 4 units, obtain 95% confidence intervals for the mean `Length`. Display only the relevant columns of your result, and save it.
+
+
+
+
+(f) Work out the length of each of your confidence intervals. Does it make sense that the lengths compare as they do? Explain briefly.
+
+
+(g) Suppose you have some new rat tissues, not part of the original dataset, and run the same experiment on these with concentrations 2, 3, and 4 units. What are 95% intervals for the predicted `Length`s that you will observe for these tissues? Display your intervals next to the concentrations they are predictions for.
+
+

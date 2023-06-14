@@ -1,0 +1,161 @@
+## Blood pressure
+
+Twenty people with high blood pressure had various other measurements taken. The aim was to see which of these were associated with blood pressure, with the aim of understanding what causes high blood pressure. The variables observed were:
+
+- `Pt`: patient number (ignore)
+- `BP`: (diastolic) blood pressure, in mmHg
+- `Age` in years
+- `Weight` in kg
+- `BSA`: body surface area, in m$^2$
+- `Dur`: length of time since diagnosis of high blood pressure, in years
+- `Pulse`: pulse rate, in beats per minute
+- `Stress`: score on a questionnaire about stress levels (higher score is more stressed)
+
+The data values, separated by *tabs*, are in [https://ritsokiguess.site/datafiles/bloodpress.txt](https://ritsokiguess.site/datafiles/bloodpress.txt).
+
+(a) Read in and display (some of) the data.
+
+Solution
+
+The data values are separated by tabs, so `read_tsv` is what you need:
+
+```{r}
+my_url <- "https://ritsokiguess.site/datafiles/bloodpress.txt"
+bp <- read_tsv(my_url)
+bp
+```
+
+20 patients, and all the columns as listed. Remember that in R, uppercase and lowercase are *different*, so there is no problem in using (lowercase) `bp` for the name of a dataframe that has a column called (uppercase) `BP` in it. But if that confuses you, feel free to give your dataframe a more descriptive name like `blood_pressure` or even something like `health_stats`.
+
+Extra: you can also use `read_delim` for this, but you have to do it right.
+If you do it as `read_delim(my_url, " ")` or similar, it won't work, because the data values are not separated by single spaces:
+
+```{r}
+bpxx <- read_delim(my_url, " ")
+bpxx
+```
+
+All of the data values have been smooshed together into a *single* column with a rather amusing name. The rather odd `\t` is the key to understanding what has happened. The simplest way to make it work is to use `read_delim`, but *without* saying what the delimiter character is:
+
+```{r}
+bpx <- read_delim(my_url)
+bpx
+```
+
+If you look at the R Console now, you'll see a line in the file-reading message that says
+
+```
+Delimiter: "\t"
+```
+
+What happened is that `read_delim` successfully *guessed* what was separating the data values, by looking at the first few lines of the data file and seeing that there were a lot of tabs apparently separating data values. This behaviour is new in the latest version of `readr`;^[The part of the `tidyverse` where the file-reading functions live.] if you use this idea, you should be able to explain why it worked. If you cannot, it looks like a lucky guess.
+
+By this point, you might have guessed that the mysterious `\t` is the way R represents a tab (you would be right), and that therefore you should be able to do this:^[This looks like two characters, but it is actually only one. The backslash is called an "escape character" and doesn't count as a character for these purposes. It's used as a way to represent some characters that you cannot normally print. Another one is `\n`, which is the "newline" at the end of each line of a file. This is how R Studio or anything else knows to start a new line at this point and not somewhere else. Otherwise the file would be all one (very long) line on the screen. To convince yourself of that, run the code `cat("Hello\nWorld")` and see what it displays.]
+
+```{r}
+bpxxxx <- read_delim(my_url, "\t")
+bpxxxx
+```
+
+and you would once again be right.
+
+$\blacksquare$
+
+(b) Make a plot of the blood pressure against each of the measured explanatory variables. Hint: use the idea from C32 of making a suitable long dataframe and using facets in your graph.
+
+Solution
+
+Use `pivot_longer` with all the columns containing $x$-variables:
+
+```{r}
+bp %>% 
+  pivot_longer(Age:Stress, names_to = "xname", values_to = "x")
+```
+
+and then plot `BP` against `x` facetting by `xname`:
+
+```{r}
+bp %>% 
+  pivot_longer(Age:Stress, names_to = "xname", values_to = "x") %>% 
+  ggplot(aes(x = x, y = BP)) + geom_point() +
+  facet_wrap(~xname, scales = "free")
+```
+
+Use `scales = "free"` to have each scatterplot fill its facet.
+
+If you don't get to this, you are faced with making six scatterplots one by one, which will be a lot of work in comparison (and it's easy to mess up the copy/paste and miss one of them out).
+
+$\blacksquare$
+
+(c) Which explanatory variables seem to have a moderate or strong linear relationship with blood pressure?
+
+Solution
+
+I would say `BSA`, `Weight` and maybe `Pulse`. For me, the `Age` relationship is not quite strong enough, and there is basically no relationship with `Dur` or `Stress`.
+
+I don't mind precisely where you draw the line. You could include `Pulse` and `Age` or not, but I think you should definitely include `BSA` and `Weight` and definitely exclude `Dur` and `Stress`.
+
+Extra: Stress is often considered to be a cause of high blood pressure, but it seems from this dataset that it is not.
+
+$\blacksquare$
+
+
+(d) Run a regression predicting blood pressure from `BSA` and `Weight`, and display the output. Does the significance or lack of significance of each of your explanatory variables surprise you? Explain briefly.
+
+Solution
+
+```{r}
+bp.1 <- lm(BP ~ BSA + Weight, data = bp)
+summary(bp.1)
+```
+
+suppose we (foolishly) took out weight
+
+```{r}
+bp.2 <- lm(BP ~ BSA, data = bp)
+summary(bp.2)
+
+```
+
+
+```{r}
+bp.3 <- lm(BP ~ Weight, data = bp)
+summary(bp.3)
+
+```
+
+
+Both explanatory variables have a strong relationship with blood pressure according to the scatterplots, so we would expect them both to be significant. `Weight` is, but `BSA` is not. This I find surprising.
+
+$\blacksquare$
+
+(e) Explain briefly why it does in fact make sense that the regression results came out as they did. You may wish to draw another graph to support your explanation.
+
+Solution
+
+The way we learned this in C32 is that `BSA` has nothing to *add* to a regression that also contains `Weight`, when it comes to predicting blood pressure. That is to say, the way `BSA` is related to blood pressure is similar to the way `Weight` is . 
+
+To gain a bit more insight, we might be suffering from multicollinearity here, and the reason that `BSA` is not significant as we expected could be that it and `Weight` are related to *each other*. To find out about *that*, make a scatterplot of the two explanatory variables:^[Either axis for either variable is good, since neither of these is a response.]
+
+```{r}
+ggplot(bp, aes(y = BSA, x = Weight)) + geom_point()
+```
+
+These are clearly related. To be more precise about "not needing `BSA` as well": if we know a person's weight, we already know something about their body surface area (if the weight is bigger, so is their body surface area). So there is less information than you would otherwise expect in `BSA` if you already know their weight.
+
+This is a less dramatic example than the one in lecture (with the football punters), but the point is the same: if the $x$-variables are correlated, one or more of them could be less significant than you would expect, because the information it contains is mostly already contained in other $x$-variables.
+
+Extra: another way of looking at all this is via pairwise correlations:
+
+```{r}
+cor(bp)
+```
+
+The correlations with `BP` (second column, or second row) are mostly as you would expect from the scatterplots: very high with `Weight` and `BSA`, moderately high for `Age` and `Pulse`, and low for the others. I usually find that the correlation suggests a stronger relationship than the scatterplot does.
+
+The other thing is that the correlation between `Weight` and `BSA` is the highest of all the correlations between variables that are not the response. So if you know a person's weight, you can already make a good guess at their body surface area, even without having the actual values. Hence, including `BSA` in the regression when you already have `Weight` is not very helpful.
+
+The data for this question came from [here](https://online.stat.psu.edu/stat501/lesson/12/12.1).
+
+$\blacksquare$
+

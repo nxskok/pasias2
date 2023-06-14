@@ -1,0 +1,92 @@
+
+
+
+
+
+```{r}
+library(tidyverse)
+library(marginaleffects)
+library(broom)
+library(MASS)
+library(conflicted)
+conflict_prefer("select", "dplyr")
+```
+
+muscle data
+
+```{r}
+data("muscle")
+muscle
+```
+
+The purpose of this experiment was to assess the influence of calcium in solution on the contraction of heart muscle in rats. The left auricle of 21 rat hearts was isolated and on several occasions a constant-length strip of tissue was electrically stimulated and dipped into various concentrations of calcium chloride solution, after which the shortening of the strip was accurately measured as the response.
+
+write to datafile
+
+```{r}
+write_csv(muscle, "../../datafiles/docs/regression2_muscle.csv")
+```
+
+read from datafile
+
+```{r}
+my_url <- "http://ritsokiguess.site/datafiles/regression2_muscle.csv"
+muscle <- read_csv(my_url)
+muscle
+```
+
+graph
+
+```{r}
+ggplot(muscle, aes(x = Conc, y = Length)) + geom_point()
+```
+
+regression with quadratic term
+
+
+```{r}
+muscle.1 <- lm(Length ~ Conc + I(Conc^2), data = muscle)
+summary(muscle.1)
+```
+
+need to keep the squared term (it really curves)
+
+plot with fitted values
+
+```{r}
+muscle.1 %>% augment(muscle) %>% 
+  ggplot(aes(x = Conc, y = Length)) + geom_point() + 
+  geom_line(aes(y = .fitted))
+```
+
+```{r}
+plot_cap(muscle.1, condition = "Conc") +
+  geom_point(data = muscle, aes(x = Conc, y = Length))
+```
+
+
+ci for mean `Length` for rates of `Conc` 2, 3, and 4:
+
+```{r}
+new <- tibble(Conc = 2:4)
+new
+```
+
+```{r}
+predictions(muscle.1, newdata = new) %>% 
+  mutate(ci_length = conf.high - conf.low) %>% 
+  select(Conc, predicted, conf.low, conf.high, ci_length)
+```
+
+prediction intervals for the same
+
+```{r}
+p <- predict(muscle.1, new, interval = "p")
+cbind(new, p)
+```
+
+```{r}
+muscle %>% 
+  summarize(mean_conc = mean(Conc))
+```
+

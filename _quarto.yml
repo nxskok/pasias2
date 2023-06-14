@@ -32,6 +32,7 @@ book:
     - vector-matrix.Rmd
     - bootstrap.Rmd
     - stan.Rmd
+    - regression-revisited.Rmd
     - logistic-regression.Rmd
     - ordinal-response.Rmd
     - nominal-response.Rmd
@@ -43,7 +44,7 @@ book:
     - discriminant-analysis.Rmd
     - cluster.Rmd
     - kmeans-cluster.Rmd
-    - maps.Rmd
+#    - maps.Rmd commented out for now
     - mds.Rmd
     - pc.Rmd
     - fa.Rmd

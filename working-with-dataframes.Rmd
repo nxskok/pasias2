@@ -1,0 +1,31 @@
+# Working with dataframes
+
+```{r 31-working-with-dataframes-1, eval=F}
+library(tidyverse)
+```
+
+```{r 31-working-with-dataframes-2, child="_packages.qmd"}
+```
+
+```{r 31-working-with-dataframes-3, child="_jays-dplyr_qq.Rmd"}
+```
+
+```{r 31-working-with-dataframes-4,child="_kencars_qq.Rmd"}
+```
+
+```{r 31-working-with-dataframes-5, child="_dolphins_qq.Rmd"}
+```
+
+My solutions follow:
+
+```{r 31-working-with-dataframes-6, child="_jays-dplyr.Rmd"}
+```
+
+```{r 31-working-with-dataframes-7,child="_kencars.Rmd"}
+```
+
+```{r 31-working-with-dataframes-8, child="_dolphins.Rmd"}
+```
+
+
+

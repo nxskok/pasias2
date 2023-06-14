@@ -1,0 +1,284 @@
+## Veggie burgers
+
+You like hamburgers, but you are a vegetarian. What to do? Today, there are many brands of hamburgers without any meat in them. Some of these are designed to taste like meat, and some have their own flavour. A magazine rated the flavour and texture of 12 different (numbered) brands of meatless hamburgers (to give a rating score between 0 and 100), along with the price (in cents), the number of calories, the grams of fat, and the milligrams of sodium. These measurements are per burger. Is it possible to predict the rating score of a brand of meatless hamburger from the other measurements, and if so, how? The data are in [http://ritsokiguess.site/datafiles/veggie-burgers.txt](http://ritsokiguess.site/datafiles/veggie-burgers.txt), in aligned columns.
+
+(a) Read in and display (most of) the data.
+
+Solution
+
+Aligned columns says `read_table`:
+
+```{r veggie-burgers-1}
+my_url <- "http://ritsokiguess.site/datafiles/veggie-burgers.txt"
+burgers <- read_table(my_url)
+burgers
+```
+
+There are 12 rows, one per brand, and the columns are as promised (and all quantitative, except for `brand`, which is an identifier). 
+
+$\blacksquare$
+
+(b) Fit a suitable regression to predict score from the other measured variables. Display the results.
+
+Solution
+
+The brand is an identifier, so skip that:
+
+```{r veggie-burgers-2}
+burgers.1 <- lm(score ~ price + calories + fat + sodium, data = burgers)
+summary(burgers.1)
+```
+
+My numbering scheme for models is based on the name of the dataframe. Base yours on the response variable `score` if you prefer. But have a scheme, since there is going to be more than one model in this question.
+
+$\blacksquare$
+
+
+(c) It looks as if both `price` and `sodium` will be able to be removed from this regression. Do so, explain briefly why another test is necessary, and do that other test. What do you conclude? (Note: if you display your output to the second regression, something rather odd will appear. You can safely ignore that.)
+
+Solution
+
+There are several things to keep straight. The first thing is to fit a model without `price` and `sodium`. The easiest way to do this is to copy, paste and edit:
+
+```{r veggie-burgers-3}
+burgers.2 <- lm(score ~ calories + fat, data = burgers)
+summary(burgers.2)
+```
+
+Aside: the odd thing is that `calories` is no longer significant. This is confusing, because usually what happens is that explanatory variables become *more* significant when other non-significant variables are removed. So now you may be thinking that `calories` should be removed as well. But see the Extra for what happens when you do that. This is why I said to ignore the odd thing. End of aside.
+
+However, we removed *two* explanatory variables at once. This is not supported by the $t$-tests in the output from `burgers.1`, because they only say what will happen if we remove *one* $x$-variable. Hence, we need a test that says whether removing those two $x$s at once was reasonable. That is this test:
+
+```{r veggie-burgers-4}
+anova(burgers.2, burgers.1, test = "F")
+```
+
+(That is `F` in quotes, saying to do an $F$-test, not that anything is `FALSE`.)
+
+With a P-value of 0.45, this is saying that there is no significant difference in fit between the two models, and so we should prefer the smaller, simpler one `burgers.2`, with just `calories` and `fat` in it, because it fits just as well as the bigger, more complicated one (and therefore we do not need the extra complication).
+
+Extra: What happens if you do backward elimination from here, starting from the best model found so far?
+
+The previous part told us that predicting score from just calories and fat was the best thing to do so far.  That was the model I called `burgers.2`:
+
+```{r veggie-burgers-5}
+summary(burgers.2)
+```
+
+Evidently, `calories` comes out now:
+
+```{r veggie-burgers-6}
+burgers.3 <- lm(score ~ fat, data = burgers)
+summary(burgers.3)
+```
+
+Now, there is only one explanatory variable left, and it is *no longer significant*, so it too has to come out now! This seems to make no sense, since `fat` was definitely significant before, and we would expect it still to be significant after removing something that was not significant. (Sometimes this happens; this is one of those cases.)
+
+Another way of expressing your surprise is to look at the R-squared values (or the adjusted R-squared values) for the models we have fit so far:
+
+ Model  Explanatory                         R-squared   Adj R-sq
+------  ---------------------------------  ----------  ---------
+  1     `price + calories + fat + sodium`    0.50       0.21
+  2     `calories + fat`                     0.37       0.23
+  3     `fat`                                0.17       0.09
+  
+  
+As we go through the models, R-squared goes *dramatically* down (it will go down because it *always* goes down when you take things out, but this seems too dramatic). Adjusted R-squared goes up when we take out  `price` and `sodium`, but it too goes sharply down when we take out `calories`, which doesn't seem right.  
+
+There is no need to go any further than this, but if you want to take out `fat` as well, leaving you with no explanatory variables at all, there are a couple of non-obvious ways to do it. One is to use `update`:
+
+```{r veggie-burgers-7}
+burgers.4 <- update(burgers.3, . ~ . -fat)
+summary(burgers.4)
+```
+
+This says that the predicted `score` is 43.5, regardless of the values of anything else! There is no R-squared displayed, because that is *zero* for a model with no $x$-variables.
+
+The other way is to find out that R understands `1` to mean a model with just an intercept:
+
+```{r veggie-burgers-8}
+burgers.4a <- lm(score ~ 1, data = burgers)
+summary(burgers.4a)
+```
+
+Once again, the R-squared is zero.
+
+
+$\blacksquare$
+
+(d) Another veggie burger (not in the original dataset) has the following values for the explanatory variables:  price 91, calories 140, fat 5, sodium 450. What can you say about the likely score for a veggie burger with these values? Obtain a suitable interval, for *each* of your two models.
+
+Solution
+
+This is talking about the predicted response for an individual (*this* burger), not the mean response for *all* veggie burgers with those values for the explanatory variables, so it calls for a *prediction interval* in each case. This is the one that uses `predict`, not the one that uses the `marginaleffects` package (the one we did second in lecture).
+
+The first step is to make a dataframe, by my tradition called `new`, of values to predict for. Any way that produces you a one-row dataframe is good, for example:
+
+```{r}
+new <- tribble(
+  ~price, ~calories, ~fat, ~sodium,
+  91,        140,      5,      450)
+new
+```
+
+If you are stuck, type the values into a file (or even a spreadsheet) and read that in. But find a way.
+
+For the model with all four explanatory variables:
+
+```{r}
+predict(burgers.1, new, interval = "p")
+```
+
+and for the model with only two:
+
+```{r}
+predict(burgers.2, new, interval = "p")
+```
+
+These intervals are distressingly wide, as is usually the way with prediction intervals (and we only have 12 observations to base the interval on). Also, it didn't matter that in the second case, `new` had some extra columns in it; these were just ignored.
+
+Extra: these values are one SD above the mean in each case. How did I work them out? Like this:
+
+```{r}
+burgers %>% 
+  summarize(across(price:sodium, list(mean = \(x) mean(x), sd = \(x) sd(x)))) %>% 
+  pivot_longer(everything(), names_to = c("variable", ".value"), names_sep = "_")
+```
+
+
+
+To work out summary statistics for a whole bunch of columns, use `across` inside the `summarize`.  First is the columns you want to summarize, and then is how you want to summarize them. In this case, I wanted the mean *and* SD of each variable, two things, so I had to put them in a `list`. Something possibly new here is that I "named" the elements of the `list` (the `mean =` and `sd =`); what this does is to add `mean` and `sd` onto the name of each variable, so that I can tell which variable and which statistic I am looking at:
+
+```{r}
+burgers %>% 
+  summarize(across(price:sodium, list(mean = ~mean(.), sd = ~sd(.)))) 
+```
+
+This is all right, but I was hoping for something tidier. How about the names of the variables in the rows, and the names of the statistics in the columns? This is evidently some kind of `pivot_longer`. It's one of the fancy ones where the column names we have here encode two things, separated by an underscore. That means having *two* things in `names_to`, and also having a `names_sep` that says what those two things are separated by (an underscore).
+
+To get the variable names in rows, we need to create a new column called something like `variable`. This is the usual kind of `pivot_longer` thing: put that first in `names_to`, because the things that are going in `variable` are the first part of the column names we have here.  The second part of the column names we have so far, `mean` or `sd`, are going
+to make *names of new columns*, which is different from what would normally happen, which is this:
+
+```{r}
+burgers %>% 
+  summarize(across(price:sodium, list(mean = ~mean(.), sd = ~sd(.)))) %>% 
+  pivot_longer(everything(), names_to = c("variable", "stat"), names_sep = "_", values_to = "value")
+```
+
+This has created a *column* called `stat`, with the names of the statistics in it. This is all right, but is not as tidy as we^[Well, *I*.] would like.
+
+To use the things in `stat` as column names (and to fill the columns with the thing currently in `value`), what you do is to replace the appropriate thing in `names_to` with the special label `.value`. When you do this, you can take out the `values_to`, since `pivot_longer` now knows where the values are going (into the new columns you are creating):
+
+```{r}
+burgers %>% 
+  summarize(across(price:sodium, list(mean = \(x) mean(x), sd = \(x) sd(x)))) %>% 
+  pivot_longer(everything(), names_to = c("variable", ".value"), names_sep = "_")
+```
+
+Isn't that pretty?
+
+$\blacksquare$
+
+(e) Compare the lengths of your two intervals. Does it make sense that your 
+shorter one should be shorter? Explain briefly.
+
+Solution
+
+After my long Extra, I need to display them again so that I can see them:
+
+```{r}
+predict(burgers.1, new, interval = "p")
+predict(burgers.2, new, interval = "p")
+```
+
+The first interval is about 69 points long and the second one is about 62 points long. Therefore the second interval is shorter.
+
+Why is that? This is different from the other interval comparisons we have done, because this time we are comparing the *same* prediction from two *different* models. 
+
+Our previous work showed that the model `burgers.2` was better than `burgers.1`. This was because it had fewer explanatory variables in it, and we showed that the ones we removed from `burgers.1` could safely be removed (the $F$-test in `anova`). Or similar wording; you might have concluded that the extra explanatory variables in `burgers.1` were not needed and could be taken out.
+
+This is another reason for trying to find a good model: not only is a smaller model easier to explain, but it also gives better predictions, in the sense that the uncertainty around the prediction (as measured by the length of the interval) is smaller.
+
+$\blacksquare$
+
+
+(f) Using our second model (the one with only `calories` and `fat` in it), find a suitable interval for the mean score when (i) calories is 140 and fat is 5, (ii) calories is 120 and fat is 3. (You should have two intervals.)
+
+Solution
+
+This is the "mean of all possible scores" when the explanatory variables take the values shown, so it's the confidence interval for the mean response rather than the prediction interval we had before. To start, make another `new` with the two rows of values in it: 
+
+```{r}
+new <- tribble(
+  ~calories, ~fat,
+  140,        1,
+  120,        3
+)
+new
+```
+
+Check. Then, `predictions` (from the `marginaleffects` package, which of course you remembered to install (once) and load first):
+
+```{r}
+library(marginaleffects)
+cbind(predictions(burgers.2, newdata = new)) %>% 
+  select(calories, fat, estimate, conf.low, conf.high)
+```
+
+(if you use the wrong model, you'll get an error, because the bigger model has some other things in it that we don't have values for.)
+
+$\blacksquare$
+
+(g) Explain briefly why the second interval is shorter than the first one. Make sure you justify your answer.
+
+Solution
+
+First, verify that the second interval really *is* shorter than the first one. (If, for some reason, it is not, then *say that*.) The first interval is of length about $62-37 = 25$, and the second one is of length about $52-35 = 17$.
+
+Aside: you might be thinking about working those out with R rather than by hand, and so you can: 
+
+```{r}
+cbind(predictions(burgers.2, newdata = new)) %>% 
+  mutate(ci_length = conf.high - conf.low) %>% 
+  select(calories, fat, conf.low, conf.high, ci_length)
+```
+
+
+Now we are in the familiar situation where we are comparing predictions for different *values* for the *same* model. So you might be suspecting that the second pair of values is closer to the mean (for the data as a whole) than the first pair is.^[There is *one* pair of values in each case, hence a *singular* verb.] But we should check that this is indeed the case. 
+
+Let's look at the values we predicted for first:
+
+```{r}
+new
+```
+
+To get the means, the easiest way is `summary`, on the whole dataframe or the bit of it containing only `calories` and `fat`:
+
+```{r}
+burgers %>% 
+  select(c(calories, fat)) %>% 
+  summary()
+```
+
+The values for  both variables are both above their means, but the second values for both `calories` and `fat` are closer to their means.
+
+There is a tidyverse way to do this, which uses `across` again, but it's a bit simpler than the other one I did (in an Extra above):
+
+```{r}
+burgers %>% 
+  summarize(across(c(calories, fat), \(x) mean(x)))
+```
+
+("for each of `calories` and `fat`, work out the mean of it"). Another way to do the same thing is the `map` idea for running functions over each of something. `mean` returns a decimal number, so `map_dbl`:
+
+```{r}
+burgers %>% 
+  select(calories, fat) %>% 
+  map_dbl(\(x) mean(x))
+```
+
+The `map`, by default, works on each *column* of the dataframe it is fed,^[Because a dataframe is, to R, a `list` of columns, and so the obvious thing to for-each over is what the dataframe is a list of.] namely the dataframe with only `calories` and `fat` in it.^[To be precise, `map_dbl` because the calculation of a mean is a decimal number, and the results get glued back together into a vector.]
+
+Somehow, make the assertion that the second values for `calories` and `fat` are closer to their means than the first values of each of them, and then demonstrate that this is indeed true. Or, think to yourself "this probably depends on the means somehow", find the means, and then say that the second values are closer to the means, so the prediction for them should be better (in the sense of having a shorter confidence interval).
+
+$\blacksquare$

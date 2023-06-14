@@ -1,0 +1,27 @@
+## Veggie burgers
+
+You like hamburgers, but you are a vegetarian. What to do? Today, there are many brands of hamburgers without any meat in them. Some of these are designed to taste like meat, and some have their own flavour. A magazine rated the flavour and texture of 12 different (numbered) brands of meatless hamburgers (to give a rating score between 0 and 100), along with the price (in cents), the number of calories, the grams of fat, and the milligrams of sodium. These measurements are per burger. Is it possible to predict the rating score of a brand of meatless hamburger from the other measurements, and if so, how? The data are in [http://ritsokiguess.site/datafiles/veggie-burgers.txt](http://ritsokiguess.site/datafiles/veggie-burgers.txt), in aligned columns.
+
+(a) Read in and display (most of) the data.
+
+
+(b) Fit a suitable regression to predict score from the other measured variables. Display the results.
+
+
+
+(c) It looks as if both `price` and `sodium` will be able to be removed from this regression. Do so, explain briefly why another test is necessary, and do that other test. What do you conclude? (Note: if you display your output to the second regression, something rather odd will appear. You can safely ignore that.)
+
+
+(d) Another veggie burger (not in the original dataset) has the following values for the explanatory variables:  price 91, calories 140, fat 5, sodium 450. What can you say about the likely score for a veggie burger with these values? Obtain a suitable interval, for *each* of your two models.
+
+
+(e) Compare the lengths of your two intervals. Does it make sense that your 
+shorter one should be shorter? Explain briefly.
+
+
+
+(f) Using our second model (the one with only `calories` and `fat` in it), find a suitable interval for the mean score when (i) calories is 140 and fat is 5, (ii) calories is 120 and fat is 3. (You should have two intervals.)
+
+
+(g) Explain briefly why the second interval is shorter than the first one. Make sure you justify your answer.
+
