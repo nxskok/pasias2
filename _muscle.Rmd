@@ -1,0 +1,140 @@
+
+## Contraction of heart muscle
+
+An experiment was carried out on heart muscle in rats. The original description of the experiment was as follows:
+
+> The purpose of this experiment was to assess the influence of calcium in solution on the contraction of heart muscle in rats. The left auricle of 21 rat hearts was isolated and on several occasions a constant-length strip of tissue was electrically stimulated and dipped into various concentrations of calcium chloride solution, after which the shortening of the strip was accurately measured as the response.
+
+The data are in [http://ritsokiguess.site/datafiles/regression2_muscle.csv](http://ritsokiguess.site/datafiles/regression2_muscle.csv). There are three columns:
+
+- `Strip`: a label for the strip of tissue treated with calcium chloride (text, ignored by us)
+- `Conc`: the concentration of calcium chloride, in suitable units
+- `Length`: the change in length (shortening) of the strip of tissue, mm.
+
+There are actually 60 measurements, so some of them came from the same rat, a fact that we ignore in this question.
+
+(a) Read in and display (some of) the data.
+
+Solution
+
+As usual:
+
+```{r}
+my_url <- "http://ritsokiguess.site/datafiles/regression2_muscle.csv"
+muscle <- read_csv(my_url)
+muscle
+```
+
+
+$\blacksquare$
+
+
+(b) Make a suitable graph of the two quantitative variables, with a smooth trend.
+
+Solution
+
+Scatterplot, with `Length` as the response:
+
+```{r}
+ggplot(muscle, aes(x = Conc, y = Length)) + geom_point() + geom_smooth()
+```
+
+
+$\blacksquare$
+
+
+(c) Why does your plot suggest that a regression with a squared term would be useful? Fit a suitable regression, and display the results.
+
+Solution
+
+The trend is not linear; it appears to go up and level off, with maybe a hint that it is coming down again. This is the most complete answer; "the relationship is curved" is also reasonable.
+
+So, we add a squared term to the regression right away:
+
+```{r}
+muscle.1 <- lm(Length ~ Conc + I(Conc^2), data = muscle)
+summary(muscle.1)
+```
+
+
+$\blacksquare$
+
+
+
+(d) How do you know that adding the squared term was a good idea (or, was not a good idea, depending how your output came out)?
+
+Solution
+
+The coefficient of concentration squared is significantly different from zero. This shows that the relationship really does curve, more than chance (not a very surprising conclusion, given the scatterplot).
+
+$\blacksquare$
+
+
+(e) For concentrations of 2, 3, and 4 units, obtain 95% confidence intervals for the mean `Length`. Display only the relevant columns of your result, and save it.
+
+Solution
+
+Use `predictions`, and to set that up, create a dataframe (by my tradition called `new`) that contains the concentrations you want to predict for:
+
+```{r}
+new <- tibble(Conc = c(2, 3, 4))
+cbind(predictions(muscle.1, newdata = new)) %>% 
+  select(Conc, estimate, conf.low, conf.high) -> preds
+preds
+```
+
+
+Extra: I note that the predictions increase from 2 to 3, and then decrease sharply after that. This is not quite what the scatterplot said:
+
+```{r}
+plot_cap(muscle.1, condition = "Conc") +
+  geom_point(data = muscle, aes(x = Conc, y = Length))
+```
+
+The shape of the parabola seems to require a drop at concentration 4, judging by the way it is increasing and then levelling off before that. Maybe the data support that, maybe they don't.
+
+$\blacksquare$
+
+
+
+(f) Work out the length of each of your confidence intervals. Does it make sense that the lengths compare as they do? Explain briefly.
+
+Solution
+
+I realized at this point that I needed to save the predictions, so I went back and did that. Thus I don't have to compute them again:
+
+```{r}
+preds %>% 
+  mutate(conf_len = conf.high - conf.low)
+```
+
+The confidence interval for the mean response at 4 is the longest, which makes sense since it is at the upper extreme of the data and there are fewer nearby observations.
+
+The shortest interval here is at a concentration of 2, which is presumably nearest the mean of the concentration values:
+
+```{r}
+muscle %>% 
+  summarize(mean_conc = mean(Conc))
+```
+
+It's the nearest of the ones here, anyway.
+
+$\blacksquare$
+
+
+
+(g) (2 points) Suppose you have some new rat tissues, not part of the original dataset, and run the same experiment on these with concentrations 2, 3, and 4 units. What are 95% intervals for the predicted `Length`s that you will observe for these tissues? Display your intervals next to the concentrations they are predictions for.
+
+
+Solution
+
+These are prediction intervals, not confidence intervals for the mean response, so we have to do them the other way:
+
+```{r}
+p <- predict(muscle.1, new, interval = "p")
+cbind(new, p)
+```
+
+Extra: these go down and up a lot further than the confidence intervals for the mean response, because there is more uncertainty involved: these are from individual rats, rather than the average of many, so by chance we could happen to get a `Length` value that is unusually low or high here.
+
+$\blacksquare$

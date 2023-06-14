@@ -336,7 +336,7 @@ $\blacksquare$
 (i) Obtain predicted probabilities of a
 customer falling in the various satisfaction categories, as it
 depends on gender and age group. To do that, you need to feed
-`predict` three things: the fitted model that contains both
+`predictions` three things: the fitted model that contains both
 age group and gender, the data frame that you read in from the file
 back in part (<a href="#part:gather">here</a>) (which contains all the combinations of age group
 and gender), and an appropriate `type`.
@@ -349,27 +349,49 @@ xxx use predictions
 
 My model containing both $x$s was `mobile.1`, the data frame
 read in from the file was called `mobile`, and I  need
-`type="p"` to get probabilities:
+`type="p"` to get probabilities. The first thing is to get the genders and age groups to make combinations of them, which you can do like this:
 
-```{r mobile-18 }
-probs <- predict(mobile.1, mobile, type = "p")
-mobile %>%
-  select(gender, age.group) %>%
-  cbind(probs)
+```{r}
+new <- datagrid(model = mobile.1, 
+                gender = levels(factor(mobile$gender)),
+                age.group = levels(factor(mobile$age.group)))
+new
 ```
 
-   
+The `levels(factor)` thing turns the (text) variable into a factor so that you can extract the distinct values using `levels`. You could also `count` the genders and age groups to find out which ones there are:
+
+```{r}
+mobile %>% count(gender, age.group)
+```
+
+This gives you all the combinations, and so will also serve as a `new` without needing to use `datagrid`. Your choice.
+
+Having done that, you now have a `new` to feed into `predictions`, but some care is still required:
+
+```{r}
+cbind(predictions(mobile.1, newdata = new)) 
+```
+
+The predictions come out long, and we would like all the predictions for the same gender - age-group combination to come out in one row: That means pivoting the group column wider. I also took the opportunity to grab only the relevant columns:
+
+```{r}
+cbind(predictions(mobile.1, newdata = new)) %>% 
+  select(gender, age.group, group, estimate) %>% 
+  pivot_wider(names_from = group, values_from = estimate)
+```
+
+Depending on the width of your display, you may or may not see all four probabilities.
 
 This worked for me, but this might happen to you, with the same commands as above:
 
-```{r mobile-19, error=T, echo=F}
-probs <- predict(mobile.1, mobile, type = "p")
-mobile %>%
-  MASS::select(gender, age.group) %>%
-  cbind(probs)
+
+```{r}
+#| error: true
+cbind(predictions(mobile.1, newdata = new)) %>% 
+  MASS::select(gender, age.group, group, estimate) %>% 
+  pivot_wider(names_from = group, values_from = estimate)
 ```
 
- 
 
 Oh, this didn't work. Why not? There don't seem to be any errors.
 
@@ -423,44 +445,6 @@ were frequencies, which I don't need to see. (Having said that, it
 would be interesting to make a *plot* using the observed
 proportions and predicted probabilities, but I didn't ask you for that.)
 
-This is an unusual `predict`, because we didn't have to make a
-data frame (with my usual name `new`) containing all the
-combinations of things to predict for. We were lucky enough to have
-those already in the original data frame `mobile`. 
-
-The usual way to do this is something like the trick that we did for
-getting the different satisfaction levels:
-
-```{r mobile-20 }
-genders <- mobile.long %>% distinct(gender) %>% pluck("gender")
-age.groups <- mobile.long %>%
-  distinct(age.group) %>%
-  pluck("age.group")
-```
-
- 
-
-This is getting perilously close to deserving a function written to do
-it (strictly speaking, we should, since this is three times we've
-used this idea now).
-
-Then `crossing` to get the combinations, and then
-`predict`: 
-
-```{r mobile-21 }
-new <- crossing(gender = genders, age.group = age.groups)
-new
-pp <- predict(mobile.1, new, type = "p")
-cbind(new, pp)
-```
-
- 
-This method is fine if you want to do this
-question this way; the way I suggested first ought  to be easier, but 
-the nice thing about this is its mindlessness: you always do it about
-the same way.
-
-xxx think about predictions for this
 
 $\blacksquare$
 

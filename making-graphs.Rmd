@@ -1,0 +1,45 @@
+
+# Drawing graphs
+
+```{r 32-making-graphs-1, eval=F}
+library(tidyverse)
+```
+
+```{r 32-making-graphs-2, child="_packages.qmd"}
+```
+
+
+```{r 32-making-graphs-3, child="_oj2_qq.Rmd"}
+```
+
+```{r 32-making-graphs-4, child="_soap2_qq.Rmd"}
+```
+
+```{r 32-making-graphs-5, child="_global2_qq.Rmd"}
+```
+
+```{r 32-making-graphs-6, child="_rainfall2_qq.Rmd"}
+```
+
+
+```{r 32-making-graphs-7, child="_exercise_qq.Rmd"}
+```
+
+
+My solutions follow:
+
+```{r 32-making-graphs-8, child="_oj2.Rmd"}
+```
+
+```{r 32-making-graphs-9, child="_soap2.Rmd"}
+```
+
+```{r 32-making-graphs-10, child="_global2.Rmd"}
+```
+
+```{r 32-making-graphs-11, child="_rainfall2.Rmd"}
+```
+
+```{r 32-making-graphs-12, child="_exercise.Rmd"}
+```
+

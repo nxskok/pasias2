@@ -173,7 +173,8 @@ failed to parse Stan model 'binomial' due to the above error.
 ```
 
 The compiler (or at least the code checker) was expecting a semicolon, and when it got to the close-curly-bracket on line 24, that was where it knew that the semicolon was missing (and thus it objected there and not earlier).
-The above was on my own computer. When I tried it on `rstudio.cloud`, I thought I had everything correct but I got an error message like this:
+
+The above was on my own computer. When I tried it on `r.datatools`, I thought I had everything correct but I got an error message like this:
 
 
 ```
@@ -184,7 +185,8 @@ Error in sink(type = "output") : invalid connection
 
 
 that I couldn't get rid of. This might happen to you also.
-If you get an error, fix it and check again. Repeat until your code is "syntactically correct". 
+
+If you get an error (other than the above), fix it and check again. Repeat until your code is "syntactically correct". 
 (That means that it will compile, but not that it will necessarily do what you want.)
 This process is an integral part of coding, so get used to it. 
 It doesn't matter how many errors you make; what matters is that you find and correct them all. 

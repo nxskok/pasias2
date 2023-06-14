@@ -34,6 +34,8 @@ notes. Current versions of these are at:
 - [the STAC33 website](http://ritsokiguess.site/STAC33/)
 - [the STAD29 website](http://ritsokiguess.site/STAD29/)
 
+Students at the University of Toronto can use the online R Studio at `r.datatools.utoronto.ca` for free as long as they are students here; others can use `rstudio.cloud` to try out an online interface (the free tier may not last you very long). Ultimately, the recommended approach for everyone is to install R Studio on their own computer (instructions in the lecture notes above) and then there should be no problems accessing anything. R Studio runs the same whether online or on your own computer.
+
 A little background:
 
 STAC32 is an introduction to R as

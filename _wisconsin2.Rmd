@@ -163,6 +163,7 @@ Solution
 This is geocoding, with the disentangling afterwards that is (I hope) becoming familiar:
 
 ```{r wisconsin2-14}
+#| cache: true
 wisc %>% 
   rowwise() %>% 
   mutate(ll = list(geocode_OSM(lookup))) %>% 

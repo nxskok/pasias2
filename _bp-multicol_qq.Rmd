@@ -1,0 +1,31 @@
+## Blood pressure
+
+Twenty people with high blood pressure had various other measurements taken. The aim was to see which of these were associated with blood pressure, with the aim of understanding what causes high blood pressure. The variables observed were:
+
+- `Pt`: patient number (ignore)
+- `BP`: (diastolic) blood pressure, in mmHg
+- `Age` in years
+- `Weight` in kg
+- `BSA`: body surface area, in m$^2$
+- `Dur`: length of time since diagnosis of high blood pressure, in years
+- `Pulse`: pulse rate, in beats per minute
+- `Stress`: score on a questionnaire about stress levels (higher score is more stressed)
+
+The data values, separated by *tabs*, are in [https://ritsokiguess.site/datafiles/bloodpress.txt](https://ritsokiguess.site/datafiles/bloodpress.txt).
+
+(a) Read in and display (some of) the data.
+
+
+(b) Make a plot of the blood pressure against each of the measured explanatory variables. Hint: use the idea from C32 of making a suitable long dataframe and using facets in your graph.
+
+
+(c) Which explanatory variables seem to have a moderate or strong linear relationship with blood pressure?
+
+
+
+(d) Run a regression predicting blood pressure from `BSA` and `Weight`, and display the output. Does the significance or lack of significance of each of your explanatory variables surprise you? Explain briefly.
+
+
+(e) Explain briefly why it does in fact make sense that the regression results came out as they did. You may wish to draw another graph to support your explanation.
+
+

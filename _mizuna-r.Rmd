@@ -24,7 +24,7 @@ This is `read_excel` from package `readxl`. I'm
 not sure what will happen to the dates yet. Note that this needs
 a "local" copy of the spreadsheet (that is, you have to
 download it and save it on your computer, then upload it to
-`rstudio.cloud`), possibly using `file.choose` to
+`r.datatools`), possibly using `file.choose` to
 help R find it. I put my copy in the same project folder as I was
 working in, so I just need the file name:
 

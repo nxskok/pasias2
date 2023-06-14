@@ -142,7 +142,7 @@ or "comma-separated values" and give it a name. Save the
 resulting file somewhere.
 
 Then follow the same steps as the previous part to upload it to
-your project on R Studio Cloud. (If you look at the actual file,
+your project on `r.datatools`. (If you look at the actual file,
 it will be plain text with the data values having commas between
 them, as the name suggests. You can open the file in R Studio by clicking on it in the Files pane; it should open top
 left.)
