@@ -25,12 +25,12 @@ of rows and the right number of columns. (What does "a sensible  number of rows"
 Solution
 
 
-This is a tricky one. There are aligned columns, but *the column headers are not aligned with them*. 
-Thus `read_table2` is what you need.
+There are aligned columns. 
+Thus `read_table` is what you need.
 
 ```{r mathsal-1 }
 my_url <- "http://ritsokiguess.site/datafiles/mathsal.txt"
-salaries <- read_table2(my_url)
+salaries <- read_table(my_url)
 salaries
 ```
 

@@ -60,7 +60,7 @@ around later):
 ggplot(heliconia,aes(sample=bihai))+stat_qq()+stat_qq_line()
 ```         
 
-I'm saving the comments until we've seen all three.
+I'm saving the comments until we've seen all three, other than to say that the warning here is the missing values we found above.
 
 $\blacksquare$
 
@@ -93,7 +93,7 @@ And, one more time:
 ggplot(heliconia,aes(sample=caribaea_yellow))+stat_qq()+stat_qq_line()
 ```         
 
-I did a lot of copying and pasting there.
+I did a lot of copying and pasting there. (The warning is missing values again.)
 
 $\blacksquare$
 

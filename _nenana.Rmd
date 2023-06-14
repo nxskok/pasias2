@@ -168,16 +168,15 @@ more values just below 120 than you would expect for a
 normal. This corresponds to the histogram bar centred just below 120
 being taller than you would have expected.^[That is to say, the  principal deviation from normality is not the hole on the histogram, the bar centred around 123 being too short, but that the bar centred just below 120 is too *tall*.]
 
-Extra: looking *way* ahead (to almost the end of the R stuff),
-this is how you handle the dates and times:
+Extra: looking *way* ahead, this is how you handle the dates and times:
 
 ```{r nenana-9 }
-library(lubridate)
 nenana %>%
   mutate(longdt = str_c(Year, " ", `Date&Time`)) %>%
   mutate(datetime = ymd_hm(longdt, tz = "America/Anchorage"))
 ```
 
+The function `ymd_hm` is from the `lubridate` package, which gets loaded with the tidyverse. Its job is to read a piece of text that contains a year, month, day, hour, and minute in that order, and to convert it into an R date-time.^[R has a special class for date-times. Internally, they are recorded as seconds since Jan 1, 1970 at midnight, but they display in a human-readable form and can also be used on (typically the $x$-axis of) graphs and will plot properly with sensible axis labels. That isn't very helpful here, since we have the Julian dates, but can be helpful elsewhere.]
  
 
 I am not doing any further analysis with these, so just displaying them is good. 

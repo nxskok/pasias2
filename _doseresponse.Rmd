@@ -264,7 +264,7 @@ ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
   geom_point(data = dr2, aes(x =  dose, y = prop), colour = "red")
 ```
 
-The message is not very helpful, but I can tell you where it comes from. When you add something to a plot like this, all the things in the original `ggplot` are "inherited" by anything else that you add to the plot, so that you either have to overwrite them with something new (as I did with `x` and `y`) or you get the previous values, one of which was evidently `conf.low`. To override this behaviour, which we don't want because *we* have nothing called `conf.low` in our data, add `inherit.aes = FALSE` to the `geom_point`:^[This is done in the `geom_point` on the website, which is where I learned about it.]
+The message is not very helpful, but I can tell you where it comes from. When you add something to a plot like this, all the things in the original `ggplot` are "inherited" by anything else that you add to the plot, so that you either have to overwrite them with something new (as I did with `x` and `y`) or you get the previous values, one of which was evidently `conf.low` (which supplied a value for `ymin`), but the dataframe `dr2` doesn't have a `conf.low` in it. To override this behaviour, which we don't want because *we* have nothing called `conf.low` in our data, add `inherit.aes = FALSE` to the `geom_point`:^[This is done in the `geom_point` on the website, which is where I learned about it.]
 
 ```{r}
 ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +

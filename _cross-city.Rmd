@@ -7,7 +7,7 @@ my_url <- "http://ritsokiguess.site/datafiles/cross-city.csv"
 ```
 
 
-A list of the stations on the line is in `r my_url`. There is one column in the data file, called `station`. We are going to draw a map of these.
+A list of the stations on the line is in [`r my_url`](`r my_url`). There is one column in the data file, called `station`. We are going to draw a map of these.
 
 (a) Read in and display (some of) the station names.
 
@@ -45,6 +45,7 @@ Two steps: the first is to do the geocoding, and the second is to disentangle wh
 First, then:
 
 ```{r cross-city-4}
+#| cache: true
 stations %>% 
   rowwise() %>% 
   mutate(ll = list(geocode_OSM(longname))) -> stations
@@ -61,7 +62,7 @@ stations
 
 The two `unnest_wider`s are because the longitudes and latitudes are hidden inside a thing called `coords` which is itself nested within `ll`. Do the first `unnest_wider`, and see what you have. This will tell you that you need to do another one. 
 
-The values seem reasonable; this is the UK, most of which is slightly west of the Greenwich meridian, and the latitudes look sensible given that the UK is north of southern Ontario.
+The values seem mostly reasonable; this is the UK, most of which is slightly west of the Greenwich meridian, and the latitudes look sensible given that the UK is north of southern Ontario. You might find that some of the stations were not found at all (which will give you warnings the rest of the way), and you might find that something was found for a station but the *wrong* thing,  which will show up on your map as a place way off the trend of the other places. 
 
 $\blacksquare$
 
@@ -95,6 +96,7 @@ If you zoom in enough, you'll see where the railway line goes (a grey line). The
 Extra: `geocode_OSM` uses a free geocoder called Nominatim. This has some options. The defaults are to return only the first "hit", and to return just the coordinates and the "bounding box". These can be changed. Let's see what we can find for Aston:
 
 ```{r cross-city-7}
+#| cache: true
 tibble(where = "Aston UK") %>% 
   mutate(info = list(geocode_OSM(where, return.first.only = FALSE,
                             details = TRUE))) -> d
@@ -121,6 +123,7 @@ You can see which one is the railway station.
 This makes me think that with sufficient patience we could do this for all our places, and pick out the one that is the station:
 
 ```{r cross-city-10}
+#| cache: true
 stations <- read_csv(my_url)
 stations %>% 
   mutate(longname = str_c(station, " UK")) %>% 

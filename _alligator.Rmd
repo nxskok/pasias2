@@ -26,7 +26,6 @@ Solution
 
 
 Separated by exactly one space:
-
 ```{r alligator-1 }
 my_url <- "http://ritsokiguess.site/datafiles/alligator.txt"
 gators.orig <- read_delim(my_url, " ")
@@ -124,7 +123,6 @@ reason that `count` earlier would have been confusing:
 it would have told you how many *rows* contained each
 food type, rather than how many *alligators*, and these
 would have been different:
-
 ```{r alligator-4 }
 gators %>% count(Food.type)
 gators %>% count(Food.type, wt = Frequency)
@@ -154,7 +152,6 @@ it got converted to a factor. The ordering of the levels doesn't
 matter here anyway, since this is not an ordinal model.
 
 No need to look at it, since the output is kind of confusing anyway: 
-
 ```{r alligator-6 }
 summary(gators.1)
 ```
@@ -177,7 +174,6 @@ Solution
 
 The other model to fit is the one *without* the variable
 you're testing:
-
 ```{r alligator-7 }
 gators.2 <- update(gators.1, . ~ . - Gender)
 ```
@@ -273,7 +269,6 @@ Solution
 
 
 Here are the predictions again:
-
 ```{r alligator-17 }
 preds1
 ```
