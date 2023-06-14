@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 7&nbsp; The sign test</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 9&nbsp; The sign test</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sign.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sign.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,16 +400,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#running-a-maze" id="toc-running-a-maze" class="nav-link active" data-scroll-target="#running-a-maze"><span class="header-section-number">7.1</span> Running a maze</a></li>
-  <li><a href="#chocolate-chips" id="toc-chocolate-chips" class="nav-link" data-scroll-target="#chocolate-chips"><span class="header-section-number">7.2</span> Chocolate chips</a></li>
-  <li><a href="#the-power-of-the-sign-test" id="toc-the-power-of-the-sign-test" class="nav-link" data-scroll-target="#the-power-of-the-sign-test"><span class="header-section-number">7.3</span> The power of the sign test</a></li>
-  <li><a href="#ben-roethlisberger" id="toc-ben-roethlisberger" class="nav-link" data-scroll-target="#ben-roethlisberger"><span class="header-section-number">7.4</span> Ben Roethlisberger</a></li>
-  <li><a href="#six-ounces-of-protein" id="toc-six-ounces-of-protein" class="nav-link" data-scroll-target="#six-ounces-of-protein"><span class="header-section-number">7.5</span> Six ounces of protein</a></li>
-  <li><a href="#running-a-maze-1" id="toc-running-a-maze-1" class="nav-link" data-scroll-target="#running-a-maze-1"><span class="header-section-number">7.6</span> Running a maze</a></li>
-  <li><a href="#chocolate-chips-1" id="toc-chocolate-chips-1" class="nav-link" data-scroll-target="#chocolate-chips-1"><span class="header-section-number">7.7</span> Chocolate chips</a></li>
-  <li><a href="#the-power-of-the-sign-test-1" id="toc-the-power-of-the-sign-test-1" class="nav-link" data-scroll-target="#the-power-of-the-sign-test-1"><span class="header-section-number">7.8</span> The power of the sign test</a></li>
-  <li><a href="#ben-roethlisberger-1" id="toc-ben-roethlisberger-1" class="nav-link" data-scroll-target="#ben-roethlisberger-1"><span class="header-section-number">7.9</span> Ben Roethlisberger</a></li>
-  <li><a href="#six-ounces-of-protein-1" id="toc-six-ounces-of-protein-1" class="nav-link" data-scroll-target="#six-ounces-of-protein-1"><span class="header-section-number">7.10</span> Six ounces of protein</a></li>
+  <li><a href="#running-a-maze" id="toc-running-a-maze" class="nav-link active" data-scroll-target="#running-a-maze"><span class="header-section-number">9.1</span> Running a maze</a></li>
+  <li><a href="#chocolate-chips" id="toc-chocolate-chips" class="nav-link" data-scroll-target="#chocolate-chips"><span class="header-section-number">9.2</span> Chocolate chips</a></li>
+  <li><a href="#the-power-of-the-sign-test" id="toc-the-power-of-the-sign-test" class="nav-link" data-scroll-target="#the-power-of-the-sign-test"><span class="header-section-number">9.3</span> The power of the sign test</a></li>
+  <li><a href="#ben-roethlisberger" id="toc-ben-roethlisberger" class="nav-link" data-scroll-target="#ben-roethlisberger"><span class="header-section-number">9.4</span> Ben Roethlisberger</a></li>
+  <li><a href="#six-ounces-of-protein" id="toc-six-ounces-of-protein" class="nav-link" data-scroll-target="#six-ounces-of-protein"><span class="header-section-number">9.5</span> Six ounces of protein</a></li>
+  <li><a href="#running-a-maze-1" id="toc-running-a-maze-1" class="nav-link" data-scroll-target="#running-a-maze-1"><span class="header-section-number">9.6</span> Running a maze</a></li>
+  <li><a href="#chocolate-chips-1" id="toc-chocolate-chips-1" class="nav-link" data-scroll-target="#chocolate-chips-1"><span class="header-section-number">9.7</span> Chocolate chips</a></li>
+  <li><a href="#the-power-of-the-sign-test-1" id="toc-the-power-of-the-sign-test-1" class="nav-link" data-scroll-target="#the-power-of-the-sign-test-1"><span class="header-section-number">9.8</span> The power of the sign test</a></li>
+  <li><a href="#ben-roethlisberger-1" id="toc-ben-roethlisberger-1" class="nav-link" data-scroll-target="#ben-roethlisberger-1"><span class="header-section-number">9.9</span> Ben Roethlisberger</a></li>
+  <li><a href="#six-ounces-of-protein-1" id="toc-six-ounces-of-protein-1" class="nav-link" data-scroll-target="#six-ounces-of-protein-1"><span class="header-section-number">9.10</span> Six ounces of protein</a></li>
   </ul>
 </nav>
     </div>
@@ -406,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></h1>
 </div>
 
 
@@ -437,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smmr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="running-a-maze" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="running-a-maze"><span class="header-section-number">7.1</span> Running a maze</h2>
+<section id="running-a-maze" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="running-a-maze"><span class="header-section-number">9.1</span> Running a maze</h2>
 <p>A researcher is trying to design a maze that can be run by rats in about 60 seconds. One particular maze was run by a sample of 21 rats, with the times shown in <a href="http://ritsokiguess.site/datafiles/maze.txt">link</a>.</p>
 <ol type="a">
 <li><p>Read the data into R. What (if anything) are the data values delimited by?</p></li>
@@ -464,8 +476,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Obtain a 95% confidence interval for the median based on these data. Do this two ways. First, use the trial and error way from class (either the try-lots-of-values way or the bisection way; either is good). Second, use <code>ci_median</code> from <code>smmr</code>. The latter takes as input a data frame, a column name (unquoted) and optionally a <code>conf.level</code> that defaults to 0.95.</p></li>
 </ol>
 </section>
-<section id="chocolate-chips" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="chocolate-chips"><span class="header-section-number">7.2</span> Chocolate chips</h2>
+<section id="chocolate-chips" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="chocolate-chips"><span class="header-section-number">9.2</span> Chocolate chips</h2>
 <p>A famous cookie manufacturer claims that their bags of chocolate chip cookies contain “more than 1100 chocolate chips on average”. A diligent group of students buys 16 bags of these cookies and counts the number of chocolate chips in each bag. The results are in <a href="http://ritsokiguess.site/datafiles/chips.txt">http://ritsokiguess.site/datafiles/chips.txt</a>.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data.</p></li>
@@ -474,8 +486,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use <code>smmr</code> to obtain a 95% confidence interval for the median number of chocolate chips per bag of cookies.</p></li>
 </ol>
 </section>
-<section id="the-power-of-the-sign-test" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="the-power-of-the-sign-test"><span class="header-section-number">7.3</span> The power of the sign test</h2>
+<section id="the-power-of-the-sign-test" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="the-power-of-the-sign-test"><span class="header-section-number">9.3</span> The power of the sign test</h2>
 <p>I’ve mentioned several times that the sign test has less power than the <span class="math inline">\(t\)</span>-test. Let’s investigate this with a specific example.</p>
 <p>Let’s suppose we are testing <span class="math inline">\(H_0: \mu=40\)</span> against <span class="math inline">\(H_a: \mu \ne 40\)</span>, where <span class="math inline">\(\mu\)</span> is the population mean (and median, as we shall see). Our population actually has a normal distribution with mean 50 and SD 15, so that the null hypothesis is <em>wrong</em> and we want to reject it most of the time. On the other hand, the population actually <em>is</em> normally-distributed and so the <span class="math inline">\(t\)</span>-test is the right one to use.</p>
 <p>(This is an old question, so I tackle the simulated power differently than I did it in class this time. But see if you can follow what I do here.)</p>
@@ -488,8 +500,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Which is more powerful in this case, the sign test or the <span class="math inline">\(t\)</span>-test? How do you know?</p></li>
 </ol>
 </section>
-<section id="ben-roethlisberger" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="ben-roethlisberger"><span class="header-section-number">7.4</span> Ben Roethlisberger</h2>
+<section id="ben-roethlisberger" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="ben-roethlisberger"><span class="header-section-number">9.4</span> Ben Roethlisberger</h2>
 <p>Ben Roethlisberger plays (American) football for the Pittsburgh Steelers. He plays as a quarterback, which means that his job is to throw (pass) the ball so that one of his teammates can catch it. Each time he makes a pass that is caught, this is called a “completion”, and the team coaches are interested in his average number of completions per game (this average could be the mean or the median).</p>
 <p>In 2010, Roethlisberger was suspended for the first four games of the season, and there was concern that this might affect his performance (in terms of the number of passes completed in the games after he returned). The Pittsburgh Steelers did not play in week 5 of the 2010 season; the season is 17 weeks long (one game per week) and each team has one week in which they do not play.</p>
 <p>The data are <a href="http://ritsokiguess.site/datafiles/roethlisberger.csv">here</a>. There are four columns: the year (always 2010), the week number of the season that the game was played in, the name of the opposing team, and the number of completed passes by Roethlisberger in the game.</p>
@@ -502,8 +514,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Find a 90% confidence interval for the <em>mean</em> number of passes completed, and explain briefly why it differs from the one for the median in the way that it does.</p></li>
 </ol>
 </section>
-<section id="six-ounces-of-protein" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="six-ounces-of-protein"><span class="header-section-number">7.5</span> Six ounces of protein</h2>
+<section id="six-ounces-of-protein" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="six-ounces-of-protein"><span class="header-section-number">9.5</span> Six ounces of protein</h2>
 <p>A company produces prepackaged diet meals. These meals are advertised as containing “6 ounces of protein per package”. A consumer organization is concerned that this is not accurate. The organization takes a random sample of 20 of these meals, and measures the protein content of each one. The data are in <a href="http://ritsokiguess.site/datafiles/protein.txt">http://ritsokiguess.site/datafiles/protein.txt</a> as one column.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data.</p></li>
@@ -515,8 +527,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="running-a-maze-1" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="running-a-maze-1"><span class="header-section-number">7.6</span> Running a maze</h2>
+<section id="running-a-maze-1" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="running-a-maze-1"><span class="header-section-number">9.6</span> Running a maze</h2>
 <p>A researcher is trying to design a maze that can be run by rats in about 60 seconds. One particular maze was run by a sample of 21 rats, with the times shown in <a href="http://ritsokiguess.site/datafiles/maze.txt">link</a>.</p>
 <ol type="a">
 <li>Read the data into R. What (if anything) are the data values delimited by?</li>
@@ -804,8 +816,8 @@ $p_values
 <p>with the same results. Try <code>ci_median</code> first, and if it doesn’t work, try <code>ci_median0</code>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="chocolate-chips-1" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="chocolate-chips-1"><span class="header-section-number">7.7</span> Chocolate chips</h2>
+<section id="chocolate-chips-1" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="chocolate-chips-1"><span class="header-section-number">9.7</span> Chocolate chips</h2>
 <p>A famous cookie manufacturer claims that their bags of chocolate chip cookies contain “more than 1100 chocolate chips on average”. A diligent group of students buys 16 bags of these cookies and counts the number of chocolate chips in each bag. The results are in <a href="http://ritsokiguess.site/datafiles/chips.txt">http://ritsokiguess.site/datafiles/chips.txt</a>.</p>
 <ol type="a">
 <li>Read in and display (some of) the data.</li>
@@ -953,8 +965,8 @@ $p_values
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="the-power-of-the-sign-test-1" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="the-power-of-the-sign-test-1"><span class="header-section-number">7.8</span> The power of the sign test</h2>
+<section id="the-power-of-the-sign-test-1" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="the-power-of-the-sign-test-1"><span class="header-section-number">9.8</span> The power of the sign test</h2>
 <p>I’ve mentioned several times that the sign test has less power than the <span class="math inline">\(t\)</span>-test. Let’s investigate this with a specific example.</p>
 <p>Let’s suppose we are testing <span class="math inline">\(H_0: \mu=40\)</span> against <span class="math inline">\(H_a: \mu \ne 40\)</span>, where <span class="math inline">\(\mu\)</span> is the population mean (and median, as we shall see). Our population actually has a normal distribution with mean 50 and SD 15, so that the null hypothesis is <em>wrong</em> and we want to reject it most of the time. On the other hand, the population actually <em>is</em> normally-distributed and so the <span class="math inline">\(t\)</span>-test is the right one to use.</p>
 <p>(This is an old question, so I tackle the simulated power differently than I did it in class this time. But see if you can follow what I do here.)</p>
@@ -987,8 +999,8 @@ $p_values
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">15</span>)  </span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 64.52996 64.18490 49.78020 28.09803 48.78013 78.59904 55.82354 63.66161
- [9] 41.69221 46.37948</code></pre>
+<pre><code> [1] 67.21534 69.35961 51.46618 42.95764 79.08712 31.23727 69.60063 65.35594
+ [9] 41.08029 48.64446</code></pre>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1310,8 +1322,8 @@ mean of x
 <p>This is not to say that you will ever run into data that comes from the Laplace distribution. But the moral of the story is that the sign test <em>can</em> be more powerful than the <span class="math inline">\(t\)</span>-test, under the right circumstances (and the above simulation is the “proof” of that statement). So a blanket statement like “the sign test is not very powerful” needs to be qualified a bit: when your data come from a sufficiently long-tailed distribution, the sign test can be more powerful relative to the <span class="math inline">\(t\)</span>-test than you would think.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="ben-roethlisberger-1" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="ben-roethlisberger-1"><span class="header-section-number">7.9</span> Ben Roethlisberger</h2>
+<section id="ben-roethlisberger-1" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="ben-roethlisberger-1"><span class="header-section-number">9.9</span> Ben Roethlisberger</h2>
 <p>Ben Roethlisberger plays (American) football for the Pittsburgh Steelers. He plays as a quarterback, which means that his job is to throw (pass) the ball so that one of his teammates can catch it. Each time he makes a pass that is caught, this is called a “completion”, and the team coaches are interested in his average number of completions per game (this average could be the mean or the median).</p>
 <p>In 2010, Roethlisberger was suspended for the first four games of the season, and there was concern that this might affect his performance (in terms of the number of passes completed in the games after he returned). The Pittsburgh Steelers did not play in week 5 of the 2010 season; the season is 17 weeks long (one game per week) and each team has one week in which they do not play.</p>
 <p>The data are <a href="http://ritsokiguess.site/datafiles/roethlisberger.csv">here</a>. There are four columns: the year (always 2010), the week number of the season that the game was played in, the name of the opposing team, and the number of completed passes by Roethlisberger in the game.</p>
@@ -1582,8 +1594,8 @@ mean of x
 <p>A sample median of 19 or 20 is more likely than one of 19.5.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="six-ounces-of-protein-1" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="six-ounces-of-protein-1"><span class="header-section-number">7.10</span> Six ounces of protein</h2>
+<section id="six-ounces-of-protein-1" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="six-ounces-of-protein-1"><span class="header-section-number">9.10</span> Six ounces of protein</h2>
 <p>A company produces prepackaged diet meals. These meals are advertised as containing “6 ounces of protein per package”. A consumer organization is concerned that this is not accurate. The organization takes a random sample of 20 of these meals, and measures the protein content of each one. The data are in <a href="http://ritsokiguess.site/datafiles/protein.txt">http://ritsokiguess.site/datafiles/protein.txt</a> as one column.</p>
 <ol type="a">
 <li>Read in and display (some of) the data.</li>
@@ -1973,12 +1985,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./power.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./mood-median.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

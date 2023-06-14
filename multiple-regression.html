@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 17&nbsp; Multiple regression</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 19&nbsp; Multiple regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./multiple-regression.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./multiple-regression.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,14 +400,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#being-satisfied-with-hospital" id="toc-being-satisfied-with-hospital" class="nav-link active" data-scroll-target="#being-satisfied-with-hospital"><span class="header-section-number">17.1</span> Being satisfied with hospital</a></li>
-  <li><a href="#salaries-of-mathematicians" id="toc-salaries-of-mathematicians" class="nav-link" data-scroll-target="#salaries-of-mathematicians"><span class="header-section-number">17.2</span> Salaries of mathematicians</a></li>
-  <li><a href="#predicting-gpa-of-computer-science-students" id="toc-predicting-gpa-of-computer-science-students" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students"><span class="header-section-number">17.3</span> Predicting GPA of computer science students</a></li>
-  <li><a href="#fish-and-mercury" id="toc-fish-and-mercury" class="nav-link" data-scroll-target="#fish-and-mercury"><span class="header-section-number">17.4</span> Fish and mercury</a></li>
-  <li><a href="#being-satisfied-with-hospital-1" id="toc-being-satisfied-with-hospital-1" class="nav-link" data-scroll-target="#being-satisfied-with-hospital-1"><span class="header-section-number">17.5</span> Being satisfied with hospital</a></li>
-  <li><a href="#salaries-of-mathematicians-1" id="toc-salaries-of-mathematicians-1" class="nav-link" data-scroll-target="#salaries-of-mathematicians-1"><span class="header-section-number">17.6</span> Salaries of mathematicians</a></li>
-  <li><a href="#predicting-gpa-of-computer-science-students-1" id="toc-predicting-gpa-of-computer-science-students-1" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students-1"><span class="header-section-number">17.7</span> Predicting GPA of computer science students</a></li>
-  <li><a href="#fish-and-mercury-1" id="toc-fish-and-mercury-1" class="nav-link" data-scroll-target="#fish-and-mercury-1"><span class="header-section-number">17.8</span> Fish and mercury</a></li>
+  <li><a href="#being-satisfied-with-hospital" id="toc-being-satisfied-with-hospital" class="nav-link active" data-scroll-target="#being-satisfied-with-hospital"><span class="header-section-number">19.1</span> Being satisfied with hospital</a></li>
+  <li><a href="#salaries-of-mathematicians" id="toc-salaries-of-mathematicians" class="nav-link" data-scroll-target="#salaries-of-mathematicians"><span class="header-section-number">19.2</span> Salaries of mathematicians</a></li>
+  <li><a href="#predicting-gpa-of-computer-science-students" id="toc-predicting-gpa-of-computer-science-students" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students"><span class="header-section-number">19.3</span> Predicting GPA of computer science students</a></li>
+  <li><a href="#fish-and-mercury" id="toc-fish-and-mercury" class="nav-link" data-scroll-target="#fish-and-mercury"><span class="header-section-number">19.4</span> Fish and mercury</a></li>
+  <li><a href="#being-satisfied-with-hospital-1" id="toc-being-satisfied-with-hospital-1" class="nav-link" data-scroll-target="#being-satisfied-with-hospital-1"><span class="header-section-number">19.5</span> Being satisfied with hospital</a></li>
+  <li><a href="#salaries-of-mathematicians-1" id="toc-salaries-of-mathematicians-1" class="nav-link" data-scroll-target="#salaries-of-mathematicians-1"><span class="header-section-number">19.6</span> Salaries of mathematicians</a></li>
+  <li><a href="#predicting-gpa-of-computer-science-students-1" id="toc-predicting-gpa-of-computer-science-students-1" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students-1"><span class="header-section-number">19.7</span> Predicting GPA of computer science students</a></li>
+  <li><a href="#fish-and-mercury-1" id="toc-fish-and-mercury-1" class="nav-link" data-scroll-target="#fish-and-mercury-1"><span class="header-section-number">19.8</span> Fish and mercury</a></li>
   </ul>
 </nav>
     </div>
@@ -404,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></h1>
 </div>
 
 
@@ -422,8 +434,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="being-satisfied-with-hospital" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="being-satisfied-with-hospital"><span class="header-section-number">17.1</span> Being satisfied with hospital</h2>
+<section id="being-satisfied-with-hospital" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="being-satisfied-with-hospital"><span class="header-section-number">19.1</span> Being satisfied with hospital</h2>
 <p>A hospital administrator collects data to study the effect, if any, of a patient’s age, the severity of their illness, and their anxiety level, on the patient’s satisfaction with their hospital experience. The data, in the file <a href="http://ritsokiguess.site/datafiles/satisfaction.txt">link</a>, are for 46 patients in a survey. The columns are: patient’s satisfaction score <code>satis</code>, on a scale of 0 to 100; the patient’s <code>age</code> (in years), the <code>severity</code> of the patient’s illness (also on a 0–100 scale), and the patient’s <code>anxiety</code> score on a standard anxiety test (scale of 0–5). Higher scores mean greater satisfaction, increased severity of illness and more anxiety.</p>
 <ol type="a">
 <li><p>Read in the data and check that you have four columns in your data frame, one for each of your variables.</p></li>
@@ -437,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Carry out a backward elimination to determine which of <code>age</code>, <code>severity</code> and <code>anxiety</code> are needed to predict satisfaction. What do you get? Use <span class="math inline">\(\alpha = 0.10\)</span>.</p></li>
 </ol>
 </section>
-<section id="salaries-of-mathematicians" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="salaries-of-mathematicians"><span class="header-section-number">17.2</span> Salaries of mathematicians</h2>
+<section id="salaries-of-mathematicians" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="salaries-of-mathematicians"><span class="header-section-number">19.2</span> Salaries of mathematicians</h2>
 <p>A researcher in a scientific foundation wanted to evaluate the relationship between annual salaries of mathematicians and three explanatory variables:</p>
 <ul>
 <li><p>an index of work quality</p></li>
@@ -457,8 +469,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Back in part (<a href="#regone">here</a>), you fitted a regression with all three explanatory variables. By making suitable plots, assess whether there is any evidence that (i) that the linear model should be a curve, (ii) that the residuals are not normally distributed, (iii) that there is “fan-out”, where the residuals are getting bigger <em>in size</em> as the fitted values get bigger? Explain briefly how you came to your conclusions in each case.</p></li>
 </ol>
 </section>
-<section id="predicting-gpa-of-computer-science-students" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="predicting-gpa-of-computer-science-students"><span class="header-section-number">17.3</span> Predicting GPA of computer science students</h2>
+<section id="predicting-gpa-of-computer-science-students" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="predicting-gpa-of-computer-science-students"><span class="header-section-number">19.3</span> Predicting GPA of computer science students</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/gpa.txt">link</a> contains some measurements of academic achievement for a number of university students studying computer science:</p>
 <ul>
 <li><p>High school grade point average</p></li>
@@ -480,8 +492,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>These students were studying computer science at university. Do you find your backward-elimination result sensible or surprising, given this? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="fish-and-mercury" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="fish-and-mercury"><span class="header-section-number">17.4</span> Fish and mercury</h2>
+<section id="fish-and-mercury" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="fish-and-mercury"><span class="header-section-number">19.4</span> Fish and mercury</h2>
 <p>Eating fish is generally healthy, but sometimes the fish is contaminated with mercury. What might affect the amount of mercury in a fish? Large-mouth bass were studied in Florida lakes to examine factors that might affect the amount of mercury contamination. 38 lakes were used for the study. Water samples were taken from each lake and analyzed. Also, samples of fish were caught in each lake and the mercury concentration in their muscle tissue was measured. The resulting data are in <a href="http://ritsokiguess.site/datafiles/mercury.txt">http://ritsokiguess.site/datafiles/mercury.txt</a>, separated by single spaces. The variables measured were as follows:</p>
 <ul>
 <li>standardized mercury level (parts per million in 3-year-old fish)</li>
@@ -500,8 +512,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="being-satisfied-with-hospital-1" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="being-satisfied-with-hospital-1"><span class="header-section-number">17.5</span> Being satisfied with hospital</h2>
+<section id="being-satisfied-with-hospital-1" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="being-satisfied-with-hospital-1"><span class="header-section-number">19.5</span> Being satisfied with hospital</h2>
 <p>A hospital administrator collects data to study the effect, if any, of a patient’s age, the severity of their illness, and their anxiety level, on the patient’s satisfaction with their hospital experience. The data, in the file <a href="http://ritsokiguess.site/datafiles/satisfaction.txt">link</a>, are for 46 patients in a survey. The columns are: patient’s satisfaction score <code>satis</code>, on a scale of 0 to 100; the patient’s <code>age</code> (in years), the <code>severity</code> of the patient’s illness (also on a 0–100 scale), and the patient’s <code>anxiety</code> score on a standard anxiety test (scale of 0–5). Higher scores mean greater satisfaction, increased severity of illness and more anxiety.</p>
 <ol type="a">
 <li>Read in the data and check that you have four columns in your data frame, one for each of your variables.</li>
@@ -856,8 +868,8 @@ Coefficients:
 <p>The <code>test="F"</code> on the end gets you the P-values. Using the <span class="math inline">\(F\)</span>-test is right for regressions; for things like logistic regression that we see later, <code>test="Chisq"</code> is the right one to use.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="salaries-of-mathematicians-1" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="salaries-of-mathematicians-1"><span class="header-section-number">17.6</span> Salaries of mathematicians</h2>
+<section id="salaries-of-mathematicians-1" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="salaries-of-mathematicians-1"><span class="header-section-number">19.6</span> Salaries of mathematicians</h2>
 <p>A researcher in a scientific foundation wanted to evaluate the relationship between annual salaries of mathematicians and three explanatory variables:</p>
 <ul>
 <li><p>an index of work quality</p></li>
@@ -1085,8 +1097,8 @@ F-statistic:    65 on 2 and 21 DF,  p-value: 1.01e-09</code></pre>
 <p>This is pretty nearly straight across. You might think it increases a bit at the beginning, but most of the evidence for that comes from the one observation with fitted value near 30 that happens to have a residual near zero. Conclusions based on one observation are not to be trusted! In summary, I’m happy with this linear multiple regression, and I don’t see any need to do anything more with it. I am, however, willing to have some sympathy with opinions that differ from mine, if they are supported by those graphs above.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="predicting-gpa-of-computer-science-students-1" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="predicting-gpa-of-computer-science-students-1"><span class="header-section-number">17.7</span> Predicting GPA of computer science students</h2>
+<section id="predicting-gpa-of-computer-science-students-1" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="predicting-gpa-of-computer-science-students-1"><span class="header-section-number">19.7</span> Predicting GPA of computer science students</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/gpa.txt">link</a> contains some measurements of academic achievement for a number of university students studying computer science:</p>
 <ul>
 <li><p>High school grade point average</p></li>
@@ -1516,8 +1528,8 @@ F-statistic:  82.4 on 2 and 102 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Math SAT does not quite significantly add anything to the prediction, which confirms that we do better to use the verbal SAT score (surprising though it seems). Though, the two regressions with the single SAT scores, <code>gpa.3</code> and <code>gpa.4</code>, have almost the same R-squared values. It’s not clear-cut at all. In the end, you have to make a call and stand by it.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="fish-and-mercury-1" class="level2" data-number="17.8">
-<h2 data-number="17.8" class="anchored" data-anchor-id="fish-and-mercury-1"><span class="header-section-number">17.8</span> Fish and mercury</h2>
+<section id="fish-and-mercury-1" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="fish-and-mercury-1"><span class="header-section-number">19.8</span> Fish and mercury</h2>
 <p>Eating fish is generally healthy, but sometimes the fish is contaminated with mercury. What might affect the amount of mercury in a fish? Large-mouth bass were studied in Florida lakes to examine factors that might affect the amount of mercury contamination. 38 lakes were used for the study. Water samples were taken from each lake and analyzed. Also, samples of fish were caught in each lake and the mercury concentration in their muscle tissue was measured. The resulting data are in <a href="http://ritsokiguess.site/datafiles/mercury.txt">http://ritsokiguess.site/datafiles/mercury.txt</a>, separated by single spaces. The variables measured were as follows:</p>
 <ul>
 <li>standardized mercury level (parts per million in 3-year-old fish)</li>
@@ -2077,12 +2089,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./simple-regression.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./regression-categorical.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 11&nbsp; Analysis of variance</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 13&nbsp; Analysis of variance</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-of-variance.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-of-variance.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,24 +400,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#movie-ratings-and-lengths" id="toc-movie-ratings-and-lengths" class="nav-link active" data-scroll-target="#movie-ratings-and-lengths"><span class="header-section-number">11.1</span> Movie ratings and lengths</a></li>
-  <li><a href="#deer-and-how-much-they-eat" id="toc-deer-and-how-much-they-eat" class="nav-link" data-scroll-target="#deer-and-how-much-they-eat"><span class="header-section-number">11.2</span> Deer and how much they eat</a></li>
-  <li><a href="#movie-ratings-again" id="toc-movie-ratings-again" class="nav-link" data-scroll-target="#movie-ratings-again"><span class="header-section-number">11.3</span> Movie ratings again</a></li>
-  <li><a href="#atomic-weight-of-carbon" id="toc-atomic-weight-of-carbon" class="nav-link" data-scroll-target="#atomic-weight-of-carbon"><span class="header-section-number">11.4</span> Atomic weight of carbon</a></li>
-  <li><a href="#can-caffeine-improve-your-performance-on-a-test" id="toc-can-caffeine-improve-your-performance-on-a-test" class="nav-link" data-scroll-target="#can-caffeine-improve-your-performance-on-a-test"><span class="header-section-number">11.5</span> Can caffeine improve your performance on a test?</a></li>
-  <li><a href="#reggae-music" id="toc-reggae-music" class="nav-link" data-scroll-target="#reggae-music"><span class="header-section-number">11.6</span> Reggae music</a></li>
-  <li><a href="#watching-tv-and-education" id="toc-watching-tv-and-education" class="nav-link" data-scroll-target="#watching-tv-and-education"><span class="header-section-number">11.7</span> Watching TV and education</a></li>
-  <li><a href="#death-of-poets" id="toc-death-of-poets" class="nav-link" data-scroll-target="#death-of-poets"><span class="header-section-number">11.8</span> Death of poets</a></li>
-  <li><a href="#religion-and-studying" id="toc-religion-and-studying" class="nav-link" data-scroll-target="#religion-and-studying"><span class="header-section-number">11.9</span> Religion and studying</a></li>
-  <li><a href="#movie-ratings-and-lengths-1" id="toc-movie-ratings-and-lengths-1" class="nav-link" data-scroll-target="#movie-ratings-and-lengths-1"><span class="header-section-number">11.10</span> Movie ratings and lengths</a></li>
-  <li><a href="#deer-and-how-much-they-eat-1" id="toc-deer-and-how-much-they-eat-1" class="nav-link" data-scroll-target="#deer-and-how-much-they-eat-1"><span class="header-section-number">11.11</span> Deer and how much they eat</a></li>
-  <li><a href="#movie-ratings-again-1" id="toc-movie-ratings-again-1" class="nav-link" data-scroll-target="#movie-ratings-again-1"><span class="header-section-number">11.12</span> Movie ratings again</a></li>
-  <li><a href="#atomic-weight-of-carbon-1" id="toc-atomic-weight-of-carbon-1" class="nav-link" data-scroll-target="#atomic-weight-of-carbon-1"><span class="header-section-number">11.13</span> Atomic weight of carbon</a></li>
-  <li><a href="#can-caffeine-improve-your-performance-on-a-test-1" id="toc-can-caffeine-improve-your-performance-on-a-test-1" class="nav-link" data-scroll-target="#can-caffeine-improve-your-performance-on-a-test-1"><span class="header-section-number">11.14</span> Can caffeine improve your performance on a test?</a></li>
-  <li><a href="#reggae-music-1" id="toc-reggae-music-1" class="nav-link" data-scroll-target="#reggae-music-1"><span class="header-section-number">11.15</span> Reggae music</a></li>
-  <li><a href="#watching-tv-and-education-1" id="toc-watching-tv-and-education-1" class="nav-link" data-scroll-target="#watching-tv-and-education-1"><span class="header-section-number">11.16</span> Watching TV and education</a></li>
-  <li><a href="#death-of-poets-1" id="toc-death-of-poets-1" class="nav-link" data-scroll-target="#death-of-poets-1"><span class="header-section-number">11.17</span> Death of poets</a></li>
-  <li><a href="#religion-and-studying-1" id="toc-religion-and-studying-1" class="nav-link" data-scroll-target="#religion-and-studying-1"><span class="header-section-number">11.18</span> Religion and studying</a></li>
+  <li><a href="#movie-ratings-and-lengths" id="toc-movie-ratings-and-lengths" class="nav-link active" data-scroll-target="#movie-ratings-and-lengths"><span class="header-section-number">13.1</span> Movie ratings and lengths</a></li>
+  <li><a href="#deer-and-how-much-they-eat" id="toc-deer-and-how-much-they-eat" class="nav-link" data-scroll-target="#deer-and-how-much-they-eat"><span class="header-section-number">13.2</span> Deer and how much they eat</a></li>
+  <li><a href="#movie-ratings-again" id="toc-movie-ratings-again" class="nav-link" data-scroll-target="#movie-ratings-again"><span class="header-section-number">13.3</span> Movie ratings again</a></li>
+  <li><a href="#atomic-weight-of-carbon" id="toc-atomic-weight-of-carbon" class="nav-link" data-scroll-target="#atomic-weight-of-carbon"><span class="header-section-number">13.4</span> Atomic weight of carbon</a></li>
+  <li><a href="#can-caffeine-improve-your-performance-on-a-test" id="toc-can-caffeine-improve-your-performance-on-a-test" class="nav-link" data-scroll-target="#can-caffeine-improve-your-performance-on-a-test"><span class="header-section-number">13.5</span> Can caffeine improve your performance on a test?</a></li>
+  <li><a href="#reggae-music" id="toc-reggae-music" class="nav-link" data-scroll-target="#reggae-music"><span class="header-section-number">13.6</span> Reggae music</a></li>
+  <li><a href="#watching-tv-and-education" id="toc-watching-tv-and-education" class="nav-link" data-scroll-target="#watching-tv-and-education"><span class="header-section-number">13.7</span> Watching TV and education</a></li>
+  <li><a href="#death-of-poets" id="toc-death-of-poets" class="nav-link" data-scroll-target="#death-of-poets"><span class="header-section-number">13.8</span> Death of poets</a></li>
+  <li><a href="#religion-and-studying" id="toc-religion-and-studying" class="nav-link" data-scroll-target="#religion-and-studying"><span class="header-section-number">13.9</span> Religion and studying</a></li>
+  <li><a href="#movie-ratings-and-lengths-1" id="toc-movie-ratings-and-lengths-1" class="nav-link" data-scroll-target="#movie-ratings-and-lengths-1"><span class="header-section-number">13.10</span> Movie ratings and lengths</a></li>
+  <li><a href="#deer-and-how-much-they-eat-1" id="toc-deer-and-how-much-they-eat-1" class="nav-link" data-scroll-target="#deer-and-how-much-they-eat-1"><span class="header-section-number">13.11</span> Deer and how much they eat</a></li>
+  <li><a href="#movie-ratings-again-1" id="toc-movie-ratings-again-1" class="nav-link" data-scroll-target="#movie-ratings-again-1"><span class="header-section-number">13.12</span> Movie ratings again</a></li>
+  <li><a href="#atomic-weight-of-carbon-1" id="toc-atomic-weight-of-carbon-1" class="nav-link" data-scroll-target="#atomic-weight-of-carbon-1"><span class="header-section-number">13.13</span> Atomic weight of carbon</a></li>
+  <li><a href="#can-caffeine-improve-your-performance-on-a-test-1" id="toc-can-caffeine-improve-your-performance-on-a-test-1" class="nav-link" data-scroll-target="#can-caffeine-improve-your-performance-on-a-test-1"><span class="header-section-number">13.14</span> Can caffeine improve your performance on a test?</a></li>
+  <li><a href="#reggae-music-1" id="toc-reggae-music-1" class="nav-link" data-scroll-target="#reggae-music-1"><span class="header-section-number">13.15</span> Reggae music</a></li>
+  <li><a href="#watching-tv-and-education-1" id="toc-watching-tv-and-education-1" class="nav-link" data-scroll-target="#watching-tv-and-education-1"><span class="header-section-number">13.16</span> Watching TV and education</a></li>
+  <li><a href="#death-of-poets-1" id="toc-death-of-poets-1" class="nav-link" data-scroll-target="#death-of-poets-1"><span class="header-section-number">13.17</span> Death of poets</a></li>
+  <li><a href="#religion-and-studying-1" id="toc-religion-and-studying-1" class="nav-link" data-scroll-target="#religion-and-studying-1"><span class="header-section-number">13.18</span> Religion and studying</a></li>
   </ul>
 </nav>
     </div>
@@ -414,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></h1>
 </div>
 
 
@@ -432,8 +444,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="movie-ratings-and-lengths" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="movie-ratings-and-lengths"><span class="header-section-number">11.1</span> Movie ratings and lengths</h2>
+<section id="movie-ratings-and-lengths" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="movie-ratings-and-lengths"><span class="header-section-number">13.1</span> Movie ratings and lengths</h2>
 <p>Before a movie is shown in theatres, it receives a “rating” that says what kind of material it contains. <a href="https://en.wikipedia.org/wiki/Motion_Picture_Association_of_America_film_rating_system">link</a> explains the categories, from G (suitable for children) to R (anyone under 17 must be accompanied by parent/guardian). In 2011, two students collected data on the length (in minutes) and the rating category, for 15 movies of each rating category, randomly chosen from all the movies released that year. The data are at <a href="http://ritsokiguess.site/datafiles/movie-lengths.csv">link</a>.</p>
 <ol type="a">
 <li><p>Read the data into R, and display (some of) what you read in.</p></li>
@@ -442,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Make a graph to assess whether this ANOVA is trustworthy. Discuss your graph and its implications briefly.</p></li>
 </ol>
 </section>
-<section id="deer-and-how-much-they-eat" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="deer-and-how-much-they-eat"><span class="header-section-number">11.2</span> Deer and how much they eat</h2>
+<section id="deer-and-how-much-they-eat" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="deer-and-how-much-they-eat"><span class="header-section-number">13.2</span> Deer and how much they eat</h2>
 <p>Do adult deer eat different amounts of food at different times of the year? The data in <a href="http://ritsokiguess.site/datafiles/deer.txt">link</a> are the weights of food (in kilograms) consumed by randomly selected adult deer observed at different times of the year (in February, May, August and November). We will assume that these were different deer observed in the different months. (If the same animals had been observed at different times, we would have been in the domain of “repeated measures”, which would require a different analysis, beyond the scope of this course.)</p>
 <ol type="a">
 <li><p>Read the data into R, and calculate numbers of observations and the median amounts of food eaten each month.</p></li>
@@ -453,8 +465,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>How is it that Mood’s median test does not completely answer the question you really want to answer? How might you get an answer to the question you <em>really</em> want answered? Explain briefly, and obtain the answer you <em>really</em> want, discussing your results briefly.</p></li>
 </ol>
 </section>
-<section id="movie-ratings-again" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="movie-ratings-again"><span class="header-section-number">11.3</span> Movie ratings again</h2>
+<section id="movie-ratings-again" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="movie-ratings-again"><span class="header-section-number">13.3</span> Movie ratings again</h2>
 <p>This question again uses the movie rating data at <a href="http://ritsokiguess.site/datafiles/movie-lengths.csv">link</a>.</p>
 <ol type="a">
 <li><p>Read the data into R and obtain the number of movies of each rating and the <em>median</em> length of movies of each rating.</p></li>
@@ -462,8 +474,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Run a Mood’s median test (use <code>smmr</code> if you like). What do you conclude, in the context of the data?</p></li>
 </ol>
 </section>
-<section id="atomic-weight-of-carbon" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="atomic-weight-of-carbon"><span class="header-section-number">11.4</span> Atomic weight of carbon</h2>
+<section id="atomic-weight-of-carbon" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="atomic-weight-of-carbon"><span class="header-section-number">13.4</span> Atomic weight of carbon</h2>
 <p>The atomic weight of the chemical element carbon is 12. Two methods of measuring the atomic weight of samples of carbon were compared. The results are shown in <a href="http://ritsokiguess.site/datafiles/carbon.txt">link</a>. The methods are labelled 1 and 2. The first task is to find out whether the two methods have different “typical” measures (mean or median, as appropriate) of the atomic weight of carbon.</p>
 <p>For this question, compose a report in R Markdown. (R Markdown is what you use in an R Notebook, but you can also have a separate R Markdown document from which you can produce HTML, Word etc. output.) See part (a) for how to get this started.</p>
 <p>Your report should read like an actual report, not just the answers to some questions that I set you. To help with that, write some text that links the parts of the report together smoothly, so that it reads as a coherent whole. The grader had 3 discretionary marks to award for the overall quality of your writing. The scale for this was:</p>
@@ -484,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Discuss the results of your tests and what they say about the two methods for measuring the atomic weight of carbon. If it seems appropriate, put the discussion into a section called Conclusions.</p></li>
 </ol>
 </section>
-<section id="can-caffeine-improve-your-performance-on-a-test" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="can-caffeine-improve-your-performance-on-a-test"><span class="header-section-number">11.5</span> Can caffeine improve your performance on a test?</h2>
+<section id="can-caffeine-improve-your-performance-on-a-test" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="can-caffeine-improve-your-performance-on-a-test"><span class="header-section-number">13.5</span> Can caffeine improve your performance on a test?</h2>
 <p>Does caffeine help students do better on a certain test? To find out, 36 students were randomly allocated to three groups (12 in each group). Each student received a fixed number of cups of coffee while they were studying, but the students didn’t know whether they were receiving all full-strength coffee (“high”), all decaf coffee (“low”) or a 50-50 mixture of the two (“moderate”). For each subject, their group was recorded as well as their score on the test. The data are in <a href="http://ritsokiguess.site/datafiles/caffeine.csv">link</a>, as a <code>.csv</code> file.</p>
 <ol type="a">
 <li><p>Read in and examine the data. How are the values laid out?</p></li>
@@ -498,8 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Run Tukey’s method. What do you conclude?</p></li>
 </ol>
 </section>
-<section id="reggae-music" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="reggae-music"><span class="header-section-number">11.6</span> Reggae music</h2>
+<section id="reggae-music" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="reggae-music"><span class="header-section-number">13.6</span> Reggae music</h2>
 <p>Reggae is a music genre that originated in Jamaica in the late 1960s. One of the most famous reggae bands was Bob Marley and the Wailers. In a survey, 729 students were asked to rate reggae music on a scale from 1, “don’t like it at all” to 6, “like it a lot”. We will treat the ratings as quantitative. Each student was also asked to classify their home town as one of “big city”, “suburban”, “small town”, “rural”. Does a student’s opinion of reggae depend on the kind of home town they come from? The data are in <a href="http://ritsokiguess.site/datafiles/reggae.csv">http://ritsokiguess.site/datafiles/reggae.csv</a>.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data.</p></li>
@@ -512,8 +524,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Summarize, as concisely as possible, how the home towns differ in terms of their students’ ratings of reggae music.</p></li>
 </ol>
 </section>
-<section id="watching-tv-and-education" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="watching-tv-and-education"><span class="header-section-number">11.7</span> Watching TV and education</h2>
+<section id="watching-tv-and-education" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="watching-tv-and-education"><span class="header-section-number">13.7</span> Watching TV and education</h2>
 <p>The General Social Survey is a large survey of a large number of people. One of the questions on the survey is “how many hours of TV do you watch in a typical day?” Another is “what is your highest level of education attained”, on this scale:</p>
 <ul>
 <li><strong>HSorLess</strong>: completed no more than high h school</li>
@@ -532,8 +544,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Why might you now want to run some kind of follow-up test? Run the appropriate thing and explain briefly what you conclude from it, in the context of the data.</p></li>
 </ol>
 </section>
-<section id="death-of-poets" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="death-of-poets"><span class="header-section-number">11.8</span> Death of poets</h2>
+<section id="death-of-poets" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="death-of-poets"><span class="header-section-number">13.8</span> Death of poets</h2>
 <p>Some people believe that poets, especially female poets, die younger than other types of writer. <a href="https://en.wikipedia.org/wiki/W._B._Yeats">William Butler Yeats</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> wrote:</p>
 <blockquote class="blockquote">
 <p>She is the Gaelic<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> muse, for she gives inspiration to those she persecutes. The Gaelic poets die young, for she is restless, and will not let them remain long on earth.</p>
@@ -547,8 +559,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Run a complete analysis, starting with an ordinary (not Welch) analysis of variance, that ends with a conclusion in the context of the data and an assessment of assumptions.</p></li>
 </ol>
 </section>
-<section id="religion-and-studying" class="level2" data-number="11.9">
-<h2 data-number="11.9" class="anchored" data-anchor-id="religion-and-studying"><span class="header-section-number">11.9</span> Religion and studying</h2>
+<section id="religion-and-studying" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="religion-and-studying"><span class="header-section-number">13.9</span> Religion and studying</h2>
 <p>Many students at a certain university were asked about the importance of religion in their lives (categorized as “not”, “fairly”, or “very” important), and also about the number of hours they spent studying per week. (This was part of a much larger survey.) We want to see whether there is any kind of relationship between these two variables. The data are in <a href="http://ritsokiguess.site/datafiles/student_relig.csv">here</a>.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data.</p></li>
@@ -560,8 +572,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="movie-ratings-and-lengths-1" class="level2" data-number="11.10">
-<h2 data-number="11.10" class="anchored" data-anchor-id="movie-ratings-and-lengths-1"><span class="header-section-number">11.10</span> Movie ratings and lengths</h2>
+<section id="movie-ratings-and-lengths-1" class="level2" data-number="13.10">
+<h2 data-number="13.10" class="anchored" data-anchor-id="movie-ratings-and-lengths-1"><span class="header-section-number">13.10</span> Movie ratings and lengths</h2>
 <p>Before a movie is shown in theatres, it receives a “rating” that says what kind of material it contains. <a href="https://en.wikipedia.org/wiki/Motion_Picture_Association_of_America_film_rating_system">link</a> explains the categories, from G (suitable for children) to R (anyone under 17 must be accompanied by parent/guardian). In 2011, two students collected data on the length (in minutes) and the rating category, for 15 movies of each rating category, randomly chosen from all the movies released that year. The data are at <a href="http://ritsokiguess.site/datafiles/movie-lengths.csv">link</a>.</p>
 <ol type="a">
 <li>Read the data into R, and display (some of) what you read in.</li>
@@ -712,8 +724,8 @@ $test
 <p>You may be puzzled by something in the boxplot: how is it that the G movies are significantly shorter than the PG movies, but not significantly shorter than the R movies, <em>when the difference in medians between G and R movies is bigger</em>? In Tukey, if the difference in means is bigger, the P-value is smaller.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> The resolution to this puzzle, such as it is, is that Mood’s median test is not directly comparing the medians of the groups (despite its name); it’s counting values above and below a <em>joint</em> median, which might be a different story.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="deer-and-how-much-they-eat-1" class="level2" data-number="11.11">
-<h2 data-number="11.11" class="anchored" data-anchor-id="deer-and-how-much-they-eat-1"><span class="header-section-number">11.11</span> Deer and how much they eat</h2>
+<section id="deer-and-how-much-they-eat-1" class="level2" data-number="13.11">
+<h2 data-number="13.11" class="anchored" data-anchor-id="deer-and-how-much-they-eat-1"><span class="header-section-number">13.11</span> Deer and how much they eat</h2>
 <p>Do adult deer eat different amounts of food at different times of the year? The data in <a href="http://ritsokiguess.site/datafiles/deer.txt">link</a> are the weights of food (in kilograms) consumed by randomly selected adult deer observed at different times of the year (in February, May, August and November). We will assume that these were different deer observed in the different months. (If the same animals had been observed at different times, we would have been in the domain of “repeated measures”, which would require a different analysis, beyond the scope of this course.)</p>
 <ol type="a">
 <li>Read the data into R, and calculate numbers of observations and the median amounts of food eaten each month.</li>
@@ -978,8 +990,8 @@ Nov-May  0.9066667  0.58734052  1.2259928 0.0000013</code></pre>
 <p>Extra: Pairwise median tests done this way are not likely to be very sensitive (that is, powerful), for a couple of reasons: (i) the usual one that the median tests don’t use the data very efficiently, and (ii) the way I go from the unadjusted to the adjusted P-values is via Bonferroni (here, multiply the P-values by 6), which is known to be safe but conservative. This is why the Tukey produced more significant differences among the months than the pairwise median tests did.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="movie-ratings-again-1" class="level2" data-number="11.12">
-<h2 data-number="11.12" class="anchored" data-anchor-id="movie-ratings-again-1"><span class="header-section-number">11.12</span> Movie ratings again</h2>
+<section id="movie-ratings-again-1" class="level2" data-number="13.12">
+<h2 data-number="13.12" class="anchored" data-anchor-id="movie-ratings-again-1"><span class="header-section-number">13.12</span> Movie ratings again</h2>
 <p>This question again uses the movie rating data at <a href="http://ritsokiguess.site/datafiles/movie-lengths.csv">link</a>.</p>
 <ol type="a">
 <li>Read the data into R and obtain the number of movies of each rating and the <em>median</em> length of movies of each rating.</li>
@@ -1382,8 +1394,8 @@ $test
 <p>I think that’s <em>quite</em> enough of that.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="atomic-weight-of-carbon-1" class="level2" data-number="11.13">
-<h2 data-number="11.13" class="anchored" data-anchor-id="atomic-weight-of-carbon-1"><span class="header-section-number">11.13</span> Atomic weight of carbon</h2>
+<section id="atomic-weight-of-carbon-1" class="level2" data-number="13.13">
+<h2 data-number="13.13" class="anchored" data-anchor-id="atomic-weight-of-carbon-1"><span class="header-section-number">13.13</span> Atomic weight of carbon</h2>
 <p>The atomic weight of the chemical element carbon is 12. Two methods of measuring the atomic weight of samples of carbon were compared. The results are shown in <a href="http://ritsokiguess.site/datafiles/carbon.txt">link</a>. The methods are labelled 1 and 2. The first task is to find out whether the two methods have different “typical” measures (mean or median, as appropriate) of the atomic weight of carbon.</p>
 <p>For this question, compose a report in R Markdown. (R Markdown is what you use in an R Notebook, but you can also have a separate R Markdown document from which you can produce HTML, Word etc. output.) See part (a) for how to get this started.</p>
 <p>Your report should read like an actual report, not just the answers to some questions that I set you. To help with that, write some text that links the parts of the report together smoothly, so that it reads as a coherent whole. The grader had 3 discretionary marks to award for the overall quality of your writing. The scale for this was:</p>
@@ -1589,8 +1601,8 @@ $test
 <p>In the Best and Rayner paper, the Mood (or the Mann-Whitney) test was not being considered, but I think it’s good practice to draw a picture and make a call about which test is appropriate.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="can-caffeine-improve-your-performance-on-a-test-1" class="level2" data-number="11.14">
-<h2 data-number="11.14" class="anchored" data-anchor-id="can-caffeine-improve-your-performance-on-a-test-1"><span class="header-section-number">11.14</span> Can caffeine improve your performance on a test?</h2>
+<section id="can-caffeine-improve-your-performance-on-a-test-1" class="level2" data-number="13.14">
+<h2 data-number="13.14" class="anchored" data-anchor-id="can-caffeine-improve-your-performance-on-a-test-1"><span class="header-section-number">13.14</span> Can caffeine improve your performance on a test?</h2>
 <p>Does caffeine help students do better on a certain test? To find out, 36 students were randomly allocated to three groups (12 in each group). Each student received a fixed number of cups of coffee while they were studying, but the students didn’t know whether they were receiving all full-strength coffee (“high”), all decaf coffee (“low”) or a 50-50 mixture of the two (“moderate”). For each subject, their group was recorded as well as their score on the test. The data are in <a href="http://ritsokiguess.site/datafiles/caffeine.csv">link</a>, as a <code>.csv</code> file.</p>
 <ol type="a">
 <li>Read in and examine the data. How are the values laid out?</li>
@@ -1741,8 +1753,8 @@ None-Moderate -4.166667 -11.92135  3.588013 0.3952176</code></pre>
 <p>There’s nothing to worry about there normality-wise. If anything, there’s a little evidence of <em>short</em> tails (in the None group especially), but you’ll recall that short tails don’t affect the mean and thus pose no problems for the ANOVA. Those three lines also have pretty much the same slope, indicating very similar spreads. Regular ANOVA is the best test here. (Running eg. Mood’s median test would be a mistake here, because it doesn’t use the data as efficiently (counting only aboves and belows) as the ANOVA does, and so the ANOVA will give a better picture of what differs from what.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="reggae-music-1" class="level2" data-number="11.15">
-<h2 data-number="11.15" class="anchored" data-anchor-id="reggae-music-1"><span class="header-section-number">11.15</span> Reggae music</h2>
+<section id="reggae-music-1" class="level2" data-number="13.15">
+<h2 data-number="13.15" class="anchored" data-anchor-id="reggae-music-1"><span class="header-section-number">13.15</span> Reggae music</h2>
 <p>Reggae is a music genre that originated in Jamaica in the late 1960s. One of the most famous reggae bands was Bob Marley and the Wailers. In a survey, 729 students were asked to rate reggae music on a scale from 1, “don’t like it at all” to 6, “like it a lot”. We will treat the ratings as quantitative. Each student was also asked to classify their home town as one of “big city”, “suburban”, “small town”, “rural”. Does a student’s opinion of reggae depend on the kind of home town they come from? The data are in <a href="http://ritsokiguess.site/datafiles/reggae.csv">http://ritsokiguess.site/datafiles/reggae.csv</a>.</p>
 <ol type="a">
 <li>Read in and display (some of) the data.</li>
@@ -2027,8 +2039,8 @@ suburban-small town -0.08893281 -0.4778062  0.2999406 0.9354431</code></pre>
 <p>Reggae music at its finest.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="watching-tv-and-education-1" class="level2" data-number="11.16">
-<h2 data-number="11.16" class="anchored" data-anchor-id="watching-tv-and-education-1"><span class="header-section-number">11.16</span> Watching TV and education</h2>
+<section id="watching-tv-and-education-1" class="level2" data-number="13.16">
+<h2 data-number="13.16" class="anchored" data-anchor-id="watching-tv-and-education-1"><span class="header-section-number">13.16</span> Watching TV and education</h2>
 <p>The General Social Survey is a large survey of a large number of people. One of the questions on the survey is “how many hours of TV do you watch in a typical day?” Another is “what is your highest level of education attained”, on this scale:</p>
 <ul>
 <li><strong>HSorLess</strong>: completed no more than high h school</li>
@@ -2285,8 +2297,8 @@ P value adjustment method: none</code></pre>
 <p>Anyway, even though the data was very much not normal, these sampling distributions are very normal-looking, suggesting that something like Welch ANOVA would have been not nearly as bad as you would have guessed. This is evidently because of the big sample sizes. (This also explains why the two other flavours of ANOVA gave results very similar to Mood’s median test.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="death-of-poets-1" class="level2" data-number="11.17">
-<h2 data-number="11.17" class="anchored" data-anchor-id="death-of-poets-1"><span class="header-section-number">11.17</span> Death of poets</h2>
+<section id="death-of-poets-1" class="level2" data-number="13.17">
+<h2 data-number="13.17" class="anchored" data-anchor-id="death-of-poets-1"><span class="header-section-number">13.17</span> Death of poets</h2>
 <p>Some people believe that poets, especially female poets, die younger than other types of writer. <a href="https://en.wikipedia.org/wiki/W._B._Yeats">William Butler Yeats</a><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> wrote:</p>
 <blockquote class="blockquote">
 <p>She is the Gaelic<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> muse, for she gives inspiration to those she persecutes. The Gaelic poets die young, for she is restless, and will not let them remain long on earth.</p>
@@ -2510,7 +2522,7 @@ $test
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["data"],"name":[2],"type":["list<tibble[,2]>"],"align":["right"]},{"label":["sim"],"name":[3],"type":["int"],"align":["right"]},{"label":["my_sample"],"name":[4],"type":["list"],"align":["right"]},{"label":["my_mean"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"1","4":"<dbl [24]>","5":"79.50000"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"2","4":"<dbl [24]>","5":"74.62500"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"3","4":"<dbl [24]>","5":"71.12500"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"4","4":"<dbl [24]>","5":"76.54167"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"5","4":"<dbl [24]>","5":"73.33333"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"1","4":"<dbl [67]>","5":"70.86567"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"2","4":"<dbl [67]>","5":"71.68657"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"3","4":"<dbl [67]>","5":"69.97015"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"4","4":"<dbl [67]>","5":"74.02985"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"5","4":"<dbl [67]>","5":"72.07463"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"1","4":"<dbl [32]>","5":"60.56250"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"2","4":"<dbl [32]>","5":"61.65625"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"3","4":"<dbl [32]>","5":"65.56250"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"4","4":"<dbl [32]>","5":"63.96875"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"5","4":"<dbl [32]>","5":"63.65625"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["data"],"name":[2],"type":["list<tibble[,2]>"],"align":["right"]},{"label":["sim"],"name":[3],"type":["int"],"align":["right"]},{"label":["my_sample"],"name":[4],"type":["list"],"align":["right"]},{"label":["my_mean"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"1","4":"<dbl [24]>","5":"74.54167"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"2","4":"<dbl [24]>","5":"75.20833"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"3","4":"<dbl [24]>","5":"73.29167"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"4","4":"<dbl [24]>","5":"77.70833"},{"1":"Nonfiction","2":"<list<tibble[,2]>>","3":"5","4":"<dbl [24]>","5":"77.95833"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"1","4":"<dbl [67]>","5":"73.05970"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"2","4":"<dbl [67]>","5":"70.52239"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"3","4":"<dbl [67]>","5":"72.04478"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"4","4":"<dbl [67]>","5":"70.77612"},{"1":"Novels","2":"<list<tibble[,2]>>","3":"5","4":"<dbl [67]>","5":"69.83582"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"1","4":"<dbl [32]>","5":"65.18750"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"2","4":"<dbl [32]>","5":"59.18750"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"3","4":"<dbl [32]>","5":"65.78125"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"4","4":"<dbl [32]>","5":"59.43750"},{"1":"Poems","2":"<list<tibble[,2]>>","3":"5","4":"<dbl [32]>","5":"64.28125"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2532,8 +2544,8 @@ $test
 <p>These three normal quantile plots are all acceptable, to my mind, although the Nonfiction one, with the two outliers and the smallest sample size, is still a tiny bit skewed to the left. Apart from that, the three sampling distributions of the sample means are close to normal, so our <code>aov</code> is much better than you might have thought from looking at the boxplots. That’s the result of having large enough samples to get help from the Central Limit Theorem.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="religion-and-studying-1" class="level2" data-number="11.18">
-<h2 data-number="11.18" class="anchored" data-anchor-id="religion-and-studying-1"><span class="header-section-number">11.18</span> Religion and studying</h2>
+<section id="religion-and-studying-1" class="level2" data-number="13.18">
+<h2 data-number="13.18" class="anchored" data-anchor-id="religion-and-studying-1"><span class="header-section-number">13.18</span> Religion and studying</h2>
 <p>Many students at a certain university were asked about the importance of religion in their lives (categorized as “not”, “fairly”, or “very” important), and also about the number of hours they spent studying per week. (This was part of a much larger survey.) We want to see whether there is any kind of relationship between these two variables. The data are in <a href="http://ritsokiguess.site/datafiles/student_relig.csv">here</a>.</p>
 <ol type="a">
 <li>Read in and display (some of) the data.</li>
@@ -3066,12 +3078,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./normal-quantile.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./reports.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

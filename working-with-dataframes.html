@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 5&nbsp; Working with dataframes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./one-sample-inference.html" rel="next">
+<link href="./data-summaries.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./working-with-dataframes.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loglin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tidying-the-jays-data" id="toc-tidying-the-jays-data" class="nav-link active" data-scroll-target="#tidying-the-jays-data"><span class="header-section-number">5.1</span> Tidying the Jays data</a></li>
+  <li><a href="#cars" id="toc-cars" class="nav-link" data-scroll-target="#cars"><span class="header-section-number">5.2</span> Cars</a></li>
+  <li><a href="#dolphins" id="toc-dolphins" class="nav-link" data-scroll-target="#dolphins"><span class="header-section-number">5.3</span> Dolphins</a></li>
+  <li><a href="#tidying-the-jays-data-1" id="toc-tidying-the-jays-data-1" class="nav-link" data-scroll-target="#tidying-the-jays-data-1"><span class="header-section-number">5.4</span> Tidying the Jays data</a></li>
+  <li><a href="#cars-1" id="toc-cars-1" class="nav-link" data-scroll-target="#cars-1"><span class="header-section-number">5.5</span> Cars</a></li>
+  <li><a href="#dolphins-1" id="toc-dolphins-1" class="nav-link" data-scroll-target="#dolphins-1"><span class="header-section-number">5.6</span> Dolphins</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="tidying-the-jays-data" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="tidying-the-jays-data"><span class="header-section-number">5.1</span> Tidying the Jays data</h2>
+<p>This question is about the Blue Jays data set (that I used in class).</p>
+<ol type="a">
+<li><p>The Blue Jays baseball data set is at <a href="http://ritsokiguess.site/datafiles/jays15-home.csv">link</a>. Read it into R. Check that you have 25 rows and a bunch of variables.</p></li>
+<li><p>Pick out only the games that were against the New York Yankees (the variable <code>opp</code> is equal to <code>NYY</code>). Investigate all the columns. What do you notice about these games?</p></li>
+<li><p>From the whole data frame, pick out only the games where the attendance was more than 30,000, showing only the columns <code>attendance</code> and <code>Daynight</code>. How many of them are there (just count them)? How many are day games and how many night games (just count those too)?</p></li>
+<li><p>Display the mean and standard deviation of attendances at all day and night games.</p></li>
+<li><p>Make normal quantile plots of the day attendances and the night attendances, separately. Do you see any evidence of non-normality? (You would expect to on the night attendances because of the big opening-night value.)</p></li>
+</ol>
+</section>
+<section id="cars" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="cars"><span class="header-section-number">5.2</span> Cars</h2>
+<p>My cars data file can be found at <a href="http://ritsokiguess.site/datafiles/cars.csv">link</a>. The values in the data file are separated by commas; the car names are up to 29 characters long. Display your results for each part after (a). In R, displaying a <code>tibble</code> normally shows its first ten lines, which is all you need here; there’s no need to display all the lines.</p>
+<ol type="a">
+<li><p>Read the data into R and list the values.</p></li>
+<li><p>Display only the car names and the countries they come from.</p></li>
+<li><p>Display everything <em>except</em> horsepower:</p></li>
+<li><p>Display only the cars that have 8-cylinder engines (but display all the variables for those cars).</p></li>
+<li><p>Display the cylinders and horsepower for the cars that have horsepower 70 or less.</p></li>
+<li><p>Find the mean and SD of gas mileage of the cars with 4 cylinders.</p></li>
+</ol>
+</section>
+<section id="dolphins" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="dolphins"><span class="header-section-number">5.3</span> Dolphins</h2>
+<p>Dolphins and other large marine mammals are at the top of the marine food chain, and so if there is any heavy metal pollution in the sea, it will find its way into the dolphins. The study we look at is of the concentration of mercury. This is expected to be different in males and females because the mercury in a female is transferred to her offspring during gestation and nursing. In this study, there were 28 males and 17 females of various ages. There are three columns in the data file:</p>
+<ul>
+<li><code>mercury</code>, the concentration in the liver, in micrograms per gram</li>
+<li><code>age</code> in years</li>
+<li><code>sex</code> of the dolphin, male or female.</li>
+</ul>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/dolphins.csv">http://ritsokiguess.site/datafiles/dolphins.csv</a> as a CSV file. This question appears to have a lot of parts, but most of them ought not to take you too long.</p>
+<ol type="a">
+<li><p>Read in and display (some of) the data.</p></li>
+<li><p>Display only the two columns <code>mercury</code> and <code>sex</code>.</p></li>
+<li><p>Display all the columns whose names have exactly three characters, without naming any columns.</p></li>
+<li><p>Display only the mercury levels for the females.</p></li>
+<li><p>What is the mean mercury concentration for all the dolphins whose age is less than 15?</p></li>
+<li><p>What is the mean mercury concentration for all the dolphins whose age is greater than 25?</p></li>
+<li><p>Make a suitable graph of these data (all three columns).</p></li>
+<li><p>Explain briefly how your graph and your calculations of mean mercury concentration are telling a similar story.</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="tidying-the-jays-data-1" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="tidying-the-jays-data-1"><span class="header-section-number">5.4</span> Tidying the Jays data</h2>
+<p>This question is about the Blue Jays data set (that I used in class).</p>
+<ol type="a">
+<li>The Blue Jays baseball data set is at <a href="http://ritsokiguess.site/datafiles/jays15-home.csv">link</a>. Read it into R. Check that you have 25 rows and a bunch of variables.</li>
+</ol>
+<p>Solution</p>
+<p>Save the URL into a variable and then read from the URL, using <code>read_csv</code> because it’s a <code>.csv</code> file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>myurl <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/jays15-home.csv"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>jays <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(myurl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 25 Columns: 21
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (12): date, box, team, opp, result, wl, gb, winner, loser, save, Daynig...
+dbl   (7): row, game, runs, Oppruns, innings, position, attendance
+lgl   (1): venue
+time  (1): game time
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>jays</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["row"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["game"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["date"],"name":[3],"type":["chr"],"align":["left"]},{"label":["box"],"name":[4],"type":["chr"],"align":["left"]},{"label":["team"],"name":[5],"type":["chr"],"align":["left"]},{"label":["venue"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["opp"],"name":[7],"type":["chr"],"align":["left"]},{"label":["result"],"name":[8],"type":["chr"],"align":["left"]},{"label":["runs"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Oppruns"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["innings"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["wl"],"name":[12],"type":["chr"],"align":["left"]},{"label":["position"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["gb"],"name":[14],"type":["chr"],"align":["left"]},{"label":["winner"],"name":[15],"type":["chr"],"align":["left"]},{"label":["loser"],"name":[16],"type":["chr"],"align":["left"]},{"label":["save"],"name":[17],"type":["chr"],"align":["left"]},{"label":["game time"],"name":[18],"type":["time"],"align":["right"]},{"label":["Daynight"],"name":[19],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["streak"],"name":[21],"type":["chr"],"align":["left"]}],"data":[{"1":"82","2":"7","3":"Monday, Apr 13","4":"boxscore","5":"TOR","6":"NA","7":"TBR","8":"L","9":"1","10":"2","11":"NA","12":"4-3","13":"2","14":"1","15":"Odorizzi","16":"Dickey","17":"Boxberger","18":"02:30:00","19":"N","20":"48414","21":"-"},{"1":"83","2":"8","3":"Tuesday, Apr 14","4":"boxscore","5":"TOR","6":"NA","7":"TBR","8":"L","9":"2","10":"3","11":"NA","12":"4-4","13":"3","14":"2","15":"Geltz","16":"Castro","17":"Jepsen","18":"03:06:00","19":"N","20":"17264","21":"--"},{"1":"84","2":"9","3":"Wednesday, Apr 15","4":"boxscore","5":"TOR","6":"NA","7":"TBR","8":"W","9":"12","10":"7","11":"NA","12":"5-4","13":"2","14":"1","15":"Buehrle","16":"Ramirez","17":"NA","18":"03:02:00","19":"N","20":"15086","21":"+"},{"1":"85","2":"10","3":"Thursday, Apr 16","4":"boxscore","5":"TOR","6":"NA","7":"TBR","8":"L","9":"2","10":"4","11":"NA","12":"5-5","13":"4","14":"1.5","15":"Archer","16":"Sanchez","17":"Boxberger","18":"03:00:00","19":"N","20":"14433","21":"-"},{"1":"86","2":"11","3":"Friday, Apr 17","4":"boxscore","5":"TOR","6":"NA","7":"ATL","8":"L","9":"7","10":"8","11":"NA","12":"5-6","13":"4","14":"2.5","15":"Martin","16":"Cecil","17":"Grilli","18":"03:09:00","19":"N","20":"21397","21":"--"},{"1":"87","2":"12","3":"Saturday, Apr 18","4":"boxscore","5":"TOR","6":"NA","7":"ATL","8":"W-wo","9":"6","10":"5","11":"10","12":"6-6","13":"3","14":"1.5","15":"Cecil","16":"Marimon","17":"NA","18":"02:41:00","19":"D","20":"34743","21":"+"},{"1":"88","2":"13","3":"Sunday, Apr 19","4":"boxscore","5":"TOR","6":"NA","7":"ATL","8":"L","9":"2","10":"5","11":"NA","12":"6-7","13":"4","14":"1.5","15":"Miller","16":"Norris","17":"Grilli","18":"02:41:00","19":"D","20":"44794","21":"-"},{"1":"89","2":"14","3":"Tuesday, Apr 21","4":"boxscore","5":"TOR","6":"NA","7":"BAL","8":"W","9":"13","10":"6","11":"NA","12":"7-7","13":"2","14":"2","15":"Buehrle","16":"Norris","17":"NA","18":"02:53:00","19":"N","20":"14184","21":"+"},{"1":"90","2":"15","3":"Wednesday, Apr 22","4":"boxscore","5":"TOR","6":"NA","7":"BAL","8":"W","9":"4","10":"2","11":"NA","12":"8-7","13":"2","14":"1","15":"Sanchez","16":"Jimenez","17":"Castro","18":"02:36:00","19":"N","20":"15606","21":"++"},{"1":"91","2":"16","3":"Thursday, Apr 23","4":"boxscore","5":"TOR","6":"NA","7":"BAL","8":"W","9":"7","10":"6","11":"NA","12":"9-7","13":"1","14":"Tied","15":"Hutchison","16":"Tillman","17":"Castro","18":"02:36:00","19":"N","20":"18581","21":"+++"},{"1":"92","2":"27","3":"Monday, May 4","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"W","9":"3","10":"1","11":"NA","12":"13-14","13":"4","14":"3.5","15":"Dickey","16":"Martin","17":"Cecil","18":"02:18:00","19":"N","20":"19217","21":"+"},{"1":"93","2":"28","3":"Tuesday, May 5","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"L","9":"3","10":"6","11":"NA","12":"13-15","13":"5","14":"4.5","15":"Pineda","16":"Estrada","17":"Miller","18":"02:54:00","19":"N","20":"21519","21":"-"},{"1":"94","2":"29","3":"Wednesday, May 6","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"W","9":"5","10":"1","11":"NA","12":"14-15","13":"3","14":"3.5","15":"Buehrle","16":"Sabathia","17":"NA","18":"02:30:00","19":"N","20":"21312","21":"+"},{"1":"95","2":"30","3":"Friday, May 8","4":"boxscore","5":"TOR","6":"NA","7":"BOS","8":"W","9":"7","10":"0","11":"NA","12":"15-15","13":"3","14":"4","15":"Sanchez","16":"Miley","17":"NA","18":"02:41:00","19":"N","20":"30430","21":"++"},{"1":"96","2":"31","3":"Saturday, May 9","4":"boxscore","5":"TOR","6":"NA","7":"BOS","8":"W","9":"7","10":"1","11":"NA","12":"16-15","13":"3","14":"3","15":"Hutchison","16":"Kelly","17":"NA","18":"03:12:00","19":"D","20":"42917","21":"+++"},{"1":"97","2":"32","3":"Sunday, May 10","4":"boxscore","5":"TOR","6":"NA","7":"BOS","8":"L","9":"3","10":"6","11":"NA","12":"16-16","13":"3","14":"4","15":"Buchholz","16":"Dickey","17":"Uehara","18":"02:38:00","19":"D","20":"42419","21":"-"},{"1":"98","2":"40","3":"Monday, May 18","4":"boxscore","5":"TOR","6":"NA","7":"LAA","8":"W","9":"10","10":"6","11":"NA","12":"18-22","13":"5","14":"4.5","15":"Osuna","16":"Morin","17":"NA","18":"03:28:00","19":"D","20":"29306","21":"+"},{"1":"99","2":"41","3":"Tuesday, May 19","4":"boxscore","5":"TOR","6":"NA","7":"LAA","8":"L","9":"2","10":"3","11":"NA","12":"18-23","13":"5","14":"4.5","15":"Santiago","16":"Sanchez","17":"Street","18":"02:32:00","19":"N","20":"15062","21":"-"},{"1":"100","2":"42","3":"Wednesday, May 20","4":"boxscore","5":"TOR","6":"NA","7":"LAA","8":"L","9":"3","10":"4","11":"NA","12":"18-24","13":"5","14":"4.5","15":"Weaver","16":"Hutchison","17":"Street","18":"02:36:00","19":"N","20":"16402","21":"--"},{"1":"101","2":"43","3":"Thursday, May 21","4":"boxscore","5":"TOR","6":"NA","7":"LAA","8":"W","9":"8","10":"4","11":"NA","12":"19-24","13":"5","14":"4.5","15":"Dickey","16":"Shoemaker","17":"NA","18":"02:22:00","19":"N","20":"19014","21":"+"},{"1":"102","2":"44","3":"Friday, May 22","4":"boxscore","5":"TOR","6":"NA","7":"SEA","8":"L","9":"3","10":"4","11":"NA","12":"19-25","13":"5","14":"5.5","15":"Hernandez","16":"Estrada","17":"Rodney","18":"02:30:00","19":"N","20":"21195","21":"-"},{"1":"103","2":"45","3":"Saturday, May 23","4":"boxscore","5":"TOR","6":"NA","7":"SEA","8":"L","9":"2","10":"3","11":"NA","12":"19-26","13":"5","14":"5.5","15":"Paxton","16":"Buehrle","17":"Rodney","18":"02:25:00","19":"D","20":"33086","21":"--"},{"1":"104","2":"46","3":"Sunday, May 24","4":"boxscore","5":"TOR","6":"NA","7":"SEA","8":"W","9":"8","10":"2","11":"NA","12":"20-26","13":"5","14":"4.5","15":"Sanchez","16":"Walker","17":"NA","18":"02:50:00","19":"D","20":"37929","21":"+"},{"1":"105","2":"47","3":"Monday, May 25","4":"boxscore","5":"TOR","6":"NA","7":"CHW","8":"W","9":"6","10":"0","11":"NA","12":"21-26","13":"5","14":"3.5","15":"Hutchison","16":"Noesi","17":"NA","18":"02:10:00","19":"N","20":"15168","21":"++"},{"1":"106","2":"48","3":"Tuesday, May 26","4":"boxscore","5":"TOR","6":"NA","7":"CHW","8":"W-wo","9":"10","10":"9","11":"NA","12":"22-26","13":"4","14":"3","15":"Delabar","16":"Robertson","17":"NA","18":"03:12:00","19":"N","20":"17276","21":"+++"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>If you must, copy and paste the spreadsheet into R Studio, and read it in with <code>read_delim</code> (or possibly <code>read_tsv</code>), but this runs the risk of being defeated by spreadsheet cells that contain spaces. I don’t think there are any here, but you might run into a pitcher whose name has more than one word, like (Andy) Van Hekken, who is in the Seattle Mariners farm system.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Anyway, 25 rows and 21 columns. As usual, it’s a tibble, so you see 10 rows and as many columns as will fit. This is often enough to see whether we have the right thing (as we appear to have, here). You can run through all the columns and check that they’re the right kind of thing; most of them are text with a few numbers and one <code>time</code>, which is <code>game time</code>, the length of the game in hours and minutes, which is turned into an R <code>time</code> in hours, minutes and seconds.</p>
+<p>With all those columns, <code>read_csv</code> doesn’t tell you what column specification it inferred for all of them, but you can type</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(jays)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>cols(
+  row = col_double(),
+  game = col_double(),
+  date = col_character(),
+  box = col_character(),
+  team = col_character(),
+  venue = col_logical(),
+  opp = col_character(),
+  result = col_character(),
+  runs = col_double(),
+  Oppruns = col_double(),
+  innings = col_double(),
+  wl = col_character(),
+  position = col_double(),
+  gb = col_character(),
+  winner = col_character(),
+  loser = col_character(),
+  save = col_character(),
+  `game time` = col_time(format = ""),
+  Daynight = col_character(),
+  attendance = col_double(),
+  streak = col_character()
+)</code></pre>
+</div>
+</div>
+<p>to find it all out.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Pick out only the games that were against the New York Yankees (the variable <code>opp</code> is equal to <code>NYY</code>). Investigate all the columns. What do you notice about these games?</li>
+</ol>
+<p>Solution</p>
+<p>This:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span> <span class="fu">filter</span>(opp <span class="sc">==</span> <span class="st">"NYY"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["row"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["game"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["date"],"name":[3],"type":["chr"],"align":["left"]},{"label":["box"],"name":[4],"type":["chr"],"align":["left"]},{"label":["team"],"name":[5],"type":["chr"],"align":["left"]},{"label":["venue"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["opp"],"name":[7],"type":["chr"],"align":["left"]},{"label":["result"],"name":[8],"type":["chr"],"align":["left"]},{"label":["runs"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Oppruns"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["innings"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["wl"],"name":[12],"type":["chr"],"align":["left"]},{"label":["position"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["gb"],"name":[14],"type":["chr"],"align":["left"]},{"label":["winner"],"name":[15],"type":["chr"],"align":["left"]},{"label":["loser"],"name":[16],"type":["chr"],"align":["left"]},{"label":["save"],"name":[17],"type":["chr"],"align":["left"]},{"label":["game time"],"name":[18],"type":["time"],"align":["right"]},{"label":["Daynight"],"name":[19],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["streak"],"name":[21],"type":["chr"],"align":["left"]}],"data":[{"1":"92","2":"27","3":"Monday, May 4","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"W","9":"3","10":"1","11":"NA","12":"13-14","13":"4","14":"3.5","15":"Dickey","16":"Martin","17":"Cecil","18":"02:18:00","19":"N","20":"19217","21":"+"},{"1":"93","2":"28","3":"Tuesday, May 5","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"L","9":"3","10":"6","11":"NA","12":"13-15","13":"5","14":"4.5","15":"Pineda","16":"Estrada","17":"Miller","18":"02:54:00","19":"N","20":"21519","21":"-"},{"1":"94","2":"29","3":"Wednesday, May 6","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"W","9":"5","10":"1","11":"NA","12":"14-15","13":"3","14":"3.5","15":"Buehrle","16":"Sabathia","17":"NA","18":"02:30:00","19":"N","20":"21312","21":"+"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>but you will probably need to click the little right-arrow at the top to see more columns.</p>
+<p>What I notice is that these games are all on consecutive nights (against the same team). This is quite common, and goes back to the far-off days when teams travelled by train: teams play several games on one visit, rather than coming back many times.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> You might have noticed something else; that’s fine for this. For example, “each of the games lasted less than three hours”, or “the attendances were all small” (since we looked at all the attendances in class). I just want you to notice something meaningful that seems to be interesting about these games.</p>
+<p>You could also print all the columns in two or more goes, using <code>select</code>, for example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span> <span class="fu">filter</span>(opp <span class="sc">==</span> <span class="st">"NYY"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(row<span class="sc">:</span>innings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["row"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["game"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["date"],"name":[3],"type":["chr"],"align":["left"]},{"label":["box"],"name":[4],"type":["chr"],"align":["left"]},{"label":["team"],"name":[5],"type":["chr"],"align":["left"]},{"label":["venue"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["opp"],"name":[7],"type":["chr"],"align":["left"]},{"label":["result"],"name":[8],"type":["chr"],"align":["left"]},{"label":["runs"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Oppruns"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["innings"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"92","2":"27","3":"Monday, May 4","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"W","9":"3","10":"1","11":"NA"},{"1":"93","2":"28","3":"Tuesday, May 5","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"L","9":"3","10":"6","11":"NA"},{"1":"94","2":"29","3":"Wednesday, May 6","4":"boxscore","5":"TOR","6":"NA","7":"NYY","8":"W","9":"5","10":"1","11":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span> <span class="fu">filter</span>(opp <span class="sc">==</span> <span class="st">"NYY"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(wl<span class="sc">:</span>streak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["wl"],"name":[1],"type":["chr"],"align":["left"]},{"label":["position"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["gb"],"name":[3],"type":["chr"],"align":["left"]},{"label":["winner"],"name":[4],"type":["chr"],"align":["left"]},{"label":["loser"],"name":[5],"type":["chr"],"align":["left"]},{"label":["save"],"name":[6],"type":["chr"],"align":["left"]},{"label":["game time"],"name":[7],"type":["time"],"align":["right"]},{"label":["Daynight"],"name":[8],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["streak"],"name":[10],"type":["chr"],"align":["left"]}],"data":[{"1":"13-14","2":"4","3":"3.5","4":"Dickey","5":"Martin","6":"Cecil","7":"02:18:00","8":"N","9":"19217","10":"+"},{"1":"13-15","2":"5","3":"4.5","4":"Pineda","5":"Estrada","6":"Miller","7":"02:54:00","8":"N","9":"21519","10":"-"},{"1":"14-15","2":"3","3":"3.5","4":"Buehrle","5":"Sabathia","6":"NA","7":"02:30:00","8":"N","9":"21312","10":"+"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>From the whole data frame, pick out only the games where the attendance was more than 30,000, showing only the columns <code>attendance</code> and <code>Daynight</code>. How many of them are there (just count them)? How many are day games and how many night games (just count those too)?</li>
+</ol>
+<p>Solution</p>
+<p>Two steps, since we selecting rows <em>and</em> columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(attendance <span class="sc">&gt;</span> <span class="dv">30000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(attendance, Daynight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["attendance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Daynight"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"48414","2":"N"},{"1":"34743","2":"D"},{"1":"44794","2":"D"},{"1":"30430","2":"N"},{"1":"42917","2":"D"},{"1":"42419","2":"D"},{"1":"33086","2":"D"},{"1":"37929","2":"D"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Or this way, since we are selecting <em>consecutive</em> columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(attendance <span class="sc">&gt;</span> <span class="dv">30000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(Daynight<span class="sc">:</span>attendance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Daynight"],"name":[1],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"N","2":"48414"},{"1":"D","2":"34743"},{"1":"D","2":"44794"},{"1":"N","2":"30430"},{"1":"D","2":"42917"},{"1":"D","2":"42419"},{"1":"D","2":"33086"},{"1":"D","2":"37929"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>There are eight games selected (see the eight rows in the result). Only two of them are night games, while the other six are day (weekend) games.</p>
+<p>If you wanted to, you could automate the counting, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(attendance <span class="sc">&gt;</span> <span class="dv">30000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Daynight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Daynight"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"D","2":"6"},{"1":"N","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Six day games and two night games.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Display the mean and standard deviation of attendances at all day and night games.</li>
+</ol>
+<p>Solution</p>
+<p>Two steps: the grouping according to what I want to group by, then summarizing according to what I want to summarize by. Since I am summarizing, only the summaries find their way into the final data frame, so I don’t need to “select out” the other variables:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Daynight) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean.att =</span> <span class="fu">mean</span>(attendance),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd.att =</span> <span class="fu">sd</span>(attendance)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Daynight"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean.att"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd.att"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"D","2":"37884.86","3":"5775.180"},{"1":"N","2":"20086.67","3":"8083.636"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The mean attendances are about 38 thousand and about 20 thousand. Note that the night games have much the larger SD, possibly because of the large outlier night attendance (opening night). Which we can also investigate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>jays <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Daynight) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median.att =</span> <span class="fu">median</span>(attendance),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr.att =</span> <span class="fu">IQR</span>(attendance)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Daynight"],"name":[1],"type":["chr"],"align":["left"]},{"label":["median.att"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["iqr.att"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"D","2":"37929.0","3":"8753.50"},{"1":"N","2":"17928.5","3":"6005.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This time, the night attendances have a <em>smaller</em> spread and a noticeably smaller median (compared to the mean), so it must have been the outlier that made the difference. There was another high value that R marked as an outlier:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jays, <span class="fu">aes</span>(<span class="at">x =</span> Daynight, <span class="at">y =</span> attendance)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="working-with-dataframes_files/figure-html/jays-dplyr-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>So when you take away those unusual values, the night game attendances are indeed less variable.</p>
+<p>Extra: looking ahead, nhe right test, for comparing the medians of these non-normal data, is Mood’s median test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smmr)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median_test</span>(jays, attendance, Daynight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$table
+     above
+group above below
+    D     7     0
+    N     5    12
+
+$test
+       what       value
+1 statistic 9.882352941
+2        df 1.000000000
+3   P-value 0.001668714</code></pre>
+</div>
+</div>
+<p>There was one attendance exactly equal to the overall median (as you would expect: with an odd number of data values, the median is one of the data values). <code>smmr</code> removed it; if you did the test by hand, what happens to it depends on whether you counted aboves or belows, and this will have a small effect on the P-value, though not on the conclusion.</p>
+<p>The overall median attendance was 21,000, and <em>none</em> of the day games had attendance less than that. With the small frequencies, the accuracy of the P-value is a bit questionable, but taking it at face value, there <em>is</em> a significant difference between median attendances at day and night games.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>(optional for now, but useful for laterW) Make normal quantile plots of the day attendances and the night attendances, separately. Do you see any evidence of non-normality? (You would expect to on the night attendances because of the big opening-night value.)</li>
+</ol>
+<p>Solution</p>
+<p>The best way to do this is facetted normal quantile plots. Remember that the facetting part goes right at the end:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jays, <span class="fu">aes</span>(<span class="at">sample =</span> attendance)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Daynight, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="working-with-dataframes_files/figure-html/jays-dplyr-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The day attendances are pretty normal, though it is hard to be sure with only 7 of them.</p>
+<p>The night attendances are not normal. The lone point top right is the outlier. On top of that, the lowest attendances are not quite low enough and the second-highest attendance is a bit too high, so there is a bit of evidence of right-skewness as well as just the one outlier.</p>
+<p>If you leave out the <code>ncol=1</code>, you’ll get the two normal quantile plots side by side (which means that each one is tall and skinny, and thus hard to read). The <code>ncol=1</code> displays all the facets in <em>one</em> column, and though it would be nice to have the graphs be about square, landscape mode is easier to read than portrait mode.</p>
+<p>One of the reasons for skewness is often a limit on the values of the variable. The Rogers Centre has a capacity around 55,000. The day game attendances don’t get especially close to that, which suggests that everyone who wants to go to the game can get a ticket. In that sort of situation, you’d expect attendances to vary around a “typical” value, with a random deviation that depends on things like the weather and the opposing team, which is the typical situation in which you get bell-shaped data. (If the Jays often sold out their stadium for day games, you’d see a lot of attendances close to the capacity, with a few lower: ie., a left skew.)</p>
+<p>As for the night games, well, there seems to be a minimum attendance that the Blue Jays get, somewhere around 15,000: no matter who they’re playing or what the weather’s like, this many people will show up (season-ticket holders, for example). On special occasions, such as opening night, the attendance will be much bigger, which points to a <em>right</em> skew.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="cars-1" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="cars-1"><span class="header-section-number">5.5</span> Cars</h2>
+<p>My cars data file can be found at <a href="http://ritsokiguess.site/datafiles/cars.csv">link</a>. The values in the data file are separated by commas; the car names are up to 29 characters long. Display your results for each part after (a). In R, displaying a <code>tibble</code> normally shows its first ten lines, which is all you need here; there’s no need to display all the lines.</p>
+<ol type="a">
+<li>Read the data into R and list the values.</li>
+</ol>
+<p>Solution</p>
+<p><code>read_csv</code> will do it: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/cars.csv"</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 38 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): car, country
+dbl (4): MPG, weight, cylinders, hp
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"28.4","3":"2.670","4":"4","5":"90","6":"U.S."},{"1":"Dodge Omni","2":"30.9","3":"2.230","4":"4","5":"75","6":"U.S."},{"1":"Mercury Zephyr","2":"20.8","3":"3.070","4":"6","5":"85","6":"U.S."},{"1":"Fiat Strada","2":"37.3","3":"2.130","4":"4","5":"69","6":"Italy"},{"1":"Peugeot 694 SL","2":"16.2","3":"3.410","4":"6","5":"133","6":"France"},{"1":"VW Rabbit","2":"31.9","3":"1.925","4":"4","5":"71","6":"Germany"},{"1":"Plymouth Horizon","2":"34.2","3":"2.200","4":"4","5":"70","6":"U.S."},{"1":"Mazda GLC","2":"34.1","3":"1.975","4":"4","5":"65","6":"Japan"},{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"155","6":"U.S."},{"1":"Audi 5000","2":"20.3","3":"2.830","4":"5","5":"103","6":"Germany"},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"125","6":"U.S."},{"1":"Dodge Aspen","2":"18.6","3":"3.620","4":"6","5":"110","6":"U.S."},{"1":"VW Dasher","2":"30.5","3":"2.190","4":"4","5":"78","6":"Germany"},{"1":"Ford Mustang 4","2":"26.5","3":"2.585","4":"4","5":"88","6":"U.S."},{"1":"Dodge Colt","2":"35.1","3":"1.915","4":"4","5":"80","6":"Japan"},{"1":"Datsun 810","2":"22.0","3":"2.815","4":"6","5":"97","6":"Japan"},{"1":"VW Scirocco","2":"31.5","3":"1.990","4":"4","5":"71","6":"Germany"},{"1":"Chevy Citation","2":"28.8","3":"2.595","4":"6","5":"115","6":"U.S."},{"1":"Olds Omega","2":"26.8","3":"2.700","4":"6","5":"115","6":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"150","6":"U.S."},{"1":"Datsun 510","2":"27.2","3":"2.300","4":"4","5":"97","6":"Japan"},{"1":"AMC Concord D/L","2":"18.1","3":"3.410","4":"6","5":"120","6":"U.S."},{"1":"Buick Century Special","2":"20.6","3":"3.380","4":"6","5":"105","6":"U.S."},{"1":"Saab 99 GLE","2":"21.6","3":"2.795","4":"4","5":"115","6":"Sweden"},{"1":"Datsun 210","2":"31.8","3":"2.020","4":"4","5":"65","6":"Japan"},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"129","6":"U.S."},{"1":"Volvo 240 GL","2":"17.0","3":"3.140","4":"6","5":"125","6":"Sweden"},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"135","6":"U.S."},{"1":"Toyota Corona","2":"27.5","3":"2.560","4":"4","5":"95","6":"Japan"},{"1":"Chevette","2":"30.0","3":"2.155","4":"4","5":"68","6":"U.S."},{"1":"Ford Mustang Ghia","2":"21.9","3":"2.910","4":"6","5":"109","6":"U.S."},{"1":"AMC Spirit","2":"27.4","3":"2.670","4":"4","5":"80","6":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"142","6":"U.S."},{"1":"BMW 320i","2":"21.5","3":"2.600","4":"4","5":"110","6":"Germany"},{"1":"Pontiac Phoenix","2":"33.5","3":"2.556","4":"4","5":"90","6":"U.S."},{"1":"Honda Accord LX","2":"29.5","3":"2.135","4":"4","5":"68","6":"Japan"},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"138","6":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"130","6":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Display only the car names and the countries they come from.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">select</span>(car, country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"U.S."},{"1":"Dodge Omni","2":"U.S."},{"1":"Mercury Zephyr","2":"U.S."},{"1":"Fiat Strada","2":"Italy"},{"1":"Peugeot 694 SL","2":"France"},{"1":"VW Rabbit","2":"Germany"},{"1":"Plymouth Horizon","2":"U.S."},{"1":"Mazda GLC","2":"Japan"},{"1":"Buick Estate Wagon","2":"U.S."},{"1":"Audi 5000","2":"Germany"},{"1":"Chevy Malibu Wagon","2":"U.S."},{"1":"Dodge Aspen","2":"U.S."},{"1":"VW Dasher","2":"Germany"},{"1":"Ford Mustang 4","2":"U.S."},{"1":"Dodge Colt","2":"Japan"},{"1":"Datsun 810","2":"Japan"},{"1":"VW Scirocco","2":"Germany"},{"1":"Chevy Citation","2":"U.S."},{"1":"Olds Omega","2":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"U.S."},{"1":"Datsun 510","2":"Japan"},{"1":"AMC Concord D/L","2":"U.S."},{"1":"Buick Century Special","2":"U.S."},{"1":"Saab 99 GLE","2":"Sweden"},{"1":"Datsun 210","2":"Japan"},{"1":"Ford LTD","2":"U.S."},{"1":"Volvo 240 GL","2":"Sweden"},{"1":"Dodge St Regis","2":"U.S."},{"1":"Toyota Corona","2":"Japan"},{"1":"Chevette","2":"U.S."},{"1":"Ford Mustang Ghia","2":"U.S."},{"1":"AMC Spirit","2":"U.S."},{"1":"Ford Country Squire Wagon","2":"U.S."},{"1":"BMW 320i","2":"Germany"},{"1":"Pontiac Phoenix","2":"U.S."},{"1":"Honda Accord LX","2":"Japan"},{"1":"Mercury Grand Marquis","2":"U.S."},{"1":"Chevy Caprice Classic","2":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This <em>almost</em> works, but not quite:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"c"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["cylinders"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"4","3":"U.S."},{"1":"Dodge Omni","2":"4","3":"U.S."},{"1":"Mercury Zephyr","2":"6","3":"U.S."},{"1":"Fiat Strada","2":"4","3":"Italy"},{"1":"Peugeot 694 SL","2":"6","3":"France"},{"1":"VW Rabbit","2":"4","3":"Germany"},{"1":"Plymouth Horizon","2":"4","3":"U.S."},{"1":"Mazda GLC","2":"4","3":"Japan"},{"1":"Buick Estate Wagon","2":"8","3":"U.S."},{"1":"Audi 5000","2":"5","3":"Germany"},{"1":"Chevy Malibu Wagon","2":"8","3":"U.S."},{"1":"Dodge Aspen","2":"6","3":"U.S."},{"1":"VW Dasher","2":"4","3":"Germany"},{"1":"Ford Mustang 4","2":"4","3":"U.S."},{"1":"Dodge Colt","2":"4","3":"Japan"},{"1":"Datsun 810","2":"6","3":"Japan"},{"1":"VW Scirocco","2":"4","3":"Germany"},{"1":"Chevy Citation","2":"6","3":"U.S."},{"1":"Olds Omega","2":"6","3":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"8","3":"U.S."},{"1":"Datsun 510","2":"4","3":"Japan"},{"1":"AMC Concord D/L","2":"6","3":"U.S."},{"1":"Buick Century Special","2":"6","3":"U.S."},{"1":"Saab 99 GLE","2":"4","3":"Sweden"},{"1":"Datsun 210","2":"4","3":"Japan"},{"1":"Ford LTD","2":"8","3":"U.S."},{"1":"Volvo 240 GL","2":"6","3":"Sweden"},{"1":"Dodge St Regis","2":"8","3":"U.S."},{"1":"Toyota Corona","2":"4","3":"Japan"},{"1":"Chevette","2":"4","3":"U.S."},{"1":"Ford Mustang Ghia","2":"6","3":"U.S."},{"1":"AMC Spirit","2":"4","3":"U.S."},{"1":"Ford Country Squire Wagon","2":"8","3":"U.S."},{"1":"BMW 320i","2":"4","3":"Germany"},{"1":"Pontiac Phoenix","2":"4","3":"U.S."},{"1":"Honda Accord LX","2":"4","3":"Japan"},{"1":"Mercury Grand Marquis","2":"8","3":"U.S."},{"1":"Chevy Caprice Classic","2":"8","3":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>It gets <em>all</em> the columns that start with <code>c</code>, which includes <code>cylinders</code> as well.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Display everything <em>except</em> horsepower:</li>
+</ol>
+<p>Solution</p>
+<p>Naming what you <em>don’t</em> want is sometimes easier: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"28.4","3":"2.670","4":"4","5":"U.S."},{"1":"Dodge Omni","2":"30.9","3":"2.230","4":"4","5":"U.S."},{"1":"Mercury Zephyr","2":"20.8","3":"3.070","4":"6","5":"U.S."},{"1":"Fiat Strada","2":"37.3","3":"2.130","4":"4","5":"Italy"},{"1":"Peugeot 694 SL","2":"16.2","3":"3.410","4":"6","5":"France"},{"1":"VW Rabbit","2":"31.9","3":"1.925","4":"4","5":"Germany"},{"1":"Plymouth Horizon","2":"34.2","3":"2.200","4":"4","5":"U.S."},{"1":"Mazda GLC","2":"34.1","3":"1.975","4":"4","5":"Japan"},{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"U.S."},{"1":"Audi 5000","2":"20.3","3":"2.830","4":"5","5":"Germany"},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"U.S."},{"1":"Dodge Aspen","2":"18.6","3":"3.620","4":"6","5":"U.S."},{"1":"VW Dasher","2":"30.5","3":"2.190","4":"4","5":"Germany"},{"1":"Ford Mustang 4","2":"26.5","3":"2.585","4":"4","5":"U.S."},{"1":"Dodge Colt","2":"35.1","3":"1.915","4":"4","5":"Japan"},{"1":"Datsun 810","2":"22.0","3":"2.815","4":"6","5":"Japan"},{"1":"VW Scirocco","2":"31.5","3":"1.990","4":"4","5":"Germany"},{"1":"Chevy Citation","2":"28.8","3":"2.595","4":"6","5":"U.S."},{"1":"Olds Omega","2":"26.8","3":"2.700","4":"6","5":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"U.S."},{"1":"Datsun 510","2":"27.2","3":"2.300","4":"4","5":"Japan"},{"1":"AMC Concord D/L","2":"18.1","3":"3.410","4":"6","5":"U.S."},{"1":"Buick Century Special","2":"20.6","3":"3.380","4":"6","5":"U.S."},{"1":"Saab 99 GLE","2":"21.6","3":"2.795","4":"4","5":"Sweden"},{"1":"Datsun 210","2":"31.8","3":"2.020","4":"4","5":"Japan"},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"U.S."},{"1":"Volvo 240 GL","2":"17.0","3":"3.140","4":"6","5":"Sweden"},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"U.S."},{"1":"Toyota Corona","2":"27.5","3":"2.560","4":"4","5":"Japan"},{"1":"Chevette","2":"30.0","3":"2.155","4":"4","5":"U.S."},{"1":"Ford Mustang Ghia","2":"21.9","3":"2.910","4":"6","5":"U.S."},{"1":"AMC Spirit","2":"27.4","3":"2.670","4":"4","5":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"U.S."},{"1":"BMW 320i","2":"21.5","3":"2.600","4":"4","5":"Germany"},{"1":"Pontiac Phoenix","2":"33.5","3":"2.556","4":"4","5":"U.S."},{"1":"Honda Accord LX","2":"29.5","3":"2.135","4":"4","5":"Japan"},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Display only the cars that have 8-cylinder engines (but display all the variables for those cars).</li>
+</ol>
+<p>Solution</p>
+<p>This: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cylinders <span class="sc">==</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"155","6":"U.S."},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"125","6":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"150","6":"U.S."},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"129","6":"U.S."},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"135","6":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"142","6":"U.S."},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"138","6":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"130","6":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>8 of them, all from the US.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Display the cylinders and horsepower for the cars that have horsepower 70 or less.</li>
+</ol>
+<p>Solution</p>
+<p>This one is selecting some observations and some variables: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(hp <span class="sc">&lt;=</span> <span class="dv">70</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(cylinders<span class="sc">:</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["cylinders"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"69"},{"1":"4","2":"70"},{"1":"4","2":"65"},{"1":"4","2":"65"},{"1":"4","2":"68"},{"1":"4","2":"68"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>Cylinders and horsepower are consecutive columns, so we can select them either using the colon <code>:</code> or by <code>c(cylinders,hp)</code>.</p>
+<p>You can also do the <code>filter</code> and the <code>select</code> the other way around. This one works because the <em>rows</em> you want to choose are determined by a column you’re going to keep. If you wanted to display the cylinders and horsepower of the cars with <code>mpg</code> over 30, you would have to choose the rows first, because after you’ve chosen the columns, there is no <code>mpg</code> any more.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>Find the mean and SD of gas mileage of the cars with 4 cylinders.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cylinders <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(MPG), <span class="at">s =</span> <span class="fu">sd</span>(MPG))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["m"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["s"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"30.02105","2":"4.182447"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Or you can get the mean and SD of gas mileage for all numbers of cylinders, and pick out the one you want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cylinders) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(MPG), <span class="at">s =</span> <span class="fu">sd</span>(MPG))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["cylinders"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["s"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"30.02105","3":"4.182447"},{"1":"5","2":"20.30000","3":"NA"},{"1":"6","2":"21.08000","3":"4.077526"},{"1":"8","2":"17.42500","3":"1.192536"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Top row is the same as before. And since the output is a data frame, you can do any of these things with <em>that</em>, for example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cylinders) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(MPG), <span class="at">s =</span> <span class="fu">sd</span>(MPG)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cylinders <span class="sc">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["cylinders"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["s"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"30.02105","3":"4.182447"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>to pick out just the right row. This is a very easy kind of question to set on an exam. Just so you know.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="dolphins-1" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="dolphins-1"><span class="header-section-number">5.6</span> Dolphins</h2>
+<p>Dolphins and other large marine mammals are at the top of the marine food chain, and so if there is any heavy metal pollution in the sea, it will find its way into the dolphins. The study we look at is of the concentration of mercury. This is expected to be different in males and females because the mercury in a female is transferred to her offspring during gestation and nursing. In this study, there were 28 males and 17 females of various ages. There are three columns in the data file:</p>
+<ul>
+<li><code>mercury</code>, the concentration in the liver, in micrograms per gram</li>
+<li><code>age</code> in years</li>
+<li><code>sex</code> of the dolphin, male or female.</li>
+</ul>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/dolphins.csv">http://ritsokiguess.site/datafiles/dolphins.csv</a> as a CSV file. This question appears to have a lot of parts, but most of them ought not to take you too long.</p>
+<ol type="a">
+<li>Read in and display (some of) the data.</li>
+</ol>
+<p>Solution</p>
+<p>Exactly the usual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/dolphins.csv"</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>dolphins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 45 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): sex
+dbl (2): mercury, age
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dolphins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mercury"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1.70","2":"0.21","3":"male"},{"1":"1.72","2":"0.33","3":"male"},{"1":"8.80","2":"2.00","3":"male"},{"1":"5.90","2":"2.20","3":"male"},{"1":"101.00","2":"8.50","3":"male"},{"1":"85.40","2":"11.50","3":"male"},{"1":"118.00","2":"11.50","3":"male"},{"1":"183.00","2":"13.50","3":"male"},{"1":"168.00","2":"16.50","3":"male"},{"1":"218.00","2":"16.50","3":"male"},{"1":"180.00","2":"17.50","3":"male"},{"1":"264.00","2":"20.50","3":"male"},{"1":"481.00","2":"22.50","3":"male"},{"1":"485.00","2":"24.50","3":"male"},{"1":"221.00","2":"24.50","3":"male"},{"1":"406.00","2":"25.50","3":"male"},{"1":"252.00","2":"26.50","3":"male"},{"1":"329.00","2":"26.50","3":"male"},{"1":"316.00","2":"26.50","3":"male"},{"1":"445.00","2":"26.50","3":"male"},{"1":"278.00","2":"27.50","3":"male"},{"1":"286.00","2":"28.50","3":"male"},{"1":"315.00","2":"29.50","3":"male"},{"1":"241.00","2":"31.50","3":"male"},{"1":"397.00","2":"31.50","3":"male"},{"1":"209.00","2":"36.50","3":"male"},{"1":"314.00","2":"37.50","3":"male"},{"1":"318.00","2":"39.50","3":"male"},{"1":"2.50","2":"0.80","3":"female"},{"1":"9.35","2":"1.50","3":"female"},{"1":"4.01","2":"1.75","3":"female"},{"1":"29.80","2":"5.50","3":"female"},{"1":"45.30","2":"7.50","3":"female"},{"1":"101.00","2":"8.50","3":"female"},{"1":"135.00","2":"11.50","3":"female"},{"1":"142.00","2":"17.50","3":"female"},{"1":"180.00","2":"17.50","3":"female"},{"1":"174.00","2":"18.50","3":"female"},{"1":"247.00","2":"19.50","3":"female"},{"1":"223.00","2":"21.50","3":"female"},{"1":"167.00","2":"21.50","3":"female"},{"1":"157.00","2":"25.50","3":"female"},{"1":"177.00","2":"25.50","3":"female"},{"1":"475.00","2":"32.50","3":"female"},{"1":"342.00","2":"34.50","3":"female"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>There are indeed 45 dolphins, with the males listed first and the females listed at the end (as you can check).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Display only the two columns <code>mercury</code> and <code>sex</code>.</li>
+</ol>
+<p>Solution</p>
+<p>Two ways to do it: either list both columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">select</span>(mercury, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mercury"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1.70","2":"male"},{"1":"1.72","2":"male"},{"1":"8.80","2":"male"},{"1":"5.90","2":"male"},{"1":"101.00","2":"male"},{"1":"85.40","2":"male"},{"1":"118.00","2":"male"},{"1":"183.00","2":"male"},{"1":"168.00","2":"male"},{"1":"218.00","2":"male"},{"1":"180.00","2":"male"},{"1":"264.00","2":"male"},{"1":"481.00","2":"male"},{"1":"485.00","2":"male"},{"1":"221.00","2":"male"},{"1":"406.00","2":"male"},{"1":"252.00","2":"male"},{"1":"329.00","2":"male"},{"1":"316.00","2":"male"},{"1":"445.00","2":"male"},{"1":"278.00","2":"male"},{"1":"286.00","2":"male"},{"1":"315.00","2":"male"},{"1":"241.00","2":"male"},{"1":"397.00","2":"male"},{"1":"209.00","2":"male"},{"1":"314.00","2":"male"},{"1":"318.00","2":"male"},{"1":"2.50","2":"female"},{"1":"9.35","2":"female"},{"1":"4.01","2":"female"},{"1":"29.80","2":"female"},{"1":"45.30","2":"female"},{"1":"101.00","2":"female"},{"1":"135.00","2":"female"},{"1":"142.00","2":"female"},{"1":"180.00","2":"female"},{"1":"174.00","2":"female"},{"1":"247.00","2":"female"},{"1":"223.00","2":"female"},{"1":"167.00","2":"female"},{"1":"157.00","2":"female"},{"1":"177.00","2":"female"},{"1":"475.00","2":"female"},{"1":"342.00","2":"female"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>or say “everything but age”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mercury"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1.70","2":"male"},{"1":"1.72","2":"male"},{"1":"8.80","2":"male"},{"1":"5.90","2":"male"},{"1":"101.00","2":"male"},{"1":"85.40","2":"male"},{"1":"118.00","2":"male"},{"1":"183.00","2":"male"},{"1":"168.00","2":"male"},{"1":"218.00","2":"male"},{"1":"180.00","2":"male"},{"1":"264.00","2":"male"},{"1":"481.00","2":"male"},{"1":"485.00","2":"male"},{"1":"221.00","2":"male"},{"1":"406.00","2":"male"},{"1":"252.00","2":"male"},{"1":"329.00","2":"male"},{"1":"316.00","2":"male"},{"1":"445.00","2":"male"},{"1":"278.00","2":"male"},{"1":"286.00","2":"male"},{"1":"315.00","2":"male"},{"1":"241.00","2":"male"},{"1":"397.00","2":"male"},{"1":"209.00","2":"male"},{"1":"314.00","2":"male"},{"1":"318.00","2":"male"},{"1":"2.50","2":"female"},{"1":"9.35","2":"female"},{"1":"4.01","2":"female"},{"1":"29.80","2":"female"},{"1":"45.30","2":"female"},{"1":"101.00","2":"female"},{"1":"135.00","2":"female"},{"1":"142.00","2":"female"},{"1":"180.00","2":"female"},{"1":"174.00","2":"female"},{"1":"247.00","2":"female"},{"1":"223.00","2":"female"},{"1":"167.00","2":"female"},{"1":"157.00","2":"female"},{"1":"177.00","2":"female"},{"1":"475.00","2":"female"},{"1":"342.00","2":"female"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The second one is easier coding, so is better.</p>
+<p>Note that <code>mercury:sex</code> won’t do it, because that will get you <code>age</code> as well (“<code>mercury</code> through <code>sex</code>”).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Display all the columns whose names have exactly three characters, without naming any columns.</li>
+</ol>
+<p>Solution</p>
+<p>Evidently this is <code>age</code> and <code>sex</code>. We are selecting columns on the basis of their names, so we will need a select-helper. The one that works is <code>matches</code> with a regular expression. This is like the one in the lecture notes where we selected height and weight by selecting columns whose names had two letters and the second one was “t”. In this case, the three letters can be anything, so it’s three dots between the start of text and end of text:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">matches</span>(<span class="st">"^...$"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["age"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"0.21","2":"male"},{"1":"0.33","2":"male"},{"1":"2.00","2":"male"},{"1":"2.20","2":"male"},{"1":"8.50","2":"male"},{"1":"11.50","2":"male"},{"1":"11.50","2":"male"},{"1":"13.50","2":"male"},{"1":"16.50","2":"male"},{"1":"16.50","2":"male"},{"1":"17.50","2":"male"},{"1":"20.50","2":"male"},{"1":"22.50","2":"male"},{"1":"24.50","2":"male"},{"1":"24.50","2":"male"},{"1":"25.50","2":"male"},{"1":"26.50","2":"male"},{"1":"26.50","2":"male"},{"1":"26.50","2":"male"},{"1":"26.50","2":"male"},{"1":"27.50","2":"male"},{"1":"28.50","2":"male"},{"1":"29.50","2":"male"},{"1":"31.50","2":"male"},{"1":"31.50","2":"male"},{"1":"36.50","2":"male"},{"1":"37.50","2":"male"},{"1":"39.50","2":"male"},{"1":"0.80","2":"female"},{"1":"1.50","2":"female"},{"1":"1.75","2":"female"},{"1":"5.50","2":"female"},{"1":"7.50","2":"female"},{"1":"8.50","2":"female"},{"1":"11.50","2":"female"},{"1":"17.50","2":"female"},{"1":"17.50","2":"female"},{"1":"18.50","2":"female"},{"1":"19.50","2":"female"},{"1":"21.50","2":"female"},{"1":"21.50","2":"female"},{"1":"25.50","2":"female"},{"1":"25.50","2":"female"},{"1":"32.50","2":"female"},{"1":"34.50","2":"female"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Display only the mercury levels for the females.</li>
+</ol>
+<p>Solution</p>
+<p>This is selecting rows <em>and</em> columns, so you’ll have a <code>select</code> and a <code>filter</code>. If you do the <code>select</code> first, you’ll only have the mercury levels left, and you won’t know which dolphins are female. So do the <code>filter</code> first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(mercury)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mercury"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.50"},{"1":"9.35"},{"1":"4.01"},{"1":"29.80"},{"1":"45.30"},{"1":"101.00"},{"1":"135.00"},{"1":"142.00"},{"1":"180.00"},{"1":"174.00"},{"1":"247.00"},{"1":"223.00"},{"1":"167.00"},{"1":"157.00"},{"1":"177.00"},{"1":"475.00"},{"1":"342.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>What is the mean mercury concentration for all the dolphins whose age is less than 15?</li>
+</ol>
+<p>Solution</p>
+<p>Grab only the dolphins with age less than 15 first, and then work out their mean <code>mercury</code> with <code>summarize</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age<span class="sc">&lt;</span><span class="dv">15</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["m"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"55.49867"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>55.5 (micrograms per gram), as you should say.</p>
+<p>Another way is to define a new column that indicates whether the age is less than 15 or not, and do group-by and summarize:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">young =</span> <span class="fu">ifelse</span>(age<span class="sc">&lt;</span><span class="dv">15</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(young) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["young"],"name":[1],"type":["chr"],"align":["left"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"no","2":"280.23333"},{"1":"yes","2":"55.49867"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Here, you <em>definitely</em> need to extract the right number out of the output. You can also define groups by logical condition directly, which saves you a step:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(age<span class="sc">&lt;</span><span class="dv">15</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["age < 15"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"FALSE","2":"280.23333"},{"1":"TRUE","2":"55.49867"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Doing it this way, you are probably getting some suspicions about the relationship between age and mercury concentration, but that’s coming up.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>What is the mean mercury concentration for all the dolphins whose age is greater than 25?</li>
+</ol>
+<p>Solution</p>
+<p>The same three choices of method:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age<span class="sc">&gt;</span><span class="dv">25</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["m"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"309.2353"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>309.2 (micrograms per gram), as you should say.</p>
+<p>Or define a new column:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">young =</span> <span class="fu">ifelse</span>(age<span class="sc">&gt;</span><span class="dv">25</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(young) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["young"],"name":[1],"type":["chr"],"align":["left"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"no","2":"142.2314"},{"1":"yes","2":"309.2353"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Or:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(age<span class="sc">&gt;</span><span class="dv">25</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["age > 25"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"FALSE","2":"142.2314"},{"1":"TRUE","2":"309.2353"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>In any of these ways, 309.2 micrograms per gram.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>Make a suitable graph of these data (all three columns).</li>
+</ol>
+<p>Solution</p>
+<p>This one ought to be a gimme, but I am using the result in the next part. With two quantitative variables and one categorical, a scatterplot with the sexes indicated by colour:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dolphins, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> mercury, <span class="at">colour =</span> sex)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="working-with-dataframes_files/figure-html/dolphins-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I think this is clearer without regression lines; the upward trend is clear enough, and it is not clear that the trends are linear (look at the males of the largest ages). Add a smooth trend if you like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dolphins, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> mercury, <span class="at">colour =</span> sex)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="working-with-dataframes_files/figure-html/dolphins-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Mercury concentration increases with age for the females, and also does with age for the males up to about age 25, after which it levels off or decreases.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="8" type="a">
+<li>Explain briefly how your graph and your calculations of mean mercury concentration are telling a similar story.</li>
+</ol>
+<p>Solution</p>
+<p>I wanted to get to a point where we were saying something interesting about the data, rather than just playing with <code>select</code> and friends.</p>
+<p>The graph is showing an increasing trend of mercury concentration with age (at least, for all but the oldest males). The mean calculations are showing that the younger dolphins have a small mercury concentration on average, and the older dolphins have a much larger mean. These are both saying that mercury concentration is increasing with age, so they are consistent.</p>
+<p>Extra:</p>
+<p>I tried to make this fairly obvious for you by choice of age groups to compare, and this pattern holds for both males and females, so that the mean calculations didn’t need to depend on <code>sex</code>. But there is no great difficulty in making it work by sex as well – insert a <code>group_by</code> before the <code>summarize</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age<span class="sc">&lt;</span><span class="dv">15</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["chr"],"align":["left"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"female","2":"46.70857"},{"1":"male","2":"63.19000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>and</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age<span class="sc">&gt;</span><span class="dv">25</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["chr"],"align":["left"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"female","2":"287.7500"},{"1":"male","2":"315.8462"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The male means are slightly bigger in the two cases, though the difference between the sexes is small compared to the age effect. (I ran a regression predicting mercury concentration from age and sex, and the sex effect wasn’t even significant.)</p>
+<p>A second extra: what if you wanted to divide age up into age groups for comparison of mercury concentration? This isn’t always a good idea (for reasons I get into below), but if you want to do it, <code>cut</code> is your friend:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>dolphins <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="dv">25</span>,<span class="dv">60</span>))) <span class="ot">-&gt;</span> dolphinsx</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>dolphinsx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mercury"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[3],"type":["chr"],"align":["left"]},{"label":["age_group"],"name":[4],"type":["fct"],"align":["left"]}],"data":[{"1":"1.70","2":"0.21","3":"male","4":"(0,15]"},{"1":"1.72","2":"0.33","3":"male","4":"(0,15]"},{"1":"8.80","2":"2.00","3":"male","4":"(0,15]"},{"1":"5.90","2":"2.20","3":"male","4":"(0,15]"},{"1":"101.00","2":"8.50","3":"male","4":"(0,15]"},{"1":"85.40","2":"11.50","3":"male","4":"(0,15]"},{"1":"118.00","2":"11.50","3":"male","4":"(0,15]"},{"1":"183.00","2":"13.50","3":"male","4":"(0,15]"},{"1":"168.00","2":"16.50","3":"male","4":"(15,25]"},{"1":"218.00","2":"16.50","3":"male","4":"(15,25]"},{"1":"180.00","2":"17.50","3":"male","4":"(15,25]"},{"1":"264.00","2":"20.50","3":"male","4":"(15,25]"},{"1":"481.00","2":"22.50","3":"male","4":"(15,25]"},{"1":"485.00","2":"24.50","3":"male","4":"(15,25]"},{"1":"221.00","2":"24.50","3":"male","4":"(15,25]"},{"1":"406.00","2":"25.50","3":"male","4":"(25,60]"},{"1":"252.00","2":"26.50","3":"male","4":"(25,60]"},{"1":"329.00","2":"26.50","3":"male","4":"(25,60]"},{"1":"316.00","2":"26.50","3":"male","4":"(25,60]"},{"1":"445.00","2":"26.50","3":"male","4":"(25,60]"},{"1":"278.00","2":"27.50","3":"male","4":"(25,60]"},{"1":"286.00","2":"28.50","3":"male","4":"(25,60]"},{"1":"315.00","2":"29.50","3":"male","4":"(25,60]"},{"1":"241.00","2":"31.50","3":"male","4":"(25,60]"},{"1":"397.00","2":"31.50","3":"male","4":"(25,60]"},{"1":"209.00","2":"36.50","3":"male","4":"(25,60]"},{"1":"314.00","2":"37.50","3":"male","4":"(25,60]"},{"1":"318.00","2":"39.50","3":"male","4":"(25,60]"},{"1":"2.50","2":"0.80","3":"female","4":"(0,15]"},{"1":"9.35","2":"1.50","3":"female","4":"(0,15]"},{"1":"4.01","2":"1.75","3":"female","4":"(0,15]"},{"1":"29.80","2":"5.50","3":"female","4":"(0,15]"},{"1":"45.30","2":"7.50","3":"female","4":"(0,15]"},{"1":"101.00","2":"8.50","3":"female","4":"(0,15]"},{"1":"135.00","2":"11.50","3":"female","4":"(0,15]"},{"1":"142.00","2":"17.50","3":"female","4":"(15,25]"},{"1":"180.00","2":"17.50","3":"female","4":"(15,25]"},{"1":"174.00","2":"18.50","3":"female","4":"(15,25]"},{"1":"247.00","2":"19.50","3":"female","4":"(15,25]"},{"1":"223.00","2":"21.50","3":"female","4":"(15,25]"},{"1":"167.00","2":"21.50","3":"female","4":"(15,25]"},{"1":"157.00","2":"25.50","3":"female","4":"(25,60]"},{"1":"177.00","2":"25.50","3":"female","4":"(25,60]"},{"1":"475.00","2":"32.50","3":"female","4":"(25,60]"},{"1":"342.00","2":"34.50","3":"female","4":"(25,60]"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Note that <code>cut</code> needs input <code>breaks</code> whose first value is lower than all the ages and whose last value is higher than all the ages. The age group intervals are what mathematicians would call “half-open”: the upper limit is included in the interval and the lower limit is not. The age of 15 is thus in the 0-15 interval and not in 15-25.</p>
+<p>Now we can work out mean mercury concentration for each age group:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>dolphinsx <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(age_group) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["age_group"],"name":[1],"type":["fct"],"align":["left"]},{"label":["m"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"(0,15]","2":"55.49867"},{"1":"(15,25]","2":"242.30769"},{"1":"(25,60]","2":"309.23529"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>or even do it by sex as well:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>dolphinsx <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(age_group, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(mercury))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'age_group'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["age_group"],"name":[1],"type":["fct"],"align":["left"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["m"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"(0,15]","2":"female","3":"46.70857"},{"1":"(0,15]","2":"male","3":"63.19000"},{"1":"(15,25]","2":"female","3":"188.83333"},{"1":"(15,25]","2":"male","3":"288.14286"},{"1":"(25,60]","2":"female","3":"287.75000"},{"1":"(25,60]","2":"male","3":"315.84615"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Note that there is still no evidence here of the levelling off of the male mercury levels, which happened after age 25, and there was quite a lot of variability there as well.</p>
+<p>My take is that if you have numerical data, that’s what you should use, rather than breaking it up into categories. Those dolphins in the 25-60 age group, we don’t know much about their actual ages, and we’ve seen that age and mercury concentration are closely related, so we are throwing away information by categorizing. Some people break things up into categories because that’s what they know how to analyze, but that is never a good reason for you: it means that you need to go learn how to handle the original quantitative data!</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>I found this by googling, after I had scrolled past all the pages of articles about the baseball pitcher who <em>lives</em> in a van.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Hockey is similar: teams go on road trips, playing several different teams before returning home. Hockey teams, though, tend to play each team only once on a road trip: for example, a west coast team like the Canucks might play a game in each of Toronto, Montreal, Boston and New York on a road trip. Well, maybe three games in the New York area: one each against the Rangers, Islanders and Devils.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>If you do this by hand, you’ll get a warning about the chi-squared approximation being inaccurate. This is because of the small frequencies, and <em>not</em> because of the outliers. Those are not damaging the test at all.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data-summaries.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./one-sample-inference.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

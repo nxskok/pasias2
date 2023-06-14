@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 4&nbsp; One-sample inference</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 6&nbsp; One-sample inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./two-sample-inference.html" rel="next">
-<link href="./data-summaries.html" rel="prev">
+<link href="./working-with-dataframes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./one-sample-inference.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./one-sample-inference.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,18 +400,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#hunter-gatherers-in-australia" id="toc-hunter-gatherers-in-australia" class="nav-link active" data-scroll-target="#hunter-gatherers-in-australia"><span class="header-section-number">4.1</span> Hunter-gatherers in Australia</a></li>
-  <li><a href="#buses-to-boulder" id="toc-buses-to-boulder" class="nav-link" data-scroll-target="#buses-to-boulder"><span class="header-section-number">4.2</span> Buses to Boulder</a></li>
-  <li><a href="#length-of-gestation-in-north-carolina" id="toc-length-of-gestation-in-north-carolina" class="nav-link" data-scroll-target="#length-of-gestation-in-north-carolina"><span class="header-section-number">4.3</span> Length of gestation in North Carolina</a></li>
-  <li><a href="#inferring-ice-break-up-in-nenana" id="toc-inferring-ice-break-up-in-nenana" class="nav-link" data-scroll-target="#inferring-ice-break-up-in-nenana"><span class="header-section-number">4.4</span> Inferring ice break-up in Nenana</a></li>
-  <li><a href="#diameters-of-trees" id="toc-diameters-of-trees" class="nav-link" data-scroll-target="#diameters-of-trees"><span class="header-section-number">4.5</span> Diameters of trees</a></li>
-  <li><a href="#one-sample-cholesterol" id="toc-one-sample-cholesterol" class="nav-link" data-scroll-target="#one-sample-cholesterol"><span class="header-section-number">4.6</span> One-sample cholesterol</a></li>
-  <li><a href="#hunter-gatherers-in-australia-1" id="toc-hunter-gatherers-in-australia-1" class="nav-link" data-scroll-target="#hunter-gatherers-in-australia-1"><span class="header-section-number">4.7</span> Hunter-gatherers in Australia</a></li>
-  <li><a href="#buses-to-boulder-1" id="toc-buses-to-boulder-1" class="nav-link" data-scroll-target="#buses-to-boulder-1"><span class="header-section-number">4.8</span> Buses to Boulder</a></li>
-  <li><a href="#length-of-gestation-in-north-carolina-1" id="toc-length-of-gestation-in-north-carolina-1" class="nav-link" data-scroll-target="#length-of-gestation-in-north-carolina-1"><span class="header-section-number">4.9</span> Length of gestation in North Carolina</a></li>
-  <li><a href="#inferring-ice-break-up-in-nenana-1" id="toc-inferring-ice-break-up-in-nenana-1" class="nav-link" data-scroll-target="#inferring-ice-break-up-in-nenana-1"><span class="header-section-number">4.10</span> Inferring ice break-up in Nenana</a></li>
-  <li><a href="#diameters-of-trees-1" id="toc-diameters-of-trees-1" class="nav-link" data-scroll-target="#diameters-of-trees-1"><span class="header-section-number">4.11</span> Diameters of trees</a></li>
-  <li><a href="#one-sample-cholesterol-1" id="toc-one-sample-cholesterol-1" class="nav-link" data-scroll-target="#one-sample-cholesterol-1"><span class="header-section-number">4.12</span> One-sample cholesterol</a></li>
+  <li><a href="#hunter-gatherers-in-australia" id="toc-hunter-gatherers-in-australia" class="nav-link active" data-scroll-target="#hunter-gatherers-in-australia"><span class="header-section-number">6.1</span> Hunter-gatherers in Australia</a></li>
+  <li><a href="#buses-to-boulder" id="toc-buses-to-boulder" class="nav-link" data-scroll-target="#buses-to-boulder"><span class="header-section-number">6.2</span> Buses to Boulder</a></li>
+  <li><a href="#length-of-gestation-in-north-carolina" id="toc-length-of-gestation-in-north-carolina" class="nav-link" data-scroll-target="#length-of-gestation-in-north-carolina"><span class="header-section-number">6.3</span> Length of gestation in North Carolina</a></li>
+  <li><a href="#inferring-ice-break-up-in-nenana" id="toc-inferring-ice-break-up-in-nenana" class="nav-link" data-scroll-target="#inferring-ice-break-up-in-nenana"><span class="header-section-number">6.4</span> Inferring ice break-up in Nenana</a></li>
+  <li><a href="#diameters-of-trees" id="toc-diameters-of-trees" class="nav-link" data-scroll-target="#diameters-of-trees"><span class="header-section-number">6.5</span> Diameters of trees</a></li>
+  <li><a href="#one-sample-cholesterol" id="toc-one-sample-cholesterol" class="nav-link" data-scroll-target="#one-sample-cholesterol"><span class="header-section-number">6.6</span> One-sample cholesterol</a></li>
+  <li><a href="#hunter-gatherers-in-australia-1" id="toc-hunter-gatherers-in-australia-1" class="nav-link" data-scroll-target="#hunter-gatherers-in-australia-1"><span class="header-section-number">6.7</span> Hunter-gatherers in Australia</a></li>
+  <li><a href="#buses-to-boulder-1" id="toc-buses-to-boulder-1" class="nav-link" data-scroll-target="#buses-to-boulder-1"><span class="header-section-number">6.8</span> Buses to Boulder</a></li>
+  <li><a href="#length-of-gestation-in-north-carolina-1" id="toc-length-of-gestation-in-north-carolina-1" class="nav-link" data-scroll-target="#length-of-gestation-in-north-carolina-1"><span class="header-section-number">6.9</span> Length of gestation in North Carolina</a></li>
+  <li><a href="#inferring-ice-break-up-in-nenana-1" id="toc-inferring-ice-break-up-in-nenana-1" class="nav-link" data-scroll-target="#inferring-ice-break-up-in-nenana-1"><span class="header-section-number">6.10</span> Inferring ice break-up in Nenana</a></li>
+  <li><a href="#diameters-of-trees-1" id="toc-diameters-of-trees-1" class="nav-link" data-scroll-target="#diameters-of-trees-1"><span class="header-section-number">6.11</span> Diameters of trees</a></li>
+  <li><a href="#one-sample-cholesterol-1" id="toc-one-sample-cholesterol-1" class="nav-link" data-scroll-target="#one-sample-cholesterol-1"><span class="header-section-number">6.12</span> One-sample cholesterol</a></li>
   </ul>
 </nav>
     </div>
@@ -408,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></h1>
 </div>
 
 
@@ -426,8 +438,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="hunter-gatherers-in-australia" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="hunter-gatherers-in-australia"><span class="header-section-number">4.1</span> Hunter-gatherers in Australia</h2>
+<section id="hunter-gatherers-in-australia" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="hunter-gatherers-in-australia"><span class="header-section-number">6.1</span> Hunter-gatherers in Australia</h2>
 <p>A hunter-gatherer society is one where people get their food by hunting, fishing or foraging rather than by agriculture or by raising animals. Such societies tend to move from place to place. Anthropologists have studied hunter-gatherer societies in forest ecosystems across the world. The average population density of these societies is 7.38 people per 100 km<span class="math inline">\(^2\)</span>. Hunter-gatherer societies on different continents might have different population densities, possibly because of large-scale ecological constraints (such as resource availability), or because of other factors, possibly social and/or historic, determining population density.</p>
 <p>Some hunter-gatherer societies in Australia were studied, and the population density per 100 km<span class="math inline">\(^2\)</span> recorded for each. The data are in <a href="http://ritsokiguess.site/datafiles/hg.txt">http://ritsokiguess.site/datafiles/hg.txt</a>.</p>
 <ol type="a">
@@ -437,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Do you have any doubts about the validity of your test? Explain briefly, using a suitable graph to support your explanation.</p></li>
 </ol>
 </section>
-<section id="buses-to-boulder" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="buses-to-boulder"><span class="header-section-number">4.2</span> Buses to Boulder</h2>
+<section id="buses-to-boulder" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="buses-to-boulder"><span class="header-section-number">6.2</span> Buses to Boulder</h2>
 <p>A bus line operates a route from Denver to Boulder (these places are in Colorado). The schedule says that the journey time should be 60 minutes. 11 randomly chosen journey times were recorded, and these are in the file <a href="http://ritsokiguess.site/datafiles/buses.txt">link</a>, with journey times shown in minutes.</p>
 <ol type="a">
 <li><p>Read the data into R, and display the data frame that you read in.</p></li>
@@ -448,8 +460,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Draw a boxplot of the journey times. Do you see a reason to doubt the test that you did above?</p></li>
 </ol>
 </section>
-<section id="length-of-gestation-in-north-carolina" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="length-of-gestation-in-north-carolina"><span class="header-section-number">4.3</span> Length of gestation in North Carolina</h2>
+<section id="length-of-gestation-in-north-carolina" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="length-of-gestation-in-north-carolina"><span class="header-section-number">6.3</span> Length of gestation in North Carolina</h2>
 <p>The data in file <a href="http://ritsokiguess.site/datafiles/ncbirths2.csv">link</a> are about 500 randomly chosen births of babies in North Carolina. There is a lot of information: not just the weight at birth of the baby, but whether the baby was born prematurely, the ages of the parents, whether the parents are married, how long (in weeks) the pregnancy lasted (this is called the “gestation”) and so on. We have seen these data before.</p>
 <ol type="a">
 <li><p>Read in the data from the file into R, bearing in mind what type of file it is.</p></li>
@@ -458,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The theory behind the <span class="math inline">\(t\)</span>-test says that the distribution of birth weights should be (approximately) normally distributed. Obtain a histogram of the birth weights. Does it look approximately normal? Comment briefly. (You’ll have to pick a number of bins for your histogram first. I don’t mind very much what you pick, as long as it’s not obviously too many or too few bins.)</p></li>
 </ol>
 </section>
-<section id="inferring-ice-break-up-in-nenana" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="inferring-ice-break-up-in-nenana"><span class="header-section-number">4.4</span> Inferring ice break-up in Nenana</h2>
+<section id="inferring-ice-break-up-in-nenana" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="inferring-ice-break-up-in-nenana"><span class="header-section-number">6.4</span> Inferring ice break-up in Nenana</h2>
 <p>Nenana, Alaska, is about 50 miles west of Fairbanks. Every spring, there is a contest in Nenana. A wooden tripod is placed on the frozen river, and people try to guess the exact minute when the ice melts enough for the tripod to fall through the ice. The contest started in 1917 as an amusement for railway workers, and has taken place every year since. Now, hundreds of thousands of people enter their guesses on the Internet and the prize for the winner can be as much as $300,000.</p>
 <p>Because so much money is at stake, and because the exact same tripod is placed at the exact same spot on the ice every year, the data are consistent and accurate. The data are in <a href="http://ritsokiguess.site/datafiles/nenana.txt">link</a>.</p>
 <p>Yes, we saw these data before.</p>
@@ -470,8 +482,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Plot <code>JulianDate</code> against <code>Year</code> on a scatterplot. What recent trends, if any, do you see? Comment briefly. (You did this before, but I have some extra comments on the graph this time, so feel free to just read this part.)</p></li>
 </ol>
 </section>
-<section id="diameters-of-trees" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="diameters-of-trees"><span class="header-section-number">4.5</span> Diameters of trees</h2>
+<section id="diameters-of-trees" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="diameters-of-trees"><span class="header-section-number">6.5</span> Diameters of trees</h2>
 <p>The Wade Tract in Thomas County, Georgia, is an old-growth forest of longleaf pine trees. It has survived in a relatively undisturbed state since before settlements of the area by Europeans. For each tree in the tract, researchers measured the diameter at breast height. This is a standard measure in forestry: it is defined as the diameter of the tree at 4.5 feet above the ground.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> They are interested in the mean diameter at breast height of the trees in this tract. These values are in <a href="http://ritsokiguess.site/datafiles/treediameter.csv">http://ritsokiguess.site/datafiles/treediameter.csv</a>. The diameters are measured in centimetres. The easiest way to get the URL is to <em>right</em>-click on the blue text and select Copy URL. (If you copy and paste the actual text you might end up with extra spaces, especially if the printed URL goes over two lines.)</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data.</p></li>
@@ -481,8 +493,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Would you expect 35 cm to be in a <em>99%</em> confidence interval for the mean diameter? Explain briefly, and then see if you were right.</p></li>
 </ol>
 </section>
-<section id="one-sample-cholesterol" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="one-sample-cholesterol"><span class="header-section-number">4.6</span> One-sample cholesterol</h2>
+<section id="one-sample-cholesterol" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="one-sample-cholesterol"><span class="header-section-number">6.6</span> One-sample cholesterol</h2>
 <p>The data set <a href="http://ritsokiguess.site/datafiles/cholest.csv">here</a> contains cholesterol measurements for heart attack patients (at several different times) as well as for a group of control patients. We will focus on the control patients in this question.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data.</p></li>
@@ -493,8 +505,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="hunter-gatherers-in-australia-1" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="hunter-gatherers-in-australia-1"><span class="header-section-number">4.7</span> Hunter-gatherers in Australia</h2>
+<section id="hunter-gatherers-in-australia-1" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="hunter-gatherers-in-australia-1"><span class="header-section-number">6.7</span> Hunter-gatherers in Australia</h2>
 <p>A hunter-gatherer society is one where people get their food by hunting, fishing or foraging rather than by agriculture or by raising animals. Such societies tend to move from place to place. Anthropologists have studied hunter-gatherer societies in forest ecosystems across the world. The average population density of these societies is 7.38 people per 100 km<span class="math inline">\(^2\)</span>. Hunter-gatherer societies on different continents might have different population densities, possibly because of large-scale ecological constraints (such as resource availability), or because of other factors, possibly social and/or historic, determining population density.</p>
 <p>Some hunter-gatherer societies in Australia were studied, and the population density per 100 km<span class="math inline">\(^2\)</span> recorded for each. The data are in <a href="http://ritsokiguess.site/datafiles/hg.txt">http://ritsokiguess.site/datafiles/hg.txt</a>.</p>
 <ol type="a">
@@ -608,8 +620,8 @@ mean of x
 <p>On the website where I got these data, they were using the data as an example for another test, precisely <em>because</em> they thought the distribution was right-skewed. Later on, we’ll learn about the sign test for the median, which I think is actually a better test here.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="buses-to-boulder-1" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="buses-to-boulder-1"><span class="header-section-number">4.8</span> Buses to Boulder</h2>
+<section id="buses-to-boulder-1" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="buses-to-boulder-1"><span class="header-section-number">6.8</span> Buses to Boulder</h2>
 <p>A bus line operates a route from Denver to Boulder (these places are in Colorado). The schedule says that the journey time should be 60 minutes. 11 randomly chosen journey times were recorded, and these are in the file <a href="http://ritsokiguess.site/datafiles/buses.txt">link</a>, with journey times shown in minutes.</p>
 <ol type="a">
 <li>Read the data into R, and display the data frame that you read in.</li>
@@ -732,8 +744,8 @@ $p_values
 <p>and so we do. The median could easily be 60 minutes.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="length-of-gestation-in-north-carolina-1" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="length-of-gestation-in-north-carolina-1"><span class="header-section-number">4.9</span> Length of gestation in North Carolina</h2>
+<section id="length-of-gestation-in-north-carolina-1" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="length-of-gestation-in-north-carolina-1"><span class="header-section-number">6.9</span> Length of gestation in North Carolina</h2>
 <p>The data in file <a href="http://ritsokiguess.site/datafiles/ncbirths.csv">link</a> are about 500 randomly chosen births of babies in North Carolina. There is a lot of information: not just the weight at birth of the baby, but whether the baby was born prematurely, the ages of the parents, whether the parents are married, how long (in weeks) the pregnancy lasted (this is called the “gestation”) and so on. We have seen these data before.</p>
 <ol type="a">
 <li>Read in the data from the file into R, bearing in mind what type of file it is.</li>
@@ -849,8 +861,8 @@ mean of x
 <p>This perhaps gives some insight as to why Freedman-Diaconis said we should use so many bins for our histogram. We have a lot of low-end outliers, so that the IQR is actually <em>small</em> compared to the overall spread of the data (as measured, say, by the SD or the range) and so FD thinks we need a lot of bins to describe the shape. Sturges is based on data being approximately normal, so it will tend to produce a small number of bins for data that have outliers.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="inferring-ice-break-up-in-nenana-1" class="level2" data-number="4.10">
-<h2 data-number="4.10" class="anchored" data-anchor-id="inferring-ice-break-up-in-nenana-1"><span class="header-section-number">4.10</span> Inferring ice break-up in Nenana</h2>
+<section id="inferring-ice-break-up-in-nenana-1" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="inferring-ice-break-up-in-nenana-1"><span class="header-section-number">6.10</span> Inferring ice break-up in Nenana</h2>
 <p>Nenana, Alaska, is about 50 miles west of Fairbanks. Every spring, there is a contest in Nenana. A wooden tripod is placed on the frozen river, and people try to guess the exact minute when the ice melts enough for the tripod to fall through the ice. The contest started in 1917 as an amusement for railway workers, and has taken place every year since. Now, hundreds of thousands of people enter their guesses on the Internet and the prize for the winner can be as much as $300,000.</p>
 <p>Because so much money is at stake, and because the exact same tripod is placed at the exact same spot on the ice every year, the data are consistent and accurate. The data are in <a href="http://ritsokiguess.site/datafiles/nenana.txt">link</a>.</p>
 <p>Yes, we saw these data before.</p>
@@ -953,8 +965,8 @@ mean of x
 <p>Compare the confidence interval for the mean <code>JulianDate</code> in 1920: 126 to 131 (the shaded area on the graph), with 2000: 121 to 125. A change of about 5 days over 80 years. And with the recent trend that we saw above, it’s probably changing faster than that now. Sobering indeed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="diameters-of-trees-1" class="level2" data-number="4.11">
-<h2 data-number="4.11" class="anchored" data-anchor-id="diameters-of-trees-1"><span class="header-section-number">4.11</span> Diameters of trees</h2>
+<section id="diameters-of-trees-1" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="diameters-of-trees-1"><span class="header-section-number">6.11</span> Diameters of trees</h2>
 <p>The Wade Tract in Thomas County, Georgia, is an old-growth forest of longleaf pine trees. It has survived in a relatively undisturbed state since before settlements of the area by Europeans. For each tree in the tract, researchers measured the diameter at breast height. This is a standard measure in forestry: it is defined as the diameter of the tree at 4.5 feet above the ground.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> They are interested in the mean diameter at breast height of the trees in this tract. These values are in <a href="http://ritsokiguess.site/datafiles/treediameter.csv">http://ritsokiguess.site/datafiles/treediameter.csv</a>. The diameters are measured in centimetres. The easiest way to get the URL is to <em>right</em>-click on the blue text and select Copy URL. (If you copy and paste the actual text you might end up with extra spaces, especially if the printed URL goes over two lines.)</p>
 <ol type="a">
 <li>Read in and display (some of) the data.</li>
@@ -1143,8 +1155,8 @@ mean of x
 <p>Indeed so, outside, but only just.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="one-sample-cholesterol-1" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="one-sample-cholesterol-1"><span class="header-section-number">4.12</span> One-sample cholesterol</h2>
+<section id="one-sample-cholesterol-1" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="one-sample-cholesterol-1"><span class="header-section-number">6.12</span> One-sample cholesterol</h2>
 <p>The data set <a href="http://ritsokiguess.site/datafiles/cholest.csv">here</a> contains cholesterol measurements for heart attack patients (at several different times) as well as for a group of control patients. We will focus on the control patients in this question.</p>
 <ol type="a">
 <li>Read in and display (some of) the data.</li>
@@ -1659,13 +1671,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data-summaries.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span>
+      <a href="./working-with-dataframes.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./two-sample-inference.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

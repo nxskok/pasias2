@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 6&nbsp; Power and sample size</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 8&nbsp; Power and sample size</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./power.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./power.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,16 +400,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#simulating-power" id="toc-simulating-power" class="nav-link active" data-scroll-target="#simulating-power"><span class="header-section-number">6.1</span> Simulating power</a></li>
-  <li><a href="#calculating-power-and-sample-size-for-estimating-mean" id="toc-calculating-power-and-sample-size-for-estimating-mean" class="nav-link" data-scroll-target="#calculating-power-and-sample-size-for-estimating-mean"><span class="header-section-number">6.2</span> Calculating power and sample size for estimating mean</a></li>
-  <li><a href="#simulating-power-for-proportions" id="toc-simulating-power-for-proportions" class="nav-link" data-scroll-target="#simulating-power-for-proportions"><span class="header-section-number">6.3</span> Simulating power for proportions</a></li>
-  <li><a href="#designing-a-study-to-have-enough-power" id="toc-designing-a-study-to-have-enough-power" class="nav-link" data-scroll-target="#designing-a-study-to-have-enough-power"><span class="header-section-number">6.4</span> Designing a study to have enough power</a></li>
-  <li><a href="#power-and-alpha-in-a-skewed-population" id="toc-power-and-alpha-in-a-skewed-population" class="nav-link" data-scroll-target="#power-and-alpha-in-a-skewed-population"><span class="header-section-number">6.5</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</a></li>
-  <li><a href="#simulating-power-1" id="toc-simulating-power-1" class="nav-link" data-scroll-target="#simulating-power-1"><span class="header-section-number">6.6</span> Simulating power</a></li>
-  <li><a href="#calculating-power-and-sample-size-for-estimating-mean-1" id="toc-calculating-power-and-sample-size-for-estimating-mean-1" class="nav-link" data-scroll-target="#calculating-power-and-sample-size-for-estimating-mean-1"><span class="header-section-number">6.7</span> Calculating power and sample size for estimating mean</a></li>
-  <li><a href="#simulating-power-for-proportions-1" id="toc-simulating-power-for-proportions-1" class="nav-link" data-scroll-target="#simulating-power-for-proportions-1"><span class="header-section-number">6.8</span> Simulating power for proportions</a></li>
-  <li><a href="#designing-a-study-to-have-enough-power-1" id="toc-designing-a-study-to-have-enough-power-1" class="nav-link" data-scroll-target="#designing-a-study-to-have-enough-power-1"><span class="header-section-number">6.9</span> Designing a study to have enough power</a></li>
-  <li><a href="#power-and-alpha-in-a-skewed-population-1" id="toc-power-and-alpha-in-a-skewed-population-1" class="nav-link" data-scroll-target="#power-and-alpha-in-a-skewed-population-1"><span class="header-section-number">6.10</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</a></li>
+  <li><a href="#simulating-power" id="toc-simulating-power" class="nav-link active" data-scroll-target="#simulating-power"><span class="header-section-number">8.1</span> Simulating power</a></li>
+  <li><a href="#calculating-power-and-sample-size-for-estimating-mean" id="toc-calculating-power-and-sample-size-for-estimating-mean" class="nav-link" data-scroll-target="#calculating-power-and-sample-size-for-estimating-mean"><span class="header-section-number">8.2</span> Calculating power and sample size for estimating mean</a></li>
+  <li><a href="#simulating-power-for-proportions" id="toc-simulating-power-for-proportions" class="nav-link" data-scroll-target="#simulating-power-for-proportions"><span class="header-section-number">8.3</span> Simulating power for proportions</a></li>
+  <li><a href="#designing-a-study-to-have-enough-power" id="toc-designing-a-study-to-have-enough-power" class="nav-link" data-scroll-target="#designing-a-study-to-have-enough-power"><span class="header-section-number">8.4</span> Designing a study to have enough power</a></li>
+  <li><a href="#power-and-alpha-in-a-skewed-population" id="toc-power-and-alpha-in-a-skewed-population" class="nav-link" data-scroll-target="#power-and-alpha-in-a-skewed-population"><span class="header-section-number">8.5</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</a></li>
+  <li><a href="#simulating-power-1" id="toc-simulating-power-1" class="nav-link" data-scroll-target="#simulating-power-1"><span class="header-section-number">8.6</span> Simulating power</a></li>
+  <li><a href="#calculating-power-and-sample-size-for-estimating-mean-1" id="toc-calculating-power-and-sample-size-for-estimating-mean-1" class="nav-link" data-scroll-target="#calculating-power-and-sample-size-for-estimating-mean-1"><span class="header-section-number">8.7</span> Calculating power and sample size for estimating mean</a></li>
+  <li><a href="#simulating-power-for-proportions-1" id="toc-simulating-power-for-proportions-1" class="nav-link" data-scroll-target="#simulating-power-for-proportions-1"><span class="header-section-number">8.8</span> Simulating power for proportions</a></li>
+  <li><a href="#designing-a-study-to-have-enough-power-1" id="toc-designing-a-study-to-have-enough-power-1" class="nav-link" data-scroll-target="#designing-a-study-to-have-enough-power-1"><span class="header-section-number">8.9</span> Designing a study to have enough power</a></li>
+  <li><a href="#power-and-alpha-in-a-skewed-population-1" id="toc-power-and-alpha-in-a-skewed-population-1" class="nav-link" data-scroll-target="#power-and-alpha-in-a-skewed-population-1"><span class="header-section-number">8.10</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</a></li>
   </ul>
 </nav>
     </div>
@@ -406,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></h1>
 </div>
 
 
@@ -424,8 +436,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="simulating-power" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="simulating-power"><span class="header-section-number">6.1</span> Simulating power</h2>
+<section id="simulating-power" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="simulating-power"><span class="header-section-number">8.1</span> Simulating power</h2>
 <p>This question investigates power by simulation.</p>
 <ol type="a">
 <li><p>Use <code>rnorm</code> to generate 10 random values from a normal distribution with mean 20 and SD 2. Do your values look reasonable? Explain briefly. (You don’t need to draw a graph.)</p></li>
@@ -435,16 +447,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use R to calculate this power exactly (without simulation). Compare the exact result with your simulation.</p></li>
 </ol>
 </section>
-<section id="calculating-power-and-sample-size-for-estimating-mean" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="calculating-power-and-sample-size-for-estimating-mean"><span class="header-section-number">6.2</span> Calculating power and sample size for estimating mean</h2>
+<section id="calculating-power-and-sample-size-for-estimating-mean" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="calculating-power-and-sample-size-for-estimating-mean"><span class="header-section-number">8.2</span> Calculating power and sample size for estimating mean</h2>
 <p>We are planning a study to estimate a population mean. The population standard deviation is believed to be 20, and the population distribution is believed to be approximately normal. We will be testing the null hypothesis that the population mean is 100. Suppose the population mean is actually 110, and we want to determine how likely we are to (correctly) reject the null hypothesis in this case, using a two-sided (but one-sample) test with <span class="math inline">\(\alpha=0.05\)</span>.</p>
 <ol type="a">
 <li><p>We will take a sample of size <span class="math inline">\(n=30\)</span>. Calculate the power of this test.</p></li>
 <li><p>Find the sample size necessary to obtain a power of at least 0.80 under these conditions. What sample size do you need? Explain briefly how your answer is consistent with (a).</p></li>
 </ol>
 </section>
-<section id="simulating-power-for-proportions" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="simulating-power-for-proportions"><span class="header-section-number">6.3</span> Simulating power for proportions</h2>
+<section id="simulating-power-for-proportions" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="simulating-power-for-proportions"><span class="header-section-number">8.3</span> Simulating power for proportions</h2>
 <p>In opinion surveys (and other places), we are testing for a proportion <span class="math inline">\(p\)</span> (for example, the proportion of people agreeing with some statement). Often, we want to know whether the proportion is “really” greater than 0.5.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a><br>
 That would entail testing a null <span class="math inline">\(H_0: p=0.5\)</span> against an alternative <span class="math inline">\(H_a: p&gt;0.5\)</span>. This is usually done by calculating the test statistic <span class="math display">\[ z = { \hat{p} - 0.5 \over \sqrt{0.25/n}},\]</span> where <span class="math inline">\(\hat{p}\)</span> is the observed proportion in the sample, and getting a P-value from the upper tail of a standard normal distribution. (The 0.25 is <span class="math inline">\(p(1-p)\)</span> where <span class="math inline">\(p=0.5\)</span>.) This is what <code>prop.test</code> does, as we investigate shortly.</p>
 <ol type="a">
@@ -468,16 +480,16 @@ That would entail testing a null <span class="math inline">\(H_0: p=0.5\)</span>
 </ul>
 <p>So I lied: the fourth and final step is to count how many of those P-values are 0.05 or less.</p>
 </section>
-<section id="designing-a-study-to-have-enough-power" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="designing-a-study-to-have-enough-power"><span class="header-section-number">6.4</span> Designing a study to have enough power</h2>
+<section id="designing-a-study-to-have-enough-power" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="designing-a-study-to-have-enough-power"><span class="header-section-number">8.4</span> Designing a study to have enough power</h2>
 <p>You are designing a study to test the null hypothesis that a population mean is 0 against the alternative hypothesis that it is greater than 0. Assume that the population SD is <span class="math inline">\(\sigma=15\)</span>. It is important to detect the alternative <span class="math inline">\(\mu=2\)</span>; that is, we want to design the study so that most of the time the null hypothesis would be (correctly) rejected if in fact <span class="math inline">\(\mu=2\)</span>. A one-sample <span class="math inline">\(t\)</span>-test will be used, and the data values are assumed to have a normal distribution.</p>
 <ol type="a">
 <li><p>Use simulation to estimate the power of this test when the sample size is 100. Use <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>Again by using simulation, estimate how large a sample size would be needed to obtain a power of 0.80. Show and briefly explain your process.</p></li>
 </ol>
 </section>
-<section id="power-and-alpha-in-a-skewed-population" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="power-and-alpha-in-a-skewed-population"><span class="header-section-number">6.5</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</h2>
+<section id="power-and-alpha-in-a-skewed-population" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="power-and-alpha-in-a-skewed-population"><span class="header-section-number">8.5</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</h2>
 <p>A population of a large number of values <code>v</code> is at <a href="http://ritsokiguess.site/datafiles/pop.csv">http://ritsokiguess.site/datafiles/pop.csv</a>, in a CSV file.</p>
 <ol type="a">
 <li><p>Read in the population and display some of the values.</p></li>
@@ -488,8 +500,8 @@ That would entail testing a null <span class="math inline">\(H_0: p=0.5\)</span>
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="simulating-power-1" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="simulating-power-1"><span class="header-section-number">6.6</span> Simulating power</h2>
+<section id="simulating-power-1" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="simulating-power-1"><span class="header-section-number">8.6</span> Simulating power</h2>
 <p>This question investigates power by simulation.</p>
 <ol type="a">
 <li>Use <code>rnorm</code> to generate 10 random values from a normal distribution with mean 20 and SD 2. Do your values look reasonable? Explain briefly. (You don’t need to draw a graph.)</li>
@@ -734,8 +746,8 @@ sample estimates:
 <p>This means that you can estimate power as accurately as you like by doing a large enough (possibly very large) number of simulations. Provided, that is, that you are prepared to wait a possibly long time for it to finish working!</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="calculating-power-and-sample-size-for-estimating-mean-1" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="calculating-power-and-sample-size-for-estimating-mean-1"><span class="header-section-number">6.7</span> Calculating power and sample size for estimating mean</h2>
+<section id="calculating-power-and-sample-size-for-estimating-mean-1" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="calculating-power-and-sample-size-for-estimating-mean-1"><span class="header-section-number">8.7</span> Calculating power and sample size for estimating mean</h2>
 <p>We are planning a study to estimate a population mean. The population standard deviation is believed to be 20, and the population distribution is believed to be approximately normal. We will be testing the null hypothesis that the population mean is 100. Suppose the population mean is actually 110, and we want to determine how likely we are to (correctly) reject the null hypothesis in this case, using a two-sided (but one-sample) test with <span class="math inline">\(\alpha=0.05\)</span>.</p>
 <ol type="a">
 <li>We will take a sample of size <span class="math inline">\(n=30\)</span>. Calculate the power of this test.</li>
@@ -860,8 +872,8 @@ sample estimates:
 <p>The business end of this is happening in the first three lines. I wasn’t thinking of this when I originally wrote <code>sim_power</code> to return a dataframe, so there is a bit more fiddling after the simulations are done: I have to <code>unnest</code> to see what the list-column <code>power_tab</code> actually contains, and because of the layout of the output from unnesting <code>sim_power</code> (long format), it looks better if I pivot it wider, so that I can just cast my eye down the TRUE column and see the power increasing as the sample size increases.</p>
 <p>You might also think of something like bisection to find the sample size that has power 0.8, but it starts getting tricky because of the randomness; just by chance, it may be that sometimes the simulated power goes <em>down</em> as the sample size goes up. With 1000 simulations each time, it seems that the power ought to hit 80% with a sample size between 30 and 35.</p>
 </section>
-<section id="simulating-power-for-proportions-1" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="simulating-power-for-proportions-1"><span class="header-section-number">6.8</span> Simulating power for proportions</h2>
+<section id="simulating-power-for-proportions-1" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="simulating-power-for-proportions-1"><span class="header-section-number">8.8</span> Simulating power for proportions</h2>
 <p>In opinion surveys (and other places), we are testing for a proportion <span class="math inline">\(p\)</span> (for example, the proportion of people agreeing with some statement). Often, we want to know whether the proportion is “really” greater than 0.5.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><br>
 That would entail testing a null <span class="math inline">\(H_0: p=0.5\)</span> against an alternative <span class="math inline">\(H_a: p&gt;0.5\)</span>. This is usually done by calculating the test statistic <span class="math display">\[ z = { \hat{p} - 0.5 \over \sqrt{0.25/n}},\]</span> where <span class="math inline">\(\hat{p}\)</span> is the observed proportion in the sample, and getting a P-value from the upper tail of a standard normal distribution. (The 0.25 is <span class="math inline">\(p(1-p)\)</span> where <span class="math inline">\(p=0.5\)</span>.) This is what <code>prop.test</code> does, as we investigate shortly.</p>
 <ol type="a">
@@ -965,8 +977,8 @@ sample estimates:
 <p>The moral of this story is that when you have a decently large sample, <span class="math inline">\(n=500\)</span> in this case, <span class="math inline">\(p\)</span> doesn’t have to get very far away from 0.5 before you can correctly reject 0.5. Bear in mind that sample sizes for estimating proportions need to be larger than those for estimating means, so <span class="math inline">\(n=500\)</span> is large without being huge. The practical upshot is that if you design a survey and give it to 500 (or more) randomly chosen people, the proportion of people in favour doesn’t have to be much above 50% for you to correctly infer that it <em>is</em> above 50%, most of the time.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="designing-a-study-to-have-enough-power-1" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="designing-a-study-to-have-enough-power-1"><span class="header-section-number">6.9</span> Designing a study to have enough power</h2>
+<section id="designing-a-study-to-have-enough-power-1" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="designing-a-study-to-have-enough-power-1"><span class="header-section-number">8.9</span> Designing a study to have enough power</h2>
 <p>You are designing a study to test the null hypothesis that a population mean is 0 against the alternative hypothesis that it is greater than 0. Assume that the population SD is <span class="math inline">\(\sigma=15\)</span>. It is important to detect the alternative <span class="math inline">\(\mu=2\)</span>; that is, we want to design the study so that most of the time the null hypothesis would be (correctly) rejected if in fact <span class="math inline">\(\mu=2\)</span>. A one-sample <span class="math inline">\(t\)</span>-test will be used, and the data values are assumed to have a normal distribution.</p>
 <ol type="a">
 <li>Use simulation to estimate the power of this test when the sample size is 100. Use <span class="math inline">\(\alpha=0.05\)</span>.</li>
@@ -1165,8 +1177,8 @@ sample estimates:
 <p>350 actually <em>is</em> the correct answer. But you will need to try different sample sizes until you get close enough to a power of 0.8; simply doing it for <span class="math inline">\(n=350\)</span> is not enough, because how did you know to try 350 and not some other sample size?</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="power-and-alpha-in-a-skewed-population-1" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="power-and-alpha-in-a-skewed-population-1"><span class="header-section-number">6.10</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</h2>
+<section id="power-and-alpha-in-a-skewed-population-1" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="power-and-alpha-in-a-skewed-population-1"><span class="header-section-number">8.10</span> Power and <span class="math inline">\(\alpha\)</span> in a skewed population</h2>
 <p>A population of a large number of values <code>v</code> is at <a href="http://ritsokiguess.site/datafiles/pop.csv">http://ritsokiguess.site/datafiles/pop.csv</a>, in a CSV file.</p>
 <ol type="a">
 <li>Read in the population and display some of the values.</li>
@@ -1625,12 +1637,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./two-sample-inference.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./sign.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

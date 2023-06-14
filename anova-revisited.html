@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 28&nbsp; Analysis of variance revisited</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 31&nbsp; Analysis of variance revisited</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anova-revisited.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anova-revisited.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,18 +400,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#acid-rain" id="toc-acid-rain" class="nav-link active" data-scroll-target="#acid-rain"><span class="header-section-number">28.1</span> Acid rain</a></li>
-  <li><a href="#treating-hay-fever" id="toc-treating-hay-fever" class="nav-link" data-scroll-target="#treating-hay-fever"><span class="header-section-number">28.2</span> Treating hay fever</a></li>
-  <li><a href="#focused-comparisons-of-the-effect-of-caffeine" id="toc-focused-comparisons-of-the-effect-of-caffeine" class="nav-link" data-scroll-target="#focused-comparisons-of-the-effect-of-caffeine"><span class="header-section-number">28.3</span> Focused comparisons of the effect of caffeine</a></li>
-  <li><a href="#who-studies-the-most-outside-class" id="toc-who-studies-the-most-outside-class" class="nav-link" data-scroll-target="#who-studies-the-most-outside-class"><span class="header-section-number">28.4</span> Who studies the most outside class?</a></li>
-  <li><a href="#mental-context" id="toc-mental-context" class="nav-link" data-scroll-target="#mental-context"><span class="header-section-number">28.5</span> Mental context</a></li>
-  <li><a href="#trying-on-shirts" id="toc-trying-on-shirts" class="nav-link" data-scroll-target="#trying-on-shirts"><span class="header-section-number">28.6</span> Trying on shirts</a></li>
-  <li><a href="#acid-rain-1" id="toc-acid-rain-1" class="nav-link" data-scroll-target="#acid-rain-1"><span class="header-section-number">28.7</span> Acid rain</a></li>
-  <li><a href="#treating-hay-fever-1" id="toc-treating-hay-fever-1" class="nav-link" data-scroll-target="#treating-hay-fever-1"><span class="header-section-number">28.8</span> Treating hay fever</a></li>
-  <li><a href="#focused-comparisons-of-the-effect-of-caffeine-1" id="toc-focused-comparisons-of-the-effect-of-caffeine-1" class="nav-link" data-scroll-target="#focused-comparisons-of-the-effect-of-caffeine-1"><span class="header-section-number">28.9</span> Focused comparisons of the effect of caffeine</a></li>
-  <li><a href="#who-studies-the-most-outside-class-1" id="toc-who-studies-the-most-outside-class-1" class="nav-link" data-scroll-target="#who-studies-the-most-outside-class-1"><span class="header-section-number">28.10</span> Who studies the most outside class?</a></li>
-  <li><a href="#mental-context-1" id="toc-mental-context-1" class="nav-link" data-scroll-target="#mental-context-1"><span class="header-section-number">28.11</span> Mental context</a></li>
-  <li><a href="#trying-on-shirts-1" id="toc-trying-on-shirts-1" class="nav-link" data-scroll-target="#trying-on-shirts-1"><span class="header-section-number">28.12</span> Trying on shirts</a></li>
+  <li><a href="#acid-rain" id="toc-acid-rain" class="nav-link active" data-scroll-target="#acid-rain"><span class="header-section-number">31.1</span> Acid rain</a></li>
+  <li><a href="#treating-hay-fever" id="toc-treating-hay-fever" class="nav-link" data-scroll-target="#treating-hay-fever"><span class="header-section-number">31.2</span> Treating hay fever</a></li>
+  <li><a href="#focused-comparisons-of-the-effect-of-caffeine" id="toc-focused-comparisons-of-the-effect-of-caffeine" class="nav-link" data-scroll-target="#focused-comparisons-of-the-effect-of-caffeine"><span class="header-section-number">31.3</span> Focused comparisons of the effect of caffeine</a></li>
+  <li><a href="#who-studies-the-most-outside-class" id="toc-who-studies-the-most-outside-class" class="nav-link" data-scroll-target="#who-studies-the-most-outside-class"><span class="header-section-number">31.4</span> Who studies the most outside class?</a></li>
+  <li><a href="#mental-context" id="toc-mental-context" class="nav-link" data-scroll-target="#mental-context"><span class="header-section-number">31.5</span> Mental context</a></li>
+  <li><a href="#trying-on-shirts" id="toc-trying-on-shirts" class="nav-link" data-scroll-target="#trying-on-shirts"><span class="header-section-number">31.6</span> Trying on shirts</a></li>
+  <li><a href="#acid-rain-1" id="toc-acid-rain-1" class="nav-link" data-scroll-target="#acid-rain-1"><span class="header-section-number">31.7</span> Acid rain</a></li>
+  <li><a href="#treating-hay-fever-1" id="toc-treating-hay-fever-1" class="nav-link" data-scroll-target="#treating-hay-fever-1"><span class="header-section-number">31.8</span> Treating hay fever</a></li>
+  <li><a href="#focused-comparisons-of-the-effect-of-caffeine-1" id="toc-focused-comparisons-of-the-effect-of-caffeine-1" class="nav-link" data-scroll-target="#focused-comparisons-of-the-effect-of-caffeine-1"><span class="header-section-number">31.9</span> Focused comparisons of the effect of caffeine</a></li>
+  <li><a href="#who-studies-the-most-outside-class-1" id="toc-who-studies-the-most-outside-class-1" class="nav-link" data-scroll-target="#who-studies-the-most-outside-class-1"><span class="header-section-number">31.10</span> Who studies the most outside class?</a></li>
+  <li><a href="#mental-context-1" id="toc-mental-context-1" class="nav-link" data-scroll-target="#mental-context-1"><span class="header-section-number">31.11</span> Mental context</a></li>
+  <li><a href="#trying-on-shirts-1" id="toc-trying-on-shirts-1" class="nav-link" data-scroll-target="#trying-on-shirts-1"><span class="header-section-number">31.12</span> Trying on shirts</a></li>
   </ul>
 </nav>
     </div>
@@ -408,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></h1>
+<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></h1>
 </div>
 
 
@@ -429,8 +441,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="acid-rain" class="level2" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="acid-rain"><span class="header-section-number">28.1</span> Acid rain</h2>
+<section id="acid-rain" class="level2" data-number="31.1">
+<h2 data-number="31.1" class="anchored" data-anchor-id="acid-rain"><span class="header-section-number">31.1</span> Acid rain</h2>
 <p>One of the first noticeable effects of climate change was “acid rain”. This is formed by the water vapour in clouds combining with nitrous oxide and sulfur dioxide, which come from coal and oil production. How does the acidity of rain affect the acidity of the soil on which it falls? (This will have an effect on the kind of plants that can be grown in that soil.) Acidity is measured using the pH scale, where a pH of 7 is chemically neutral, a number less than 7 is acidic, and a number greater than 7 is alkaline.</p>
 <p>An experiment was conducted at the Florida Institute of Food and Agricultural Sciences, to determine how acidity of rain affects soil acidity. Experimental plots were irrigated with rainwater that was prepared to have one of two different pH levels, 3.7 and 4.5. The acidity of the soil was then measured at three different depths, 0–15, 15–30, and 30–46 centimetres. This was done on three different dates, in April and June 1991. The data are in <a href="http://ritsokiguess.site/datafiles/acidrain.csv">link</a>.</p>
 <ol type="a">
@@ -440,8 +452,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Fit an ANOVA with interaction. What do you conclude from it? You may want to create a column that is the factor version of <code>rain_pH</code> first.</p></li>
 </ol>
 </section>
-<section id="treating-hay-fever" class="level2" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="treating-hay-fever"><span class="header-section-number">28.2</span> Treating hay fever</h2>
+<section id="treating-hay-fever" class="level2" data-number="31.2">
+<h2 data-number="31.2" class="anchored" data-anchor-id="treating-hay-fever"><span class="header-section-number">31.2</span> Treating hay fever</h2>
 <p>Hay fever is an allergic reaction to things like grasses or pollen which can make it unpleasant to go outside when the weather is at its best. A research lab is developing a new compound to relieve severe cases of hay fever. There were two active ingredients, labelled A and B, with each one having three levels, low, medium and high. There were thus <span class="math inline">\(3\times 3=9\)</span> treatment combinations. 36 subjects were available, and these were randomly assigned to combinations of levels of factor A and factor B, so that each combination was tested on 4 people. The response variable was the number of hours of relief from symptoms (so a higher value is better). The data are in <a href="http://ritsokiguess.site/datafiles/hayfever.txt">link</a>.</p>
 <ol type="a">
 <li><p>Read the data and display its structure. Verify that you have what you were expecting.</p></li>
@@ -453,8 +465,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Analyze the simple effects of B when A is <code>high</code>.</p></li>
 </ol>
 </section>
-<section id="focused-comparisons-of-the-effect-of-caffeine" class="level2" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="focused-comparisons-of-the-effect-of-caffeine"><span class="header-section-number">28.3</span> Focused comparisons of the effect of caffeine</h2>
+<section id="focused-comparisons-of-the-effect-of-caffeine" class="level2" data-number="31.3">
+<h2 data-number="31.3" class="anchored" data-anchor-id="focused-comparisons-of-the-effect-of-caffeine"><span class="header-section-number">31.3</span> Focused comparisons of the effect of caffeine</h2>
 <p>Does caffeine help students do better on a certain test? To find out, 36 students were randomly allocated to three groups (12 in each group). Each student received a fixed number of cups of coffee while they were studying, but the students didn’t know whether they were receiving all full-strength coffee (“high”), all decaf coffee (“low”) or a 50-50 mixture of the two (“moderate”). For each subject, their group was recorded as well as their score on the test. The data are in <a href="http://ritsokiguess.site/datafiles/caffeine.csv">link</a>, as a <code>.csv</code> file.</p>
 <p>This time we look at contrasts. Suppose I knew ahead of time that I wanted to compare moderate caffeine with high, and any caffeine with none. (In the latter case, we’re comparing “no caffeine” against the average of the other two groups.)</p>
 <p>In the previous go-through of the caffeine data, we discovered that <code>amount</code> was actually text rather than a factor, but we also discovered that it <em>didn’t matter</em>. Here it does matter, so the first thing we have to do is to re-do the <code>pivot_longer</code>, creating a factor version of <code>amount</code>.</p>
@@ -471,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>What happens if you try to use high caffeine vs.&nbsp;moderate caffeine and moderate vs.&nbsp;none as your two contrasts?</p></li>
 </ol>
 </section>
-<section id="who-studies-the-most-outside-class" class="level2" data-number="28.4">
-<h2 data-number="28.4" class="anchored" data-anchor-id="who-studies-the-most-outside-class"><span class="header-section-number">28.4</span> Who studies the most outside class?</h2>
+<section id="who-studies-the-most-outside-class" class="level2" data-number="31.4">
+<h2 data-number="31.4" class="anchored" data-anchor-id="who-studies-the-most-outside-class"><span class="header-section-number">31.4</span> Who studies the most outside class?</h2>
 <p>A social scientist wanted to see how many hours students studied outside of class. She took a random sample of 75 students from three different majors: math, social science and English, and recorded the number of weekly outside-class study hours for each student. The data can be found at <a href="http://ritsokiguess.site/datafiles/studyhours.txt">link</a>. The social scientist had two research questions: whether math students study more outside of class than the other students, and whether English and social science students study different amounts of time outside class.</p>
 <ol type="a">
 <li><p>Explain briefly why contrasts would be a better idea here than ANOVA with Tukey.</p></li>
@@ -484,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Are you surprised by the significance or non-significance you found in the previous part? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="mental-context" class="level2" data-number="28.5">
-<h2 data-number="28.5" class="anchored" data-anchor-id="mental-context"><span class="header-section-number">28.5</span> Mental context</h2>
+<section id="mental-context" class="level2" data-number="31.5">
+<h2 data-number="31.5" class="anchored" data-anchor-id="mental-context"><span class="header-section-number">31.5</span> Mental context</h2>
 <p>It is believed that being in the same mental context for learning and for testing leads to better test scores. An experiment was carried out to test this. During the learning phase, subjects learned a list of 80 words in a room painted orange and decorated with posters, paintings and other paraphernalia.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> A memory test was given to all subjects immediately after they had learned the words, to give the impression that the experiment was over. (The results of this test were discarded.) One day later, subjects were unexpectedly re-tested under different experimental conditions and asked to write down all the words of the original list that they could remember. The re-test took place in five different conditions, which subjects were randomly allocated to one of:</p>
 <ul>
 <li><p>Same context: in the original orange-painted room.</p></li>
@@ -522,8 +534,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>For each of the original research hypotheses, what do you infer about them?</p></li>
 </ol>
 </section>
-<section id="trying-on-shirts" class="level2" data-number="28.6">
-<h2 data-number="28.6" class="anchored" data-anchor-id="trying-on-shirts"><span class="header-section-number">28.6</span> Trying on shirts</h2>
+<section id="trying-on-shirts" class="level2" data-number="31.6">
+<h2 data-number="31.6" class="anchored" data-anchor-id="trying-on-shirts"><span class="header-section-number">31.6</span> Trying on shirts</h2>
 <p>Does it make a difference if you see somebody else trying on a shirt before you do, and if so, does it matter what kind of person it is?</p>
 <p>An experiment was carried out in a university bookstore, with students who wanted to try on a shirt serving as (unsuspecting) experimental subjects. When a student wanted to try on a shirt, the sales associate told them that there was only one shirt left, and it was being tried on by an “other customer”. This “other customer” was actually a “confederate” of the experimenter (that means, they were pretending to be a real customer but were actually part of the experiment). The “other customer” was always female: either an attractive well-dressed model, or an average-looking student wearing jeans. The “other customer” would come out of the dressing room and hand the shirt to the sales associate, who would give it to the student who wanted to try it on. When the student had tried on the shirt, they were asked to rate it on a 7-point scale (on five different dimensions, and those five scores were then averaged). Does a student’s evaluation depend on whether the student was male or female, and whether the “other customer” was a model or a student? There was also a control group, where the student was handed the shirt directly by the sales associate, without the “other customer” being involved at all.</p>
 <p>There were thus five treatments: male students who saw a model, male students who saw a student, female students who saw a model, female students who saw a student, and the control group. There were 25 students in each treatment group.</p>
@@ -550,8 +562,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="acid-rain-1" class="level2" data-number="28.7">
-<h2 data-number="28.7" class="anchored" data-anchor-id="acid-rain-1"><span class="header-section-number">28.7</span> Acid rain</h2>
+<section id="acid-rain-1" class="level2" data-number="31.7">
+<h2 data-number="31.7" class="anchored" data-anchor-id="acid-rain-1"><span class="header-section-number">31.7</span> Acid rain</h2>
 <p>One of the first noticeable effects of climate change was “acid rain”. This is formed by the water vapour in clouds combining with nitrous oxide and sulfur dioxide, which come from coal and oil production. How does the acidity of rain affect the acidity of the soil on which it falls? (This will have an effect on the kind of plants that can be grown in that soil.) Acidity is measured using the pH scale, where a pH of 7 is chemically neutral, a number less than 7 is acidic, and a number greater than 7 is alkaline.</p>
 <p>An experiment was conducted at the Florida Institute of Food and Agricultural Sciences, to determine how acidity of rain affects soil acidity. Experimental plots were irrigated with rainwater that was prepared to have one of two different pH levels, 3.7 and 4.5. The acidity of the soil was then measured at three different depths, 0–15, 15–30, and 30–46 centimetres. This was done on three different dates, in April and June 1991. The data are in <a href="http://ritsokiguess.site/datafiles/acidrain.csv">link</a>.</p>
 <ol type="a">
@@ -654,8 +666,8 @@ Residuals   14 0.4888 0.03492               </code></pre>
 <p>The P-values have come down a bit (the result of gaining two df for error while the error SS only got a tiny bit bigger), but not nearly enough to be significant.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="treating-hay-fever-1" class="level2" data-number="28.8">
-<h2 data-number="28.8" class="anchored" data-anchor-id="treating-hay-fever-1"><span class="header-section-number">28.8</span> Treating hay fever</h2>
+<section id="treating-hay-fever-1" class="level2" data-number="31.8">
+<h2 data-number="31.8" class="anchored" data-anchor-id="treating-hay-fever-1"><span class="header-section-number">31.8</span> Treating hay fever</h2>
 <p>Hay fever is an allergic reaction to things like grasses or pollen which can make it unpleasant to go outside when the weather is at its best. A research lab is developing a new compound to relieve severe cases of hay fever. There were two active ingredients, labelled A and B, with each one having three levels, low, medium and high. There were thus <span class="math inline">\(3\times 3=9\)</span> treatment combinations. 36 subjects were available, and these were randomly assigned to combinations of levels of factor A and factor B, so that each combination was tested on 4 people. The response variable was the number of hours of relief from symptoms (so a higher value is better). The data are in <a href="http://ritsokiguess.site/datafiles/hayfever.txt">link</a>.</p>
 <ol type="a">
 <li>Read the data and display its structure. Verify that you have what you were expecting.</li>
@@ -872,8 +884,8 @@ medium-low   4.300  3.788132  4.811868 0e+00</code></pre>
 <p>Extra: here, the effect of B is different, depending on what A is. This is what a significant interaction <em>means</em>. If there were no significant interaction, the effect of B would always be the same, no matter what A was.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="focused-comparisons-of-the-effect-of-caffeine-1" class="level2" data-number="28.9">
-<h2 data-number="28.9" class="anchored" data-anchor-id="focused-comparisons-of-the-effect-of-caffeine-1"><span class="header-section-number">28.9</span> Focused comparisons of the effect of caffeine</h2>
+<section id="focused-comparisons-of-the-effect-of-caffeine-1" class="level2" data-number="31.9">
+<h2 data-number="31.9" class="anchored" data-anchor-id="focused-comparisons-of-the-effect-of-caffeine-1"><span class="header-section-number">31.9</span> Focused comparisons of the effect of caffeine</h2>
 <p>Does caffeine help students do better on a certain test? To find out, 36 students were randomly allocated to three groups (12 in each group). Each student received a fixed number of cups of coffee while they were studying, but the students didn’t know whether they were receiving all full-strength coffee (“high”), all decaf coffee (“low”) or a 50-50 mixture of the two (“moderate”). For each subject, their group was recorded as well as their score on the test. The data are in <a href="http://ritsokiguess.site/datafiles/caffeine.csv">link</a>, as a <code>.csv</code> file.</p>
 <p>This time we look at contrasts. Suppose I knew ahead of time that I wanted to compare moderate caffeine with high, and any caffeine with none. (In the latter case, we’re comparing “no caffeine” against the average of the other two groups.)</p>
 <p>In the previous go-through of the caffeine data, we discovered that <code>amount</code> was actually text rather than a factor, but we also discovered that it <em>didn’t matter</em>. Here it does matter, so the first thing we have to do is to re-do the <code>pivot_longer</code>, creating a factor version of <code>amount</code>.</p>
@@ -1228,8 +1240,8 @@ F-statistic: 3.986 on 2 and 33 DF,  p-value: 0.02815</code></pre>
 <p>The rows <code>amountc.hm</code> and <code>amountc.mn</code> are the proper tests for our contrasts <code>c.hm</code> and <code>c.mn</code>. <code>c.hm</code> is not significant (P-value 0.14) and <code>c.mn</code> is not significant either (P-value 0.20). This is the same significance as from Tukey, but note that the P-values for the non-significant tests are much lower than the corresponding ones from Tukey, once again because we have focused on just these comparisons, and not on any others. We decided ahead of time to test just these, and gave ourselves the best chance of finding significance that we could.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="who-studies-the-most-outside-class-1" class="level2" data-number="28.10">
-<h2 data-number="28.10" class="anchored" data-anchor-id="who-studies-the-most-outside-class-1"><span class="header-section-number">28.10</span> Who studies the most outside class?</h2>
+<section id="who-studies-the-most-outside-class-1" class="level2" data-number="31.10">
+<h2 data-number="31.10" class="anchored" data-anchor-id="who-studies-the-most-outside-class-1"><span class="header-section-number">31.10</span> Who studies the most outside class?</h2>
 <p>A social scientist wanted to see how many hours students studied outside of class. She took a random sample of 75 students from three different majors: math, social science and English, and recorded the number of weekly outside-class study hours for each student. The data can be found at <a href="http://ritsokiguess.site/datafiles/studyhours.txt">link</a>. The social scientist had two research questions: whether math students study more outside of class than the other students, and whether English and social science students study different amounts of time outside class.</p>
 <ol type="a">
 <li>Explain briefly why contrasts would be a better idea here than ANOVA with Tukey.</li>
@@ -1478,8 +1490,8 @@ mean in group rest mean in group math
 <p>That business with the <code>var.equal=T</code>? This is doing a pooled <span class="math inline">\(t\)</span>-test. I did that here because the ANOVA is assuming equal spreads within the groups (which is what a pooled <span class="math inline">\(t\)</span>-test does) and I thought I should do my best to be consistent. A pooled <span class="math inline">\(t\)</span>-test is really a two-group one-way ANOVA, or at least it is if it is done two-sided.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="mental-context-1" class="level2" data-number="28.11">
-<h2 data-number="28.11" class="anchored" data-anchor-id="mental-context-1"><span class="header-section-number">28.11</span> Mental context</h2>
+<section id="mental-context-1" class="level2" data-number="31.11">
+<h2 data-number="31.11" class="anchored" data-anchor-id="mental-context-1"><span class="header-section-number">31.11</span> Mental context</h2>
 <p>It is believed that being in the same mental context for learning and for testing leads to better test scores. An experiment was carried out to test this. During the learning phase, subjects learned a list of 80 words in a room painted orange and decorated with posters, paintings and other paraphernalia.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> A memory test was given to all subjects immediately after they had learned the words, to give the impression that the experiment was over. (The results of this test were discarded.) One day later, subjects were unexpectedly re-tested under different experimental conditions and asked to write down all the words of the original list that they could remember. The re-test took place in five different conditions, which subjects were randomly allocated to one of:</p>
 <ul>
 <li><p>Same context: in the original orange-painted room.</p></li>
@@ -1740,8 +1752,8 @@ F-statistic: 4.715 on 4 and 45 DF,  p-value: 0.002902</code></pre>
 <p>How big of a difference does thinking about the orange room make? You can use the 2 SE thing to get a 95% confidence interval: the difference in the (mean of the) recall-orange-room means and the (mean of the) don’t-recall means is between about 4.6 and 12.6 words (out of 80). I leave it for you to decide whether that is practically important as well as being statistically significant.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="trying-on-shirts-1" class="level2" data-number="28.12">
-<h2 data-number="28.12" class="anchored" data-anchor-id="trying-on-shirts-1"><span class="header-section-number">28.12</span> Trying on shirts</h2>
+<section id="trying-on-shirts-1" class="level2" data-number="31.12">
+<h2 data-number="31.12" class="anchored" data-anchor-id="trying-on-shirts-1"><span class="header-section-number">31.12</span> Trying on shirts</h2>
 <p>Does it make a difference if you see somebody else trying on a shirt before you do, and if so, does it matter what kind of person it is?</p>
 <p>An experiment was carried out in a university bookstore, with students who wanted to try on a shirt serving as (unsuspecting) experimental subjects. When a student wanted to try on a shirt, the sales associate told them that there was only one shirt left, and it was being tried on by an “other customer”. This “other customer” was actually a “confederate” of the experimenter (that means, they were pretending to be a real customer but were actually part of the experiment). The “other customer” was always female: either an attractive well-dressed model, or an average-looking student wearing jeans. The “other customer” would come out of the dressing room and hand the shirt to the sales associate, who would give it to the student who wanted to try it on. When the student had tried on the shirt, they were asked to rate it on a 7-point scale (on five different dimensions, and those five scores were then averaged). Does a student’s evaluation depend on whether the student was male or female, and whether the “other customer” was a model or a student? There was also a control group, where the student was handed the shirt directly by the sales associate, without the “other customer” being involved at all.</p>
 <p>There were thus five treatments: male students who saw a model, male students who saw a student, female students who saw a model, female students who saw a student, and the control group. There were 25 students in each treatment group.</p>
@@ -2272,12 +2284,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./survival-analysis.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ancova.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

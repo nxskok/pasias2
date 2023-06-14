@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 3&nbsp; Data exploration</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 4&nbsp; Data exploration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./one-sample-inference.html" rel="next">
-<link href="./reading-in.html" rel="prev">
+<link href="./working-with-dataframes.html" rel="next">
+<link href="./making-graphs.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-summaries.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-summaries.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,20 +400,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#north-carolina-births" id="toc-north-carolina-births" class="nav-link active" data-scroll-target="#north-carolina-births"><span class="header-section-number">3.1</span> North Carolina births</a></li>
-  <li><a href="#more-about-the-nc-births" id="toc-more-about-the-nc-births" class="nav-link" data-scroll-target="#more-about-the-nc-births"><span class="header-section-number">3.2</span> More about the NC births</a></li>
-  <li><a href="#nenana-alaska" id="toc-nenana-alaska" class="nav-link" data-scroll-target="#nenana-alaska"><span class="header-section-number">3.3</span> Nenana, Alaska</a></li>
-  <li><a href="#computerized-accounting" id="toc-computerized-accounting" class="nav-link" data-scroll-target="#computerized-accounting"><span class="header-section-number">3.4</span> Computerized accounting</a></li>
-  <li><a href="#test-scores-in-two-classes" id="toc-test-scores-in-two-classes" class="nav-link" data-scroll-target="#test-scores-in-two-classes"><span class="header-section-number">3.5</span> Test scores in two classes</a></li>
-  <li><a href="#unprecedented-rainfall" id="toc-unprecedented-rainfall" class="nav-link" data-scroll-target="#unprecedented-rainfall"><span class="header-section-number">3.6</span> Unprecedented rainfall</a></li>
-  <li><a href="#learning-algebra" id="toc-learning-algebra" class="nav-link" data-scroll-target="#learning-algebra"><span class="header-section-number">3.7</span> Learning algebra</a></li>
-  <li><a href="#north-carolina-births-1" id="toc-north-carolina-births-1" class="nav-link" data-scroll-target="#north-carolina-births-1"><span class="header-section-number">3.8</span> North Carolina births</a></li>
-  <li><a href="#more-about-the-nc-births-1" id="toc-more-about-the-nc-births-1" class="nav-link" data-scroll-target="#more-about-the-nc-births-1"><span class="header-section-number">3.9</span> More about the NC births</a></li>
-  <li><a href="#nenana-alaska-1" id="toc-nenana-alaska-1" class="nav-link" data-scroll-target="#nenana-alaska-1"><span class="header-section-number">3.10</span> Nenana, Alaska</a></li>
-  <li><a href="#computerized-accounting-1" id="toc-computerized-accounting-1" class="nav-link" data-scroll-target="#computerized-accounting-1"><span class="header-section-number">3.11</span> Computerized accounting</a></li>
-  <li><a href="#test-scores-in-two-classes-1" id="toc-test-scores-in-two-classes-1" class="nav-link" data-scroll-target="#test-scores-in-two-classes-1"><span class="header-section-number">3.12</span> Test scores in two classes</a></li>
-  <li><a href="#unprecedented-rainfall-1" id="toc-unprecedented-rainfall-1" class="nav-link" data-scroll-target="#unprecedented-rainfall-1"><span class="header-section-number">3.13</span> Unprecedented rainfall</a></li>
-  <li><a href="#learning-algebra-1" id="toc-learning-algebra-1" class="nav-link" data-scroll-target="#learning-algebra-1"><span class="header-section-number">3.14</span> Learning algebra</a></li>
+  <li><a href="#north-carolina-births" id="toc-north-carolina-births" class="nav-link active" data-scroll-target="#north-carolina-births"><span class="header-section-number">4.1</span> North Carolina births</a></li>
+  <li><a href="#more-about-the-nc-births" id="toc-more-about-the-nc-births" class="nav-link" data-scroll-target="#more-about-the-nc-births"><span class="header-section-number">4.2</span> More about the NC births</a></li>
+  <li><a href="#nenana-alaska" id="toc-nenana-alaska" class="nav-link" data-scroll-target="#nenana-alaska"><span class="header-section-number">4.3</span> Nenana, Alaska</a></li>
+  <li><a href="#computerized-accounting" id="toc-computerized-accounting" class="nav-link" data-scroll-target="#computerized-accounting"><span class="header-section-number">4.4</span> Computerized accounting</a></li>
+  <li><a href="#test-scores-in-two-classes" id="toc-test-scores-in-two-classes" class="nav-link" data-scroll-target="#test-scores-in-two-classes"><span class="header-section-number">4.5</span> Test scores in two classes</a></li>
+  <li><a href="#unprecedented-rainfall" id="toc-unprecedented-rainfall" class="nav-link" data-scroll-target="#unprecedented-rainfall"><span class="header-section-number">4.6</span> Unprecedented rainfall</a></li>
+  <li><a href="#learning-algebra" id="toc-learning-algebra" class="nav-link" data-scroll-target="#learning-algebra"><span class="header-section-number">4.7</span> Learning algebra</a></li>
+  <li><a href="#north-carolina-births-1" id="toc-north-carolina-births-1" class="nav-link" data-scroll-target="#north-carolina-births-1"><span class="header-section-number">4.8</span> North Carolina births</a></li>
+  <li><a href="#more-about-the-nc-births-1" id="toc-more-about-the-nc-births-1" class="nav-link" data-scroll-target="#more-about-the-nc-births-1"><span class="header-section-number">4.9</span> More about the NC births</a></li>
+  <li><a href="#nenana-alaska-1" id="toc-nenana-alaska-1" class="nav-link" data-scroll-target="#nenana-alaska-1"><span class="header-section-number">4.10</span> Nenana, Alaska</a></li>
+  <li><a href="#computerized-accounting-1" id="toc-computerized-accounting-1" class="nav-link" data-scroll-target="#computerized-accounting-1"><span class="header-section-number">4.11</span> Computerized accounting</a></li>
+  <li><a href="#test-scores-in-two-classes-1" id="toc-test-scores-in-two-classes-1" class="nav-link" data-scroll-target="#test-scores-in-two-classes-1"><span class="header-section-number">4.12</span> Test scores in two classes</a></li>
+  <li><a href="#unprecedented-rainfall-1" id="toc-unprecedented-rainfall-1" class="nav-link" data-scroll-target="#unprecedented-rainfall-1"><span class="header-section-number">4.13</span> Unprecedented rainfall</a></li>
+  <li><a href="#learning-algebra-1" id="toc-learning-algebra-1" class="nav-link" data-scroll-target="#learning-algebra-1"><span class="header-section-number">4.14</span> Learning algebra</a></li>
   </ul>
 </nav>
     </div>
@@ -410,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></h1>
 </div>
 
 
@@ -428,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="north-carolina-births" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="north-carolina-births"><span class="header-section-number">3.1</span> North Carolina births</h2>
+<section id="north-carolina-births" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="north-carolina-births"><span class="header-section-number">4.1</span> North Carolina births</h2>
 <p>The data in file <a href="http://ritsokiguess.site/datafiles/ncbirths2.csv">link</a> are about 500 randomly chosen births of babies in North Carolina. There is a lot of information: not just the weight at birth of the baby, but whether the baby was born prematurely, the ages of the parents, whether the parents are married, how long (in weeks) the pregnancy lasted (this is called the “gestation”) and so on.</p>
 <ol type="a">
 <li><p>Read in the data from the file into R, bearing in mind what type of file it is.</p></li>
@@ -437,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The theory behind the <span class="math inline">\(t\)</span>-test (which we do later) says that the distribution of birth weights should be (approximately) normally distributed. Obtain a histogram of the birth weights. Does it look approximately normal? Comment briefly. (You’ll have to pick a number of bins for your histogram first. I don’t mind very much what you pick, as long as it’s not obviously too many or too few bins.)</p></li>
 </ol>
 </section>
-<section id="more-about-the-nc-births" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="more-about-the-nc-births"><span class="header-section-number">3.2</span> More about the NC births</h2>
+<section id="more-about-the-nc-births" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="more-about-the-nc-births"><span class="header-section-number">4.2</span> More about the NC births</h2>
 <p>This is an exploration of some extra issues around the North Carolina births data set.</p>
 <ol type="a">
 <li><p>How short does a pregnancy have to be, for the birth to be classified as “premature”? Deduce this from the data, by drawing a suitable graph or otherwise.</p></li>
@@ -446,8 +458,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Do a web search to find the standard (North American) definition of a premature birth. Does that correspond to what you saw in the data? Cite the website you used, for example by saying “according to <code>URL</code>, …”, with <code>URL</code> replaced by the address of the website you found.</p></li>
 </ol>
 </section>
-<section id="nenana-alaska" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="nenana-alaska"><span class="header-section-number">3.3</span> Nenana, Alaska</h2>
+<section id="nenana-alaska" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="nenana-alaska"><span class="header-section-number">4.3</span> Nenana, Alaska</h2>
 <p>Nenana, Alaska, is about 50 miles west of Fairbanks. Every spring, there is a contest in Nenana. A wooden tripod is placed on the frozen river, and people try to guess the exact minute when the ice melts enough for the tripod to fall through the ice. The contest started in 1917 as an amusement for railway workers, and has taken place every year since. Now, hundreds of thousands of people enter their guesses on the Internet and the prize for the winner can be as much as $300,000.</p>
 <p>Because so much money is at stake, and because the exact same tripod is placed at the exact same spot on the ice every year, the data are consistent and accurate. The data are in <a href="http://ritsokiguess.site/datafiles/nenana.txt">link</a>.</p>
 <ol type="a">
@@ -457,8 +469,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Plot <code>JulianDate</code> against <code>Year</code> on a scatterplot. What recent trends, if any, do you see? Comment briefly.</p></li>
 </ol>
 </section>
-<section id="computerized-accounting" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="computerized-accounting"><span class="header-section-number">3.4</span> Computerized accounting</h2>
+<section id="computerized-accounting" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="computerized-accounting"><span class="header-section-number">4.4</span> Computerized accounting</h2>
 <p>Beginning accounting students need to learn to learn to audit in a computerized environment. A sample of beginning accounting students took each of two tests: the Computer Attitude Scale (CAS) and the Computer Anxiety Rating Scale (CARS). A higher score in each indicates greater anxiety around computers. The test scores are scaled to be between 0 and 5. Also noted was each student’s gender. The data are in <a href="http://ritsokiguess.site/datafiles/compatt.txt">http://ritsokiguess.site/datafiles/compatt.txt</a>. The data values are separated by spaces.</p>
 <ol type="a">
 <li><p>Read the data into R. Do you have what you expected? Explain briefly.</p></li>
@@ -468,8 +480,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Find the mean and standard deviation of both CAS and CARS scores (for all the students combined, ie.&nbsp;not separated by gender) <em>without</em> naming those columns explicitly.</p></li>
 </ol>
 </section>
-<section id="test-scores-in-two-classes" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="test-scores-in-two-classes"><span class="header-section-number">3.5</span> Test scores in two classes</h2>
+<section id="test-scores-in-two-classes" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="test-scores-in-two-classes"><span class="header-section-number">4.5</span> Test scores in two classes</h2>
 <p>Open R Studio. Create a new Text File by selecting File, New File and Text File. You should see a new empty, untitled window appear at the top left. In that window, type or copy the data below (which are scores on a test for students in two different classes):</p>
 <pre><code>
 class score
@@ -494,8 +506,8 @@ thomas 72
 <li><p>Compute the median score (of all the scores together). Does this seem about right, looking at the boxplot? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="unprecedented-rainfall" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="unprecedented-rainfall"><span class="header-section-number">3.6</span> Unprecedented rainfall</h2>
+<section id="unprecedented-rainfall" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="unprecedented-rainfall"><span class="header-section-number">4.6</span> Unprecedented rainfall</h2>
 <p>In 1997, a company in Davis, California, had problems with odour in its wastewater facility. According to a company official, the problems were caused by “unprecedented weather conditions” and “because rainfall was at 170 to 180 percent of its normal level, the water in the holding ponds took longer to exit for irrigation, giving it more time to develop an odour.”</p>
 <p>Annual rainfall data for the Davis area is <a href="http://ritsokiguess.site/datafiles/rainfall.txt">here</a>. Note that clicking on the link will display the file, and <em>right</em>-clicking on the link will give you some options, one of which is Copy Link Address, which you can then paste into your R Notebook.</p>
 <p>The rainfall is measured in inches.</p>
@@ -509,8 +521,8 @@ thomas 72
 <li><p>Do you think that the official was right to use the word “unprecedented” to describe the 1997 rainfall? Justify your answer briefly.</p></li>
 </ol>
 </section>
-<section id="learning-algebra" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="learning-algebra"><span class="header-section-number">3.7</span> Learning algebra</h2>
+<section id="learning-algebra" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="learning-algebra"><span class="header-section-number">4.7</span> Learning algebra</h2>
 <p>At a high school in New Jersey, teachers were interested in what might help students to learn algebra. One idea was laptops as a learning aid, to see whether having access to one helped with algebra scores. (This was some time ago.) The 20 students in one class were given laptops to use in school and at home, while the 27 students in another class were not given laptops. For all of these students, the final exam score in algebra was recorded. The data are in <a href="http://ritsokiguess.site/datafiles/algebra.txt">http://ritsokiguess.site/datafiles/algebra.txt</a>, with two columns, one indicating whether the student received a laptop or not, and the other giving their score on the algebra final exam.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data. Do you have (i) the correct number of observations, and (ii) the correct <em>type</em> of columns? Explain briefly.</p></li>
@@ -520,8 +532,8 @@ thomas 72
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="north-carolina-births-1" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="north-carolina-births-1"><span class="header-section-number">3.8</span> North Carolina births</h2>
+<section id="north-carolina-births-1" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="north-carolina-births-1"><span class="header-section-number">4.8</span> North Carolina births</h2>
 <p>The data in file <a href="http://ritsokiguess.site/datafiles/ncbirths2.csv">link</a> are about 500 randomly chosen births of babies in North Carolina. There is a lot of information: not just the weight at birth of the baby, but whether the baby was born prematurely, the ages of the parents, whether the parents are married, how long (in weeks) the pregnancy lasted (this is called the “gestation”) and so on.</p>
 <ol type="a">
 <li>Read in the data from the file into R, bearing in mind what type of file it is.</li>
@@ -758,8 +770,8 @@ w=2(IQR)n^{-1/3}
 <p><em>I</em> think the reason for those extra very low values is that they are the premature births (that can result in <em>very</em> small babies). Which leads to the additional question coming up later.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="more-about-the-nc-births-1" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="more-about-the-nc-births-1"><span class="header-section-number">3.9</span> More about the NC births</h2>
+<section id="more-about-the-nc-births-1" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="more-about-the-nc-births-1"><span class="header-section-number">4.9</span> More about the NC births</h2>
 <p>This is an exploration of some extra issues around the North Carolina births data set.</p>
 <ol type="a">
 <li>How short does a pregnancy have to be, for the birth to be classified as “premature”? Deduce this from the data, by drawing a suitable graph or otherwise.</li>
@@ -883,8 +895,8 @@ w=2(IQR)n^{-1/3}
 <p>The website <a href="http://www.mayoclinic.org/diseases-conditions/premature-birth/basics/definition/con-20020050">http://www.mayoclinic.org/diseases-conditions/premature-birth/basics/definition/con-20020050</a> says that “a premature birth is one that occurs before the start of the 37th week of pregnancy”, which is exactly what we found. (Note that I am citing the webpage on which I found this, and I even made it into a link so that you can check it.) The Mayo Clinic is a famous hospital system with locations in several US states, so I think we can trust what its website says.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="nenana-alaska-1" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="nenana-alaska-1"><span class="header-section-number">3.10</span> Nenana, Alaska</h2>
+<section id="nenana-alaska-1" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="nenana-alaska-1"><span class="header-section-number">4.10</span> Nenana, Alaska</h2>
 <p>Nenana, Alaska, is about 50 miles west of Fairbanks. Every spring, there is a contest in Nenana. A wooden tripod is placed on the frozen river, and people try to guess the exact minute when the ice melts enough for the tripod to fall through the ice. The contest started in 1917 as an amusement for railway workers, and has taken place every year since. Now, hundreds of thousands of people enter their guesses on the Internet and the prize for the winner can be as much as $300,000.</p>
 <p>Because so much money is at stake, and because the exact same tripod is placed at the exact same spot on the ice every year, the data are consistent and accurate. The data are in <a href="http://ritsokiguess.site/datafiles/nenana.txt">link</a>.</p>
 <ol type="a">
@@ -1066,8 +1078,8 @@ $ `Date&amp;Time` &lt;chr&gt; "April 30 at 11:30 AM", "May 11 at 9:33 AM", "May 
 <p>What does this mean, in practice? This notion of the ice melting earlier than it used to is consistent all over the Arctic, and is one more indication of climate change. Precisely, it is an indication that climate change is happening, but we would have to delve further to make any statements about the <em>cause</em> of that climate change.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="computerized-accounting-1" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="computerized-accounting-1"><span class="header-section-number">3.11</span> Computerized accounting</h2>
+<section id="computerized-accounting-1" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="computerized-accounting-1"><span class="header-section-number">4.11</span> Computerized accounting</h2>
 <p>Beginning accounting students need to learn to learn to audit in a computerized environment. A sample of beginning accounting students took each of two tests: the Computer Attitude Scale (CAS) and the Computer Anxiety Rating Scale (CARS). A higher score in each indicates greater anxiety around computers. The test scores are scaled to be between 0 and 5. Also noted was each student’s gender. The data are in <a href="http://ritsokiguess.site/datafiles/compatt.txt">http://ritsokiguess.site/datafiles/compatt.txt</a>. The data values are separated by spaces.</p>
 <ol type="a">
 <li>Read the data into R. Do you have what you expected? Explain briefly.</li>
@@ -1285,8 +1297,8 @@ dbl (2): CAS, CARS
 <p>There is a slight (but only slight) tendency for the males to be up and to the right, and for the females to be down and to the left. This is about what you would expect, given that the male means are slightly bigger on both scores, but the difference in means is not that big compared to the SD.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="test-scores-in-two-classes-1" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="test-scores-in-two-classes-1"><span class="header-section-number">3.12</span> Test scores in two classes</h2>
+<section id="test-scores-in-two-classes-1" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="test-scores-in-two-classes-1"><span class="header-section-number">4.12</span> Test scores in two classes</h2>
 <p>Open R Studio. Create a new Text File by selecting File, New File and Text File. You should see a new empty, untitled window appear at the top left. In that window, type or copy the data below (which are scores on a test for students in two different classes):</p>
 <pre><code>
 class score
@@ -1622,8 +1634,8 @@ dbl (1): mark
 </div>
 <p>This deliberately untidies the final answer to make it nicer to look at. (The lines before that create a numeric quantile, so that it sorts into the right order, and then get rid of the original quantile percents. Investigate what happens if you do a similar <code>pivot_wider</code> without doing that.)</p>
 </section>
-<section id="unprecedented-rainfall-1" class="level2" data-number="3.13">
-<h2 data-number="3.13" class="anchored" data-anchor-id="unprecedented-rainfall-1"><span class="header-section-number">3.13</span> Unprecedented rainfall</h2>
+<section id="unprecedented-rainfall-1" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="unprecedented-rainfall-1"><span class="header-section-number">4.13</span> Unprecedented rainfall</h2>
 <p>In 1997, a company in Davis, California, had problems with odour in its wastewater facility. According to a company official, the problems were caused by “unprecedented weather conditions” and “because rainfall was at 170 to 180 percent of its normal level, the water in the holding ponds took longer to exit for irrigation, giving it more time to develop an odour.”</p>
 <p>Annual rainfall data for the Davis area is <a href="http://ritsokiguess.site/datafiles/rainfall.txt">here</a>. Note that clicking on the link will display the file, and <em>right</em>-clicking on the link will give you some options, one of which is Copy Link Address, which you can then paste into your R Notebook.</p>
 <p>The rainfall is measured in inches.</p>
@@ -1843,8 +1855,8 @@ chr (1): Year Rainfall
 <p>1997 was only the <em>fifth</em> highest rainfall, and two of the higher ones were also in the 1990s. Definitely not “unprecedented”. The official needs to get a new dictionary!</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="learning-algebra-1" class="level2" data-number="3.14">
-<h2 data-number="3.14" class="anchored" data-anchor-id="learning-algebra-1"><span class="header-section-number">3.14</span> Learning algebra</h2>
+<section id="learning-algebra-1" class="level2" data-number="4.14">
+<h2 data-number="4.14" class="anchored" data-anchor-id="learning-algebra-1"><span class="header-section-number">4.14</span> Learning algebra</h2>
 <p>At a high school in New Jersey, teachers were interested in what might help students to learn algebra. One idea was laptops as a learning aid, to see whether having access to one helped with algebra scores. (This was some time ago.) The 20 students in one class were given laptops to use in school and at home, while the 27 students in another class were not given laptops. For all of these students, the final exam score in algebra was recorded. The data are in <a href="http://ritsokiguess.site/datafiles/algebra.txt">http://ritsokiguess.site/datafiles/algebra.txt</a>, with two columns, one indicating whether the student received a laptop or not, and the other giving their score on the algebra final exam.</p>
 <ol type="a">
 <li>Read in and display (some of) the data. Do you have (i) the correct number of observations, and (ii) the correct <em>type</em> of columns? Explain briefly.</li>
@@ -2242,13 +2254,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./reading-in.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span>
+      <a href="./making-graphs.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./one-sample-inference.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./working-with-dataframes.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

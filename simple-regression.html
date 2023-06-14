@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 16&nbsp; Simple regression</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 18&nbsp; Simple regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-regression.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-regression.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,34 +400,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rainfall-in-california" id="toc-rainfall-in-california" class="nav-link active" data-scroll-target="#rainfall-in-california"><span class="header-section-number">16.1</span> Rainfall in California</a></li>
-  <li><a href="#carbon-monoxide-in-cigarettes" id="toc-carbon-monoxide-in-cigarettes" class="nav-link" data-scroll-target="#carbon-monoxide-in-cigarettes"><span class="header-section-number">16.2</span> Carbon monoxide in cigarettes</a></li>
-  <li><a href="#maximal-oxygen-uptake-in-young-boys" id="toc-maximal-oxygen-uptake-in-young-boys" class="nav-link" data-scroll-target="#maximal-oxygen-uptake-in-young-boys"><span class="header-section-number">16.3</span> Maximal oxygen uptake in young boys</a></li>
-  <li><a href="#facebook-friends-and-grey-matter" id="toc-facebook-friends-and-grey-matter" class="nav-link" data-scroll-target="#facebook-friends-and-grey-matter"><span class="header-section-number">16.4</span> Facebook friends and grey matter</a></li>
-  <li><a href="#endogenous-nitrogen-excretion-in-carp" id="toc-endogenous-nitrogen-excretion-in-carp" class="nav-link" data-scroll-target="#endogenous-nitrogen-excretion-in-carp"><span class="header-section-number">16.5</span> Endogenous nitrogen excretion in carp</a></li>
-  <li><a href="#salaries-of-social-workers" id="toc-salaries-of-social-workers" class="nav-link" data-scroll-target="#salaries-of-social-workers"><span class="header-section-number">16.6</span> Salaries of social workers</a></li>
-  <li><a href="#predicting-volume-of-wood-in-pine-trees" id="toc-predicting-volume-of-wood-in-pine-trees" class="nav-link" data-scroll-target="#predicting-volume-of-wood-in-pine-trees"><span class="header-section-number">16.7</span> Predicting volume of wood in pine trees</a></li>
-  <li><a href="#tortoise-shells-and-eggs" id="toc-tortoise-shells-and-eggs" class="nav-link" data-scroll-target="#tortoise-shells-and-eggs"><span class="header-section-number">16.8</span> Tortoise shells and eggs</a></li>
-  <li><a href="#roller-coasters" id="toc-roller-coasters" class="nav-link" data-scroll-target="#roller-coasters"><span class="header-section-number">16.9</span> Roller coasters</a></li>
-  <li><a href="#running-and-blood-sugar" id="toc-running-and-blood-sugar" class="nav-link" data-scroll-target="#running-and-blood-sugar"><span class="header-section-number">16.10</span> Running and blood sugar</a></li>
-  <li><a href="#calories-and-fat-in-pizza" id="toc-calories-and-fat-in-pizza" class="nav-link" data-scroll-target="#calories-and-fat-in-pizza"><span class="header-section-number">16.11</span> Calories and fat in pizza</a></li>
-  <li><a href="#where-should-the-fire-stations-be" id="toc-where-should-the-fire-stations-be" class="nav-link" data-scroll-target="#where-should-the-fire-stations-be"><span class="header-section-number">16.12</span> Where should the fire stations be?</a></li>
-  <li><a href="#making-it-stop" id="toc-making-it-stop" class="nav-link" data-scroll-target="#making-it-stop"><span class="header-section-number">16.13</span> Making it stop</a></li>
-  <li><a href="#predicting-height-from-foot-length" id="toc-predicting-height-from-foot-length" class="nav-link" data-scroll-target="#predicting-height-from-foot-length"><span class="header-section-number">16.14</span> Predicting height from foot length</a></li>
-  <li><a href="#rainfall-in-california-1" id="toc-rainfall-in-california-1" class="nav-link" data-scroll-target="#rainfall-in-california-1"><span class="header-section-number">16.15</span> Rainfall in California</a></li>
-  <li><a href="#carbon-monoxide-in-cigarettes-1" id="toc-carbon-monoxide-in-cigarettes-1" class="nav-link" data-scroll-target="#carbon-monoxide-in-cigarettes-1"><span class="header-section-number">16.16</span> Carbon monoxide in cigarettes</a></li>
-  <li><a href="#maximal-oxygen-uptake-in-young-boys-1" id="toc-maximal-oxygen-uptake-in-young-boys-1" class="nav-link" data-scroll-target="#maximal-oxygen-uptake-in-young-boys-1"><span class="header-section-number">16.17</span> Maximal oxygen uptake in young boys</a></li>
-  <li><a href="#facebook-friends-and-grey-matter-1" id="toc-facebook-friends-and-grey-matter-1" class="nav-link" data-scroll-target="#facebook-friends-and-grey-matter-1"><span class="header-section-number">16.18</span> Facebook friends and grey matter</a></li>
-  <li><a href="#endogenous-nitrogen-excretion-in-carp-1" id="toc-endogenous-nitrogen-excretion-in-carp-1" class="nav-link" data-scroll-target="#endogenous-nitrogen-excretion-in-carp-1"><span class="header-section-number">16.19</span> Endogenous nitrogen excretion in carp</a></li>
-  <li><a href="#salaries-of-social-workers-1" id="toc-salaries-of-social-workers-1" class="nav-link" data-scroll-target="#salaries-of-social-workers-1"><span class="header-section-number">16.20</span> Salaries of social workers</a></li>
-  <li><a href="#predicting-volume-of-wood-in-pine-trees-1" id="toc-predicting-volume-of-wood-in-pine-trees-1" class="nav-link" data-scroll-target="#predicting-volume-of-wood-in-pine-trees-1"><span class="header-section-number">16.21</span> Predicting volume of wood in pine trees</a></li>
-  <li><a href="#tortoise-shells-and-eggs-1" id="toc-tortoise-shells-and-eggs-1" class="nav-link" data-scroll-target="#tortoise-shells-and-eggs-1"><span class="header-section-number">16.22</span> Tortoise shells and eggs</a></li>
-  <li><a href="#roller-coasters-1" id="toc-roller-coasters-1" class="nav-link" data-scroll-target="#roller-coasters-1"><span class="header-section-number">16.23</span> Roller coasters</a></li>
-  <li><a href="#running-and-blood-sugar-1" id="toc-running-and-blood-sugar-1" class="nav-link" data-scroll-target="#running-and-blood-sugar-1"><span class="header-section-number">16.24</span> Running and blood sugar</a></li>
-  <li><a href="#calories-and-fat-in-pizza-1" id="toc-calories-and-fat-in-pizza-1" class="nav-link" data-scroll-target="#calories-and-fat-in-pizza-1"><span class="header-section-number">16.25</span> Calories and fat in pizza</a></li>
-  <li><a href="#where-should-the-fire-stations-be-1" id="toc-where-should-the-fire-stations-be-1" class="nav-link" data-scroll-target="#where-should-the-fire-stations-be-1"><span class="header-section-number">16.26</span> Where should the fire stations be?</a></li>
-  <li><a href="#making-it-stop-1" id="toc-making-it-stop-1" class="nav-link" data-scroll-target="#making-it-stop-1"><span class="header-section-number">16.27</span> Making it stop</a></li>
-  <li><a href="#predicting-height-from-foot-length-1" id="toc-predicting-height-from-foot-length-1" class="nav-link" data-scroll-target="#predicting-height-from-foot-length-1"><span class="header-section-number">16.28</span> Predicting height from foot length</a></li>
+  <li><a href="#rainfall-in-california" id="toc-rainfall-in-california" class="nav-link active" data-scroll-target="#rainfall-in-california"><span class="header-section-number">18.1</span> Rainfall in California</a></li>
+  <li><a href="#carbon-monoxide-in-cigarettes" id="toc-carbon-monoxide-in-cigarettes" class="nav-link" data-scroll-target="#carbon-monoxide-in-cigarettes"><span class="header-section-number">18.2</span> Carbon monoxide in cigarettes</a></li>
+  <li><a href="#maximal-oxygen-uptake-in-young-boys" id="toc-maximal-oxygen-uptake-in-young-boys" class="nav-link" data-scroll-target="#maximal-oxygen-uptake-in-young-boys"><span class="header-section-number">18.3</span> Maximal oxygen uptake in young boys</a></li>
+  <li><a href="#facebook-friends-and-grey-matter" id="toc-facebook-friends-and-grey-matter" class="nav-link" data-scroll-target="#facebook-friends-and-grey-matter"><span class="header-section-number">18.4</span> Facebook friends and grey matter</a></li>
+  <li><a href="#endogenous-nitrogen-excretion-in-carp" id="toc-endogenous-nitrogen-excretion-in-carp" class="nav-link" data-scroll-target="#endogenous-nitrogen-excretion-in-carp"><span class="header-section-number">18.5</span> Endogenous nitrogen excretion in carp</a></li>
+  <li><a href="#salaries-of-social-workers" id="toc-salaries-of-social-workers" class="nav-link" data-scroll-target="#salaries-of-social-workers"><span class="header-section-number">18.6</span> Salaries of social workers</a></li>
+  <li><a href="#predicting-volume-of-wood-in-pine-trees" id="toc-predicting-volume-of-wood-in-pine-trees" class="nav-link" data-scroll-target="#predicting-volume-of-wood-in-pine-trees"><span class="header-section-number">18.7</span> Predicting volume of wood in pine trees</a></li>
+  <li><a href="#tortoise-shells-and-eggs" id="toc-tortoise-shells-and-eggs" class="nav-link" data-scroll-target="#tortoise-shells-and-eggs"><span class="header-section-number">18.8</span> Tortoise shells and eggs</a></li>
+  <li><a href="#roller-coasters" id="toc-roller-coasters" class="nav-link" data-scroll-target="#roller-coasters"><span class="header-section-number">18.9</span> Roller coasters</a></li>
+  <li><a href="#running-and-blood-sugar" id="toc-running-and-blood-sugar" class="nav-link" data-scroll-target="#running-and-blood-sugar"><span class="header-section-number">18.10</span> Running and blood sugar</a></li>
+  <li><a href="#calories-and-fat-in-pizza" id="toc-calories-and-fat-in-pizza" class="nav-link" data-scroll-target="#calories-and-fat-in-pizza"><span class="header-section-number">18.11</span> Calories and fat in pizza</a></li>
+  <li><a href="#where-should-the-fire-stations-be" id="toc-where-should-the-fire-stations-be" class="nav-link" data-scroll-target="#where-should-the-fire-stations-be"><span class="header-section-number">18.12</span> Where should the fire stations be?</a></li>
+  <li><a href="#making-it-stop" id="toc-making-it-stop" class="nav-link" data-scroll-target="#making-it-stop"><span class="header-section-number">18.13</span> Making it stop</a></li>
+  <li><a href="#predicting-height-from-foot-length" id="toc-predicting-height-from-foot-length" class="nav-link" data-scroll-target="#predicting-height-from-foot-length"><span class="header-section-number">18.14</span> Predicting height from foot length</a></li>
+  <li><a href="#rainfall-in-california-1" id="toc-rainfall-in-california-1" class="nav-link" data-scroll-target="#rainfall-in-california-1"><span class="header-section-number">18.15</span> Rainfall in California</a></li>
+  <li><a href="#carbon-monoxide-in-cigarettes-1" id="toc-carbon-monoxide-in-cigarettes-1" class="nav-link" data-scroll-target="#carbon-monoxide-in-cigarettes-1"><span class="header-section-number">18.16</span> Carbon monoxide in cigarettes</a></li>
+  <li><a href="#maximal-oxygen-uptake-in-young-boys-1" id="toc-maximal-oxygen-uptake-in-young-boys-1" class="nav-link" data-scroll-target="#maximal-oxygen-uptake-in-young-boys-1"><span class="header-section-number">18.17</span> Maximal oxygen uptake in young boys</a></li>
+  <li><a href="#facebook-friends-and-grey-matter-1" id="toc-facebook-friends-and-grey-matter-1" class="nav-link" data-scroll-target="#facebook-friends-and-grey-matter-1"><span class="header-section-number">18.18</span> Facebook friends and grey matter</a></li>
+  <li><a href="#endogenous-nitrogen-excretion-in-carp-1" id="toc-endogenous-nitrogen-excretion-in-carp-1" class="nav-link" data-scroll-target="#endogenous-nitrogen-excretion-in-carp-1"><span class="header-section-number">18.19</span> Endogenous nitrogen excretion in carp</a></li>
+  <li><a href="#salaries-of-social-workers-1" id="toc-salaries-of-social-workers-1" class="nav-link" data-scroll-target="#salaries-of-social-workers-1"><span class="header-section-number">18.20</span> Salaries of social workers</a></li>
+  <li><a href="#predicting-volume-of-wood-in-pine-trees-1" id="toc-predicting-volume-of-wood-in-pine-trees-1" class="nav-link" data-scroll-target="#predicting-volume-of-wood-in-pine-trees-1"><span class="header-section-number">18.21</span> Predicting volume of wood in pine trees</a></li>
+  <li><a href="#tortoise-shells-and-eggs-1" id="toc-tortoise-shells-and-eggs-1" class="nav-link" data-scroll-target="#tortoise-shells-and-eggs-1"><span class="header-section-number">18.22</span> Tortoise shells and eggs</a></li>
+  <li><a href="#roller-coasters-1" id="toc-roller-coasters-1" class="nav-link" data-scroll-target="#roller-coasters-1"><span class="header-section-number">18.23</span> Roller coasters</a></li>
+  <li><a href="#running-and-blood-sugar-1" id="toc-running-and-blood-sugar-1" class="nav-link" data-scroll-target="#running-and-blood-sugar-1"><span class="header-section-number">18.24</span> Running and blood sugar</a></li>
+  <li><a href="#calories-and-fat-in-pizza-1" id="toc-calories-and-fat-in-pizza-1" class="nav-link" data-scroll-target="#calories-and-fat-in-pizza-1"><span class="header-section-number">18.25</span> Calories and fat in pizza</a></li>
+  <li><a href="#where-should-the-fire-stations-be-1" id="toc-where-should-the-fire-stations-be-1" class="nav-link" data-scroll-target="#where-should-the-fire-stations-be-1"><span class="header-section-number">18.26</span> Where should the fire stations be?</a></li>
+  <li><a href="#making-it-stop-1" id="toc-making-it-stop-1" class="nav-link" data-scroll-target="#making-it-stop-1"><span class="header-section-number">18.27</span> Making it stop</a></li>
+  <li><a href="#predicting-height-from-foot-length-1" id="toc-predicting-height-from-foot-length-1" class="nav-link" data-scroll-target="#predicting-height-from-foot-length-1"><span class="header-section-number">18.28</span> Predicting height from foot length</a></li>
   </ul>
 </nav>
     </div>
@@ -424,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></h1>
 </div>
 
 
@@ -442,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="rainfall-in-california" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="rainfall-in-california"><span class="header-section-number">16.1</span> Rainfall in California</h2>
+<section id="rainfall-in-california" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="rainfall-in-california"><span class="header-section-number">18.1</span> Rainfall in California</h2>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/calirain.txt">link</a> are rainfall and other measurements for 30 weather stations in California. Our aim is to understand how well the annual rainfall at these stations (measured in inches) can be predicted from the other measurements, which are the altitude (in feet above sea level), the latitude (degrees north of the equator) and the distance from the coast (in miles).</p>
 <ol type="a">
 <li><p>Read the data into R. You’ll have to be careful here, since the values are space-delimited, but sometimes by more than one space, to make the columns line up. <code>read_table2</code>, with filename or url, will read it in. One of the variables is called <code>rainfall</code>, so as long as you <em>do not</em> call the data frame that, you should be safe.</p></li>
@@ -457,8 +469,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Make a suitable hypothesis test that the variables <code>altitude</code> and <code>fromcoast</code> significantly improve the prediction of <code>rainfall</code> over the use of <code>latitude</code> alone. What do you conclude?</p></li>
 </ol>
 </section>
-<section id="carbon-monoxide-in-cigarettes" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="carbon-monoxide-in-cigarettes"><span class="header-section-number">16.2</span> Carbon monoxide in cigarettes</h2>
+<section id="carbon-monoxide-in-cigarettes" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="carbon-monoxide-in-cigarettes"><span class="header-section-number">18.2</span> Carbon monoxide in cigarettes</h2>
 <p>The (US) Federal Trade Commission assesses cigarettes according to their tar, nicotine and carbon monoxide contents. In a particular year, 25 brands were assessed. For each brand, the tar, nicotine and carbon monoxide (all in milligrams) were measured, along with the weight in grams. Our aim is to predict carbon monoxide from any or all of the other variables. The data are in <a href="http://ritsokiguess.site/datafiles/ftccigar.txt">link</a>. These are aligned by column (except for the variable names), with more than one space between each column of data.</p>
 <ol type="a">
 <li><p>Read the data into R, and check that you have 25 observations and 4 variables.</p></li>
@@ -469,8 +481,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Make a “pairs plot”: that is, scatter plots between all pairs of variables. This can be done by feeding the whole data frame into <code>plot</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Do you see any strong relationships that do <em>not</em> include <code>co</code>? Does that shed any light on the last part? Explain briefly (or “at length” if that’s how it comes out).</p></li>
 </ol>
 </section>
-<section id="maximal-oxygen-uptake-in-young-boys" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="maximal-oxygen-uptake-in-young-boys"><span class="header-section-number">16.3</span> Maximal oxygen uptake in young boys</h2>
+<section id="maximal-oxygen-uptake-in-young-boys" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="maximal-oxygen-uptake-in-young-boys"><span class="header-section-number">18.3</span> Maximal oxygen uptake in young boys</h2>
 <p>A physiologist wanted to understand the relationship between physical characteristics of pre-adolescent boys and their maximal oxygen uptake (millilitres of oxygen per kilogram of body weight). The data are in <a href="http://ritsokiguess.site/datafiles/youngboys.txt">link</a> for a random sample of 10 pre-adolescent boys. The variables are (with units):</p>
 <ul>
 <li><p><code>uptake</code>: Oxygen uptake (millitres of oxygen per kilogram of body weight)</p></li>
@@ -491,8 +503,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Obtain a table of correlations between all the variables in the data frame. Do this by feeding the whole data frame into <code>cor</code>. We found that a regression predicting oxygen uptake from just <code>height</code> was acceptably good. What does your table of correlations say about why that is? (Hint: look for all the correlations that are <em>large</em>.)</p></li>
 </ol>
 </section>
-<section id="facebook-friends-and-grey-matter" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="facebook-friends-and-grey-matter"><span class="header-section-number">16.4</span> Facebook friends and grey matter</h2>
+<section id="facebook-friends-and-grey-matter" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="facebook-friends-and-grey-matter"><span class="header-section-number">18.4</span> Facebook friends and grey matter</h2>
 <p>Is there a relationship between the number of Facebook friends a person has, and the density of grey matter in the areas of the brain associated with social perception and associative memory? To find out, a 2012 study measured both of these variables for a sample of 40 students at City University in London (England). The data are at <a href="http://ritsokiguess.site/datafiles/facebook.txt">link</a>. The grey matter density is on a <span class="math inline">\(z\)</span>-score standardized scale. The values are separated by <em>tabs</em>.</p>
 <p>The aim of this question is to produce an R Markdown report that contains your answers to the questions below.</p>
 <p>You should aim to make your report flow smoothly, so that it would be pleasant for a grader to read, and can stand on its own as an analysis (rather than just being the answer to a question that I set you). Some suggestions: give your report a title and arrange it into sections with an Introduction; add a small amount of additional text here and there explaining what you are doing and why. I don’t expect you to spend a large amount of time on this, but I <em>do</em> hope you will make some effort. (My report came out to 4 Word pages.)</p>
@@ -506,8 +518,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Obtain a plot of the residuals from the regression against the fitted values, and comment briefly on it.</p></li>
 </ol>
 </section>
-<section id="endogenous-nitrogen-excretion-in-carp" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="endogenous-nitrogen-excretion-in-carp"><span class="header-section-number">16.5</span> Endogenous nitrogen excretion in carp</h2>
+<section id="endogenous-nitrogen-excretion-in-carp" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="endogenous-nitrogen-excretion-in-carp"><span class="header-section-number">18.5</span> Endogenous nitrogen excretion in carp</h2>
 <p>A paper in Fisheries Science reported on variables that affect “endogenous nitrogen excretion” or ENE in carp raised in Japan. A number of carp were divided into groups based on body weight, and each group was placed in a different tank. The mean body weight of the carp placed in each tank was recorded. The carp were then fed a protein-free diet three times daily for a period of 20 days. At the end of the experiment, the amount of ENE in each tank was measured, in milligrams of total fish body weight per day. (Thus it should not matter that some of the tanks had more fish than others, because the scaling is done properly.)</p>
 <p>For this question, write a report in R Markdown that answers the questions below and contains some narrative that describes your analysis. Create an HTML document from your R Markdown.</p>
 <ol type="a">
@@ -522,8 +534,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Obtain a residual plot for the parabola model. Do you see any problems with it? (If you do, I’m not asking you to do anything about them in this question, but I will.)</p></li>
 </ol>
 </section>
-<section id="salaries-of-social-workers" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="salaries-of-social-workers"><span class="header-section-number">16.6</span> Salaries of social workers</h2>
+<section id="salaries-of-social-workers" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="salaries-of-social-workers"><span class="header-section-number">18.6</span> Salaries of social workers</h2>
 <p>Another salary-prediction question: does the number of years of work experience that a social worker has help to predict their salary? Data for 50 social workers are in <a href="http://ritsokiguess.site/datafiles/socwork.txt">link</a>.</p>
 <ol type="a">
 <li><p>Read the data into R. Check that you have 50 observations on two variables. Also do something to check that the years of experience and annual salary figures look reasonable overall.</p></li>
@@ -535,8 +547,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Obtain and plot the residuals against the fitted values for this regression. Do you seem to have solved the problem with the previous residual plot?</p></li>
 </ol>
 </section>
-<section id="predicting-volume-of-wood-in-pine-trees" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="predicting-volume-of-wood-in-pine-trees"><span class="header-section-number">16.7</span> Predicting volume of wood in pine trees</h2>
+<section id="predicting-volume-of-wood-in-pine-trees" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="predicting-volume-of-wood-in-pine-trees"><span class="header-section-number">18.7</span> Predicting volume of wood in pine trees</h2>
 <p>In forestry, the financial value of a tree is the volume of wood that it contains. This is difficult to estimate while the tree is still standing, but the diameter is easy to measure with a tape measure (to measure the circumference) and a calculation involving <span class="math inline">\(\pi\)</span>, assuming that the cross-section of the tree is at least approximately circular. The standard measurement is “diameter at breast height” (that is, at the height of a human breast or chest), defined as being 4.5 feet above the ground.</p>
 <p>Several pine trees had their diameter measured shortly before being cut down, and for each tree, the volume of wood was recorded. The data are in <a href="http://ritsokiguess.site/datafiles/pinetrees.txt">link</a>. The diameter is in inches and the volume is in cubic inches. Is it possible to predict the volume of wood from the diameter?</p>
 <ol type="a">
@@ -555,8 +567,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Display the results.</li>
 </ol>
 </section>
-<section id="tortoise-shells-and-eggs" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="tortoise-shells-and-eggs"><span class="header-section-number">16.8</span> Tortoise shells and eggs</h2>
+<section id="tortoise-shells-and-eggs" class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="tortoise-shells-and-eggs"><span class="header-section-number">18.8</span> Tortoise shells and eggs</h2>
 <p>A biologist measured the length of the carapace (shell) of female tortoises, and then x-rayed the tortoises to count how many eggs they were carrying. The length is measured in millimetres. The data are in <a href="http://ritsokiguess.site/datafiles/tortoise-eggs.txt">link</a>. The biologist is wondering what kind of relationship, if any, there is between the carapace length (as an explanatory variable) and the number of eggs (as a response variable).</p>
 <ol type="a">
 <li><p>Read in the data, and check that your values look reasonable.</p></li>
@@ -568,8 +580,8 @@ Display the results.</li>
 <li><p>Make a residual plot for the straight line model: that is, plot the residuals against the fitted values. Does this echo your conclusions of the previous part? In what way? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="roller-coasters" class="level2" data-number="16.9">
-<h2 data-number="16.9" class="anchored" data-anchor-id="roller-coasters"><span class="header-section-number">16.9</span> Roller coasters</h2>
+<section id="roller-coasters" class="level2" data-number="18.9">
+<h2 data-number="18.9" class="anchored" data-anchor-id="roller-coasters"><span class="header-section-number">18.9</span> Roller coasters</h2>
 <p>A poll on the Discovery Channel asked people to nominate the best roller-coasters in the United States. We will examine the 10 roller-coasters that received the most votes. Two features of a roller-coaster that are of interest are the distance it drops from start to finish, measured here in feet<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and the duration of the ride, measured in seconds. Is it true that roller-coasters with a bigger drop also tend to have a longer ride? The data are at <a href="http://ritsokiguess.site/datafiles/coasters.csv">link</a>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <ol type="a">
 <li><p>Read the data into R and verify that you have a sensible number of rows and columns.</p></li>
@@ -578,8 +590,8 @@ Display the results.</li>
 <li><p>Find a roller-coaster that is unusual compared to the others. What about its combination of <code>drop</code> and <code>duration</code> is unusual?</p></li>
 </ol>
 </section>
-<section id="running-and-blood-sugar" class="level2" data-number="16.10">
-<h2 data-number="16.10" class="anchored" data-anchor-id="running-and-blood-sugar"><span class="header-section-number">16.10</span> Running and blood sugar</h2>
+<section id="running-and-blood-sugar" class="level2" data-number="18.10">
+<h2 data-number="18.10" class="anchored" data-anchor-id="running-and-blood-sugar"><span class="header-section-number">18.10</span> Running and blood sugar</h2>
 <p>A diabetic wants to know how aerobic exercise affects his blood sugar. When his blood sugar reaches 170 (mg/dl), he goes out for a run at a pace of 10 minutes per mile. He runs different distances on different days. Each time he runs, he measures his blood sugar after the run. (The preferred blood sugar level is between 80 and 120 on this scale.) The data are in the file <a href="http://ritsokiguess.site/datafiles/runner.txt">link</a>. Our aim is to predict blood sugar from distance.</p>
 <ol type="a">
 <li><p>Read in the data and display the data frame that you read in.</p></li>
@@ -592,8 +604,8 @@ Display the results.</li>
 <li><p>Which of your two intervals is longer? Does this make sense? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="calories-and-fat-in-pizza" class="level2" data-number="16.11">
-<h2 data-number="16.11" class="anchored" data-anchor-id="calories-and-fat-in-pizza"><span class="header-section-number">16.11</span> Calories and fat in pizza</h2>
+<section id="calories-and-fat-in-pizza" class="level2" data-number="18.11">
+<h2 data-number="18.11" class="anchored" data-anchor-id="calories-and-fat-in-pizza"><span class="header-section-number">18.11</span> Calories and fat in pizza</h2>
 <p>The file at <a href="http://ritsokiguess.site/datafiles/Pizza.csv">link</a> came from a spreadsheet of information about 24 brands of pizza: specifically, per 5-ounce serving, the number of calories, the grams of fat, and the cost (in US dollars). The names of the pizza brands are quite long. This file may open in a spreadsheet when you browse to the link, depending on your computer’s setup.</p>
 <ol type="a">
 <li><p>Read in the data and display at least some of the data frame. Are the variables of the right types? (In particular, why is the number of calories labelled one way and the cost labelled a different way?)</p></li>
@@ -603,8 +615,8 @@ Display the results.</li>
 <li><p>The research assistant in this study returns with two new brands of pizza (ones that were not in the original data). The fat content of a 5-ounce serving was 12 grams for the first brand and 20 grams for the second brand. For each of these brands of pizza, obtain a suitable 95% interval for the number of calories contained in a 5-ounce serving.</p></li>
 </ol>
 </section>
-<section id="where-should-the-fire-stations-be" class="level2" data-number="16.12">
-<h2 data-number="16.12" class="anchored" data-anchor-id="where-should-the-fire-stations-be"><span class="header-section-number">16.12</span> Where should the fire stations be?</h2>
+<section id="where-should-the-fire-stations-be" class="level2" data-number="18.12">
+<h2 data-number="18.12" class="anchored" data-anchor-id="where-should-the-fire-stations-be"><span class="header-section-number">18.12</span> Where should the fire stations be?</h2>
 <p>In city planning, one major issue is where to locate fire stations. If a city has too many fire stations, it will spend too much on running them, but if it has too few, there may be unnecessary fire damage because the fire trucks take too long to get to the fire.</p>
 <p>The first part of a study of this kind of issue is to understand the relationship between the distance from the fire station (measured in miles in our data set) and the amount of fire damage caused (measured in thousands of dollars). A city recorded the fire damage and distance from fire station for 15 residential fires (which you can take as a sample of “all possible residential fires in that city”). The data are in <a href="http://ritsokiguess.site/datafiles/fire_damage.txt">link</a>.</p>
 <ol type="a">
@@ -617,8 +629,8 @@ Display the results.</li>
 <li><p>Compare the confidence intervals of parts (<a href="#part:ttest">here</a>) and (<a href="#part:cim">here</a>). Specifically, compare their centres and their lengths, and explain briefly why the results make sense.</p></li>
 </ol>
 </section>
-<section id="making-it-stop" class="level2" data-number="16.13">
-<h2 data-number="16.13" class="anchored" data-anchor-id="making-it-stop"><span class="header-section-number">16.13</span> Making it stop</h2>
+<section id="making-it-stop" class="level2" data-number="18.13">
+<h2 data-number="18.13" class="anchored" data-anchor-id="making-it-stop"><span class="header-section-number">18.13</span> Making it stop</h2>
 <p>If you are driving, and you hit the brakes, how far do you travel before coming to a complete stop? Presumably this depends on how fast you are going. Knowing this relationship is important in setting speed limits on roads. For example, on a very bendy road, the speed limit needs to be low, because you cannot see very far ahead, and there could be something just out of sight that you need to stop for.</p>
 <p>Data were collected for a typical car and driver, as shown in <a href="http://ritsokiguess.site/datafiles/stopping.csv">http://ritsokiguess.site/datafiles/stopping.csv</a>. These are American data, so the speeds are miles per hour and the stopping distances are in feet.</p>
 <ol type="a">
@@ -633,8 +645,8 @@ Display the results.</li>
 <li><p>Somebody says to you “if you have a regression with a high R-squared, like 95%, there is no need to look for a better model.” How do you respond to this? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="predicting-height-from-foot-length" class="level2" data-number="16.14">
-<h2 data-number="16.14" class="anchored" data-anchor-id="predicting-height-from-foot-length"><span class="header-section-number">16.14</span> Predicting height from foot length</h2>
+<section id="predicting-height-from-foot-length" class="level2" data-number="18.14">
+<h2 data-number="18.14" class="anchored" data-anchor-id="predicting-height-from-foot-length"><span class="header-section-number">18.14</span> Predicting height from foot length</h2>
 <p>Is it possible to estimate the height of a person from the length of their foot? To find out, 33 (male) students had their height and foot length measured. The data are in <a href="http://ritsokiguess.site/datafiles/heightfoot.csv">http://ritsokiguess.site/datafiles/heightfoot.csv</a>.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data. (If you are having trouble, make sure you have <em>exactly</em> the right URL. The correct URL has no spaces or other strange characters in it.)</p></li>
@@ -650,8 +662,8 @@ Display the results.</li>
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="rainfall-in-california-1" class="level2" data-number="16.15">
-<h2 data-number="16.15" class="anchored" data-anchor-id="rainfall-in-california-1"><span class="header-section-number">16.15</span> Rainfall in California</h2>
+<section id="rainfall-in-california-1" class="level2" data-number="18.15">
+<h2 data-number="18.15" class="anchored" data-anchor-id="rainfall-in-california-1"><span class="header-section-number">18.15</span> Rainfall in California</h2>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/calirain.txt">link</a> are rainfall and other measurements for 30 weather stations in California. Our aim is to understand how well the annual rainfall at these stations (measured in inches) can be predicted from the other measurements, which are the altitude (in feet above sea level), the latitude (degrees north of the equator) and the distance from the coast (in miles).</p>
 <ol type="a">
 <li>Read the data into R. You’ll have to be careful here, since the values are space-delimited, but sometimes by more than one space, to make the columns line up. <code>read_table</code>, with filename or url, will read it in. One of the variables is called <code>rainfall</code>, so as long as you <em>do not</em> call the data frame that, you should be safe.</li>
@@ -942,8 +954,8 @@ This also goes to show that the scatterplots we began with don’t get to the he
 <p>If you have studied these things: this one is a “multiple-partial <span class="math inline">\(F\)</span>-test”, for testing the combined significance of more than one <span class="math inline">\(x\)</span> but less than all the <span class="math inline">\(x\)</span>’s.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="carbon-monoxide-in-cigarettes-1" class="level2" data-number="16.16">
-<h2 data-number="16.16" class="anchored" data-anchor-id="carbon-monoxide-in-cigarettes-1"><span class="header-section-number">16.16</span> Carbon monoxide in cigarettes</h2>
+<section id="carbon-monoxide-in-cigarettes-1" class="level2" data-number="18.16">
+<h2 data-number="18.16" class="anchored" data-anchor-id="carbon-monoxide-in-cigarettes-1"><span class="header-section-number">18.16</span> Carbon monoxide in cigarettes</h2>
 <p>The (US) Federal Trade Commission assesses cigarettes according to their tar, nicotine and carbon monoxide contents. In a particular year, 25 brands were assessed. For each brand, the tar, nicotine and carbon monoxide (all in milligrams) were measured, along with the weight in grams. Our aim is to predict carbon monoxide from any or all of the other variables. The data are in <a href="http://ritsokiguess.site/datafiles/ftccigar.txt">link</a>. These are aligned by column (except for the variable names), with more than one space between each column of data.</p>
 <ol type="a">
 <li>Read the data into R, and check that you have 25 observations and 4 variables.</li>
@@ -1145,8 +1157,8 @@ F-statistic: 138.3 on 1 and 23 DF,  p-value: 3.312e-11</code></pre>
 <p>The three correlations that remain are all very high, which is entirely consistent with the strong linear relationships that you see bottom left.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="maximal-oxygen-uptake-in-young-boys-1" class="level2" data-number="16.17">
-<h2 data-number="16.17" class="anchored" data-anchor-id="maximal-oxygen-uptake-in-young-boys-1"><span class="header-section-number">16.17</span> Maximal oxygen uptake in young boys</h2>
+<section id="maximal-oxygen-uptake-in-young-boys-1" class="level2" data-number="18.17">
+<h2 data-number="18.17" class="anchored" data-anchor-id="maximal-oxygen-uptake-in-young-boys-1"><span class="header-section-number">18.17</span> Maximal oxygen uptake in young boys</h2>
 <p>A physiologist wanted to understand the relationship between physical characteristics of pre-adolescent boys and their maximal oxygen uptake (millilitres of oxygen per kilogram of body weight). The data are in <a href="http://ritsokiguess.site/datafiles/youngboys.txt">link</a> for a random sample of 10 pre-adolescent boys. The variables are (with units):</p>
 <ul>
 <li><p><code>uptake</code>: Oxygen uptake (millitres of oxygen per kilogram of body weight)</p></li>
@@ -1347,8 +1359,8 @@ chest  0.7182659 0.1657523 0.7909452 0.8809605 1.0000000</code></pre>
 <p>A final remark: with five variables, we really ought to have more than ten observations (something like 50 would be better). But with more observations and the same correlation structure, the same issues would come up again, so the question would not be materially changed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="facebook-friends-and-grey-matter-1" class="level2" data-number="16.18">
-<h2 data-number="16.18" class="anchored" data-anchor-id="facebook-friends-and-grey-matter-1"><span class="header-section-number">16.18</span> Facebook friends and grey matter</h2>
+<section id="facebook-friends-and-grey-matter-1" class="level2" data-number="18.18">
+<h2 data-number="18.18" class="anchored" data-anchor-id="facebook-friends-and-grey-matter-1"><span class="header-section-number">18.18</span> Facebook friends and grey matter</h2>
 <p>Is there a relationship between the number of Facebook friends a person has, and the density of grey matter in the areas of the brain associated with social perception and associative memory? To find out, a 2012 study measured both of these variables for a sample of 40 students at City University in London (England). The data are at <a href="http://ritsokiguess.site/datafiles/facebook.txt">link</a>. The grey matter density is on a <span class="math inline">\(z\)</span>-score standardized scale. The values are separated by <em>tabs</em>.</p>
 <p>The aim of this question is to produce an R Markdown report that contains your answers to the questions below.</p>
 <p>You should aim to make your report flow smoothly, so that it would be pleasant for a grader to read, and can stand on its own as an analysis (rather than just being the answer to a question that I set you). Some suggestions: give your report a title and arrange it into sections with an Introduction; add a small amount of additional text here and there explaining what you are doing and why. I don’t expect you to spend a large amount of time on this, but I <em>do</em> hope you will make some effort. (My report came out to 4 Word pages.)</p>
@@ -1503,8 +1515,8 @@ GMdensity    26.61391 138.2836</code></pre>
 <p>Now, why did I try adding a smooth trend, and why is it not necessarily a good idea? The idea of a residual plot is that there should be no trend, and so the smooth trend curve ought to go straight across. The problem is that it will tend to wiggle, just by chance, as here: it looks as if it goes up and down before flattening out. But if you look at the points, <em>they</em> are all over the place, not close to the smooth trend at all. So the smooth trend is rather deceiving. Or, to put it another way, to indicate a real problem, the smooth trend would have to be a <em>lot</em> farther from flat than this one is. I’d call this one basically flat.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="endogenous-nitrogen-excretion-in-carp-1" class="level2" data-number="16.19">
-<h2 data-number="16.19" class="anchored" data-anchor-id="endogenous-nitrogen-excretion-in-carp-1"><span class="header-section-number">16.19</span> Endogenous nitrogen excretion in carp</h2>
+<section id="endogenous-nitrogen-excretion-in-carp-1" class="level2" data-number="18.19">
+<h2 data-number="18.19" class="anchored" data-anchor-id="endogenous-nitrogen-excretion-in-carp-1"><span class="header-section-number">18.19</span> Endogenous nitrogen excretion in carp</h2>
 <p>A paper in Fisheries Science reported on variables that affect “endogenous nitrogen excretion” or ENE in carp raised in Japan. A number of carp were divided into groups based on body weight, and each group was placed in a different tank. The mean body weight of the carp placed in each tank was recorded. The carp were then fed a protein-free diet three times daily for a period of 20 days. At the end of the experiment, the amount of ENE in each tank was measured, in milligrams of total fish body weight per day. (Thus it should not matter that some of the tanks had more fish than others, because the scaling is done properly.)</p>
 <p>For this question, write a report in R Markdown that answers the questions below and contains some narrative that describes your analysis. Create an HTML document from your R Markdown.</p>
 <ol type="a">
@@ -1748,8 +1760,8 @@ F-statistic: 334.6 on 1 and 8 DF,  p-value: 8.205e-08</code></pre>
 <p>My report (as an R Markdown file) is at <a href="http://ritsokiguess.site/datafiles/carp.Rmd">link</a>. Download it, knit it, play with it.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="salaries-of-social-workers-1" class="level2" data-number="16.20">
-<h2 data-number="16.20" class="anchored" data-anchor-id="salaries-of-social-workers-1"><span class="header-section-number">16.20</span> Salaries of social workers</h2>
+<section id="salaries-of-social-workers-1" class="level2" data-number="18.20">
+<h2 data-number="18.20" class="anchored" data-anchor-id="salaries-of-social-workers-1"><span class="header-section-number">18.20</span> Salaries of social workers</h2>
 <p>Another salary-prediction question: does the number of years of work experience that a social worker has help to predict their salary? Data for 50 social workers are in <a href="http://ritsokiguess.site/datafiles/socwork.txt">link</a>.</p>
 <ol type="a">
 <li>Read the data into R. Check that you have 50 observations on two variables. Also do something to check that the years of experience and annual salary figures look reasonable overall.</li>
@@ -2063,8 +2075,8 @@ F-statistic: 303.7 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>or to increase salary by about 5%.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="predicting-volume-of-wood-in-pine-trees-1" class="level2" data-number="16.21">
-<h2 data-number="16.21" class="anchored" data-anchor-id="predicting-volume-of-wood-in-pine-trees-1"><span class="header-section-number">16.21</span> Predicting volume of wood in pine trees</h2>
+<section id="predicting-volume-of-wood-in-pine-trees-1" class="level2" data-number="18.21">
+<h2 data-number="18.21" class="anchored" data-anchor-id="predicting-volume-of-wood-in-pine-trees-1"><span class="header-section-number">18.21</span> Predicting volume of wood in pine trees</h2>
 <p>In forestry, the financial value of a tree is the volume of wood that it contains. This is difficult to estimate while the tree is still standing, but the diameter is easy to measure with a tape measure (to measure the circumference) and a calculation involving <span class="math inline">\(\pi\)</span>, assuming that the cross-section of the tree is at least approximately circular. The standard measurement is “diameter at breast height” (that is, at the height of a human breast or chest), defined as being 4.5 feet above the ground.</p>
 <p>Several pine trees had their diameter measured shortly before being cut down, and for each tree, the volume of wood was recorded. The data are in <a href="http://ritsokiguess.site/datafiles/pinetrees.txt">link</a>. The diameter is in inches and the volume is in cubic inches. Is it possible to predict the volume of wood from the diameter?</p>
 <ol type="a">
@@ -2418,8 +2430,8 @@ log(diameter)  2.315115  3.941665</code></pre>
 <p>The above works because the tangent of 45 degrees is 1. If you have a device that will measure the actual angle,<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> you can be any distance away from the tree, point the device at the top, record the angle, and do some trigonometry to estimate the height of the tree (to which you add the height of your eyes).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="tortoise-shells-and-eggs-1" class="level2" data-number="16.22">
-<h2 data-number="16.22" class="anchored" data-anchor-id="tortoise-shells-and-eggs-1"><span class="header-section-number">16.22</span> Tortoise shells and eggs</h2>
+<section id="tortoise-shells-and-eggs-1" class="level2" data-number="18.22">
+<h2 data-number="18.22" class="anchored" data-anchor-id="tortoise-shells-and-eggs-1"><span class="header-section-number">18.22</span> Tortoise shells and eggs</h2>
 <p>A biologist measured the length of the carapace (shell) of female tortoises, and then x-rayed the tortoises to count how many eggs they were carrying. The length is measured in millimetres. The data are in <a href="http://ritsokiguess.site/datafiles/tortoise-eggs.txt">link</a>. The biologist is wondering what kind of relationship, if any, there is between the carapace length (as an explanatory variable) and the number of eggs (as a response variable).</p>
 <ol type="a">
 <li>Read in the data, and check that your values look reasonable.</li>
@@ -2607,8 +2619,8 @@ F-statistic: 5.747 on 2 and 15 DF,  p-value: 0.01403</code></pre>
 <p>I put the smooth curve on as a kind of warning: it looks as if the size of the residuals goes down and then up again as the fitted values increase. But the width of the grey “envelope” and the general scatter of the points suggests that there is really not much happening here at all. On a plot of residuals, the grey envelope is really more informative than the blue smooth trend. On this one, there is no evidence of any fan-out (or fan-in).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="roller-coasters-1" class="level2" data-number="16.23">
-<h2 data-number="16.23" class="anchored" data-anchor-id="roller-coasters-1"><span class="header-section-number">16.23</span> Roller coasters</h2>
+<section id="roller-coasters-1" class="level2" data-number="18.23">
+<h2 data-number="18.23" class="anchored" data-anchor-id="roller-coasters-1"><span class="header-section-number">18.23</span> Roller coasters</h2>
 <p>A poll on the Discovery Channel asked people to nominate the best roller-coasters in the United States. We will examine the 10 roller-coasters that received the most votes. Two features of a roller-coaster that are of interest are the distance it drops from start to finish, measured here in feet<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> and the duration of the ride, measured in seconds. Is it true that roller-coasters with a bigger drop also tend to have a longer ride? The data are at <a href="http://ritsokiguess.site/datafiles/coasters.csv">link</a>.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></p>
 <ol type="a">
 <li>Read the data into R and verify that you have a sensible number of rows and columns.</li>
@@ -2731,8 +2743,8 @@ dbl (2): drop, duration
 <p>A technicality (but one that you should probably care about): <code>augment</code> takes up to <em>two</em> inputs: a fitted model object like my <code>duration.1</code>, and an optional data frame to include other things from, like the coaster names. I had only one input to it in the pipe because the implied first input was the output from the <code>lm</code>, which doesn’t have a name; the input <code>coasters</code> in the pipe was what would normally be the <em>second</em> input to <code>augment</code>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="running-and-blood-sugar-1" class="level2" data-number="16.24">
-<h2 data-number="16.24" class="anchored" data-anchor-id="running-and-blood-sugar-1"><span class="header-section-number">16.24</span> Running and blood sugar</h2>
+<section id="running-and-blood-sugar-1" class="level2" data-number="18.24">
+<h2 data-number="18.24" class="anchored" data-anchor-id="running-and-blood-sugar-1"><span class="header-section-number">18.24</span> Running and blood sugar</h2>
 <p>A diabetic wants to know how aerobic exercise affects his blood sugar. When his blood sugar reaches 170 (mg/dl), he goes out for a run at a pace of 10 minutes per mile. He runs different distances on different days. Each time he runs, he measures his blood sugar after the run. (The preferred blood sugar level is between 80 and 120 on this scale.) The data are in the file <a href="http://ritsokiguess.site/datafiles/runner.txt">link</a>. Our aim is to predict blood sugar from distance.</p>
 <ol type="a">
 <li>Read in the data and display the data frame that you read in.</li>
@@ -2952,8 +2964,8 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <p>The intervals are about 22.25 and 25.5 units long. The one for a 5-mile run is a bit longer. I think this makes sense because 3 miles is close to the average run distance, so there is a lot of “nearby” data. 5 miles is actually longer than any of the runs that were actually done (and therefore we are actually extrapolating), but the important point for the prediction interval is that there is less nearby data: those 2-mile runs don’t help so much in predicting blood sugar after a 5-mile run. (They help <em>some</em>, because the trend is so linear. This is why the 5-mile interval is not <em>so</em> much longer. If the trend were less clear, the 5-mile interval would be more noticeably worse.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="calories-and-fat-in-pizza-1" class="level2" data-number="16.25">
-<h2 data-number="16.25" class="anchored" data-anchor-id="calories-and-fat-in-pizza-1"><span class="header-section-number">16.25</span> Calories and fat in pizza</h2>
+<section id="calories-and-fat-in-pizza-1" class="level2" data-number="18.25">
+<h2 data-number="18.25" class="anchored" data-anchor-id="calories-and-fat-in-pizza-1"><span class="header-section-number">18.25</span> Calories and fat in pizza</h2>
 <p>The file at <a href="http://ritsokiguess.site/datafiles/Pizza.csv">link</a> came from a spreadsheet of information about 24 brands of pizza: specifically, per 5-ounce serving, the number of calories, the grams of fat, and the cost (in US dollars). The names of the pizza brands are quite long. This file may open in a spreadsheet when you browse to the link, depending on your computer’s setup.</p>
 <ol type="a">
 <li>Read in the data and display at least some of the data frame. Are the variables of the right types? (In particular, why is the number of calories labelled one way and the cost labelled a different way?)</li>
@@ -3186,8 +3198,8 @@ F-statistic: 22.66 on 2 and 21 DF,  p-value: 5.698e-06</code></pre>
 <p>This part was a fair bit of work for 3 points, so I’m not insisting that you explain your choice of a prediction interval over a confidence interval, but I think it is still a smart thing to do, even purely from a marks point of view, because if you get it wrong for a semi-plausible reason, you might pick up some partial credit. Not pulling out your prediction intervals from your output is a sure way to lose a point, however.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="where-should-the-fire-stations-be-1" class="level2" data-number="16.26">
-<h2 data-number="16.26" class="anchored" data-anchor-id="where-should-the-fire-stations-be-1"><span class="header-section-number">16.26</span> Where should the fire stations be?</h2>
+<section id="where-should-the-fire-stations-be-1" class="level2" data-number="18.26">
+<h2 data-number="18.26" class="anchored" data-anchor-id="where-should-the-fire-stations-be-1"><span class="header-section-number">18.26</span> Where should the fire stations be?</h2>
 <p>In city planning, one major issue is where to locate fire stations. If a city has too many fire stations, it will spend too much on running them, but if it has too few, there may be unnecessary fire damage because the fire trucks take too long to get to the fire.</p>
 <p>The first part of a study of this kind of issue is to understand the relationship between the distance from the fire station (measured in miles in our data set) and the amount of fire damage caused (measured in thousands of dollars). A city recorded the fire damage and distance from fire station for 15 residential fires (which you can take as a sample of “all possible residential fires in that city”). The data are in <a href="http://ritsokiguess.site/datafiles/fire_damage.txt">link</a>.</p>
 <ol type="a">
@@ -3465,8 +3477,8 @@ mean of x
 <p>If you have some reasonable discussion of the reason why the centres and lengths of the intervals differ, I’m happy. It doesn’t have to be the same as mine.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="making-it-stop-1" class="level2" data-number="16.27">
-<h2 data-number="16.27" class="anchored" data-anchor-id="making-it-stop-1"><span class="header-section-number">16.27</span> Making it stop</h2>
+<section id="making-it-stop-1" class="level2" data-number="18.27">
+<h2 data-number="18.27" class="anchored" data-anchor-id="making-it-stop-1"><span class="header-section-number">18.27</span> Making it stop</h2>
 <p>If you are driving, and you hit the brakes, how far do you travel before coming to a complete stop? Presumably this depends on how fast you are going. Knowing this relationship is important in setting speed limits on roads. For example, on a very bendy road, the speed limit needs to be low, because you cannot see very far ahead, and there could be something just out of sight that you need to stop for.</p>
 <p>Data were collected for a typical car and driver, as shown in <a href="http://ritsokiguess.site/datafiles/stopping.csv">http://ritsokiguess.site/datafiles/stopping.csv</a>. These are American data, so the speeds are miles per hour and the stopping distances are in feet.</p>
 <ol type="a">
@@ -3671,8 +3683,8 @@ F-statistic:  1840 on 1 and 7 DF,  p-value: 9.772e-10</code></pre>
 <p>Using R-squared as a measure of absolute model quality is, thus, a mistake. Or, to say it perhaps more clearly, asking “how high does R-squared have to be to indicate a good fit?” is asking the wrong question. The right thing to do is to concentrate on getting the form of the model right, and thereby get the R-squared as high as we can for that data set (which might be very high, as here, or not high at all).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="predicting-height-from-foot-length-1" class="level2" data-number="16.28">
-<h2 data-number="16.28" class="anchored" data-anchor-id="predicting-height-from-foot-length-1"><span class="header-section-number">16.28</span> Predicting height from foot length</h2>
+<section id="predicting-height-from-foot-length-1" class="level2" data-number="18.28">
+<h2 data-number="18.28" class="anchored" data-anchor-id="predicting-height-from-foot-length-1"><span class="header-section-number">18.28</span> Predicting height from foot length</h2>
 <p>Is it possible to estimate the height of a person from the length of their foot? To find out, 33 (male) students had their height and foot length measured. The data are in <a href="http://ritsokiguess.site/datafiles/heightfoot.csv">http://ritsokiguess.site/datafiles/heightfoot.csv</a>.</p>
 <ol type="a">
 <li>Read in and display (some of) the data. (If you are having trouble, make sure you have <em>exactly</em> the right URL. The correct URL has no spaces or other strange characters in it.)</li>
@@ -4213,12 +4225,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./tidying-data.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./multiple-regression.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

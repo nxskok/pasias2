@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 3&nbsp; Drawing graphs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data-summaries.html" rel="next">
+<link href="./reading-in.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./making-graphs.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting_used.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reading-in.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./loglin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#orange-juice" id="toc-orange-juice" class="nav-link active" data-scroll-target="#orange-juice"><span class="header-section-number">3.1</span> Orange juice</a></li>
+  <li><a href="#making-soap" id="toc-making-soap" class="nav-link" data-scroll-target="#making-soap"><span class="header-section-number">3.2</span> Making soap</a></li>
+  <li><a href="#handling-shipments" id="toc-handling-shipments" class="nav-link" data-scroll-target="#handling-shipments"><span class="header-section-number">3.3</span> Handling shipments</a></li>
+  <li><a href="#rainfall-in-davis-california" id="toc-rainfall-in-davis-california" class="nav-link" data-scroll-target="#rainfall-in-davis-california"><span class="header-section-number">3.4</span> Rainfall in Davis, California</a></li>
+  <li><a href="#students-and-exercise" id="toc-students-and-exercise" class="nav-link" data-scroll-target="#students-and-exercise"><span class="header-section-number">3.5</span> Students and exercise</a></li>
+  <li><a href="#orange-juice-1" id="toc-orange-juice-1" class="nav-link" data-scroll-target="#orange-juice-1"><span class="header-section-number">3.6</span> Orange juice</a></li>
+  <li><a href="#making-soap-1" id="toc-making-soap-1" class="nav-link" data-scroll-target="#making-soap-1"><span class="header-section-number">3.7</span> Making soap</a></li>
+  <li><a href="#handling-shipments-1" id="toc-handling-shipments-1" class="nav-link" data-scroll-target="#handling-shipments-1"><span class="header-section-number">3.8</span> Handling shipments</a></li>
+  <li><a href="#rainfall-in-davis-california-1" id="toc-rainfall-in-davis-california-1" class="nav-link" data-scroll-target="#rainfall-in-davis-california-1"><span class="header-section-number">3.9</span> Rainfall in Davis, California</a></li>
+  <li><a href="#students-and-exercise-1" id="toc-students-and-exercise-1" class="nav-link" data-scroll-target="#students-and-exercise-1"><span class="header-section-number">3.10</span> Students and exercise</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="orange-juice" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="orange-juice"><span class="header-section-number">3.1</span> Orange juice</h2>
+<p>We will read in the orange juice data again, in <a href="http://ritsokiguess.site/datafiles/ojuice.txt">link</a>, and make a suitable graph.</p>
+<ol type="a">
+<li><p>The data values are separated by a space. Use the appropriate Tidyverse function to read the data directly from the course website into a “tibble”.</p></li>
+<li><p>The juice manufacturer was interested in whether there was a relationship between sweetness and pectin. To assess this, draw a scatterplot. Does it look as if there is any kind of a relationship? (I think <code>sweetness</code> is the outcome variable and <code>pectin</code> is explanatory, so draw your scatterplot appropriately.)</p></li>
+</ol>
+</section>
+<section id="making-soap" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="making-soap"><span class="header-section-number">3.2</span> Making soap</h2>
+<p>Previously, we learned about a company that operates two production lines in a factory for making soap bars. The production lines were labelled A and B. A production line that moves faster may produce more soap, but may possibly also produce more “scrap” (that is, bits of soap that can no longer be made into soap bars and will have to be thrown away).</p>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/soap.txt">link</a>.</p>
+<ol type="a">
+<li><p>Read the data into R again.</p></li>
+<li><p>Obtain a histogram of the <code>scrap</code> values, using 10 bins for your histogram.</p></li>
+<li><p>Comment briefly on the shape of the histogram. Is it approximately symmetric, skewed to the left, skewed to the right or something else? (By “comment briefly” I mean “say in a few words why you gave the answer you did.”)</p></li>
+<li><p>Make side-by-side boxplots of scrap values for each production line.</p></li>
+<li><p>Do you think your boxplot says that there are differences in the amount of scrap produced by the two production lines, or not? Explain briefly.</p></li>
+<li><p>We started out with the suspicion that if the line was run faster, there would be more scrap. We haven’t assessed this yet. Draw a scatter plot with <code>scrap</code> on the <span class="math inline">\(y\)</span> axis and <code>speed</code> on the <span class="math inline">\(x\)</span> axis.</p></li>
+<li><p>What do you think is the most important conclusion from your plot of the previous part? Describe your conclusion in the context of the data.</p></li>
+</ol>
+</section>
+<section id="handling-shipments" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="handling-shipments"><span class="header-section-number">3.3</span> Handling shipments</h2>
+<p>We learned earlier about a company called Global Electronics that imports shipments of a certain large part used as a component in several of its products. The size of the shipment varies each time. Each shipment is sent to one of two warehouses (labelled A and B) for handling. The data in <a href="http://ritsokiguess.site/datafiles/global.csv">link</a> show the <code>size</code> of each shipment (in thousands of parts) and the direct <code>cost</code> of handling it, in thousands of dollars. Also shown is the <code>warehouse</code> (A or B) that handled each shipment.</p>
+<ol type="a">
+<li><p>Read the data into R and display your data frame.</p></li>
+<li><p>Make a scatterplot of the cost of handling each shipment as it depends on the shipment’s size.</p></li>
+<li><p>What kind of relationship do you see on the scatterplot? Do you think a straight line would describe it appropriately? Explain briefly.</p></li>
+<li><p>When a shipment comes in, the cost of handling it is not known. A decision is made about which warehouse to send it to, and then, after it is handled, the cost is recorded. What do you think determines which warehouse an incoming shipment goes to? Provide a graph to support your answer.</p></li>
+</ol>
+</section>
+<section id="rainfall-in-davis-california" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="rainfall-in-davis-california"><span class="header-section-number">3.4</span> Rainfall in Davis, California</h2>
+<p>One way to assess climate change is to look at weather records over a number of years and to identify any changes.</p>
+<p>Annual rainfall data for the Davis, California is in <a href="http://ritsokiguess.site/datafiles/rainfall.txt">here</a>. (Right-click on the URL and select Copy Link Address, then paste into your R Notebook.) The rainfall is measured in inches.</p>
+<ol type="a">
+<li><p>Read in and display (some of) the data. Briefly justify why you coded it as you did.</p></li>
+<li><p>Make a suitable plot of the rainfall values and years. Explain briefly why you drew the plot you did.</p></li>
+<li><p>Add a regression line to your plot. Is there any convincing indication of a trend, upward or downward, in annual rainfall for Davis, California? Discuss briefly.</p></li>
+</ol>
+</section>
+<section id="students-and-exercise" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="students-and-exercise"><span class="header-section-number">3.5</span> Students and exercise</h2>
+<p>Some students in a Statistics class were asked how many minutes they typically exercised in a week. The data are shown in <a href="http://ritsokiguess.site/datafiles/exercise.txt">http://ritsokiguess.site/datafiles/exercise.txt</a>.</p>
+<p>Some of the students identified as male and some as female. Our concern is how the males and females compare in terms of the amount of exercise they do.</p>
+<ol type="a">
+<li><p>Take a look at the data file. (Click on the link, or paste the copied link into your web browser.) How is it laid out?</p></li>
+<li><p>Read in and display (some of) the data. (This means to display enough of what you read in to convince others that you read in the right kind of thing.)</p></li>
+<li><p>Make a suitable plot of this data frame.</p></li>
+<li><p>Does there appear to be any substantial difference in the average amount of time that males and females spend exercising? Explain briefly. (“average” could be mean or median. Which is it here?)</p></li>
+<li><p>How do you know that both distributions, for males as well as females, are skewed to the right? Explain (very) briefly.</p></li>
+<li><p>For data like this, why does it make practical sense that the distributions are skewed to the right?</p></li>
+</ol>
+<p>My solutions follow:</p>
+</section>
+<section id="orange-juice-1" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="orange-juice-1"><span class="header-section-number">3.6</span> Orange juice</h2>
+<p>We will read in the orange juice data again, in <a href="http://ritsokiguess.site/datafiles/ojuice.txt">link</a>, and make a suitable graph.</p>
+<ol type="a">
+<li>The data values are separated by a space. Use the appropriate Tidyverse function to read the data directly from the course website into a “tibble”.</li>
+</ol>
+<p>Solution</p>
+<p>As before,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ojuice.txt"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>juice <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 24 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (3): run, sweetness, pectin
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>juice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["run"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sweetness"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["pectin"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"5.2","3":"220"},{"1":"2","2":"5.5","3":"227"},{"1":"3","2":"6.0","3":"259"},{"1":"4","2":"5.9","3":"210"},{"1":"5","2":"5.8","3":"224"},{"1":"6","2":"6.0","3":"215"},{"1":"7","2":"5.8","3":"231"},{"1":"8","2":"5.6","3":"268"},{"1":"9","2":"5.6","3":"239"},{"1":"10","2":"5.9","3":"212"},{"1":"11","2":"5.4","3":"410"},{"1":"12","2":"5.6","3":"256"},{"1":"13","2":"5.8","3":"306"},{"1":"14","2":"5.5","3":"259"},{"1":"15","2":"5.3","3":"284"},{"1":"16","2":"5.3","3":"383"},{"1":"17","2":"5.7","3":"271"},{"1":"18","2":"5.5","3":"264"},{"1":"19","2":"5.7","3":"227"},{"1":"20","2":"5.3","3":"263"},{"1":"21","2":"5.9","3":"232"},{"1":"22","2":"5.8","3":"220"},{"1":"23","2":"5.8","3":"246"},{"1":"24","2":"5.9","3":"241"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>24 runs, as we had before.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>The juice manufacturer was interested in whether there was a relationship between sweetness and pectin. To assess this, draw a scatterplot. Does it look as if there is any kind of a relationship? (I think <code>sweetness</code> is the outcome variable and <code>pectin</code> is explanatory, so draw your scatterplot appropriately.)</li>
+</ol>
+<p>Solution</p>
+<p>This requires a <code>ggplot</code> plot. You can go back and look at the lecture notes to figure out how to make a scatterplot: the “what to plot” is the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis variables, with the response on the <span class="math inline">\(y\)</span>-axis (starting with a data frame to get the variables from), and the “how to plot” is <code>geom_point</code> to plot the points: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(juice, <span class="fu">aes</span>(<span class="at">x =</span> pectin, <span class="at">y =</span> sweetness)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/oj2-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>It looks to me as if there is a negative relationship: as pectin goes up, sweetness tends to go <em>down</em>. The trend appears to go top left to bottom right.</p>
+<p>Extra: having said that, I’m wondering how much of the apparent trend is caused by those two observations bottom right with pectin over 350. If you take those away, the trend seems to me to be a lot less convincing. You could add a smooth trend to the plot, thus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(juice, <span class="fu">aes</span>(<span class="at">x =</span> pectin, <span class="at">y =</span> sweetness)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/oj2-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The smooth trend is kind of downhill, but not very convincing.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="making-soap-1" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="making-soap-1"><span class="header-section-number">3.7</span> Making soap</h2>
+<p>Previously, we learned about a company that operates two production lines in a factory for making soap bars. The production lines were labelled A and B. A production line that moves faster may produce more soap, but may possibly also produce more “scrap” (that is, bits of soap that can no longer be made into soap bars and will have to be thrown away).</p>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/soap.txt">link</a>.</p>
+<ol type="a">
+<li>Read the data into R again.</li>
+</ol>
+<p>Solution</p>
+<p>Read directly from the URL, most easily: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/soap.txt"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>soap <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 27 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+chr (1): line
+dbl (3): case, scrap, speed
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>soap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["case"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["scrap"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["speed"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["line"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"218","3":"100","4":"a"},{"1":"2","2":"248","3":"125","4":"a"},{"1":"3","2":"360","3":"220","4":"a"},{"1":"4","2":"351","3":"205","4":"a"},{"1":"5","2":"470","3":"300","4":"a"},{"1":"6","2":"394","3":"255","4":"a"},{"1":"7","2":"332","3":"225","4":"a"},{"1":"8","2":"321","3":"175","4":"a"},{"1":"9","2":"410","3":"270","4":"a"},{"1":"10","2":"260","3":"170","4":"a"},{"1":"11","2":"241","3":"155","4":"a"},{"1":"12","2":"331","3":"190","4":"a"},{"1":"13","2":"275","3":"140","4":"a"},{"1":"14","2":"425","3":"290","4":"a"},{"1":"15","2":"367","3":"265","4":"a"},{"1":"16","2":"140","3":"105","4":"b"},{"1":"17","2":"277","3":"215","4":"b"},{"1":"18","2":"384","3":"270","4":"b"},{"1":"19","2":"341","3":"255","4":"b"},{"1":"20","2":"215","3":"175","4":"b"},{"1":"21","2":"180","3":"135","4":"b"},{"1":"22","2":"260","3":"200","4":"b"},{"1":"23","2":"361","3":"275","4":"b"},{"1":"24","2":"252","3":"155","4":"b"},{"1":"25","2":"422","3":"320","4":"b"},{"1":"26","2":"273","3":"190","4":"b"},{"1":"27","2":"410","3":"295","4":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>:::</p>
+<p>27 rows. <code>line</code>, which is either <code>a</code> or <code>b</code>, was correctly deduced to be text.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Obtain a histogram of the <code>scrap</code> values, using 10 bins for your histogram.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Comment briefly on the shape of the histogram. Is it approximately symmetric, skewed to the left, skewed to the right or something else? (By “comment briefly” I mean “say in a few words why you gave the answer you did.”)</li>
+</ol>
+<p>Solution</p>
+<p>I would call this “bimodal”. There are two peaks to the histogram, one around 250 and one around 370, with a very small frequency in between (the bar around 300). Apart from the bimodality, there is no particular evidence for a long tail on either end, so I don’t think you could otherwise call it anything other than symmetric. Having said that (this is going beyond the question), the way a histogram looks can depend on the bins you choose to draw it with. This is 8 bins rather than 10: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>The middle low-frequency bin has gone, and this one just looks symmetric, with a kind of “flat top”.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Make side-by-side boxplots of scrap values for each production line.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> line, <span class="at">y =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>One categorical, one quantitative variable, so boxplots make sense.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Do you think your boxplot says that there are differences in the amount of scrap produced by the two production lines, or not? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>I would say that there <em>is</em> a difference between the two production lines, with line A producing an average (median) of about 330 and line B producing a median of about 275. But you could also make the case that, although the medians are rather different, there is a lot of variability and hence a lot of overlap between the two boxplots, and therefore that there is not a “substantial” difference. I would say that either of those answers are good <em>if you back them up with proper reasons</em>. This is going to be a common theme in this course: I am going to ask you to make a decision and support it, where the reasons you provide are often more important than the decision you make.</p>
+<p>Extra: you might be wondering whether the medians, or means, since there is no serious skewness here and definitely no outliers, are “significantly different”. This is inference, which we will come to later, but a preview looks like this: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(scrap <span class="sc">~</span> line, <span class="at">data =</span> soap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  scrap by line
+t = 1.2493, df = 21.087, p-value = 0.2253
+alternative hypothesis: true difference in means between group a and group b is not equal to 0
+95 percent confidence interval:
+ -26.97888 108.21222
+sample estimates:
+mean in group a mean in group b 
+       333.5333        292.9167 </code></pre>
+</div>
+<p>:::</p>
+<p>They are not: the P-value of 0.22 is not anywhere near as small as 0.05, so we can’t reject the null hypothesis that the two lines have equal mean amount of scrap.</p>
+<p>Rusty on this stuff? Don’t worry; we’re going to come back to it later in the course.</p>
+<p>I was also wondering about something else: that bimodal histogram. Could that be explained by the scrap values being two different production lines being mixed together? One way to understand that is to have two separate histograms, one for each line, side by side, which is what facetting does. There is an extra wrinkle here that I explain afterwards:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(line <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I could have used <code>facet_wrap</code>, but that would have put the histograms side by side, and I wanted them one above the other (for ease of comparison, since they’ll be on the same scale). <code>facet_grid</code> is like <code>facet_wrap</code>, but offers you more control over where the facets go: you can arrange them above and below by a variable, or left and right by a variable. Whatever is facetting the plots up and down (on the <span class="math inline">\(y\)</span> axis) goes before the squiggle, and whatever facets them left and right goes after. If there is nothing separating the facets in one direction, here horizontally, the variable is replaced by a dot.</p>
+<p>In some ways, <code>facet_grid</code> is also <em>less</em> flexible, because the facets have to be arranged up/down or left/right by a variable. That worked here, but if you think back to the Australian athletes, where there were ten different sports, it was <code>facet_wrap</code> that did the right thing, arranging the sports along rows <em>and</em> columns to produce a pleasing display.</p>
+<p>All right, that bimodality. I was expecting that the scrap values from one line would be centred about one value and the scrap values from the other line would be centred about a different value, with a gap in between. But that’s not what happened at all: the line B values are all over the place, while it’s the line A values that are actually bimodal all by themselves. I’m not sure whether that really means anything, since the data sets are pretty small, but it’s kind of interesting.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>We started out with the suspicion that if the line was run faster, there would be more scrap. We haven’t assessed this yet. Draw a scatter plot with <code>scrap</code> on the <span class="math inline">\(y\)</span> axis and <code>speed</code> on the <span class="math inline">\(x\)</span> axis.</li>
+</ol>
+<p>Solution</p>
+<p>Same mechanism as before: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="7" type="a">
+<li>What do you think is the most important conclusion from your plot of the previous part? Describe your conclusion in the context of the data.</li>
+</ol>
+<p>Solution</p>
+<p>There seems to be a pretty evident upward trend, apparently linear, which means that if the speed of the production line is higher, the amount of scrap produced is also higher. My last sentence was meant to remind you that “there is an upward trend” is <em>not a complete answer</em>: we are concerned with what that upward trend tells us about the data. This, in other words, confirms the suspicion expressed in the question, which was therefore a rather large clue: more speed tends to go with more scrap. That was as far as I wanted you to go: there seems to be an association with speed, and there might be an association with <code>line</code> that turned out not to be statistically significant. What we haven’t done is to assess the relationship between speed and scrap for <em>each</em> production line. To do that, we want to plot the scrap-speed points distinguished for each production line. <code>ggplot</code> makes that easy: you add a <code>colour</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to say what you want to distinguish by colour. This is two quantitative variables and one categorical variable, if you want to think of it that way: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> scrap, <span class="at">colour =</span> line)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>Notice that we get a legend, automatically.</p>
+<p>What is interesting about this one is the red dots are mostly at the top (for any given speed), and the blue dots are mostly at the bottom. That seems to mean that <em>when we account for speed</em>, there is a difference between lines.</p>
+<p>I want to show you one more embellishment, which is to put the regression lines on the plot for each group separately. This is where <code>ggplot</code> is so nice, since I just have to add one thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> scrap, <span class="at">colour =</span> line)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The points and lines have come out in different colours, without our having to think too hard.</p>
+<p>Both lines show an upward trend, with about the same slope, which means that regardless of line, increasing the speed goes with increasing the scrap by the same amount. The fact that the red line is above the blue one, however, suggests that production line A produces more scrap at the same speed than production line B.</p>
+<p>From a management point of view, there is an interesting dynamic at work: if you run the production line faster, you’ll produce more bars of soap, but you’ll produce more scrap as well. The crucial thing for the people in the supervisor’s office is how much raw material is used per bar of soap, and if you make the soap bars faster, you might use more raw material, which will eat into your profits (from one angle), but you will also have more bars of soap to sell.</p>
+<p>Here’s another way to see the same thing. I’m <em>definitely</em> not expecting you to follow the code, but you can admire the result!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>soap2 <span class="ot">&lt;-</span> soap <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>line)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> scrap)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> soap2, <span class="at">colour =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> line)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/soap2-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>$</p>
+<p>The idea is that we plot all the points in grey (to “put them in the background”) and then in each plot we plot the points again, <em>coloured, for the group we are looking at</em>: line A in the left, line B on the right. This is another way of seeing that line A has more scrap than line B, given the speed at which the line was being run. (I discovered this technique only yesterday. I think the code is remarkably concise for what it does.)</p>
+<p>The logic of the code is:</p>
+<ul>
+<li><p>create a new data frame that contains everything in <code>soap</code> except for <code>line</code></p></li>
+<li><p>make a scatter plot of all the points in this new data frame, coloured grey</p></li>
+<li><p>plot the points again (from the original data frame), coloured by which production line they’re from</p></li>
+<li><p>produce a separate scatterplot for each production line.</p></li>
+</ul>
+<p>The trick about creating the new data frame was to enable plotting of all points regardless of group on each subplot (“facet” in <code>ggplot</code> terminology), as well as the ones that come from that production line.</p>
+<p>I don’t expect you to be able to follow all the details of the code below, either, but I would like you to try and get the logic. What we do is a regression predicting <code>scrap</code> from <em>two</em> things: <code>speed</code> and production <code>line</code>. The results we get are these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>scrap<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(scrap <span class="sc">~</span> speed <span class="sc">+</span> line, <span class="at">data =</span> soap)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(scrap<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = scrap ~ speed + line, data = soap)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-39.557 -14.161  -0.121  17.518  33.953 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  80.41099   14.54379   5.529 1.10e-05 ***
+speed         1.23074    0.06555  18.775 7.48e-16 ***
+lineb       -53.12920    8.21003  -6.471 1.08e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 21.13 on 24 degrees of freedom
+Multiple R-squared:  0.9402,    Adjusted R-squared:  0.9352 
+F-statistic: 188.6 on 2 and 24 DF,  p-value: 2.104e-15</code></pre>
+</div>
+</div>
+<p>The P-values for <code>speed</code> and <code>line</code> are the second and third things in the last column, <span class="math inline">\(7 \times 10^{-16}\)</span> and <span class="math inline">\(1 \times 10^{-6}\)</span> respectively. These are both very strongly significant, in contrast to the two-sample <span class="math inline">\(t\)</span>-test where <code>line</code> was not significant.</p>
+<p>So does production line make a difference or not?</p>
+<p>The plot says that it does, and the meaning of model <code>scrap.1</code> just above is that <em><code>speed</code> affects scrap when you account for <code>line</code></em>, and <em><code>line</code> affects scrap when you account for <code>speed</code></em>. (In the two-sample <span class="math inline">\(t\)</span>-test above we didn’t account for speed at all, since the various speeds were all mixed up.)</p>
+<p>There is a moral to this story, which I would like you to get even if you don’t get any of the statistics: if a variable makes a difference, it should be in your model and on your graph,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> because it enables you to get better (more precise) conclusions about your other variables. Here, there really is a difference between the production lines, but the <span class="math inline">\(t\)</span>-test was too much of a blunt instrument to unearth it (because <code>speed</code> made a difference as well).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="handling-shipments-1" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="handling-shipments-1"><span class="header-section-number">3.8</span> Handling shipments</h2>
+<p>We learned earlier about a company called Global Electronics that imports shipments of a certain large part used as a component in several of its products. The size of the shipment varies each time. Each shipment is sent to one of two warehouses (labelled A and B) for handling. The data in <a href="http://ritsokiguess.site/datafiles/global.csv">link</a> show the <code>size</code> of each shipment (in thousands of parts) and the direct <code>cost</code> of handling it, in thousands of dollars. Also shown is the <code>warehouse</code> (A or B) that handled each shipment.</p>
+<ol type="a">
+<li>Read the data into R and display your data frame.</li>
+</ol>
+<p>Solution</p>
+<p>A <code>.csv</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/global.csv"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>shipments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 10 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): warehouse
+dbl (2): size, cost
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>shipments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["warehouse"],"name":[1],"type":["chr"],"align":["left"]},{"label":["size"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["cost"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"225","3":"11.95"},{"1":"B","2":"350","3":"14.13"},{"1":"A","2":"150","3":"8.93"},{"1":"A","2":"200","3":"10.98"},{"1":"A","2":"175","3":"10.03"},{"1":"A","2":"180","3":"10.13"},{"1":"B","2":"325","3":"13.75"},{"1":"B","2":"290","3":"13.30"},{"1":"B","2":"400","3":"15.00"},{"1":"A","2":"125","3":"7.97"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Make a scatterplot of the cost of handling each shipment as it depends on the shipment’s size.</li>
+</ol>
+<p>Solution</p>
+<p>The wording of the question says that cost is the response and so belongs on the <span class="math inline">\(y\)</span>-axis. To make the plot, <code>ggplot</code> with an <code>x=</code> and a <code>y=</code> in the <code>aes</code> (the “what to plot” part), and a <code>geom_point()</code> after (the “how to plot it”): ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shipments, <span class="fu">aes</span>(<span class="at">x =</span> size, <span class="at">y =</span> cost)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/gunthers-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>As a matter of coding, there are usually <em>two</em> brackets to close after the <code>aes</code>, the one that begins the <code>ggplot</code> and the one that begins the <code>aes</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>What kind of relationship do you see on the scatterplot? Do you think a straight line would describe it appropriately? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>I see an upward trend: a shipment with larger <code>size</code> costs more to handle. If you look carefully at the scatterplot, you see that the cost of handling a small shipment goes up fairly steeply with its size, but the cost of handling a large shipment, while it still increases with <code>size</code>, does not increase so fast. Thus having one straight line to describe the whole relationship would not work so well. The relationship is actually two different straight lines joined end-to-end, which we will explore later, but if you think the relationship is curved, I’ll accept that. The point is to get at the idea that the rate of increase is not constant.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>When a shipment comes in, the cost of handling it is not known. A decision is made about which warehouse to send it to, and then, after it is handled, the cost is recorded. What do you think determines which warehouse an incoming shipment goes to? Provide a graph to support your answer.</li>
+</ol>
+<p>Solution</p>
+<p>The veiled hint in the question is that the decision must depend on <code>size</code>, since it cannot depend on <code>cost</code>. So we have one quantitative variable <code>size</code> and one categorical variable <code>warehouse</code>, which suggests drawing boxplots: ::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shipments, <span class="fu">aes</span>(<span class="at">x =</span> warehouse, <span class="at">y =</span> size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/tochterman-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<p>Well, there’s the answer right there. When the shipment has small <code>size</code>, it goes to warehouse A, and when it’s large, it goes to Warehouse B. We know this because <em>all</em> the shipments smaller than about 250 (thousand parts) went to A and <em>all</em> the shipments larger than that went to B. (If you want to provide a number to delineate “small” and “large”, anything between the largest A, about 225, and the smallest B, about 290, will do.)</p>
+<p>Another way to think about this is to add something to the scatterplot you drew before. The obvious thing is to make the two warehouses different colours:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shipments, <span class="fu">aes</span>(<span class="at">x =</span> size, <span class="at">y =</span> cost, <span class="at">colour =</span> warehouse)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/friesin-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As a point of technique, you can split lines of code to make them fit on your screen. You can do this as long as <em>the code that ends the line must be incomplete</em>, so that R knows more is to come. Ending a line with a pipe symbol, or, as here, with one of the pluses in the middle of a <code>ggplot</code>, will work. If you put the plus on the start of the next line, you’ll get a blank plot, because R thinks you’re done plotting. Try it and see.</p>
+<p>Anyway, this plot tells exactly the same story: the small shipments (in size or cost) go to Warehouse A and the large ones to Warehouse B. But we don’t know cost when the decision is made about which warehouse to send a shipment to, so the decision must be based on <code>size</code>.</p>
+<p>In the place where I got these data, it said “larger shipments are sent to Warehouse B, since this warehouse has specialized equipment that provides greater economies of scale for larger shipments”. That is to say, very large shipments are more expensive to handle, but not as expensive as you might think.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> That makes sense with our scatterplot, because the <em>slope</em> for larger shipments is less than for smaller shipments.</p>
+<p>When we get to regression later, we’ll see what happens if we fit a straight line to data like these, and how to tell whether we really ought to be able to do better with a different form of relationship. There is also a trick to fit what is called a “piecewise linear regression”, which has one slope for small shipment sizes, a different (smaller) slope for large ones, and joins up in the middle. But that’s well beyond our scope now.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="rainfall-in-davis-california-1" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="rainfall-in-davis-california-1"><span class="header-section-number">3.9</span> Rainfall in Davis, California</h2>
+<p>One way to assess climate change is to look at weather records over a number of years and to identify any changes.</p>
+<p>Annual rainfall data for the Davis, California is in <a href="http://ritsokiguess.site/datafiles/rainfall.txt">here</a>. (Right-click on the URL and select Copy Link Address, then paste into your R Notebook.) The rainfall is measured in inches.</p>
+<ol type="a">
+<li>Read in and display (some of) the data. Briefly justify why you coded it as you did.</li>
+</ol>
+<p>Solution</p>
+<p>Look at the data file, and see that the values are separated by a single space, so will do it. (This is the brief justification.) You <em>need to have some words</em> in this part explaining your choice of <code>read_delim</code> (or <code>read_table</code>: see below).</p>
+<p>Read straight from the URL rather than copying and pasting the data or doing anything like that:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/rainfall.txt"</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rain <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 47 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: " "
+dbl (2): Year, Rainfall
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Rainfall"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1951","2":"20.66"},{"1":"1952","2":"16.72"},{"1":"1953","2":"13.51"},{"1":"1954","2":"14.10"},{"1":"1955","2":"25.37"},{"1":"1956","2":"12.05"},{"1":"1957","2":"28.74"},{"1":"1958","2":"10.98"},{"1":"1959","2":"12.55"},{"1":"1960","2":"12.75"},{"1":"1961","2":"14.99"},{"1":"1962","2":"27.10"},{"1":"1963","2":"11.20"},{"1":"1964","2":"18.56"},{"1":"1965","2":"11.49"},{"1":"1966","2":"27.64"},{"1":"1967","2":"11.49"},{"1":"1968","2":"24.67"},{"1":"1969","2":"17.04"},{"1":"1970","2":"16.34"},{"1":"1971","2":"8.60"},{"1":"1972","2":"27.69"},{"1":"1973","2":"20.87"},{"1":"1974","2":"16.88"},{"1":"1975","2":"6.14"},{"1":"1976","2":"7.69"},{"1":"1977","2":"27.69"},{"1":"1978","2":"17.25"},{"1":"1979","2":"25.06"},{"1":"1980","2":"12.03"},{"1":"1981","2":"31.29"},{"1":"1982","2":"37.42"},{"1":"1983","2":"16.67"},{"1":"1984","2":"15.74"},{"1":"1985","2":"27.47"},{"1":"1986","2":"10.81"},{"1":"1987","2":"16.30"},{"1":"1988","2":"11.38"},{"1":"1989","2":"15.79"},{"1":"1990","2":"13.84"},{"1":"1991","2":"17.46"},{"1":"1992","2":"29.84"},{"1":"1993","2":"11.86"},{"1":"1994","2":"31.22"},{"1":"1995","2":"24.50"},{"1":"1996","2":"19.52"},{"1":"1997","2":"29.69"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Note for later that the and the have Capital Letters. You can call the data frame whatever you like, but I think something descriptive is better than eg.&nbsp;.</p>
+<p>Extra 1: <code>read_delim</code> works because there is exactly one space between the year and the rainfall amount. But the year is always four digits, so the columns line up, and there is a space all the way down between the year and the rainfall. That is to say, another possibility for your “brief justification” is that the columns are lined up all the way down. That means that this will also work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/rainfall.txt"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rain <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Year = col_double(),
+  Rainfall = col_double()
+)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>rain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Rainfall"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1951","2":"20.66"},{"1":"1952","2":"16.72"},{"1":"1953","2":"13.51"},{"1":"1954","2":"14.10"},{"1":"1955","2":"25.37"},{"1":"1956","2":"12.05"},{"1":"1957","2":"28.74"},{"1":"1958","2":"10.98"},{"1":"1959","2":"12.55"},{"1":"1960","2":"12.75"},{"1":"1961","2":"14.99"},{"1":"1962","2":"27.10"},{"1":"1963","2":"11.20"},{"1":"1964","2":"18.56"},{"1":"1965","2":"11.49"},{"1":"1966","2":"27.64"},{"1":"1967","2":"11.49"},{"1":"1968","2":"24.67"},{"1":"1969","2":"17.04"},{"1":"1970","2":"16.34"},{"1":"1971","2":"8.60"},{"1":"1972","2":"27.69"},{"1":"1973","2":"20.87"},{"1":"1974","2":"16.88"},{"1":"1975","2":"6.14"},{"1":"1976","2":"7.69"},{"1":"1977","2":"27.69"},{"1":"1978","2":"17.25"},{"1":"1979","2":"25.06"},{"1":"1980","2":"12.03"},{"1":"1981","2":"31.29"},{"1":"1982","2":"37.42"},{"1":"1983","2":"16.67"},{"1":"1984","2":"15.74"},{"1":"1985","2":"27.47"},{"1":"1986","2":"10.81"},{"1":"1987","2":"16.30"},{"1":"1988","2":"11.38"},{"1":"1989","2":"15.79"},{"1":"1990","2":"13.84"},{"1":"1991","2":"17.46"},{"1":"1992","2":"29.84"},{"1":"1993","2":"11.86"},{"1":"1994","2":"31.22"},{"1":"1995","2":"24.50"},{"1":"1996","2":"19.52"},{"1":"1997","2":"29.69"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This is therefore also good.</p>
+<p>It also looks as if it could be tab-separated values, since the rainfall column always starts in the same place, but if you try it, you’ll find that it doesn’t work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/rainfall.txt"</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>rain_nogood <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 47 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): Year Rainfall
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rain_nogood</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Year Rainfall"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"1951 20.66"},{"1":"1952 16.72"},{"1":"1953 13.51"},{"1":"1954 14.1"},{"1":"1955 25.37"},{"1":"1956 12.05"},{"1":"1957 28.74"},{"1":"1958 10.98"},{"1":"1959 12.55"},{"1":"1960 12.75"},{"1":"1961 14.99"},{"1":"1962 27.1"},{"1":"1963 11.2"},{"1":"1964 18.56"},{"1":"1965 11.49"},{"1":"1966 27.64"},{"1":"1967 11.49"},{"1":"1968 24.67"},{"1":"1969 17.04"},{"1":"1970 16.34"},{"1":"1971 8.6"},{"1":"1972 27.69"},{"1":"1973 20.87"},{"1":"1974 16.88"},{"1":"1975 6.14"},{"1":"1976 7.69"},{"1":"1977 27.69"},{"1":"1978 17.25"},{"1":"1979 25.06"},{"1":"1980 12.03"},{"1":"1981 31.29"},{"1":"1982 37.42"},{"1":"1983 16.67"},{"1":"1984 15.74"},{"1":"1985 27.47"},{"1":"1986 10.81"},{"1":"1987 16.3"},{"1":"1988 11.38"},{"1":"1989 15.79"},{"1":"1990 13.84"},{"1":"1991 17.46"},{"1":"1992 29.84"},{"1":"1993 11.86"},{"1":"1994 31.22"},{"1":"1995 24.5"},{"1":"1996 19.52"},{"1":"1997 29.69"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This looks as if it worked, but it didn’t, because there is only <em>one</em> column, of years and rainfalls smooshed together as text, and if you try to do anything else with them later it won’t work.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>Hence those values that might have been tabs actually were not. There’s no way to be sure about this; you have to try something and see what works.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>Extra 2: <code>read.table</code> with a dot will work, but it is in this course <em>wrong</em>. As I stated in the course outline, I expect you to do things <em>as they are done in this course</em>. Strictly speaking, if you use <code>read.table</code>, which you did not learn from me, and you say nothing about where you got it from, you are guilty of plagiarism, which is an academic offence. I will probably not be that strict, but you should certainly expect to lose credit for doing things differently from how they are done in this course. The idea is that you need to demonstrate that you have learned something <em>here</em>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Make a suitable plot of the rainfall values and years. Explain briefly why you drew the plot you did.</li>
+</ol>
+<p>Solution</p>
+<p>This is two quantitative variables, so a scatterplot makes sense. (That’s the brief explanation.) To decide which variable goes on which axis, think of rainfall as a response to the explanatory variable year, or note that time goes by tradition on the horizontal axis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rain, <span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rainfall)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is a time trend, so it would also be reasonable to join the points with lines:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rain, <span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rainfall)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>and because any trend looks irregular, you could also justify putting a smooth trend through the points:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rain, <span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rainfall)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This one is rather interesting (as an aside): there is a more noticeable upward trend at the end, after about 1985. If you study environmental science, you may have seen that a lot of time plots of climate data show a bigger change after about 1990, and this is one of those.</p>
+<p>If you treat the year as categorical, and try to draw a boxplot, it won’t work out so well:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rain, <span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rainfall)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Continuous x aesthetic
+ℹ did you forget `aes(group = ...)`?</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is actually a boxplot of rainfall in all the years together; it ignored year because it couldn’t figure out what you wanted to do with it. The warning message is indicating that you might have forgotten something that defines groups; the <code>x</code> is quantitative here. So you have to clarify what you meant. For example, you might have meant to treat the years as categorical, which you could do like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rain, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(Year), <span class="at">y=</span>Rainfall)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Aside from the fact that you have too many years to see them all, you only have <em>one</em> observation per year (that year’s annual rainfall), so you don’t get an actual box. To get boxes, you need to organize groups where you have multiple observations, for example decades:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>rain <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">decade_number =</span> Year <span class="sc">%/%</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">decade =</span> <span class="fu">str_c</span>(decade_number, <span class="st">"0s"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> decade, <span class="at">y =</span> Rainfall)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>You see that there seems to have been an upward jump in rainfall in the 1990s (the last decade in the data).</p>
+<p>About the code: `%/%’ does “integer division” (throws away the fractional part if there is one), so the calculation turns eg. 1954 into 195. I wanted to have the graph display something you could understand, so I constructed some text out of the decade number by gluing a 0 and a letter s onto the end.</p>
+<p>Another kind of situation where this approach does work is if you have something like monthly rainfall over a number of years, and then you have multiple values for January over all the years that you have data for.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Add a regression line to your plot. Is there any convincing indication of a trend, upward or downward, in annual rainfall for Davis, California? Discuss briefly.</li>
+</ol>
+<p>Solution</p>
+<p>Thus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rain, <span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rainfall)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/rainfall2-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The regression line goes uphill, but this is not convincing evidence of an overall upward trend for several reasons (pick one):</p>
+<ul>
+<li>the increase, if there is one, is very small</li>
+<li>the data points are mostly far away from the regression line</li>
+<li>there are points within the grey envelope all the way across (meaning, for example, that the mean annual rainfall could be 20 inches for all the years).</li>
+</ul>
+<p>Further evidence comes from a regression (which we haven’t looked at yet):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>r<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(Rainfall<span class="sc">~</span>Year, <span class="at">data=</span>rain)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(r<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Rainfall ~ Year, data = rain)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-12.670  -5.252  -1.905   7.088  17.804 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -208.57325  158.42281  -1.317    0.195
+Year           0.11513    0.08025   1.435    0.158
+
+Residual standard error: 7.463 on 45 degrees of freedom
+Multiple R-squared:  0.04373,   Adjusted R-squared:  0.02248 
+F-statistic: 2.058 on 1 and 45 DF,  p-value: 0.1583</code></pre>
+</div>
+</div>
+<p>The slope is indeed positive, but it is not significantly different from zero. Also, the R-squared is <em>very</em> small, 4.4%. Thus the apparent upward trend is no more than chance.</p>
+<p>Extra: looking at the plot from earlier with the smooth trend suggests that there may not have been any real increase since 1950, but if you look only since about 1985 it may be different. There is a statistical question mark over that, though, because we started looking at 1985 only because there seemed to be an upward trend starting from about there.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="students-and-exercise-1" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="students-and-exercise-1"><span class="header-section-number">3.10</span> Students and exercise</h2>
+<p>Some students in a Statistics class were asked how many minutes they typically exercised in a week. The data are shown in <a href="http://ritsokiguess.site/datafiles/exercise.txt">http://ritsokiguess.site/datafiles/exercise.txt</a>.</p>
+<p>Some of the students identified as male and some as female. Our concern is how the males and females compare in terms of the amount of exercise they do.</p>
+<ol type="a">
+<li>Take a look at the data file. (Click on the link, or paste the copied link into your web browser.) How is it laid out?</li>
+</ol>
+<p>Solution</p>
+<p>Aligned in columns. Or, separated by spaces, but a variable number of them. (The latter is a hint that will not work, and the former is a hint about what <em>will</em> work.)</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Read in and display (some of) the data. (This means to display enough of what you read in to convince others that you read in the right kind of thing.)</li>
+</ol>
+<p>Solution</p>
+<p>“Aligned in columns” is the best way of saying it so that you know to use . Hence:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/exercise.txt"</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>exercise <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  gender = col_character(),
+  minutes = col_double()
+)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>exercise</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["gender"],"name":[1],"type":["chr"],"align":["left"]},{"label":["minutes"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"female","2":"60"},{"1":"female","2":"240"},{"1":"female","2":"0"},{"1":"female","2":"360"},{"1":"female","2":"450"},{"1":"female","2":"200"},{"1":"female","2":"100"},{"1":"female","2":"70"},{"1":"female","2":"240"},{"1":"female","2":"0"},{"1":"female","2":"60"},{"1":"female","2":"360"},{"1":"female","2":"180"},{"1":"female","2":"300"},{"1":"female","2":"0"},{"1":"female","2":"270"},{"1":"male","2":"180"},{"1":"male","2":"300"},{"1":"male","2":"60"},{"1":"male","2":"480"},{"1":"male","2":"0"},{"1":"male","2":"90"},{"1":"male","2":"300"},{"1":"male","2":"14"},{"1":"male","2":"600"},{"1":"male","2":"360"},{"1":"male","2":"120"},{"1":"male","2":"0"},{"1":"male","2":"240"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Just entering the data frame name displays the first ten rows, which is usually enough to convince anyone that you have the right thing.</p>
+<p>Call the data frame what you like, as long as it describes what’s in the data frame in some way.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Make a suitable plot of this data frame.</li>
+</ol>
+<p>Solution</p>
+<p>Two variables, one quantitative and one categorical, means that a boxplot is the thing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(exercise, <span class="fu">aes</span>(<span class="at">x=</span>gender, <span class="at">y=</span>minutes)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="making-graphs_files/figure-html/exercise-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Does there appear to be any substantial difference in the average amount of time that males and females spend exercising? Explain briefly. (“average” could be mean or median. Which is it here?)</li>
+</ol>
+<p>Solution</p>
+<p>A boxplot shows the median. So we learn here that the median time spent exercising per week is very slightly higher for females. However, there is a lot of variability (the height of the boxes), and so the difference between the medians is very small. Hence, there is definitely <em>no</em> substantial difference between males and females.</p>
+<p>Less insightfully, the difference in median between males and females is very small (but that doesn’t rule out the possibility that the spread is very small also).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>How do you know that both distributions, for males as well as females, are skewed to the right? Explain (very) briefly.</li>
+</ol>
+<p>Solution</p>
+<p>The upper whiskers, at the top of the box, are longer than the lower ones (at the bottom).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="6" type="a">
+<li>For data like this, why does it make practical sense that the distributions are skewed to the right?</li>
+</ol>
+<p>Solution</p>
+<p>Nobody can exercise less than 0 minutes per week, but there is no upper limit: a student in the class can exercise as much as they want. This means that there could be unusually high values, but not unusually low values.</p>
+<p>Extra: Distributions that have a limit on one side are often skewed to the other side. This one has a limit on the left, so it is skewed to the <em>right</em>. This is most likely to be true if there are observations close to the limit, such as the people in this data set that don’t exercise at all (and there are some of those).</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>If you are concerned about the spelling: the guy who wrote ggplot is from New Zealand, where they spell <em>colour</em> the same way we do. However, if you want to use <em>color</em>, that works too.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Meaning that the model should contain all three variables, <code>speed</code>, <code>scrap</code> and <code>line</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is the same idea that it costs more to ride the GO bus from UTSC to York U than it does to ride from UTSC to Scarborough Town, but if you work out how much it costs per kilometre, the longer journey costs less per km. As of when I’m writing this, $5.30 for the 7.2 km to Scarborough Town and $6.75 for the 38 km to York. That’s quite an economy of scale, isn’t it?<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Reading from the URL is reproducible in that somebody else doing what you did will get exactly what results you did. Copying and pasting data is not in general reproducible because somebody else might do it differently from you, such as missing a line of data. Copying and pasting a URL, especially by right-clicking and Copy Link Address, has much less to go wrong. Physically selecting the URL text by selecting all the letters in the URL can go wrong, especially if the printed URL goes over two lines on the page.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>It is actually possible to disentangle data like this and then work with it (we will see how later in the course), but the best way to do it is to make it easiest for yourself and anyone reading your code, and read the data file in a way that is appropriate for the layout you have in the file.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>An indication, though: if you have more than one space, and the things in the later columns are <em>left</em>-justified, that could be tab-separated; if the things in the later columns are <em>right</em>-justified, so that they finish in the same place but don’t start in the same place, that is probably aligned columns.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./reading-in.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading in data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data-summaries.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

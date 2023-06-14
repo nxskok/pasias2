@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 26&nbsp; Logistic regression with nominal response</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 29&nbsp; Logistic regression with nominal response</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./nominal-response.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./nominal-response.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,18 +400,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#finding-non-missing-values" id="toc-finding-non-missing-values" class="nav-link active" data-scroll-target="#finding-non-missing-values"><span class="header-section-number">26.1</span> Finding non-missing values</a></li>
-  <li><a href="#european-social-survey-and-voting" id="toc-european-social-survey-and-voting" class="nav-link" data-scroll-target="#european-social-survey-and-voting"><span class="header-section-number">26.2</span> European Social Survey and voting</a></li>
-  <li><a href="#alligator-food" id="toc-alligator-food" class="nav-link" data-scroll-target="#alligator-food"><span class="header-section-number">26.3</span> Alligator food</a></li>
-  <li><a href="#crimes-in-san-francisco" id="toc-crimes-in-san-francisco" class="nav-link" data-scroll-target="#crimes-in-san-francisco"><span class="header-section-number">26.4</span> Crimes in San Francisco</a></li>
-  <li><a href="#crimes-in-san-francisco-the-data" id="toc-crimes-in-san-francisco-the-data" class="nav-link" data-scroll-target="#crimes-in-san-francisco-the-data"><span class="header-section-number">26.5</span> Crimes in San Francisco – the data</a></li>
-  <li><a href="#what-sports-do-these-athletes-play" id="toc-what-sports-do-these-athletes-play" class="nav-link" data-scroll-target="#what-sports-do-these-athletes-play"><span class="header-section-number">26.6</span> What sports do these athletes play?</a></li>
-  <li><a href="#finding-non-missing-values-1" id="toc-finding-non-missing-values-1" class="nav-link" data-scroll-target="#finding-non-missing-values-1"><span class="header-section-number">26.7</span> Finding non-missing values</a></li>
-  <li><a href="#european-social-survey-and-voting-1" id="toc-european-social-survey-and-voting-1" class="nav-link" data-scroll-target="#european-social-survey-and-voting-1"><span class="header-section-number">26.8</span> European Social Survey and voting</a></li>
-  <li><a href="#alligator-food-1" id="toc-alligator-food-1" class="nav-link" data-scroll-target="#alligator-food-1"><span class="header-section-number">26.9</span> Alligator food</a></li>
-  <li><a href="#crimes-in-san-francisco-1" id="toc-crimes-in-san-francisco-1" class="nav-link" data-scroll-target="#crimes-in-san-francisco-1"><span class="header-section-number">26.10</span> Crimes in San Francisco</a></li>
-  <li><a href="#crimes-in-san-francisco-the-data-1" id="toc-crimes-in-san-francisco-the-data-1" class="nav-link" data-scroll-target="#crimes-in-san-francisco-the-data-1"><span class="header-section-number">26.11</span> Crimes in San Francisco – the data</a></li>
-  <li><a href="#what-sports-do-these-athletes-play-1" id="toc-what-sports-do-these-athletes-play-1" class="nav-link" data-scroll-target="#what-sports-do-these-athletes-play-1"><span class="header-section-number">26.12</span> What sports do these athletes play?</a></li>
+  <li><a href="#finding-non-missing-values" id="toc-finding-non-missing-values" class="nav-link active" data-scroll-target="#finding-non-missing-values"><span class="header-section-number">29.1</span> Finding non-missing values</a></li>
+  <li><a href="#european-social-survey-and-voting" id="toc-european-social-survey-and-voting" class="nav-link" data-scroll-target="#european-social-survey-and-voting"><span class="header-section-number">29.2</span> European Social Survey and voting</a></li>
+  <li><a href="#alligator-food" id="toc-alligator-food" class="nav-link" data-scroll-target="#alligator-food"><span class="header-section-number">29.3</span> Alligator food</a></li>
+  <li><a href="#crimes-in-san-francisco" id="toc-crimes-in-san-francisco" class="nav-link" data-scroll-target="#crimes-in-san-francisco"><span class="header-section-number">29.4</span> Crimes in San Francisco</a></li>
+  <li><a href="#crimes-in-san-francisco-the-data" id="toc-crimes-in-san-francisco-the-data" class="nav-link" data-scroll-target="#crimes-in-san-francisco-the-data"><span class="header-section-number">29.5</span> Crimes in San Francisco – the data</a></li>
+  <li><a href="#what-sports-do-these-athletes-play" id="toc-what-sports-do-these-athletes-play" class="nav-link" data-scroll-target="#what-sports-do-these-athletes-play"><span class="header-section-number">29.6</span> What sports do these athletes play?</a></li>
+  <li><a href="#finding-non-missing-values-1" id="toc-finding-non-missing-values-1" class="nav-link" data-scroll-target="#finding-non-missing-values-1"><span class="header-section-number">29.7</span> Finding non-missing values</a></li>
+  <li><a href="#european-social-survey-and-voting-1" id="toc-european-social-survey-and-voting-1" class="nav-link" data-scroll-target="#european-social-survey-and-voting-1"><span class="header-section-number">29.8</span> European Social Survey and voting</a></li>
+  <li><a href="#alligator-food-1" id="toc-alligator-food-1" class="nav-link" data-scroll-target="#alligator-food-1"><span class="header-section-number">29.9</span> Alligator food</a></li>
+  <li><a href="#crimes-in-san-francisco-1" id="toc-crimes-in-san-francisco-1" class="nav-link" data-scroll-target="#crimes-in-san-francisco-1"><span class="header-section-number">29.10</span> Crimes in San Francisco</a></li>
+  <li><a href="#crimes-in-san-francisco-the-data-1" id="toc-crimes-in-san-francisco-the-data-1" class="nav-link" data-scroll-target="#crimes-in-san-francisco-the-data-1"><span class="header-section-number">29.11</span> Crimes in San Francisco – the data</a></li>
+  <li><a href="#what-sports-do-these-athletes-play-1" id="toc-what-sports-do-these-athletes-play-1" class="nav-link" data-scroll-target="#what-sports-do-these-athletes-play-1"><span class="header-section-number">29.12</span> What sports do these athletes play?</a></li>
   </ul>
 </nav>
     </div>
@@ -408,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></h1>
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></h1>
 </div>
 
 
@@ -427,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="finding-non-missing-values" class="level2" data-number="26.1">
-<h2 data-number="26.1" class="anchored" data-anchor-id="finding-non-missing-values"><span class="header-section-number">26.1</span> Finding non-missing values</h2>
+<section id="finding-non-missing-values" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="finding-non-missing-values"><span class="header-section-number">29.1</span> Finding non-missing values</h2>
 <p><a name="part:prepare-next">*</a> This is to prepare you for something in the next question. It’s meant to be easy.</p>
 <p>In R, the code <code>NA</code> stands for “missing value” or “value not known”. In R, <code>NA</code> should not have quotes around it. (It is a special code, not a piece of text.)</p>
 <ol type="a">
@@ -438,8 +450,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use <code>filter</code> to display just the rows of your data frame that have a non-missing value of <code>v</code>.</p></li>
 </ol>
 </section>
-<section id="european-social-survey-and-voting" class="level2" data-number="26.2">
-<h2 data-number="26.2" class="anchored" data-anchor-id="european-social-survey-and-voting"><span class="header-section-number">26.2</span> European Social Survey and voting</h2>
+<section id="european-social-survey-and-voting" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="european-social-survey-and-voting"><span class="header-section-number">29.2</span> European Social Survey and voting</h2>
 <p>The European Social Survey is a giant survey carried out across Europe covering demographic information, attitudes to and amount of education, politics and so on. In this question, we will investigate what might make British people vote for a certain political party.</p>
 <p>The information for this question is in a (large) spreadsheet at <a href="http://ritsokiguess.site/datafiles/ess.csv">link</a>. There is also a “codebook” at <a href="http://ritsokiguess.site/datafiles/ess-codebook.pdf">link</a> that tells you what all the variables are. The ones we will use are the last five columns of the spreadsheet, described on pages 11 onwards of the codebook. (I could have given you more, but I didn’t want to make this any more complicated than it already was.)</p>
 <ol type="a">
@@ -456,8 +468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>What is the effect of increasing age? What is the effect of an increase in years of education?</p></li>
 </ol>
 </section>
-<section id="alligator-food" class="level2" data-number="26.3">
-<h2 data-number="26.3" class="anchored" data-anchor-id="alligator-food"><span class="header-section-number">26.3</span> Alligator food</h2>
+<section id="alligator-food" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="alligator-food"><span class="header-section-number">29.3</span> Alligator food</h2>
 <p>What do alligators most like to eat? 219 alligators were captured in four Florida lakes. Each alligator’s stomach contents were observed, and the food that the alligator had eaten was classified into one of five categories: fish, invertebrates (such as snails or insects), reptiles (such as turtles), birds, and “other” (such as amphibians, plants or rocks). The researcher noted for each alligator what that alligator had most of in its stomach, as well as the gender of each alligator and whether it was “large” or “small” (greater or less than 2.3 metres in length). The data can be found in <a href="http://ritsokiguess.site/datafiles/alligator.txt">link</a>. The numbers in the data set (apart from the first column) are all frequencies. (You can ignore that first column “profile”.)</p>
 <p>Our aim is to predict food type from the other variables.</p>
 <ol type="a">
@@ -471,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>How would you describe the major difference between the diets of the small and large alligators?</p></li>
 </ol>
 </section>
-<section id="crimes-in-san-francisco" class="level2" data-number="26.4">
-<h2 data-number="26.4" class="anchored" data-anchor-id="crimes-in-san-francisco"><span class="header-section-number">26.4</span> Crimes in San Francisco</h2>
+<section id="crimes-in-san-francisco" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="crimes-in-san-francisco"><span class="header-section-number">29.4</span> Crimes in San Francisco</h2>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/sfcrime1.csv">link</a> is a subset of a huge dataset of crimes committed in San Francisco between 2003 and 2015. The variables are:</p>
 <ul>
 <li><p><code>Dates</code>: the date and time of the crime</p></li>
@@ -496,8 +508,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Describe briefly how the weekend days Saturday and Sunday differ from the rest.</p></li>
 </ol>
 </section>
-<section id="crimes-in-san-francisco-the-data" class="level2" data-number="26.5">
-<h2 data-number="26.5" class="anchored" data-anchor-id="crimes-in-san-francisco-the-data"><span class="header-section-number">26.5</span> Crimes in San Francisco – the data</h2>
+<section id="crimes-in-san-francisco-the-data" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="crimes-in-san-francisco-the-data"><span class="header-section-number">29.5</span> Crimes in San Francisco – the data</h2>
 <p>The data in <a href="http://utsc.utoronto.ca/~butler/d29/sfcrime.csv">link</a> is a huge dataset of crimes committed in San Francisco between 2003 and 2015. The variables are:</p>
 <ul>
 <li><p><code>Dates</code>: the date and time of the crime</p></li>
@@ -521,8 +533,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Save these data in a file <code>sfcrime1.csv</code>.</p></li>
 </ol>
 </section>
-<section id="what-sports-do-these-athletes-play" class="level2" data-number="26.6">
-<h2 data-number="26.6" class="anchored" data-anchor-id="what-sports-do-these-athletes-play"><span class="header-section-number">26.6</span> What sports do these athletes play?</h2>
+<section id="what-sports-do-these-athletes-play" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="what-sports-do-these-athletes-play"><span class="header-section-number">29.6</span> What sports do these athletes play?</h2>
 <p>The data at <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a> are physical and physiological measurements of 202 male and female Australian elite athletes. The data values are separated by <em>tabs</em>. We are going to see whether we can predict the sport an athlete plays from their height and weight.</p>
 <p>The sports, if you care, are respectively basketball, “field athletics” (eg. shot put, javelin throw, long jump etc.), gymnastics, netball, rowing, swimming, 400m running, tennis, sprinting (100m or 200m running), water polo.</p>
 <ol type="a">
@@ -536,8 +548,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="finding-non-missing-values-1" class="level2" data-number="26.7">
-<h2 data-number="26.7" class="anchored" data-anchor-id="finding-non-missing-values-1"><span class="header-section-number">26.7</span> Finding non-missing values</h2>
+<section id="finding-non-missing-values-1" class="level2" data-number="29.7">
+<h2 data-number="29.7" class="anchored" data-anchor-id="finding-non-missing-values-1"><span class="header-section-number">29.7</span> Finding non-missing values</h2>
 <p><a name="part:prepare-next">*</a> This is to prepare you for something in the next question. It’s meant to be easy.</p>
 <p>In R, the code <code>NA</code> stands for “missing value” or “value not known”. In R, <code>NA</code> should not have quotes around it. (It is a special code, not a piece of text.)</p>
 <ol type="a">
@@ -628,8 +640,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In either case, I only have non-missing values of <code>v</code>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="european-social-survey-and-voting-1" class="level2" data-number="26.8">
-<h2 data-number="26.8" class="anchored" data-anchor-id="european-social-survey-and-voting-1"><span class="header-section-number">26.8</span> European Social Survey and voting</h2>
+<section id="european-social-survey-and-voting-1" class="level2" data-number="29.8">
+<h2 data-number="29.8" class="anchored" data-anchor-id="european-social-survey-and-voting-1"><span class="header-section-number">29.8</span> European Social Survey and voting</h2>
 <p>The European Social Survey is a giant survey carried out across Europe covering demographic information, attitudes to and amount of education, politics and so on. In this question, we will investigate what might make British people vote for a certain political party.</p>
 <p>The information for this question is in a (large) spreadsheet at <a href="http://ritsokiguess.site/datafiles/ess.csv">link</a>. There is also a “codebook” at <a href="http://ritsokiguess.site/datafiles/ess-codebook.pdf">link</a> that tells you what all the variables are. The ones we will use are the last five columns of the spreadsheet, described on pages 11 onwards of the codebook. (I could have given you more, but I didn’t want to make this any more complicated than it already was.)</p>
 <ol type="a">
@@ -989,8 +1001,8 @@ converged</code></pre>
 <p>But, as we suspected, the effect is small (except for that very long interview length) and not really worth worrying about.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="alligator-food-1" class="level2" data-number="26.9">
-<h2 data-number="26.9" class="anchored" data-anchor-id="alligator-food-1"><span class="header-section-number">26.9</span> Alligator food</h2>
+<section id="alligator-food-1" class="level2" data-number="29.9">
+<h2 data-number="29.9" class="anchored" data-anchor-id="alligator-food-1"><span class="header-section-number">29.9</span> Alligator food</h2>
 <p>What do alligators most like to eat? 219 alligators were captured in four Florida lakes. Each alligator’s stomach contents were observed, and the food that the alligator had eaten was classified into one of five categories: fish, invertebrates (such as snails or insects), reptiles (such as turtles), birds, and “other” (such as amphibians, plants or rocks). The researcher noted for each alligator what that alligator had most of in its stomach, as well as the gender of each alligator and whether it was “large” or “small” (greater or less than 2.3 metres in length). The data can be found in <a href="http://ritsokiguess.site/datafiles/alligator.txt">link</a>. The numbers in the data set (apart from the first column) are all frequencies. (You can ignore that first column “profile”.)</p>
 <p>Our aim is to predict food type from the other variables.</p>
 <ol type="a">
@@ -1263,8 +1275,8 @@ converged</code></pre>
 <p>Same idea: hold lake constant, and compare small and large, then check that your conclusion holds for the other lakes as it should. For example, in George Lake, the large alligators are more likely to eat fish, and less likely to eat invertebrates, compared to the small ones. The other food types are not that much different, though you might also note that birds appear more in the diets of large alligators than small ones. Does that hold in the other lakes? I think so, though there is less difference for fish in Hancock lake than the others (where invertebrates are rare for both sizes). Birds don’t commonly appear in any alligator’s diets, but where they do, they are commoner for large alligators than small ones.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="crimes-in-san-francisco-1" class="level2" data-number="26.10">
-<h2 data-number="26.10" class="anchored" data-anchor-id="crimes-in-san-francisco-1"><span class="header-section-number">26.10</span> Crimes in San Francisco</h2>
+<section id="crimes-in-san-francisco-1" class="level2" data-number="29.10">
+<h2 data-number="29.10" class="anchored" data-anchor-id="crimes-in-san-francisco-1"><span class="header-section-number">29.10</span> Crimes in San Francisco</h2>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/sfcrime1.csv">link</a> is a subset of a huge dataset of crimes committed in San Francisco between 2003 and 2015. The variables are:</p>
 <ul>
 <li><p><code>Dates</code>: the date and time of the crime</p></li>
@@ -1574,8 +1586,8 @@ converged</code></pre>
 <p>It doesn’t <em>look</em> much different. Maybe the Tenderloin has a larger weekend increase in assaults than Richmond does.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="crimes-in-san-francisco-the-data-1" class="level2" data-number="26.11">
-<h2 data-number="26.11" class="anchored" data-anchor-id="crimes-in-san-francisco-the-data-1"><span class="header-section-number">26.11</span> Crimes in San Francisco – the data</h2>
+<section id="crimes-in-san-francisco-the-data-1" class="level2" data-number="29.11">
+<h2 data-number="29.11" class="anchored" data-anchor-id="crimes-in-san-francisco-the-data-1"><span class="header-section-number">29.11</span> Crimes in San Francisco – the data</h2>
 <p>The data in <a href="http://utsc.utoronto.ca/~butler/d29/sfcrime.csv">link</a> is a huge dataset of crimes committed in San Francisco between 2003 and 2015. The variables are:</p>
 <ul>
 <li><p><code>Dates</code>: the date and time of the crime</p></li>
@@ -1737,8 +1749,8 @@ dttm (1): Dates
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="what-sports-do-these-athletes-play-1" class="level2" data-number="26.12">
-<h2 data-number="26.12" class="anchored" data-anchor-id="what-sports-do-these-athletes-play-1"><span class="header-section-number">26.12</span> What sports do these athletes play?</h2>
+<section id="what-sports-do-these-athletes-play-1" class="level2" data-number="29.12">
+<h2 data-number="29.12" class="anchored" data-anchor-id="what-sports-do-these-athletes-play-1"><span class="header-section-number">29.12</span> What sports do these athletes play?</h2>
 <p>The data at <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a> are physical and physiological measurements of 202 male and female Australian elite athletes. The data values are separated by <em>tabs</em>. We are going to see whether we can predict the sport an athlete plays from their height and weight.</p>
 <p>The sports, if you care, are respectively basketball, “field athletics” (eg. shot put, javelin throw, long jump etc.), gymnastics, netball, rowing, swimming, 400m running, tennis, sprinting (100m or 200m running), water polo.</p>
 <ol type="a">
@@ -2291,12 +2303,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./ordinal-response.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./survival-analysis.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

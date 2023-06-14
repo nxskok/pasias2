@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 24&nbsp; Logistic regression</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 27&nbsp; Logistic regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./ordinal-response.html" rel="next">
-<link href="./stan.html" rel="prev">
+<link href="./regression-revisited.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./logistic-regression.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./logistic-regression.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,26 +400,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#finding-wolf-spiders-on-the-beach" id="toc-finding-wolf-spiders-on-the-beach" class="nav-link active" data-scroll-target="#finding-wolf-spiders-on-the-beach"><span class="header-section-number">24.1</span> Finding wolf spiders on the beach</a></li>
-  <li><a href="#killing-aphids" id="toc-killing-aphids" class="nav-link" data-scroll-target="#killing-aphids"><span class="header-section-number">24.2</span> Killing aphids</a></li>
-  <li><a href="#the-effects-of-substance-a" id="toc-the-effects-of-substance-a" class="nav-link" data-scroll-target="#the-effects-of-substance-a"><span class="header-section-number">24.3</span> The effects of Substance A</a></li>
-  <li><a href="#what-makes-an-animal-get-infected" id="toc-what-makes-an-animal-get-infected" class="nav-link" data-scroll-target="#what-makes-an-animal-get-infected"><span class="header-section-number">24.4</span> What makes an animal get infected?</a></li>
-  <li><a href="#the-brain-of-a-cat" id="toc-the-brain-of-a-cat" class="nav-link" data-scroll-target="#the-brain-of-a-cat"><span class="header-section-number">24.5</span> The brain of a cat</a></li>
-  <li><a href="#how-not-to-get-heart-disease" id="toc-how-not-to-get-heart-disease" class="nav-link" data-scroll-target="#how-not-to-get-heart-disease"><span class="header-section-number">24.6</span> How not to get heart disease</a></li>
-  <li><a href="#successful-breastfeeding" id="toc-successful-breastfeeding" class="nav-link" data-scroll-target="#successful-breastfeeding"><span class="header-section-number">24.7</span> Successful breastfeeding</a></li>
-  <li><a href="#making-it-over-the-mountains" id="toc-making-it-over-the-mountains" class="nav-link" data-scroll-target="#making-it-over-the-mountains"><span class="header-section-number">24.8</span> Making it over the mountains</a></li>
-  <li><a href="#who-needs-the-most-intensive-care" id="toc-who-needs-the-most-intensive-care" class="nav-link" data-scroll-target="#who-needs-the-most-intensive-care"><span class="header-section-number">24.9</span> Who needs the most intensive care?</a></li>
-  <li><a href="#go-away-and-dont-come-back" id="toc-go-away-and-dont-come-back" class="nav-link" data-scroll-target="#go-away-and-dont-come-back"><span class="header-section-number">24.10</span> Go away and don’t come back!</a></li>
-  <li><a href="#finding-wolf-spiders-on-the-beach-1" id="toc-finding-wolf-spiders-on-the-beach-1" class="nav-link" data-scroll-target="#finding-wolf-spiders-on-the-beach-1"><span class="header-section-number">24.11</span> Finding wolf spiders on the beach</a></li>
-  <li><a href="#killing-aphids-1" id="toc-killing-aphids-1" class="nav-link" data-scroll-target="#killing-aphids-1"><span class="header-section-number">24.12</span> Killing aphids</a></li>
-  <li><a href="#the-effects-of-substance-a-1" id="toc-the-effects-of-substance-a-1" class="nav-link" data-scroll-target="#the-effects-of-substance-a-1"><span class="header-section-number">24.13</span> The effects of Substance A</a></li>
-  <li><a href="#what-makes-an-animal-get-infected-1" id="toc-what-makes-an-animal-get-infected-1" class="nav-link" data-scroll-target="#what-makes-an-animal-get-infected-1"><span class="header-section-number">24.14</span> What makes an animal get infected?</a></li>
-  <li><a href="#the-brain-of-a-cat-1" id="toc-the-brain-of-a-cat-1" class="nav-link" data-scroll-target="#the-brain-of-a-cat-1"><span class="header-section-number">24.15</span> The brain of a cat</a></li>
-  <li><a href="#how-not-to-get-heart-disease-1" id="toc-how-not-to-get-heart-disease-1" class="nav-link" data-scroll-target="#how-not-to-get-heart-disease-1"><span class="header-section-number">24.16</span> How not to get heart disease</a></li>
-  <li><a href="#successful-breastfeeding-1" id="toc-successful-breastfeeding-1" class="nav-link" data-scroll-target="#successful-breastfeeding-1"><span class="header-section-number">24.17</span> Successful breastfeeding</a></li>
-  <li><a href="#making-it-over-the-mountains-1" id="toc-making-it-over-the-mountains-1" class="nav-link" data-scroll-target="#making-it-over-the-mountains-1"><span class="header-section-number">24.18</span> Making it over the mountains</a></li>
-  <li><a href="#who-needs-the-most-intensive-care-1" id="toc-who-needs-the-most-intensive-care-1" class="nav-link" data-scroll-target="#who-needs-the-most-intensive-care-1"><span class="header-section-number">24.19</span> Who needs the most intensive care?</a></li>
-  <li><a href="#go-away-and-dont-come-back-1" id="toc-go-away-and-dont-come-back-1" class="nav-link" data-scroll-target="#go-away-and-dont-come-back-1"><span class="header-section-number">24.20</span> Go away and don’t come back!</a></li>
+  <li><a href="#finding-wolf-spiders-on-the-beach" id="toc-finding-wolf-spiders-on-the-beach" class="nav-link active" data-scroll-target="#finding-wolf-spiders-on-the-beach"><span class="header-section-number">27.1</span> Finding wolf spiders on the beach</a></li>
+  <li><a href="#killing-aphids" id="toc-killing-aphids" class="nav-link" data-scroll-target="#killing-aphids"><span class="header-section-number">27.2</span> Killing aphids</a></li>
+  <li><a href="#the-effects-of-substance-a" id="toc-the-effects-of-substance-a" class="nav-link" data-scroll-target="#the-effects-of-substance-a"><span class="header-section-number">27.3</span> The effects of Substance A</a></li>
+  <li><a href="#what-makes-an-animal-get-infected" id="toc-what-makes-an-animal-get-infected" class="nav-link" data-scroll-target="#what-makes-an-animal-get-infected"><span class="header-section-number">27.4</span> What makes an animal get infected?</a></li>
+  <li><a href="#the-brain-of-a-cat" id="toc-the-brain-of-a-cat" class="nav-link" data-scroll-target="#the-brain-of-a-cat"><span class="header-section-number">27.5</span> The brain of a cat</a></li>
+  <li><a href="#how-not-to-get-heart-disease" id="toc-how-not-to-get-heart-disease" class="nav-link" data-scroll-target="#how-not-to-get-heart-disease"><span class="header-section-number">27.6</span> How not to get heart disease</a></li>
+  <li><a href="#successful-breastfeeding" id="toc-successful-breastfeeding" class="nav-link" data-scroll-target="#successful-breastfeeding"><span class="header-section-number">27.7</span> Successful breastfeeding</a></li>
+  <li><a href="#making-it-over-the-mountains" id="toc-making-it-over-the-mountains" class="nav-link" data-scroll-target="#making-it-over-the-mountains"><span class="header-section-number">27.8</span> Making it over the mountains</a></li>
+  <li><a href="#who-needs-the-most-intensive-care" id="toc-who-needs-the-most-intensive-care" class="nav-link" data-scroll-target="#who-needs-the-most-intensive-care"><span class="header-section-number">27.9</span> Who needs the most intensive care?</a></li>
+  <li><a href="#go-away-and-dont-come-back" id="toc-go-away-and-dont-come-back" class="nav-link" data-scroll-target="#go-away-and-dont-come-back"><span class="header-section-number">27.10</span> Go away and don’t come back!</a></li>
+  <li><a href="#finding-wolf-spiders-on-the-beach-1" id="toc-finding-wolf-spiders-on-the-beach-1" class="nav-link" data-scroll-target="#finding-wolf-spiders-on-the-beach-1"><span class="header-section-number">27.11</span> Finding wolf spiders on the beach</a></li>
+  <li><a href="#killing-aphids-1" id="toc-killing-aphids-1" class="nav-link" data-scroll-target="#killing-aphids-1"><span class="header-section-number">27.12</span> Killing aphids</a></li>
+  <li><a href="#the-effects-of-substance-a-1" id="toc-the-effects-of-substance-a-1" class="nav-link" data-scroll-target="#the-effects-of-substance-a-1"><span class="header-section-number">27.13</span> The effects of Substance A</a></li>
+  <li><a href="#what-makes-an-animal-get-infected-1" id="toc-what-makes-an-animal-get-infected-1" class="nav-link" data-scroll-target="#what-makes-an-animal-get-infected-1"><span class="header-section-number">27.14</span> What makes an animal get infected?</a></li>
+  <li><a href="#the-brain-of-a-cat-1" id="toc-the-brain-of-a-cat-1" class="nav-link" data-scroll-target="#the-brain-of-a-cat-1"><span class="header-section-number">27.15</span> The brain of a cat</a></li>
+  <li><a href="#how-not-to-get-heart-disease-1" id="toc-how-not-to-get-heart-disease-1" class="nav-link" data-scroll-target="#how-not-to-get-heart-disease-1"><span class="header-section-number">27.16</span> How not to get heart disease</a></li>
+  <li><a href="#successful-breastfeeding-1" id="toc-successful-breastfeeding-1" class="nav-link" data-scroll-target="#successful-breastfeeding-1"><span class="header-section-number">27.17</span> Successful breastfeeding</a></li>
+  <li><a href="#making-it-over-the-mountains-1" id="toc-making-it-over-the-mountains-1" class="nav-link" data-scroll-target="#making-it-over-the-mountains-1"><span class="header-section-number">27.18</span> Making it over the mountains</a></li>
+  <li><a href="#who-needs-the-most-intensive-care-1" id="toc-who-needs-the-most-intensive-care-1" class="nav-link" data-scroll-target="#who-needs-the-most-intensive-care-1"><span class="header-section-number">27.19</span> Who needs the most intensive care?</a></li>
+  <li><a href="#go-away-and-dont-come-back-1" id="toc-go-away-and-dont-come-back-1" class="nav-link" data-scroll-target="#go-away-and-dont-come-back-1"><span class="header-section-number">27.20</span> Go away and don’t come back!</a></li>
   </ul>
 </nav>
     </div>
@@ -416,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></h1>
 </div>
 
 
@@ -434,8 +446,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="finding-wolf-spiders-on-the-beach" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="finding-wolf-spiders-on-the-beach"><span class="header-section-number">24.1</span> Finding wolf spiders on the beach</h2>
+<section id="finding-wolf-spiders-on-the-beach" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="finding-wolf-spiders-on-the-beach"><span class="header-section-number">27.1</span> Finding wolf spiders on the beach</h2>
 <p><a name="q:wolfspider"><em></em></a><em> A team of Japanese researchers were investigating what would cause the burrowing wolf spider </em>Lycosa ishikariana* to be found on a beach. They hypothesized that it had to do with the size of the grains of sand on the beach. They went to 28 beaches in Japan, measured the average sand grain size (in millimetres), and observed the presence or absence of this particular spider on each beach. The data are in <a href="http://ritsokiguess.site/datafiles/spiders.txt">link</a>.</p>
 <ol type="a">
 <li><p>Why would logistic regression be better than regular regression in this case?</p></li>
@@ -447,8 +459,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Given your previous work in this question, does the trend you see in your predicted probabilities surprise you? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="killing-aphids" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="killing-aphids"><span class="header-section-number">24.2</span> Killing aphids</h2>
+<section id="killing-aphids" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="killing-aphids"><span class="header-section-number">27.2</span> Killing aphids</h2>
 <p>An experiment was designed to examine how well the insecticide rotenone kills aphids that feed on the chrysanthemum plant called <em>Macrosiphoniella sanborni</em>. The explanatory variable is the log concentration (in milligrams per litre) of the insecticide. At each of the five different concentrations, approximately 50 insects were exposed. The number of insects exposed at each concentration, and the number killed, are shown below.</p>
 <pre><code>
 Log-Concentration   Insects exposed    Number killed   
@@ -468,8 +480,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p>People in this kind of work are often interested in the “median lethal dose”. In this case, that would be the log-concentration of the insecticide that kills half the insects. Based on your predictions, roughly what do you think the median lethal dose is?</p></li>
 </ol>
 </section>
-<section id="the-effects-of-substance-a" class="level2" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="the-effects-of-substance-a"><span class="header-section-number">24.3</span> The effects of Substance A</h2>
+<section id="the-effects-of-substance-a" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="the-effects-of-substance-a"><span class="header-section-number">27.3</span> The effects of Substance A</h2>
 <p>In a dose-response experiment, animals (or cell cultures or human subjects) are exposed to some toxic substance, and we observe how many of them show some sort of response. In this experiment, a mysterious Substance A is exposed at various doses to 100 cells at each dose, and the number of cells at each dose that suffer damage is recorded. The doses were 10, 20, … 70 (mg), and the number of damaged cells out of 100 were respectively 10, 28, 53, 77, 91, 98, 99.</p>
 <ol type="a">
 <li><p>Find a way to get these data into R, and show that you have managed to do so successfully.</p></li>
@@ -481,8 +493,8 @@ Log-Concentration   Insects exposed    Number killed
 </ol>
 <p>Looking at the predicted probabilities, would you say that the model fits well? Explain briefly.</p>
 </section>
-<section id="what-makes-an-animal-get-infected" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="what-makes-an-animal-get-infected"><span class="header-section-number">24.4</span> What makes an animal get infected?</h2>
+<section id="what-makes-an-animal-get-infected" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="what-makes-an-animal-get-infected"><span class="header-section-number">27.4</span> What makes an animal get infected?</h2>
 <p>Some animals got infected with a parasite. We are interested in whether the likelihood of infection depends on any of the age, weight and sex of the animals. The data are at <a href="http://ritsokiguess.site/datafiles/infection.txt">link</a>. The values are separated by tabs.</p>
 <ol type="a">
 <li><p>Read in the data and take a look at the first few lines. Is this one animal per line, or are several animals with the same age, weight and sex (and infection status) combined onto one line? How can you tell?</p></li>
@@ -494,8 +506,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p><a name="part:crossing">*</a> The first and third quartiles of <code>age</code> are 26 and 130; the first and third quartiles of <code>weight</code> are 9 and 16. Obtain predicted probabilities for all combinations of these and <code>sex</code>. (You’ll need to start by making a new data frame, using <code>datagrid</code> to get all the combinations.)</p></li>
 </ol>
 </section>
-<section id="the-brain-of-a-cat" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="the-brain-of-a-cat"><span class="header-section-number">24.5</span> The brain of a cat</h2>
+<section id="the-brain-of-a-cat" class="level2" data-number="27.5">
+<h2 data-number="27.5" class="anchored" data-anchor-id="the-brain-of-a-cat"><span class="header-section-number">27.5</span> The brain of a cat</h2>
 <p>A large number (315) of psychology students were asked to imagine that they were serving on a university ethics committee hearing a complaint against animal research being done by a member of the faculty. The students were told that the surgery consisted of implanting a device called a cannula in each cat’s brain, through which chemicals were introduced into the brain and the cats were then given psychological tests. At the end of the study, the cats’ brains were subjected to histological analysis. The complaint asked that the researcher’s authorization to carry out the study should be withdrawn, and the cats should be handed over to the animal rights group that filed the complaint. It was suggested that the research could just as well be done with computer simulations.</p>
 <p>All of the psychology students in the survey were told all of this. In addition, they read a statement by the researcher that no animal felt much pain at any time, and that computer simulation was <em>not</em> an adequate substitute for animal research. Each student was also given <em>one</em> of the following scenarios that explained the benefit of the research:</p>
 <ul>
@@ -528,8 +540,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p>Describe the effects that having (i) a higher idealism score and (ii) a higher relativity score have on a person’s probability of saying that the research should stop. Do each of these increase or decrease that probability? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="how-not-to-get-heart-disease" class="level2" data-number="24.6">
-<h2 data-number="24.6" class="anchored" data-anchor-id="how-not-to-get-heart-disease"><span class="header-section-number">24.6</span> How not to get heart disease</h2>
+<section id="how-not-to-get-heart-disease" class="level2" data-number="27.6">
+<h2 data-number="27.6" class="anchored" data-anchor-id="how-not-to-get-heart-disease"><span class="header-section-number">27.6</span> How not to get heart disease</h2>
 <p>What is associated with heart disease? In a study, a large number of variables were measured, as follows:</p>
 <ul>
 <li><p><code>age</code> (years)</p></li>
@@ -561,8 +573,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p>Compare the <code>summary</code> of the final model from <code>step</code> with your highest predicted heart disease probability and the values of the other variables that make it up. Are they consistent?</p></li>
 </ol>
 </section>
-<section id="successful-breastfeeding" class="level2" data-number="24.7">
-<h2 data-number="24.7" class="anchored" data-anchor-id="successful-breastfeeding"><span class="header-section-number">24.7</span> Successful breastfeeding</h2>
+<section id="successful-breastfeeding" class="level2" data-number="27.7">
+<h2 data-number="27.7" class="anchored" data-anchor-id="successful-breastfeeding"><span class="header-section-number">27.7</span> Successful breastfeeding</h2>
 <p>A regular pregnancy lasts 40 weeks, and a baby that is born at or before 33 weeks is called “premature”. The number of weeks at which a baby is born is called its “gestational age”. Premature babies are usually smaller than normal and may require special care. It is a good sign if, when the mother and baby leave the hospital to go home, the baby is successfully breastfeeding.</p>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/breastfeed.csv">link</a> are from a study of 64 premature infants. There are three columns: the gestational age (a whole number of weeks), the number of babies of that gestational age that were successfully breastfeeding when they left the hospital, and the number that were not. (There were multiple babies of the same gestational age, so the 64 babies are summarized in 6 rows of data.)</p>
 <ol type="a">
@@ -576,8 +588,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p>Obtain the predicted probabilities that an infant will successfully breastfeed for a representative collection of gestational ages.</p></li>
 </ol>
 </section>
-<section id="making-it-over-the-mountains" class="level2" data-number="24.8">
-<h2 data-number="24.8" class="anchored" data-anchor-id="making-it-over-the-mountains"><span class="header-section-number">24.8</span> Making it over the mountains</h2>
+<section id="making-it-over-the-mountains" class="level2" data-number="27.8">
+<h2 data-number="27.8" class="anchored" data-anchor-id="making-it-over-the-mountains"><span class="header-section-number">27.8</span> Making it over the mountains</h2>
 <p>In 1846, the Donner party (Donner and Reed families) left Springfield, Illinois for California in covered wagons. After reaching Fort Bridger, Wyoming, the leaders decided to find a new route to Sacramento. They became stranded in the eastern Sierra Nevada mountains at a place now called Donner Pass, when the region was hit by heavy snows in late October. By the time the survivors were rescued on April 21, 1847, 40 out of 87 had died.</p>
 <p>After the rescue, the age and gender of each person in the party was recorded, along with whether they survived or not. The data are in <a href="http://ritsokiguess.site/datafiles/donner.txt">link</a>.</p>
 <ol type="a">
@@ -592,8 +604,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p>Do your predictions support your conclusions from earlier about the effects of age and gender? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="who-needs-the-most-intensive-care" class="level2" data-number="24.9">
-<h2 data-number="24.9" class="anchored" data-anchor-id="who-needs-the-most-intensive-care"><span class="header-section-number">24.9</span> Who needs the most intensive care?</h2>
+<section id="who-needs-the-most-intensive-care" class="level2" data-number="27.9">
+<h2 data-number="27.9" class="anchored" data-anchor-id="who-needs-the-most-intensive-care"><span class="header-section-number">27.9</span> Who needs the most intensive care?</h2>
 <p>The “APACHE II” is a scale for assessing patients who arrive in the intensive care unit (ICU) of a hospital. These are seriously ill patients who may die despite the ICU’s best attempts. APACHE stands for “Acute Physiology And Chronic Health Evaluation”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The scale score is calculated from several physiological measurements such as body temperature, heart rate and the Glasgow coma scale, as well as the patient’s age. The final result is a score between 0 and 71, with a higher score indicating more severe health issues. Is it true that a patient with a higher APACHE II score has a higher probability of dying?</p>
 <p>Data from one hospital are in <a href="http://ritsokiguess.site/datafiles/apache.txt">link</a>. The columns are: the APACHE II score, the total number of patients who had that score, and the number of patients with that score who died.</p>
 <ol type="a">
@@ -607,8 +619,8 @@ Log-Concentration   Insects exposed    Number killed
 <li><p>Make a plot of predicted death probability against <code>apache</code> score (joined by lines) with, also on the plot, the observed proportion of deaths within each <code>apache</code> score, plotted against <code>apache</code> score. Does there seem to be good agreement between observation and prediction? Hint: calculate what you need to from the original dataframe first, save it, then make a plot of the predictions, and then to the plot add the appropriate thing from the dataframe you just saved.</p></li>
 </ol>
 </section>
-<section id="go-away-and-dont-come-back" class="level2" data-number="24.10">
-<h2 data-number="24.10" class="anchored" data-anchor-id="go-away-and-dont-come-back"><span class="header-section-number">24.10</span> Go away and don’t come back!</h2>
+<section id="go-away-and-dont-come-back" class="level2" data-number="27.10">
+<h2 data-number="27.10" class="anchored" data-anchor-id="go-away-and-dont-come-back"><span class="header-section-number">27.10</span> Go away and don’t come back!</h2>
 <p>When a person has a heart attack and survives it, the major concern of health professionals is to prevent the person having a second heart attack. Two factors that are believed to be important are anger and anxiety; if a heart attack survivor tends to be angry or anxious, they are believed to put themselves at increased risk of a second heart attack.</p>
 <p>Twenty heart attack survivors took part in a study. Each one was given a test designed to assess their anxiety (a higher score on the test indicates higher anxiety), and some of the survivors took an anger management course. The data are in <a href="http://ritsokiguess.site/datafiles/ha2.txt">link</a>; <code>y</code> and <code>n</code> denote “yes” and “no” respectively. The columns denote (i) whether or not the person had a second heart attack, (ii) whether or not the person took the anger management class, (iii) the anxiety score.</p>
 <ol type="a">
@@ -621,8 +633,8 @@ Log-Concentration   Insects exposed    Number killed
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="finding-wolf-spiders-on-the-beach-1" class="level2" data-number="24.11">
-<h2 data-number="24.11" class="anchored" data-anchor-id="finding-wolf-spiders-on-the-beach-1"><span class="header-section-number">24.11</span> Finding wolf spiders on the beach</h2>
+<section id="finding-wolf-spiders-on-the-beach-1" class="level2" data-number="27.11">
+<h2 data-number="27.11" class="anchored" data-anchor-id="finding-wolf-spiders-on-the-beach-1"><span class="header-section-number">27.11</span> Finding wolf spiders on the beach</h2>
 <p><a name="q:wolfspider"><em></em></a><em> A team of Japanese researchers were investigating what would cause the burrowing wolf spider </em>Lycosa ishikariana* to be found on a beach. They hypothesized that it had to do with the size of the grains of sand on the beach. They went to 28 beaches in Japan, measured the average sand grain size (in millimetres), and observed the presence or absence of this particular spider on each beach. The data are in <a href="http://ritsokiguess.site/datafiles/spiders.txt">link</a>.</p>
 <ol type="a">
 <li>Why would logistic regression be better than regular regression in this case?</li>
@@ -813,8 +825,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p>My predicted probabilities go up as grain size goes up. This fails to surprise me for a couple of reasons: first, in my boxplots, I saw that grain size tended to be larger when spiders were present, and second, in my logistic regression <code>summary</code>, the slope was positive, so likewise spiders should be more likely as grain size goes up. Observing just one of these things is enough, though of course it’s nice if you can spot both.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="killing-aphids-1" class="level2" data-number="24.12">
-<h2 data-number="24.12" class="anchored" data-anchor-id="killing-aphids-1"><span class="header-section-number">24.12</span> Killing aphids</h2>
+<section id="killing-aphids-1" class="level2" data-number="27.12">
+<h2 data-number="27.12" class="anchored" data-anchor-id="killing-aphids-1"><span class="header-section-number">27.12</span> Killing aphids</h2>
 <p>An experiment was designed to examine how well the insecticide rotenone kills aphids that feed on the chrysanthemum plant called <em>Macrosiphoniella sanborni</em>. The explanatory variable is the log concentration (in milligrams per litre) of the insecticide. At each of the five different concentrations, approximately 50 insects were exposed. The number of insects exposed at each concentration, and the number killed, are shown below.</p>
 <pre><code>
 Log-Concentration   Insects exposed    Number killed   
@@ -1159,8 +1171,8 @@ p = 0.75: 1.927108 0.06532356</code></pre>
 <p>Now we have intervals for the median lethal dose, as well as for the doses that kill a quarter and three quarters of the aphids.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="the-effects-of-substance-a-1" class="level2" data-number="24.13">
-<h2 data-number="24.13" class="anchored" data-anchor-id="the-effects-of-substance-a-1"><span class="header-section-number">24.13</span> The effects of Substance A</h2>
+<section id="the-effects-of-substance-a-1" class="level2" data-number="27.13">
+<h2 data-number="27.13" class="anchored" data-anchor-id="the-effects-of-substance-a-1"><span class="header-section-number">27.13</span> The effects of Substance A</h2>
 <p>In a dose-response experiment, animals (or cell cultures or human subjects) are exposed to some toxic substance, and we observe how many of them show some sort of response. In this experiment, a mysterious Substance A is exposed at various doses to 100 cells at each dose, and the number of cells at each dose that suffer damage is recorded. The doses were 10, 20, … 70 (mg), and the number of damaged cells out of 100 were respectively 10, 28, 53, 77, 91, 98, 99.</p>
 <ol type="a">
 <li>Find a way to get these data into R, and show that you have managed to do so successfully.</li>
@@ -1397,8 +1409,8 @@ Caused by error:
 <p>Your actual words are a judgement call, so precisely what you say doesn’t matter so much, but <em>I</em> think this model fit is actually closer than you could even hope to expect, it’s that good. But, your call. I think your answer ought to contain “close” or “fits well” at the very least.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="what-makes-an-animal-get-infected-1" class="level2" data-number="24.14">
-<h2 data-number="24.14" class="anchored" data-anchor-id="what-makes-an-animal-get-infected-1"><span class="header-section-number">24.14</span> What makes an animal get infected?</h2>
+<section id="what-makes-an-animal-get-infected-1" class="level2" data-number="27.14">
+<h2 data-number="27.14" class="anchored" data-anchor-id="what-makes-an-animal-get-infected-1"><span class="header-section-number">27.14</span> What makes an animal get infected?</h2>
 <p>Some animals got infected with a parasite. We are interested in whether the likelihood of infection depends on any of the age, weight and sex of the animals. The data are at <a href="http://ritsokiguess.site/datafiles/infection.txt">link</a>. The values are separated by tabs.</p>
 <ol type="a">
 <li>Read in the data and take a look at the first few lines. Is this one animal per line, or are several animals with the same age, weight and sex (and infection status) combined onto one line? How can you tell?</li>
@@ -1898,8 +1910,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p>They are actually quite different. For the model with squared terms in age and weight, the predicted probabilities of infection are a lot higher for both males and females, at least at these (mean) ages and weights.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="the-brain-of-a-cat-1" class="level2" data-number="24.15">
-<h2 data-number="24.15" class="anchored" data-anchor-id="the-brain-of-a-cat-1"><span class="header-section-number">24.15</span> The brain of a cat</h2>
+<section id="the-brain-of-a-cat-1" class="level2" data-number="27.15">
+<h2 data-number="27.15" class="anchored" data-anchor-id="the-brain-of-a-cat-1"><span class="header-section-number">27.15</span> The brain of a cat</h2>
 <p>A large number (315) of psychology students were asked to imagine that they were serving on a university ethics committee hearing a complaint against animal research being done by a member of the faculty. The students were told that the surgery consisted of implanting a device called a cannula in each cat’s brain, through which chemicals were introduced into the brain and the cats were then given psychological tests. At the end of the study, the cats’ brains were subjected to histological analysis. The complaint asked that the researcher’s authorization to carry out the study should be withdrawn, and the cats should be handed over to the animal rights group that filed the complaint. It was suggested that the research could just as well be done with computer simulations.</p>
 <p>All of the psychology students in the survey were told all of this. In addition, they read a statement by the researcher that no animal felt much pain at any time, and that computer simulation was <em>not</em> an adequate substitute for animal research. Each student was also given <em>one</em> of the following scenarios that explained the benefit of the research:</p>
 <ul>
@@ -2416,8 +2428,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <p>There is actually a <em>town</em> called Catbrain. It’s in England, near Bristol, and seems to be home to a street of car dealerships. One of the questions in the chapter on making maps asks you to find out where it is exactly.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="how-not-to-get-heart-disease-1" class="level2" data-number="24.16">
-<h2 data-number="24.16" class="anchored" data-anchor-id="how-not-to-get-heart-disease-1"><span class="header-section-number">24.16</span> How not to get heart disease</h2>
+<section id="how-not-to-get-heart-disease-1" class="level2" data-number="27.16">
+<h2 data-number="27.16" class="anchored" data-anchor-id="how-not-to-get-heart-disease-1"><span class="header-section-number">27.16</span> How not to get heart disease</h2>
 <p>What is associated with heart disease? In a study, a large number of variables were measured, as follows:</p>
 <ul>
 <li><p><code>age</code> (years)</p></li>
@@ -2816,7 +2828,7 @@ Number of Fisher Scoring iterations: 6</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["heart.disease"],"name":[6],"type":["chr"],"align":["left"]},{"label":["sex"],"name":[7],"type":["chr"],"align":["left"]},{"label":["pain.type"],"name":[8],"type":["chr"],"align":["left"]},{"label":["resting.bp"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["serum.chol"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["max.hr"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["oldpeak"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["slope"],"name":[13],"type":["chr"],"align":["left"]},{"label":["colored"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["thal"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"88282","2":"0.05532334","3":"0.0024486740","4":"0.009253811","5":"0.2685734","6":"no","7":"male","8":"nonanginal","9":"130","10":"280","11":"153.5","12":"0.8","13":"upsloping","14":"0","15":"fixed"},{"1":"53635","2":"0.82257587","3":"0.3476196634","4":"0.158817642","5":"0.9912927","6":"no","7":"female","8":"typical","9":"200","10":"564","11":"133.0","12":"1.6","13":"flat","14":"1","15":"fixed"},{"1":"86251","2":"0.77352302","3":"0.4199412143","4":"0.147209431","5":"0.9854181","6":"no","7":"male","8":"nonanginal","9":"120","10":"564","11":"166.0","12":"1.6","13":"flat","14":"1","15":"fixed"},{"1":"89026","2":"0.85471337","3":"0.3701759515","4":"0.108744979","5":"0.9964869","6":"no","7":"male","8":"nonanginal","9":"130","10":"564","11":"202.0","12":"0.8","13":"downsloping","14":"3","15":"fixed"},{"1":"82319","2":"0.05357470","3":"0.0000110952","4":"0.015484299","5":"0.1692563","6":"no","7":"male","8":"nonanginal","9":"94","10":"245","11":"153.5","12":"0.0","13":"upsloping","14":"1","15":"normal"},{"1":"58719","2":"0.69563164","3":"0.1364467414","4":"0.435036475","5":"0.8715232","6":"no","7":"male","8":"asymptomatic","9":"120","10":"280","11":"166.0","12":"1.6","13":"upsloping","14":"0","15":"reversible"},{"1":"15905","2":"0.09787577","3":"0.1688401468","4":"0.004564633","5":"0.7196519","6":"no","7":"female","8":"atypical","9":"94","10":"564","11":"153.5","12":"0.8","13":"downsloping","14":"0","15":"normal"},{"1":"38294","2":"0.30560316","3":"0.6201433181","4":"0.016851579","5":"0.9186992","6":"no","7":"female","8":"nonanginal","9":"200","10":"126","11":"202.0","12":"1.6","13":"downsloping","14":"3","15":"normal"},{"1":"83632","2":"0.37613538","3":"0.7621607862","4":"0.022252394","5":"0.9410792","6":"no","7":"male","8":"nonanginal","9":"94","10":"564","11":"202.0","12":"0.8","13":"flat","14":"1","15":"fixed"},{"1":"21748","2":"0.10421641","3":"0.0735307558","4":"0.010907354","5":"0.5510446","6":"no","7":"female","8":"atypical","9":"140","10":"126","11":"133.0","12":"0.8","13":"flat","14":"1","15":"fixed"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["heart.disease"],"name":[6],"type":["chr"],"align":["left"]},{"label":["sex"],"name":[7],"type":["chr"],"align":["left"]},{"label":["pain.type"],"name":[8],"type":["chr"],"align":["left"]},{"label":["resting.bp"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["serum.chol"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["max.hr"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["oldpeak"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["slope"],"name":[13],"type":["chr"],"align":["left"]},{"label":["colored"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["thal"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"76832","2":"0.9585875","3":"2.552143e-03","4":"0.750419081","5":"0.9944196","6":"no","7":"male","8":"atypical","9":"140","10":"245","11":"133","12":"0.8","13":"flat","14":"3","15":"normal"},{"1":"46968","2":"0.4455353","3":"8.886375e-01","4":"0.036255956","5":"0.9449437","6":"no","7":"female","8":"typical","9":"130","10":"213","11":"202","12":"6.2","13":"flat","14":"1","15":"reversible"},{"1":"74033","2":"0.9584482","3":"1.438664e-02","4":"0.651381501","5":"0.9965005","6":"no","7":"male","8":"atypical","9":"130","10":"245","11":"71","12":"0.8","13":"upsloping","14":"3","15":"normal"},{"1":"10223","2":"0.8553740","3":"1.030973e-01","4":"0.411014374","5":"0.9804406","6":"no","7":"female","8":"asymptomatic","9":"140","10":"280","11":"202","12":"1.6","13":"flat","14":"3","15":"normal"},{"1":"45330","2":"0.0408872","3":"5.445752e-03","4":"0.004586023","5":"0.2828765","6":"no","7":"female","8":"typical","9":"120","10":"280","11":"202","12":"1.6","13":"upsloping","14":"1","15":"reversible"},{"1":"99789","2":"0.9735430","3":"6.408922e-02","4":"0.447422396","5":"0.9994024","6":"no","7":"male","8":"typical","9":"120","10":"564","11":"166","12":"6.2","13":"upsloping","14":"1","15":"reversible"},{"1":"82154","2":"0.1710589","3":"1.884284e-01","4":"0.019267602","5":"0.6842974","6":"no","7":"male","8":"nonanginal","9":"94","10":"245","11":"71","12":"1.6","13":"upsloping","14":"0","15":"normal"},{"1":"41684","2":"0.3561885","3":"7.532042e-01","4":"0.013627775","5":"0.9568115","6":"no","7":"female","8":"typical","9":"94","10":"245","11":"71","12":"6.2","13":"upsloping","14":"1","15":"normal"},{"1":"50412","2":"0.4781765","3":"9.520961e-01","4":"0.050346787","5":"0.9406134","6":"no","7":"female","8":"typical","9":"140","10":"280","11":"133","12":"6.2","13":"downsloping","14":"0","15":"reversible"},{"1":"4410","2":"0.9986807","3":"6.441354e-05","4":"0.967003076","5":"0.9999489","6":"no","7":"female","8":"asymptomatic","9":"120","10":"280","11":"71","12":"6.2","13":"downsloping","14":"3","15":"reversible"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2981,8 +2993,8 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <p>Perhaps, therefore, the easiest way to avoid a heart attack is to not be male!</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="successful-breastfeeding-1" class="level2" data-number="24.17">
-<h2 data-number="24.17" class="anchored" data-anchor-id="successful-breastfeeding-1"><span class="header-section-number">24.17</span> Successful breastfeeding</h2>
+<section id="successful-breastfeeding-1" class="level2" data-number="27.17">
+<h2 data-number="27.17" class="anchored" data-anchor-id="successful-breastfeeding-1"><span class="header-section-number">27.17</span> Successful breastfeeding</h2>
 <p>A regular pregnancy lasts 40 weeks, and a baby that is born at or before 33 weeks is called “premature”. The number of weeks at which a baby is born is called its “gestational age”. Premature babies are usually smaller than normal and may require special care. It is a good sign if, when the mother and baby leave the hospital to go home, the baby is successfully breastfeeding.</p>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/breastfeed.csv">link</a> are from a study of 64 premature infants. There are three columns: the gestational age (a whole number of weeks), the number of babies of that gestational age that were successfully breastfeeding when they left the hospital, and the number that were not. (There were multiple babies of the same gestational age, so the 64 babies are summarized in 6 rows of data.)</p>
 <ol type="a">
@@ -3189,8 +3201,8 @@ The legend for <code>total</code> tells you what size point corresponds to how m
 <p>The idea is that the observed and predicted should be reasonably close, or at least not grossly different, especially when there is a lot of data (the circles are large), and I think they <em>are</em> close, which indicates that our model is doing a good job. You can see that there is not much data on the left, with small gestational ages, so the confidence interval around the predictions is wider there. On the right, where there is lots of data, the interval is narrower. When the gestational age is large (the baby is closer to being full term rather than premature), there is a good chance that the baby will be able to breastfeed, and we are fairly sure about that.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="making-it-over-the-mountains-1" class="level2" data-number="24.18">
-<h2 data-number="24.18" class="anchored" data-anchor-id="making-it-over-the-mountains-1"><span class="header-section-number">24.18</span> Making it over the mountains</h2>
+<section id="making-it-over-the-mountains-1" class="level2" data-number="27.18">
+<h2 data-number="27.18" class="anchored" data-anchor-id="making-it-over-the-mountains-1"><span class="header-section-number">27.18</span> Making it over the mountains</h2>
 <p>In 1846, the Donner party (Donner and Reed families) left Springfield, Illinois for California in covered wagons. After reaching Fort Bridger, Wyoming, the leaders decided to find a new route to Sacramento. They became stranded in the eastern Sierra Nevada mountains at a place now called Donner Pass, when the region was hit by heavy snows in late October. By the time the survivors were rescued on April 21, 1847, 40 out of 87 had died.</p>
 <p>After the rescue, the age and gender of each person in the party was recorded, along with whether they survived or not. The data are in <a href="http://ritsokiguess.site/datafiles/donner.txt">link</a>.</p>
 <ol type="a">
@@ -3431,8 +3443,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <p>To see the effect of gender, look at two predictions of different genders but the same age (eg. rows 1 and 2). The female is always predicted to have the higher survival probability. This is also what we saw before. The effect of gender is substantial, but not strongly significant, because we only have 45 observations, not so many when all we know about each person is whether they survived or not. I wanted you to think about these different ways to understand the model, and to understand that they all say the same thing, in different ways (and thus you can look at whichever of them is most convenient or comprehensible). For the logistic and survival models, I find looking at predictions to be the easiest way to understand what the model is saying.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="who-needs-the-most-intensive-care-1" class="level2" data-number="24.19">
-<h2 data-number="24.19" class="anchored" data-anchor-id="who-needs-the-most-intensive-care-1"><span class="header-section-number">24.19</span> Who needs the most intensive care?</h2>
+<section id="who-needs-the-most-intensive-care-1" class="level2" data-number="27.19">
+<h2 data-number="27.19" class="anchored" data-anchor-id="who-needs-the-most-intensive-care-1"><span class="header-section-number">27.19</span> Who needs the most intensive care?</h2>
 <p>The “APACHE II” is a scale for assessing patients who arrive in the intensive care unit (ICU) of a hospital. These are seriously ill patients who may die despite the ICU’s best attempts. APACHE stands for “Acute Physiology And Chronic Health Evaluation”.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> The scale score is calculated from several physiological measurements such as body temperature, heart rate and the Glasgow coma scale, as well as the patient’s age. The final result is a score between 0 and 71, with a higher score indicating more severe health issues. Is it true that a patient with a higher APACHE II score has a higher probability of dying?</p>
 <p>Data from one hospital are in <a href="http://ritsokiguess.site/datafiles/apache.txt">link</a>. The columns are: the APACHE II score, the total number of patients who had that score, and the number of patients with that score who died.</p>
 <ol type="a">
@@ -3798,8 +3810,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <p>Extra-to-the-fourth: the reason for those names in rugby. In the old days, if a team scored a try and kicked the conversion as well, it was called a “goal”, and as a rugby player, you wanted your team to score a goal. Scoring a try allowed a team to “try” to “convert” it into a “goal” by kicking the conversion, hence the names. Because the NFL and CFL have their roots in rugby, they have the “point after” a touchdown as well (with the option now of allowing teams to try for two points after a touchdown as well).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="go-away-and-dont-come-back-1" class="level2" data-number="24.20">
-<h2 data-number="24.20" class="anchored" data-anchor-id="go-away-and-dont-come-back-1"><span class="header-section-number">24.20</span> Go away and don’t come back!</h2>
+<section id="go-away-and-dont-come-back-1" class="level2" data-number="27.20">
+<h2 data-number="27.20" class="anchored" data-anchor-id="go-away-and-dont-come-back-1"><span class="header-section-number">27.20</span> Go away and don’t come back!</h2>
 <p>When a person has a heart attack and survives it, the major concern of health professionals is to prevent the person having a second heart attack. Two factors that are believed to be important are anger and anxiety; if a heart attack survivor tends to be angry or anxious, they are believed to put themselves at increased risk of a second heart attack.</p>
 <p>Twenty heart attack survivors took part in a study. Each one was given a test designed to assess their anxiety (a higher score on the test indicates higher anxiety), and some of the survivors took an anger management course. The data are in <a href="http://ritsokiguess.site/datafiles/ha2.txt">link</a>; <code>y</code> and <code>n</code> denote “yes” and “no” respectively. The columns denote (i) whether or not the person had a second heart attack, (ii) whether or not the person took the anger management class, (iii) the anxiety score.</p>
 <ol type="a">
@@ -4207,13 +4219,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./stan.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span>
+      <a href="./regression-revisited.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ordinal-response.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 32&nbsp; Discriminant analysis</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 35&nbsp; Discriminant analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discriminant-analysis.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discriminant-analysis.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,224 +158,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./making-graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Drawing graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data exploration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-dataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./one-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-sample-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power and sample size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mood-median.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matched-pairs-sign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normal-quantile.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-of-variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Learning to code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dandruff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Treating dandruff</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidying-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression-categorical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Regression with categorical variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./vector-matrix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Vector and matrix algebra</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The Bootstrap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Bayesian Statistics with Stan</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression-revisited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regression revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordinal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Logistic regression with ordinal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nominal-response.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Survival analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova-revisited.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Analysis of variance revisited</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariate analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./repeated-measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kmeans-cluster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -388,20 +400,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#telling-whether-a-banknote-is-real-or-counterfeit" id="toc-telling-whether-a-banknote-is-real-or-counterfeit" class="nav-link active" data-scroll-target="#telling-whether-a-banknote-is-real-or-counterfeit"><span class="header-section-number">32.1</span> Telling whether a banknote is real or counterfeit</a></li>
-  <li><a href="#urine-and-obesity-what-makes-a-difference" id="toc-urine-and-obesity-what-makes-a-difference" class="nav-link" data-scroll-target="#urine-and-obesity-what-makes-a-difference"><span class="header-section-number">32.2</span> Urine and obesity: what makes a difference?</a></li>
-  <li><a href="#understanding-a-manova" id="toc-understanding-a-manova" class="nav-link" data-scroll-target="#understanding-a-manova"><span class="header-section-number">32.3</span> Understanding a MANOVA</a></li>
-  <li><a href="#what-distinguishes-people-who-do-different-jobs" id="toc-what-distinguishes-people-who-do-different-jobs" class="nav-link" data-scroll-target="#what-distinguishes-people-who-do-different-jobs"><span class="header-section-number">32.4</span> What distinguishes people who do different jobs?</a></li>
-  <li><a href="#observing-children-with-adhd" id="toc-observing-children-with-adhd" class="nav-link" data-scroll-target="#observing-children-with-adhd"><span class="header-section-number">32.5</span> Observing children with ADHD</a></li>
-  <li><a href="#growing-corn" id="toc-growing-corn" class="nav-link" data-scroll-target="#growing-corn"><span class="header-section-number">32.6</span> Growing corn</a></li>
-  <li><a href="#understanding-athletes-height-weight-sport-and-gender" id="toc-understanding-athletes-height-weight-sport-and-gender" class="nav-link" data-scroll-target="#understanding-athletes-height-weight-sport-and-gender"><span class="header-section-number">32.7</span> Understanding athletes’ height, weight, sport and gender</a></li>
-  <li><a href="#telling-whether-a-banknote-is-real-or-counterfeit-1" id="toc-telling-whether-a-banknote-is-real-or-counterfeit-1" class="nav-link" data-scroll-target="#telling-whether-a-banknote-is-real-or-counterfeit-1"><span class="header-section-number">32.8</span> Telling whether a banknote is real or counterfeit</a></li>
-  <li><a href="#urine-and-obesity-what-makes-a-difference-1" id="toc-urine-and-obesity-what-makes-a-difference-1" class="nav-link" data-scroll-target="#urine-and-obesity-what-makes-a-difference-1"><span class="header-section-number">32.9</span> Urine and obesity: what makes a difference?</a></li>
-  <li><a href="#understanding-a-manova-1" id="toc-understanding-a-manova-1" class="nav-link" data-scroll-target="#understanding-a-manova-1"><span class="header-section-number">32.10</span> Understanding a MANOVA</a></li>
-  <li><a href="#what-distinguishes-people-who-do-different-jobs-1" id="toc-what-distinguishes-people-who-do-different-jobs-1" class="nav-link" data-scroll-target="#what-distinguishes-people-who-do-different-jobs-1"><span class="header-section-number">32.11</span> What distinguishes people who do different jobs?</a></li>
-  <li><a href="#observing-children-with-adhd-1" id="toc-observing-children-with-adhd-1" class="nav-link" data-scroll-target="#observing-children-with-adhd-1"><span class="header-section-number">32.12</span> Observing children with ADHD</a></li>
-  <li><a href="#growing-corn-1" id="toc-growing-corn-1" class="nav-link" data-scroll-target="#growing-corn-1"><span class="header-section-number">32.13</span> Growing corn</a></li>
-  <li><a href="#understanding-athletes-height-weight-sport-and-gender-1" id="toc-understanding-athletes-height-weight-sport-and-gender-1" class="nav-link" data-scroll-target="#understanding-athletes-height-weight-sport-and-gender-1"><span class="header-section-number">32.14</span> Understanding athletes’ height, weight, sport and gender</a></li>
+  <li><a href="#telling-whether-a-banknote-is-real-or-counterfeit" id="toc-telling-whether-a-banknote-is-real-or-counterfeit" class="nav-link active" data-scroll-target="#telling-whether-a-banknote-is-real-or-counterfeit"><span class="header-section-number">35.1</span> Telling whether a banknote is real or counterfeit</a></li>
+  <li><a href="#urine-and-obesity-what-makes-a-difference" id="toc-urine-and-obesity-what-makes-a-difference" class="nav-link" data-scroll-target="#urine-and-obesity-what-makes-a-difference"><span class="header-section-number">35.2</span> Urine and obesity: what makes a difference?</a></li>
+  <li><a href="#understanding-a-manova" id="toc-understanding-a-manova" class="nav-link" data-scroll-target="#understanding-a-manova"><span class="header-section-number">35.3</span> Understanding a MANOVA</a></li>
+  <li><a href="#what-distinguishes-people-who-do-different-jobs" id="toc-what-distinguishes-people-who-do-different-jobs" class="nav-link" data-scroll-target="#what-distinguishes-people-who-do-different-jobs"><span class="header-section-number">35.4</span> What distinguishes people who do different jobs?</a></li>
+  <li><a href="#observing-children-with-adhd" id="toc-observing-children-with-adhd" class="nav-link" data-scroll-target="#observing-children-with-adhd"><span class="header-section-number">35.5</span> Observing children with ADHD</a></li>
+  <li><a href="#growing-corn" id="toc-growing-corn" class="nav-link" data-scroll-target="#growing-corn"><span class="header-section-number">35.6</span> Growing corn</a></li>
+  <li><a href="#understanding-athletes-height-weight-sport-and-gender" id="toc-understanding-athletes-height-weight-sport-and-gender" class="nav-link" data-scroll-target="#understanding-athletes-height-weight-sport-and-gender"><span class="header-section-number">35.7</span> Understanding athletes’ height, weight, sport and gender</a></li>
+  <li><a href="#telling-whether-a-banknote-is-real-or-counterfeit-1" id="toc-telling-whether-a-banknote-is-real-or-counterfeit-1" class="nav-link" data-scroll-target="#telling-whether-a-banknote-is-real-or-counterfeit-1"><span class="header-section-number">35.8</span> Telling whether a banknote is real or counterfeit</a></li>
+  <li><a href="#urine-and-obesity-what-makes-a-difference-1" id="toc-urine-and-obesity-what-makes-a-difference-1" class="nav-link" data-scroll-target="#urine-and-obesity-what-makes-a-difference-1"><span class="header-section-number">35.9</span> Urine and obesity: what makes a difference?</a></li>
+  <li><a href="#understanding-a-manova-1" id="toc-understanding-a-manova-1" class="nav-link" data-scroll-target="#understanding-a-manova-1"><span class="header-section-number">35.10</span> Understanding a MANOVA</a></li>
+  <li><a href="#what-distinguishes-people-who-do-different-jobs-1" id="toc-what-distinguishes-people-who-do-different-jobs-1" class="nav-link" data-scroll-target="#what-distinguishes-people-who-do-different-jobs-1"><span class="header-section-number">35.11</span> What distinguishes people who do different jobs?</a></li>
+  <li><a href="#observing-children-with-adhd-1" id="toc-observing-children-with-adhd-1" class="nav-link" data-scroll-target="#observing-children-with-adhd-1"><span class="header-section-number">35.12</span> Observing children with ADHD</a></li>
+  <li><a href="#growing-corn-1" id="toc-growing-corn-1" class="nav-link" data-scroll-target="#growing-corn-1"><span class="header-section-number">35.13</span> Growing corn</a></li>
+  <li><a href="#understanding-athletes-height-weight-sport-and-gender-1" id="toc-understanding-athletes-height-weight-sport-and-gender-1" class="nav-link" data-scroll-target="#understanding-athletes-height-weight-sport-and-gender-1"><span class="header-section-number">35.14</span> Understanding athletes’ height, weight, sport and gender</a></li>
   </ul>
 </nav>
     </div>
@@ -410,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></h1>
+<h1 class="title"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Discriminant analysis</span></h1>
 </div>
 
 
@@ -433,8 +445,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(Note: <code>ggbiplot</code> loads <code>plyr</code>, which overlaps a lot with <code>dplyr</code> (<code>filter</code>, <code>select</code> etc.). We want the <code>dplyr</code> stuff elsewhere, so we load <code>ggbiplot</code> <em>first</em>, and the things in <code>plyr</code> get hidden, as shown in the Conflicts. This, despite appearances, is what we want.)</p>
-<section id="telling-whether-a-banknote-is-real-or-counterfeit" class="level2" data-number="32.1">
-<h2 data-number="32.1" class="anchored" data-anchor-id="telling-whether-a-banknote-is-real-or-counterfeit"><span class="header-section-number">32.1</span> Telling whether a banknote is real or counterfeit</h2>
+<section id="telling-whether-a-banknote-is-real-or-counterfeit" class="level2" data-number="35.1">
+<h2 data-number="35.1" class="anchored" data-anchor-id="telling-whether-a-banknote-is-real-or-counterfeit"><span class="header-section-number">35.1</span> Telling whether a banknote is real or counterfeit</h2>
 <p><a name="sec:swiss-money">*</a> A Swiss bank collected a number of known counterfeit (fake) bills over time, and sampled a number of known genuine bills of the same denomination. Is it possible to tell, from measurements taken from a bill, whether it is genuine or not? We will explore that issue here. The variables measured were:</p>
 <ul>
 <li><p>length</p></li>
@@ -456,8 +468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>What kind of score on <code>LD1</code> do genuine bills typically have? What kind of score do counterfeit bills typically have? What characteristics of a bill, therefore, would you look at to determine if a bill is genuine or counterfeit?</p></li>
 </ol>
 </section>
-<section id="urine-and-obesity-what-makes-a-difference" class="level2" data-number="32.2">
-<h2 data-number="32.2" class="anchored" data-anchor-id="urine-and-obesity-what-makes-a-difference"><span class="header-section-number">32.2</span> Urine and obesity: what makes a difference?</h2>
+<section id="urine-and-obesity-what-makes-a-difference" class="level2" data-number="35.2">
+<h2 data-number="35.2" class="anchored" data-anchor-id="urine-and-obesity-what-makes-a-difference"><span class="header-section-number">35.2</span> Urine and obesity: what makes a difference?</h2>
 <p>A study was made of the characteristics of urine of young men. The men were classified into four groups based on their degree of obesity. (The groups are labelled <code>a, b, c, d</code>.) Four variables were measured, <code>x</code> (which you can ignore), pigment creatinine, chloride and chlorine. The data are in <a href="http://ritsokiguess.site/datafiles/urine.csv">link</a> as a <code>.csv</code> file. There are 45 men altogether.</p>
 <p>Yes, you may have seen this one before. What you found was something like this, probably also with the Box M test (which has a P-value that is small, but not small enough to be a concern):</p>
 <div class="cell">
@@ -495,8 +507,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>Do your conclusions from (<a href="#part:plot">here</a>) and (<a href="#part:table">here</a>) appear to be consistent?</p></li>
 </ol>
 </section>
-<section id="understanding-a-manova" class="level2" data-number="32.3">
-<h2 data-number="32.3" class="anchored" data-anchor-id="understanding-a-manova"><span class="header-section-number">32.3</span> Understanding a MANOVA</h2>
+<section id="understanding-a-manova" class="level2" data-number="35.3">
+<h2 data-number="35.3" class="anchored" data-anchor-id="understanding-a-manova"><span class="header-section-number">35.3</span> Understanding a MANOVA</h2>
 <p>One use of discriminant analysis is to understand the results of a MANOVA. This question is a followup to a previous MANOVA that we did, the one with two variables <code>y1</code> and <code>y2</code> and three groups <code>a</code> through <code>c</code>. The data were in <a href="http://ritsokiguess.site/datafiles/simple-manova.txt">link</a>.</p>
 <ol type="a">
 <li><p>Read the data in again and run the MANOVA that you did before.</p></li>
@@ -509,8 +521,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>Obtain predictions for the group memberships of each observation, and make a table of the actual group memberships against the predicted ones. How many of the observations were wrongly classified?</p></li>
 </ol>
 </section>
-<section id="what-distinguishes-people-who-do-different-jobs" class="level2" data-number="32.4">
-<h2 data-number="32.4" class="anchored" data-anchor-id="what-distinguishes-people-who-do-different-jobs"><span class="header-section-number">32.4</span> What distinguishes people who do different jobs?</h2>
+<section id="what-distinguishes-people-who-do-different-jobs" class="level2" data-number="35.4">
+<h2 data-number="35.4" class="anchored" data-anchor-id="what-distinguishes-people-who-do-different-jobs"><span class="header-section-number">35.4</span> What distinguishes people who do different jobs?</h2>
 <p>244<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> people work at a certain company. They each have one of three jobs: customer service, mechanic, dispatcher. In the data set, these are labelled 1, 2 and 3 respectively. In addition, they each are rated on scales called <code>outdoor</code>, <code>social</code> and <code>conservative</code>. Do people with different jobs tend to have different scores on these scales, or, to put it another way, if you knew a person’s scores on <code>outdoor</code>, <code>social</code> and <code>conservative</code>, could you say something about what kind of job they were likely to hold? The data are in <a href="http://ritsokiguess.site/datafiles/jobs.txt">link</a>.</p>
 <ol type="a">
 <li><p>Read in the data and display some of it.</p></li>
@@ -526,8 +538,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>Since I am not making you hand this one in, I’m going to keep going. Re-run the analysis to incorporate cross-validation, and make a table of the predicted group memberships. Is it much different from the previous one you had? Why would that be?</p></li>
 </ol>
 </section>
-<section id="observing-children-with-adhd" class="level2" data-number="32.5">
-<h2 data-number="32.5" class="anchored" data-anchor-id="observing-children-with-adhd"><span class="header-section-number">32.5</span> Observing children with ADHD</h2>
+<section id="observing-children-with-adhd" class="level2" data-number="35.5">
+<h2 data-number="35.5" class="anchored" data-anchor-id="observing-children-with-adhd"><span class="header-section-number">35.5</span> Observing children with ADHD</h2>
 <p>A number of children with ADHD were observed by their mother or their father (only one parent observed each child). Each parent was asked to rate occurrences of behaviours of four different types, labelled <code>q1</code> through <code>q4</code> in the data set. Also recorded was the identity of the parent doing the observation for each child: 1 is father, 2 is mother.</p>
 <p>Can we tell (without looking at the <code>parent</code> column) which parent is doing the observation? Research suggests that rating the degree of impairment in different categories depends on who is doing the rating: for example, mothers may feel that a child has difficulty sitting still, while fathers, who might do more observing of a child at play, might think of such a child as simply being “active” or “just being a kid”. The data are in <a href="http://ritsokiguess.site/datafiles/adhd-parents.txt">link</a>.</p>
 <ol type="a">
@@ -542,8 +554,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>Find the parents where the cross-validated posterior probability of being a father is “non-trivial”: that is, not close to zero and not close to 1. (You will have to make a judgement about what “close to zero or 1” means for you.) What do these parents have in common, all of them or most of them?</p></li>
 </ol>
 </section>
-<section id="growing-corn" class="level2" data-number="32.6">
-<h2 data-number="32.6" class="anchored" data-anchor-id="growing-corn"><span class="header-section-number">32.6</span> Growing corn</h2>
+<section id="growing-corn" class="level2" data-number="35.6">
+<h2 data-number="35.6" class="anchored" data-anchor-id="growing-corn"><span class="header-section-number">35.6</span> Growing corn</h2>
 <p>A new type of corn seed has been developed. The people developing it want to know if the type of soil the seed is planted in has an impact on how well the seed performs, and if so, what kind of impact. Three outcome measures were used: the yield of corn produced (from a fixed amount of seed), the amount of water needed, and the amount of herbicide needed. The data are in <a href="http://ritsokiguess.site/datafiles/cornseed.csv">link</a>. 32 fields were planted with the seed, 8 fields with each soil type.</p>
 <ol type="a">
 <li><p>Read in the data and verify that you have 32 observations with the correct variables.</p></li>
@@ -558,8 +570,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>Make a table of actual and predicted <code>soil</code> group. Which soil type was classified correctly the most often?</p></li>
 </ol>
 </section>
-<section id="understanding-athletes-height-weight-sport-and-gender" class="level2" data-number="32.7">
-<h2 data-number="32.7" class="anchored" data-anchor-id="understanding-athletes-height-weight-sport-and-gender"><span class="header-section-number">32.7</span> Understanding athletes’ height, weight, sport and gender</h2>
+<section id="understanding-athletes-height-weight-sport-and-gender" class="level2" data-number="35.7">
+<h2 data-number="35.7" class="anchored" data-anchor-id="understanding-athletes-height-weight-sport-and-gender"><span class="header-section-number">35.7</span> Understanding athletes’ height, weight, sport and gender</h2>
 <p>On a previous assignment, we used MANOVA on the athletes data to demonstrate that there was a significant relationship between the combination of the athletes’ height and weight, with the sport they play and the athlete’s gender. The problem with MANOVA is that it doesn’t give any information about the <em>kind</em> of relationship. To understand that, we need to do discriminant analysis, which is the purpose of this question.</p>
 <p>The data can be found at <a href="https://raw.githubusercontent.com/nxskok/datafiles/master/ais.txt">link</a>.</p>
 <ol type="a">
@@ -575,8 +587,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="telling-whether-a-banknote-is-real-or-counterfeit-1" class="level2" data-number="32.8">
-<h2 data-number="32.8" class="anchored" data-anchor-id="telling-whether-a-banknote-is-real-or-counterfeit-1"><span class="header-section-number">32.8</span> Telling whether a banknote is real or counterfeit</h2>
+<section id="telling-whether-a-banknote-is-real-or-counterfeit-1" class="level2" data-number="35.8">
+<h2 data-number="35.8" class="anchored" data-anchor-id="telling-whether-a-banknote-is-real-or-counterfeit-1"><span class="header-section-number">35.8</span> Telling whether a banknote is real or counterfeit</h2>
 <p><a name="sec:swiss-money">*</a> A Swiss bank collected a number of known counterfeit (fake) bills over time, and sampled a number of known genuine bills of the same denomination. Is it possible to tell, from measurements taken from a bill, whether it is genuine or not? We will explore that issue here. The variables measured were:</p>
 <ul>
 <li><p>length</p></li>
@@ -895,8 +907,8 @@ obs           counterfeit genuine
 <p>Because we’re using <code>rowwise</code>, <code>max</code> is applied to the pairs of values of <code>posterior.counterfeit</code> and <code>posterior.genuine</code>, <em>taken one row at a time.</em></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="urine-and-obesity-what-makes-a-difference-1" class="level2" data-number="32.9">
-<h2 data-number="32.9" class="anchored" data-anchor-id="urine-and-obesity-what-makes-a-difference-1"><span class="header-section-number">32.9</span> Urine and obesity: what makes a difference?</h2>
+<section id="urine-and-obesity-what-makes-a-difference-1" class="level2" data-number="35.9">
+<h2 data-number="35.9" class="anchored" data-anchor-id="urine-and-obesity-what-makes-a-difference-1"><span class="header-section-number">35.9</span> Urine and obesity: what makes a difference?</h2>
 <p>A study was made of the characteristics of urine of young men. The men were classified into four groups based on their degree of obesity. (The groups are labelled <code>a, b, c, d</code>.) Four variables were measured, <code>x</code> (which you can ignore), pigment creatinine, chloride and chlorine. The data are in <a href="http://ritsokiguess.site/datafiles/urine.csv">link</a> as a <code>.csv</code> file. There are 45 men altogether.</p>
 <p>Yes, you may have seen this one before. What you found was something like this:</p>
 <div class="cell">
@@ -1250,8 +1262,8 @@ obesity a b c d
 <p>The idea is that the stories you pull from the plot and the predictions should be more or less consistent. There are several ways you might say that: another approach is to say that the observations are all over the place on the plot, and the predictions are all bad. This is not as insightful as my comments above, but if that’s what the plot told you, that’s what the predictions would seem to be saying as well. (Or even, the predictions are not so bad compared to the apparently random pattern on the plot, if that’s what you saw. There are different ways to say something more or less sensible.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="understanding-a-manova-1" class="level2" data-number="32.10">
-<h2 data-number="32.10" class="anchored" data-anchor-id="understanding-a-manova-1"><span class="header-section-number">32.10</span> Understanding a MANOVA</h2>
+<section id="understanding-a-manova-1" class="level2" data-number="35.10">
+<h2 data-number="35.10" class="anchored" data-anchor-id="understanding-a-manova-1"><span class="header-section-number">35.10</span> Understanding a MANOVA</h2>
 <p>One use of discriminant analysis is to understand the results of a MANOVA. This question is a followup to a previous MANOVA that we did, the one with two variables <code>y1</code> and <code>y2</code> and three groups <code>a</code> through <code>c</code>. The data were in <a href="http://ritsokiguess.site/datafiles/simple-manova.txt">link</a>.</p>
 <ol type="a">
 <li>Read the data in again and run the MANOVA that you did before.</li>
@@ -1509,8 +1521,8 @@ obs a b c
 <p>That makes it stand out. As the legend indicates, observation #6 is plotted as a big circle, with the rest being plotted as small circles as usual. Since observation #6 is in group <code>b</code>, it appears as a big green circle. What makes it least like a <code>b</code>? Well, it has the smallest <code>y2</code> value of any of the <code>b</code>’s (which makes it most like an <code>a</code> of any of the <code>b</code>’s), and it has the largest <code>y1</code> value (which makes it most like a <code>c</code> of any of the <code>b</code>’s). But still, it’s nearer the greens than anything else, so it’s still more like a <code>b</code> than it is like any of the other groups.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="what-distinguishes-people-who-do-different-jobs-1" class="level2" data-number="32.11">
-<h2 data-number="32.11" class="anchored" data-anchor-id="what-distinguishes-people-who-do-different-jobs-1"><span class="header-section-number">32.11</span> What distinguishes people who do different jobs?</h2>
+<section id="what-distinguishes-people-who-do-different-jobs-1" class="level2" data-number="35.11">
+<h2 data-number="35.11" class="anchored" data-anchor-id="what-distinguishes-people-who-do-different-jobs-1"><span class="header-section-number">35.11</span> What distinguishes people who do different jobs?</h2>
 <p>244<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> people work at a certain company. They each have one of three jobs: customer service, mechanic, dispatcher. In the data set, these are labelled 1, 2 and 3 respectively. In addition, they each are rated on scales called <code>outdoor</code>, <code>social</code> and <code>conservative</code>. Do people with different jobs tend to have different scores on these scales, or, to put it another way, if you knew a person’s scores on <code>outdoor</code>, <code>social</code> and <code>conservative</code>, could you say something about what kind of job they were likely to hold? The data are in <a href="http://ritsokiguess.site/datafiles/jobs.txt">link</a>.</p>
 <ol type="a">
 <li>Read in the data and display some of it.</li>
@@ -1612,7 +1624,7 @@ See problems(...) for more details.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["outdoor"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["social"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conservative"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["job"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["id"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["X6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["jobname"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"6","2":"27","3":"11","4":"1","5":"21","6":"NA","7":"custserv"},{"1":"13","2":"15","3":"18","4":"3","5":"21","6":"NA","7":"dispatcher"},{"1":"23","2":"21","3":"16","4":"2","5":"84","6":"NA","7":"mechanic"},{"1":"11","2":"12","3":"19","4":"3","5":"39","6":"NA","7":"dispatcher"},{"1":"4","2":"12","3":"11","4":"3","5":"34","6":"NA","7":"dispatcher"},{"1":"16","2":"21","3":"10","4":"2","5":"19","6":"NA","7":"mechanic"},{"1":"14","2":"19","3":"14","4":"2","5":"39","6":"NA","7":"mechanic"},{"1":"18","2":"16","3":"15","4":"3","5":"10","6":"NA","7":"dispatcher"},{"1":"23","2":"20","3":"16","4":"2","5":"63","6":"NA","7":"mechanic"},{"1":"14","2":"26","3":"17","4":"1","5":"67","6":"NA","7":"custserv"},{"1":"16","2":"22","3":"5","4":"2","5":"53","6":"NA","7":"mechanic"},{"1":"25","2":"16","3":"12","4":"3","5":"46","6":"NA","7":"dispatcher"},{"1":"18","2":"11","3":"19","4":"3","5":"47","6":"NA","7":"dispatcher"},{"1":"5","2":"17","3":"9","4":"1","5":"37","6":"NA","7":"custserv"},{"1":"7","2":"13","3":"7","4":"1","5":"61","6":"NA","7":"custserv"},{"1":"11","2":"20","3":"9","4":"1","5":"46","6":"NA","7":"custserv"},{"1":"12","2":"23","3":"4","4":"1","5":"58","6":"NA","7":"custserv"},{"1":"14","2":"17","3":"6","4":"1","5":"2","6":"NA","7":"custserv"},{"1":"11","2":"23","3":"5","4":"1","5":"35","6":"NA","7":"custserv"},{"1":"10","2":"24","3":"5","4":"1","5":"30","6":"NA","7":"custserv"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["outdoor"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["social"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conservative"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["job"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["id"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["X6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["jobname"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"7","2":"22","3":"10","4":"1","5":"76","6":"NA","7":"custserv"},{"1":"17","2":"18","3":"15","4":"2","5":"87","6":"NA","7":"mechanic"},{"1":"17","2":"21","3":"9","4":"2","5":"10","6":"NA","7":"mechanic"},{"1":"24","2":"18","3":"13","4":"2","5":"75","6":"NA","7":"mechanic"},{"1":"21","2":"29","3":"11","4":"2","5":"49","6":"NA","7":"mechanic"},{"1":"21","2":"12","3":"9","4":"2","5":"76","6":"NA","7":"mechanic"},{"1":"18","2":"23","3":"15","4":"3","5":"54","6":"NA","7":"dispatcher"},{"1":"13","2":"16","3":"7","4":"3","5":"27","6":"NA","7":"dispatcher"},{"1":"17","2":"26","3":"7","4":"1","5":"50","6":"NA","7":"custserv"},{"1":"17","2":"20","3":"8","4":"2","5":"90","6":"NA","7":"mechanic"},{"1":"19","2":"25","3":"13","4":"2","5":"44","6":"NA","7":"mechanic"},{"1":"19","2":"19","3":"7","4":"2","5":"79","6":"NA","7":"mechanic"},{"1":"23","2":"24","3":"7","4":"2","5":"67","6":"NA","7":"mechanic"},{"1":"11","2":"28","3":"8","4":"1","5":"45","6":"NA","7":"custserv"},{"1":"21","2":"23","3":"11","4":"2","5":"36","6":"NA","7":"mechanic"},{"1":"10","2":"28","3":"5","4":"1","5":"75","6":"NA","7":"custserv"},{"1":"15","2":"14","3":"17","4":"3","5":"11","6":"NA","7":"dispatcher"},{"1":"10","2":"31","3":"13","4":"1","5":"15","6":"NA","7":"custserv"},{"1":"12","2":"25","3":"8","4":"1","5":"42","6":"NA","7":"custserv"},{"1":"20","2":"23","3":"12","4":"2","5":"32","6":"NA","7":"mechanic"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2211,8 +2223,8 @@ job          custserv mechanic dispatcher
 <p>Further further analysis would look at the original variables <code>social</code>, <code>outdoor</code> and <code>conservative</code> for the misclassified people, and try to find out what was unusual about them. But I think now would be an excellent place for me to stop.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="observing-children-with-adhd-1" class="level2" data-number="32.12">
-<h2 data-number="32.12" class="anchored" data-anchor-id="observing-children-with-adhd-1"><span class="header-section-number">32.12</span> Observing children with ADHD</h2>
+<section id="observing-children-with-adhd-1" class="level2" data-number="35.12">
+<h2 data-number="35.12" class="anchored" data-anchor-id="observing-children-with-adhd-1"><span class="header-section-number">35.12</span> Observing children with ADHD</h2>
 <p>A number of children with ADHD were observed by their mother or their father (only one parent observed each child). Each parent was asked to rate occurrences of behaviours of four different types, labelled <code>q1</code> through <code>q4</code> in the data set. Also recorded was the identity of the parent doing the observation for each child: 1 is father, 2 is mother.</p>
 <p>Can we tell (without looking at the <code>parent</code> column) which parent is doing the observation? Research suggests that rating the degree of impairment in different categories depends on who is doing the rating: for example, mothers may feel that a child has difficulty sitting still, while fathers, who might do more observing of a child at play, might think of such a child as simply being “active” or “just being a kid”. The data are in <a href="http://ritsokiguess.site/datafiles/adhd-parents.txt">link</a>.</p>
 <ol type="a">
@@ -2481,8 +2493,8 @@ that respectively contain everything from the (original) <code>lda</code> output
 <p>To my mind, the “non-trivial” posterior probabilities are in rows 5 through 9. (You might have drawn the line in a different place.) These are the ones where there was some doubt, though maybe only a little, about which parent actually gave the ratings. For three of these, the parent (that was actually a mother) gave a rating of 2 on <code>q2</code>. These were the only 2’s on <code>q2</code>. The others were easy to call: “mother” if 3 and “father” if 1, and you’d get them all right except for that outlying mother. The clue in looking at <code>q2</code> was that we found earlier that <code>LD1</code> contained mostly <code>q2</code>, so that it was mainly <code>q2</code> that separated the fathers and mothers. If you found something else that the “non-trivial” rows had in common, that is good too, but I think looking at <code>q2</code> is your quickest route to an answer. (<code>q1=1</code> picks out some of these, but not all of them.) This is really the same kind of issue as we discussed when comparing the posterior probabilities for <code>lda</code> and cross-validation above: there were only a few parents with <code>q2=2</code>, so the effect there is that under cross-validation, there are even fewer when you take one of them out.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="growing-corn-1" class="level2" data-number="32.13">
-<h2 data-number="32.13" class="anchored" data-anchor-id="growing-corn-1"><span class="header-section-number">32.13</span> Growing corn</h2>
+<section id="growing-corn-1" class="level2" data-number="35.13">
+<h2 data-number="35.13" class="anchored" data-anchor-id="growing-corn-1"><span class="header-section-number">35.13</span> Growing corn</h2>
 <p>A new type of corn seed has been developed. The people developing it want to know if the type of soil the seed is planted in has an impact on how well the seed performs, and if so, what kind of impact. Three outcome measures were used: the yield of corn produced (from a fixed amount of seed), the amount of water needed, and the amount of herbicide needed. The data are in <a href="http://ritsokiguess.site/datafiles/cornseed.csv">link</a>. 32 fields were planted with the seed, 8 fields with each soil type.</p>
 <ol type="a">
 <li>Read in the data and verify that you have 32 observations with the correct variables.</li>
@@ -2871,8 +2883,8 @@ Caused by error:
 <p>This shows the dominant influence of <code>herbicide</code> on LD1 score (more herbicide is more positive), and that <code>water</code> has nothing to say (in terms of distinguishing soil types) and <code>yield</code> has not much to say, their arrows being short. That observation with a non-high <code>herbicide</code> that was predicted to be had the highest <code>yield</code> of all, so even the small influence of <code>yield</code> on <code>LD1</code> made a big difference here.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="understanding-athletes-height-weight-sport-and-gender-1" class="level2" data-number="32.14">
-<h2 data-number="32.14" class="anchored" data-anchor-id="understanding-athletes-height-weight-sport-and-gender-1"><span class="header-section-number">32.14</span> Understanding athletes’ height, weight, sport and gender</h2>
+<section id="understanding-athletes-height-weight-sport-and-gender-1" class="level2" data-number="35.14">
+<h2 data-number="35.14" class="anchored" data-anchor-id="understanding-athletes-height-weight-sport-and-gender-1"><span class="header-section-number">35.14</span> Understanding athletes’ height, weight, sport and gender</h2>
 <p>On a previous assignment, we used MANOVA on the athletes data to demonstrate that there was a significant relationship between the combination of the athletes’ height and weight, with the sport they play and the athlete’s gender. The problem with MANOVA is that it doesn’t give any information about the <em>kind</em> of relationship. To understand that, we need to do discriminant analysis, which is the purpose of this question.</p>
 <p>The data can be found at <a href="https://raw.githubusercontent.com/nxskok/datafiles/master/ais.txt">link</a>.</p>
 <ol type="a">
@@ -3684,12 +3696,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./repeated-measures.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Repeated measures</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./cluster.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Hierarchical cluster analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
