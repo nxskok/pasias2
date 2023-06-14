@@ -73,14 +73,14 @@ There is some setup first. There are a couple of ways you can do that:
 
 
 * Download the spreadsheet to your computer, and upload it
-to your project on R Studio Cloud (or, if you are running R
+to your project on `r.datatools` (or, if you are running R
 Studio on your computer, use something like
 `file.choose` to get the file from wherever it got
 downloaded to).
 
 * Use the function `download.file` to get the file
 from the URL and store it in your project folder
-directly. This also works in R Studio Cloud, and completely
+directly. This also works on `r.datatools`, and completely
 by-passes the download-upload steps that you would have to do
 otherwise. (I am grateful to Rose Gao for this idea.)
 Here is how you can use `download.file` here:

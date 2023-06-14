@@ -22,7 +22,7 @@ Solution
 If you open the data file in your web browser, it will probably
 open as a spreadsheet, which is not really very helpful, since
 then it is not clear what to do with it. You could, I suppose,
-save it and upload it to R Studio Cloud, but it requires much less
+save it and upload it to `r.datatools`, but it requires much less
 brainpower to open it directly from the URL:
 
 ```{r global-1 }
