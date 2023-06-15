@@ -528,12 +528,13 @@ dbl (3): run, sweetness, pectin
 <li>The juice manufacturer was interested in whether there was a relationship between sweetness and pectin. To assess this, draw a scatterplot. Does it look as if there is any kind of a relationship? (I think <code>sweetness</code> is the outcome variable and <code>pectin</code> is explanatory, so draw your scatterplot appropriately.)</li>
 </ol>
 <p>Solution</p>
-<p>This requires a <code>ggplot</code> plot. You can go back and look at the lecture notes to figure out how to make a scatterplot: the “what to plot” is the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis variables, with the response on the <span class="math inline">\(y\)</span>-axis (starting with a data frame to get the variables from), and the “how to plot” is <code>geom_point</code> to plot the points: ::: {.cell}</p>
+<p>This requires a <code>ggplot</code> plot. You can go back and look at the lecture notes to figure out how to make a scatterplot: the “what to plot” is the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis variables, with the response on the <span class="math inline">\(y\)</span>-axis (starting with a data frame to get the variables from), and the “how to plot” is <code>geom_point</code> to plot the points:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(juice, <span class="fu">aes</span>(<span class="at">x =</span> pectin, <span class="at">y =</span> sweetness)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="making-graphs_files/figure-html/oj2-2-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>It looks to me as if there is a negative relationship: as pectin goes up, sweetness tends to go <em>down</em>. The trend appears to go top left to bottom right.</p>
 <p>Extra: having said that, I’m wondering how much of the apparent trend is caused by those two observations bottom right with pectin over 350. If you take those away, the trend seems to me to be a lot less convincing. You could add a smooth trend to the plot, thus:</p>
 <div class="cell">
@@ -556,7 +557,8 @@ dbl (3): run, sweetness, pectin
 <li>Read the data into R again.</li>
 </ol>
 <p>Solution</p>
-<p>Read directly from the URL, most easily: ::: {.cell}</p>
+<p>Read directly from the URL, most easily:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/soap.txt"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>soap <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -578,7 +580,7 @@ dbl (3): case, scrap, speed
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>27 rows. <code>line</code>, which is either <code>a</code> or <code>b</code>, was correctly deduced to be text.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -596,12 +598,13 @@ dbl (3): case, scrap, speed
 <li>Comment briefly on the shape of the histogram. Is it approximately symmetric, skewed to the left, skewed to the right or something else? (By “comment briefly” I mean “say in a few words why you gave the answer you did.”)</li>
 </ol>
 <p>Solution</p>
-<p>I would call this “bimodal”. There are two peaks to the histogram, one around 250 and one around 370, with a very small frequency in between (the bar around 300). Apart from the bimodality, there is no particular evidence for a long tail on either end, so I don’t think you could otherwise call it anything other than symmetric. Having said that (this is going beyond the question), the way a histogram looks can depend on the bins you choose to draw it with. This is 8 bins rather than 10: ::: {.cell}</p>
+<p>I would call this “bimodal”. There are two peaks to the histogram, one around 250 and one around 370, with a very small frequency in between (the bar around 300). Apart from the bimodality, there is no particular evidence for a long tail on either end, so I don’t think you could otherwise call it anything other than symmetric. Having said that (this is going beyond the question), the way a histogram looks can depend on the bins you choose to draw it with. This is 8 bins rather than 10:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="making-graphs_files/figure-html/soap2-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The middle low-frequency bin has gone, and this one just looks symmetric, with a kind of “flat top”.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
@@ -621,7 +624,8 @@ dbl (3): case, scrap, speed
 </ol>
 <p>Solution</p>
 <p>I would say that there <em>is</em> a difference between the two production lines, with line A producing an average (median) of about 330 and line B producing a median of about 275. But you could also make the case that, although the medians are rather different, there is a lot of variability and hence a lot of overlap between the two boxplots, and therefore that there is not a “substantial” difference. I would say that either of those answers are good <em>if you back them up with proper reasons</em>. This is going to be a common theme in this course: I am going to ask you to make a decision and support it, where the reasons you provide are often more important than the decision you make.</p>
-<p>Extra: you might be wondering whether the medians, or means, since there is no serious skewness here and definitely no outliers, are “significantly different”. This is inference, which we will come to later, but a preview looks like this: ::: {.cell}</p>
+<p>Extra: you might be wondering whether the medians, or means, since there is no serious skewness here and definitely no outliers, are “significantly different”. This is inference, which we will come to later, but a preview looks like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(scrap <span class="sc">~</span> line, <span class="at">data =</span> soap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -636,7 +640,7 @@ sample estimates:
 mean in group a mean in group b 
        333.5333        292.9167 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>They are not: the P-value of 0.22 is not anywhere near as small as 0.05, so we can’t reject the null hypothesis that the two lines have equal mean amount of scrap.</p>
 <p>Rusty on this stuff? Don’t worry; we’re going to come back to it later in the course.</p>
 <p>I was also wondering about something else: that bimodal histogram. Could that be explained by the scrap values being two different production lines being mixed together? One way to understand that is to have two separate histograms, one for each line, side by side, which is what facetting does. There is an extra wrinkle here that I explain afterwards:</p>
@@ -654,23 +658,25 @@ mean in group a mean in group b
 <li>We started out with the suspicion that if the line was run faster, there would be more scrap. We haven’t assessed this yet. Draw a scatter plot with <code>scrap</code> on the <span class="math inline">\(y\)</span> axis and <code>speed</code> on the <span class="math inline">\(x\)</span> axis.</li>
 </ol>
 <p>Solution</p>
-<p>Same mechanism as before: ::: {.cell}</p>
+<p>Same mechanism as before:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> scrap)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="making-graphs_files/figure-html/soap2-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="7" type="a">
 <li>What do you think is the most important conclusion from your plot of the previous part? Describe your conclusion in the context of the data.</li>
 </ol>
 <p>Solution</p>
-<p>There seems to be a pretty evident upward trend, apparently linear, which means that if the speed of the production line is higher, the amount of scrap produced is also higher. My last sentence was meant to remind you that “there is an upward trend” is <em>not a complete answer</em>: we are concerned with what that upward trend tells us about the data. This, in other words, confirms the suspicion expressed in the question, which was therefore a rather large clue: more speed tends to go with more scrap. That was as far as I wanted you to go: there seems to be an association with speed, and there might be an association with <code>line</code> that turned out not to be statistically significant. What we haven’t done is to assess the relationship between speed and scrap for <em>each</em> production line. To do that, we want to plot the scrap-speed points distinguished for each production line. <code>ggplot</code> makes that easy: you add a <code>colour</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to say what you want to distinguish by colour. This is two quantitative variables and one categorical variable, if you want to think of it that way: ::: {.cell}</p>
+<p>There seems to be a pretty evident upward trend, apparently linear, which means that if the speed of the production line is higher, the amount of scrap produced is also higher. My last sentence was meant to remind you that “there is an upward trend” is <em>not a complete answer</em>: we are concerned with what that upward trend tells us about the data. This, in other words, confirms the suspicion expressed in the question, which was therefore a rather large clue: more speed tends to go with more scrap. That was as far as I wanted you to go: there seems to be an association with speed, and there might be an association with <code>line</code> that turned out not to be statistically significant. What we haven’t done is to assess the relationship between speed and scrap for <em>each</em> production line. To do that, we want to plot the scrap-speed points distinguished for each production line. <code>ggplot</code> makes that easy: you add a <code>colour</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to say what you want to distinguish by colour. This is two quantitative variables and one categorical variable, if you want to think of it that way:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soap, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> scrap, <span class="at">colour =</span> line)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="making-graphs_files/figure-html/soap2-8-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Notice that we get a legend, automatically.</p>
 <p>What is interesting about this one is the red dots are mostly at the top (for any given speed), and the blue dots are mostly at the bottom. That seems to mean that <em>when we account for speed</em>, there is a difference between lines.</p>
 <p>I want to show you one more embellishment, which is to put the regression lines on the plot for each group separately. This is where <code>ggplot</code> is so nice, since I just have to add one thing:</p>
@@ -775,12 +781,13 @@ dbl (2): size, cost
 <li>Make a scatterplot of the cost of handling each shipment as it depends on the shipment’s size.</li>
 </ol>
 <p>Solution</p>
-<p>The wording of the question says that cost is the response and so belongs on the <span class="math inline">\(y\)</span>-axis. To make the plot, <code>ggplot</code> with an <code>x=</code> and a <code>y=</code> in the <code>aes</code> (the “what to plot” part), and a <code>geom_point()</code> after (the “how to plot it”): ::: {.cell}</p>
+<p>The wording of the question says that cost is the response and so belongs on the <span class="math inline">\(y\)</span>-axis. To make the plot, <code>ggplot</code> with an <code>x=</code> and a <code>y=</code> in the <code>aes</code> (the “what to plot” part), and a <code>geom_point()</code> after (the “how to plot it”):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shipments, <span class="fu">aes</span>(<span class="at">x =</span> size, <span class="at">y =</span> cost)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="making-graphs_files/figure-html/gunthers-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>As a matter of coding, there are usually <em>two</em> brackets to close after the <code>aes</code>, the one that begins the <code>ggplot</code> and the one that begins the <code>aes</code>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -793,12 +800,13 @@ dbl (2): size, cost
 <li>When a shipment comes in, the cost of handling it is not known. A decision is made about which warehouse to send it to, and then, after it is handled, the cost is recorded. What do you think determines which warehouse an incoming shipment goes to? Provide a graph to support your answer.</li>
 </ol>
 <p>Solution</p>
-<p>The veiled hint in the question is that the decision must depend on <code>size</code>, since it cannot depend on <code>cost</code>. So we have one quantitative variable <code>size</code> and one categorical variable <code>warehouse</code>, which suggests drawing boxplots: ::: {.cell}</p>
+<p>The veiled hint in the question is that the decision must depend on <code>size</code>, since it cannot depend on <code>cost</code>. So we have one quantitative variable <code>size</code> and one categorical variable <code>warehouse</code>, which suggests drawing boxplots:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shipments, <span class="fu">aes</span>(<span class="at">x =</span> warehouse, <span class="at">y =</span> size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="making-graphs_files/figure-html/tochterman-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Well, there’s the answer right there. When the shipment has small <code>size</code>, it goes to warehouse A, and when it’s large, it goes to Warehouse B. We know this because <em>all</em> the shipments smaller than about 250 (thousand parts) went to A and <em>all</em> the shipments larger than that went to B. (If you want to provide a number to delineate “small” and “large”, anything between the largest A, about 225, and the smallest B, about 290, will do.)</p>
 <p>Another way to think about this is to add something to the scatterplot you drew before. The obvious thing is to make the two warehouses different colours:</p>
 <div class="cell">
