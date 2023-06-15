@@ -354,20 +354,17 @@ of the two quartiles for each of the two variables, and display the result.
 
 Solution
 
+This is `datagrid`. My best model is the one I called `y.2` (I had to scroll back a ways to find it), so:
 
-The usual `crossing`:
-
-```{r myeloma-15 }
-logbuns <- c(1.1461, 1.5682)
-hgbs <- c(8.8, 12)
-new <- crossing(logbun = logbuns, hgb = hgbs)
+```{r}
+new <- datagrid(model = y.2, logbun = c(1.14561, 1.5682), hgb = c(8.8, 12.0))
 new
 ```
 
- 
 
-Or anything equivalent to that. This is my procedure, but you are free
-to shorten it if it will still work. The place you have to get to in
+Or anything equivalent to that. 
+
+The place you have to get to in
 the end is a data frame with columns called `logbun` and
 `hgb`, and the right four combinations of values. If you want
 to round the `logbun` values off more, for example to two
@@ -384,7 +381,7 @@ at the results (they are rather long).
 Solution
 
 
-This seems as if it ought to be `predict`, but the
+This seems as if it ought to be `predictions`, but the
 `survival` version of it is called `survfit`:
 ```{r myeloma-16 }
 s <- survfit(y.2, new, data = myeloma)
@@ -392,7 +389,7 @@ s <- survfit(y.2, new, data = myeloma)
 
      
 
-It works the same as `predict`: a fitted model object (your
+It works the same as `predictions`: a fitted model object (your
 smaller survival model), and a data frame of values to predict
 for. The `data=` is not strictly needed here, but if you want
 `ggsurvplot` to work right, you *do* need it to be here.
@@ -409,7 +406,7 @@ Solution
 
 This is easier than you think: it's just `ggsurvplot` from `survminer`:
 ```{r myeloma-17 }
-ggsurvplot(s, conf.int = F)
+ggsurvplot(s, conf.int = FALSE)
 ```
 
      

@@ -404,7 +404,7 @@ one age 70:
 ```{r worcester-18 }
 bmis <- seq(20, 36, 4)
 ages <- 70
-whas100.new.2 <- crossing(bmi = bmis, age = ages)
+whas100.new.2 <- datagrid(model = whas100.3, bmi = bmis, age = ages)
 whas100.new.2
 ```
 

@@ -382,7 +382,7 @@ the others. This suggests that these small-numbered bridges will end
 up in the same cluster (later).
 
 The `tidyverse` way is really similar in conception. First use
-`crossing` to create all combinations of `i` and `j`:
+`crossing`^[Rather than `datagrid`, which is specifically for predictions for combinations of things from a model.] to create all combinations of `i` and `j`:
 
 ```{r pittsburgh-16 }
 mm <- crossing(i = 1:70, j = 1:70)

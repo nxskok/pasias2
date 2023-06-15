@@ -296,9 +296,9 @@ are both zero for both sites, and `b`, `c` and
 
 You will probably pick a different pair of sites, and thus your
 detailed discussion will differ from mine, but the general point of it
-should be the same: pick a pair of sites in the same cluster (1 mark),
-display those two rows of the original data (1 mark), some sensible
-discussion of how the sites are similar (1 mark). As long as you pick
+should be the same: pick a pair of sites in the same cluster,
+display those two rows of the original data, some sensible
+discussion of how the sites are similar. As long as you pick
 two sites in the same one of your clusters, I don't mind which ones
 you pick. The grader will check that your two sites were indeed in the
 same one of your clusters, then will check that you do indeed display
@@ -538,7 +538,7 @@ sites
  
 
 Next, we need to make all possible *pairs* of sites, which we
-also know how to do:
+also know how to do:^[You might be used to `datagrid` for this task, but that is better when you have fitted a model, and you are making combinations of things for prediction. Here we are not concerned about a model.]
 
 ```{r seabed-30 }
 site_pairs <- crossing(site1 = sites, site2 = sites)

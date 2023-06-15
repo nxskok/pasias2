@@ -421,9 +421,9 @@ Let's try another way:
 crossing(first = the_ratings, second = the_ratings)
 ```
 
-xxx model?
+`crossing` is a sort of model-free version of `datagrid`: it works out all possible combinations of whatever vectors you feed it (that don't have to be the same, but here are).
 
-This does "all possible combinations" of one rating with another. We
+We
 don't actually need all of that; we just need the ones where the first
 one is (alphabetically) strictly less than the second one. This is
 because we're never comparing a rating with itself, and each pair of
