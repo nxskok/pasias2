@@ -1,7 +1,6 @@
 ##  Finding wolf spiders on the beach
 
 
- <a name="q:wolfspider">*</a> 
 A team of Japanese researchers were investigating what would
 cause the burrowing wolf spider *Lycosa ishikariana* to be found
 on a beach. They hypothesized that it had to do with the size of the
@@ -27,8 +26,7 @@ regression.
 $\blacksquare$
 
 (b) Read in the data and check that you have something
-sensible. (Look at the data file first: the columns are aligned but
-the headers are not aligned with them.)
+sensible. (Look at the data file first: the columns are aligned.)
  
 Solution
 

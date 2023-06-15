@@ -57,6 +57,7 @@ Solution
 
 
 The usual:
+
 ```{r myeloma-1 }
 my_url <- "http://ritsokiguess.site/datafiles/myeloma.csv"
 myeloma <- read_csv(my_url)
@@ -114,9 +115,13 @@ yours whatever you like. Two things to consider: the survival times, here
 The modern way is to define the response variable right back into the dataframe, thus:
 
 ```{r}
-
+myeloma %>% mutate(y = Surv(time, vstatus == 1)) -> myeloma
+myeloma
 ```
 
+You see that the new column (on the end) is of type `Surv`, to reflect the fact that it is not just a number (a survival time) but also encodes whether or not the individual was observed to die at that time.
+
+The old way (that still works) is to create `y` *outside* the dataframe, like this: 
 
 ```{r myeloma-4 }
 y <- with(myeloma, Surv(time, vstatus == 1))
@@ -135,6 +140,7 @@ data frame. Usually, these values of the response will be higher than
 the others, but they weren't here. (Maybe some of these patients were
 withdrawn from the study, or they joined it late.) 
     
+The reason we used to have to do it this way is that `tibble`s didn't until recently have the ability to store a thing like the above `y` as a column, because it wasn't just a number. Now, it is stored like a list-column, and all that matters is that it is a column of *something*, one survival-time-plus-censorship-status for each observation.
 
 $\blacksquare$
 
@@ -168,6 +174,7 @@ Solution
 
 The obvious way to do this is to list all the other variables on
 the right side of the squiggle, but a faster way is this:
+
 ```{r myeloma-5 }
 y.1 <- coxph(y ~ . - time - vstatus, data = myeloma)
 summary(y.1)
@@ -217,6 +224,7 @@ Because there are so many variables to remove, I am frightened
 away from `update` here (which I would normally try to use
 in this situation). I'm going to copy-and-paste my code for
 `y.1` and edit it:
+
 ```{r myeloma-7 }
 y.2 <- coxph(y ~ logbun + hgb, data = myeloma)
 summary(y.2)
@@ -241,6 +249,7 @@ Solution
 
 Comparing two models is `anova`, which also works here. The
 right `test` is `Chisq`:
+
 ```{r myeloma-8 }
 anova(y.2, y.1, test = "Chisq")
 ```
@@ -296,6 +305,7 @@ Solution
 
 
 The obvious way is probably this:
+
 ```{r myeloma-10 }
 quantile(myeloma$logbun)
 quantile(myeloma$hgb)
@@ -383,6 +393,7 @@ Solution
 
 This seems as if it ought to be `predictions`, but the
 `survival` version of it is called `survfit`:
+
 ```{r myeloma-16 }
 s <- survfit(y.2, new, data = myeloma)
 ```
@@ -405,6 +416,7 @@ Solution
 
 
 This is easier than you think: it's just `ggsurvplot` from `survminer`:
+
 ```{r myeloma-17 }
 ggsurvplot(s, conf.int = FALSE)
 ```
@@ -424,6 +436,7 @@ Solution
 Those four "strata" are the four rows in your prediction data
 frame (the four combinations). They are in the same order that
 they were in `new` (or whatever name you used):
+
 ```{r myeloma-18 }
 new
 ```

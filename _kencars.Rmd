@@ -17,6 +17,7 @@ Solution
 
 
 `read_csv` will do it:
+
 ```{r kencars-1 }
 my_url <- "http://ritsokiguess.site/datafiles/cars.csv"
 cars <- read_csv(my_url)
@@ -60,6 +61,7 @@ Solution
 
 
 Naming what you *don't* want is sometimes easier:
+
 ```{r kencars-4 }
 cars %>% select(-hp)
 ```
@@ -76,6 +78,7 @@ Solution
 
 
 This:
+
 ```{r kencars-5 }
 cars %>% filter(cylinders == 8)
 ```
@@ -93,6 +96,7 @@ Solution
 
 
 This one is selecting some observations and some variables:
+
 ```{r kencars-6 }
 cars %>% filter(hp <= 70) %>% select(cylinders:hp)
 ```

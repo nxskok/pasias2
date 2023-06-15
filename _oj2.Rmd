@@ -41,6 +41,7 @@ the "what to plot" is the $x$-axis and $y$-axis variables,
 with the response on the $y$-axis (starting with a data frame
 to get the variables from),  and the "how to plot" is
 `geom_point` to plot the points:
+
 ```{r oj2-2 }
 ggplot(juice, aes(x = pectin, y = sweetness)) + geom_point()
 ```

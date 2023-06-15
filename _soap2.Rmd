@@ -19,6 +19,7 @@ Solution
 
 
 Read directly from the URL, most easily:
+
 ```{r soap2-1 }
 url <- "http://ritsokiguess.site/datafiles/soap.txt"
 soap <- read_delim(url, " ")
@@ -64,6 +65,7 @@ call it anything other than symmetric.
 Having said that (this is going beyond the question), the way a
 histogram looks can depend on the bins you choose to draw it
 with. This is 8 bins rather than 10:
+
 ```{r soap2-3 }
 ggplot(soap, aes(x = scrap)) + geom_histogram(bins = 8)
 ```
@@ -119,6 +121,7 @@ Extra: you might be wondering whether the medians, or means, since
 there is no serious skewness here and definitely no outliers,
 are "significantly different". This is inference, which we
 will come to later, but a preview looks like this:
+
 ```{r soap2-5 }
 t.test(scrap ~ line, data = soap)
 ```
@@ -184,6 +187,7 @@ Solution
 
 
 Same mechanism as before:
+
 ```{r soap2-7 }
 ggplot(soap, aes(x = speed, y = scrap)) + geom_point()
 ```
@@ -220,6 +224,7 @@ line. `ggplot` makes that easy: you add a
 `colour`^[If you are concerned about the spelling: the guy who wrote ggplot is from New Zealand, where they spell *colour* the same way we do. However, if you want to use *color*, that works too.] to say what you want to
 distinguish by colour. This is two quantitative variables and one
 categorical variable, if you want to think of it that way:
+
 ```{r soap2-8 }
 ggplot(soap, aes(x = speed, y = scrap, colour = line)) + geom_point()
 ```
