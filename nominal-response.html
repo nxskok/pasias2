@@ -648,7 +648,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Read in the <code>.csv</code> file, and verify that you have lots of rows and columns.</li>
 </ol>
 <p>Solution</p>
-<p>The obvious way. Printing it out will display some of the data and tell you how many rows and columns you have: ::: {.cell}</p>
+<p>The obvious way. Printing it out will display some of the data and tell you how many rows and columns you have:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ess.csv"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -670,7 +671,7 @@ dbl (13): cedition, cseqno, essround, edition, idno, dweight, pspwght, pweig...
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>2286 rows and 17 columns.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
@@ -1009,7 +1010,8 @@ converged</code></pre>
 <li>Read in the data and display the first few lines. Describe how the data are not “tidy”.</li>
 </ol>
 <p>Solution</p>
-<p>Separated by exactly one space: ::: {.cell}</p>
+<p>Separated by exactly one space:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/alligator.txt"</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>gators.orig <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1031,7 +1033,7 @@ dbl (6): profile, Fish, Invertebrate, Reptile, Bird, Other
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The last five columns are all frequencies. Or, one of the variables (food type) is spread over five columns instead of being contained in one. Either is good.</p>
 <p>My choice of “temporary” name reflects that I’m going to obtain a “tidy” data frame called <code>gators</code> in a moment.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1080,7 +1082,8 @@ dbl (6): profile, Fish, Invertebrate, Reptile, Bird, Other
 </ol>
 <p>Solution</p>
 <p>Each row of the tidy <code>gators</code> represents as many alligators as are in the <code>Frequency</code> column. That is, if you look at female small alligators in Lake George that ate mainly fish, there are three of those.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> This to remind you to include the <code>weights</code> piece, otherwise <code>multinom</code> will assume that you have <em>one</em> observation per line and not as many as the number in <code>Frequency</code>.</p>
-<p><em>That</em> is the reason that <code>count</code> earlier would have been confusing: it would have told you how many <em>rows</em> contained each food type, rather than how many <em>alligators</em>, and these would have been different: ::: {.cell}</p>
+<p><em>That</em> is the reason that <code>count</code> earlier would have been confusing: it would have told you how many <em>rows</em> contained each food type, rather than how many <em>alligators</em>, and these would have been different:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gators <span class="sc">%&gt;%</span> <span class="fu">count</span>(Food.type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1099,7 +1102,7 @@ dbl (6): profile, Fish, Invertebrate, Reptile, Bird, Other
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Each food type appears on 16 rows, but is the favoured diet of very different numbers of <em>alligators</em>. Note the use of <code>wt=</code> to specify a frequency variable.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
 <p>You ought to understand <em>why</em> those are different.</p>
 <p>All right, back to modelling:</p>
@@ -1118,7 +1121,8 @@ converged</code></pre>
 </div>
 </div>
 <p>This worked, even though <code>Food.type</code> was actually text. I guess it got converted to a factor. The ordering of the levels doesn’t matter here anyway, since this is not an ordinal model.</p>
-<p>No need to look at it, since the output is kind of confusing anyway: ::: {.cell}</p>
+<p>No need to look at it, since the output is kind of confusing anyway:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gators<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
@@ -1152,14 +1156,15 @@ Reptile         1.3388017
 Residual Deviance: 537.8655 
 AIC: 585.8655 </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>You get one coefficient for each variable (along the top) and for each response group (down the side), using the first group as a baseline everywhere. These numbers are hard to interpret; doing predictions is much easier.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>Do a test to see whether <code>Gender</code> should stay in the model. (This will entail fitting another model.) What do you conclude?</li>
 </ol>
 <p>Solution</p>
-<p>The other model to fit is the one <em>without</em> the variable you’re testing: ::: {.cell}</p>
+<p>The other model to fit is the one <em>without</em> the variable you’re testing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>gators<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(gators<span class="fl">.1</span>, . <span class="sc">~</span> . <span class="sc">-</span> Gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># weights:  30 (20 variable)
@@ -1169,7 +1174,7 @@ iter  20 value 270.046891
 final  value 270.040139 
 converged</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>I did <code>update</code> here to show you that it works, but of course there’s no problem in just writing out the whole model again and taking out <code>Gender</code>, preferably by copying and pasting:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>gators<span class="fl">.2</span>x <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Food.type <span class="sc">~</span> Size <span class="sc">+</span> Lake,</span>
@@ -1252,7 +1257,8 @@ converged</code></pre>
 <li>What do you think is the most important way in which the lakes differ? (Hint: look at where the biggest predicted probabilities are.)</li>
 </ol>
 <p>Solution</p>
-<p>Here are the predictions again: ::: {.cell}</p>
+<p>Here are the predictions again:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>preds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1262,7 +1268,7 @@ converged</code></pre>
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Following my own hint: the preferred diet in George and Hancock lakes is fish, but the preferred diet in Oklawaha and Trafford lakes is (at least sometimes) invertebrates. That is to say, the preferred diet in those last two lakes is less likely to be invertebrates than it is in the first two (comparing for alligators of the same size). This is true for both large and small alligators, as it should be, since there is no interaction in the model.</p>
 <p>That will do, though you can also note that reptiles are more commonly found in the last two lakes, and birds sometimes appear in the diet in Hancock and Trafford but rarely in the other two lakes.</p>
 <p>Another way to think about this is to hold size constant and compare lakes (and then check that it applies to the other size too). In this case, you’d find the biggest predictions among the first four rows, and then check that the pattern persists in the second four rows. (It does.)</p>

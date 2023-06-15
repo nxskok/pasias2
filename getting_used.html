@@ -718,8 +718,8 @@ dbl (2): x, y
 <p>Solution</p>
 <p>The first time, you might be invited to “install some packages” to make the Document thing work. Let it do that by clicking Yes. After that, you’ll have something like this:</p>
 <p><img src="rnote1.png" class="img-fluid"></p>
-<p>*** need a new screenshot</p>
-<p>*** need to talk about source and visual mode</p>
+<p>xxx need a new screenshot</p>
+<p>xxx need to talk about source and visual mode</p>
 <p>Find the Insert and Run buttons along the top of the document window. We’ll be using them shortly. (The template notebook may or may not be maximized; it doesn’t matter either way. You might see all four panes or as few as one. If you want to control that, select View at the top, then Panes, then either Show All Panes or Zoom Source, as you prefer. In the menus, you’ll also see keyboard shortcuts for these, which you might find worth learning.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
@@ -746,9 +746,10 @@ dbl (2): x, y
 <p>Solution</p>
 <p>Here’s what I get (yours will be the same).</p>
 <p><img src="chunk3.png" class="img-fluid"></p>
-<p>This is a rectangular array of rows and columns, with individuals in rows and variables in columns, known as a “data frame”. When you display a data frame in a Quarto document, you see 10 rows and as many columns as will fit on the screen. At the bottom, it says how many rows and columns there are altogether (here 32 rows and 11 columns), and which ones are being displayed. You can see more rows by clicking on Next, and if there are more columns, you’ll see a little arrow next to the rightmost column (as here next to <code>am</code>) that you can click on to see more columns. Try it and see. Or if you want to go to a particular collection of rows, click one of the numbers between Previous and Next: 1 is rows 1–10, 2 is rows 11–20, and so on. The column on the left without a header (containing the names of the cars) is called “row names”. These have a funny kind of status, kind of a column and kind of not a column; usually, if we need to use the names, we have to put them in a column first. In future solutions, rather than showing you a screenshot, expect me to show you something like this: ::: {.cell}</p>
+<p>This is a rectangular array of rows and columns, with individuals in rows and variables in columns, known as a “data frame”. When you display a data frame in a Quarto document, you see 10 rows and as many columns as will fit on the screen. At the bottom, it says how many rows and columns there are altogether (here 32 rows and 11 columns), and which ones are being displayed. You can see more rows by clicking on Next, and if there are more columns, you’ll see a little arrow next to the rightmost column (as here next to <code>am</code>) that you can click on to see more columns. Try it and see. Or if you want to go to a particular collection of rows, click one of the numbers between Previous and Next: 1 is rows 1–10, 2 is rows 11–20, and so on. The column on the left without a header (containing the names of the cars) is called “row names”. These have a funny kind of status, kind of a column and kind of not a column; usually, if we need to use the names, we have to put them in a column first. In future solutions, rather than showing you a screenshot, expect me to show you something like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 
@@ -770,7 +771,8 @@ dbl (2): x, y
 <p>Solution</p>
 <p>This is what you should see:</p>
 <p><img src="chunk4.png" class="img-fluid"></p>
-<p>or the other way: ::: {.cell}</p>
+<p>or the other way:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg             cyl             disp             hp       
@@ -795,7 +797,7 @@ dbl (2): x, y
  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
  Max.   :1.0000   Max.   :5.000   Max.   :8.000  </code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>For the gas mileage column <code>mpg</code>, the mean is bigger than the median, and the largest value is unusually large compared with the others, suggesting a distribution that is skewed to the right.</p>
 <p>There are 11 numeric (quantitative) variables, so we get the five-number summary plus mean for each one. Categorical variables, if we had any here, would be displayed a different way.</p>
 <p>(In case you are wondering, the way without screenshots is obtained by <em>my</em> writing a notebook with code chunks and running them, so this output genuinely <em>is</em> obtained by running the code you see.)</p>
@@ -804,12 +806,13 @@ dbl (2): x, y
 <li>Let’s make a boxplot of the gas mileage data. This is a “poor man’s boxplot”; we’ll see a nicer-looking way later. To do it this way, make another new code chunk, enter the code <code>boxplot(mtcars$mpg)</code> into it, and run the chunk.</li>
 </ol>
 <p>Solution</p>
-<p>This is what you should see: ::: {.cell}</p>
+<p>This is what you should see:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/r0-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>The long upper whisker supports our guess from before that the distribution is right-skewed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="8" type="a">
@@ -822,8 +825,7 @@ dbl (2): x, y
 <li>Save your document (the usual way with File and Save). This saves it <em>on the <code>r.datatools</code> server</em> (and not on your computer). This means that when you come back to R Studio later, even from another device, this document will still be available to you. Now click Render. This produces a pretty HTML version of your document, that should display on the right of your R Studio in the Viewer.</li>
 </ol>
 <p>Solution</p>
-<p>Note that the HTML document only contains output from the chunks you’ve run in the notebook, so it’s up to you to run them there first.<br>
-My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1.nb.html">http://ritsokiguess.site/datafiles/a0-notebook-1.nb.html</a>.</p>
+<p>My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1.nb.html">http://ritsokiguess.site/datafiles/a0-notebook-1.nb.html</a>.</p>
 <p>Here’s where you see the effect of the backticks: all the variable names are in <code>typewriter font</code> so that you can see they are variable names and not something else. If you want to try this notebook out yourself, you have a couple of options: (i) make a new Quarto Document on <code>r.datatools</code> and copy-paste the contents of my file (it’s just text), or (ii) download my document onto your computer, and then upload it to <code>r.datatools</code>. Look in the Files pane bottom right, and next to New Folder you should see Upload. Upload the file from wherever it got saved to when you downloaded it. Extra: if you’re feeling ambitious, click the arrow to the right of Preview and select Knit to Word. The button changes to Knit with a ball of wool beside it. Now, when you “knit” the notebook, you get a Word document directly — look for it in the Files pane. If you want to, you can hand this kind of thing in (on later assignments), but you’ll have to do a little work first: first, find it in your Files list, then click the checkbox to the left of it, then click More (with the gear, on the same line as New Folder and Upload), then select Export (and click Download). This will put a copy in your downloads folder on your computer, and you can open it from there. If you’re feeling extra-ambitious, you can try Knit to PDF. This produces something that looks as if it was written in LaTeX, but actually wasn’t. To make this work, if you have a <code>library(tidyverse)</code> line somewhere, as you probably will, find the code chunk it’s in, and make it look like this:</p>
 <p><img src="Screenshot_2018-10-10_17-24-47.png" class="img-fluid"></p>
 <p>Then it will work. Extra extra: if you like the keyboard better than the mouse, R Studio has a lot of keyboard shortcuts. Two that are useful now: control-alt-i inserts a code chunk where the cursor is, and control-shift-enter runs the code chunk that the cursor is in, if it is in one. (Mac users, “command” instead of “control” in both cases.) I use these two a lot.</p>
@@ -832,19 +834,23 @@ My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1
 <li>Optional extra: practice handing in your previewed R notebook, as if it were an assignment that was worth something. (It is good to get the practice in a low-stakes situation, so that you’ll know what to do next week.)</li>
 </ol>
 <p>Solution</p>
-<p>There are two steps: download the HTML file onto your computer, and then handing it in on Quercus. To download: find the HTML file that you want to download in the Files pane bottom right. There should be two files starting with the same thing, eg. <code>test1.Rmd</code>, which is the notebook you wrote, and <code>test1.nb.html</code>, which is the previewed version of it, and is the one you want to download. (The <code>test1</code> part is the name <em>you</em> chose when you saved it.) Click the checkbox to the left of the HTML file. Now click on More above the bottom-right pane. This pops up a menu from which you choose Export. This will pop up another window called Export Files, where you put the name that the file will have on your computer. (I usually leave the name the same.) Click Download. The file will go to your Downloads folder, or wherever things you download off the web go. Now, to hand it in. Open up Quercus at <code>q.utoronto.ca</code>, log in and navigate to this course. Click Assignments. Click (the title of) Assignment 0. There is a big blue Submit Assignment button top right. Click it. You’ll get a File Upload at the bottom of the screen. Click Choose File and find the HTML file that you downloaded. Click Open (or equivalent on your system). The name of the file should appear next to Choose File. Click Submit Assignment. You’ll see Submitted at the top right. If you want to try this again, you can Re-submit Assignment as many times as you like. (For the real thing, you can use this if you realize you made a mistake in something you submitted. The graders’ instructions, for the real thing, are to grade the <em>last</em> file submitted, so in that case you need to make sure that the last thing submitted includes <em>everything</em> that you want graded. Here, though, it doesn’t matter.)</p>
+<p>There are two steps: download the HTML file onto your computer, and then handing it in on Quercus. To download: find the HTML file that you want to download in the Files pane bottom right. There should be two files starting with the same thing, eg. <code>test1.Rmd</code>, which is the notebook you wrote, and <code>test1.nb.html</code>, which is the previewed version of it, and is the one you want to download. (The <code>test1</code> part is the name <em>you</em> chose when you saved it.) Click the checkbox to the left of the HTML file. Now click on More above the bottom-right pane. This pops up a menu from which you choose Export. This will pop up another window called Export Files, where you put the name that the file will have on your computer. (I usually leave the name the same.) Click Download. The file will go to your Downloads folder, or wherever things you download off the web go.</p>
+<p>Now, to hand it in. Open up Quercus at <code>q.utoronto.ca</code>, log in and navigate to this course. Click Assignments. Click (the title of) Assignment 0. There is a big blue Submit Assignment button top right. Click it. You’ll get a File Upload at the bottom of the screen. Click Choose File and find the HTML file that you downloaded. Click Open (or equivalent on your system). The name of the file should appear next to Choose File. Click Submit Assignment. You’ll see Submitted at the top right.</p>
+<p>If you want to try this again, you can Re-submit Assignment as many times as you like. (For the real thing, you can use this if you realize you made a mistake in something you submitted. The graders’ instructions, for the real thing, are to grade the <em>last</em> file submitted, so in that case you need to make sure that the last thing submitted includes <em>everything</em> that you want graded. Here, though, it doesn’t matter.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="11" type="a">
 <li>Optional extra. Something more ambitious: make a scatterplot of gas mileage <code>mpg</code>, on the <span class="math inline">\(y\)</span> axis, against horsepower, <code>hp</code>, on the <span class="math inline">\(x\)</span>-axis.</li>
 </ol>
 <p>Solution</p>
-<p>That goes like this. I’ll explain the steps below. ::: {.cell}</p>
+<p>That goes like this. I’ll explain the steps below.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/r0-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>::: $ %$ %$</p>
+</div>
+<p>$ %$ %$</p>
 <p>This shows a somewhat downward trend, which is what you’d expect, since a larger <code>hp</code> value means a more powerful engine, which will probably consume more gas and get <em>fewer</em> miles per gallon. As for the code: to make a <code>ggplot</code> plot, as we will shortly see in class, you first need a <code>ggplot</code> statement that says what to plot. The first thing in a <code>ggplot</code> is a data frame (<code>mtcars</code> here), and then the <code>aes</code> says that the plot will have <code>hp</code> on the <span class="math inline">\(x\)</span>-axis and <code>mpg</code> on the <span class="math inline">\(y\)</span>-axis, taken from the data frame that you specified. That’s all of the what-to-plot. The last thing is how to plot it; <code>geom_point()</code> says to plot the data values as points.</p>
 <p>You might like to add a regression line to the plot. That is a matter of adding this to the end of the plotting command:</p>
 <div class="cell">
@@ -879,7 +885,8 @@ My HTML document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1
 <li>Put the URL of the data file in a variable called <code>my_url</code>. Then use <code>read_delim</code> to read in the file. (See solutions for how.) <code>read_delim</code> reads data files where the data values are always separated by the same single character, here a space. Save the data frame in a variable <code>rats</code>.</li>
 </ol>
 <p>Solution</p>
-<p>Like this: ::: {.cell}</p>
+<p>Like this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>my_url<span class="ot">=</span><span class="st">"http://ritsokiguess.site/datafiles/jumping.txt"</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rats<span class="ot">=</span><span class="fu">read_delim</span>(my_url,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -892,7 +899,7 @@ dbl (1): density
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>The second thing in <code>read_delim</code> is the thing that separates the data values. Often when you use <code>read_delim</code> it’ll be a space.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
@@ -916,7 +923,8 @@ dbl (1): density
 <li>Find the mean bone density for rats that did each amount of jumping.</li>
 </ol>
 <p>Solution</p>
-<p>This is something you’ll see a lot: <code>group_by</code> followed by <code>summarize</code>. Reminder: to get that funny thing with the percent signs (called the “pipe symbol”), type control-shift-M (or equivalent on a Mac): ::: {.cell}</p>
+<p>This is something you’ll see a lot: <code>group_by</code> followed by <code>summarize</code>. Reminder: to get that funny thing with the percent signs (called the “pipe symbol”), type control-shift-M (or equivalent on a Mac):</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m=</span><span class="fu">mean</span>(density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -927,19 +935,20 @@ dbl (1): density
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>The mean bone density is clearly highest for the high jumping group, and not much different between the low-jumping and control groups.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
 <li>Make a boxplot of bone density for each jumping group.</li>
 </ol>
 <p>Solution</p>
-<p>On a boxplot, the groups go across and the values go up and down, so the right syntax is this: ::: {.cell}</p>
+<p>On a boxplot, the groups go across and the values go up and down, so the right syntax is this:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats,<span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>density))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/lippach-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
+</div>
 <p>Given the amount of variability, the control and low-jump groups are very similar (with the control group having a couple of outliers), but the high-jump group seems to have a consistently higher bone density than the others.</p>
 <p>This is more or less in line with what the experimenters were guessing, but it seems that it has to be high jumping to make a difference.</p>
 <p>You might recognize that this is the kind of data where we would use analysis of variance, which we will do later on in the course: we are comparing several (here three) groups.</p>

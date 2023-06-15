@@ -725,7 +725,8 @@ $test
 <li>Read the data into R and list the values.</li>
 </ol>
 <p>Solution</p>
-<p><code>read_csv</code> will do it: ::: {.cell}</p>
+<p><code>read_csv</code> will do it:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/cars.csv"</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -747,7 +748,7 @@ dbl (4): MPG, weight, cylinders, hp
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Display only the car names and the countries they come from.</li>
@@ -782,7 +783,8 @@ dbl (4): MPG, weight, cylinders, hp
 <li>Display everything <em>except</em> horsepower:</li>
 </ol>
 <p>Solution</p>
-<p>Naming what you <em>don’t</em> want is sometimes easier: ::: {.cell}</p>
+<p>Naming what you <em>don’t</em> want is sometimes easier:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -792,13 +794,14 @@ dbl (4): MPG, weight, cylinders, hp
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Display only the cars that have 8-cylinder engines (but display all the variables for those cars).</li>
 </ol>
 <p>Solution</p>
-<p>This: ::: {.cell}</p>
+<p>This:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cylinders <span class="sc">==</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -808,14 +811,15 @@ dbl (4): MPG, weight, cylinders, hp
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>8 of them, all from the US.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="5" type="a">
 <li>Display the cylinders and horsepower for the cars that have horsepower 70 or less.</li>
 </ol>
 <p>Solution</p>
-<p>This one is selecting some observations and some variables: ::: {.cell}</p>
+<p>This one is selecting some observations and some variables:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(hp <span class="sc">&lt;=</span> <span class="dv">70</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(cylinders<span class="sc">:</span>hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -825,7 +829,7 @@ dbl (4): MPG, weight, cylinders, hp
   </script>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Cylinders and horsepower are consecutive columns, so we can select them either using the colon <code>:</code> or by <code>c(cylinders,hp)</code>.</p>
 <p>You can also do the <code>filter</code> and the <code>select</code> the other way around. This one works because the <em>rows</em> you want to choose are determined by a column you’re going to keep. If you wanted to display the cylinders and horsepower of the cars with <code>mpg</code> over 30, you would have to choose the rows first, because after you’ve chosen the columns, there is no <code>mpg</code> any more.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
