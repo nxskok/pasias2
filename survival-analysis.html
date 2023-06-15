@@ -932,7 +932,7 @@ Score (logrank) test = 36.57  on 3 df,   p=6e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>bmis <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">36</span>, <span class="dv">4</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="dv">70</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>whas100.new<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">crossing</span>(<span class="at">bmi =</span> bmis, <span class="at">age =</span> ages)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>whas100.new<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> whas100<span class="fl">.3</span>, <span class="at">bmi =</span> bmis, <span class="at">age =</span> ages)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>whas100.new<span class="fl">.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1792,38 +1792,37 @@ dplyr 1.1.0.
 <li>Create a data frame containing all possible combinations of the two quartiles for each of the two variables, and display the result.</li>
 </ol>
 <p>Solution</p>
-<p>The usual <code>crossing</code>:</p>
+<p>This is <code>datagrid</code>. My best model is the one I called <code>y.2</code> (I had to scroll back a ways to find it), so:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>logbuns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1461</span>, <span class="fl">1.5682</span>)</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>hgbs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.8</span>, <span class="dv">12</span>)</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">crossing</span>(<span class="at">logbun =</span> logbuns, <span class="at">hgb =</span> hgbs)</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> y<span class="fl">.2</span>, <span class="at">logbun =</span> <span class="fu">c</span>(<span class="fl">1.14561</span>, <span class="fl">1.5682</span>), <span class="at">hgb =</span> <span class="fu">c</span>(<span class="fl">8.8</span>, <span class="fl">12.0</span>))</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["logbun"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["hgb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.1461","2":"8.8"},{"1":"1.1461","2":"12.0"},{"1":"1.5682","2":"8.8"},{"1":"1.5682","2":"12.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["logbun"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["hgb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.14561","2":"8.8"},{"1":"1.14561","2":"12.0"},{"1":"1.56820","2":"8.8"},{"1":"1.56820","2":"12.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>Or anything equivalent to that. This is my procedure, but you are free to shorten it if it will still work. The place you have to get to in the end is a data frame with columns called <code>logbun</code> and <code>hgb</code>, and the right four combinations of values. If you want to round the <code>logbun</code> values off more, for example to two decimals, that’s fine; it won’t affect the graph that’s coming up.</p>
+<p>Or anything equivalent to that.</p>
+<p>The place you have to get to in the end is a data frame with columns called <code>logbun</code> and <code>hgb</code>, and the right four combinations of values. If you want to round the <code>logbun</code> values off more, for example to two decimals, that’s fine; it won’t affect the graph that’s coming up.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol type="i">
 <li>Obtain predicted survival probabilities for each of the combinations of variables you created above. You don’t need to look at the results (they are rather long).</li>
 </ol>
 <p>Solution</p>
-<p>This seems as if it ought to be <code>predict</code>, but the <code>survival</code> version of it is called <code>survfit</code>: ::: {.cell}</p>
+<p>This seems as if it ought to be <code>predictions</code>, but the <code>survival</code> version of it is called <code>survfit</code>: ::: {.cell}</p>
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">survfit</span>(y<span class="fl">.2</span>, new, <span class="at">data =</span> myeloma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
-<p>It works the same as <code>predict</code>: a fitted model object (your smaller survival model), and a data frame of values to predict for. The <code>data=</code> is not strictly needed here, but if you want <code>ggsurvplot</code> to work right, you <em>do</em> need it to be here.</p>
+<p>It works the same as <code>predictions</code>: a fitted model object (your smaller survival model), and a data frame of values to predict for. The <code>data=</code> is not strictly needed here, but if you want <code>ggsurvplot</code> to work right, you <em>do</em> need it to be here.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="10" type="a">
 <li>Obtain a graph of the predicted survival curves for each combination of your variables.</li>
 </ol>
 <p>Solution</p>
 <p>This is easier than you think: it’s just <code>ggsurvplot</code> from <code>survminer</code>: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(s, <span class="at">conf.int =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(s, <span class="at">conf.int =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="survival-analysis_files/figure-html/myeloma-17-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1839,7 +1838,7 @@ dplyr 1.1.0.
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["logbun"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["hgb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.1461","2":"8.8"},{"1":"1.1461","2":"12.0"},{"1":"1.5682","2":"8.8"},{"1":"1.5682","2":"12.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["logbun"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["hgb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.14561","2":"8.8"},{"1":"1.14561","2":"12.0"},{"1":"1.56820","2":"8.8"},{"1":"1.56820","2":"12.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
