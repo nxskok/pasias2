@@ -45,7 +45,7 @@ book:
     - discriminant-analysis.Rmd
     - cluster.Rmd
     - kmeans-cluster.Rmd
-#- maps.Rmd
+    - maps.Rmd
     - mds.Rmd
     - pc.Rmd
     - fa.Rmd

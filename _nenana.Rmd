@@ -121,7 +121,7 @@ written as a piece of text. I explain the second column in a moment.
 $\blacksquare$
 
 (c) Dates and times are awkward to handle with software. (We
-see more ways later in the course.)  The column `JulianDate`
+see more ways later.)  The column `JulianDate`
 expresses the time that the tripod fell through the ice as a
 fractional number of days since December 31. This enables the time
 (as a fraction of the way through the day) to be recorded as well,

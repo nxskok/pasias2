@@ -147,14 +147,16 @@ some kind of tails. So, "short tails".
 Extra: that's all you needed, but I mentioned above that you might have
 been offended aesthetically by those missing values that were not
 really missing. Let's see if we can do this aesthetically. As you
-might expect, it uses several of the tools from the "tidyverse".
+might expect, it uses several of the tools from the "tidyverse", some of which you will see later, but are getting an introduction to now.
+
 First, tidy the data. The three columns of the data frame are all
 lengths, just lengths of different things, which need to be
 labelled. This is `pivot_longer` from `tidyr`:
 
 ```{r heliconia-6 }
 heliconia %>% 
-  pivot_longer(everything(), names_to="variety", values_to="length", values_drop_na = T) -> heliconia.long
+  pivot_longer(everything(), names_to="variety", values_to="length", 
+               values_drop_na = TRUE) -> heliconia.long
 heliconia.long  
 ``` 
 
@@ -166,12 +168,12 @@ Now, how to get a normal quantile plot for each variety? This is
 `facet_wrap` on the end of the `ggplot` again. 
 
 ```{r heliconia-7 }
-ggplot(heliconia.long,aes(sample=length))+
-stat_qq()+stat_qq_line()+
-facet_wrap(~variety,scale="free")
+ggplot(heliconia.long, aes(sample=length)) + 
+  stat_qq() + stat_qq_line() + 
+  facet_wrap(~variety, scales="free")
 ``` 
 
-These are a bit elongated vertically. The `scale="free"` allows
+These are a bit elongated vertically. The `scales="free"` allows
 a different vertical scale for each plot (otherwise there would be one
 vertical scale for all three plots); I decided that was best here
 since the typical lengths for the three varieties are
@@ -187,9 +189,9 @@ happen. This creates an array of plots with two columns and as many
 rows as needed:
 
 ```{r heliconia-8 }
-ggplot(heliconia.long,aes(sample=length))+
-stat_qq()+stat_qq_line()+
-facet_wrap(~variety,scale="free",ncol=2)
+ggplot(heliconia.long, aes(sample=length)) + 
+  stat_qq() + stat_qq_line() + 
+  facet_wrap(~variety, scales="free", ncol=2)
 ``` 
 
 I think the squarer plots make it easier to see the shape of these:
@@ -198,8 +200,8 @@ Almost the same code will get a histogram for each variety, which I'll
 also make squarish:
 
 ```{r heliconia-9 }
-ggplot(heliconia.long,aes(x=length))+
-geom_histogram(bins=5)+facet_wrap(~variety,scale="free",ncol=2)
+ggplot(heliconia.long, aes(x = length)) + 
+  geom_histogram(bins = 5) + facet_wrap(~variety, scales = "free", ncol=2)
 ``` 
 
 *bihai* has those two outliers, *caribaea* red has no tails

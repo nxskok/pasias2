@@ -324,28 +324,24 @@ in group `b`, but has "only" probability 0.814 of being a
 could it be? Well, it's about equally split between being `a`
 and `c`. Let me see if I can display this observation on the
 plot in a different way. First I need to make a new column picking out
-observation 6, and then I use this new variable as the `size`
+observation 6, and then I use this new variable as the `shape`
 of the point I plot:
 
 ```{r manova1a-14 }
 simple %>%
   mutate(is6 = (row_number() == 6)) %>%
-  ggplot(aes(x = y1, y = y2, colour = group, size = is6)) +
-  geom_point()
+  ggplot(aes(x = y1, y = y2, colour = group, shape = is6)) +
+  geom_point(size = 3)
 ```
 
  
 
-That makes it stand out.
-As the legend indicates, observation \#6 is plotted as a big circle,
-with the rest being plotted as small circles as usual. Since observation \#6
-is in group `b`, it appears as a big green circle. What makes it
-least like a `b`? Well, it has the smallest `y2` value
-of any of the `b`'s (which makes it most like an `a` of
-any of the `b`'s), and it has the largest `y1` value (which makes it
-most like a `c` of any of the `b`'s). But still, it's nearer the
-greens than anything else, so it's still more like a `b` than
-it is like any of the other groups. 
+That makes it stand out a bit: if you look carefully, one of the green points (observation 6) is plotted as a triangle rather than a circle, as the legend for `is6` indicates.
+(I plotted all the points bigger to make this easier to see.)
+
+Since observation \#6 is in group `b`, it appears as a green triangle. What makes it least like a `b`? 
+Well, it has the smallest `y2` value of any of the `b`'s (which makes it most like an `a` of any of the `b`'s), and it has the largest `y1` value (which makes it most like a `c` of any of the `b`'s). 
+But still, it's nearer the greens than anything else, so it's still more like a `b` than it is like any of the other groups. 
   
 $\blacksquare$
 
