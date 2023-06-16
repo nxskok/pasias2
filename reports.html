@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="atomic-weight-of-carbon" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="atomic-weight-of-carbon"><span class="header-section-number">14.1</span> Atomic weight of carbon</h2>
 <p>The atomic weight of the chemical element carbon is 12. Two methods of measuring the atomic weight of samples of carbon were compared. The results are shown in <a href="http://ritsokiguess.site/datafiles/carbon.txt">link</a>. The methods are labelled 1 and 2. The first task is to find out whether the two methods have different “typical” measures (mean or median, as appropriate) of the atomic weight of carbon.</p>
-<p>For this question, compose a report in R Markdown. (R Markdown is what you use in an R Notebook, but you can also have a separate R Markdown document from which you can produce HTML, Word etc. output.) See part (a) for how to get this started.</p>
+<p>For this question, compose a report in a Quarto document. See part (a) for how to get this started.</p>
 <p>Your report should read like an actual report, not just the answers to some questions that I set you. To help with that, write some text that links the parts of the report together smoothly, so that it reads as a coherent whole. The grader had 3 discretionary marks to award for the overall quality of your writing. The scale for this was:</p>
 <ul>
 <li><p>3 points: excellent writing. The report flows smoothly, is easy to read, and contains everything it should (and nothing it shouldn’t).</p></li>
@@ -485,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Placebo</code>: a placebo shampoo</li>
 </ul>
 <p>Each subject was randomly assigned to a shampoo. After six weeks of treatment, eight sections of the scalp were examined for each subject. Each section of the scalp was given a score that measured the amount of flaking on a scale of 0-10, less flaking being better. The response variable, called <code>Flaking</code>, was the sum of these eight scores, and is a whole number for each subject.</p>
-<p>The data are in <a href="http://ritsokiguess.site/datafiles/dandruff.txt">http://ritsokiguess.site/datafiles/dandruff.txt</a>, with the data values separated by <em>tabs</em>.</p>
+<p>The data are in <a href="http://ritsokiguess.site/datafiles/dandruff.txt" class="uri">http://ritsokiguess.site/datafiles/dandruff.txt</a>, with the data values separated by <em>tabs</em>.</p>
 <p>Your task is to write a report on your analysis of this data set, and to make a recommendation for the best shampoo(s) out of the four studied here. The target audience for your report is the principal investigator of the study described above, who knows a lot about shampoo, but not so much about statistics. (They took a course some time ago that covered the material you’ve seen in this course so far, at about the level of STAB22 or STA 220.) Some things you might want to consider, in no particular order (you need to think about where and if to include these things):</p>
 <ul>
 <li>an Introduction, written in your own words as much as possible</li>
@@ -497,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>citation of external sources</li>
 <li>anything else that you can make the case for including</li>
 </ul>
-<p>In R Markdown (the text of an R Notebook), you can use <code>##</code> to make a heading (you can experiment with more or fewer <code>#</code> symbols).</p>
+<p>In a Quarto document, you can use <code>##</code> to make a heading (you can experiment with more or fewer <code>#</code> symbols), or in Visual mode, you can type a slash on a new line and select (probably) Heading 2 from the dropdown.</p>
 <p>Your aim is to produce a report, suitable for the intended audience, with all the important elements and no irrelevant ones, that is well-written and easy to follow. There is credit for good writing. For this report, you should include your code in with your report. (In a real report, you would probably show the output and not the code, but we are interested in your code here as well.)</p>
 <p>(My example report is in a later chapter.)</p>
 <p>My solutions follow. The example reports on coding and treating dandruff are separate chapters.</p>
@@ -505,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="atomic-weight-of-carbon-1" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="atomic-weight-of-carbon-1"><span class="header-section-number">14.5</span> Atomic weight of carbon</h2>
 <p>The atomic weight of the chemical element carbon is 12. Two methods of measuring the atomic weight of samples of carbon were compared. The results are shown in <a href="http://ritsokiguess.site/datafiles/carbon.txt">link</a>. The methods are labelled 1 and 2. The first task is to find out whether the two methods have different “typical” measures (mean or median, as appropriate) of the atomic weight of carbon.</p>
-<p>For this question, compose a report in R Markdown. (R Markdown is what you use in an R Notebook, but you can also have a separate R Markdown document from which you can produce HTML, Word etc. output.) See part (a) for how to get this started.</p>
+<p>For this question, compose a report in a Quarto document. ( See part (a) for how to get this started.</p>
 <p>Your report should read like an actual report, not just the answers to some questions that I set you. To help with that, write some text that links the parts of the report together smoothly, so that it reads as a coherent whole. The grader had 3 discretionary marks to award for the overall quality of your writing. The scale for this was:</p>
 <ul>
 <li><p>3 points: excellent writing. The report flows smoothly, is easy to read, and contains everything it should (and nothing it shouldn’t).</p></li>
@@ -514,10 +514,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>0 points: you answered the questions, but you did almost nothing to make it read like a report.</p></li>
 </ul>
 <ol type="a">
-<li>Create a new R Markdown document. To do this, in R Studio, select File, New File, R Markdown. Type the report title and your name in the boxes, and leave the output on the default HTML. Click OK.</li>
+<li>Create a new Quarto document. To do this, in R Studio, select File, New File, Quarto Document. Type the report title and your name in the boxes, and leave the output on the default HTML. Click OK.</li>
 </ol>
 <p>Solution</p>
-<p>You’ll see the title and your name in a section at the top of the document, and below that you’ll see a template document, as you would for an R Notebook. The difference is that where you are used to seeing Preview, it now says “knit”, but this has the same effect of producing the formatted version of your report.</p>
+<p>You’ll see the title and your name in a section at the top of the document, and below that you’ll see a template document.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Write an introduction that explains the purpose of this study and the data collected in your own words.</li>
@@ -714,11 +714,10 @@ $test
 <p>(This is a report-writing question, but it also uses some regression techniques from later in the course.)</p>
 <p>One of nature’s patterns is the relationship between the percentage of adult birds in a colony that return from the previous year, and the number of new adults that join the colony. Data for 13 colonies of sparrowhawks can be found at <a href="http://ritsokiguess.site/datafiles/sparrowhawk.txt">link</a>. The columns are the percentage of adults returning from the previous year, and the number of new adults that join the colony.</p>
 <ol type="a">
-<li>Create a new R Markdown report, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Knit HTML to see how the report looks so far.</li>
+<li>Create a new Quarto document, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Knit HTML to see how the report looks so far.</li>
 </ol>
 <p>Solution</p>
-<p>(Note: this is the previous version of Quarto, called R Markdown. The two are fairly similar.)</p>
-<p>In R Studio, select File, New File, R Markdown. Fill in the Title, Author and leave the Default Output Format at HTML. You’ll see a template report with the document info at the top. This is my document info:</p>
+<p>In R Studio, select File, New File, Quarto Document. Fill in the Title, Author and leave the Default Output Format at HTML. You’ll see a template report with the document info at the top. This is my document info:</p>
 <p><img src="sh0.png" class="img-fluid"></p>
 <p>This is known in the jargon as a “YAML block”.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Below that is the template R Markdown document, which you can delete now or later.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -728,7 +727,7 @@ $test
 <p>Solution</p>
 <p>Read the data into a data frame. In your report, add some text like “we read in the data”, perhaps after a section heading like “The data”. Then add a <em>code chunk</em> by selecting Chunks and Insert Chunk, or by pressing control-alt-I. So far you have something like this.</p>
 <p><img src="sh1.png" class="img-fluid"></p>
-<p>Inside the code chunk, that is, in the bit between the backtick characters, put R code, just as you would type it at the Console or put in an R notebook. In this case, that would be the following code, minus the message that comes out of <code>read_delim</code>:</p>
+<p>In this case, the code chunk contains the following code, minus the message that comes out of <code>read_delim</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/sparrowhawk.txt"</span></span>
@@ -746,7 +745,8 @@ dbl (2): returning, newadults
 </div>
 <p>For you, it looks like this:</p>
 <p><img src="sh2.png" class="img-fluid"></p>
-<p>We don’t know how many rows of data there are yet, so I’ve left a “placeholder” for it, when we figure it out. The file is annoyingly called <code>sparrowhawk.txt</code>, singular. Sorry about that. If you knit this (click on “Knit HTML” next to the ball of wool, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and knit again. You might be worried about how hard R is working with all this knitting. Don’t worry about that. R can take it. Mine looked like this:</p>
+<p>We don’t know how many rows of data there are yet, so I’ve left a “placeholder” for it, when we figure it out. The file is annoyingly called <code>sparrowhawk.txt</code>, singular. Sorry about that.</p>
+<p>If you render this (click on “Render” at the top next to the arrow, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and knit again. You might be worried about how hard R is working with all this rendering. Don’t worry about that. R can take it. Mine looked like this:</p>
 <p><img src="waluj.png" class="img-fluid"></p>
 <p>There is a better way of adding values that come from the output, which I mention here in case you are interested (if you are not, feel free to skip this). What you do is to make what is called an “inline code chunk”. Where you want a number to appear in the text, you have some R Markdown that looks like this:</p>
 <p><img src="sh3.png" class="img-fluid"></p>

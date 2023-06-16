@@ -495,7 +495,7 @@ mtcars
 <p>Take a look at the data file at <a href="http://ritsokiguess.site/datafiles/jumping.txt">http://ritsokiguess.site/datafiles/jumping.txt</a>. These are measurements on 30 rats that were randomly made to do different amounts of jumping by group (we’ll see the details later in the course). The control group did no jumping, and the other groups did “low jumping” and “high jumping”. The first column says which jumping group each rat was in, and the second is the rat’s bone density (the experimenters’ supposition was that more jumping should go with higher bone density).</p>
 <ol type="a">
 <li><p>What are the two columns of data separated by? (The fancy word is “delimited”).</p></li>
-<li><p>Make a new R Notebook. Leave the first four lines, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</p></li>
+<li><p>Make a new Quarto document. Leave the first four or so lines at the top between the <code>---</code>, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</p></li>
 <li><p>Put the URL of the data file in a variable called <code>my_url</code>. Then use <code>read_delim</code> to read in the file. (See solutions for how.) <code>read_delim</code> reads data files where the data values are always separated by the same single character, here a space. Save the data frame in a variable <code>rats</code>.</p></li>
 <li><p>Take a look at your data frame, by making a new code chunk and putting the data frame’s name in it (as we did with <code>mtcars</code>).</p></li>
 <li><p>Find the mean bone density for rats that did each amount of jumping.</p></li>
@@ -876,7 +876,7 @@ dbl (2): x, y
 <p>Exactly one space. This is true all the way down, as you can check.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
-<li>Make a new R Notebook. Leave the first four lines, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</li>
+<li>Make a new Quarto document. Leave the lines at the top between the <code>---</code>, but get rid of the rest of the template document. Start with a code chunk containing <code>library(tidyverse)</code>. Run it.</li>
 </ol>
 <p>Solution</p>
 <p>You will get either the same message as before or nothing. (I got nothing because I had already loaded the <code>tidyverse</code> in this session.)</p>

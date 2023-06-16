@@ -404,10 +404,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#salaries-of-mathematicians" id="toc-salaries-of-mathematicians" class="nav-link" data-scroll-target="#salaries-of-mathematicians"><span class="header-section-number">19.2</span> Salaries of mathematicians</a></li>
   <li><a href="#predicting-gpa-of-computer-science-students" id="toc-predicting-gpa-of-computer-science-students" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students"><span class="header-section-number">19.3</span> Predicting GPA of computer science students</a></li>
   <li><a href="#fish-and-mercury" id="toc-fish-and-mercury" class="nav-link" data-scroll-target="#fish-and-mercury"><span class="header-section-number">19.4</span> Fish and mercury</a></li>
-  <li><a href="#being-satisfied-with-hospital-1" id="toc-being-satisfied-with-hospital-1" class="nav-link" data-scroll-target="#being-satisfied-with-hospital-1"><span class="header-section-number">19.5</span> Being satisfied with hospital</a></li>
-  <li><a href="#salaries-of-mathematicians-1" id="toc-salaries-of-mathematicians-1" class="nav-link" data-scroll-target="#salaries-of-mathematicians-1"><span class="header-section-number">19.6</span> Salaries of mathematicians</a></li>
-  <li><a href="#predicting-gpa-of-computer-science-students-1" id="toc-predicting-gpa-of-computer-science-students-1" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students-1"><span class="header-section-number">19.7</span> Predicting GPA of computer science students</a></li>
-  <li><a href="#fish-and-mercury-1" id="toc-fish-and-mercury-1" class="nav-link" data-scroll-target="#fish-and-mercury-1"><span class="header-section-number">19.8</span> Fish and mercury</a></li>
+  <li><a href="#handling-shipments-of-chemicals" id="toc-handling-shipments-of-chemicals" class="nav-link" data-scroll-target="#handling-shipments-of-chemicals"><span class="header-section-number">19.5</span> Handling shipments of chemicals</a></li>
+  <li><a href="#being-satisfied-with-hospital-1" id="toc-being-satisfied-with-hospital-1" class="nav-link" data-scroll-target="#being-satisfied-with-hospital-1"><span class="header-section-number">19.6</span> Being satisfied with hospital</a></li>
+  <li><a href="#salaries-of-mathematicians-1" id="toc-salaries-of-mathematicians-1" class="nav-link" data-scroll-target="#salaries-of-mathematicians-1"><span class="header-section-number">19.7</span> Salaries of mathematicians</a></li>
+  <li><a href="#predicting-gpa-of-computer-science-students-1" id="toc-predicting-gpa-of-computer-science-students-1" class="nav-link" data-scroll-target="#predicting-gpa-of-computer-science-students-1"><span class="header-section-number">19.8</span> Predicting GPA of computer science students</a></li>
+  <li><a href="#fish-and-mercury-1" id="toc-fish-and-mercury-1" class="nav-link" data-scroll-target="#fish-and-mercury-1"><span class="header-section-number">19.9</span> Fish and mercury</a></li>
+  <li><a href="#handling-shipments-of-chemicals-1" id="toc-handling-shipments-of-chemicals-1" class="nav-link" data-scroll-target="#handling-shipments-of-chemicals-1"><span class="header-section-number">19.10</span> Handling shipments of chemicals</a></li>
   </ul>
 </nav>
     </div>
@@ -510,10 +512,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Using the results of the Box-Cox procedure and your previous work in the question, what seems to be the most appropriate regression now? Fit it, and display the results.</p></li>
 <li><p>Obtain all the standard residual plots (the ones we have seen in this course) for this model. Describe any problems you see.</p></li>
 </ol>
+</section>
+<section id="handling-shipments-of-chemicals" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="handling-shipments-of-chemicals"><span class="header-section-number">19.5</span> Handling shipments of chemicals</h2>
+<p>The data in <a href="http://ritsokiguess.site/datafiles/chemical-drums.txt">link</a> are on shipments of chemicals in drums that arrive at a warehouse. In order, the variables are:</p>
+<ul>
+<li><p>the number of drums in the shipment</p></li>
+<li><p>the total weight of the shipment, in hundreds of pounds.</p></li>
+<li><p>the number of minutes required to handle the shipment (response).</p></li>
+</ul>
+<ol type="a">
+<li><p>The data set has two features: <em>no</em> column names, and data aligned in columns (that is, more than one space between data values). Read the data in, giving the columns suitable names. To do this, you may have to consult an appropriate help file, or do some searching.</p></li>
+<li><p>Fit a regression predicting the number of minutes required to handle a shipment from the other two variables. Display the results.</p></li>
+<li><p>Explain carefully but briefly what the slope coefficients for the two explanatory variables represent. Do their signs (positive or negative) make practical sense in the context of handling shipments of chemicals?</p></li>
+<li><p>Obtain plots of residuals against fitted values, residuals against explanatory variables, and a normal quantile plot of the residuals.</p></li>
+<li><p>Do you have any concerns, looking at the residual plots? Explain briefly.</p></li>
+</ol>
 <p>My solutions follow:</p>
 </section>
-<section id="being-satisfied-with-hospital-1" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="being-satisfied-with-hospital-1"><span class="header-section-number">19.5</span> Being satisfied with hospital</h2>
+<section id="being-satisfied-with-hospital-1" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="being-satisfied-with-hospital-1"><span class="header-section-number">19.6</span> Being satisfied with hospital</h2>
 <p>A hospital administrator collects data to study the effect, if any, of a patient’s age, the severity of their illness, and their anxiety level, on the patient’s satisfaction with their hospital experience. The data, in the file <a href="http://ritsokiguess.site/datafiles/satisfaction.txt">link</a>, are for 46 patients in a survey. The columns are: patient’s satisfaction score <code>satis</code>, on a scale of 0 to 100; the patient’s <code>age</code> (in years), the <code>severity</code> of the patient’s illness (also on a 0–100 scale), and the patient’s <code>anxiety</code> score on a standard anxiety test (scale of 0–5). Higher scores mean greater satisfaction, increased severity of illness and more anxiety.</p>
 <ol type="a">
 <li>Read in the data and check that you have four columns in your data frame, one for each of your variables.</li>
@@ -868,8 +886,8 @@ Coefficients:
 <p>The <code>test="F"</code> on the end gets you the P-values. Using the <span class="math inline">\(F\)</span>-test is right for regressions; for things like logistic regression that we see later, <code>test="Chisq"</code> is the right one to use.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="salaries-of-mathematicians-1" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="salaries-of-mathematicians-1"><span class="header-section-number">19.6</span> Salaries of mathematicians</h2>
+<section id="salaries-of-mathematicians-1" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="salaries-of-mathematicians-1"><span class="header-section-number">19.7</span> Salaries of mathematicians</h2>
 <p>A researcher in a scientific foundation wanted to evaluate the relationship between annual salaries of mathematicians and three explanatory variables:</p>
 <ul>
 <li><p>an index of work quality</p></li>
@@ -1097,8 +1115,8 @@ F-statistic:    65 on 2 and 21 DF,  p-value: 1.01e-09</code></pre>
 <p>This is pretty nearly straight across. You might think it increases a bit at the beginning, but most of the evidence for that comes from the one observation with fitted value near 30 that happens to have a residual near zero. Conclusions based on one observation are not to be trusted! In summary, I’m happy with this linear multiple regression, and I don’t see any need to do anything more with it. I am, however, willing to have some sympathy with opinions that differ from mine, if they are supported by those graphs above.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="predicting-gpa-of-computer-science-students-1" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="predicting-gpa-of-computer-science-students-1"><span class="header-section-number">19.7</span> Predicting GPA of computer science students</h2>
+<section id="predicting-gpa-of-computer-science-students-1" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="predicting-gpa-of-computer-science-students-1"><span class="header-section-number">19.8</span> Predicting GPA of computer science students</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/gpa.txt">link</a> contains some measurements of academic achievement for a number of university students studying computer science:</p>
 <ul>
 <li><p>High school grade point average</p></li>
@@ -1528,8 +1546,8 @@ F-statistic:  82.4 on 2 and 102 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Math SAT does not quite significantly add anything to the prediction, which confirms that we do better to use the verbal SAT score (surprising though it seems). Though, the two regressions with the single SAT scores, <code>gpa.3</code> and <code>gpa.4</code>, have almost the same R-squared values. It’s not clear-cut at all. In the end, you have to make a call and stand by it.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="fish-and-mercury-1" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="fish-and-mercury-1"><span class="header-section-number">19.8</span> Fish and mercury</h2>
+<section id="fish-and-mercury-1" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="fish-and-mercury-1"><span class="header-section-number">19.9</span> Fish and mercury</h2>
 <p>Eating fish is generally healthy, but sometimes the fish is contaminated with mercury. What might affect the amount of mercury in a fish? Large-mouth bass were studied in Florida lakes to examine factors that might affect the amount of mercury contamination. 38 lakes were used for the study. Water samples were taken from each lake and analyzed. Also, samples of fish were caught in each lake and the mercury concentration in their muscle tissue was measured. The resulting data are in <a href="http://ritsokiguess.site/datafiles/mercury.txt">http://ritsokiguess.site/datafiles/mercury.txt</a>, separated by single spaces. The variables measured were as follows:</p>
 <ul>
 <li>standardized mercury level (parts per million in 3-year-old fish)</li>
@@ -1835,7 +1853,237 @@ F-statistic:  17.5 on 3 and 34 DF,  p-value: 4.808e-07</code></pre>
 </div>
 <p>This was a <em>much</em> higher mercury value than expected, given the other variables.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
-<p>note to author: the datafile for _chemical.Rmd seems no longer to be readable.</p>
+</section>
+<section id="handling-shipments-of-chemicals-1" class="level2" data-number="19.10">
+<h2 data-number="19.10" class="anchored" data-anchor-id="handling-shipments-of-chemicals-1"><span class="header-section-number">19.10</span> Handling shipments of chemicals</h2>
+<p>The data in <a href="http://ritsokiguess.site/datafiles/chemical-drums.txt">link</a> are on shipments of chemicals in drums that arrive at a warehouse. In order, the variables are:</p>
+<ul>
+<li><p>the number of drums in the shipment</p></li>
+<li><p>the total weight of the shipment, in hundreds of pounds.</p></li>
+<li><p>the number of minutes required to handle the shipment (response).</p></li>
+</ul>
+<ol type="a">
+<li>The data set has two features: <em>no</em> column names, and data aligned in columns (that is, more than one space between data values). Read the data in, giving the columns suitable names. To do this, you may have to consult an appropriate help file, or do some searching.</li>
+</ol>
+<p>Solution</p>
+<p>The alignment of columns means that we need to use <code>read_table</code>. Once you’ve figured <em>that</em> out, you can search for help by typing <code>?read_table</code> in the Console window (the help will appear bottom right), or you can put the same thing into a code chunk, and when you run the chunk, the help will be displayed. (Press control-shift-1 to go back to the document.) Once you have figured out what to do, you want to delete this code chunk (if you created one), since this is for you, not your reader.</p>
+<p>Or you can Google it, of course.</p>
+<p>The key observation is that you need to supply some column names in <code>col_names</code>, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/chemical-drums.txt"</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"drums"</span>, <span class="st">"weight"</span>, <span class="st">"minutes"</span>)</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>chemicals <span class="ot">&lt;-</span> <span class="fu">read_table</span>(my_url, <span class="at">col_names =</span> cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  drums = col_double(),
+  weight = col_double(),
+  minutes = col_double()
+)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>chemicals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["drums"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["minutes"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"7","2":"5.11","3":"58"},{"1":"18","2":"16.72","3":"152"},{"1":"5","2":"3.20","3":"41"},{"1":"14","2":"7.03","3":"93"},{"1":"11","2":"10.98","3":"101"},{"1":"5","2":"4.04","3":"38"},{"1":"23","2":"22.07","3":"203"},{"1":"9","2":"7.03","3":"78"},{"1":"16","2":"10.62","3":"117"},{"1":"5","2":"4.76","3":"44"},{"1":"17","2":"11.02","3":"121"},{"1":"12","2":"9.51","3":"112"},{"1":"6","2":"3.79","3":"50"},{"1":"12","2":"6.45","3":"82"},{"1":"8","2":"4.60","3":"48"},{"1":"15","2":"13.86","3":"127"},{"1":"17","2":"13.03","3":"140"},{"1":"21","2":"15.21","3":"155"},{"1":"6","2":"3.64","3":"39"},{"1":"11","2":"9.57","3":"90"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>I like to define my URL and column names up front. You can define either of them in the <code>read_table</code>, but it makes that line longer. Up to you.</p>
+<p>There is no <code>skip</code> here, because the data file starts right away with the data and we want to use all the values: we are <em>adding</em> names to what’s in the data file. If you used <code>skip</code>, you will be one observation short all the way through, and your output will be slightly different from mine all the way through.</p>
+<p>Use any names you like, but they should resemble what the columns actually represent.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="2" type="a">
+<li>Fit a regression predicting the number of minutes required to handle a shipment from the other two variables. Display the results.</li>
+</ol>
+<p>Solution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>minutes<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(minutes <span class="sc">~</span> drums <span class="sc">+</span> weight, <span class="at">data =</span> chemicals)</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(minutes<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = minutes ~ drums + weight, data = chemicals)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.8353 -3.5591 -0.0533  2.4018 15.1515 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   3.3243     3.1108   1.069      0.3    
+drums         3.7681     0.6142   6.135 1.10e-05 ***
+weight        5.0796     0.6655   7.632 6.89e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.618 on 17 degrees of freedom
+Multiple R-squared:  0.9869,    Adjusted R-squared:  0.9854 
+F-statistic: 641.6 on 2 and 17 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="3" type="a">
+<li>Explain carefully but briefly what the slope coefficients for the two explanatory variables represent. Do their signs (positive or negative) make practical sense in the context of handling shipments of chemicals?</li>
+</ol>
+<p>Solution</p>
+<p>The slope coefficient for <code>drums</code> is 3.77; this means that a shipment with one extra drum (but the same total weight) would take on average 3.77 minutes longer to handle. Likewise, the slope coefficient for <code>weight</code> is 5.08, so a shipment that weighs 1 hundred more pounds but has the same number of drums will take 5.08 more minutes to handle. Or “each additional drum, all else equal, will take 3.77 more minutes to handle”, or similar wording.</p>
+<p>You have to get at two things: a one-unit increase in the explanatory variable going with a certain increase in the response, and <em>also</em> the “all else equal” part. How you say it is up to you, but you need to say it.</p>
+<p>That was two marks. The third one comes from noting that both slope coefficients are positive, so making a shipment either contain more drums or weigh more makes the handling time longer as well. This makes perfect sense, since either kind of increase would make the shipment more difficult to handle, and thus take longer.</p>
+<p>I was <em>not</em> asking about P-values. There isn’t really much to say about those: they’re both significant, so the handling time depends on both the total weight and the number of drums. Removing either from the regression would be a mistake.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="4" type="a">
+<li>Obtain plots of residuals against fitted values, residuals against explanatory variables, and a normal quantile plot of the residuals.</li>
+</ol>
+<p>Solution</p>
+<p>These are the standard plots from a multiple regression. The second one requires care, but the first and last should be straightforward. Residuals against fitted values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minutes<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The tricky part about the second one is that the <span class="math inline">\(x\)</span>-values and the residuals come from different data frames, which has to get expressed in the <code>ggplot</code>. The obvious way is to do the two plots (one for each explanatory variable) one at a time:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minutes<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> chemicals<span class="sc">$</span>drums, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>and</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minutes<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> chemicals<span class="sc">$</span>weight, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What would also work is to make a data frame first with the things to plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">weight =</span> chemicals<span class="sc">$</span>weight, <span class="at">drums =</span> chemicals<span class="sc">$</span>drums, <span class="at">res =</span> <span class="fu">resid</span>(minutes<span class="fl">.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dd, <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> res)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>and similarly for <code>drums</code>. The <code>resid</code> with the model name in brackets seems to be necessary.</p>
+<p>Another way to approach this is <code>augment</code> from <code>broom</code>. That does this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> minutes<span class="fl">.1</span> <span class="sc">%&gt;%</span> <span class="fu">augment</span>(chemicals)</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["drums"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["minutes"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"7","2":"5.11","3":"58","4":"55.65775","5":"2.3422471","6":"0.09133349","7":"5.757770","8":"0.0064101777","9":"0.4374042"},{"1":"18","2":"16.72","3":"152","4":"156.08097","5":"-4.0809706","6":"0.19376540","7":"5.677870","8":"0.0524401531","9":"-0.8090683"},{"1":"5","2":"3.20","3":"41","4":"38.41952","5":"2.5804787","6":"0.13099986","7":"5.748943","8":"0.0122015599","9":"0.4927684"},{"1":"14","2":"7.03","3":"93","4":"91.78733","5":"1.2126695","6":"0.26847934","7":"5.779587","8":"0.0077933871","9":"0.2523955"},{"1":"11","2":"10.98","3":"101","4":"100.54737","5":"0.4526301","6":"0.14900387","7":"5.789147","8":"0.0004452592","9":"0.0873438"},{"1":"5","2":"4.04","3":"38","4":"42.68637","5":"-4.6863746","6":"0.14056367","7":"5.650853","8":"0.0441472158","9":"-0.8998758"},{"1":"23","2":"22.07","3":"203","4":"202.09731","5":"0.9026878","6":"0.42868587","7":"5.782744","8":"0.0113044124","9":"0.2125947"},{"1":"9","2":"7.03","3":"78","4":"72.94678","5":"5.0532196","6":"0.06651639","7":"5.640887","8":"0.0205890007","9":"0.9310377"},{"1":"16","2":"10.62","3":"117","4":"117.55927","5":"-0.5592686","6":"0.13453992","7":"5.788495","8":"0.0005934465","9":"-0.1070162"},{"1":"5","2":"4.76","3":"44","4":"46.34368","5":"-2.3436774","6":"0.16452717","7":"5.754855","8":"0.0136757853","9":"-0.4564404"},{"1":"17","2":"11.02","3":"121","4":"123.35921","5":"-2.3592135","6":"0.17857817","7":"5.753761","8":"0.0155601581","9":"-0.4633792"},{"1":"12","2":"9.51","3":"112","4":"96.84849","5":"15.1515133","6":"0.05138802","7":"4.289987","8":"0.1384778737","9":"2.7692627"},{"1":"6","2":"3.79","3":"50","4":"45.18459","5":"4.8154122","6":"0.11031467","7":"5.648035","8":"0.0341358732","9":"0.9087987"},{"1":"12","2":"6.45","3":"82","4":"81.30495","5":"0.6950502","6":"0.15597401","7":"5.787356","8":"0.0011172659","9":"0.1346761"},{"1":"8","2":"4.60","3":"48","4":"56.83527","5":"-8.8352734","6":"0.09537424","7":"5.304339","8":"0.0960985497","9":"-1.6536286"},{"1":"15","2":"13.86","3":"127","4":"130.24902","5":"-3.2490211","6":"0.12815463","7":"5.724729","8":"0.0187994039","9":"-0.6194200"},{"1":"17","2":"13.03","3":"140","4":"133.56918","5":"6.4308162","6":"0.09698045","7":"5.537776","8":"0.0519524153","9":"1.2046752"},{"1":"21","2":"15.21","3":"155","4":"159.71512","5":"-4.7151240","6":"0.23049569","7":"5.632364","8":"0.0914135514","9":"-0.9568416"},{"1":"6","2":"3.64","3":"39","4":"44.42265","5":"-5.4226497","6":"0.11180602","7":"5.608930","8":"0.0440206341","9":"-1.0242597"},{"1":"11","2":"9.57","3":"90","4":"93.38515","5":"-3.3851519","6":"0.07251911","7":"5.723379","8":"0.0102042828","9":"-0.6257173"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>and then you can use <code>d</code> as the “base” data frame from which everything comes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> drums, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>and</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>or you can even do that trick to put the two plots on facets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(drums<span class="sc">:</span>weight, <span class="at">names_to=</span><span class="st">"xname"</span>, <span class="at">values_to=</span><span class="st">"x"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>xname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Last, the normal quantile plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minutes<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As a check for the grader, there should be four plots, obtained somehow: residuals against fitted values, normal quantile plot of residuals, residuals against <code>drums</code>, residuals against<br>
+<code>weight</code>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+<ol start="5" type="a">
+<li>Do you have any concerns, looking at the residual plots? Explain briefly.</li>
+</ol>
+<p>Solution</p>
+<p>The (only) concern I have, looking at those four plots, is the one very positive residual, the one around 15. Take that away, and I think all of the plots are then acceptable. Alternatively, I will take something like “I have no concerns about the form of the relationship”, saying that the <em>kind</em> of model being fitted here is OK (no evidence of non-linearity, fanning out, that kind of stuff). It’s up to you to decide whether you think “concerns” extends to outliers, high-influence points, etc.</p>
+<p>The normal quantile plot reveals that the most negative residual, the one around <span class="math inline">\(-9\)</span>, is in fact almost exactly as negative as you would expect the most negative residual to be, so it is not an outlier at all. The residuals are almost exactly normally distributed, <em>except</em> for the most positive one.</p>
+<p>I don’t think you can justify fanning-in, since the evidence for that is mostly from the single point on the right. The other points do not really have residuals closer to zero as you move left to right.</p>
+<p>Do <em>not</em> be tempted to pick out everything you can think of wrong with these plots. The grader can, and will, take away points if you start naming things that are not concerns.</p>
+<p>Extra: what else can I find out about that large-positive-residual point? This is where having the “augmented” data frame is a plus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.resid <span class="sc">&gt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["drums"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["minutes"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"12","2":"9.51","3":"112","4":"96.84849","5":"15.15151","6":"0.05138802","7":"4.289987","8":"0.1384779","9":"2.769263"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As shown. The predicted number of minutes is 96.8, but the actual number of minutes it took is 112. Hence the residual of 15.2. Can we find “similar” numbers of <code>drums</code> and <code>weight</code> and compare the <code>minutes</code>? Try this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>chemicals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">between</span>(weight, <span class="dv">8</span>, <span class="dv">11</span>),</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">between</span>(drums, <span class="dv">10</span>, <span class="dv">14</span>)</span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["drums"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["minutes"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"11","2":"10.98","3":"101"},{"1":"12","2":"9.51","3":"112"},{"1":"11","2":"9.57","3":"90"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>You might not have seen <code>between</code> before, but it works the way you’d expect.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> Two other shipments with similar numbers of drums and total weight took around 90–100 minutes to handle, so the 112 does look about 15 minutes too long. This was actually an average-sized shipment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_label =</span> <span class="fu">ifelse</span>(.resid <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="st">"residual +"</span>, <span class="st">""</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> drums, <span class="at">y =</span> weight, <span class="at">colour =</span> minutes, <span class="at">label =</span> my_label)) <span class="sc">+</span></span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>so it’s a bit of a mystery why it took so long to handle.</p>
+<p>I had some fun with the graph: if you set <code>colour</code> equal to a continuous variable (as <code>minutes</code> is here), you get a continuous colour scale, by default from dark blue (small) to light blue (large). The number of minutes tends to get larger (lighter) as you go up and to the right with bigger shipments. The point labelled “residual +” is the one with the large residual; it is a noticeably lighter blue than the points around it, meaning that it took longer to handle than those points. I used the trick from C32 to label “some” (here one) of the points: create a new label variable with a <code>mutate</code> and an <code>ifelse</code>, leaving all of the other labels blank so you don’t see them.</p>
+<p>The blue colour scheme is a little hard to judge values on. Here’s another way to do that:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_label =</span> <span class="fu">ifelse</span>(.resid <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="st">"residual +"</span>, <span class="st">""</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> drums, <span class="at">y =</span> weight, <span class="at">colour =</span> minutes, <span class="at">label =</span> my_label)) <span class="sc">+</span></span>
+<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
+<span id="cb129-5"><a href="#cb129-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low =</span> <span class="st">"red"</span>, <span class="at">high =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multiple-regression_files/figure-html/chemical-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The labelled point is a little more blue (purplish) than the more clearly red points near it.</p>
+<p>The other thing to see is that there is also a positive correlation between the number of drums and the total weight, which is what you’d expect. Unlike with some of our other examples, this wasn’t strong enough to cause problems; the separate effects of <code>drums</code> and <code>weight</code> on <code>minutes</code> were distinguishable enough to allow both explanatory variables to have a strongly significant effect on <code>minutes</code>.</p>
+<p>Post scriptum: the “drums” here are not concert-band-type drums, but something like this:</p>
+<p><img src="Chemical-Drums-200x200.png" class="img-fluid"></p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
 
 
 </section>
@@ -1845,10 +2093,11 @@ F-statistic:  17.5 on 3 and 34 DF,  p-value: 4.808e-07</code></pre>
 <li id="fn1"><p>If there are more than one, they should be separated by plus signs as in <code>lm</code>. Each facet then has as many labels as variables. I haven’t actually done this myself, but from looking at examples, I think this is the way it works.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>If you don’t give it, you get the five-number summary.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>This is because we used <span class="math inline">\(\alpha = 0.10\)</span>. <code>step</code> tends to keep explanatory variables that you might consider marginal because it uses AIC (see below) rather than P-values directly.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>This is “F” in quotes, meaning <span class="math inline">\(F\)</span>-test, not “F” without quotes, which means FALSE.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This is “F” in quotes, meaning <span class="math inline">\(F\)</span>-test, not <code>F</code> without quotes, which is short for FALSE.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Adjusted R-squareds are easier to compare in this context, since you don’t have to make a judgement about whether it has changed substantially, whatever you think substantially means.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>The residuals have to be the ones from a regression <em>not</em> including the <span class="math inline">\(x\)</span>-variable you’re testing.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Or not take it out in the first place.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Weight between 8 and 11, for example, returning <code>TRUE</code> or <code>FALSE</code>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

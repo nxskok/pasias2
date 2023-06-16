@@ -529,8 +529,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Solution</p>
 <p>I see this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>myurl<span class="ot">=</span><span class="st">"http://ritsokiguess.site/datafiles/pluggedin.txt"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plugged<span class="ot">=</span><span class="fu">read_delim</span>(myurl,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>myurl <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/pluggedin.txt"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plugged <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(myurl,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 30 Columns: 2
 ── Column specification ────────────────────────────────────────────────────────
@@ -550,7 +550,7 @@ dbl (2): year, hours
 </div>
 </div>
 </div>
-<p>I see only the first ten rows (with an indication that there are 20 more, so 30 altogether). In your notebook, it’ll look a bit different: again, you’ll see the first 10 rows, but you’ll see exactly how many rows and columns there are, and there will be buttons “Next” and “Previous” to see earlier and later rows, and a little right-arrow to see more columns to the right (to which is added a little left-arrow if there are previous columns to scroll back to). If you want to check for yourself that there are 30 rows, you can click Next a couple of times to get down to row 30, and then see that the Next button cannot be clicked again, and therefore that 30 rows is how many there are.</p>
+<p>If you want to check for yourself that there are 30 rows, you can click Next a couple of times to get down to row 30, and then see that the Next button cannot be clicked again, and therefore that 30 rows is how many there are. At the same time, you can see that some of the dataset is from 1999 and some of it is from 2009.</p>
 <p>Or, you can summarize the years by counting how many there are of each:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plugged <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -575,14 +575,14 @@ dbl (2): year, hours
 </div>
 </div>
 </div>
-<p>Any of those says that it looks good. 30 rows, 1999 and 2009, 15 measurements for each.</p>
+<p>Any of those says that it looks good. 30 rows, years 1999 and 2009, 15 measurements for each.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Draw side-by-side boxplots of the number of hours for each year. <code>year</code> is a numeric variable that we want to treat as a factor, so we need to <em>make</em> it into a factor.</li>
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plugged,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(year),<span class="at">y=</span>hours))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plugged, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(year), <span class="at">y =</span> hours)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/waehingen-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -592,8 +592,8 @@ dbl (2): year, hours
 <p>The measurements for the two years have a very similar spread, so there would be no problem running the pooled test here.</p>
 <p>You might be bothered by the <code>factor(year)</code> on the <span class="math inline">\(x\)</span>-axis. To get around that, you can define year-as-factor <em>first</em>, using <code>mutate</code>, then feed your new column into the boxplot. That goes like this. There is a wrinkle that I explain afterwards:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plugged <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">the_year=</span><span class="fu">factor</span>(year)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>the_year, <span class="at">y=</span>hours))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plugged <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">the_year =</span> <span class="fu">factor</span>(year)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> the_year, <span class="at">y=</span>hours)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="two-sample-inference_files/figure-html/bisslerin-1.png" class="img-fluid" width="672"></p>
 </div>
