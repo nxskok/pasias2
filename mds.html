@@ -769,27 +769,26 @@ attr(,"Upper")
 <p>How awful? Let’s find out. I should have saved it from just above, but now I have to do it again. For the plot, <code>ones</code> is a string of ones, as many as there are cities.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ones <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">12</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(d, <span class="dv">1</span>, <span class="at">eig =</span> T)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ddd <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(v<span class="sc">$</span>points) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> ones, <span class="at">city =</span> cities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(d, <span class="dv">1</span>, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(v<span class="sc">$</span>points, <span class="at">.name_repair =</span> <span class="st">"unique"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> ones, <span class="at">city =</span> cities) <span class="ot">-&gt;</span> ddd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if
-`.name_repair` is omitted as of tibble 2.0.0.
-ℹ Using compatibility `.name_repair`.</code></pre>
+<pre><code>New names:
+• `` -&gt; `...1`</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ddd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["V1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["one"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"-13.37076","2":"1","3":"Appleton"},{"1":"-92.94157","2":"1","3":"Beloit"},{"1":"-74.07473","2":"1","3":"Fort.Atkinson"},{"1":"-44.68148","2":"1","3":"Madison"},{"1":"80.61250","2":"1","3":"Marshfield"},{"1":"-102.87582","2":"1","3":"Milwaukee"},{"1":"-74.66603","2":"1","3":"Monroe"},{"1":"279.27573","2":"1","3":"Superior"},{"1":"79.19504","2":"1","3":"Wausau"},{"1":"-50.92029","2":"1","3":"Dubuque"},{"1":"199.16640","2":"1","3":"St.Paul"},{"1":"-184.71900","2":"1","3":"Chicago"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["one"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"-13.37076","2":"1","3":"Appleton"},{"1":"-92.94157","2":"1","3":"Beloit"},{"1":"-74.07473","2":"1","3":"Fort.Atkinson"},{"1":"-44.68148","2":"1","3":"Madison"},{"1":"80.61250","2":"1","3":"Marshfield"},{"1":"-102.87582","2":"1","3":"Milwaukee"},{"1":"-74.66603","2":"1","3":"Monroe"},{"1":"279.27573","2":"1","3":"Superior"},{"1":"79.19504","2":"1","3":"Wausau"},{"1":"-50.92029","2":"1","3":"Dubuque"},{"1":"199.16640","2":"1","3":"St.Paul"},{"1":"-184.71900","2":"1","3":"Chicago"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>(the one-column matrix of points didn’t have a name, so it acquired the name <code>V1</code>), and the plot:</p>
+<p>The one-column matrix of points didn’t have column names, so I needed to give <code>as_tibble</code> explicit permission to create one, and it acquired the name <code>...1</code>). The plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ddd, <span class="fu">aes</span>(<span class="at">x =</span> one, <span class="at">y =</span> V1, <span class="at">label =</span> city)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ddd, <span class="fu">aes</span>(<span class="at">x =</span> one, <span class="at">y =</span> ...<span class="dv">1</span>, <span class="at">label =</span> city)) <span class="sc">+</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/wisconsin-13-1.png" class="img-fluid" width="672"></p>
@@ -1961,6 +1960,11 @@ converged</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(stimuli<span class="fl">.1</span><span class="sc">$</span>points) <span class="sc">%&gt;%</span></span>
 <span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> objects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if
+`.name_repair` is omitted as of tibble 2.0.0.
+ℹ Using compatibility `.name_repair`.</code></pre>
+</div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1972,10 +1976,10 @@ converged</code></pre>
 </div>
 <p>This time, the columns are called <code>V1</code> and <code>V2</code>, since that’s what <code>as_tibble</code> does. Also note the slightly different look: fewer decimals, since displaying a tibble rounds numerical things to three significant digits. Back to my data frame <code>stimuli.1.d</code>. The points have acquired names <code>X1</code> and <code>X2</code>, as usual, so we have all we need:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stimuli.<span class="fl">1.</span>d, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> names)) <span class="sc">+</span></span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stimuli.<span class="fl">1.</span>d, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> names)) <span class="sc">+</span></span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/hon-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -2002,16 +2006,16 @@ converged</code></pre>
 <p>Solution</p>
 <p>The stress is rather high, which means that the map distances and actual distances may not correspond very well. This is also exactly what we found in the last part, by finding one (or two) pairs of objects that were really close in actuality, but not so much on the map. The point here is that a high stress <em>means</em> that distances in real life and on the map won’t correspond very well. That’s what I want you to say. Extra: another way to assess this is with a Shepard<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> diagram. That would go like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>stimuli.sh <span class="ot">&lt;-</span> <span class="fu">Shepard</span>(d, stimuli<span class="fl">.1</span><span class="sc">$</span>points)</span>
-<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli.sh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>stimuli.sh <span class="ot">&lt;-</span> <span class="fu">Shepard</span>(d, stimuli<span class="fl">.1</span><span class="sc">$</span>points)</span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli.sh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "x"  "y"  "yf"</code></pre>
 </div>
 </div>
 <p>In here, we plot the actual distances <code>x</code> against the map distances <code>y</code>, making a data frame first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(stimuli.sh, <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">%&gt;%</span></span>
-<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(stimuli.sh, <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">%&gt;%</span></span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="mds_files/figure-html/sporers-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -2024,7 +2028,7 @@ converged</code></pre>
 <p>Solution</p>
 <p>The calculation part is to figure out the stress value for a three-dimensional map, and compare it with the 20% that we had before. <code>k=3</code> gets the three dimensions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>initial  value 14.934110 
 iter   5 value 11.280474
@@ -2041,10 +2045,10 @@ converged</code></pre>
 <p>I think this stress value, just under 10%, or on the “fair” end of “good”, is a worthwhile improvement over the just-over-20% that we had in two dimensions. So I think this is worth the trouble of having to use a 3-dimensional plotting tool like <code>rgl</code> to interpret it with. You might agree with me, or you might not: for example, you might be looking for a bigger improvement. Either is good, as far as I’m concerned, as long as your answer does something to balance the smaller stress value<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> with the difficulty of interpreting it.</p>
 <p>The kind of <code>rgl</code> code you’ll need is something like this (not tested):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgl)</span>
-<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>points</span>
-<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot3d</span>(stimuli<span class="fl">.2</span>)</span>
-<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(stimuli<span class="fl">.2</span>, <span class="at">text =</span> object.abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgl)</span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>stimuli<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(d, <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">$</span>points</span>
+<span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot3d</span>(stimuli<span class="fl">.2</span>)</span>
+<span id="cb140-4"><a href="#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(stimuli<span class="fl">.2</span>, <span class="at">text =</span> object.abb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What you should find, looking at this (try it!) is that objects close together in this 3-dimensional place are more nearly close together in actuality as well, because of the in my opinion notably smaller stress value.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
