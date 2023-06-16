@@ -9,9 +9,7 @@ are labelled 1 and 2.  The first task is to find out whether the two
 methods have different "typical" measures (mean or median, as
 appropriate) of the atomic weight of carbon.
 
-For this question, compose a report in R Markdown.  (R Markdown is
-what you use in an R Notebook, but you can also have a separate R
-Markdown document from which you can produce HTML, Word etc. output.)
+For this question, compose a report in a Quarto document.  (
 See part (a) for how to get this started.
 
 Your report should
@@ -40,8 +38,8 @@ to make it read like a report.
 
 
 
-(a) Create a new R Markdown document. To do this, in R Studio, select File,
-New File, R Markdown. Type the report title and your name in the
+(a) Create a new Quarto document. To do this, in R Studio, select File,
+New File, Quarto Document. Type the report title and your name in the
 boxes, and leave the output on the default HTML. Click OK. 
 
 Solution
@@ -49,10 +47,7 @@ Solution
 
 You'll
 see the title and your name in a section at the top of the document,
-and below that you'll see a template document, as you would for an R
-Notebook. The difference is that where you are used to seeing
-Preview, it now says "knit", but this has the same effect of
-producing the formatted version of your report.    
+and below that you'll see a template document. 
 
 $\blacksquare$
 

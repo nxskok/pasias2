@@ -288,8 +288,7 @@ rest of the things to it.
 
 Note that we used all Tidyverse stuff here, so the result is a
 `tibble`, and displaying it for me displays the first ten rows as
-you'd expect. (This may be different in an R Notebook, since I think
-there you get the first ten rows anyway.)
+you'd expect. 
 
 $\blacksquare$
 

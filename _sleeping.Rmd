@@ -19,8 +19,8 @@ sleep <- read_csv(my_url)
 sleep
 ```
 
-On mine, the sleep time is an ordinary decimal number, but the two times are something called `dttm`, which I can guess means date-time. In your notebook, you might see
-`S3:POSIXct`, and you probably don't know what that is (although you can guess).^[Which one you see will depend on which type of output you are looking at. In your notebook you will probably see the POSIXCT thing, but in your HTML or PDF output it will probably say ``dttm''.]
+On mine, the sleep time is an ordinary decimal number, but the two times are something called `dttm`, which I can guess means date-time. In your document, you might see
+`S3:POSIXct`, and you probably don't know what that is (although you can guess).^[Which one you see will depend on which type of output you are looking at. In your document you will probably see the POSIXCT thing, but in your HTML or PDF output it will probably say ``dttm''.]
 
 If you search for this, you'll find some links to the help files, but a bit further down is [this](https://rstudio-pubs-static.s3.amazonaws.com/28038_1bcb9aa80ca84f27ace07d612872861a.html), which says it in a few words: "These objects store the number of seconds (for `POSIXct`) ... since January 1st 1970 at midnight."^[The piece in quotes comes word-for-word from the source: it is exactly what the author said. Except that the author also talks about dates, which don't concern us here, so I removed that bit and replaced it with the three dots, called an "ellipsis", to show that the author said some extra stuff that I didn't quote. I checked that what remained does actually still capture what the author said. Extra-in-note: an ellipsis is not to be confused with the conic section called an ellipse, and these three dots are not to be confused with the three dots in an R function, where they mean 
 "anything else that was passed in to the function". Both uses of the three dots capture the idea of 

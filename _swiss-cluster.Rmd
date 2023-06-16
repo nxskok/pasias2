@@ -187,8 +187,7 @@ Solution
 
 I'm going to start by setting the random number seed (so that
 my results don't change every time I run this). You don't need
-to do that, though you might want to in something like R
-Markdown code (for example, in an R Notebook):
+to do that, though you might want to in a Quarto document so that the random stuff doesn't change from one render to the next and you can safely talk about the results.
 
 ```{r swiss-cluster-11 }
 set.seed(457299)

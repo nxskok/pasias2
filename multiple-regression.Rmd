@@ -21,6 +21,9 @@ library(tidyverse)
 ```{r 35-multiple-regression-7, child="_mercury_qq.Rmd"}
 ```
 
+```{r 35-multiple-regression-7a, child="_chemical_qq.Rmd"}
+```
+
 
 My solutions follow:
 
@@ -36,4 +39,6 @@ My solutions follow:
 ```{r 35-multiple-regression-12, child="_mercury.Rmd"}
 ```
 
-note to author: the datafile for _chemical.Rmd seems no longer to be readable.
+```{r 35-multiple-regression-13, child="_chemical.Rmd"}
+```
+

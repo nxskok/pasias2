@@ -21,12 +21,12 @@ Solution
 I see this:
 
 ```{r devices-r-1 }
-myurl="http://ritsokiguess.site/datafiles/pluggedin.txt"
-plugged=read_delim(myurl," ")
+myurl <- "http://ritsokiguess.site/datafiles/pluggedin.txt"
+plugged <- read_delim(myurl," ")
 plugged
 ``` 
 
-I see only the first ten rows (with an indication that there are 20 more, so 30 altogether). In your notebook, it'll look a bit different: again, you'll see the first 10 rows, but you'll see exactly how many rows and columns there are, and there will be buttons "Next" and "Previous" to see earlier and later rows, and a little right-arrow to see more columns to the right (to which is added a little left-arrow if there are previous columns to scroll back to). If you want to check for yourself that there are 30 rows, you can click Next a couple of times to get down to row 30, and then see that the Next button cannot be clicked again, and therefore that 30 rows is how many there are.
+If you want to check for yourself that there are 30 rows, you can click Next a couple of times to get down to row 30, and then see that the Next button cannot be clicked again, and therefore that 30 rows is how many there are. At the same time, you can see that some of the dataset is from 1999 and some of it is from 2009.
 
 Or, you can summarize the years by counting how many there are
 of each:
@@ -41,7 +41,7 @@ or the more verbose form of the same thing:
 plugged %>% group_by(year) %>% summarize(rows=n())
 ``` 
 
-Any of those says that it looks good. 30 rows, 1999 and 2009, 15
+Any of those says that it looks good. 30 rows, years 1999 and 2009, 15
 measurements for each.
 
 $\blacksquare$
@@ -56,7 +56,7 @@ Solution
 
 
 ```{r waehingen}
-ggplot(plugged,aes(x=factor(year),y=hours))+geom_boxplot()
+ggplot(plugged, aes(x = factor(year), y = hours)) + geom_boxplot()
 ``` 
 
 The `fct_inorder` trick will also work, since
@@ -74,8 +74,8 @@ get around that, you can define year-as-factor *first*, using
 like this. There is a wrinkle that I explain afterwards:
 
 ```{r bisslerin}
-plugged %>% mutate(the_year=factor(year)) %>%
-ggplot(aes(x=the_year, y=hours))+geom_boxplot()
+plugged %>% mutate(the_year = factor(year)) %>%
+  ggplot(aes(x = the_year, y=hours)) + geom_boxplot()
 ``` 
 
 You could even redefine `year` to be the factor version of

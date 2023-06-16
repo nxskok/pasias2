@@ -2,17 +2,17 @@
 
 
  The data in
-[link](http://statweb.lsu.edu/EXSTWeb/StatLab/DataSets/NKNWData/CH06PR09.txt)
+[link](http://ritsokiguess.site/datafiles/chemical-drums.txt)
 are on shipments of chemicals in drums that arrive at a warehouse. In
 order, the variables are:
 
 
-* the number of minutes required to handle the shipment
 
 * the number of drums in the shipment
 
 * the total weight of the shipment, in hundreds of pounds.
 
+* the number of minutes required to handle the shipment (response).
 
 
 
@@ -20,7 +20,7 @@ order, the variables are:
 data aligned in columns (that is, more than one space between data
 values). Read the data in, giving the columns suitable names. To do
 this, you may have to consult an appropriate help file, or do some
-searching, perhaps of one of the other questions on this assignment.
+searching.
 
 
 Solution
@@ -30,16 +30,18 @@ The alignment of columns means that we need to use
 `read_table`. Once you've figured *that* out, you can
 search for help by typing `?read_table` in the Console
 window (the help will appear bottom right), or you can put the
-same thing into an R Notebook code chunk, and when you run the
+same thing into a code chunk, and when you run the
 chunk, the help will be displayed. (Press control-shift-1 to go
-back to the notebook.)
+back to the document.) Once you have figured out what to do, you want to delete this code chunk (if you created one), since this is for you, not your reader.
+
 Or you can Google it, of course.
+
 The key observation is that you need to supply some column names
 in `col_names`, like this:
 
 ```{r chemical-1 }
-my_url <- "http://statweb.lsu.edu/EXSTWeb/StatLab/DataSets/NKNWData/CH06PR09.txt"
-cols <- c("minutes", "drums", "weight")
+my_url <- "http://ritsokiguess.site/datafiles/chemical-drums.txt"
+cols <- c("drums", "weight", "minutes")
 chemicals <- read_table(my_url, col_names = cols)
 chemicals
 ```
@@ -93,15 +95,19 @@ take on average 3.77 minutes longer to handle. Likewise, the slope
 coefficient for `weight` is 5.08, so a shipment that
 weighs 1 hundred more pounds but has the same number of drums
 will take 5.08 more minutes to handle.
-Or "each additional drum, all else equal, will take 3.77 more minutes to handle", or similar wording. You have to get at two
+Or "each additional drum, all else equal, will take 3.77 more minutes to handle", or similar wording. 
+
+You have to get at two
 things: a one-unit increase in the explanatory variable going with
 a certain increase in the response, and *also* the "all else    equal" part. How you say it is up to you, but you need to say it.
+
 That was two marks. The third one comes from noting that both
 slope coefficients are positive, so making a shipment either
 contain more drums or weigh more makes the handling time longer as
 well. This makes perfect sense, since either kind of increase
 would make the shipment more difficult to handle, and thus take
 longer. 
+
 I was *not* asking about P-values. There isn't really much to
 say about those: they're both significant, so the handling time
 depends on both the total weight and the number of drums. Removing
@@ -119,6 +125,7 @@ Solution
 These are the standard plots from a multiple regression. The
 second one requires care, but the first and last should be straightforward.
 Residuals against fitted values:
+
 ```{r chemical-3 }
 ggplot(minutes.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
@@ -231,11 +238,13 @@ of model being fitted here is OK (no evidence of non-linearity,
 fanning out, that kind of stuff). It's up to you to decide whether
 you think "concerns" extends to outliers, high-influence points,
 etc. 
+
 The normal quantile plot reveals that the most negative residual,
 the one around $-9$, is in fact almost exactly as negative as you
 would expect the most negative residual to be, so it is not an
 outlier at all. The residuals are almost exactly normally
 distributed, *except* for the most positive one.
+
 I don't think you can justify fanning-in, since the evidence for
 that is mostly from the single point on the right. The other
 points do not really have residuals closer to zero as you move

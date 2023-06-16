@@ -350,7 +350,7 @@ Variations:
 
 - by using `prop` instead of `n`, you can display the `proportion` of rows with the highest values on your variable, such as the 10% of rows with the highest predicted probabilities with `prop = 0.10`
 - there is also `slice_min` that displays the rows with the *lowest* values on a variable, or the input proportion of rows with the lowest values
-- there are alse `slice_head` and `slice_tail` that display the first and last (respectively) rows in a dataframe. The default display of a dataframe in an R Notebook is thus 
+- there are alse `slice_head` and `slice_tail` that display the first and last (respectively) rows in a dataframe. The default display of a dataframe in a Quarto document is thus 
 
 ```{r}
 p %>% slice_head(n = 10)

@@ -5,7 +5,7 @@ records over a number of years and to identify any changes.
 
 Annual rainfall data for the Davis, California is in
 [here](http://ritsokiguess.site/datafiles/rainfall.txt). 
-(Right-click on the URL and select Copy Link Address, then paste into your R Notebook.)
+(Right-click on the URL and select Copy Link Address, then paste into your document.)
 The rainfall is
 measured in inches.
 

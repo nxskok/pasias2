@@ -12,7 +12,7 @@ and the number of new adults that join the colony.
 
 
 
-(a) Create a new R Markdown report, give it a suitable title, and
+(a) Create a new Quarto document, give it a suitable title, and
 ask for HTML output. Answer the questions that follow in your
 report. At any stage, you can Knit HTML
 to see how the report looks so far.
@@ -20,10 +20,7 @@ to see how the report looks so far.
 
 Solution
 
-(Note: this is the previous version of Quarto, called R Markdown. The two are fairly similar.)
-
-
-In R Studio, select File, New File, R Markdown. Fill in the Title,
+In R Studio, select File, New File, Quarto Document. Fill in the Title,
 Author and leave the Default Output Format at HTML. You'll see a
 template report with the document info at the top. This is my document info:
 
@@ -49,9 +46,7 @@ control-alt-I. So far you have something like this.
 
 ![](sh1.png)
 
-Inside the code chunk, that is, in the bit between the
-backtick characters, put R code, just as you would type it at
-the Console or put in an  R notebook. In this case, that would be
+In this case, the code chunk contains
 the following code, minus the message that comes out of
 `read_delim`: 
 
@@ -73,13 +68,14 @@ We don't know how many rows of data there are yet, so I've left a
 "placeholder" for it, when we figure it out.
 The file is annoyingly called `sparrowhawk.txt`,
 singular. Sorry about that. 
-If you knit this (click on "Knit HTML" next to the ball of wool,
+
+If you render this (click on "Render" at the top next to the arrow,
 or press control-shift-K), it should run, and you'll see a viewer
 pop up with the HTML output. Now you can see how many rows there
 are, and you can go back and edit the R Markdown and put in 13 in
 place of the x's, and knit again.
 You might be worried about how hard R is working with all this
-knitting. Don't worry about that. R can take it.
+rendering. Don't worry about that. R can take it.
 Mine looked like this:
 
 ![](waluj.png)

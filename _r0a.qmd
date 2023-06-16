@@ -27,7 +27,7 @@ Exactly one space. This is true all the way down, as you can check.
 
 $\blacksquare$
 
-(b) Make a new R Notebook. Leave the first four lines, but get rid
+(b) Make a new Quarto document. Leave the lines at the top between the `---`, but get rid
 of the rest of the template document. Start with a code chunk
 containing `library(tidyverse)`. Run it.
 

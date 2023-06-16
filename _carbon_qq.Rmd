@@ -9,9 +9,7 @@ are labelled 1 and 2.  The first task is to find out whether the two
 methods have different "typical" measures (mean or median, as
 appropriate) of the atomic weight of carbon.
 
-For this question, compose a report in R Markdown.  (R Markdown is
-what you use in an R Notebook, but you can also have a separate R
-Markdown document from which you can produce HTML, Word etc. output.)
+For this question, compose a report in a Quarto document. 
 See part (a) for how to get this started.
 
 Your report should

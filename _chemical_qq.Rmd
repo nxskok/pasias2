@@ -1,18 +1,17 @@
 ##  Handling shipments of chemicals
 
-
  The data in
-[link](http://statweb.lsu.edu/EXSTWeb/StatLab/DataSets/NKNWData/CH06PR09.txt)
+[link](http://ritsokiguess.site/datafiles/chemical-drums.txt)
 are on shipments of chemicals in drums that arrive at a warehouse. In
 order, the variables are:
 
 
-* the number of minutes required to handle the shipment
 
 * the number of drums in the shipment
 
 * the total weight of the shipment, in hundreds of pounds.
 
+* the number of minutes required to handle the shipment (response).
 
 
 
@@ -20,7 +19,7 @@ order, the variables are:
 data aligned in columns (that is, more than one space between data
 values). Read the data in, giving the columns suitable names. To do
 this, you may have to consult an appropriate help file, or do some
-searching, perhaps of one of the other questions on this assignment.
+searching.
 
 
 

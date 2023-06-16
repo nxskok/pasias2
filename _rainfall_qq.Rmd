@@ -8,7 +8,7 @@ the holding ponds took longer to exit for irrigation, giving it more
 time to develop an odour."
 
 Annual rainfall data for the Davis area is [here](http://ritsokiguess.site/datafiles/rainfall.txt).
-Note that clicking on the link will display the file, and *right*-clicking on the link will give you some options, one of which is Copy Link Address, which you can then paste into your R Notebook.
+Note that clicking on the link will display the file, and *right*-clicking on the link will give you some options, one of which is Copy Link Address, which you can then paste into your Quarto document.
 
 The rainfall is
 measured in inches.

@@ -21,7 +21,7 @@ go with higher bone density).
 is "delimited"). 
 
 
-(b) Make a new R Notebook. Leave the first four lines, but get rid
+(b) Make a new Quarto document. Leave the first four or so lines at the top between the `---`, but get rid
 of the rest of the template document. Start with a code chunk
 containing `library(tidyverse)`. Run it.
 

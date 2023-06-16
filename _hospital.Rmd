@@ -396,7 +396,7 @@ close, but when `severity` came out, taking out nothing was a
 The `test="F"` on the end gets you the P-values. Using the
 $F$-test is right for regressions; for things like logistic regression
 that we see later, `test="Chisq"` is the right one to 
-use.^[This is "F" in quotes, meaning $F$-test, not "F" without quotes, which means FALSE.]
+use.^[This is "F" in quotes, meaning $F$-test, not `F` without quotes, which is short for FALSE.]
 
 $\blacksquare$
 
