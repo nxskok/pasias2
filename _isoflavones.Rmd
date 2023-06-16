@@ -1,10 +1,14 @@
 ## Isoflavones
 
- The plant called kudzu was imported to the US South from Japan. It is rich in isoflavones, which are believed to be beneficial for bones. In a study, rats were randomly assigned to one of three diets: one with a low dose of isoflavones from kudzu, one with a high dose, and a control diet with no extra isoflavones. At the end of the study, each rat's bone density was measured, in milligrams per square centimetre. The data as recorded are shown in [http://ritsokiguess.site/isoflavones.txt](http://ritsokiguess.site/isoflavones.txt).^[Evidently the units were chosen for ease of recording; had the values been in grams instead, the person recording the data would have had to put a 0 and a decimal point on the front of each value. This is the old meaning of the word coding; making the data values be whole numbers and/or small deviations from something makes them easier to record, and in pre-computer days easier to calculate with. You will also see the same word used for classifying survey responses into categories, which is similar but not quite the same thing.] There are 15 observations for each treatment, and hence 45 altogether.
+The plant called kudzu was imported to the US South from Japan. 
+It is rich in isoflavones, which are believed to be beneficial for bones. 
+In a study, rats were randomly assigned to one of three diets: one with a low dose of isoflavones from kudzu, one with a high dose, and a control diet with no extra isoflavones. 
+At the end of the study, each rat's bone density was measured, in milligrams per square centimetre. 
+The data as recorded are shown in [http://ritsokiguess.site/isoflavones.txt](http://ritsokiguess.site/isoflavones.txt).^[Evidently the units were chosen for ease of recording; had the values been in grams instead, the person recording the data would have had to put a 0 and a decimal point on the front of each value. This is the old meaning of the word "coding"; making the data values be whole numbers and/or small deviations from something makes them easier to record, and in pre-computer days easier to calculate with. You will also see the same word used for classifying survey responses into categories, which is similar but not quite the same thing.] There are 15 observations for each treatment, and hence 45 altogether.
 
 Here are some code ideas you might need to use later, all part of the `tidyverse`. You may need to find out how they work.
 
-
+- `read_fwf`
 - `col_names` (in the `read_` functions)
 - `convert` (in various `tidyverse` functions)
 - `fill`
@@ -32,32 +36,69 @@ This, you might observe, will need some tidying.
 
 $\blacksquare$
 
+(b) Read in the data, using `read_table`, and explain what seems to have gone wrong (hint: look at which values have ended up in which columns of your dataframe).
 
-(b) Read in the data, using `read_table`, and get it into a tidy form, suitable for making a graph. This means finishing with (at least) a column of treatments with a suitable name (the treatments will be text) and a column of bone density values (numbers), one for each rat. You can have other columns as well; there is no obligation to get rid of them. Describe your process clearly enough that someone new to this data set would be able to understand what you have done and reproduce it on another similar dataset. Before you begin, think about whether or not you want to keep the column headers that are in the data file or not. (It can be done either way, but one way is easier than the other.)
+Solution
+
+```{r}
+my_url <- "http://ritsokiguess.site/datafiles/isoflavones.txt"
+x <- read_table(my_url)
+x
+```
+
+This doesn't look very good. The treatments have ended up in the `treatment` column all right, but also there are some of the bone mineral density values there, and also not all of the bone mineral density values got read in at all (there should be 15 for each treatment). Looking at the warning, you see that `read_table` was expecting two data values in each row (because there were two column headers), but found more than that, all the way down.
+
+Perhaps it was the top line that caused the problems. What if we read the data values in *without* column names? The magic word to skip one (or more) lines of the data file is `skip`, and you might remember how to read things without column names:
+
+```{r}
+x <- read_table(my_url, skip = 1, col_names = FALSE)
+x
+```
+
+All the data values are there now, with fake column headings `X1` through `X7`, but it is still true that some of the data values ended up with the treatment names, which is not how the data values were laid out in the file. 
+
+Extra: we might still be able to rescue this, by putting everything in one column and trying to disentangle it:
+
+```{r}
+#| error: true
+x %>% pivot_longer(everything())
+```
+
+Nope. This doesn't work because column `X1` is text and the other columns are numbers. We need to keep the text and numbers apart somehow. It would be better to get the reading-in to do a better job of respecting how things are laid out in the file.
+
+$\blacksquare$
+
+
+(c) Find out about `read_fwf`. This reads "fixed-width format" files, which is what we appear to have here. Note that (for me at least) you need to have a file on the same computer to read in (as you do with `read_excel`), rather than a URL.
+Read in the data, using `read_fwf` without column headers (and skipping the row with the column headers in), and get it into a tidy form, suitable for making a graph. This means finishing with (at least) a column of treatments with a suitable name (the treatments will be text) and a column of bone density values (numbers), one for each rat. You can have other columns as well; there is no obligation to get rid of them. Describe your process clearly enough that someone new to this data set would be able to understand what you have done and reproduce it on another similar dataset. Before you begin, think about whether or not you want to keep the column headers that are in the data file or not. (It can be done either way, but one way is easier than the other.)
 
 Solution
 
 
-The tidying part is a fair bit easier to see if you *do not* read the column headers. A clue to this is that `bone_mineral_density` is not aligned with the values (of bone mineral density) below it. The next question is how to do that. You might remember `col_names=FALSE` from when the data file has no column headers at all, but here it *does* have headers; we just want to skip over them. Keep reading in the documentation for `read_table`, and you'll find an option `skip` that does exactly that, leading to:
+The tidying part is a fair bit easier to see if you *do not* read the column headers. A clue to this is that `bone_mineral_density` is not in any way aligned with the values (of bone mineral density) below it. The next question is how to do that. We just want to start reading the file at line 2. Keep reading in the documentation for `read_table`, and you'll find an option `skip` that does exactly that (we need to skip one line), leading to:
 
 ```{r isoflavones-1}
-my_url <- "http://ritsokiguess.site/datafiles/isoflavones.txt"
-bmd0a <- read_table(my_url, col_names = FALSE, skip = 1)
+my_url
+iso <- download.file(my_url, "iso.txt")
+bmd0a <- read_fwf("iso.txt", skip = 1)
 bmd0a
 ```
 
+Now we have the treatment names and data values in separate columns, which will be a whole lot easier to deal with. There are three technical details here:
+
+- `read_fwf`, despite what its documentation says, seems to only read local files (not directly from a URL), in the same way that `read_excel` does. You can get around this by downloading the data file to your computer (and then uploading it to `r.datatools`, if you are working there), and then reading it in as a local files. Or you can do that in R, using `download.file` to read from a URL and save in a local file.
+- We are actually using the default format of `read_fwf` here (columns separated by spaces). If you don't have any whitespace between columns of data, you can still read the values in, but you need to say where one variable ends and the next one begins, using `fwf_widths` or `fwf_positions`.
+- `read_fwf` doesn't seem to deal in column names, so you don't need to say there are none; you just need to tell it that you want to ignore the first row of the file.
+
 If you miss the `skip`, the first row of "data" will be those column headers that were in the data file, and you really don't want that. [This link](https://readr.tidyverse.org/reference/read_delim.html) talks about both `col_names` and `skip`.
 
-This, however, is looking very promising. A pivot_longer will get those columns of numbers into one column, which we can call something like `bmd`, and \ldots but, not so fast. What about those blank treatments in `X1`? The first two blank ones are `control`, the next two are `low_dose` and the last two are `high_dose`. How do we fill them in? The word "fill" might inspire you to read up on `fill`. Except that this doesn't quite work, because it replaces *missings* with the non-missing value above them, and we have blanks, not missings.
+Even though we have a different number of observations on each line, `read_fwf` has actually been very relaxed about reading them all in without even giving a warning.
 
-All right, can we replace the blanks with missings, and then `fill` those? This might inspire you to go back to the list of ideas in the question, and find out what `na_if` does: namely, exactly this! Hence:
+This is actually looking very promising. A `pivot_longer` will get those columns of numbers into one column, which we can call something like `bmd`, and \ldots but, not so fast. What about those blank treatments in `X1`? The first two blank ones are `control`, the next two are `low_dose` and the last two are `high_dose`. How do we fill them in? The word "fill" might inspire you to read up on `fill`.  Hence:
 
 ```{r isoflavones-2}
-bmd0a %>% mutate(X1=na_if(X1, "")) %>% 
-fill(X1) 
+bmd0a %>% fill(X1) 
 ```
-
-Run this one line at a time to see how it works. `fill` takes a column with missing values to replace, namely `X1`, and `na_if` takes two things: a column containing some values to make `NA`, and the values that should be made `NA`, namely the blank ones.
 
 So that straightens out the treatment column. It needs renaming; you can do that now, or wait until later. I'm going to wait on that. 
 
@@ -66,9 +107,8 @@ You need to organize the treatment column first, before you do the `pivot_longer
 Now, we need to get one column of bone mass densities, instead of six. This you'll recognize as a standard `pivot_longer`, with one tweak: those missing values in `X5` through `X7`, which we want to get rid of. You might remember that this is what `values_drop_na` does:
 
 ```{r isoflavones-3}
-bmd0a %>% mutate(X1=na_if(X1, "")) %>% 
-fill(X1) %>% 
-pivot_longer(X2:X7, names_to="old", values_to="bmd", values_drop_na=TRUE)
+bmd0a %>% fill(X1) %>% 
+  pivot_longer(X2:X7, names_to="old", values_to="bmd", values_drop_na=TRUE)
 ```
 
 If you didn't think of `values_drop_na`, do the pivot without, and then check that you have too many rows because the missings are still there (there are 45 rats but you have 54 rows), so add a `drop_na()` to the end of your pipe. The only missing values are in the column I called `bmd`.
@@ -76,10 +116,9 @@ If you didn't think of `values_drop_na`, do the pivot without, and then check th
 This is almost there. We have a numeric column of bone mass densities, a column called `old` that we can ignore, and a treatment column with a stupid name that we can fix. I find `rename` backwards: the syntax is new name equals old name, so you start with the name that doesn't exist yet and finish with the one you want to get rid of:
 
 ```{r isoflavones-4}
-bmd0a %>% mutate(X1=na_if(X1, "")) %>% 
-fill(X1) %>% 
-pivot_longer(X2:X7, names_to="old", values_to="bmd", values_drop_na=TRUE) %>% 
-rename(treatment=X1) -> bmd1b
+bmd0a %>% fill(X1) %>% 
+  pivot_longer(X2:X7, names_to="old", values_to="bmd", values_drop_na=TRUE) %>% 
+  rename(treatment=X1) -> bmd1b
 bmd1b
 
 ```
@@ -95,30 +134,35 @@ The guideline for description is that if *you* don't know what's going to happen
 - do the `pivot_longer` and make sure it worked
 - rename the treatment column
 
-So, I said there was another way. This happens to have a simple but clever solution. It starts from wondering "what happens if I read the data file *with* column headers, the normal way? Do it and find out:
+A note that `read_fwf` now does what `read_table` used to do; `read_table` was altered to behave more like the old `read.table` does; this question originally worked with `read_table` but now no longer does.
+
+So, I said there was another way. This happens to have a simple but clever solution. It starts from wondering "what happens if I read the data file *with* column headers, the normal way, but using `read_fwf`? Do it and find out:
 
 ```{r isoflavones-5}
 my_url <- "http://ritsokiguess.site/datafiles/isoflavones.txt"
-bmd0b <- read_table(my_url)
+iso <- download.file(my_url, "iso.txt")
+bmd0b <- read_fwf("iso.txt")
 bmd0b
 ```
 
-This looks ... strange. There are two column headers, and so there are two columns. It so happened that this worked because the text `bone_mineral_density` is long enough to span all the columns of numbers. That second column is actually *text*: six or three numbers as text with spaces between them. 
+This looks ... strange. There are two columns, because the text `bone_mineral_density` was long enough to span all the data. That second column is actually *text*: six or three numbers as text with spaces between them. 
+
+Because `read_fwf` doesn't believe in column names, the column names we had have found their way into the first row of data, where we don't want them, but they have served their purpose of getting all the bone mineral density values into the second column. So the first thing in the pipeline we build is to skip the first row.
 
 The first thing is, as before, to fill in the missing treatments, which is as above, but changing some names:
 
 ```{r isoflavones-6}
-bmd0b %>% mutate(treatment=na_if(treatment, "")) %>% 
-fill(treatment) 
+bmd0b %>% slice(-1) %>% 
+  fill(X1) 
 ```
 
 
 The way we learned in class for dealing with this kind of thing is `separate`. It is rather unwieldy here since we have to split `bone_mineral_density` into six (temporary) things:
 
 ```{r isoflavones-7}
-bmd0b %>% mutate(treatment=na_if(treatment, "")) %>% 
-fill(treatment) %>% 
-separate(bone_mineral_density, into = c("z1", "z2", "z3", "z4", "z5", "z6"))
+bmd0b %>% slice(-1) %>% 
+  fill(X1) %>% 
+  separate(X2, into = c("z1", "z2", "z3", "z4", "z5", "z6"))
 ```
 
 This works, though if you check, there's a warning that some of the rows don't have six values. However, these have been replaced by missings, which is just fine. From here, we do exactly what we did before: pivot-longer all the columns I called `z`-something, and get rid of the missings.
@@ -126,19 +170,19 @@ This works, though if you check, there's a warning that some of the rows don't h
 Having thought of `separate`, maybe you're now wondering what `separate_rows` does. It turns out that it bypasses the business of creating extra columns and then pivoting them longer, thus:
 
 ```{r isoflavones-8}
-bmd0b %>% mutate(treatment=na_if(treatment, "")) %>% 
-fill(treatment)  %>% 
-separate_rows(bone_mineral_density, convert = TRUE) -> bmd1a
+bmd0b %>% slice(-1) %>% 
+  fill(X1) %>% 
+  separate_rows(X2, convert = TRUE) -> bmd1a
 bmd1a
 ```
 
-Boom! This takes all the things in that mess in `bone_mineral_density`, splits them up into individual data values, and puts them one per row back into the same column. The `convert` is needed because otherwise the values in the second column would be text and you wouldn't be able to plot them. (If you don't see that, use a mutate to convert the column into the numerical version of itself.)
+Boom! This takes all the things in that mess in `bone_mineral_density`, splits them up into individual data values, and puts them one per row back into the same column. The `convert` is needed because otherwise the values in the second column would be text and you wouldn't be able to plot them. (If you don't see that, use a mutate to convert the column into the numerical version of itself.) The last step here is to rename both columns to something sensible.
 
 
 $\blacksquare$
 
 
-(c) The statistician on this study is thinking about running an ordinary analysis of variance to compare the bone mineral density for the different treatments. Obtain a plot from your tidy dataframe that will help her decide whether that is a good idea.
+(d) The statistician on this study is thinking about running an ordinary analysis of variance to compare the bone mineral density for the different treatments. Obtain a plot from your tidy dataframe that will help her decide whether that is a good idea.
 
 Solution
 
@@ -159,7 +203,7 @@ ggplot(bmd1b, aes(sample=bmd)) + stat_qq() + stat_qq_line() +
 facet_wrap(~treatment, scales = "free")
 ```
 
-The value of doing it *this* way is that you fill the facets (what I called "not wasting real estate" on an earlier assignment), and so you get a better assessment of normality, but the downside is that you will need another plot, for example a boxplot (see below) to assess equality of spreads if you are happy with the normality.
+The value of doing it *this* way is that you fill the facets (what I have called "not wasting real estate" on the plot), and so you get a better assessment of normality, but the downside is that you will need another plot, for example a boxplot (see below) to assess equality of spreads if you are happy with the normality.
 
 I'm happy with either way of making the normal quantile plots, as long as you have a *reason* for your choice, coming from what you will be using the normal quantile plot for. You might not think of saying that here as you do it, but when you do the next part, you may realize that you need to assess equality of spreads, and in that case you should come back here and add a reason for using or not using `scales = "free"`. 
 
@@ -183,7 +227,7 @@ Note that getting the graph is (relatively) easy once you have the tidy data, bu
 $\blacksquare$
 
 
-(d) Based on your graph, and any additional graphs you wish to draw, what analysis would you recommend for this dataset? Explain briefly. (Don't do the analysis.)
+(e) Based on your graph, and any additional graphs you wish to draw, what analysis would you recommend for this dataset? Explain briefly. (Don't do the analysis.)
 
 
 Solution
@@ -245,8 +289,7 @@ median_test(bmd1b, bmd, treatment)
 
 Not *any* significant differences, although it is a close thing.
 
-The table of aboves and belows suggests the same thing as the Welch test: the high-dose values are mainly high, and the others are mostly low. But with these sample sizes it is not strong enough evidence. My guess is that the median test is lacking power compared to the Welch test; having seen that the Welch test is actually fine, it is better to use that here.^[This is the opposite way to the usual: when two tests disagree, it is usually the one with fewer assumptions that is preferred, but in this case, the Welch ANOVA is fine, and the median test fails to give significance because it is not using the data as efficiently.]
-
+The table of aboves and belows suggests the same thing as the Welch test: the high-dose values are mainly high, and the others are mostly low. But with these sample sizes it is not strong enough evidence. My guess is that the median test is lacking power compared to the Welch test; having seen that the Welch test is actually fine, it is better to use that here.
 
 
 $\blacksquare$
