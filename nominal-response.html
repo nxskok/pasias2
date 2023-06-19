@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./nominal-response.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Logistic regression with nominal response</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -504,10 +505,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>Y</code>: latitude</p></li>
 </ul>
 <p>Our aim is to see whether the category of crime depends on the day of the week and the district in which it occurred. However, there are a lot of crime categories, so we will focus on the top four “interesting” ones, which are the ones included in this data file.</p>
-<p>Some of the model-fitting takes a while (you’ll see why below). If you’re using R Markdown, you can wait for the models to fit each time you re-run your document, or insert <code>cache=T</code> in the top line of your code chunk (the one with <code>r</code> in curly brackets in it, above the actual code). Put a comma and the <code>cache=T</code> inside the curly brackets. What that does is to re-run that code chunk only if it changes; if it hasn’t changed it will use the saved results from last time it was run. That can save you a lot of waiting around.</p>
+<p>Some of the model-fitting takes a while (you’ll see why below). In your Quarto document, you can wait for the models to fit each time you re-run your document, or you can insert <code>#| cache: true</code> below the top line of your code chunk (above the first line of actual code). What that does is to re-run that code chunk only if it changes; if it hasn’t changed it will use the saved results from last time it was run. That can save you a lot of waiting around.</p>
 <ol type="a">
 <li><p>Read in the data and display the dataset (or, at least, part of it).</p></li>
-<li><p>Fit a multinomial logistic regression that predicts crime category from day of week and district. (You don’t need to look at it.) The model-fitting produces some output. (If you’re using R Markdown, that will come with it.)</p></li>
+<li><p>Fit a multinomial logistic regression that predicts crime category from day of week and district. (You don’t need to look at it.) The model-fitting produces some output in the console to convince you that it has worked.</p></li>
 <li><p>Fit a model that predicts Category from only the district. Hand in the output from the fitting process as well.</p></li>
 <li><p>Use <code>anova</code> to compare the two models you just obtained. What does the <code>anova</code> tell you?</p></li>
 <li><p>Using your preferred model, obtain predicted probabilities that a crime will be of each of these four categories for each day of the week in the <code>TENDERLOIN</code> district (the name is ALL CAPS). This will mean constructing a data frame to predict from, obtaining the predictions and then displaying them suitably.</p></li>
@@ -1302,7 +1303,7 @@ converged</code></pre>
 <li><p><code>Y</code>: latitude</p></li>
 </ul>
 <p>Our aim is to see whether the category of crime depends on the day of the week and the district in which it occurred. However, there are a lot of crime categories, so we will focus on the top four “interesting” ones, which are the ones included in this data file.</p>
-<p>Some of the model-fitting takes a while (you’ll see why below). If you’re using R Markdown, you can wait for the models to fit each time you re-run your document, or insert <code>#| cache: true</code> below the top line of your code chunk (above the first line of actual code). What that does is to re-run that code chunk only if it changes; if it hasn’t changed it will use the saved results from last time it was run. That can save you a lot of waiting around.</p>
+<p>Some of the model-fitting takes a while (you’ll see why below). In your Quarto document, you can wait for the models to fit each time you re-render your document, or you can insert <code>#| cache: true</code> below the top line of your code chunk (above the first line of actual code). What that does is to re-run that code chunk only if it changes; if it hasn’t changed it will use the saved results from last time it was run. That can save you a lot of waiting around.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
 <ol type="a">
 <li>Read in the data and display the dataset (or, at least, part of it).</li>
 </ol>
@@ -1394,7 +1395,7 @@ converged</code></pre>
 </ol>
 <p>Solution</p>
 <p>Use <code>datagrid</code> first to get the combinations you want (and only those), namely all the days of the week, but only the district called TENDERLOIN.</p>
-<p>So, let’s get the days of the week. The easiest way is to count them and ignore the counts:<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>So, let’s get the days of the week. The easiest way is to count them and ignore the counts:<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>sfcrime <span class="sc">%&gt;%</span> <span class="fu">count</span>(DayOfWeek) <span class="sc">%&gt;%</span> </span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(DayOfWeek) <span class="ot">-&gt;</span> daysofweek</span>
@@ -1412,7 +1413,7 @@ converged</code></pre>
 [7] "Wednesday"</code></pre>
 </div>
 </div>
-<p>Now we can use these in <code>datagrid</code>:<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p>Now we can use these in <code>datagrid</code>:<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> sfcrime<span class="fl">.1</span>, <span class="at">DayOfWeek =</span> daysofweek, <span class="at">PdDistrict =</span> <span class="st">"TENDERLOIN"</span>)</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1425,7 +1426,7 @@ converged</code></pre>
 </div>
 </div>
 </div>
-<p>Good. And then predict for just these. This is slow, but not as slow as predicting for all districts. I’m saving the result of this slow part, so that it doesn’t matter if I change my mind later about what to do with it. I want to make sure that I don’t have to do it again, is all:<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<p>Good. And then predict for just these. This is slow, but not as slow as predicting for all districts. I’m saving the result of this slow part, so that it doesn’t matter if I change my mind later about what to do with it. I want to make sure that I don’t have to do it again, is all:<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
 <div class="cell" data-hash="nominal-response_cache/html/pred1_76c7038a7e16a280b9436d461a3853c6">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">predictions</span>(sfcrime<span class="fl">.1</span>, <span class="at">newdata =</span> new, <span class="at">type =</span> <span class="st">"probs"</span>))</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1458,7 +1459,7 @@ converged</code></pre>
 <li>Describe briefly how the weekend days Saturday and Sunday differ from the rest.</li>
 </ol>
 <p>Solution</p>
-<p>The days ended up in some quasi-random order, but Saturday and Sunday are still together, so we can still easily compare them with the rest. My take is that the last two columns don’t differ much between weekday and weekend, but the first two columns do: the probability of a crime being an assault is a bit higher on the weekend, and the probability of a crime being drug-related is a bit lower. I will accept anything reasonable supported by the predictions you got. We said there was a strongly significant day-of-week effect, but the changes from weekday to weekend are actually pretty small (but the changes from one weekday to another are even smaller). This supports what I guessed before, that with this much data even a small effect (the one shown here) is statistically significant.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p>The days ended up in some quasi-random order, but Saturday and Sunday are still together, so we can still easily compare them with the rest. My take is that the last two columns don’t differ much between weekday and weekend, but the first two columns do: the probability of a crime being an assault is a bit higher on the weekend, and the probability of a crime being drug-related is a bit lower. I will accept anything reasonable supported by the predictions you got. We said there was a strongly significant day-of-week effect, but the changes from weekday to weekend are actually pretty small (but the changes from one weekday to another are even smaller). This supports what I guessed before, that with this much data even a small effect (the one shown here) is statistically significant.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
 <p>Extra: I want to compare another district. What districts do we have?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>sfcrime <span class="sc">%&gt;%</span> <span class="fu">count</span>(PdDistrict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1951,7 +1952,7 @@ AIC: 754.6239 </code></pre>
 <p>Curiously enough, it does. The final model is the same as the initial one, telling us that neither variable should be removed.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="6" type="a">
-<li>Make a data frame consisting of all combinations of <code>Ht</code> 160, 180 and 200 (cm), and <code>Wt</code> 50, 75, and 100 (kg), and use it to obtain predicted probabilities of athletes of those heights and weights playing each of the sports. Display the results. You might have to display them smaller, or reduce the number of decimal places<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> to fit them on the page.</li>
+<li>Make a data frame consisting of all combinations of <code>Ht</code> 160, 180 and 200 (cm), and <code>Wt</code> 50, 75, and 100 (kg), and use it to obtain predicted probabilities of athletes of those heights and weights playing each of the sports. Display the results. You might have to display them smaller, or reduce the number of decimal places<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> to fit them on the page.</li>
 </ol>
 <p>Solution</p>
 <p>To get all combinations of those heights and weights, use <code>datagrid</code>:</p>
@@ -2030,7 +2031,7 @@ AIC: 754.6239 </code></pre>
 </div>
 </div>
 </div>
-<p>Once again, the time to do this is while everything is long, so that you only have one column to work with.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> Again, you can do this at the end, but it’s more work, because you are now renaming columns:</p>
+<p>Once again, the time to do this is while everything is long, so that you only have one column to work with.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> Again, you can do this at the end, but it’s more work, because you are now renaming columns:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">%&gt;%</span> </span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate =</span> <span class="fu">round</span>(estimate, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
@@ -2046,7 +2047,7 @@ AIC: 754.6239 </code></pre>
 </div>
 </div>
 </div>
-<p><code>rename</code> doesn’t work with <code>across</code> (you will get an error if you try it), so you need to use <code>rename_with</code><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>. This has syntax “how to rename” first (here, with an abbreviated version of itself), and “what to rename” second (here, everything, or <code>BBall</code> through <code>WPolo</code> if you prefer).</p>
+<p><code>rename</code> doesn’t work with <code>across</code> (you will get an error if you try it), so you need to use <code>rename_with</code><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>. This has syntax “how to rename” first (here, with an abbreviated version of itself), and “what to rename” second (here, everything, or <code>BBall</code> through <code>WPolo</code> if you prefer).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="7" type="a">
 <li>For an athlete who is 180 cm tall and weighs 100 kg, what sport would you guess they play? How sure are you that you are right? Explain briefly.</li>
@@ -2068,13 +2069,14 @@ AIC: 754.6239 </code></pre>
 <li id="fn6"><p>It amuses me that Toronto’s current (2021) mayor, named Tory, is politically a Tory.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>When you have variables that are categories, you might have more than one individual with exactly the same categories; on the other hand, if they had measured <em>Size</em> as, say, length in centimetres, it would have been very unlikely to get two alligators of exactly the same size.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>Discovered by me two minutes ago.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>I know I just said not to do this kind of thing, but counting is really fast, while unnecessary predictions are really slow.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>There is only one district, so we can just put that in here.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>The same thing applies if you are doing something like webscraping, that is to say downloading stuff from the web that you then want to do something with. Download it <em>once</em> and save it, then you can take as long as you need to decide what you’re doing with it.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>Statistical significance as an idea grew up in the days before “big data”.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>For this, use <code>round</code>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p><code>abbreviate</code> comes from base R; it returns an abbreviated version of its (text) input, with a minimum length as its second input. If two abbreviations come out the same, it makes them longer until they are different. It has some heuristics to get things short enough: remove vowels, then remove letters on the end.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn15"><p>Which I learned about today.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>The first render after you put this in, it will have to run it again, so you won’t save any time there: it has to create a saved version to use in the future. But the <em>second</em> time, if you haven’t changed this code chunk, you will definitely see a speedup.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>I know I just said not to do this kind of thing, but counting is really fast, while unnecessary predictions are really slow.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>There is only one district, so we can just put that in here.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>The same thing applies if you are doing something like webscraping, that is to say downloading stuff from the web that you then want to do something with. Download it <em>once</em> and save it, then you can take as long as you need to decide what you’re doing with it.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Statistical significance as an idea grew up in the days before “big data”.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>For this, use <code>round</code>.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><code>abbreviate</code> comes from base R; it returns an abbreviated version of its (text) input, with a minimum length as its second input. If two abbreviations come out the same, it makes them longer until they are different. It has some heuristics to get things short enough: remove vowels, then remove letters on the end.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Which I learned about today.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

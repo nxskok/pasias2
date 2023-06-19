@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Writing reports</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -450,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>0 points: you answered the questions, but you did almost nothing to make it read like a report.</p></li>
 </ul>
 <ol type="a">
-<li><p>Create a new R Markdown document. To do this, in R Studio, select File, New File, R Markdown. Type the report title and your name in the boxes, and leave the output on the default HTML. Click OK.</p></li>
+<li><p>Create a new Quarto document. To do this, in R Studio, select File, New File, Quarto Document. Type the report title and your name in the boxes, and leave the output on the default HTML. Click OK.</p></li>
 <li><p>Write an introduction that explains the purpose of this study and the data collected in your own words.</p></li>
 <li><p>Begin an appropriately-titled new section in your report, read the data into R and display the results.</p></li>
 <li><p>Make an appropriate plot to compare the measurements obtained by the two methods. You might need to do something about the two methods being given as numbers even though they are really only identifiers. (If you do, your report ought to say what you did and why.)</p></li>
@@ -465,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>(This is a report-writing question, but it also uses some regression techniques from later in the course.)</p>
 <p>One of nature’s patterns is the relationship between the percentage of adult birds in a colony that return from the previous year, and the number of new adults that join the colony. Data for 13 colonies of sparrowhawks can be found at <a href="http://ritsokiguess.site/datafiles/sparrowhawk.txt">link</a>. The columns are the percentage of adults returning from the previous year, and the number of new adults that join the colony.</p>
 <ol type="a">
-<li><p>Create a new R Markdown report, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Knit HTML to see how the report looks so far.</p></li>
+<li><p>Create a new Quarto document, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Render your document to see how the report looks so far.</p></li>
 <li><p>Read in the data and display the first few values. Add some text saying how many rows of data there are.</p></li>
 <li><p>Create a new section entitled “Exploratory analysis”, and create a scatterplot for predicting number of new adults from the percentage of returning adults. Describe what you see, adding some suitable text to your report.</p></li>
 <li><p>Obtain the correlation between the two variables. Is this consistent with the scatterplot? Explain briefly. (The R function you need is <code>cor</code>. You can feed it a data frame.)</p></li>
@@ -725,13 +726,13 @@ $test
 <p>Solution</p>
 <p>In R Studio, select File, New File, Quarto Document. Fill in the Title, Author and leave the Default Output Format at HTML. You’ll see a template report with the document info at the top. This is my document info:</p>
 <p><img src="sh0.png" class="img-fluid"></p>
-<p>This is known in the jargon as a “YAML block”.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Below that is the template R Markdown document, which you can delete now or later.</p>
+<p>This is known in the jargon as a “YAML block”.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="2" type="a">
 <li>Read in the data and display the first few values. Add some text saying how many rows of data there are.</li>
 </ol>
 <p>Solution</p>
-<p>Read the data into a data frame. In your report, add some text like “we read in the data”, perhaps after a section heading like “The data”. Then add a <em>code chunk</em> by selecting Chunks and Insert Chunk, or by pressing control-alt-I. So far you have something like this.</p>
+<p>Read the data into a data frame. In your report, add some text like “we read in the data”, perhaps after a section heading like “The data”. Then add a <em>code chunk</em> by typing a / and then Enter (if you are in the Visual editor):</p>
 <p><img src="sh1.png" class="img-fluid"></p>
 <p>In this case, the code chunk contains the following code, minus the message that comes out of <code>read_delim</code>:</p>
 <div class="cell">
@@ -752,9 +753,11 @@ dbl (2): returning, newadults
 <p>For you, it looks like this:</p>
 <p><img src="sh2.png" class="img-fluid"></p>
 <p>We don’t know how many rows of data there are yet, so I’ve left a “placeholder” for it, when we figure it out. The file is annoyingly called <code>sparrowhawk.txt</code>, singular. Sorry about that.</p>
-<p>If you render this (click on “Render” at the top next to the arrow, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and knit again. You might be worried about how hard R is working with all this rendering. Don’t worry about that. R can take it. Mine looked like this:</p>
+<p>If you render this (click on “Render” at the top next to the arrow, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and knit again.</p>
+<p>You might be worried about how hard R is working with all this rendering. Don’t worry about that. R can take it.</p>
+<p>Mine looked like this:</p>
 <p><img src="waluj.png" class="img-fluid"></p>
-<p>There is a better way of adding values that come from the output, which I mention here in case you are interested (if you are not, feel free to skip this). What you do is to make what is called an “inline code chunk”. Where you want a number to appear in the text, you have some R Markdown that looks like this:</p>
+<p>There is a better way of adding values that come from the output, which I mention here in case you are interested (if you are not, feel free to skip this). What you do is to make what is called an “inline code chunk”. Where you want a number to appear in the text, you have some code that looks like this:</p>
 <p><img src="sh3.png" class="img-fluid"></p>
 <p>The piece inside the backticks is the letter <code>r</code>, a space, and then one line of R code. The one line of code will be run, and all of the stuff within the backticks will be replaced in the output by the result of running the R code, in this case the number 13. Typically, you are extracting a number from the data, like the number of rows or a mean of something. If it’s a decimal number, it will come out with a lot of decimal places unless you explicitly <code>round</code> it. OK, let me try it: the data frame has 13 rows altogether. I didn’t type that number; it was calculated from the data frame. Woo hoo!</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>

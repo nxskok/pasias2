@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-regression.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -512,8 +513,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="facebook-friends-and-grey-matter" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="facebook-friends-and-grey-matter"><span class="header-section-number">18.4</span> Facebook friends and grey matter</h2>
 <p>Is there a relationship between the number of Facebook friends a person has, and the density of grey matter in the areas of the brain associated with social perception and associative memory? To find out, a 2012 study measured both of these variables for a sample of 40 students at City University in London (England). The data are at <a href="http://ritsokiguess.site/datafiles/facebook.txt">link</a>. The grey matter density is on a <span class="math inline">\(z\)</span>-score standardized scale. The values are separated by <em>tabs</em>.</p>
-<p>The aim of this question is to produce an R Markdown report that contains your answers to the questions below.</p>
-<p>You should aim to make your report flow smoothly, so that it would be pleasant for a grader to read, and can stand on its own as an analysis (rather than just being the answer to a question that I set you). Some suggestions: give your report a title and arrange it into sections with an Introduction; add a small amount of additional text here and there explaining what you are doing and why. I don’t expect you to spend a large amount of time on this, but I <em>do</em> hope you will make some effort. (My report came out to 4 Word pages.)</p>
+<p>The aim of this question is to produce a Quarto report that contains your answers to the questions below.</p>
+<p>You should aim to make your report flow smoothly, so that it would be pleasant for a grader to read, and can stand on its own as an analysis (rather than just being the answer to a question that I set you). Some suggestions: give your report a title and arrange it into sections with an Introduction; add a small amount of additional text here and there explaining what you are doing and why. I don’t expect you to spend a large amount of time on this, but I <em>do</em> hope you will make some effort. (My report came out to 4 Word pages; HTML of course doesn’t have page numbers, but that’s a good kind of length to aim for.)</p>
 <ol type="a">
 <li><p>Read in the data and make a scatterplot for predicting the number of Facebook friends from the grey matter density. On your scatterplot, add a smooth trend.</p></li>
 <li><p>Describe what you see on your scatterplot: is there a trend, and if so, what kind of trend is it? (Don’t get too taken in by the exact shape of your smooth trend.) Think “form, direction, strength”.</p></li>
@@ -527,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="endogenous-nitrogen-excretion-in-carp" class="level2" data-number="18.5">
 <h2 data-number="18.5" class="anchored" data-anchor-id="endogenous-nitrogen-excretion-in-carp"><span class="header-section-number">18.5</span> Endogenous nitrogen excretion in carp</h2>
 <p>A paper in Fisheries Science reported on variables that affect “endogenous nitrogen excretion” or ENE in carp raised in Japan. A number of carp were divided into groups based on body weight, and each group was placed in a different tank. The mean body weight of the carp placed in each tank was recorded. The carp were then fed a protein-free diet three times daily for a period of 20 days. At the end of the experiment, the amount of ENE in each tank was measured, in milligrams of total fish body weight per day. (Thus it should not matter that some of the tanks had more fish than others, because the scaling is done properly.)</p>
-<p>For this question, write a report in R Markdown that answers the questions below and contains some narrative that describes your analysis. Create an HTML document from your R Markdown.</p>
+<p>For this question, write a report in a Quarto document that answers the questions below and contains some narrative that describes your analysis. Create an HTML document from your Quarto document.</p>
 <ol type="a">
 <li><p>Read the data in from <a href="http://ritsokiguess.site/datafiles/carp.txt">link</a>. There are 10 tanks.</p></li>
 <li><p>Create a scatterplot of ENE (response) against bodyweight (explanatory). Add a smooth trend to your plot.</p></li>
@@ -1368,8 +1369,8 @@ chest  0.7182659 0.1657523 0.7909452 0.8809605 1.0000000</code></pre>
 <section id="facebook-friends-and-grey-matter-1" class="level2" data-number="18.18">
 <h2 data-number="18.18" class="anchored" data-anchor-id="facebook-friends-and-grey-matter-1"><span class="header-section-number">18.18</span> Facebook friends and grey matter</h2>
 <p>Is there a relationship between the number of Facebook friends a person has, and the density of grey matter in the areas of the brain associated with social perception and associative memory? To find out, a 2012 study measured both of these variables for a sample of 40 students at City University in London (England). The data are at <a href="http://ritsokiguess.site/datafiles/facebook.txt">link</a>. The grey matter density is on a <span class="math inline">\(z\)</span>-score standardized scale. The values are separated by <em>tabs</em>.</p>
-<p>The aim of this question is to produce an R Markdown report that contains your answers to the questions below.</p>
-<p>You should aim to make your report flow smoothly, so that it would be pleasant for a grader to read, and can stand on its own as an analysis (rather than just being the answer to a question that I set you). Some suggestions: give your report a title and arrange it into sections with an Introduction; add a small amount of additional text here and there explaining what you are doing and why. I don’t expect you to spend a large amount of time on this, but I <em>do</em> hope you will make some effort. (My report came out to 4 Word pages.)</p>
+<p>The aim of this question is to produce a Quarto report that contains your answers to the questions below.</p>
+<p>You should aim to make your report flow smoothly, so that it would be pleasant for a grader to read, and can stand on its own as an analysis (rather than just being the answer to a question that I set you). Some suggestions: give your report a title and arrange it into sections with an Introduction; add a small amount of additional text here and there explaining what you are doing and why. I don’t expect you to spend a large amount of time on this, but I <em>do</em> hope you will make some effort. (My report came out to 4 Word pages; HTML of course doesn’t have page numbers, but that’s a good kind of length to aim for.)</p>
 <ol type="a">
 <li>Read in the data and make a scatterplot for predicting the number of Facebook friends from the grey matter density. On your scatterplot, add a smooth trend.</li>
 </ol>
@@ -1524,7 +1525,7 @@ GMdensity    26.61391 138.2836</code></pre>
 <section id="endogenous-nitrogen-excretion-in-carp-1" class="level2" data-number="18.19">
 <h2 data-number="18.19" class="anchored" data-anchor-id="endogenous-nitrogen-excretion-in-carp-1"><span class="header-section-number">18.19</span> Endogenous nitrogen excretion in carp</h2>
 <p>A paper in Fisheries Science reported on variables that affect “endogenous nitrogen excretion” or ENE in carp raised in Japan. A number of carp were divided into groups based on body weight, and each group was placed in a different tank. The mean body weight of the carp placed in each tank was recorded. The carp were then fed a protein-free diet three times daily for a period of 20 days. At the end of the experiment, the amount of ENE in each tank was measured, in milligrams of total fish body weight per day. (Thus it should not matter that some of the tanks had more fish than others, because the scaling is done properly.)</p>
-<p>For this question, write a report in R Markdown that answers the questions below and contains some narrative that describes your analysis. Create an HTML document from your R Markdown.</p>
+<p>For this question, write a report in a Quarto document that answers the questions below and contains some narrative that describes your analysis. Create an HTML document from your Quarto document, as usual for an assignment.</p>
 <ol type="a">
 <li>Read the data in from <a href="http://ritsokiguess.site/datafiles/carp.txt">link</a>. There are 10 tanks.</li>
 </ol>
@@ -1763,7 +1764,7 @@ F-statistic: 334.6 on 1 and 8 DF,  p-value: 8.205e-08</code></pre>
 </div>
 <p>All in all, that looks pretty good (and certainly a vast improvement over the ones you got before).</p>
 <p>When you write up your report, you can make it flow better by writing it in a way that suggests that each thing was the obvious thing to do next: that is, that <em>you</em> would have thought to do it next, rather than me telling you what to do.</p>
-<p>My report (as an R Markdown file) is at <a href="http://ritsokiguess.site/datafiles/carp.Rmd">link</a>. Download it, knit it, play with it.</p>
+<p>My report (as a Quarto document) is at <a href="http://ritsokiguess.site/datafiles/carp.qmd">link</a>. Download it, render it, play with it.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
 <section id="salaries-of-social-workers-1" class="level2" data-number="18.20">

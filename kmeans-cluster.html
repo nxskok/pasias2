@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./kmeans-cluster.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -1297,11 +1298,11 @@ attr(,"scaled:scale")
 <li>Run K-means with 5 clusters. Produce an output that shows which competitors are in which cluster.</li>
 </ol>
 <p>Solution</p>
-<p>If you’re using R Markdown, you might like to start with this:</p>
+<p>In your Quarto document, you might like to start with this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">457299</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>or some other random number seed of your choice. Using <code>nstart=20</code> or similar will give you the same <em>clustering</em>, but which cluster is cluster 1 might vary between runs. So if you talk about cluster 1 (below), and re-knit the document, you might otherwise find that cluster 1 has changed identity since the last time you knitted it. (I just remembered that for these solutions.)</p>
+<p>or some other random number seed of your choice. Using <code>nstart=20</code> or similar will give you the same <em>clustering</em>, but which cluster is cluster 1 might vary between runs. So if you talk about cluster 1 (below), and re-render the document, you might otherwise find that cluster 1 has changed identity since the last time you render it. (I just remembered that for these solutions.)</p>
 <p>Running the <code>kmeans</code> itself is a piece of cake, since you have done it a bunch of times already (in your loop or <code>rowwise</code>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>decathlon<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(decathlon, <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
@@ -1945,7 +1946,7 @@ Available components:
 </div>
 </div>
 <p>You don’t need the <code>set.seed</code>, but if you run again, you’ll get a different answer. With the <code>nstart</code>, you’ll probably get the same clustering every time you run, but the clusters might have different numbers, so that when you talk about “cluster 1” and then re-run, what you were talking about might have moved to cluster 3, say.</p>
-<p>If you are using R Markdown, for this reason, having a <code>set.seed</code> before anything involving random number generation is a smart move.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<p>In a Quarto document, for this reason, having a <code>set.seed</code> before anything involving random number generation is a smart move.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Display the car names together with which cluster they are in. If you display them all at once, sort by cluster so that it’s easier to see which clusters contain which cars. (You may have to make a data frame first.)</li>
@@ -2530,7 +2531,7 @@ SierraN  12.60952 15.09967 17.94436 16.97056 11.74734 13.34166 19.07878 13.41641
 <li id="fn10"><p>R vectors start from 1, unlike C arrays or Python lists, which start from 0.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn11"><p>This is again where <code>set.seed</code> is valuable: write this text once and it never needs to change.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn12"><p>The <em>scale</em> function can take a data frame, as here, but always produces a matrix. That’s why we had to turn it back into a data frame.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>I forgot this, and then realized that I would have to rewrite a whole paragraph. In case you think I remember everything the first time.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>I forgot this, and then realized that I would have to rewrite a whole paragraph after I rendered it again. In case you think I remember everything the first time.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn14"><p>I am accustomed to using the curly brackets all the time, partly because my single-line loops have a habit of expanding to more than one line as I embellish what they do, and partly because I’m used to the programming language Perl where the curly brackets are obligatory even with only one line. Curly brackets in Perl serve the same purpose as indentation serves in Python: figuring out what is inside a loop or an <em>if</em> and what is outside.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn15"><p>When this was a question to hand in, which it is not any more.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn16"><p>We do something similar on scree plots for principal components later, but then, for reasons that will become clear then, we take elbow <em>minus 1</em>.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
