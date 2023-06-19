@@ -132,13 +132,14 @@ columns from:
 
 ```{r fruits-4 }
 dissim <- function(i, j, d) {
-  x <- d %>% select(i)
-  y <- d %>% select(j)
+  x <- d %>% select(all_of(i))
+  y <- d %>% select(all_of(j))
   sum(x != y)
 }
 dissim(1, 2, fruit2)
 ```
 
+The reason for the `all_of` is that `i` and `j` are numbers, not part of the dataframe `d`. Without the `all_of`, you get a warning to put it in, so I did.
  
 
 Apple and orange differ by one (not being crunchy). The process is:
@@ -204,8 +205,8 @@ use the function we had before, *unmodified*! How? Take a look:
 
 ```{r fruits-8 }
 dissim <- function(i, j, d) {
-  x <- d %>% select(i)
-  y <- d %>% select(j)
+  x <- d %>% select(all_of(i))
+  y <- d %>% select(all_of(j))
   sum(x != y)
 }
 dissim("Apple", "Orange", fruit2)

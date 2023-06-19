@@ -110,8 +110,8 @@ bugs2
 ```
 
  
-
-This is definitely good. We'd have to be careful with Capital Letters
+I don't know why a ficitious fourth column was invented, but we can safely ignore it the rest of the way. We have all our actual data.
+We'd have to be careful with Capital Letters
 this way,  but it's definitely good.
 
 You may have thought that this was a lot of fuss to make about reading

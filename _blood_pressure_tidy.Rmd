@@ -105,7 +105,7 @@ When we do this:
 d %>% pivot_wider(names_from = g, values_from = y)
 ```
 
-we get list-columns again (and the same warning). What this output is telling you is that mostly there is one number per id-group combination (the `dbl[1]`) but there are two observations labelled id `p1` and group `a`, and no observations at all labelled id `p3` and group `b`. It turns out^[I know because I made these data up. that the last row of the tribble contains errors. Fix them, and all is good:
+we get list-columns again (and the same warning). What this output is telling you is that mostly there is one number per id-group combination (the `dbl[1]`) but there are two observations labelled id `p1` and group `a`, and no observations at all labelled id `p3` and group `b`. It turns out^[I know because I made these data up.] that the last row of the tribble contains errors. Fix them, and all is good:
 
 ```{r blood-pressure-tidy-8}
 d <- tribble(

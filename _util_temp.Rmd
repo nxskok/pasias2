@@ -47,7 +47,7 @@ utils0 %>% pivot_longer(X3:X8, names_to = "col", values_to = "value") %>%
 pivot_wider(names_from = X2, values_from = value) 
 ```
 
-Except that it didn't appear to work. Although it actually did. These are list-columns. I actually recorded lecture 14a to help you with this. (See also the discussion in Extra 3 of the last part of the writers question, and the word "list" at the top of `temperature` and `consumption`). Each cell holds *two* numbers instead of the one you were probably expecting. 
+Except that it didn't appear to work. Although it actually did. These are list-columns. I actually recorded a lecture to help you with this. (See also the discussion in Extra 3 of the last part of the writers question, and the word "list" at the top of `temperature` and `consumption`). Each cell holds *two* numbers instead of the one you were probably expecting. 
 
 Why did that happen? The warning above the output is a clue. Something is going to be "not uniquely identified". Think about how `pivot_wider` works. It has to decide which *row* and *column* of the wider dataframe to put each value in. The column comes from the `names_from`: temperature or consumption. So that's not a problem. The row comes from the combination of the other columns not named in the `pivot_wider`: that means the ones called `X1` and `col`. (Another way to see that is the columns in the result from the `pivot_wider` that *do not* have values in them: not `temperature` or `consumption`, the other two.)
 

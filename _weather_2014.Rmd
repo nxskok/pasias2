@@ -72,11 +72,11 @@ you can).
  
 Solution
 
-I think this is the easiest way:
+I think this is the easiest way. Note the `reframe` rather than `summarize` because the "summary" is five numbers rather than one for each column:
 
 ```{r weather-2014-3}
 weather %>% 
-  summarize(across(everything(), \(x) quantile(x)))
+  reframe(across(everything(), \(x) quantile(x)))
 ```
 
 This loses the actual percents of the percentiles of the five-number summary (because they are "names" of the numerical result, and the tidyverse doesn't like names.) I think you can see which percentile is which, though.

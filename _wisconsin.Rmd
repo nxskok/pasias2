@@ -290,19 +290,19 @@ ones, as many as there are cities.
 
 ```{r kashklsahl0}
 ones <- rep(1, 12)
-v <- cmdscale(d, 1, eig = T)
-ddd <- as_tibble(v$points) %>%
-  mutate(one = ones, city = cities)
+v <- cmdscale(d, 1, eig = TRUE)
+as_tibble(v$points, .name_repair = "unique") %>%
+  mutate(one = ones, city = cities) -> ddd
 ddd
 ```
 
  
 
-(the one-column matrix of points didn't have a name, so it acquired
-the name `V1`), and the plot:
+The one-column matrix of points didn't have column names, so I needed to give `as_tibble` explicit permission to create one, and it acquired the name `...1`).
+The plot:
 
 ```{r wisconsin-13 }
-ggplot(ddd, aes(x = one, y = V1, label = city)) +
+ggplot(ddd, aes(x = one, y = ...1, label = city)) +
   geom_point() + geom_text_repel()
 ```
 
