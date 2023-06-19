@@ -111,7 +111,7 @@ $\blacksquare$
 
 Solution
 
-Here's what I get (yours will be the same).
+Here's what I get (yours will be about the same).
 
 ![](Screenshot1509.png)
 
@@ -141,6 +141,7 @@ mtcars %>% as_tibble()
 ```
 
 The top bit is the code, the bottom bit is the output. 
+
 
 If you don't see the "play button", make sure that what you have really
 is a code chunk. If you can't figure it out,
@@ -247,6 +248,24 @@ or (ii) download my document onto your computer, and then upload it to
 `r.datatools`. Look in the Files pane bottom right, and next to New
 Folder you should see Upload. Upload the file from wherever it got saved
 to when you downloaded it.
+
+You might find that your dataframe doesn't display as nicely as mine, just as a list of values rather than one where you can page up and down and left and right. To fix that, go up to the YAML block at the very top, delete where it says
+
+
+```
+format: html
+```
+
+and replace it with
+
+```
+format:
+  html:
+    theme: cosmo
+    df-print: paged
+```
+
+and then render again.
 
 If you're feeling extra-ambitious, you can try Knit to PDF. This
 produces something that looks as if it was written in LaTeX, but
