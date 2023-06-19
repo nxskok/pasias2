@@ -36,12 +36,11 @@ the week and the district in which it occurred. However, there are a
 lot of crime categories, so we will focus on the top four
 "interesting" ones, which are the ones included in this data file.
 
-Some of the model-fitting takes a while (you'll see why below). If
-you're using R Markdown, you can wait for the models to fit each time
-you re-run your document, or insert `#| cache: true` below the top line
+Some of the model-fitting takes a while (you'll see why below). In your Quarto document, you can wait for the models to fit each time
+you re-render your document, or you can insert `#| cache: true` below the top line
 of your code chunk (above the first line of actual code).   What that does is to re-run that code chunk only
 if it changes; if it hasn't changed it will use the saved results from
-last time it was run. That can save you a lot of waiting around.
+last time it was run. That can save you a lot of waiting around.^[The first render after you put this in, it will have to run it again, so you won't save any time there: it has to create a saved version to use in the future. But the *second* time, if you haven't changed this code chunk, you will definitely see a speedup.]
 
 
 

@@ -36,12 +36,10 @@ the week and the district in which it occurred. However, there are a
 lot of crime categories, so we will focus on the top four
 "interesting" ones, which are the ones included in this data file.
 
-Some of the model-fitting takes a while (you'll see why below). If
-you're using R Markdown, you can wait for the models to fit each time
-you re-run your document, or insert `cache=T` in the top line
-of your code chunk (the one with `r` in curly brackets in it,
-above the actual code). Put a comma and the `cache=T` inside
-the curly brackets.  What that does is to re-run that code chunk only
+Some of the model-fitting takes a while (you'll see why below). In your Quarto document, you can wait for the models to fit each time
+you re-run your document, or you can insert `#| cache: true` below the top line
+of your code chunk (above the first line of actual code).
+What that does is to re-run that code chunk only
 if it changes; if it hasn't changed it will use the saved results from
 last time it was run. That can save you a lot of waiting around.
 
@@ -55,8 +53,7 @@ part of it).
 (b) Fit a multinomial logistic
 regression that predicts crime category from day of week and
 district. (You don't need to look at it.) The model-fitting produces
-some output. (If you're using R Markdown, that will
-come with it.)
+some output in the console to convince you that it has worked. 
 
 
 

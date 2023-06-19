@@ -68,7 +68,7 @@ A couple of technical notes:
     -   there is a visual editor that looks like Notion or a bit like a
         Google doc (the default), and also a Source editor which gives
         you more control, and shows that underlying the document is a
-        thing called R Markdown (which is a code for writing documents).
+        thing called R Markdown (which is a code for writing documents). You can switch between the Source and Visual view as you wish, by clicking on Source or Visual to the top left of your text.
 
 -   My *document* is called "My awesome title", but the *file* in which
     the document lives is still untitled because I haven't saved it yet.
@@ -77,7 +77,7 @@ A couple of technical notes:
 $\blacksquare$
 
 (c) You can delete the template code below the YAML block now (that is,
-    everything from the title "Quarto" to the end). Somewhere in the
+    everything from the title "Quarto" to the end, inclusive). Somewhere in the
     space opened up below the YAML block (it might say "Heading 2",
     greyed out), type a /. This, like Notion, gives you a list of things
     to choose from to insert there. Pressing Enter will insert a "code
@@ -322,7 +322,7 @@ Files at the top, especially if you had a Viewer open there before:
 I called my Quarto document `awesome`and the file I was working on was
 called `awesome.qmd`(which stands for "Quarto Markdown"). That's the
 file I had to render to produce the output. My output file itself is
-called `awesome.html.`That's the file I want to hand in. If you called
+called `awesome.html`. That's the file I want to hand in. If you called
 your file something different when you saved it, that's the thing to
 look for: there should be something ending in `.qmd` and something with
 the same first part ending in `.html`.

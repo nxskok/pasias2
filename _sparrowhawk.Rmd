@@ -27,7 +27,6 @@ template report with the document info at the top. This is my document info:
 ![](sh0.png)
  
 This is known in the jargon as a "YAML block".^[YAML stands for *Yet Another Markup Language*, but we're only using it in this course as the top bit of an R Markdown document.]
-Below that is the template R Markdown document, which you can delete now or later.
 
 $\blacksquare$
 
@@ -41,8 +40,7 @@ Solution
 Read the data into a data frame. In your
 report, add some text like "we read in the data", perhaps
 after a section heading like "The data". Then add a *code chunk* 
-by selecting Chunks and Insert Chunk, or by pressing
-control-alt-I. So far you have something like this. 
+by typing a / and then Enter (if you are in the Visual editor):
 
 ![](sh1.png)
 
@@ -74,8 +72,10 @@ or press control-shift-K), it should run, and you'll see a viewer
 pop up with the HTML output. Now you can see how many rows there
 are, and you can go back and edit the R Markdown and put in 13 in
 place of the x's, and knit again.
+
 You might be worried about how hard R is working with all this
 rendering. Don't worry about that. R can take it.
+
 Mine looked like this:
 
 ![](waluj.png)
@@ -84,7 +84,7 @@ There is a better way of adding values that come from the output,
 which I mention here in case you are interested (if you are not,
 feel free to skip this). What you do is to make what is called an
 "inline code chunk". Where you want a number to appear in the
-text, you have some R Markdown that looks like this:
+text, you have some code that looks like this:
 
 ![](sh3.png)
 

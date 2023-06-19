@@ -279,7 +279,7 @@ which competitors are in which cluster.
 Solution
 
 
-If you're using R Markdown, you might like to start with this:
+In your Quarto document, you might like to start with this:
 
 ```{r decathlon-11 }
 set.seed(457299)
@@ -290,9 +290,9 @@ set.seed(457299)
 or some other random number seed of your choice. Using
 `nstart=20` or similar will give you the same *clustering*,
 but which cluster is cluster 1 might vary between runs. So if you talk
-about cluster 1 (below), and re-knit the document, you might otherwise
+about cluster 1 (below), and re-render the document, you might otherwise
 find that cluster 1 has changed identity since the last time you
-knitted it. (I just remembered that for these solutions.)
+render it. (I just remembered that for these solutions.)
 
 Running the `kmeans` itself is a piece of cake, since you have
 done it a bunch of times already (in your loop or `rowwise`):

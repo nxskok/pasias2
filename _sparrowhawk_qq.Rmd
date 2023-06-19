@@ -12,9 +12,9 @@ and the number of new adults that join the colony.
 
 
 
-(a) Create a new R Markdown report, give it a suitable title, and
+(a) Create a new Quarto document, give it a suitable title, and
 ask for HTML output. Answer the questions that follow in your
-report. At any stage, you can Knit HTML
+report. At any stage, you can Render your document
 to see how the report looks so far.
 
 

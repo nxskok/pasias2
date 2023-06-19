@@ -149,9 +149,9 @@ same clustering every time you run, but the clusters might have
 different numbers, so that when you talk about "cluster 1" and then
 re-run, what you were talking about might have moved to cluster 3, say.
 
-If you are using R Markdown, for this reason, having a
+In a Quarto document, for this reason, having a
 `set.seed` before anything involving random number generation
-is a smart move.^[I forgot this, and then realized that I would have to rewrite a whole paragraph. In case you think I remember everything the first time.]
+is a smart move.^[I forgot this, and then realized that I would have to rewrite a whole paragraph after I rendered it again. In case you think I remember everything the first time.]
   
 
 $\blacksquare$

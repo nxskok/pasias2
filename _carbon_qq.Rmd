@@ -38,8 +38,8 @@ to make it read like a report.
 
 
 
-(a) Create a new R Markdown document. To do this, in R Studio, select File,
-New File, R Markdown. Type the report title and your name in the
+(a) Create a new Quarto document. To do this, in R Studio, select File,
+New File, Quarto Document. Type the report title and your name in the
 boxes, and leave the output on the default HTML. Click OK. 
 
 

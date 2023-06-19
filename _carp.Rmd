@@ -12,9 +12,9 @@ milligrams of total fish body weight per day. (Thus it should not
 matter that some of the tanks had more fish than others, because the
 scaling is done properly.)
 
-For this question, write a report in R Markdown that answers the
+For this question, write a report in a Quarto document that answers the
 questions below and contains some narrative that describes your
-analysis. Create an HTML document from your R Markdown.
+analysis. Create an HTML document from your Quarto document, as usual for an assignment.
 
 
 
@@ -342,9 +342,9 @@ it in a way that suggests that each thing was the obvious thing to do
 next: that is, that *you* would have thought to do it next,
 rather than me telling you what to do.
 
-My report (as an R Markdown file) is at
-[link](http://ritsokiguess.site/datafiles/carp.Rmd). Download it,
-knit it, play with it.
+My report (as a Quarto document) is at
+[link](http://ritsokiguess.site/datafiles/carp.qmd). Download it,
+render it, play with it.
 
 $\blacksquare$
 

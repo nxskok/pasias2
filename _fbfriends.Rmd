@@ -12,7 +12,7 @@ variables for a sample of 40 students at City University in London
 matter density is on a $z$-score standardized scale. The values are
 separated by *tabs*.
 
-The aim of this question is to produce an R Markdown report that
+The aim of this question is to produce a Quarto report that
 contains your answers to the questions below. 
 
 You should aim to make your report flow smoothly, so that it would be
@@ -22,7 +22,7 @@ Some suggestions: give your report a title and arrange it into
 sections with an Introduction; add a small amount of additional text
 here and there explaining what you are doing and why. I don't expect
 you to spend a large amount of time on this, but I *do* hope
-you will make some effort. (My report came out to 4 Word pages.)
+you will make some effort. (My report came out to 4 Word pages; HTML of course doesn't have page numbers, but that's a good kind of length to aim for.)
 
 
 (a) Read in the data and make a scatterplot for predicting the
