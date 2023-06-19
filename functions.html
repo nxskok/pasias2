@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>What is its coefficient of variation, according to your function? Does this make sense? Why did this happen? Explain briefly.</p>
 <ol start="4" type="a">
-<li>Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector <code>v</code> above. Hint: you might need to add <code>error=TRUE</code> to your chunk header to allow your document to preview/knit (inside the curly brackets at the top of the chunk, after a comma).</li>
+<li>Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector <code>v</code> above. Hint: you might need to add <code>#|error=TRUE</code> as the first line of your code chunk, to allow your document to render properly.</li>
 </ol>
 </section>
 <section id="rescaling" class="level2" data-number="22.4">
@@ -1077,7 +1077,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The possibility of getting a zero mean is why most people only calculate a coefficient of variation if all of the numbers are positive, which brings us to the next part:</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
-<li>Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector <code>v</code> above. Hint: you might need to add <code>error=TRUE</code> to your chunk header to allow your document to preview/knit (inside the curly brackets at the top of the chunk, after a comma).</li>
+<li>Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector <code>v</code> above. Hint: you might need to add <code>#|error=TRUE</code> as the first line of your code chunk, to allow your document to render properly.</li>
 </ol>
 <p>Solution</p>
 <p>This is a case for <code>stopifnot</code>, or of <code>if</code> coupled with <code>stop</code>. Check this up front, as the first thing you do before you calculate anything else. As to what to check, there are several possibilities:</p>
@@ -1483,7 +1483,7 @@ if (lo == hi) return("High and low need to be different")
 s &lt;- (x - lo) / (hi - lo)
 s
 }
-&lt;bytecode: 0x560d9ecefc48&gt;</code></pre>
+&lt;bytecode: 0x55de8013c470&gt;</code></pre>
 </div>
 </div>
 <p>this can get you into trouble if you use it in a dataframe. This is a bit complicated, since it has to use list-columns. Here we go:</p>

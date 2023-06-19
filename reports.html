@@ -721,7 +721,7 @@ $test
 <p>(This is a report-writing question, but it also uses some regression techniques from later in the course.)</p>
 <p>One of nature’s patterns is the relationship between the percentage of adult birds in a colony that return from the previous year, and the number of new adults that join the colony. Data for 13 colonies of sparrowhawks can be found at <a href="http://ritsokiguess.site/datafiles/sparrowhawk.txt">link</a>. The columns are the percentage of adults returning from the previous year, and the number of new adults that join the colony.</p>
 <ol type="a">
-<li>Create a new Quarto document, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Knit HTML to see how the report looks so far.</li>
+<li>Create a new Quarto document, give it a suitable title, and ask for HTML output. Answer the questions that follow in your report. At any stage, you can Render the document to see how the report looks so far.</li>
 </ol>
 <p>Solution</p>
 <p>In R Studio, select File, New File, Quarto Document. Fill in the Title, Author and leave the Default Output Format at HTML. You’ll see a template report with the document info at the top. This is my document info:</p>
@@ -753,7 +753,7 @@ dbl (2): returning, newadults
 <p>For you, it looks like this:</p>
 <p><img src="sh2.png" class="img-fluid"></p>
 <p>We don’t know how many rows of data there are yet, so I’ve left a “placeholder” for it, when we figure it out. The file is annoyingly called <code>sparrowhawk.txt</code>, singular. Sorry about that.</p>
-<p>If you render this (click on “Render” at the top next to the arrow, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and knit again.</p>
+<p>If you render this (click on “Render” at the top next to the arrow, or press control-shift-K), it should run, and you’ll see a viewer pop up with the HTML output. Now you can see how many rows there are, and you can go back and edit the R Markdown and put in 13 in place of the x’s, and Render again.</p>
 <p>You might be worried about how hard R is working with all this rendering. Don’t worry about that. R can take it.</p>
 <p>Mine looked like this:</p>
 <p><img src="waluj.png" class="img-fluid"></p>
@@ -765,7 +765,7 @@ dbl (2): returning, newadults
 <li>Create a new section entitled “Exploratory analysis”, and create a scatterplot for predicting number of new adults from the percentage of returning adults. Describe what you see, adding some suitable text to your report.</li>
 </ol>
 <p>Solution</p>
-<p>The R code you add should look like this, with the results shown (when you knit the report again):</p>
+<p>The R code you add should look like this, with the results shown (when you render the report again):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sparrowhawks, <span class="fu">aes</span>(<span class="at">x =</span> returning, <span class="at">y =</span> newadults)) <span class="sc">+</span></span>
