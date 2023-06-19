@@ -14,7 +14,7 @@ and the number of new adults that join the colony.
 
 (a) Create a new Quarto document, give it a suitable title, and
 ask for HTML output. Answer the questions that follow in your
-report. At any stage, you can Knit HTML
+report. At any stage, you can Render the document
 to see how the report looks so far.
 
 
@@ -71,7 +71,7 @@ If you render this (click on "Render" at the top next to the arrow,
 or press control-shift-K), it should run, and you'll see a viewer
 pop up with the HTML output. Now you can see how many rows there
 are, and you can go back and edit the R Markdown and put in 13 in
-place of the x's, and knit again.
+place of the x's, and Render again.
 
 You might be worried about how hard R is working with all this
 rendering. Don't worry about that. R can take it.
@@ -112,7 +112,7 @@ Solution
 
 
 The R code you add should look like this, with the results shown
-(when you knit the report again):
+(when you render the report again):
 
 ```{r sparrowhawk-2 }
 library(tidyverse)

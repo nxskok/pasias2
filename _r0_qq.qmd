@@ -10,8 +10,7 @@ that; if not, create a new project.)
 
 
 (b) We're going to do some stuff in R here, just to get used to
-it. First, make an R Notebook by selecting File, New File and R
-Notebook.
+it. First, make a Quarto document by selecting File, New File and Quarto Document. 
 
 
 (c) Change the title to something of your choosing. Then go down
@@ -21,12 +20,10 @@ moment.
 
 
 (d) Type the line of code shown below into the chunk in the
-R Notebook:
+Quarto document:
 
 ```
-
 mtcars
-
 ```
 
 
@@ -51,7 +48,7 @@ this way, make another new code chunk, enter the code
 `boxplot(mtcars$mpg)` into it, and run the chunk.
 
 
-(h) Some aesthetics to finish with: delete the template notebook
+(h) Some aesthetics to finish with: delete the template document
 (all the stuff you didn't type below your code chunks and
 output). Then add some narrative text above and below your code
 chunks. Above the code chunk is where you say what you are going
@@ -59,17 +56,16 @@ to do (and maybe why you are doing it), and below is where you say
 what you conclude from the output you just obtained.
 
 
-(i) Save your notebook (the usual way with File and Save). This
+(i) Save your document (the usual way with File and Save). This
 saves it *on the `r.datatools` server* (and not on your
 computer, unless you are running R Studio on your computer). This means that when you come back to `r.datatools`
 later, even from another device, this notebook will still be
 available to you.
-Now click Preview. This produces a pretty HTML version of your
+Now click Render. This produces a pretty HTML version of your
 notebook.
 
 
-(j) Optional extra: Practice handing in your previewed R
-notebook, as if it were an assignment that was worth
+(j) Optional extra: Practice handing in your rendered Quarto notebook, as if it were an assignment that was worth
 something. (It is good to get the practice in a low-stakes
 situation, so that you'll know what to do next week.)
 

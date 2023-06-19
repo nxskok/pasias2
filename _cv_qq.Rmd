@@ -23,7 +23,7 @@ What is its coefficient of variation, according to your function? Does this make
 
 
 
-(d) Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector `v` above. Hint: you might need to add `error=TRUE` to your chunk header to allow your document to preview/knit (inside the curly brackets at the top of the chunk, after a comma).
+(d) Most people only calculate a coefficient of variation if there are no negative numbers. Rewrite your function so that it gives an error if there are any negative numbers in the input, and test it with the vector `v` above. Hint: you might need to add `#|error=TRUE` as the first line of your code chunk, to allow your document to render properly.
 
 
 
