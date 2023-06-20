@@ -13,7 +13,7 @@ future assignments, so it's good to practice it now.
 Take a look at the data file at
 <http://ritsokiguess.site/datafiles/jumping.txt>. These are measurements
 on 30 rats that were randomly made to do different amounts of jumping by
-group (we'll see the details later in the course). The control group did
+group (we'll see the details later). The control group did
 no jumping, and the other groups did "low jumping" and "high jumping".
 The first column says which jumping group each rat was in, and the
 second is the rat's bone density (the experimenters' supposition was

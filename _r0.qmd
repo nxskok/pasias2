@@ -67,7 +67,7 @@ that shortly.
 $\blacksquare$
 
 (c) The top four lines, surrounded by `---` above and below, are called
-    a YAML block. This contains information about the document as a
+    a *YAML block*. This contains information about the document as a
     whole, and needs to be there. Go down to below that, moving the
     "Quarto" heading down a bit if you want. On an empty line, type a /
     and you should see a list of things appear that you might want to
@@ -220,7 +220,7 @@ My complete document is at
 look at it. I added one extra thing: my variable names have "backticks"
 around them. You'll see the effect of this in a moment. Backtick is on
 the key to the left of 1 and below Esc on your keyboard, along with a
-"squiggle" symbol that we'll be using later in the course.
+"squiggle" symbol that we'll be using later.
 
 [^_r0-1]: This, as it stands, is an old-fashioned R Markdown document
     rather than a Quarto one, but they work basically the same.
@@ -298,7 +298,7 @@ handing it in on Quercus.
 To download: find the HTML file that you want to hand in in the Files
 pane bottom right. There should be two files starting with the same
 thing, eg. `test1.qmd`, which is the document you wrote, and
-`test1.nb.html`, which is the rendered version of it, and is the one you
+`test1.html`, which is the rendered version of it, and is the one you
 want to download. (The `test1` part is the name *you* chose when you
 saved it.) Click the checkbox to the left of the HTML file. Now click on
 More above the bottom-right pane. This pops up a menu from which you
@@ -338,8 +338,6 @@ That goes like this. I'll explain the steps below.
 library(tidyverse)
 ggplot(mtcars, aes(x=hp, y=mpg))+geom_point()
 ```
-
-\$ %\$ %\$
 
 This shows a somewhat downward trend, which is what you'd expect, since
 a larger `hp` value means a more powerful engine, which will probably

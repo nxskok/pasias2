@@ -8,6 +8,12 @@ This is about what you should see first, before you click the orange thing:
 
 ![](Screenshot_2021-08-27_14-54-52.png)
 
+You might see this next:
+
+![](Screenshot_2023-06-19_17-18-37.png)
+
+If you do, leave Identity Provider as University of Toronto and then click Log On, and then log in with your UTorID and password.
+
 You will see a progress bar as things start up, and then you should see something like this:
 
 ![](Screenshot_2023-05-16_12-12-45.png)
@@ -50,6 +56,6 @@ It may think a bit, and then you'll see something like this:
 
 Aside: I used to use a cloud R Studio called `rstudio.cloud`. If you see or hear any references to that, it means the same thing as R Studio on `r.datatools` or `jupyter`. (You can still use `rstudio.cloud` if you want; it used to be completely free, but now the free tier won't last you very long; the `utoronto.ca` link is free as long as you are at U of T.) I'm trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.
 
-Now we can get down to some actual work.
+Now we can get down to some actual work. For the remaining questions, you may be able to figure out what to do (most of it is following the instructions and seeing what happens), but if you can't, scroll down to my solutions to find out what I did (and what happened when I did it).
 
 $\blacksquare$
