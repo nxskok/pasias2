@@ -344,9 +344,6 @@ and gender), and an appropriate `type`.
  
 Solution
 
-xxx use predictions
-
-
 My model containing both $x$s was `mobile.1`, the data frame
 read in from the file was called `mobile`, and I  need
 `type="p"` to get probabilities. The first thing is to get the genders and age groups to make combinations of them, which you can do like this:
