@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,8 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -117,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting_used.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting used to R and R Studio</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -446,6 +445,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Solution</p>
 <p>This is about what you should see first, before you click the orange thing:</p>
 <p><img src="Screenshot_2021-08-27_14-54-52.png" class="img-fluid"></p>
+<p>You might see this next:</p>
+<p><img src="Screenshot_2023-06-19_17-18-37.png" class="img-fluid"></p>
+<p>If you do, leave Identity Provider as University of Toronto and then click Log On, and then log in with your UTorID and password.</p>
 <p>You will see a progress bar as things start up, and then you should see something like this:</p>
 <p><img src="Screenshot_2023-05-16_12-12-45.png" class="img-fluid"></p>
 <p>This is R Studio, ready to go.</p>
@@ -471,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It may think a bit, and then you’ll see something like this:</p>
 <p><img src="Screenshot_2022-08-30_16-07-40.png" class="img-fluid"></p>
 <p>Aside: I used to use a cloud R Studio called <code>rstudio.cloud</code>. If you see or hear any references to that, it means the same thing as R Studio on <code>r.datatools</code> or <code>jupyter</code>. (You can still use <code>rstudio.cloud</code> if you want; it used to be completely free, but now the free tier won’t last you very long; the <code>utoronto.ca</code> link is free as long as you are at U of T.) I’m trying to get rid of references to R Studio Cloud as I see them, but I am bound to miss some, and in the lecture videos they are rather hard to find.</p>
-<p>Now we can get down to some actual work.</p>
+<p>Now we can get down to some actual work. For the remaining questions, you may be able to figure out what to do (most of it is following the instructions and seeing what happens), but if you can’t, scroll down to my solutions to find out what I did (and what happened when I did it).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
 <section id="getting-started" class="level2" data-number="1.2">
@@ -480,12 +482,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="a">
 <li><p>Start R Studio, in some project. (If you started up a new project in the previous question and still have that open, use that; if not, create a new project.)</p></li>
 <li><p>We’re going to do some stuff in R here, just to get used to it. First, make a Quarto document by selecting File, New File and Quarto Document.</p></li>
-<li><p>Change the title to something of your choosing. Then go down to line 5, click on the Insert button and select R. You should see a “code chunk” appear at line 5, which we are going to use in a moment.</p></li>
-<li><p>Type the line of code shown below into the chunk in the Quarto document:</p></li>
+<li><p>The top four lines, surrounded by <code>---</code> above and below, are called a <em>YAML block</em>. This contains information about the document as a whole, and needs to be there. Go down to below that, moving the “Quarto” heading down a bit if you want. On an empty line, type a / and you should see a list of things appear that you might want to insert. Pressing Enter now will insert an R code chunk (sometimes called “code cell”). Do that.</p></li>
+<li><p>Type the line of code shown below into the code chunk in the Quarto document:</p></li>
 </ol>
 <pre><code>mtcars</code></pre>
 <ol start="5" type="a">
-<li><p>Run this command. To do that, look at the top right of your code chunk block (shaded in a slightly different colour). You should see a gear symbol, a down arrow and a green “play button”. Click the play button. This will run the code, and show the output below the code chunk.</p></li>
+<li><p>Run this command. To do that, look at the top right of your code chunk block (shaded in a slightly different colour). You should see a down arrow and a green “play button”. Click the play button. This will run the code, and show the output below the code chunk.</p></li>
 <li><p>Something a little more interesting: <code>summary</code> obtains a summary of whatever you feed it (the five-number summary plus the mean for numerical variables). Obtain this for our data frame. To do this, create a new code chunk below the previous one, type <code>summary(mtcars)</code> into the code chunk, and run it.</p></li>
 <li><p>Let’s make a boxplot of the gas mileage data. This is a “poor man’s boxplot”; we’ll see a nicer-looking way later. To do it this way, make another new code chunk, enter the code <code>boxplot(mtcars$mpg)</code> into it, and run the chunk.</p></li>
 <li><p>Some aesthetics to finish with: delete the template document (all the stuff you didn’t type below your code chunks and output). Then add some narrative text above and below your code chunks. Above the code chunk is where you say what you are going to do (and maybe why you are doing it), and below is where you say what you conclude from the output you just obtained.</p></li>
@@ -509,201 +511,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="reading-files-different-ways" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="reading-files-different-ways"><span class="header-section-number">1.4</span> Reading files different ways</h2>
-<p>This question is about different ways of reading data files. If you’re using <code>r.datatools</code> (online), start at the beginning. If you’re using R Studio running on your own computer, start at part (<a href="#part:own-start">here</a>).</p>
+<p>This question is about different ways of reading data files. If you’re using <code>r.datatools</code> (online), start at the beginning and go as far as (d). If you’re using R Studio running on your own computer, start at part (<a href="#part:own-start">here</a>).</p>
 <ol type="a">
-<li>Log in to <code>r.datatools.utoronto.ca</code>. Open up a project (or start a new one), and watch the spinning circles for a few minutes. When that’s done, create a new Quarto Document with File, New File, Quarto Document. Delete the “template” document, but keep the top lines with <code>title:</code> and possibly <code>output:</code> in them. Add a code chunk that contains <code>library(tidyverse)</code> and run it.</li>
+<li><p>Log in to <code>r.datatools.utoronto.ca</code>. Open up a project (or start a new one), and watch the spinning circles for a few minutes. When that’s done, create a new Quarto Document with File, New File, Quarto Document. Delete the “template” document, but keep the top lines with <code>title:</code> and possibly <code>output:</code> in them. Add a code chunk that contains <code>library(tidyverse)</code> and run it.</p></li>
+<li><p><a name="part:internet-file">*</a> The easiest kind of files to read in are ones on the Internet, with a URL address that begins with <code>http</code> or <code>https</code>. I have a small file at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</p></li>
+<li><p>You might have data in a file on your own computer. To read data from such a file, you first have to <em>upload</em> it to <code>r.datatools</code>, and then read it from there. To practice this: open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Upload that file to <code>r.datatools</code>, read in the data and verify that you get the right thing. (For this last part, see the Solution.)</p></li>
+<li><p>You might have a spreadsheet on your computer. Create a <code>.csv</code> file from it, and use the ideas of the last part to read it into R Studio.</p></li>
+<li><p><a name="part:own-start">*</a> Start here if you downloaded R and R Studio and they are running on your own computer. Open a web browser and point it at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</p></li>
+<li><p>You might have data in a file on your own computer. To read data from such a file, R has to know where to find it. Each R project lives in a folder, and one way of specifying where a data file is is to give its complete path relative to the folder that R Studio is running its current project in. This is rather complicated, so we will try a simpler way. To set this up, open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Follow the steps in the solution below to read the data into R.</p></li>
+<li><p>You might have a spreadsheet on your computer. Create a <code>.csv</code> file from it, and use the ideas of the last part to read it into R Studio.</p></li>
 </ol>
-<p>Solution</p>
-<p>So far you (with luck) have something that looks like this:</p>
-<p><img src="Screenshot_2019-01-10_11-55-06.png" class="img-fluid"></p>
-<p>If you have an error rather than that output, you probably need to install the <code>tidyverse</code> first. Make another code chunk, containing</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and run it. Wait for it to finish. It may take a while. If it completes successfully (you might see the word DONE at the end), delete that code chunk (you don’t need it any more) and try again with the <code>library(tidyverse)</code> chunk. It should run properly this time.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="2" type="a">
-<li><a name="part:internet-file">*</a> The easiest kind of files to read in are ones on the Internet, with a URL address that begins with <code>http</code> or <code>https</code>. I have a small file at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</li>
-</ol>
-<p>Solution</p>
-<p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: " "
-chr (1): g
-dbl (2): x, y
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<p>:::</p>
-<p>When you run that, you’ll see something like my output. The first part is <code>read_delim</code> telling you what it saw in the file: two columns of (whole) numbers and one column of text. The top line of the file is assumed to contain names, which are used as the names of the columns of your data frame. The bottom part of the output, obtained by putting the name of the data frame on a line by itself in your code chunk, is what the data frame actually looks like. You ought to get into the habit of eyeballing it and checking that it looks like the values in the data file.</p>
-<p>The things on the left side of the equals signs are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="3" type="a">
-<li>You might have data in a file on your own computer. To read data from such a file, you first have to <em>upload</em> it to <code>r.datatools</code>, and then read it from there. To practice this: open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Upload that file to <code>r.datatools</code>, read in the data and verify that you get the right thing. (For this last part, see the Solution.)</li>
-</ol>
-<p>Solution</p>
-<p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Then go back to <code>r.datatools</code>. You should have a Files pane bottom right. If you don’t see a pane bottom right at all, press Control-Shift-0 to show all the panes. If you see something bottom right but it’s not Files (for example a plot), click the Files tab, and you should see a list of things that look like files, like this:</p>
-<p><img src="Screenshot_2019-01-10_12-29-48.png" class="img-fluid"></p>
-<p>Click the Upload button (next to New Folder), click Choose File. Use the file finder to track down the file you saved on your computer, then click OK. The file should be uploaded to the same folder on <code>r.datatools</code> that your project is, and appear in the Files pane bottom right. To read it in, you supply the file name to <code>read_delim</code> thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"testing.txt"</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: " "
-chr (1): g
-dbl (2): x, y
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<p>:::</p>
-<p>and then you look at it in the same way as before:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Check.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="4" type="a">
-<li>You might have a spreadsheet on your computer. Create a <code>.csv</code> file from it, and use the ideas of the last part to read it into R Studio.</li>
-</ol>
-<p>Solution</p>
-<p>Open the spreadsheet containing the data you want to read into R. If there are several sheets in the workbook, make sure you’re looking at the right one. Select File, Save As, select “CSV” or “comma-separated values” and give it a name. Save the resulting file somewhere.</p>
-<p>Then follow the same steps as the previous part to upload it to your project on <code>r.datatools</code>. (If you look at the actual file, it will be plain text with the data values having commas between them, as the name suggests. You can open the file in R Studio by clicking on it in the Files pane; it should open top left.)</p>
-<p>The final step is to read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one.</p>
-<p>My spreadsheet got saved as <code>cars.csv</code>, so:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 38 Columns: 6
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (2): Car, Country
-dbl (4): MPG, Weight, Cylinders, Horsepower
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Horsepower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Country"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"28.4","3":"2.670","4":"4","5":"90","6":"U.S."},{"1":"Dodge Omni","2":"30.9","3":"2.230","4":"4","5":"75","6":"U.S."},{"1":"Mercury Zephyr","2":"20.8","3":"3.070","4":"6","5":"85","6":"U.S."},{"1":"Fiat Strada","2":"37.3","3":"2.130","4":"4","5":"69","6":"Italy"},{"1":"Peugeot 694 SL","2":"16.2","3":"3.410","4":"6","5":"133","6":"France"},{"1":"VW Rabbit","2":"31.9","3":"1.925","4":"4","5":"71","6":"Germany"},{"1":"Plymouth Horizon","2":"34.2","3":"2.200","4":"4","5":"70","6":"U.S."},{"1":"Mazda GLC","2":"34.1","3":"1.975","4":"4","5":"65","6":"Japan"},{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"155","6":"U.S."},{"1":"Audi 5000","2":"20.3","3":"2.830","4":"5","5":"103","6":"Germany"},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"125","6":"U.S."},{"1":"Dodge Aspen","2":"18.6","3":"3.620","4":"6","5":"110","6":"U.S."},{"1":"VW Dasher","2":"30.5","3":"2.190","4":"4","5":"78","6":"Germany"},{"1":"Ford Mustang 4","2":"26.5","3":"2.585","4":"4","5":"88","6":"U.S."},{"1":"Dodge Colt","2":"35.1","3":"1.915","4":"4","5":"80","6":"Japan"},{"1":"Datsun 810","2":"22.0","3":"2.815","4":"6","5":"97","6":"Japan"},{"1":"VW Scirocco","2":"31.5","3":"1.990","4":"4","5":"71","6":"Germany"},{"1":"Chevy Citation","2":"28.8","3":"2.595","4":"6","5":"115","6":"U.S."},{"1":"Olds Omega","2":"26.8","3":"2.700","4":"6","5":"115","6":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"150","6":"U.S."},{"1":"Datsun 510","2":"27.2","3":"2.300","4":"4","5":"97","6":"Japan"},{"1":"AMC Concord D/L","2":"18.1","3":"3.410","4":"6","5":"120","6":"U.S."},{"1":"Buick Century Special","2":"20.6","3":"3.380","4":"6","5":"105","6":"U.S."},{"1":"Saab 99 GLE","2":"21.6","3":"2.795","4":"4","5":"115","6":"Sweden"},{"1":"Datsun 210","2":"31.8","3":"2.020","4":"4","5":"65","6":"Japan"},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"129","6":"U.S."},{"1":"Volvo 240 GL","2":"17.0","3":"3.140","4":"6","5":"125","6":"Sweden"},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"135","6":"U.S."},{"1":"Toyota Corona","2":"27.5","3":"2.560","4":"4","5":"95","6":"Japan"},{"1":"Chevette","2":"30.0","3":"2.155","4":"4","5":"68","6":"U.S."},{"1":"Ford Mustang Ghia","2":"21.9","3":"2.910","4":"6","5":"109","6":"U.S."},{"1":"AMC Spirit","2":"27.4","3":"2.670","4":"4","5":"80","6":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"142","6":"U.S."},{"1":"BMW 320i","2":"21.5","3":"2.600","4":"4","5":"110","6":"Germany"},{"1":"Pontiac Phoenix","2":"33.5","3":"2.556","4":"4","5":"90","6":"U.S."},{"1":"Honda Accord LX","2":"29.5","3":"2.135","4":"4","5":"68","6":"Japan"},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"138","6":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"130","6":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Some information about different types of cars.</p>
-<p>You are now done with this question.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="5" type="a">
-<li><a name="part:own-start">*</a> Start here if you downloaded R and R Studio and they are running on your own computer. Open a web browser and point it at <a href="http://ritsokiguess.site/datafiles/testing.txt">link</a>. Click the link to see it, and keep the tab open for the next part of this question. This is a text file with three things on each line, each separated by exactly one space. Read the data file into a data frame, and display your data frame.</li>
-</ol>
-<p>Solution</p>
-<p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 6 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: " "
-chr (1): g
-dbl (2): x, y
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<p>:::</p>
-<p>When you run that, you’ll see something like my output. The first part is <code>read_delim</code> telling you what it saw in the file: two columns of (whole) numbers and one column of text. The top line of the file is assumed to contain names, which are used as the names of the columns of your data frame. The bottom part of the output, obtained by putting the name of the data frame on a line by itself in your code chunk, is what the data frame actually looks like. You ought to get into the habit of eyeballing it and checking that it looks like the values in the data file.</p>
-<p>The things on the left side of the equals signs are variables that you are creating in R. You get to choose the names for them. My habit is to use <code>my_url</code> for URLs of files that I am going to read in, and (usually) to give my data frames names that say something about what they contain, but this is your choice to make.</p>
-<p>(This part is exactly the same whether you are running R Studio online or have R Studio running on your computer. A remote file is obtained in exactly the same way regardless.)</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="6" type="a">
-<li>You might have data in a file on your own computer. To read data from such a file, R has to know where to find it. Each R project lives in a folder, and one way of specifying where a data file is is to give its complete path relative to the folder that R Studio is running its current project in. This is rather complicated, so we will try a simpler way. To set this up, open a text editor (like Notepad or TextEdit). Go back to the web browser tab containing the data you used in the previous part. Copy the data from there and paste it into the text editor. Save it somewhere on your computer (like the Desktop). Follow the steps in the solution below to read the data into R.</li>
-</ol>
-<p>Solution</p>
-<p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Go back to R Studio. Create a new code chunk containing this: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<p>Run this code chunk. You’ll see a file chooser. Find the file you saved on your computer, and click Open (or OK or whatever you see). This saves what R needs to access the file in the variable <code>f</code>. If you want to, you can look at it:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and you’ll see what looks like a file path in the appropriate format for your system (Windows, Mac, Linux). To read the data in, you supply the file path to <code>read_delim</code> thus: ::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(f, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<p>and then you look at it in the same way as before:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["g"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"10","3":"a"},{"1":"2","2":"11","3":"b"},{"1":"3","2":"14","3":"a"},{"1":"4","2":"13","3":"b"},{"1":"5","2":"18","3":"a"},{"1":"6","2":"21","3":"b"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Check.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
-<ol start="7" type="a">
-<li>You might have a spreadsheet on your computer. Create a <code>.csv</code> file from it, and use the ideas of the last part to read it into R Studio.</li>
-</ol>
-<p>Solution</p>
-<p>Open the spreadsheet containing the data you want to read into R. If there are several sheets in the workbook, make sure you’re looking at the right one. Select File, Save As, select “CSV” or “comma-separated values” and give it a name. Save the resulting file somewhere.</p>
-<p>Then read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one. Before that, though, again run</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>to find the <code>.csv</code> file on your computer, and then</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>to read it in. My spreadsheet was</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Car"],"name":[1],"type":["chr"],"align":["left"]},{"label":["MPG"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cylinders"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Horsepower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Country"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Buick Skylark","2":"28.4","3":"2.670","4":"4","5":"90","6":"U.S."},{"1":"Dodge Omni","2":"30.9","3":"2.230","4":"4","5":"75","6":"U.S."},{"1":"Mercury Zephyr","2":"20.8","3":"3.070","4":"6","5":"85","6":"U.S."},{"1":"Fiat Strada","2":"37.3","3":"2.130","4":"4","5":"69","6":"Italy"},{"1":"Peugeot 694 SL","2":"16.2","3":"3.410","4":"6","5":"133","6":"France"},{"1":"VW Rabbit","2":"31.9","3":"1.925","4":"4","5":"71","6":"Germany"},{"1":"Plymouth Horizon","2":"34.2","3":"2.200","4":"4","5":"70","6":"U.S."},{"1":"Mazda GLC","2":"34.1","3":"1.975","4":"4","5":"65","6":"Japan"},{"1":"Buick Estate Wagon","2":"16.9","3":"4.360","4":"8","5":"155","6":"U.S."},{"1":"Audi 5000","2":"20.3","3":"2.830","4":"5","5":"103","6":"Germany"},{"1":"Chevy Malibu Wagon","2":"19.2","3":"3.605","4":"8","5":"125","6":"U.S."},{"1":"Dodge Aspen","2":"18.6","3":"3.620","4":"6","5":"110","6":"U.S."},{"1":"VW Dasher","2":"30.5","3":"2.190","4":"4","5":"78","6":"Germany"},{"1":"Ford Mustang 4","2":"26.5","3":"2.585","4":"4","5":"88","6":"U.S."},{"1":"Dodge Colt","2":"35.1","3":"1.915","4":"4","5":"80","6":"Japan"},{"1":"Datsun 810","2":"22.0","3":"2.815","4":"6","5":"97","6":"Japan"},{"1":"VW Scirocco","2":"31.5","3":"1.990","4":"4","5":"71","6":"Germany"},{"1":"Chevy Citation","2":"28.8","3":"2.595","4":"6","5":"115","6":"U.S."},{"1":"Olds Omega","2":"26.8","3":"2.700","4":"6","5":"115","6":"U.S."},{"1":"Chrysler LeBaron Wagon","2":"18.5","3":"3.940","4":"8","5":"150","6":"U.S."},{"1":"Datsun 510","2":"27.2","3":"2.300","4":"4","5":"97","6":"Japan"},{"1":"AMC Concord D/L","2":"18.1","3":"3.410","4":"6","5":"120","6":"U.S."},{"1":"Buick Century Special","2":"20.6","3":"3.380","4":"6","5":"105","6":"U.S."},{"1":"Saab 99 GLE","2":"21.6","3":"2.795","4":"4","5":"115","6":"Sweden"},{"1":"Datsun 210","2":"31.8","3":"2.020","4":"4","5":"65","6":"Japan"},{"1":"Ford LTD","2":"17.6","3":"3.725","4":"8","5":"129","6":"U.S."},{"1":"Volvo 240 GL","2":"17.0","3":"3.140","4":"6","5":"125","6":"Sweden"},{"1":"Dodge St Regis","2":"18.2","3":"3.830","4":"8","5":"135","6":"U.S."},{"1":"Toyota Corona","2":"27.5","3":"2.560","4":"4","5":"95","6":"Japan"},{"1":"Chevette","2":"30.0","3":"2.155","4":"4","5":"68","6":"U.S."},{"1":"Ford Mustang Ghia","2":"21.9","3":"2.910","4":"6","5":"109","6":"U.S."},{"1":"AMC Spirit","2":"27.4","3":"2.670","4":"4","5":"80","6":"U.S."},{"1":"Ford Country Squire Wagon","2":"15.5","3":"4.054","4":"8","5":"142","6":"U.S."},{"1":"BMW 320i","2":"21.5","3":"2.600","4":"4","5":"110","6":"Germany"},{"1":"Pontiac Phoenix","2":"33.5","3":"2.556","4":"4","5":"90","6":"U.S."},{"1":"Honda Accord LX","2":"29.5","3":"2.135","4":"4","5":"68","6":"Japan"},{"1":"Mercury Grand Marquis","2":"16.5","3":"3.955","4":"8","5":"138","6":"U.S."},{"1":"Chevy Caprice Classic","2":"17.0","3":"3.840","4":"8","5":"130","6":"U.S."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Some information about different types of cars.</p>
-<p><span class="math inline">\(\blacksquare\)</span></p>
 <p>My solutions follow:</p>
 </section>
 <section id="getting-started-1" class="level2" data-number="1.5">
@@ -729,7 +546,7 @@ dbl (2): x, y
 <p>Find the Run button along the top of the document window. We’ll be using that shortly.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="3" type="a">
-<li>The top four lines, surrounded by <code>---</code> above and below, are called a YAML block. This contains information about the document as a whole, and needs to be there. Go down to below that, moving the “Quarto” heading down a bit if you want. On an empty line, type a / and you should see a list of things appear that you might want to insert. Pressing Enter now will insert an R code chunk (sometimes called “code cell”). Do that.</li>
+<li>The top four lines, surrounded by <code>---</code> above and below, are called a <em>YAML block</em>. This contains information about the document as a whole, and needs to be there. Go down to below that, moving the “Quarto” heading down a bit if you want. On an empty line, type a / and you should see a list of things appear that you might want to insert. Pressing Enter now will insert an R code chunk (sometimes called “code cell”). Do that.</li>
 </ol>
 <p>Solution</p>
 <p>Something like this:</p>
@@ -739,7 +556,7 @@ dbl (2): x, y
 <li>Type the line of code shown below into the chunk in the Document:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Solution</p>
 <p>What this will do: get hold of a built-in data set with information about some different models of car, and display it.</p>
@@ -754,7 +571,7 @@ dbl (2): x, y
 <p><img src="Screenshot1509.png" class="img-fluid"></p>
 <p>This is a rectangular array of rows and columns, with individuals in rows and variables in columns, known as a “data frame”. When you display a data frame in a Quarto document, you see 10 rows and as many columns as will fit on the screen. At the bottom, it says how many rows and columns there are altogether (here 32 rows and 11 columns), and which ones are being displayed. You can see more rows by clicking on Next, and if there are more columns, you’ll see a little arrow next to the rightmost column (as here next to <code>am</code>) that you can click on to see more columns. Try it and see. Or if you want to go to a particular collection of rows, click one of the numbers between Previous and Next: 1 is rows 1–10, 2 is rows 11–20, and so on. The column on the left without a header (containing the names of the cars) is called “row names”. These have a funny kind of status, kind of a column and kind of not a column; usually, if we need to use the names, we have to put them in a column first. In future solutions, rather than showing you a screenshot, expect me to show you something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -778,7 +595,7 @@ dbl (2): x, y
 <p>Solution</p>
 <p>This is what you should see:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg             cyl             disp             hp       
  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
@@ -813,7 +630,7 @@ dbl (2): x, y
 <p>Solution</p>
 <p>This is what you should see:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/r0-4-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -824,7 +641,7 @@ dbl (2): x, y
 <li>Some aesthetics to finish with: delete the template document (all the stuff you didn’t type below your code chunks and output). Then add some narrative text above and below your code chunks. Above the code chunk is where you say what you are going to do (and maybe why you are doing it), and below is where you say what you conclude from the output you just obtained.</li>
 </ol>
 <p>Solution</p>
-<p>My complete document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd" class="uri">http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Take a look at it. I added one extra thing: my variable names have “backticks” around them. You’ll see the effect of this in a moment. Backtick is on the key to the left of 1 and below Esc on your keyboard, along with a “squiggle” symbol that we’ll be using later in the course.</p>
+<p>My complete document is at <a href="http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd" class="uri">http://ritsokiguess.site/datafiles/a0-notebook-1.Rmd</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Take a look at it. I added one extra thing: my variable names have “backticks” around them. You’ll see the effect of this in a moment. Backtick is on the key to the left of 1 and below Esc on your keyboard, along with a “squiggle” symbol that we’ll be using later.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol type="i">
 <li>Save your document (the usual way with File and Save). This saves it <em>on the <code>r.datatools</code> server</em> (and not on your computer). This means that when you come back to R Studio later, even from another device, this document will still be available to you. Now click Render. This will work a bit, and then produces a pretty HTML version of your document, that should display on the right of your R Studio in the Viewer.</li>
@@ -850,7 +667,7 @@ dbl (2): x, y
 </ol>
 <p>Solution</p>
 <p>There are two steps: download the HTML file onto your computer, and then handing it in on Quercus.</p>
-<p>To download: find the HTML file that you want to hand in in the Files pane bottom right. There should be two files starting with the same thing, eg. <code>test1.qmd</code>, which is the document you wrote, and <code>test1.nb.html</code>, which is the rendered version of it, and is the one you want to download. (The <code>test1</code> part is the name <em>you</em> chose when you saved it.) Click the checkbox to the left of the HTML file. Now click on More above the bottom-right pane. This pops up a menu from which you choose Export. This will pop up another window called Export Files, where you put the name that the file will have on your computer. (I usually leave the name the same.) Click Download. The file will go to your Downloads folder, or wherever things you download off the web go.</p>
+<p>To download: find the HTML file that you want to hand in in the Files pane bottom right. There should be two files starting with the same thing, eg. <code>test1.qmd</code>, which is the document you wrote, and <code>test1.html</code>, which is the rendered version of it, and is the one you want to download. (The <code>test1</code> part is the name <em>you</em> chose when you saved it.) Click the checkbox to the left of the HTML file. Now click on More above the bottom-right pane. This pops up a menu from which you choose Export. This will pop up another window called Export Files, where you put the name that the file will have on your computer. (I usually leave the name the same.) Click Download. The file will go to your Downloads folder, or wherever things you download off the web go.</p>
 <p>Now, to hand it in. Open up Quercus at <code>q.utoronto.ca</code>, log in and navigate to this course. Click Assignments. Click (the title of) Assignment 0. There is a big blue Submit Assignment button top right. Click it. You’ll get a File Upload at the bottom of the screen. Click Choose File and find the HTML file that you downloaded. Click Open (or equivalent on your system). The name of the file should appear next to Choose File. Click Submit Assignment. You’ll see Submitted at the top right.</p>
 <p>If you want to try this again, you can Re-submit Assignment as many times as you like. (For the real thing, you can use this if you realize you made a mistake in something you submitted. The graders’ instructions, for the real thing, are to grade the <em>last</em> file submitted, so in that case you need to make sure that the last thing submitted includes <em>everything</em> that you want graded. Here, though, it doesn’t matter.)</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -860,17 +677,16 @@ dbl (2): x, y
 <p>Solution</p>
 <p>That goes like this. I’ll explain the steps below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/r0-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>$ %$ %$</p>
 <p>This shows a somewhat downward trend, which is what you’d expect, since a larger <code>hp</code> value means a more powerful engine, which will probably consume more gas and get <em>fewer</em> miles per gallon. As for the code: to make a <code>ggplot</code> plot, as we will shortly see in class, you first need a <code>ggplot</code> statement that says what to plot. The first thing in a <code>ggplot</code> is a data frame (<code>mtcars</code> here), and then the <code>aes</code> says that the plot will have <code>hp</code> on the <span class="math inline">\(x\)</span>-axis and <code>mpg</code> on the <span class="math inline">\(y\)</span>-axis, taken from the data frame that you specified. That’s all of the what-to-plot. The last thing is how to plot it; <code>geom_point()</code> says to plot the data values as points.</p>
 <p>You might like to add a regression line to the plot. That is a matter of adding this to the end of the plotting command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span>hp, <span class="at">y=</span>mpg))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -903,8 +719,8 @@ dbl (2): x, y
 <p>Solution</p>
 <p>Like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_url<span class="ot">=</span><span class="st">"http://ritsokiguess.site/datafiles/jumping.txt"</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>rats<span class="ot">=</span><span class="fu">read_delim</span>(my_url,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/jumping.txt"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>rats <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url,<span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 30 Columns: 2
 ── Column specification ────────────────────────────────────────────────────────
@@ -916,14 +732,14 @@ dbl (1): density
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>The second thing in <code>read_delim</code> is the thing that separates the data values. Often when you use <code>read_delim</code> it’ll be a space.</p>
+<p>The second thing in <code>read_delim</code> is what separates the data values. Often when you use <code>read_delim</code> it’ll be a space.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Take a look at your data frame, by making a new code chunk and putting the data frame’s name in it (as we did with <code>mtcars</code>).</li>
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -941,8 +757,8 @@ dbl (1): density
 <p>Solution</p>
 <p>This is something you’ll see a lot: <code>group_by</code> followed by <code>summarize</code>. Reminder: to get that funny thing with the percent signs (called the “pipe symbol”), type control-shift-M (or equivalent on a Mac):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>rats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m=</span><span class="fu">mean</span>(density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">m=</span><span class="fu">mean</span>(density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -960,7 +776,7 @@ dbl (1): density
 <p>Solution</p>
 <p>On a boxplot, the groups go across and the values go up and down, so the right syntax is this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats,<span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>density))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rats,<span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>density))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="getting_used_files/figure-html/lippach-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -981,7 +797,7 @@ dbl (1): density
 <p><img src="Screenshot_2019-01-10_11-55-06.png" class="img-fluid"></p>
 <p>If you have an error rather than that output, you probably need to install the <code>tidyverse</code> first. Make another code chunk, containing</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and run it. Wait for it to finish. It may take a while. If it completes successfully (you might see the word DONE at the end), delete that code chunk (you don’t need it any more) and try again with the <code>library(tidyverse)</code> chunk. It should run properly this time.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -991,8 +807,8 @@ dbl (1): density
 <p>Solution</p>
 <p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -1003,7 +819,7 @@ dbl (2): x, y
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1025,7 +841,7 @@ dbl (2): x, y
 <p>Click the Upload button (next to New Folder), click Choose File. Use the file finder to track down the file you saved on your computer, then click OK. The file should be uploaded to the same folder on <code>r.datatools</code> that your project is, and appear in the Files pane bottom right.</p>
 <p>To read it in, you supply the file name to <code>read_delim</code> thus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"testing.txt"</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"testing.txt"</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -1039,7 +855,7 @@ dbl (2): x, y
 </div>
 <p>and then you look at it in the same way as before:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1060,7 +876,7 @@ dbl (2): x, y
 <p>The final step is to read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one.</p>
 <p>My spreadsheet got saved as <code>cars.csv</code>, so:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cars.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 38 Columns: 6
 ── Column specification ────────────────────────────────────────────────────────
@@ -1071,7 +887,7 @@ dbl (4): MPG, Weight, Cylinders, Horsepower
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1090,8 +906,8 @@ dbl (4): MPG, Weight, Cylinders, Horsepower
 <p>Solution</p>
 <p>Data values separated by exactly one space is the kind of thing that <code>read_delim</code> reads, so make another code chunk and fill it with this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/testing.txt"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -1102,7 +918,7 @@ dbl (2): x, y
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>testing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1122,19 +938,19 @@ dbl (2): x, y
 <p>Solution</p>
 <p>I copied and pasted the data, and saved it in a file called <code>testing.txt</code> on my computer. I’m assuming that you’ve given it a similar name. Go back to R Studio. Create a new code chunk containing this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Run this code chunk. You’ll see a file chooser. Find the file you saved on your computer, and click Open (or OK or whatever you see). This saves what R needs to access the file in the variable <code>f</code>. If you want to, you can look at it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and you’ll see what looks like a file path in the appropriate format for your system (Windows, Mac, Linux). To read the data in, you supply the file path to <code>read_delim</code> thus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(f, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>testing2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(f, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and then you look at it in the same way as before:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>testing2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1153,15 +969,15 @@ dbl (2): x, y
 <p>Open the spreadsheet containing the data you want to read into R. If there are several sheets in the workbook, make sure you’re looking at the right one. Select File, Save As, select “CSV” or “comma-separated values” and give it a name. Save the resulting file somewhere.</p>
 <p>Then read it into an R data frame. This uses <code>read_csv</code>; there are several <code>read_</code> functions that read in different types of file, and you need to use an appropriate one. Before that, though, again run</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>to find the <code>.csv</code> file on your computer, and then</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>to read it in. My spreadsheet was</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
