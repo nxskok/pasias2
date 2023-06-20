@@ -811,7 +811,6 @@ dbl (4): very.unsat, unsat, sat, very.sat
 <li>Obtain predicted probabilities of a customer falling in the various satisfaction categories, as it depends on gender and age group. To do that, you need to feed <code>predictions</code> three things: the fitted model that contains both age group and gender, the data frame that you read in from the file back in part (<a href="#part:gather">here</a>) (which contains all the combinations of age group and gender), and an appropriate <code>type</code>.</li>
 </ol>
 <p>Solution</p>
-<p>xxx use predictions</p>
 <p>My model containing both <span class="math inline">\(x\)</span>s was <code>mobile.1</code>, the data frame read in from the file was called <code>mobile</code>, and I need <code>type="p"</code> to get probabilities. The first thing is to get the genders and age groups to make combinations of them, which you can do like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> mobile<span class="fl">.1</span>, </span>
