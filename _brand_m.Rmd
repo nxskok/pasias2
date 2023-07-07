@@ -157,54 +157,43 @@ And finally we are done! There are three two-way interactions left, which should
 $\blacksquare$
 
 
-(c) What is associated with the brand a  respondent prefers? By obtaining suitable frequency tables, describe the nature of these associations.
+(c) What is associated with the brand a  respondent prefers? By obtaining suitable graphs, describe the nature of these associations.
 
 Solution
 
 
 To see what is associated with brand preference, look for significant associations with `prefer`. There are two of them, one with `m_user`, and, separately, one with temperature. This means that a respondent's brand preference depends on whether or not they previously used brand M, and also on what temperature the laundry was washed at.
 
-To investigate these, use `xtabs` to get a frequency table (easiest), and if necessary use `prop.table` to get row or column proportions as appropriate. The first thing in the model formula in `xtabs` is the frequency column; the first thing after the squiggle is rows and the second thing is columns. (If there happened to be a third thing, it would be "layers" in the table.) You might find that the table of frequencies is enough to interpret what is going on, but if not, use `prop.table` to get a table of proportions. I talk about that in a moment.
+To investigate these, we need the variation on the two-variable bar chart. Here's `m_user` (explanatory) with `prefer` (response):
 
-```{r brand-m-16}
-xt <- xtabs(frequency ~ m_user + prefer, data = prefs)
-xt
+```{r}
+ggplot(prefs, aes(x = m_user, y = frequency, fill = prefer)) + 
+  geom_col(position = "fill")
 ```
 
-`prefer` is the response (outcome), which I put in the columns, so I look along the rows to see what is going on. Out of the people who were previous users of Brand M (second row), slightly more of them preferred Brand M; out of the people who were not Brand M users (first row), somewhat more of them preferred Brand X.
-
-This was not hard to see, because the opposite frequencies were bigger each time. But you might find it easier to compute percentages and compare those. In my table, the response was rows, so the right percentages to compute are *row* ones. That is done like this. 1 is rows, 2 is columns:
-
-```{r brand-m-17}
-prop.table(xt, margin = 1)
-```
-
-Out of the people who were previous Brand M users, 57% preferred Brand M; out of the people who were not previous Brand M users, only 43% of them preferred Brand M. 
+Out of the people who were previous users of Brand M (on the right), slightly more of them preferred Brand M; out of the people who were not Brand M users (on the left), somewhat more of them preferred Brand X.
 
 Advertisers use terms like "brand familiarity" to capture ideas like this: more people prefer Brand M in the survey if they have used it before. Not altogether surprising. 
 
 
 On to the effects of temperature on preference:
 
-```{r brand-m-18}
-xt <- xtabs(frequency ~ temperature + prefer, data = prefs)
-xt
-prop.table(xt, margin = 1)
+```{r}
+ggplot(prefs, aes(x = temperature, y = frequency, fill = prefer)) +
+  geom_col(position = "fill")
 ```
 
-Out of the people who used a high-temperature wash, 54% of them preferred brand M, but out of the people who used a low-temperature wash, only 47% of them preferred brand M.
+
+Out of the people who used a high-temperature wash, a small majority of them preferred brand M, but out of the people who used a low-temperature wash, a small majority of them preferred brand X.
 
 I'm making it seem like this is a big difference, and of course it's a very small one, but the size of the survey makes even this tiny difference significant. 
 
-Those are really the two effects of interest, since they are the ones associated with brand preference. But there was one more association that was significant: between temperature and softness. The softness in this case was of the water used to do the laundry (and not, for example, the softness of the clothes after they come out of the dryer). That goes like this:
+Those are really the two effects of interest, since they are the ones associated with brand preference. But there was one more association that was significant: between temperature and softness. The softness in this case was of the water used to do the laundry (and not, for example, the softness of the clothes after they come out of the dryer).  There isn't really any reason to pick one of these as the response, but we have to make a choice for the graph. I decided to condition on the softness of the water, since that cannot be controlled by the person doing the laundry (the water just *is* hard or soft, depending on where you live and where your water comes from). 
 
-```{r brand-m-19}
-xt <- xtabs(frequency ~ temperature + softness, data = prefs)
-xt
-prop.table(xt, margin = 2)
+```{r}
+ggplot(prefs, aes(x = softness, y = frequency, fill = temperature)) +
+  geom_col(position = "fill")
 ```
-
-I decided to condition on the softness of the water, since that cannot be controlled by the person doing the laundry (the water just *is* hard or soft, depending on where you live and where your water comes from). 
 
 In each case, a majority of the washes were done at low temperature, but the softer the water, the bigger that majority was. Once again, the effect is not all that big, because the association was only just significant.
 
