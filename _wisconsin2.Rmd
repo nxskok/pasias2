@@ -85,14 +85,14 @@ Note that the columns in here have *exactly* the same names as the ones in the o
 I did this by copy-pasting the city names whose states needed changing out of the display of my `wisc2`. You might think that a left join is what we need now, and it almost is. Note that I want to match the locations but *not* the states:
 
 ```{r wisconsin2-6}
-wisc2 %>% left_join(changes, by = "location")
+wisc2 %>% left_join(changes, join_by(location))
 ```
 
 and the story here is that if `state.y` has a value, use that, otherwise use  the value in `state.x`. This can even be done: there is a function `coalesce`^[I knew this existed, but I couldn't remember what it was called, which made it hard to search for. My first port of call was `na_if`, which converts values to `NA`, the opposite of what I wanted. But from its See Also I got `na_replace`, and from the See Also of that, I found out what `coalesce` does.]  that will do exactly that:
 
 
 ```{r wisconsin2-7}
-wisc2 %>% left_join(changes, by = "location") %>% 
+wisc2 %>% left_join(changes, join_by(location)) %>% 
   mutate(state=coalesce(state.y, state.x))
 ```
 

@@ -571,12 +571,12 @@ xx <- x %>%
     decision = case_when(
       decision == 0 ~ "stop",
       decision == 1 ~ "continue",
-      TRUE ~ "error"
+      .default      = "error"
     ),
     gender = case_when(
       gender == 0 ~ "Female",
       gender == 1 ~ "Male",
-      TRUE ~ "error"
+      .default    = "error"
     ),
     scenario = case_when(
       scenario == 1 ~ "cosmetic",
@@ -584,7 +584,7 @@ xx <- x %>%
       scenario == 3 ~ "meat",
       scenario == 4 ~ "veterinary",
       scenario == 5 ~ "medical",
-      TRUE ~ "error"
+      .default      = "error"
     )
   )
 xx %>% as_tibble() %>% select(-(cosmetic:veterin))
