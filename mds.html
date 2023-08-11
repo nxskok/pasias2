@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 39&nbsp; Multidimensional Scaling</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 38&nbsp; Multidimensional Scaling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./pc.html" rel="next">
-<link href="./maps.html" rel="prev">
+<link href="./kmeans-cluster.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mds.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mds.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -368,32 +368,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -406,16 +400,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#making-a-map-of-wisconsin" id="toc-making-a-map-of-wisconsin" class="nav-link active" data-scroll-target="#making-a-map-of-wisconsin"><span class="header-section-number">39.1</span> Making a map of Wisconsin</a></li>
-  <li><a href="#things-that-feel-similar-to-each-other" id="toc-things-that-feel-similar-to-each-other" class="nav-link" data-scroll-target="#things-that-feel-similar-to-each-other"><span class="header-section-number">39.2</span> Things that feel similar to each other</a></li>
-  <li><a href="#confusing-letters" id="toc-confusing-letters" class="nav-link" data-scroll-target="#confusing-letters"><span class="header-section-number">39.3</span> Confusing letters</a></li>
-  <li><a href="#more-beer-please" id="toc-more-beer-please" class="nav-link" data-scroll-target="#more-beer-please"><span class="header-section-number">39.4</span> More beer please</a></li>
-  <li><a href="#feeling-similar-again" id="toc-feeling-similar-again" class="nav-link" data-scroll-target="#feeling-similar-again"><span class="header-section-number">39.5</span> Feeling similar, again</a></li>
-  <li><a href="#making-a-map-of-wisconsin-1" id="toc-making-a-map-of-wisconsin-1" class="nav-link" data-scroll-target="#making-a-map-of-wisconsin-1"><span class="header-section-number">39.6</span> Making a map of Wisconsin</a></li>
-  <li><a href="#things-that-feel-similar-to-each-other-1" id="toc-things-that-feel-similar-to-each-other-1" class="nav-link" data-scroll-target="#things-that-feel-similar-to-each-other-1"><span class="header-section-number">39.7</span> Things that feel similar to each other</a></li>
-  <li><a href="#confusing-letters-1" id="toc-confusing-letters-1" class="nav-link" data-scroll-target="#confusing-letters-1"><span class="header-section-number">39.8</span> Confusing letters</a></li>
-  <li><a href="#more-beer-please-1" id="toc-more-beer-please-1" class="nav-link" data-scroll-target="#more-beer-please-1"><span class="header-section-number">39.9</span> More beer please</a></li>
-  <li><a href="#feeling-similar-again-1" id="toc-feeling-similar-again-1" class="nav-link" data-scroll-target="#feeling-similar-again-1"><span class="header-section-number">39.10</span> Feeling similar, again</a></li>
+  <li><a href="#making-a-map-of-wisconsin" id="toc-making-a-map-of-wisconsin" class="nav-link active" data-scroll-target="#making-a-map-of-wisconsin"><span class="header-section-number">38.1</span> Making a map of Wisconsin</a></li>
+  <li><a href="#things-that-feel-similar-to-each-other" id="toc-things-that-feel-similar-to-each-other" class="nav-link" data-scroll-target="#things-that-feel-similar-to-each-other"><span class="header-section-number">38.2</span> Things that feel similar to each other</a></li>
+  <li><a href="#confusing-letters" id="toc-confusing-letters" class="nav-link" data-scroll-target="#confusing-letters"><span class="header-section-number">38.3</span> Confusing letters</a></li>
+  <li><a href="#more-beer-please" id="toc-more-beer-please" class="nav-link" data-scroll-target="#more-beer-please"><span class="header-section-number">38.4</span> More beer please</a></li>
+  <li><a href="#feeling-similar-again" id="toc-feeling-similar-again" class="nav-link" data-scroll-target="#feeling-similar-again"><span class="header-section-number">38.5</span> Feeling similar, again</a></li>
+  <li><a href="#making-a-map-of-wisconsin-1" id="toc-making-a-map-of-wisconsin-1" class="nav-link" data-scroll-target="#making-a-map-of-wisconsin-1"><span class="header-section-number">38.6</span> Making a map of Wisconsin</a></li>
+  <li><a href="#things-that-feel-similar-to-each-other-1" id="toc-things-that-feel-similar-to-each-other-1" class="nav-link" data-scroll-target="#things-that-feel-similar-to-each-other-1"><span class="header-section-number">38.7</span> Things that feel similar to each other</a></li>
+  <li><a href="#confusing-letters-1" id="toc-confusing-letters-1" class="nav-link" data-scroll-target="#confusing-letters-1"><span class="header-section-number">38.8</span> Confusing letters</a></li>
+  <li><a href="#more-beer-please-1" id="toc-more-beer-please-1" class="nav-link" data-scroll-target="#more-beer-please-1"><span class="header-section-number">38.9</span> More beer please</a></li>
+  <li><a href="#feeling-similar-again-1" id="toc-feeling-similar-again-1" class="nav-link" data-scroll-target="#feeling-similar-again-1"><span class="header-section-number">38.10</span> Feeling similar, again</a></li>
   </ul>
 </nav>
     </div>
@@ -424,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></h1>
+<h1 class="title"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></h1>
 </div>
 
 
@@ -445,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="making-a-map-of-wisconsin" class="level2" data-number="39.1">
-<h2 data-number="39.1" class="anchored" data-anchor-id="making-a-map-of-wisconsin"><span class="header-section-number">39.1</span> Making a map of Wisconsin</h2>
+<section id="making-a-map-of-wisconsin" class="level2" data-number="38.1">
+<h2 data-number="38.1" class="anchored" data-anchor-id="making-a-map-of-wisconsin"><span class="header-section-number">38.1</span> Making a map of Wisconsin</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/wisconsin.txt">link</a> contains the road distances (in miles) between 12 cities in Wisconsin and neighbouring states. We are going to try to reproduce a map of the area using multidimensional scaling.</p>
 <ol type="a">
 <li><p>Read in the data and create a <code>dist</code> object, bearing in mind that the data in the file are already distances. Display your <code>dist</code> object. Probably, displaying the data that you read in is a good idea also.</p></li>
@@ -459,8 +453,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Calculate something that demonstrates that a one-dimensional map of the cities is a much worse representation than the two-dimensional one that we made before. (I’m planning to get to this in class, but if we skip it, don’t worry about this part.)</p></li>
 </ol>
 </section>
-<section id="things-that-feel-similar-to-each-other" class="level2" data-number="39.2">
-<h2 data-number="39.2" class="anchored" data-anchor-id="things-that-feel-similar-to-each-other"><span class="header-section-number">39.2</span> Things that feel similar to each other</h2>
+<section id="things-that-feel-similar-to-each-other" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="things-that-feel-similar-to-each-other"><span class="header-section-number">38.2</span> Things that feel similar to each other</h2>
 <p>Which objects feel similar to one another and which ones feel different? Can we draw them on a “map”? 30 subjects<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> were each given 17 different objects to feel, for example “inner surface of pine bark”, “rubber eraser” and “nylon scouring pad”. The subjects had to group the objects into a maximum of 8 groups such that the objects within a group felt similar, and the ones in different groups felt different.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> A dissimilarity matrix was formed by counting how many subjects put each pair of objects into <em>different</em> groups, so that the dissimilarity ranged from 0 (the objects were always put together in the same group) to 30 (the objects were not put together into the same group by any of the subjects).</p>
 <p>The data are in <a href="http://ritsokiguess.site/datafiles/stimuli.txt">link</a>.</p>
 <ol type="a">
@@ -476,8 +470,8 @@ Convert your data frame into a distance object. Take a look at the (rather long)
 <li><p>Discuss as briefly as seems reasonable whether your clusters tell the same story as the map that came from multidimensional scaling. (There were only three marks for this, so you don’t need to go overboard.) Optionally, think about creating a plot that will make it easier to see the correspondence between your clusters and the MDS map.</p></li>
 </ol>
 </section>
-<section id="confusing-letters" class="level2" data-number="39.3">
-<h2 data-number="39.3" class="anchored" data-anchor-id="confusing-letters"><span class="header-section-number">39.3</span> Confusing letters</h2>
+<section id="confusing-letters" class="level2" data-number="38.3">
+<h2 data-number="38.3" class="anchored" data-anchor-id="confusing-letters"><span class="header-section-number">38.3</span> Confusing letters</h2>
 <p>Two researchers studied how often people mistook one letter for another one. They did this by showing their subjects each (uppercase) letter for a few milliseconds only, and asking them which letter (out of a list) they just saw. The researchers obtain a “confusion matrix” in which, for example, the W-Q entry is the total of W’s taken as Q and Q’s taken as W. This confusion matrix is in <a href="http://ritsokiguess.site/datafiles/letterrec.txt">link</a>. Note that the confusions are actually <em>similarities</em> rather than dissimilarities: a large number means that the two letters concerned are easily confused, that is, similar. Similarities can be converted to dissimilarities by subtracting them from a larger number than anything in the table (that is, subtracting from 21 is good here).</p>
 <ol type="a">
 <li><p>Read in the confusion matrix and convert it to dissimilarities and then to a <code>dist</code> object, displaying the <code>dist</code> object that you obtain.</p></li>
@@ -488,8 +482,8 @@ Convert your data frame into a distance object. Take a look at the (rather long)
 <li><p>Verify that your chosen pair of letters was often confused in the data.</p></li>
 </ol>
 </section>
-<section id="more-beer-please" class="level2" data-number="39.4">
-<h2 data-number="39.4" class="anchored" data-anchor-id="more-beer-please"><span class="header-section-number">39.4</span> More beer please</h2>
+<section id="more-beer-please" class="level2" data-number="38.4">
+<h2 data-number="38.4" class="anchored" data-anchor-id="more-beer-please"><span class="header-section-number">38.4</span> More beer please</h2>
 <p>Previously, you did a cluster analysis of ten brands of beer, as rated by 32 students. This time, we will do a non-metric multidimensional scaling of those same brands of beer. The data are in <a href="http://ritsokiguess.site/datafiles/beer.txt">link</a>.</p>
 <ol type="a">
 <li><p>Noting that we want to assess distances between brands of beer, read in the data and do whatever you need to do to work out distances between the beers. Show your result.</p></li>
@@ -500,8 +494,8 @@ Convert your data frame into a distance object. Take a look at the (rather long)
 <li><p>In our cluster analysis, we found that Anchor Steam, Pete’s Wicked Ale, Guinness and Sierra Nevada were all in the same cluster. Would you expect them to be close together on your map? Are they? Explain briefly.</p></li>
 </ol>
 </section>
-<section id="feeling-similar-again" class="level2" data-number="39.5">
-<h2 data-number="39.5" class="anchored" data-anchor-id="feeling-similar-again"><span class="header-section-number">39.5</span> Feeling similar, again</h2>
+<section id="feeling-similar-again" class="level2" data-number="38.5">
+<h2 data-number="38.5" class="anchored" data-anchor-id="feeling-similar-again"><span class="header-section-number">38.5</span> Feeling similar, again</h2>
 <p>Previously, we looked at an experiment about which objects feel similar to one another and which ones feel different.</p>
 <p>30 subjects were each given 17 different objects to feel, for example “inner surface of pine bark”, “rubber eraser” and “nylon scouring pad”. The subjects had to group the objects into a maximum of 8 groups such that the objects within a group felt similar, and the ones in different groups felt different. A dissimilarity matrix was formed by counting how many subjects put each pair of objects into <em>different</em> groups, so that the dissimilarity ranged from 0 (the objects were always put together in the same group) to 30 (the objects were not put together into the same group by any of the subjects).</p>
 <p>The data are in <a href="http://ritsokiguess.site/datafiles/stimuli.txt">link</a>. These have <em>no</em> column names.</p>
@@ -517,8 +511,8 @@ Convert your data frame into a distance object. Take a look at the (rather long)
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="making-a-map-of-wisconsin-1" class="level2" data-number="39.6">
-<h2 data-number="39.6" class="anchored" data-anchor-id="making-a-map-of-wisconsin-1"><span class="header-section-number">39.6</span> Making a map of Wisconsin</h2>
+<section id="making-a-map-of-wisconsin-1" class="level2" data-number="38.6">
+<h2 data-number="38.6" class="anchored" data-anchor-id="making-a-map-of-wisconsin-1"><span class="header-section-number">38.6</span> Making a map of Wisconsin</h2>
 <p>The file <a href="http://ritsokiguess.site/datafiles/wisconsin.txt">link</a> contains the road distances (in miles) between 12 cities in Wisconsin and neighbouring states. We are going to try to reproduce a map of the area using multidimensional scaling.</p>
 <ol type="a">
 <li>Read in the data and create a <code>dist</code> object, bearing in mind that the data in the file are already distances. Display your <code>dist</code> object. Probably, displaying the data that you read in is a good idea also.</li>
@@ -797,8 +791,8 @@ attr(,"Upper")
 <p>The cities get mapped onto a line that goes northwest (top) to southeast (bottom). This is not completely terrible, since there aren’t really any cities in the northeast of the state, but it <em>is</em> pretty awful.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="things-that-feel-similar-to-each-other-1" class="level2" data-number="39.7">
-<h2 data-number="39.7" class="anchored" data-anchor-id="things-that-feel-similar-to-each-other-1"><span class="header-section-number">39.7</span> Things that feel similar to each other</h2>
+<section id="things-that-feel-similar-to-each-other-1" class="level2" data-number="38.7">
+<h2 data-number="38.7" class="anchored" data-anchor-id="things-that-feel-similar-to-each-other-1"><span class="header-section-number">38.7</span> Things that feel similar to each other</h2>
 <p>Which objects feel similar to one another and which ones feel different? Can we draw them on a “map”? 30 subjects<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> were each given 17 different objects to feel, for example “inner surface of pine bark”, “rubber eraser” and “nylon scouring pad”. The subjects had to group the objects into a maximum of 8 groups such that the objects within a group felt similar, and the ones in different groups felt different.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> A dissimilarity matrix was formed by counting how many subjects put each pair of objects into <em>different</em> groups, so that the dissimilarity ranged from 0 (the objects were always put together in the same group) to 30 (the objects were not put together into the same group by any of the subjects).</p>
 <p>The data are in <a href="http://ritsokiguess.site/datafiles/stimuli.txt">link</a>.</p>
 <ol type="a">
@@ -1148,8 +1142,8 @@ X3 -0.3512713  0.09616153 0.19930252</code></pre>
 <p>Anyway, the key to gaining some insight here is to find a way to <em>combine</em> the output from the cluster analysis and the multidimensional scaling. That way you can see both in the same place, and see how they compare.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="confusing-letters-1" class="level2" data-number="39.8">
-<h2 data-number="39.8" class="anchored" data-anchor-id="confusing-letters-1"><span class="header-section-number">39.8</span> Confusing letters</h2>
+<section id="confusing-letters-1" class="level2" data-number="38.8">
+<h2 data-number="38.8" class="anchored" data-anchor-id="confusing-letters-1"><span class="header-section-number">38.8</span> Confusing letters</h2>
 <p>Two researchers studied how often people mistook one letter for another one. They did this by showing their subjects each (uppercase) letter for a few milliseconds only, and asking them which letter (out of a list) they just saw. The researchers obtain a “confusion matrix” in which, for example, the W-Q entry is the total of W’s taken as Q and Q’s taken as W. This confusion matrix is in <a href="http://ritsokiguess.site/datafiles/letterrec.txt">link</a>. Note that the confusions are actually <em>similarities</em> rather than dissimilarities: a large number means that the two letters concerned are easily confused, that is, similar. Similarities can be converted to dissimilarities by subtracting them from a larger number than anything in the table (that is, subtracting from 21 is good here).</p>
 <ol type="a">
 <li>Read in the confusion matrix and convert it to dissimilarities and then to a <code>dist</code> object, displaying the <code>dist</code> object that you obtain.</li>
@@ -1660,8 +1654,8 @@ glossypaintedwood                    29                  26     26       12</cod
 <p>These, again, are smaller than most, though not the smallest overall. So, if you go this way, you need to assert that the corresponding number in your <code>dist</code> object is <em>small</em>.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="more-beer-please-1" class="level2" data-number="39.9">
-<h2 data-number="39.9" class="anchored" data-anchor-id="more-beer-please-1"><span class="header-section-number">39.9</span> More beer please</h2>
+<section id="more-beer-please-1" class="level2" data-number="38.9">
+<h2 data-number="38.9" class="anchored" data-anchor-id="more-beer-please-1"><span class="header-section-number">38.9</span> More beer please</h2>
 <p>Previously, you did a cluster analysis of ten brands of beer, as rated by 32 students. This time, we will do a non-metric multidimensional scaling of those same brands of beer. The data are in <a href="http://ritsokiguess.site/datafiles/beer.txt">link</a>.</p>
 <ol type="a">
 <li>Noting that we want to assess distances between brands of beer, read in the data and do whatever you need to do to work out distances between the beers. Show your result.</li>
@@ -1812,8 +1806,8 @@ converged</code></pre>
 <p>That may be the story, in the end. With the cluster analysis, we were forcing the clustering to happen, whether it was really there or not. We haven’t seen a test for the “significance” of clusters, so the clusters we found may not mean very much.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="feeling-similar-again-1" class="level2" data-number="39.10">
-<h2 data-number="39.10" class="anchored" data-anchor-id="feeling-similar-again-1"><span class="header-section-number">39.10</span> Feeling similar, again</h2>
+<section id="feeling-similar-again-1" class="level2" data-number="38.10">
+<h2 data-number="38.10" class="anchored" data-anchor-id="feeling-similar-again-1"><span class="header-section-number">38.10</span> Feeling similar, again</h2>
 <p>Previously, we looked at an experiment about which objects feel similar to one another and which ones feel different.</p>
 <p>30 subjects were each given 17 different objects to feel, for example “inner surface of pine bark”, “rubber eraser” and “nylon scouring pad”. The subjects had to group the objects into a maximum of 8 groups such that the objects within a group felt similar, and the ones in different groups felt different. A dissimilarity matrix was formed by counting how many subjects put each pair of objects into <em>different</em> groups, so that the dissimilarity ranged from 0 (the objects were always put together in the same group) to 30 (the objects were not put together into the same group by any of the subjects).</p>
 <p>The data are in <a href="http://ritsokiguess.site/datafiles/stimuli.txt">link</a>. These have <em>no</em> column names.</p>
@@ -2311,13 +2305,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./maps.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span>
+      <a href="./kmeans-cluster.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">K-means cluster analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./pc.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

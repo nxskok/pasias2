@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 41&nbsp; Factor Analysis</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 40&nbsp; Factor Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./fa.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./fa.html"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -368,32 +368,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -406,12 +400,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-interpersonal-circumplex" id="toc-the-interpersonal-circumplex" class="nav-link active" data-scroll-target="#the-interpersonal-circumplex"><span class="header-section-number">41.1</span> The Interpersonal Circumplex</a></li>
-  <li><a href="#a-correlation-matrix" id="toc-a-correlation-matrix" class="nav-link" data-scroll-target="#a-correlation-matrix"><span class="header-section-number">41.2</span> A correlation matrix</a></li>
-  <li><a href="#air-pollution" id="toc-air-pollution" class="nav-link" data-scroll-target="#air-pollution"><span class="header-section-number">41.3</span> Air pollution</a></li>
-  <li><a href="#the-interpersonal-circumplex-1" id="toc-the-interpersonal-circumplex-1" class="nav-link" data-scroll-target="#the-interpersonal-circumplex-1"><span class="header-section-number">41.4</span> The Interpersonal Circumplex</a></li>
-  <li><a href="#a-correlation-matrix-1" id="toc-a-correlation-matrix-1" class="nav-link" data-scroll-target="#a-correlation-matrix-1"><span class="header-section-number">41.5</span> A correlation matrix</a></li>
-  <li><a href="#air-pollution-1" id="toc-air-pollution-1" class="nav-link" data-scroll-target="#air-pollution-1"><span class="header-section-number">41.6</span> Air pollution</a></li>
+  <li><a href="#the-interpersonal-circumplex" id="toc-the-interpersonal-circumplex" class="nav-link active" data-scroll-target="#the-interpersonal-circumplex"><span class="header-section-number">40.1</span> The Interpersonal Circumplex</a></li>
+  <li><a href="#a-correlation-matrix" id="toc-a-correlation-matrix" class="nav-link" data-scroll-target="#a-correlation-matrix"><span class="header-section-number">40.2</span> A correlation matrix</a></li>
+  <li><a href="#air-pollution" id="toc-air-pollution" class="nav-link" data-scroll-target="#air-pollution"><span class="header-section-number">40.3</span> Air pollution</a></li>
+  <li><a href="#the-interpersonal-circumplex-1" id="toc-the-interpersonal-circumplex-1" class="nav-link" data-scroll-target="#the-interpersonal-circumplex-1"><span class="header-section-number">40.4</span> The Interpersonal Circumplex</a></li>
+  <li><a href="#a-correlation-matrix-1" id="toc-a-correlation-matrix-1" class="nav-link" data-scroll-target="#a-correlation-matrix-1"><span class="header-section-number">40.5</span> A correlation matrix</a></li>
+  <li><a href="#air-pollution-1" id="toc-air-pollution-1" class="nav-link" data-scroll-target="#air-pollution-1"><span class="header-section-number">40.6</span> Air pollution</a></li>
   </ul>
 </nav>
     </div>
@@ -420,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></h1>
 </div>
 
 
@@ -440,8 +434,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbiplot)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="the-interpersonal-circumplex" class="level2" data-number="41.1">
-<h2 data-number="41.1" class="anchored" data-anchor-id="the-interpersonal-circumplex"><span class="header-section-number">41.1</span> The Interpersonal Circumplex</h2>
+<section id="the-interpersonal-circumplex" class="level2" data-number="40.1">
+<h2 data-number="40.1" class="anchored" data-anchor-id="the-interpersonal-circumplex"><span class="header-section-number">40.1</span> The Interpersonal Circumplex</h2>
 <p>The “IPIP Interpersonal Circumplex” (see <a href="http://ipip.ori.org/newIPIP-IPCSurvey.htm">link</a>) is a personal behaviour survey, where respondents have to rate how accurately a number of statements about behaviour apply to them, on a scale from 1 (“very inaccurate”) to 5 (“very accurate”). A survey was done on 459 people, using a 44-item variant of the above questionnaire, where the statements were as follows. Put an “I” or an “I am” in front of each one:</p>
 <ul>
 <li><p>talkative</p></li>
@@ -502,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Check the uniquenesses. Which one(s) seem unusually high? Check these against the factor loadings. Are these what you would expect?</p></li>
 </ol>
 </section>
-<section id="a-correlation-matrix" class="level2" data-number="41.2">
-<h2 data-number="41.2" class="anchored" data-anchor-id="a-correlation-matrix"><span class="header-section-number">41.2</span> A correlation matrix</h2>
+<section id="a-correlation-matrix" class="level2" data-number="40.2">
+<h2 data-number="40.2" class="anchored" data-anchor-id="a-correlation-matrix"><span class="header-section-number">40.2</span> A correlation matrix</h2>
 <p>Here is a correlation matrix between five variables. This correlation matrix was based on <span class="math inline">\(n=50\)</span> observations. Save the data into a file.</p>
 <pre><code>
 1.00 0.90 -0.40 0.28 -0.05
@@ -523,8 +517,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Look at the uniquenesses. Are there any that are unusually high? Does that surprise you, given your answer to (<a href="#part:load">here</a>)? (You will probably have to make a judgement call here.)</p></li>
 </ol>
 </section>
-<section id="air-pollution" class="level2" data-number="41.3">
-<h2 data-number="41.3" class="anchored" data-anchor-id="air-pollution"><span class="header-section-number">41.3</span> Air pollution</h2>
+<section id="air-pollution" class="level2" data-number="40.3">
+<h2 data-number="40.3" class="anchored" data-anchor-id="air-pollution"><span class="header-section-number">40.3</span> Air pollution</h2>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/airpollution.csv">link</a> are measurements of air-pollution variables recorded at 12 noon on 42 different days at a location in Los Angeles. The file is in <code>.csv</code> format, since it came from a spreadsheet. Specifically, the variables (in suitable units), in the same order as in the data file, are:</p>
 <ul>
 <li><p>wind speed</p></li>
@@ -551,8 +545,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="the-interpersonal-circumplex-1" class="level2" data-number="41.4">
-<h2 data-number="41.4" class="anchored" data-anchor-id="the-interpersonal-circumplex-1"><span class="header-section-number">41.4</span> The Interpersonal Circumplex</h2>
+<section id="the-interpersonal-circumplex-1" class="level2" data-number="40.4">
+<h2 data-number="40.4" class="anchored" data-anchor-id="the-interpersonal-circumplex-1"><span class="header-section-number">40.4</span> The Interpersonal Circumplex</h2>
 <p>The “IPIP Interpersonal Circumplex” (see <a href="http://ipip.ori.org/newIPIP-IPCSurvey.htm">link</a>) is a personal behaviour survey, where respondents have to rate how accurately a number of statements about behaviour apply to them, on a scale from 1 (“very inaccurate”) to 5 (“very accurate”). A survey was done on 459 people, using a 44-item variant of the above questionnaire, where the statements were as follows. Put an “I” or an “I am” in front of each one:</p>
 <ul>
 <li><p>talkative</p></li>
@@ -1126,8 +1120,8 @@ Cumulative Var   0.087   0.162   0.235   0.300   0.357   0.395</code></pre>
 <p>Looking down the loadings table, also item 41 has only a loading of <span class="math inline">\(-0.326\)</span> on factor 5, so its uniqueness ought to be pretty high as well. At 0.8561, it is.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="a-correlation-matrix-1" class="level2" data-number="41.5">
-<h2 data-number="41.5" class="anchored" data-anchor-id="a-correlation-matrix-1"><span class="header-section-number">41.5</span> A correlation matrix</h2>
+<section id="a-correlation-matrix-1" class="level2" data-number="40.5">
+<h2 data-number="40.5" class="anchored" data-anchor-id="a-correlation-matrix-1"><span class="header-section-number">40.5</span> A correlation matrix</h2>
 <p>Here is a correlation matrix between five variables. This correlation matrix was based on <span class="math inline">\(n=50\)</span> observations. Save the data into a file.</p>
 <pre><code>
 1.00 0.90 -0.40 0.28 -0.05
@@ -1352,8 +1346,8 @@ Cumulative Var   0.411   0.809</code></pre>
 <p>The point here is that an (excessively) high uniqueness indicates a variable that doesn’t appear in <em>any</em> factor. The easy link to make is “all the variables appear in a factor, so there shouldn’t be any very high uniquenesses”. If, say, <code>X3</code> doesn’t have a high loading on any factor, <code>X3</code> would have a high uniqueness (like 0.9, and none of these values approach that).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="air-pollution-1" class="level2" data-number="41.6">
-<h2 data-number="41.6" class="anchored" data-anchor-id="air-pollution-1"><span class="header-section-number">41.6</span> Air pollution</h2>
+<section id="air-pollution-1" class="level2" data-number="40.6">
+<h2 data-number="40.6" class="anchored" data-anchor-id="air-pollution-1"><span class="header-section-number">40.6</span> Air pollution</h2>
 <p>The data in <a href="http://ritsokiguess.site/datafiles/airpollution.csv">link</a> are measurements of air-pollution variables recorded at 12 noon on 42 different days at a location in Los Angeles. The file is in <code>.csv</code> format, since it came from a spreadsheet. Specifically, the variables (in suitable units), in the same order as in the data file, are:</p>
 <ul>
 <li><p>wind speed</p></li>
@@ -2025,12 +2019,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./pc.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./loglin.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
