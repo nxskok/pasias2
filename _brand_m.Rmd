@@ -49,16 +49,17 @@ This is the right kind of shape, but those things in the column `combo` are thre
 
 ```{r brand-m-4}
 prefs0 %>% pivot_longer(-softness, names_to = "combo", values_to = "frequency") %>% 
-separate(combo, into = c("prev_user", "temperature", "preference"), sep = "_")
+  separate_wider_delim(combo, "_", 
+                       names = c("prev_user", "temperature", "preference"))
 ```
 
-That works, but the combination of `pivot_longer` and `separate` is a common one, and so there is an "advanced" version of `pivot_longer` that does it all at once. The idea is that you enter three columns into `names_to` and then use `names_sep` to say what they're separated by:
+That works, but the combination of `pivot_longer` and a `separate` is a common one, and so there is an "advanced" version of `pivot_longer` that does it all at once. The idea is that you enter three columns into `names_to` and then use `names_sep` to say what they're separated by:
 
 ```{r brand-m-5}
 prefs0 %>% 
-pivot_longer(-softness, 
-names_to = c("m_user", "temperature", "prefer"),
-names_sep = "_", values_to = "frequency") 
+  pivot_longer(-softness, 
+    names_to = c("m_user", "temperature", "prefer"),
+    names_sep = "_", values_to = "frequency") 
 ```
 
 This data frame is what I saved for you.

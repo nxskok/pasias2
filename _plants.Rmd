@@ -127,24 +127,26 @@ This means splitting up `disloc` into two separate columns,
 splitting after the first character, thus:
 
 ```{r plants-3 }
-(tbl.2 %>% separate(disloc, c("disease", "location"), 1) -> tbl.3)
+tbl.2 %>% separate_wider_position(disloc,  widths = c("disease" = 1, "location" = 1))
 ```
 
- 
+The format of `widths` here is: name of new column equals width of new column (the disease is one character and the location is also one). 
 
 This is now tidy: eight frequencies in rows, and three non-frequency
 columns. (Go back and look at your answer to part (b)
 and note that the issues you found there have all been resolved now.)
 
-Extra: my reading of one of the vignettes (the one called `pivot`) for `tidyr` suggests that `pivot_longer` can do both the making longer and the separating in one shot:
+Extra: my reading of one of the vignettes (the one called `pivot`) for `tidyr` suggests that `pivot_longer` can do both the making longer and the separating-wider in one shot:
 
 ```{r plants-4}
-tbl %>% pivot_longer(-Species, names_to=c("disease", "location"), names_sep=1, values_to="frequency")
+tbl %>% pivot_longer(-Species, names_to=c("disease", "location"), 
+                     names_sep=1, values_to="frequency") -> tbl.3
+tbl.3
 ```
 
 And I (amazingly) got that right first time!
 
-The idea is that you recognize that the column names are actually two things: a disease status and a location. To get `pivot_longer` to recognize that, you put two things in the `names_to`. Then you have to say how the two things in the columns are separated: this might be by an underscore or a dot, or, as here, "after the first character" (just as in `separate`). Using two names and some indication of what separates them then does a combined pivot-longer-and-separate, all in one shot.
+The idea is that you recognize that the column names are actually two things: a disease status and a location. To get `pivot_longer` to recognize that, you put two things in the `names_to`. Then you have to say how the two things in the columns are separated: this might be by an underscore or a dot, or, as here, "after character number 1" (just as in `separate_wider_position`). Using two names and some indication of what separates them then does a combined pivot-longer-and-separate-wider, all in one shot.
 
 The more I use `pivot_longer`, the more I marvel at the excellence of its design: it seems to be easy to guess how to make things work.
 

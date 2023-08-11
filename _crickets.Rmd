@@ -219,22 +219,22 @@ d %>% unite(joined, name:manu, sep = " ")
 If we then try to separate them again, what happens?
 
 ```{r crickets-13 }
+#| error: true
 d %>%
   unite(joined, name:manu, sep = " ") %>%
-  separate(joined, c("one", "two"), " ")
+  separate_wider_delim(joined, " ", names = c("one", "two"))
 ```
 
- 
-
-Things have gotten lost: most of the original values of `manu`
-and some of the names. If we use a different separator character,
+We get an error, because there aren't always two things separated by spaces: there are sometimes more.
+  
+If we use a different separator character,
 either choosing one deliberately or going with the default underscore,
 everything works swimmingly:
 
 ```{r crickets-14 }
 d %>%
   unite(joined, name:manu, sep = ":") %>%
-  separate(joined, c("one", "two"), ":")
+  separate_wider_delim(joined, ":", names = c("one", "two"))
 ```
 
  
@@ -298,7 +298,7 @@ crickets %>%
   unite(exclamationis, X1:X2) %>%
   unite(niveus, X3:X4) %>%
   pivot_longer(exclamationis:niveus, names_to = "species", values_to = "temp_pulse") %>% 
-  separate(temp_pulse, c("temperature", "pulse_rate"), "_")
+  separate_wider_delim(temp_pulse, "_", names = c("temperature", "pulse_rate"))
 ```
 
  
@@ -335,7 +335,7 @@ crickets %>%
   unite(exclamationis, X1:X2) %>%
   unite(niveus, X3:X4) %>%
   pivot_longer(exclamationis:niveus, names_to = "species", values_to = "temp_pulse") %>% 
-  separate(temp_pulse, c("temperature", "pulse_rate"), "_") %>%
+  separate_wider_delim(temp_pulse, "_", names = c("temperature", "pulse_rate")) %>% 
   mutate(temperature = as.numeric(temperature)) %>%
   mutate(pulse_rate = as.numeric(pulse_rate)) -> crickets.1
 crickets.1
@@ -370,7 +370,7 @@ crickets %>%
   unite(niveus, X3:X4) %>%
   pivot_longer(exclamationis:niveus, names_to = "species", 
                values_to = "temp_pulse") %>% 
-  separate(temp_pulse, c("temperature", "pulse_rate"), "_") %>%
+  separate_wider_delim(temp_pulse, "_", names = c("temperature", "pulse_rate")) %>% 
   mutate(across(c(temperature, pulse_rate), \(x) as.numeric(x)))
 ```
 
@@ -384,7 +384,7 @@ crickets %>%
   unite(niveus, X3:X4) %>%
   pivot_longer(exclamationis:niveus, names_to = "species", 
                values_to = "temp_pulse") %>% 
-  separate(temp_pulse, c("temperature", "pulse_rate"), "_") %>%
+  separate_wider_delim(temp_pulse, "_", names = c("temperature", "pulse_rate")) %>% 
   mutate(across(2:3, \(x) as.numeric(x)))
 ```
 

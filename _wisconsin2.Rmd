@@ -1,7 +1,7 @@
 ##  Making a map of Wisconsin
 
 
- The file
+The file
 [link](http://ritsokiguess.site/datafiles/wisconsin.txt) contains
 the road distances (in miles) between 12 cities in Wisconsin and
 neighbouring states. We are going to try to draw a map of the
@@ -144,7 +144,7 @@ wisc %>%
   mutate(lookup = str_c(location, " ", state))
 ```
 
-or a way you might have forgotten, using `unite` (which is the inverse of `separate`):
+or a way you might have forgotten, using `unite` (which is the inverse of `separate_wider`):
 
 ```{r wisconsin2-13}
 wisc %>% 
