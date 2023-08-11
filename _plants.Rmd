@@ -297,14 +297,19 @@ And now we have to stop.
 
 What does this final model mean? Well, frequency depends significantly
 on the `Species:location` combination, but not on anything
-else. To see how, we make a contingency table of species by location
+else. To see how, we can make a contingency table of species by location
 (totalling up over disease status, since that is not significant):
 
 ```{r plants-12 }
 xtabs(frequency ~ Species + location, data = tbl.3)
 ```
 
- 
+Another way is to make a graph. This is like a grouped bar chart, but slightly different because our dataframe `tbl.3` already has frequencies in it, whereas `geom_bar` expects to be counting them up. As a consequence, we instead use `geom_col`, and feed that a `y` that contains the frequencies:^[In this kind of plot, the explanatory thing goes in `x` and the thing that looks like an outcome goes in `fill`. Then you can say "out of the explanatory things, this fraction of them ended up in the response thing".]
+
+```{r}
+ggplot(tbl.3, aes(x = Species, y = frequency, fill = location)) + geom_col(position = "fill")
+```
+
 
 Most of the species A's are at location X, but the species B's are
 about evenly divided between the two locations. Or, if you prefer
@@ -322,6 +327,16 @@ location has any particular association with (effect on) disease,
 since disease prevalence doesn't change appreciably if you change
 location, species or the combination of them.
 
+A graph with disease in it would look something like the below. This time we're thinking of `disease` as the response, so it goes in `fill`, and we have "too many" categorical explanatory variables, so one of them becomes facets (it doesn't matter which one):
+
+```{r}
+tbl.3
+ggplot(tbl.3, aes(x = Species, y = frequency, fill = disease)) + geom_col(position = "fill") +
+  facet_wrap(~ location)
+```
+
+Disease has nothing to do with Species because in both facets, the A and B bars are about the same; disease has nothing to do with location because the two facets are almost exactly the same.
+
 The way an association with disease would show up is if a
 `disease:`something interaction had been significant and had
 stayed in the model, that something would have been associated with
@@ -336,7 +351,12 @@ xx <- tibble(disease, Species, frequency)
 xtabs(frequency ~ disease + Species, data=xx)
 ```
 
- 
+Or, if you like this better as a picture:
+
+```{r}
+ggplot(xx, aes(x = Species, y = frequency, fill = disease)) + geom_col(position = "fill") 
+```
+
 
 For species A, disease is present 75\% of the time, but for species B
 it's present less than 40\% of the time. So in this one there ought to be a
