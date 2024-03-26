@@ -34,7 +34,7 @@ remove it, until you need to stop. Which terms are left in your final model?
 
 
 
-(f) Make two-way tables of any remaining two-way interactions, and
+(f) Make suitable graphs of any remaining two-way interactions, and
 describe any relationships that you see.
 
 

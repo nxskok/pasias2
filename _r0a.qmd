@@ -52,11 +52,11 @@ Solution
 Like this:
 
 ```{r r0a-1 }
-my_url="http://ritsokiguess.site/datafiles/jumping.txt"
-rats=read_delim(my_url," ")
+my_url <- "http://ritsokiguess.site/datafiles/jumping.txt"
+rats <- read_delim(my_url," ")
 ```     
 
-The second thing in `read_delim` is the thing that separates
+The second thing in `read_delim` is what separates
 the data values. Often when you use `read_delim` it'll be a space.
 
 $\blacksquare$

@@ -127,54 +127,57 @@ in the model.
 
 $\blacksquare$
 
-(f) Make two-way tables of any remaining two-way interactions, and
+(f) Make suitable graphs of any remaining two-way interactions, and
 describe any relationships that you see.
 
 
 Solution
 
 
-We have three two-way tables to make.
+We have three graphs to make.
 
 My first one is social stratum by parental encouragement. Neither of
 these is really a response, but I thought that social stratum would
 influence parental encouragement rather than the other way around, hence:
 
-```{r college-plans-7 }
-xtabs(frequency ~ social.stratum + encouragement, data = wisc) %>%
-  prop.table(margin = 1)
+```{r}
+ggplot(wisc, aes(x = social.stratum, y = frequency, fill = encouragement)) +
+  geom_col(position = "fill")
 ```
 
+The social strata came out in an illogical order (alphabetical), but if you look back at the data we read in, the order there is a much more logical one, hence:
+
+```{r}
+ggplot(wisc, aes(x = fct_inorder(social.stratum), y = frequency, fill = encouragement)) +
+  geom_col(position = "fill")
+```
  
 
 This says that there tends to be more parental encouragement, the
-higher the social stratum. 
+higher the social stratum (for the most part). 
+
+If you don't like the $x$-axis label, define the `fct_inorder` thing into a new column first, and then plot that.
+
 Next, this:
 
-```{r college-plans-8 }
-xtabs(frequency ~ social.stratum + college.plans, data = wisc) %>%
-  prop.table(margin = 1)
+```{r}
+ggplot(wisc, aes(x = fct_inorder(social.stratum), y = frequency, fill = college.plans)) +
+  geom_col(position = "fill")
 ```
 
- 
-
-In this one (and the next), `college.plans` is the response, in
-columns, so we want to have the *rows* adding up to 1. 
+I expected the some problems with `social.stratum` again, so I took the same action. 
+In this one (and the next), `college.plans` is the response, so it gets to be `fill`.
 
 The higher the social stratum, the more likely is a male
-high school senior to have plans to go to college. (The social stratum
-is not in order, so you'll have to jump from the second row to the
-third to the fourth to the first to assess this. Lower and lower
-middle are not in order, but the others are.)
+high school senior to have plans to go to college. Once again, `lower` and `lowermiddle` are slightly out of order, but the overall pattern is clear enough.
 
 Finally, this:
 
-```{r college-plans-9 }
-xtabs(frequency ~ encouragement + college.plans, data = wisc) %>%
-  prop.table(margin = 1)
+```{r}
+ggplot(wisc, aes(x = encouragement, y = frequency, fill = college.plans)) +
+  geom_col(position = "fill")
 ```
 
- 
 
 And here you see an *enormous* effect of parental encouragement
 on college plans: if it is low, the high-school senior is very

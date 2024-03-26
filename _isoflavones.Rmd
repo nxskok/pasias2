@@ -157,26 +157,37 @@ bmd0b %>% slice(-1) %>%
 ```
 
 
-The way we learned in class for dealing with this kind of thing is `separate`. It is rather unwieldy here since we have to split `bone_mineral_density` into six (temporary) things:
+The way we learned in class for dealing with this kind of thing is a `separate`. It is rather unwieldy here since we have to split `bone_mineral_density` into six (temporary) things:
 
 ```{r isoflavones-7}
 bmd0b %>% slice(-1) %>% 
   fill(X1) %>% 
-  separate(X2, into = c("z1", "z2", "z3", "z4", "z5", "z6"))
+  separate_wider_delim(X2, " ", names = c("z1", "z2", "z3", "z4", "z5", "z6"),
+                       too_few = "align_start")
 ```
 
-This works, though if you check, there's a warning that some of the rows don't have six values. However, these have been replaced by missings, which is just fine. From here, we do exactly what we did before: pivot-longer all the columns I called `z`-something, and get rid of the missings.
+This works, though if you check, we had to be careful that some of the rows don't have six values (this is what the `too_few` did). These have been replaced by missings, which is just fine. From here, we do exactly what we did before: pivot-longer all the columns I called `z`-something, and get rid of the missings.
 
-Having thought of `separate`, maybe you're now wondering what `separate_rows` does. It turns out that it bypasses the business of creating extra columns and then pivoting them longer, thus:
+Having thought of a `separate_wider`, maybe you're now wondering whether there's a `separate_longer` and what it does. It turns out that it bypasses the business of creating extra columns and then pivoting them longer, thus:
 
 ```{r isoflavones-8}
 bmd0b %>% slice(-1) %>% 
   fill(X1) %>% 
-  separate_rows(X2, convert = TRUE) -> bmd1a
-bmd1a
+  separate_longer_delim(X2, " ") 
 ```
 
-Boom! This takes all the things in that mess in `bone_mineral_density`, splits them up into individual data values, and puts them one per row back into the same column. The `convert` is needed because otherwise the values in the second column would be text and you wouldn't be able to plot them. (If you don't see that, use a mutate to convert the column into the numerical version of itself.) The last step here is to rename both columns to something sensible.
+Boom! This takes all the things in that mess in `bone_mineral_density`, splits them up into individual data values, and puts them one per row back into the same column. The only thing to note is that `X2` is actually text, so use a mutate to convert the column into the numerical version of itself: 
+
+```{r}
+bmd0b %>% slice(-1) %>% 
+  fill(X1) %>% 
+  separate_longer_delim(X2, " ") %>% 
+  mutate(X2 = as.numeric(X2))
+
+```
+
+
+The last step here is to rename both columns to something sensible.
 
 
 $\blacksquare$

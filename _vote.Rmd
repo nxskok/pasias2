@@ -188,23 +188,21 @@ depends on separately:
 
 $\blacksquare$
 
-(f) Obtain sub-tables that explain how `vote` depends on
+(f) Obtain graphs that help you explain how `vote` depends on
 any of the things it's related to.
 
 Solution
 
+The 3-way interaction is a bit
+tricky, so we'll do the simpler one first:
 
-This is `xtabs` again. The 3-way interaction is a bit
-tricky, so we'll do the simple one first:
-
-```{r vote-13 }
-xtabs(n ~ vote + sex, data = votes) %>%
-  prop.table(margin = 2)
+```{r}
+ggplot(votes, aes(x = sex, y = n, fill = vote)) + 
+  geom_col(position = "fill")
 ```
 
-     
 
-The female voters slightly preferred to vote Conservative and the male
+The female voters slightly preferred to vote Conservative^[The colours came out the wrong way around: the Conservative colour is blue and the Labour colour is red, like the Conservatives and Liberals here.] and the male
 voters slightly preferred to vote Labour. This is a small effect, but
 I guess the large number of voters made it big enough to be significant.
 
@@ -216,16 +214,16 @@ way around (which would
 be "if a voter voted Labour, how likely are they to be female", 
 which doesn't make nearly so much sense). 
 
-Then the tricky one:
+Then the tricky one. For this, we need to choose one  of the explanatory variables to be `x` and the other one to be `facets`. There is no particular reason to do it one way around rather than the other; experiment with switching `x` and the variable in `facet_wrap` around and see whether it's easier to interpret:
 
-```{r vote-14 }
-xt <- xtabs(n ~ vote + age + class, data = votes)
-xt
+```{r}
+ggplot(votes, aes(x = age, y = n, fill = vote)) +
+  geom_col(position = "fill") + facet_wrap(~ class)
 ```
 
- 
+The age and class categories are in an illogical alphabetical order, but they were out of order in the original dataset too, so I guess we have to live with what we see here.
 
-Doing it this way has produced different subtables for each
+Doing it this way has produced different graphs for each
 `class`. This is actually OK, because we can 
 say "if a voter was of lower middle class" and then talk about the relationship
 between age and vote, as if we were looking at a simple effect:
@@ -250,42 +248,22 @@ their effect on `vote`. But the anomalous age groups were
 different for each class ("different pattern"), and that explains
 why there was a `vote:age:class` interaction: " the way someone votes depends on the *combination* of age and social class". 
 
-For `prop.table` in three dimensions, as we have here, we have to be a little
-more careful about what to make add up to 1. For example, to make the
-social classes each add up to 1, which is the third dimension:
+Extra 1: I have been using the dataframe with frequencies in it, and telling you to use `geom_col` rather than the `geom_bar` you might have been expecting, which is because we have frequencies and each row of the dataframe represents a bunch of people rather than just one. But let's remind ourselves of the dataframe we had called vote0:
 
-```{r vote-15 }
-prop.table(xt, 3)
+```{r}
+vote0
 ```
 
- 
+This has exactly one voter per row (there were 1257 people in the original survey), and so with this one you *can* use `geom_bar` to get the same graphs we got above using `geom_col`. For example:
 
-What happened here is that each of the three subtables adds up to 1,
-so that we have a "joint distribution" in each table. We can put
-*two* variables into `prop.table`, and see what happens then:
-
-```{r vote-16 }
-prop.table(xt, c(2, 3))
+```{r}
+ggplot(vote0, aes(x = age, fill = vote)) +
+  geom_bar(position = "fill") + facet_wrap(~ class)
 ```
 
- 
+`geom_bar` doesn't allow a `y`, but `vote0` doesn't have the frequency column that we were using for the `y`, so we just take it out.
 
-This is making each `class`-`age` combination add up to
-1, so that we can clearly see what fraction of voters voted for each
-party in each case.^[The reason I thought of doing this is that these two are all the variables except response.]
-In the first two subtables, the two youngest
-subgroups are clearly different from the others, with a smaller
-proportion of people voting Conservative rather than Labour than for
-the older subgroups. If that same pattern persisted for the third
-subtable, with the two youngest age groups being different from the
-three older ones, then we would have an age by vote interaction rather
-than the age by class by vote interaction that we actually have. So
-the third `class` group should be different. It is: it seems
-that the first *three* age groups are different from the other
-two, with ages 41--50 being more inclined to vote Labour, like the
-younger groups. That's where the interaction came from.
-
-The Labour Party in the UK is like the NDP here, in that it has strong
+Extra 2: The Labour Party in the UK is like the NDP here, in that it has strong
 ties with "working people", trades unions in particular. The
 Conservatives are like the Conservatives here (indeed, the nickname
 "Tories" comes from the UK; the Conservatives there were officially
@@ -299,7 +277,7 @@ Minister), and a "landslide" victory often comes from persuading
 enough of the voters open to persuasion to switch sides. In the UK, as
 here, the parties' share of the popular vote doesn't change all that
 much from election to election, even though the number of seats in
-Parliament might change quite a lot.
+Parliament might change quite a lot. Provincial elections in Canada work the same way; you might remember that the current (as of 2022) Conservative majority in Ontario came from less than 40% of the vote.
 
 $\blacksquare$
 

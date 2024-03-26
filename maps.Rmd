@@ -12,11 +12,13 @@ library(ggrepel)
 ```
 
 
-```{r 41-maps-4, child="_wisconsin2_qq.Rmd"}
-``` 
 
 ```{r 41-maps-5, child="_cross-city_qq.Rmd"}
 ```
+
+```{r 41-maps-4, child="_wisconsin2_qq.Rmd"}
+``` 
+
 
 ```{r child="_catbrain_qq.Rmd"}
 ```
@@ -24,11 +26,12 @@ library(ggrepel)
 My solutions follow:
 
 
-```{r 41-maps-7, child="_wisconsin2.Rmd"}
-``` 
 
 ```{r 41-maps-8, child="_cross-city.Rmd"}
 ```
+
+```{r 41-maps-7, child="_wisconsin2.Rmd"}
+``` 
 
 ```{r child="_catbrain.Rmd"}
 ```

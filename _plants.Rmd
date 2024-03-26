@@ -127,24 +127,26 @@ This means splitting up `disloc` into two separate columns,
 splitting after the first character, thus:
 
 ```{r plants-3 }
-(tbl.2 %>% separate(disloc, c("disease", "location"), 1) -> tbl.3)
+tbl.2 %>% separate_wider_position(disloc,  widths = c("disease" = 1, "location" = 1))
 ```
 
- 
+The format of `widths` here is: name of new column equals width of new column (the disease is one character and the location is also one). 
 
 This is now tidy: eight frequencies in rows, and three non-frequency
 columns. (Go back and look at your answer to part (b)
 and note that the issues you found there have all been resolved now.)
 
-Extra: my reading of one of the vignettes (the one called `pivot`) for `tidyr` suggests that `pivot_longer` can do both the making longer and the separating in one shot:
+Extra: my reading of one of the vignettes (the one called `pivot`) for `tidyr` suggests that `pivot_longer` can do both the making longer and the separating-wider in one shot:
 
 ```{r plants-4}
-tbl %>% pivot_longer(-Species, names_to=c("disease", "location"), names_sep=1, values_to="frequency")
+tbl %>% pivot_longer(-Species, names_to=c("disease", "location"), 
+                     names_sep=1, values_to="frequency") -> tbl.3
+tbl.3
 ```
 
 And I (amazingly) got that right first time!
 
-The idea is that you recognize that the column names are actually two things: a disease status and a location. To get `pivot_longer` to recognize that, you put two things in the `names_to`. Then you have to say how the two things in the columns are separated: this might be by an underscore or a dot, or, as here, "after the first character" (just as in `separate`). Using two names and some indication of what separates them then does a combined pivot-longer-and-separate, all in one shot.
+The idea is that you recognize that the column names are actually two things: a disease status and a location. To get `pivot_longer` to recognize that, you put two things in the `names_to`. Then you have to say how the two things in the columns are separated: this might be by an underscore or a dot, or, as here, "after character number 1" (just as in `separate_wider_position`). Using two names and some indication of what separates them then does a combined pivot-longer-and-separate-wider, all in one shot.
 
 The more I use `pivot_longer`, the more I marvel at the excellence of its design: it seems to be easy to guess how to make things work.
 
@@ -295,14 +297,19 @@ And now we have to stop.
 
 What does this final model mean? Well, frequency depends significantly
 on the `Species:location` combination, but not on anything
-else. To see how, we make a contingency table of species by location
+else. To see how, we can make a contingency table of species by location
 (totalling up over disease status, since that is not significant):
 
 ```{r plants-12 }
 xtabs(frequency ~ Species + location, data = tbl.3)
 ```
 
- 
+Another way is to make a graph. This is like a grouped bar chart, but slightly different because our dataframe `tbl.3` already has frequencies in it, whereas `geom_bar` expects to be counting them up. As a consequence, we instead use `geom_col`, and feed that a `y` that contains the frequencies:^[In this kind of plot, the explanatory thing goes in `x` and the thing that looks like an outcome goes in `fill`. Then you can say "out of the explanatory things, this fraction of them ended up in the response thing".]
+
+```{r}
+ggplot(tbl.3, aes(x = Species, y = frequency, fill = location)) + geom_col(position = "fill")
+```
+
 
 Most of the species A's are at location X, but the species B's are
 about evenly divided between the two locations. Or, if you prefer
@@ -320,6 +327,16 @@ location has any particular association with (effect on) disease,
 since disease prevalence doesn't change appreciably if you change
 location, species or the combination of them.
 
+A graph with disease in it would look something like the below. This time we're thinking of `disease` as the response, so it goes in `fill`, and we have "too many" categorical explanatory variables, so one of them becomes facets (it doesn't matter which one):
+
+```{r}
+tbl.3
+ggplot(tbl.3, aes(x = Species, y = frequency, fill = disease)) + geom_col(position = "fill") +
+  facet_wrap(~ location)
+```
+
+Disease has nothing to do with Species because in both facets, the A and B bars are about the same; disease has nothing to do with location because the two facets are almost exactly the same.
+
 The way an association with disease would show up is if a
 `disease:`something interaction had been significant and had
 stayed in the model, that something would have been associated with
@@ -334,7 +351,12 @@ xx <- tibble(disease, Species, frequency)
 xtabs(frequency ~ disease + Species, data=xx)
 ```
 
- 
+Or, if you like this better as a picture:
+
+```{r}
+ggplot(xx, aes(x = Species, y = frequency, fill = disease)) + geom_col(position = "fill") 
+```
+
 
 For species A, disease is present 75\% of the time, but for species B
 it's present less than 40\% of the time. So in this one there ought to be a

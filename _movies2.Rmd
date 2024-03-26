@@ -526,8 +526,8 @@ crossing(first = the_ratings, second = the_ratings) %>%
   rowwise() %>% 
   mutate(pval = comp2(first, second, movies)) %>% 
   mutate(reject = (pval < 0.05 / 6)) %>% 
-  left_join(medians, by = c("first" = "rating")) %>%
-  left_join(medians, by = c("second" = "rating"))
+  left_join(medians, join_by(first == rating)) %>%
+  left_join(medians, join_by(second == rating))
 ```
 
  

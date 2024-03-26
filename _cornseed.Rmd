@@ -473,7 +473,6 @@ pred <- predict(cornseed.2, new)
 cbind(new, pred$x) %>% arrange(desc(LD1))
 ```
 
-xxx for discrim, is predict or predictions better?
 
 I arranged the predicted LD1 scores in descending order, so the most
 loam-like combinations are at the top. The top two combinations look

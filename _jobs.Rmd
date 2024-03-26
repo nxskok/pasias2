@@ -652,14 +652,14 @@ think I have the machinery to do that.
 Let's start by gluing together the dataframes with the predictions from the regular `lda` (in `d`) and the ones from the cross-validation (in `dcv`). I think I can do that like this:
 
 ```{r jobs-26 }
-d %>% left_join(dcv, by=c("id", "job"))
+d %>% left_join(dcv, join_by(id, job))
 ```
 There's already subtlety. The people are numbered separately within each actual `job`, so the thing that uniquely identifies each person (what database people call a "key") is the combination of the actual job they do *plus* their `id` within that job. You might also think of using `bind_cols`, except that this adds a number to all the column names which is a pain to deal with. I don't really need to look up the people in the second dataframe, since I know where they are (in the corresponding rows), but doing so seems to make everything else easier.
 
 The columns with an `x` on the end of their names came from `d`, that is, the predictions without cross-validation, and the ones with a `y` came from cross-validation. Let's see if we can keep only the columns we need so that it's a bit less unwieldy:
 
 ```{r jobs-27}
-d %>% left_join(dcv, by=c("id", "job")) %>% 
+d %>% left_join(dcv, join_by(id, job)) %>% 
   select(outdoor = outdoor.x,
          social = social.x,
          conservative = conservative.x,

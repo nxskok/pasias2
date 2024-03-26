@@ -13,13 +13,17 @@ that; if not, create a new project.)
 it. First, make a Quarto document by selecting File, New File and Quarto Document. 
 
 
-(c) Change the title to something of your choosing. Then go down
-to line 5, click on the Insert button and select R. You should see
-a "code chunk" appear at line 5, which we are going to use in a
-moment. 
+(c) The top four lines, surrounded by `---` above and below, are called
+    a *YAML block*. This contains information about the document as a
+    whole, and needs to be there. Go down to below that, moving the
+    "Quarto" heading down a bit if you want. On an empty line, type a /
+    and you should see a list of things appear that you might want to
+    insert. Pressing Enter now will insert an R code chunk (sometimes
+    called "code cell"). Do that.
 
 
-(d) Type the line of code shown below into the chunk in the
+
+(d) Type the line of code shown below into the code chunk in the
 Quarto document:
 
 ```
@@ -30,7 +34,7 @@ mtcars
 
 (e) Run this command. To do that, look at the top right of
 your code chunk block (shaded in a slightly different colour). You
-should see a gear symbol, a down arrow and a green "play    button". 
+should see a down arrow and a green "play    button". 
 Click the play button. This will run the code, and show
 the output below the code chunk.
 

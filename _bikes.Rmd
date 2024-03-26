@@ -257,7 +257,7 @@ bikes %>%
   mutate(gender = case_when(
     X2 == "X" & is.na(X3) ~ "Male",
     is.na(X2) & X3 == "X" ~ "Female",
-    TRUE                  ~ "Error!"
+    .default              = "Error!"
   ))
 ```
 
@@ -289,7 +289,7 @@ bikes %>%
   mutate(gender = case_when(
     X2 == "X" & is.na(X3) ~ "Male",
     is.na(X2) & X3 == "X" ~ "Female",
-    TRUE ~ "Error!"
+    .default              = "Error!"
   )) %>%
   count(gender)
 ```

@@ -197,6 +197,14 @@ represents one student), so we leave the left side blank. I tried
 putting a `.` there, but that doesn't work since there is no
 "whatever was there before" as there is, for example, in
 `update`. 
+
+As you'll see later on with log-linear models, I now prefer making graphs with these. This is a grouped bar chart that we learned early in STAC32:
+
+```{r}
+ggplot(decide, aes(x = gender, fill = decision)) + geom_bar(position = "fill")
+```
+
+I used `position = "fill"` because I wanted to compare *proportions*. This scales each bar to have height 1, no matter how many people it's based on. As a result, you see that if you look at females, most of them think the research as described should stop, and a small majority of the males think it should continue. This is why we have a gender effect.
     
 $\blacksquare$
 
@@ -571,12 +579,12 @@ xx <- x %>%
     decision = case_when(
       decision == 0 ~ "stop",
       decision == 1 ~ "continue",
-      TRUE ~ "error"
+      .default      = "error"
     ),
     gender = case_when(
       gender == 0 ~ "Female",
       gender == 1 ~ "Male",
-      TRUE ~ "error"
+      .default    = "error"
     ),
     scenario = case_when(
       scenario == 1 ~ "cosmetic",
@@ -584,7 +592,7 @@ xx <- x %>%
       scenario == 3 ~ "meat",
       scenario == 4 ~ "veterinary",
       scenario == 5 ~ "medical",
-      TRUE ~ "error"
+      .default      = "error"
     )
   )
 xx %>% as_tibble() %>% select(-(cosmetic:veterin))
