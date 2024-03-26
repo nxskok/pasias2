@@ -129,13 +129,22 @@ milliseconds or anything, not necessarily days),
 so subtracting them requires care; you have to divide by the
 length of a day (in whatever units), thus:
 
+```{r}
+whas2 %>% mutate(
+  diff1 = (dis - admit),
+  diff2 = (f - admit),
+  diff3 = (f - dis)
+)
+```
+
+
 ```{r whas-6 }
 whas3 <- whas2 %>% mutate(
   diff1 = (dis - admit) / ddays(1),
   diff2 = (f - admit) / ddays(1),
   diff3 = (f - dis) / ddays(1)
 )
-glimpse(whas3)
+whas3
 ```
 
        

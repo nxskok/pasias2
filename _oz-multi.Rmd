@@ -143,7 +143,7 @@ I gotta figure out what that error is.
 Does `step`?
 
 ```{r oz-multi-7 }
-step(sport.1, direction = "backward", test = "Chisq")
+step(sport.1)
 ```
 
  
@@ -175,7 +175,7 @@ new
 Then predict:
 
 ```{r}
-p <- cbind(predictions(sport.1, newdata = new, type = "probs"))
+p <- cbind(predictions(sport.1, newdata = new))
 p
 ```
 

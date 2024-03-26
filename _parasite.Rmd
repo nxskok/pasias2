@@ -71,14 +71,21 @@ a bit to make it suitable for modelling. This is `pivot_wider`, the
 opposite of `pivot_longer`:
 
 ```{r parasite-4 }
-d %>% pivot_wider(names_from=infected, values_from=freq)
+d %>% pivot_wider(names_from=infected, values_from=freq) -> d1
+d1
 ```
 
  
 
 Now you can pull out the columns `y` and `n` and make
 them into your response, and predict that from `age` and
-`gender`. 
+`gender`:
+
+```{r}
+response <- with(d1, cbind(y, n))
+response
+```
+
 
 The moral of this story is that if you are going to have multiple
 observations per row, you probably want the combinations of
@@ -265,8 +272,10 @@ Oh, I forgot to turn `infected` into a factor. This is the
 shortcut way to do that:
 
 ```{r parasite-12 }
+# infect
 infect.1 <- glm(factor(infected) ~ age + weight + sex, family = "binomial", data = infect)
 summary(infect.1)
+drop1(infect.1, test = "Chisq")
 ```
 
      
@@ -422,7 +431,9 @@ End of aside.
 Next, the predictions:
 
 ```{r parasite-17 }
-cbind(predictions(infect.1, new))
+# predictions(infect.1, new)
+cbind(predictions(infect.1, new)) %>% 
+  select(estimate, age:sex)
 ```
 
  

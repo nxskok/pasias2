@@ -378,6 +378,7 @@ remembering that "treatment" is called `rx` here:
 ages <- c(50.17, 62.38)
 rxs <- c(1, 2)
 new <- datagrid(model = time.1, age = ages, rx = rxs)
+new
 ```
 
  
@@ -432,11 +433,14 @@ different times.
 Solution
 
 
-Thus. The `conf.int=F` means to skip the confidence interval
+Thus. The `conf.int=FALSE` means to skip the confidence interval
 "envelopes" that I find make the plot rather messy:
 
 ```{r ovarian-15 }
 ggsurvplot(s, conf.int = FALSE)
+```
+```{r}
+new
 ```
 
    
@@ -445,8 +449,7 @@ $\blacksquare$
 
 (k) According to your plot, how would you describe the effects of
 treatment and of age?
-50.17	1			
-50.17	2	
+	
 
 Solution
 
