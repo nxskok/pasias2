@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-regression.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -368,26 +369,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -2362,7 +2369,7 @@ log(diameter)  2.315115  3.941665</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"-5.9242712","3":"-8.2288987","4":"-3.6196437"},{"1":"2","2":"-3.7558365","3":"-5.5833436","4":"-1.9283295"},{"1":"5","2":"-0.8893218","3":"-2.0885682","4":"0.3099245"},{"1":"10","2":"1.2791128","3":"0.5492341","4":"2.0089915"},{"1":"15","2":"2.5475658","3":"2.0829205","4":"3.0122111"},{"1":"20","2":"3.4475475","3":"3.1536433","4":"3.7414517"},{"1":"25","2":"4.1456275","3":"3.9446714","4":"4.3465837"},{"1":"30","2":"4.7160005","3":"4.5207483","4":"4.9112526"},{"1":"35","2":"5.1982439","3":"4.9512720","4":"5.4452158"},{"1":"40","2":"5.6159822","3":"5.3010818","4":"5.9308825"},{"1":"45","2":"5.9844534","3":"5.6010851","4":"6.3678218"},{"1":"50","2":"6.3140622","3":"5.8657639","4":"6.7623605"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"-5.9242712","3":"-8.2288987","4":"-3.6196437"},{"1":"2","2":"-3.7558365","3":"-5.5833436","4":"-1.9283295"},{"1":"5","2":"-0.8893218","3":"-2.0885682","4":"0.3099246"},{"1":"10","2":"1.2791128","3":"0.5492341","4":"2.0089915"},{"1":"15","2":"2.5475658","3":"2.0829205","4":"3.0122111"},{"1":"20","2":"3.4475475","3":"3.1536433","4":"3.7414517"},{"1":"25","2":"4.1456275","3":"3.9446714","4":"4.3465837"},{"1":"30","2":"4.7160005","3":"4.5207483","4":"4.9112526"},{"1":"35","2":"5.1982439","3":"4.9512719","4":"5.4452159"},{"1":"40","2":"5.6159822","3":"5.3010818","4":"5.9308825"},{"1":"45","2":"5.9844534","3":"5.6010851","4":"6.3678218"},{"1":"50","2":"6.3140622","3":"5.8657639","4":"6.7623605"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2374,7 +2381,7 @@ log(diameter)  2.315115  3.941665</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2.673756e-03","3":"2.668300e-04","4":"0.02679222"},{"1":"2","2":"2.338088e-02","3":"3.759973e-03","4":"0.14539088"},{"1":"5","2":"4.109343e-01","3":"1.238644e-01","4":"1.36332224"},{"1":"10","2":"3.593450e+00","3":"1.731926e+00","4":"7.45579458"},{"1":"15","2":"1.277597e+01","3":"8.027880e+00","4":"20.33230738"},{"1":"20","2":"3.142323e+01","3":"2.342124e+01","4":"42.15914904"},{"1":"25","2":"6.315724e+01","3":"5.165936e+01","4":"77.21422468"},{"1":"30","2":"1.117205e+02","3":"9.190435e+01","4":"135.80942573"},{"1":"35","2":"1.809542e+02","3":"1.413546e+02","4":"231.64727491"},{"1":"40","2":"2.747831e+02","3":"2.005537e+02","4":"376.48662098"},{"1":"45","2":"3.972054e+02","3":"2.707200e+02","4":"582.78700332"},{"1":"50","2":"5.522839e+02","3":"3.527515e+02","4":"864.68090044"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2.673756e-03","3":"2.668300e-04","4":"0.02679222"},{"1":"2","2":"2.338088e-02","3":"3.759973e-03","4":"0.14539088"},{"1":"5","2":"4.109343e-01","3":"1.238644e-01","4":"1.36332225"},{"1":"10","2":"3.593450e+00","3":"1.731926e+00","4":"7.45579463"},{"1":"15","2":"1.277597e+01","3":"8.027880e+00","4":"20.33230735"},{"1":"20","2":"3.142323e+01","3":"2.342124e+01","4":"42.15914875"},{"1":"25","2":"6.315724e+01","3":"5.165936e+01","4":"77.21422504"},{"1":"30","2":"1.117205e+02","3":"9.190434e+01","4":"135.80942646"},{"1":"35","2":"1.809542e+02","3":"1.413546e+02","4":"231.64727707"},{"1":"40","2":"2.747831e+02","3":"2.005537e+02","4":"376.48662082"},{"1":"45","2":"3.972054e+02","3":"2.707200e+02","4":"582.78700311"},{"1":"50","2":"5.522839e+02","3":"3.527515e+02","4":"864.68090367"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2387,7 +2394,7 @@ log(diameter)  2.315115  3.941665</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["chr"],"align":["left"]},{"label":["conf.low"],"name":[3],"type":["chr"],"align":["left"]},{"label":["conf.high"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"0.002673756","3":"0.000266830","4":"0.02679222"},{"1":"2","2":"0.023380883","3":"0.003759973","4":"0.14539088"},{"1":"5","2":"0.410934340","3":"0.123864356","4":"1.36332224"},{"1":"10","2":"3.593450319","3":"1.731926095","4":"7.45579458"},{"1":"15","2":"12.775966620","3":"8.027879965","4":"20.33230738"},{"1":"20","2":"31.423232247","3":"23.421239452","4":"42.15914904"},{"1":"25","2":"63.157243234","3":"51.659359265","4":"77.21422468"},{"1":"30","2":"111.720527798","3":"91.904345110","4":"135.80942573"},{"1":"35","2":"180.954189310","3":"141.354646374","4":"231.64727491"},{"1":"40","2":"274.783129616","3":"200.553656132","4":"376.48662098"},{"1":"45","2":"397.205361735","3":"270.720003178","4":"582.78700332"},{"1":"50","2":"552.283890387","3":"352.751512640","4":"864.68090044"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["chr"],"align":["left"]},{"label":["conf.low"],"name":[3],"type":["chr"],"align":["left"]},{"label":["conf.high"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"0.002673756","3":"0.000266830","4":"0.02679222"},{"1":"2","2":"0.023380883","3":"0.003759973","4":"0.14539088"},{"1":"5","2":"0.410934340","3":"0.123864355","4":"1.36332225"},{"1":"10","2":"3.593450319","3":"1.731926084","4":"7.45579463"},{"1":"15","2":"12.775966620","3":"8.027879976","4":"20.33230735"},{"1":"20","2":"31.423232247","3":"23.421239616","4":"42.15914875"},{"1":"25","2":"63.157243234","3":"51.659359018","4":"77.21422504"},{"1":"30","2":"111.720527798","3":"91.904344618","4":"135.80942646"},{"1":"35","2":"180.954189310","3":"141.354645056","4":"231.64727707"},{"1":"40","2":"274.783129616","3":"200.553656215","4":"376.48662082"},{"1":"45","2":"397.205361735","3":"270.720003275","4":"582.78700311"},{"1":"50","2":"552.283890387","3":"352.751511323","4":"864.68090367"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2667,7 +2674,7 @@ dbl (2): drop, duration
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: The following aesthetics were dropped during statistical transformation: label
+<pre><code>Warning: The following aesthetics were dropped during statistical transformation: label.
 ℹ This can happen when ggplot fails to infer the correct grouping structure in
   the data.
 ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
@@ -2688,7 +2695,7 @@ dbl (2): drop, duration
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="simple-regression_files/figure-html/unnamed-chunk-154-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -3189,9 +3196,9 @@ F-statistic: 22.66 on 2 and 21 DF,  p-value: 5.698e-06</code></pre>
 <p>These intervals are both pretty awful: you get a very weak picture of how many calories per serving the pizza brands in question might contain. This is for two reasons: (i) there was a fair bit of scatter in the original relationship, R-squared being around 65%, and (ii) even if we knew perfectly where the line went (which we don’t), there’s no guarantee that individual brands of pizza would be on it anyway. (Prediction intervals are always hit by this double whammy, in that individual observations suffer from variability in where the line goes <em>and</em> variability around whatever the line is.)</p>
 <p>I was expecting, when I put together this question, that the 20-grams-of-fat interval would be noticeably worse, because 20 is farther away from the mean fat content of all the brands. But there isn’t much to choose. For the confidence intervals for the mean calories of <em>all</em> brands with these fat contents, the picture is clearer:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb210"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(pizza<span class="fl">.1</span>, <span class="at">condition =</span> <span class="st">"Fat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb210"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(pizza<span class="fl">.1</span>, <span class="at">condition =</span> <span class="st">"Fat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="simple-regression_files/figure-html/unnamed-chunk-177-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>A <code>fat</code> value of 12 is close to the middle of the data, so the interval is shorter, but a value of 20 is out near the extreme and the interval is noticeably longer.</p>

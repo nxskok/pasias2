@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problems and Solutions in Applied Statistics (2nd ed) - 41&nbsp; Frequency table analysis</title>
+<title>Problems and Solutions in Applied Statistics (2nd ed) - 42&nbsp; Frequency table analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -112,10 +113,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loglin.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loglin.html"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -367,26 +368,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -399,12 +406,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#college-plans" id="toc-college-plans" class="nav-link active" data-scroll-target="#college-plans"><span class="header-section-number">41.1</span> College plans</a></li>
-  <li><a href="#predicting-voting" id="toc-predicting-voting" class="nav-link" data-scroll-target="#predicting-voting"><span class="header-section-number">41.2</span> Predicting voting</a></li>
-  <li><a href="#brand-m-laundry-detergent" id="toc-brand-m-laundry-detergent" class="nav-link" data-scroll-target="#brand-m-laundry-detergent"><span class="header-section-number">41.3</span> Brand M laundry detergent</a></li>
-  <li><a href="#college-plans-1" id="toc-college-plans-1" class="nav-link" data-scroll-target="#college-plans-1"><span class="header-section-number">41.4</span> College plans</a></li>
-  <li><a href="#predicting-voting-1" id="toc-predicting-voting-1" class="nav-link" data-scroll-target="#predicting-voting-1"><span class="header-section-number">41.5</span> Predicting voting</a></li>
-  <li><a href="#brand-m-laundry-detergent-1" id="toc-brand-m-laundry-detergent-1" class="nav-link" data-scroll-target="#brand-m-laundry-detergent-1"><span class="header-section-number">41.6</span> Brand M laundry detergent</a></li>
+  <li><a href="#college-plans" id="toc-college-plans" class="nav-link active" data-scroll-target="#college-plans"><span class="header-section-number">42.1</span> College plans</a></li>
+  <li><a href="#predicting-voting" id="toc-predicting-voting" class="nav-link" data-scroll-target="#predicting-voting"><span class="header-section-number">42.2</span> Predicting voting</a></li>
+  <li><a href="#brand-m-laundry-detergent" id="toc-brand-m-laundry-detergent" class="nav-link" data-scroll-target="#brand-m-laundry-detergent"><span class="header-section-number">42.3</span> Brand M laundry detergent</a></li>
+  <li><a href="#college-plans-1" id="toc-college-plans-1" class="nav-link" data-scroll-target="#college-plans-1"><span class="header-section-number">42.4</span> College plans</a></li>
+  <li><a href="#predicting-voting-1" id="toc-predicting-voting-1" class="nav-link" data-scroll-target="#predicting-voting-1"><span class="header-section-number">42.5</span> Predicting voting</a></li>
+  <li><a href="#brand-m-laundry-detergent-1" id="toc-brand-m-laundry-detergent-1" class="nav-link" data-scroll-target="#brand-m-laundry-detergent-1"><span class="header-section-number">42.6</span> Brand M laundry detergent</a></li>
   </ul>
 </nav>
     </div>
@@ -413,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></h1>
+<h1 class="title"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></h1>
 </div>
 
 
@@ -432,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="college-plans" class="level2" data-number="41.1">
-<h2 data-number="41.1" class="anchored" data-anchor-id="college-plans"><span class="header-section-number">41.1</span> College plans</h2>
+<section id="college-plans" class="level2" data-number="42.1">
+<h2 data-number="42.1" class="anchored" data-anchor-id="college-plans"><span class="header-section-number">42.1</span> College plans</h2>
 <p>5199 male high school seniors in Wisconsin<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> were classified by socio-economic status (low, lower-middle, upper-middle, high), by the degree that their parents encouraged them in their education (low or high), and whether or not they had plans to go to college (yes or no). How, if at all, are these categorical variables related? The data can be found at <a href="http://ritsokiguess.site/datafiles/college-plans.txt">link</a>.</p>
 <ol type="a">
 <li><p>Read in the data and check that you have a column for each variable and a column of frequencies.</p></li>
@@ -444,8 +451,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Make suitable graphs of any remaining two-way interactions, and describe any relationships that you see.</p></li>
 </ol>
 </section>
-<section id="predicting-voting" class="level2" data-number="41.2">
-<h2 data-number="41.2" class="anchored" data-anchor-id="predicting-voting"><span class="header-section-number">41.2</span> Predicting voting</h2>
+<section id="predicting-voting" class="level2" data-number="42.2">
+<h2 data-number="42.2" class="anchored" data-anchor-id="predicting-voting"><span class="header-section-number">42.2</span> Predicting voting</h2>
 <p>1257 British voters were classified according to their social class, age (categorized), sex and the political party they voted for (Labour or Conservative). Which, if any, of these factors influences the party that someone votes for? The data are in <a href="http://ritsokiguess.site/datafiles/voting.txt">link</a>, one voter per line.</p>
 <ol type="a">
 <li><p>Read in the data and display (some of) the data frame.</p></li>
@@ -456,8 +463,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Obtain sub-tables that explain how <code>vote</code> depends on any of the things it’s related to.</p></li>
 </ol>
 </section>
-<section id="brand-m-laundry-detergent" class="level2" data-number="41.3">
-<h2 data-number="41.3" class="anchored" data-anchor-id="brand-m-laundry-detergent"><span class="header-section-number">41.3</span> Brand M laundry detergent</h2>
+<section id="brand-m-laundry-detergent" class="level2" data-number="42.3">
+<h2 data-number="42.3" class="anchored" data-anchor-id="brand-m-laundry-detergent"><span class="header-section-number">42.3</span> Brand M laundry detergent</h2>
 <p>A survey was carried out comparing respondents’ preferences of a laundry detergent M compared to a mystery brand X. For each respondent, the researchers recorded the temperature of the laundry load (low or high), whether or not they previously used brand M (yes or no), and the softness of the water used for the laundry load(hard, medium or soft). The aim of the survey was to find out what was associated with the respondents preferring brand M. The data are in <a href="http://ritsokiguess.site/datafiles/brand_m.csv" class="uri">http://ritsokiguess.site/datafiles/brand_m.csv</a>.</p>
 <ol type="a">
 <li><p>Read in and display (some of) the data. Explain briefly how the data is laid out appropriately to fit a log-linear model.</p></li>
@@ -466,8 +473,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>My solutions follow:</p>
 </section>
-<section id="college-plans-1" class="level2" data-number="41.4">
-<h2 data-number="41.4" class="anchored" data-anchor-id="college-plans-1"><span class="header-section-number">41.4</span> College plans</h2>
+<section id="college-plans-1" class="level2" data-number="42.4">
+<h2 data-number="42.4" class="anchored" data-anchor-id="college-plans-1"><span class="header-section-number">42.4</span> College plans</h2>
 <p>5199 male high school seniors in Wisconsin<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> were classified by socio-economic status (low, lower-middle, upper-middle, high), by the degree that their parents encouraged them in their education (low or high), and whether or not they had plans to go to college (yes or no). How, if at all, are these categorical variables related? The data can be found at <a href="http://ritsokiguess.site/datafiles/college-plans.txt">link</a>.</p>
 <ol type="a">
 <li>Read in the data and check that you have a column for each variable and a column of frequencies.</li>
@@ -576,7 +583,7 @@ dbl (1): frequency
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wisc, <span class="fu">aes</span>(<span class="at">x =</span> social.stratum, <span class="at">y =</span> frequency, <span class="at">fill =</span> encouragement)) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The social strata came out in an illogical order (alphabetical), but if you look back at the data we read in, the order there is a much more logical one, hence:</p>
@@ -584,7 +591,7 @@ dbl (1): frequency
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wisc, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_inorder</span>(social.stratum), <span class="at">y =</span> frequency, <span class="at">fill =</span> encouragement)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This says that there tends to be more parental encouragement, the higher the social stratum (for the most part).</p>
@@ -594,7 +601,7 @@ dbl (1): frequency
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wisc, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_inorder</span>(social.stratum), <span class="at">y =</span> frequency, <span class="at">fill =</span> college.plans)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>I expected the some problems with <code>social.stratum</code> again, so I took the same action. In this one (and the next), <code>college.plans</code> is the response, so it gets to be <code>fill</code>.</p>
@@ -604,7 +611,7 @@ dbl (1): frequency
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wisc, <span class="fu">aes</span>(<span class="at">x =</span> encouragement, <span class="at">y =</span> frequency, <span class="at">fill =</span> college.plans)) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>And here you see an <em>enormous</em> effect of parental encouragement on college plans: if it is low, the high-school senior is very unlikely to be considering college.</p>
@@ -612,8 +619,8 @@ dbl (1): frequency
 <p>Here, we think of college plans as being a response, and this analysis has shown that whether or not a student has plans to go to college depends separately on the socio-economic status and the level of parental encouragement (rather than on the combination of both, as would have been the case had the three-way interaction been significant).</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="predicting-voting-1" class="level2" data-number="41.5">
-<h2 data-number="41.5" class="anchored" data-anchor-id="predicting-voting-1"><span class="header-section-number">41.5</span> Predicting voting</h2>
+<section id="predicting-voting-1" class="level2" data-number="42.5">
+<h2 data-number="42.5" class="anchored" data-anchor-id="predicting-voting-1"><span class="header-section-number">42.5</span> Predicting voting</h2>
 <p>1257 British voters were classified according to their social class, age (categorized), sex and the political party they voted for (Labour or Conservative). Which, if any, of these factors influences the party that someone votes for? The data are in <a href="http://ritsokiguess.site/datafiles/voting.txt">link</a>, one voter per line.</p>
 <ol type="a">
 <li>Read in the data and display (some of) the data frame.</li>
@@ -844,7 +851,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> n, <span class="at">fill =</span> vote)) <span class="sc">+</span> </span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The female voters slightly preferred to vote Conservative<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and the male voters slightly preferred to vote Labour. This is a small effect, but I guess the large number of voters made it big enough to be significant.</p>
@@ -854,7 +861,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(votes, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> n, <span class="at">fill =</span> vote)) <span class="sc">+</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The age and class categories are in an illogical alphabetical order, but they were out of order in the original dataset too, so I guess we have to live with what we see here.</p>
@@ -882,15 +889,15 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vote0, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">fill =</span> vote)) <span class="sc">+</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><code>geom_bar</code> doesn’t allow a <code>y</code>, but <code>vote0</code> doesn’t have the frequency column that we were using for the <code>y</code>, so we just take it out.</p>
 <p>Extra 2: The Labour Party in the UK is like the NDP here, in that it has strong ties with “working people”, trades unions in particular. The Conservatives are like the Conservatives here (indeed, the nickname “Tories” comes from the UK; the Conservatives there were officially known as the Tories many years ago). Many people are lifelong voters for their party, and would never think of voting for the “other side”, in the same way that many Americans vote either Democrat or Republican without thinking about it too much. Our parliamentary system comes from the UK system (vote for a candidate in a riding, the leader of the party with the most elected candidates becomes Prime Minister), and a “landslide” victory often comes from persuading enough of the voters open to persuasion to switch sides. In the UK, as here, the parties’ share of the popular vote doesn’t change all that much from election to election, even though the number of seats in Parliament might change quite a lot. Provincial elections in Canada work the same way; you might remember that the current (as of 2022) Conservative majority in Ontario came from less than 40% of the vote.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 </section>
-<section id="brand-m-laundry-detergent-1" class="level2" data-number="41.6">
-<h2 data-number="41.6" class="anchored" data-anchor-id="brand-m-laundry-detergent-1"><span class="header-section-number">41.6</span> Brand M laundry detergent</h2>
+<section id="brand-m-laundry-detergent-1" class="level2" data-number="42.6">
+<h2 data-number="42.6" class="anchored" data-anchor-id="brand-m-laundry-detergent-1"><span class="header-section-number">42.6</span> Brand M laundry detergent</h2>
 <p>A survey was carried out comparing respondents’ preferences of a laundry detergent M compared to a mystery brand X. For each respondent, the researchers recorded the temperature of the laundry load (low or high), whether or not they previously used brand M (yes or no), and the softness of the water used for the laundry load(hard, medium or soft). The aim of the survey was to find out what was associated with the respondents preferring brand M. The data are in <a href="http://ritsokiguess.site/datafiles/brand_m.csv" class="uri">http://ritsokiguess.site/datafiles/brand_m.csv</a>.</p>
 <ol type="a">
 <li>Read in and display (some of) the data. Explain briefly how the data is laid out appropriately to fit a log-linear model.</li>
@@ -1141,7 +1148,7 @@ cols(
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prefs, <span class="fu">aes</span>(<span class="at">x =</span> m_user, <span class="at">y =</span> frequency, <span class="at">fill =</span> prefer)) <span class="sc">+</span> </span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Out of the people who were previous users of Brand M (on the right), slightly more of them preferred Brand M; out of the people who were not Brand M users (on the left), somewhat more of them preferred Brand X.</p>
@@ -1151,7 +1158,7 @@ cols(
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prefs, <span class="fu">aes</span>(<span class="at">x =</span> temperature, <span class="at">y =</span> frequency, <span class="at">fill =</span> prefer)) <span class="sc">+</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Out of the people who used a high-temperature wash, a small majority of them preferred brand M, but out of the people who used a low-temperature wash, a small majority of them preferred brand X.</p>
@@ -1161,7 +1168,7 @@ cols(
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prefs, <span class="fu">aes</span>(<span class="at">x =</span> softness, <span class="at">y =</span> frequency, <span class="at">fill =</span> temperature)) <span class="sc">+</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="loglin_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="loglin_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>In each case, a majority of the washes were done at low temperature, but the softer the water, the bigger that majority was. Once again, the effect is not all that big, because the association was only just significant.</p>
@@ -1415,7 +1422,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./fa.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

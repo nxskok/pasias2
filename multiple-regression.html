@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./multiple-regression.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -368,26 +369,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -745,7 +752,7 @@ F-statistic: 13.01 on 3 and 19 DF,  p-value: 7.482e-05</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["satis"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["severity"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["anxiety"],"name":[12],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"72.45391","3":"2.844181","4":"25.47444","5":"3.785221e-143","6":"473.1153","7":"66.87942","8":"78.02840","9":"61.34783","10":"33.0","11":"48.0","12":"2.15"},{"1":"2","2":"70.30065","3":"4.435481","4":"15.84961","5":"1.414492e-56","6":"185.5277","7":"61.60727","8":"78.99404","9":"61.34783","10":"33.0","11":"48.0","12":"2.40"},{"1":"3","2":"68.79143","3":"4.699081","4":"14.63934","5":"1.575972e-48","6":"158.7963","7":"59.58140","8":"78.00146","9":"61.34783","10":"33.0","11":"53.5","12":"2.15"},{"1":"4","2":"66.63817","3":"3.661656","4":"18.19892","5":"5.263713e-74","6":"243.4266","7":"59.46146","8":"73.81489","9":"61.34783","10":"33.0","11":"53.5","12":"2.40"},{"1":"5","2":"58.53525","3":"3.370091","4":"17.36904","5":"1.415637e-67","6":"222.0677","7":"51.93000","8":"65.14051","9":"61.34783","10":"44.5","11":"48.0","12":"2.15"},{"1":"6","2":"56.38200","3":"4.233879","4":"13.31686","5":"1.847055e-40","6":"131.9919","7":"48.08374","8":"64.68025","9":"61.34783","10":"44.5","11":"48.0","12":"2.40"},{"1":"7","2":"54.87277","3":"4.595489","4":"11.94057","5":"7.271935e-33","6":"106.7613","7":"45.86578","8":"63.87976","9":"61.34783","10":"44.5","11":"53.5","12":"2.15"},{"1":"8","2":"52.71951","3":"2.725614","4":"19.34225","5":"2.369126e-83","6":"274.4757","7":"47.37741","8":"58.06162","9":"61.34783","10":"44.5","11":"53.5","12":"2.40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["satis"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["severity"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["anxiety"],"name":[12],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"72.45391","3":"2.844181","4":"25.47444","5":"3.785146e-143","6":"473.1154","7":"66.87942","8":"78.02840","9":"61.34783","10":"33.0","11":"48.0","12":"2.15"},{"1":"2","2":"70.30065","3":"4.435481","4":"15.84961","5":"1.414532e-56","6":"185.5276","7":"61.60727","8":"78.99404","9":"61.34783","10":"33.0","11":"48.0","12":"2.40"},{"1":"3","2":"68.79143","3":"4.699081","4":"14.63934","5":"1.575993e-48","6":"158.7963","7":"59.58140","8":"78.00146","9":"61.34783","10":"33.0","11":"53.5","12":"2.15"},{"1":"4","2":"66.63817","3":"3.661656","4":"18.19892","5":"5.263703e-74","6":"243.4266","7":"59.46146","8":"73.81489","9":"61.34783","10":"33.0","11":"53.5","12":"2.40"},{"1":"5","2":"58.53525","3":"3.370091","4":"17.36904","5":"1.415648e-67","6":"222.0677","7":"51.93000","8":"65.14051","9":"61.34783","10":"44.5","11":"48.0","12":"2.15"},{"1":"6","2":"56.38200","3":"4.233880","4":"13.31686","5":"1.847097e-40","6":"131.9919","7":"48.08374","8":"64.68025","9":"61.34783","10":"44.5","11":"48.0","12":"2.40"},{"1":"7","2":"54.87277","3":"4.595489","4":"11.94057","5":"7.271998e-33","6":"106.7613","7":"45.86578","8":"63.87976","9":"61.34783","10":"44.5","11":"53.5","12":"2.15"},{"1":"8","2":"52.71951","3":"2.725615","4":"19.34225","5":"2.369247e-83","6":"274.4756","7":"47.37741","8":"58.06162","9":"61.34783","10":"44.5","11":"53.5","12":"2.40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1343,7 +1350,7 @@ F-statistic: 159.6 on 1 and 103 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["univ_GPA"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["high_GPA"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"3.121313","3":"0.02776760","4":"112.40845","5":"0","6":"Inf","7":"3.066889","8":"3.175736","9":"3.172857","10":"3.0"},{"1":"2","2":"3.458728","3":"0.03558848","4":"97.18673","5":"0","6":"Inf","7":"3.388976","8":"3.528480","9":"3.172857","10":"3.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["univ_GPA"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["high_GPA"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"3.121313","3":"0.02776760","4":"112.40845","5":"0","6":"Inf","7":"3.066889","8":"3.175736","9":"3.172857","10":"3.0"},{"1":"2","2":"3.458728","3":"0.03558848","4":"97.18672","5":"0","6":"Inf","7":"3.388976","8":"3.528480","9":"3.172857","10":"3.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>

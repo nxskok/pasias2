@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./repeated-measures.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Repeated measures</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -368,26 +369,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -791,7 +798,7 @@ drug:times 0.3436277 1.757377e-06</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rat"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["drug"],"name":[2],"type":["chr"],"align":["left"]},{"label":["timex"],"name":[3],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"8","2":"thiouracil","3":"Time3","4":"120","5":"3"},{"1":"22","2":"control","3":"Time4","4":"151","5":"4"},{"1":"3","2":"thyroxin","3":"Time1","4":"75","5":"1"},{"1":"24","2":"control","3":"Time0","4":"51","5":"0"},{"1":"17","2":"thiouracil","3":"Time4","4":"122","5":"4"},{"1":"25","2":"control","3":"Time4","4":"154","5":"4"},{"1":"10","2":"thiouracil","3":"Time1","4":"79","5":"1"},{"1":"27","2":"control","3":"Time0","4":"57","5":"0"},{"1":"9","2":"thiouracil","3":"Time2","4":"101","5":"2"},{"1":"7","2":"thyroxin","3":"Time4","4":"171","5":"4"},{"1":"16","2":"thiouracil","3":"Time0","4":"46","5":"0"},{"1":"6","2":"thyroxin","3":"Time4","4":"140","5":"4"},{"1":"9","2":"thiouracil","3":"Time3","4":"111","5":"3"},{"1":"21","2":"control","3":"Time2","4":"100","5":"2"},{"1":"18","2":"control","3":"Time0","4":"57","5":"0"},{"1":"13","2":"thiouracil","3":"Time4","4":"119","5":"4"},{"1":"16","2":"thiouracil","3":"Time2","4":"78","5":"2"},{"1":"19","2":"control","3":"Time3","4":"146","5":"3"},{"1":"19","2":"control","3":"Time0","4":"60","5":"0"},{"1":"11","2":"thiouracil","3":"Time1","4":"88","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rat"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["drug"],"name":[2],"type":["chr"],"align":["left"]},{"label":["timex"],"name":[3],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"24","2":"control","3":"Time0","4":"51","5":"0"},{"1":"18","2":"control","3":"Time4","4":"172","5":"4"},{"1":"3","2":"thyroxin","3":"Time0","4":"56","5":"0"},{"1":"27","2":"control","3":"Time1","4":"82","5":"1"},{"1":"13","2":"thiouracil","3":"Time4","4":"119","5":"4"},{"1":"14","2":"thiouracil","3":"Time0","4":"56","5":"0"},{"1":"18","2":"control","3":"Time1","4":"86","5":"1"},{"1":"12","2":"thiouracil","3":"Time1","4":"75","5":"1"},{"1":"19","2":"control","3":"Time0","4":"60","5":"0"},{"1":"1","2":"thyroxin","3":"Time1","4":"85","5":"1"},{"1":"21","2":"control","3":"Time3","4":"129","5":"3"},{"1":"23","2":"control","3":"Time3","4":"131","5":"3"},{"1":"15","2":"thiouracil","3":"Time4","4":"138","5":"4"},{"1":"20","2":"control","3":"Time1","4":"77","5":"1"},{"1":"16","2":"thiouracil","3":"Time3","4":"90","5":"3"},{"1":"27","2":"control","3":"Time3","4":"139","5":"3"},{"1":"3","2":"thyroxin","3":"Time2","4":"108","5":"2"},{"1":"13","2":"thiouracil","3":"Time3","4":"100","5":"3"},{"1":"24","2":"control","3":"Time4","4":"141","5":"4"},{"1":"23","2":"control","3":"Time1","4":"70","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>

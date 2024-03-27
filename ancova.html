@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -368,26 +369,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loglin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Frequency table analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -644,9 +651,9 @@ F-statistic: 151.5 on 5 and 21 DF,  p-value: 9.763e-16</code></pre>
 <p>The biggest-size difference in slopes, about <span class="math inline">\(0.40\)</span>, is between low expenditure and high expenditure. This says that the line for high expenditure is this much more steep than the line for low expenditure. That’s where the non-parallelism is on the graph, such as it is. A small but significant difference in slopes. You can tell that the effect is small by looking in the Estimate column; those changes in slopes, <span class="math inline">\(0.40\)</span> and <span class="math inline">\(0.32\)</span>, are the smallest things in size out of everything in that column.</p>
 <p>Having seen this, you now realize that I did this question wrong (or, at least, I led you through it wrong). The right way to do this would have been to fit the interaction model <em>first</em>, see that it is significant, and then done some predictions to assess the effects of things:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(improvement<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"expenditure"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(improvement<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"expenditure"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ancova_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="ancova_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The three lines are not quite parallel, and evidently non-parallel enough to be significant. (This graph does not give you any sense of how much variability there is in the <em>slopes</em>; the at-least partial non-overlapping of the confidence envelopes tells you that there is a significant effect of <em>expenditure</em>, but it doesn’t tell you about the interaction.)</p>
@@ -850,7 +857,7 @@ F-statistic:  18.1 on 3 and 26 DF,  p-value: 1.501e-06</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["drug"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pre"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"5","3":"1.055110","4":"-1.7884966","5":"3.898716"},{"1":"A","2":"12","3":"7.965396","4":"5.3344494","5":"10.596343"},{"1":"A","2":"20","3":"15.862867","4":"11.6125631","5":"20.113170"},{"1":"D","2":"5","3":"1.164081","4":"-1.7961211","5":"4.124283"},{"1":"D","2":"12","3":"8.074368","4":"5.5092373","5":"10.639498"},{"1":"D","2":"20","3":"15.971838","4":"11.9025779","5":"20.041098"},{"1":"F","2":"5","3":"4.501248","4":"0.9443557","5":"8.058140"},{"1":"F","2":"12","3":"11.411535","4":"8.9118746","5":"13.911195"},{"1":"F","2":"20","3":"19.309005","4":"15.9320080","5":"22.686002"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["drug"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pre"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"5","3":"1.055110","4":"-1.7884966","5":"3.898716"},{"1":"A","2":"12","3":"7.965396","4":"5.3344494","5":"10.596343"},{"1":"A","2":"20","3":"15.862867","4":"11.6125631","5":"20.113170"},{"1":"D","2":"5","3":"1.164081","4":"-1.7961210","5":"4.124283"},{"1":"D","2":"12","3":"8.074368","4":"5.5092368","5":"10.639498"},{"1":"D","2":"20","3":"15.971838","4":"11.9025776","5":"20.041099"},{"1":"F","2":"5","3":"4.501248","4":"0.9443556","5":"8.058140"},{"1":"F","2":"12","3":"11.411535","4":"8.9118746","5":"13.911195"},{"1":"F","2":"20","3":"19.309005","4":"15.9320081","5":"22.686002"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -861,21 +868,21 @@ F-statistic:  18.1 on 3 and 26 DF,  p-value: 1.501e-06</code></pre>
 <li>Now, plot the data with the fitted lines on.</li>
 </ol>
 <p>Solution</p>
-<p>The starting point is to plot the predictions, which is <code>plot_cap</code>:</p>
+<p>The starting point is to plot the predictions, which is <code>plot_predictions</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(lepro<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(lepro<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ancova_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="ancova_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The olive-coloured line is actually the red and green lines right next to each other. You can check from the previous part that the predictions for drugs A and D are very close together, with those for drug F (the placebo) being higher (worse).</p>
-<p>This is a <code>ggplot</code>, so we can add things to it. The idea is to say that the next thing to plot comes from some other dataframe, and to specify everything we need (that is, not to inherit from the original <code>ggplot</code> that is lurking within <code>plot_cap</code>):</p>
+<p>This is a <code>ggplot</code>, so we can add things to it. The idea is to say that the next thing to plot comes from some other dataframe, and to specify everything we need (that is, not to inherit from the original <code>ggplot</code> that is lurking within <code>plot_predictions</code>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(lepro<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(lepro<span class="fl">.2</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>)) <span class="sc">+</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> lepro, <span class="fu">aes</span>(<span class="at">x =</span> pre, <span class="at">y =</span> post, <span class="at">colour =</span> drug), </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ancova_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="ancova_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There is quite a lot of variability (which is why those confidence bands are so wide), but at least some of the blue points from drug F are above the others (worse), and there is very little to choose between drugs A and D.</p>
@@ -886,10 +893,10 @@ F-statistic:  18.1 on 3 and 26 DF,  p-value: 1.501e-06</code></pre>
 <p>Solution</p>
 <p>My lines are parallel. This is exactly what I would expect, since my best model has no interaction, and the interaction is what would make the lines <em>not</em> be parallel. If your best model <em>did</em> have the interaction term still in it, your predictions would have been these:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_cap</span>(lepro<span class="fl">.1</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(lepro<span class="fl">.1</span>, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"drug"</span>)) <span class="sc">+</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> lepro, <span class="fu">aes</span>(<span class="at">x =</span> pre, <span class="at">y =</span> post, <span class="at">colour =</span> drug), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ancova_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="ancova_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There is, as you see, a substantial scatter in the points that would make it very difficult to prove that those three slopes are really different, even though the lines cross.</p>
