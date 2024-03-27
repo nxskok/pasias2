@@ -483,7 +483,7 @@ And not a loop in sight.
 
 This is how I coded it in `pairwise_median_test`. If you want to
 check it, it's on Github:
-[link](https://raw.githubusercontent.com/nxskok/smmr/master/R/pairwise_median_test.R). 
+[link](http://ritsokiguess.site/smmr/R/pairwise_median_test.R). 
 The function `median_test_pair` is the same as `comp2`
 above. 
 

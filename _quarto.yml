@@ -1,7 +1,8 @@
 project:
   type: book
-# execute:
-  # freeze: auto
+execute:
+  freeze: auto
+prefer-html: true
 book:
   title: "Problems and Solutions in Applied Statistics (2nd ed)"
   author: "Ken Butler"

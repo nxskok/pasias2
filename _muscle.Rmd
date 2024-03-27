@@ -87,7 +87,7 @@ preds
 Extra: I note that the predictions increase from 2 to 3, and then decrease sharply after that. This is not quite what the scatterplot said:
 
 ```{r}
-plot_cap(muscle.1, condition = "Conc") +
+plot_predictions(muscle.1, condition = "Conc") +
   geom_point(data = muscle, aes(x = Conc, y = Length))
 ```
 

@@ -9,7 +9,7 @@ up in the same cluster.
 
 
 (a) Read in the data from
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/ais.txt), recalling
+[link](http://ritsokiguess.site/datafiles/ais.txt), recalling
 that the data values are separated by tabs. Display (some of) the
 data set.
 
@@ -19,7 +19,7 @@ Solution
 So, `read_tsv`. 
 
 ```{r ais-km-1 }
-my_url <- "https://raw.githubusercontent.com/nxskok/datafiles/master/ais.txt"
+my_url <- "http://ritsokiguess.site/datafiles/ais.txt"
 athletes <- read_tsv(my_url)
 athletes
 ```

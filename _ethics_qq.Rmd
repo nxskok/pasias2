@@ -54,7 +54,7 @@ about whether the research should continue or stop.
 I should perhaps stress at this point that no actual cats were harmed
 in the collection of these data (which can be found as a `.csv`
 file at
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/decision.csv)). The
+[link](http://ritsokiguess.site/datafiles/decision.csv)). The
 variables in the data set are these:
 
 

@@ -23,7 +23,7 @@ Solution
 The usual:
 
 ```{r cornseed-1 }
-my_url <- "https://raw.githubusercontent.com/nxskok/datafiles/master/cornseed.csv"
+my_url <- "http://ritsokiguess.site/datafiles/cornseed.csv"
 cornseed <- read_csv(my_url)
 cornseed
 ```

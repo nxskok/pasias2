@@ -256,7 +256,7 @@ isn't much to choose. For the confidence intervals for the mean
 calories of *all* brands with these fat contents, the picture is clearer:
 
 ```{r}
-plot_cap(pizza.1, condition = "Fat")
+plot_predictions(pizza.1, condition = "Fat")
 ```
 
 A `fat` value of 12 is close to the middle of the data, so the interval is shorter, but a value of 20 is out near the extreme and the interval is noticeably longer.

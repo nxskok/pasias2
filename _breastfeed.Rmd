@@ -252,7 +252,7 @@ What did I do there? I first created some new variables:
 `total` is the total number of babies of each gestational age, and
 `proportion` is the observed proportion of breastfeeding babies at
 each gestational age (number of yes divided by total).
-`pred` which are the predictions we did above. Then I repeat the `plot_cap`, and on that plot
+`pred` which are the predictions we did above. Then I repeat the `plot_predictions`, and on that plot
 I add the observed proportions against gestational age
 (as points). To do *that*, I need to change which dataframe I am using (the temporary one called `d` with the proportions and totals in it), and the variables I am plotting (which are now the ones in `d`).
 The way I

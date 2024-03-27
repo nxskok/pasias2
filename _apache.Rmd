@@ -210,7 +210,7 @@ d
 
 That looks all right. 
 
-To plot predicted values, your first port of call would normally be `plot_cap`, since the job of this function is to make a lot of predictions and construct a nice plot of them, but this time we cannot since the response variable is a matrix and thus not part of the dataframe. So we have to make this ourselves. Let's do the predictions again with more Apache scores, so that we get a better plot:
+To plot predicted values, your first port of call would normally be `plot_predictions`, since the job of this function is to make a lot of predictions and construct a nice plot of them, but this time we cannot since the response variable is a matrix and thus not part of the dataframe. So we have to make this ourselves. Let's do the predictions again with more Apache scores, so that we get a better plot:
 
 ```{r}
 new <- datagrid(model = apache.1, apache = 0:40)
@@ -237,7 +237,7 @@ cbind(predictions(apache.1, newdata = new)) %>%
 
 That does a reasonably good job, but we can do better. We observe now that most of  the points are reasonably close to the curve, except for that one in the bottom right, a patient who had the highest `apache` score of all, but who happened to survive. The observed proportions that are 1 or 0 over on the right might have been based on only one patient, and the others might have been based on more. So it would be better to encode how many patients each point is based on, for example by the size of the point (you may be able to think of other ways like colour, and you can experiment to see what gets the message across best in your opinion).
 
-A reminder that the `inherit.aes` is to tell `ggplot` not to take anything for the `geom_point` from the `plot_cap` graph (which has additional things that it would be a pain to override).
+A reminder that the `inherit.aes` is to tell `ggplot` not to take anything for the `geom_point` from the `plot_predictions` graph (which has additional things that it would be a pain to override).
 
 All right, we can make the points different sizes according to the number of `patients` they are based on, thus:
 

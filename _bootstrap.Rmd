@@ -7,7 +7,7 @@ air-conditioning equipment in
 aircraft. For one aircraft, the air-conditioning equipment failed 12
 times, and the number of hours it ran before failing each time was
 recorded. The data are in
-[link](https://raw.githubusercontent.com/nxskok/pasias/master/air_conditioning.csv). Boeing
+[link](http://ritsokiguess.site/pasias/air_conditioning.csv). Boeing
 was interested in the mean failure time, because the company wanted to
 plan for engineers to fix the failures (and thus needed to estimate a
 failure *rate*).
@@ -33,7 +33,7 @@ Solution
 This is a `.csv` so `read_csv` is the thing:
 
 ```{r bootstrap-2 }
-my_url <- "https://raw.githubusercontent.com/nxskok/pasias/master/air_conditioning.csv"
+my_url <- "http://ritsokiguess.site/pasias/air_conditioning.csv"
 aircon <- read_csv(my_url)
 aircon
 ```

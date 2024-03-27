@@ -235,7 +235,7 @@ compare the observed with the predicted. For example, 44 out of 50
 insects were killed at log-dose 2.32, which is a proportion of 0.88,
 pretty close to the prediction of 0.91.
 
-Extra: you could also make a plot of these. The normal thing is to use `plot_cap`, but this time, the response variable is that matrix thing outside the dataframe, which confuses the issue. So let's make a more detailed set of predictions and plot them ourselves (effectively, doing the same thing `plot_cap` does but building it ourselves):
+Extra: you could also make a plot of these. The normal thing is to use `plot_predictions`, but this time, the response variable is that matrix thing outside the dataframe, which confuses the issue. So let's make a more detailed set of predictions and plot them ourselves (effectively, doing the same thing `plot_predictions` does but building it ourselves):
 
 ```{r}
 new <- tibble(log_conc = seq(0.5, 2.5, 0.01))

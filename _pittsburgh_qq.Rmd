@@ -8,7 +8,7 @@ It has long been important to build bridges there,
 to enable its residents to cross the rivers safely. See
 [link](https://en.wikipedia.org/wiki/List_of_bridges_of_Pittsburgh) for
 a listing (with pictures) of the bridges. The data at
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/bridges.csv) contains
+[link](http://ritsokiguess.site/datafiles/bridges.csv) contains
 detail for a large number of past and present bridges in
 Pittsburgh. All the variables we will use are categorical. Here they
 are:
@@ -125,7 +125,7 @@ frame. (The whole thing is big, so don't display it all.)
 (g) Turn your matrix or data frame into a `dist`
 object. (If you couldn't create a matrix or data frame of
 dissimilarities, read them in from
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/mm.csv).) Do not
+[link](http://ritsokiguess.site/datafiles/mm.csv).) Do not
 display your distance object.
 
 
