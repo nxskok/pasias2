@@ -227,7 +227,7 @@ What did I do there? I first created some new variables:
 `proportion` is the observed proportion of breastfeeding babies at
 each gestational age (number of yes divided by total).
 
-Then I add this to the plot of predicted probabilities.
+Then I add this to the plot of predicted probabilities
 (as points). To do *that*, I need to change which dataframe I am using (the temporary one called `d` with the proportions and totals in it), and the variables I am plotting (which are now the ones in `d`).
 The way I
 do that is to put an `aes` inside the `geom_line` to

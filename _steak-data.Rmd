@@ -64,7 +64,7 @@ that the respondent lives in (five values).
 
 
 The data are in
-[link](https://ritsokiguess.site/datafiles/steak.csv). 
+[link](http://ritsokiguess.site/datafiles/steak.csv). 
 
 
 
@@ -77,7 +77,7 @@ Solution
 The usual:
 
 ```{r steak-data-1 }
-my_url <- "https://ritsokiguess.site/datafiles/steak.csv"
+my_url <- "http://ritsokiguess.site/datafiles/steak.csv"
 steak0 <- read_csv(my_url)
 steak0
 ```

@@ -2,7 +2,7 @@
 
 
  The file
-[link](https://ritsokiguess.site/datafiles/car-cluster.csv) contains
+[link](http://ritsokiguess.site/datafiles/car-cluster.csv) contains
 information on seven variables 
 for 32 different cars. The variables are:
 

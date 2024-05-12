@@ -273,7 +273,7 @@ $\blacksquare$
 
 (d) Some data were collected on age and vocabulary size of 10
 randomly selected children, shown here:
-[link](https://raw.githubusercontent.com/nxskok/pasias/master/vocab.txt). Read
+[link](http://ritsokiguess.site/pasias/vocab.txt). Read
 in and display the data; the values are separated by single spaces.
 
 Solution
@@ -282,7 +282,7 @@ Solution
 Thus:
 
 ```{r regression-stan-2 }
-my_url <- "https://raw.githubusercontent.com/nxskok/pasias/master/vocab.txt"
+my_url <- "http://ritsokiguess.site/pasias/vocab.txt"
 vocabulary <- read_delim(my_url, " ")
 vocabulary
 ```

@@ -10,7 +10,7 @@ understand that, we need to do discriminant analysis, which is the
 purpose of this question.
 
 The data can be found at
-[link](https://ritsokiguess.site/datafiles/ais.txt). 
+[link](http://ritsokiguess.site/datafiles/ais.txt). 
 
 
 
@@ -24,7 +24,7 @@ Solution
 Nothing new here:
 
 ```{r athletes-d-1 }
-my_url <- "https://ritsokiguess.site/datafiles/ais.txt"
+my_url <- "http://ritsokiguess.site/datafiles/ais.txt"
 athletes <- read_tsv(my_url)
 athletes
 ```

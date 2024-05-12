@@ -29,7 +29,7 @@ Solution
 As ever:
 
 ```{r adhd-1 }
-my_url <- "https://ritsokiguess.site/datafiles/adhd-parents.txt"
+my_url <- "http://ritsokiguess.site/datafiles/adhd-parents.txt"
 adhd <- read_delim(my_url, " ")
 adhd
 ```

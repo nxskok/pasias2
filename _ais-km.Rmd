@@ -12,16 +12,16 @@ whether athletes of certain genders and certain sports tend to end up in
 the same cluster.
 
 (a) Read in the data from
-    [link](https://ritsokiguess.site/datafiles/ais.txt),
-    recalling that the data values are separated by tabs. Display (some
-    of) the data set.
+[link](http://ritsokiguess.site/datafiles/ais.txt), recalling
+that the data values are separated by tabs. Display (some of) the
+data set.
 
 Solution
 
 So, `read_tsv`.
 
 ```{r ais-km-1 }
-my_url <- "https://ritsokiguess.site/datafiles/ais.txt"
+my_url <- "http://ritsokiguess.site/datafiles/ais.txt"
 athletes <- read_tsv(my_url)
 athletes
 glimpse(athletes)
