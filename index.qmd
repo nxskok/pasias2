@@ -1,6 +1,6 @@
 # Introduction {.unnumbered}
 
-[This book](http://ritsokiguess.site/pasias/) contains a collection
+[This book](http://ritsokiguess.site/pasias2/) contains a collection
 of problems, and my solutions to them, in applied statistics with
 R. These come from my courses STAC32, STAC33, and STAD29 at the University of
 Toronto Scarborough. 

@@ -282,7 +282,7 @@ Solution
 Thus:
 
 ```{r regression-stan-2 }
-my_url <- "http://ritsokiguess.site/pasias/vocab.txt"
+my_url <- "http://ritsokiguess.site/datafiles/vocab.txt"
 vocabulary <- read_delim(my_url, " ")
 vocabulary
 ```

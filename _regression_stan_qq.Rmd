@@ -44,7 +44,7 @@ Use this information to obtain parameters for your prior distributions.
 
 (d) Some data were collected on age and vocabulary size of 10
 randomly selected children, shown here:
-[link](http://ritsokiguess.site/pasias/vocab.txt). Read
+[link](http://ritsokiguess.site/datafiles/vocab.txt). Read
 in and display the data; the values are separated by single spaces.
 
 
