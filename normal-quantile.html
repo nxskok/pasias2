@@ -538,10 +538,12 @@ dbl (3): bihai, caribaea_red, caribaea_yellow
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(heliconia,<span class="fu">aes</span>(<span class="at">sample=</span>bihai))<span class="sc">+</span><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_qq()`).</code></pre>
+<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
+(`stat_qq()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_qq_line()`).</code></pre>
+<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
+(`stat_qq_line()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -577,10 +579,12 @@ dbl (3): bihai, caribaea_red, caribaea_yellow
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(heliconia,<span class="fu">aes</span>(<span class="at">sample=</span>caribaea_yellow))<span class="sc">+</span><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 8 rows containing non-finite values (`stat_qq()`).</code></pre>
+<pre><code>Warning: Removed 8 rows containing non-finite outside the scale range
+(`stat_qq()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 8 rows containing non-finite values (`stat_qq_line()`).</code></pre>
+<pre><code>Warning: Removed 8 rows containing non-finite outside the scale range
+(`stat_qq_line()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>

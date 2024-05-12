@@ -484,7 +484,7 @@ window.Quarto = {
 <h2 data-number="37.1" class="anchored" data-anchor-id="clustering-the-australian-athletes"><span class="header-section-number">37.1</span> Clustering the Australian athletes</h2>
 <p>Recall the Australian athlete data (that we’ve seen so many times before). This time, we’ll do some K-means clustering, and then see whether athletes of certain genders and certain sports tend to end up in the same cluster.</p>
 <ol type="a">
-<li><p>Read in the data from <a href="https://ritsokiguess.site/datafiles/ais.txt">link</a>, recalling that the data values are separated by tabs. Display (some of) the data set.</p></li>
+<li><p>Read in the data from <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a>, recalling that the data values are separated by tabs. Display (some of) the data set.</p></li>
 <li><p>From your data frame, select only the columns that are numbers (or get rid of the ones that are text), and standardize all of the columns you have left. This is, done the best way, a slick piece of code. Display what you get.</p></li>
 <li><p>Make a data frame that contains the total within-cluster sum of squares from a K-means clustering for each number of clusters from 2 to 20.</p></li>
 <li><p>Use the data frame you just created to make a scree plot. What does the scree plot tell you?</p></li>
@@ -580,7 +580,7 @@ window.Quarto = {
 </section>
 <section id="grouping-similar-cars" class="level2" data-number="37.4">
 <h2 data-number="37.4" class="anchored" data-anchor-id="grouping-similar-cars"><span class="header-section-number">37.4</span> Grouping similar cars</h2>
-<p>The file <a href="https://ritsokiguess.site/datafiles/car-cluster.csv">link</a> contains information on seven variables for 32 different cars. The variables are:</p>
+<p>The file <a href="http://ritsokiguess.site/datafiles/car-cluster.csv">link</a> contains information on seven variables for 32 different cars. The variables are:</p>
 <ul>
 <li><p><code>Carname</code>: name of the car (duh!)</p></li>
 <li><p><code>mpg</code>: gas consumption in miles per US gallon (higher means the car uses less gas)</p></li>
@@ -636,12 +636,12 @@ window.Quarto = {
 <h2 data-number="37.6" class="anchored" data-anchor-id="clustering-the-australian-athletes-1"><span class="header-section-number">37.6</span> Clustering the Australian athletes</h2>
 <p>Recall the Australian athlete data (that we’ve seen so many times before). This time, we’ll do some K-means clustering, and then see whether athletes of certain genders and certain sports tend to end up in the same cluster.</p>
 <ol type="a">
-<li>Read in the data from <a href="https://ritsokiguess.site/datafiles/ais.txt">link</a>, recalling that the data values are separated by tabs. Display (some of) the data set.</li>
+<li>Read in the data from <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a>, recalling that the data values are separated by tabs. Display (some of) the data set.</li>
 </ol>
 <p>Solution</p>
 <p>So, <code>read_tsv</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://ritsokiguess.site/datafiles/ais.txt"</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ais.txt"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 202 Columns: 13
@@ -1844,7 +1844,7 @@ Available components:
 </section>
 <section id="grouping-similar-cars-1" class="level2" data-number="37.9">
 <h2 data-number="37.9" class="anchored" data-anchor-id="grouping-similar-cars-1"><span class="header-section-number">37.9</span> Grouping similar cars</h2>
-<p>The file <a href="https://ritsokiguess.site/datafiles/car-cluster.csv">link</a> contains information on seven variables for 32 different cars. The variables are:</p>
+<p>The file <a href="http://ritsokiguess.site/datafiles/car-cluster.csv">link</a> contains information on seven variables for 32 different cars. The variables are:</p>
 <ul>
 <li><p><code>Carname</code>: name of the car (duh!)</p></li>
 <li><p><code>mpg</code>: gas consumption in miles per US gallon (higher means the car uses less gas)</p></li>
@@ -1859,9 +1859,8 @@ Available components:
 </ol>
 <p>Solution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># my_url &lt;- "https://ritsokiguess.site/datafiles/car-cluster.csv"</span></span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/car-cluster.csv"</span></span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/car-cluster.csv"</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 32 Columns: 7
 ── Column specification ──────────────────────────────────────────────────────────────────

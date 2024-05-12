@@ -1895,7 +1895,7 @@ converged</code></pre>
 </div>
 <p>I gotta figure out what that error is. Does <code>step</code>?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(sport<span class="fl">.1</span>, <span class="at">direction =</span> <span class="st">"backward"</span>, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(sport<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=754.62
 Sport ~ Ht + Wt
@@ -1965,7 +1965,7 @@ AIC: 754.6239 </code></pre>
 <p>(check: <span class="math inline">\(3 \times 3 = 9\)</span> rows.)</p>
 <p>Then predict:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">predictions</span>(sport<span class="fl">.1</span>, <span class="at">newdata =</span> new, <span class="at">type =</span> <span class="st">"probs"</span>))</span>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">predictions</span>(sport<span class="fl">.1</span>, <span class="at">newdata =</span> new))</span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">

@@ -525,7 +525,7 @@ window.Quarto = {
 </section>
 <section id="bridges-in-pittsburgh" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="bridges-in-pittsburgh"><span class="header-section-number">36.4</span> Bridges in Pittsburgh</h2>
-<p>The city of Pittsburgh, Pennsylvania, lies where three rivers, the Allegheny, Monongahela, and Ohio, meet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> It has long been important to build bridges there, to enable its residents to cross the rivers safely. See <a href="https://en.wikipedia.org/wiki/List_of_bridges_of_Pittsburgh">link</a> for a listing (with pictures) of the bridges. The data at <a href="https://ritsokiguess.site/datafiles/bridges.csv">link</a> contains detail for a large number of past and present bridges in Pittsburgh. All the variables we will use are categorical. Here they are:</p>
+<p>The city of Pittsburgh, Pennsylvania, lies where three rivers, the Allegheny, Monongahela, and Ohio, meet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> It has long been important to build bridges there, to enable its residents to cross the rivers safely. See <a href="https://en.wikipedia.org/wiki/List_of_bridges_of_Pittsburgh">link</a> for a listing (with pictures) of the bridges. The data at <a href="http://ritsokiguess.site/datafiles/bridges.csv">link</a> contains detail for a large number of past and present bridges in Pittsburgh. All the variables we will use are categorical. Here they are:</p>
 <ul>
 <li><p><code>id</code> identifying the bridge (we ignore)</p></li>
 <li><p><code>river</code>: initial letter of river that the bridge crosses</p></li>
@@ -549,7 +549,7 @@ window.Quarto = {
 <li><p>We are going to assess the dissimilarity between two bridges by the number of the categorical variables they <em>disagree</em> on. This is called a “simple matching coefficient”, and is the same thing we did in the question about clustering fruits based on their properties. This time, though, we want to count matches in things that are <em>rows</em> of our data frame (properties of two different bridges), so we will need to use a strategy like the one I used in calculating the Bray-Curtis distances. First, write a function that takes as input two vectors <code>v</code> and <code>w</code> and counts the number of their entries that differ (comparing the first with the first, the second with the second, , the last with the last. I can think of a quick way and a slow way, but either way is good.) To test your function, create two vectors (using <code>c</code>) of the same length, and see whether it correctly counts the number of corresponding values that are different.</p></li>
 <li><p>Write a function that has as input two row numbers and a data frame to take those rows from. The function needs to select all the columns except for <code>id</code> and <code>location</code>, select the rows required one at a time, and turn them into vectors. (There may be some repetitiousness here. That’s OK.) Then those two vectors are passed into the function you wrote in the previous part, and the count of the number of differences is returned. This is like the code in the Bray-Curtis problem. Test your function on rows 3 and 4 of your bridges data set (with the missings removed). There should be six variables that are different.</p></li>
 <li><p>Create a matrix or data frame of pairwise dissimilarities between each pair of bridges (using only the ones with no missing values). Use loops, or <code>crossing</code> and <code>rowwise</code>, as you prefer. Display the first six rows of your matrix (using <code>head</code>) or the first few rows of your data frame. (The whole thing is big, so don’t display it all.)</p></li>
-<li><p>Turn your matrix or data frame into a <code>dist</code> object. (If you couldn’t create a matrix or data frame of dissimilarities, read them in from <a href="https://ritsokiguess.site/datafiles/mm.csv">link</a>.) Do not display your distance object.</p></li>
+<li><p>Turn your matrix or data frame into a <code>dist</code> object. (If you couldn’t create a matrix or data frame of dissimilarities, read them in from <a href="http://ritsokiguess.site/datafiles/mm.csv">link</a>.) Do not display your distance object.</p></li>
 <li><p>Run a cluster analysis using Ward’s method, and display a dendrogram. The labels for the bridges (rows of the data frame) may come out too big; experiment with a <code>cex</code> less than 1 on the plot so that you can see them.</p></li>
 <li><p>How many clusters do you think is reasonable for these data? Draw them on your plot.</p></li>
 <li><p>Pick three bridges in the same one of your clusters (it doesn’t matter which three bridges or which cluster). Display the data for these bridges. Does it make sense that these three bridges ended up in the same cluster? Explain briefly.</p></li>
@@ -1721,7 +1721,7 @@ Fungus  66     65    68  67     66   69    61</code></pre>
 </section>
 <section id="bridges-in-pittsburgh-1" class="level2" data-number="36.8">
 <h2 data-number="36.8" class="anchored" data-anchor-id="bridges-in-pittsburgh-1"><span class="header-section-number">36.8</span> Bridges in Pittsburgh</h2>
-<p>The city of Pittsburgh, Pennsylvania, lies where three rivers, the Allegheny, Monongahela, and Ohio, meet.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> It has long been important to build bridges there, to enable its residents to cross the rivers safely. See <a href="https://en.wikipedia.org/wiki/List_of_bridges_of_Pittsburgh">link</a> for a listing (with pictures) of the bridges. The data at <a href="https://ritsokiguess.site/datafiles/bridges.csv">link</a> contains detail for a large number of past and present bridges in Pittsburgh. All the variables we will use are categorical. Here they are:</p>
+<p>The city of Pittsburgh, Pennsylvania, lies where three rivers, the Allegheny, Monongahela, and Ohio, meet.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> It has long been important to build bridges there, to enable its residents to cross the rivers safely. See <a href="https://en.wikipedia.org/wiki/List_of_bridges_of_Pittsburgh">link</a> for a listing (with pictures) of the bridges. The data at <a href="http://ritsokiguess.site/datafiles/bridges.csv">link</a> contains detail for a large number of past and present bridges in Pittsburgh. All the variables we will use are categorical. Here they are:</p>
 <ul>
 <li><p><code>id</code> identifying the bridge (we ignore)</p></li>
 <li><p><code>river</code>: initial letter of river that the bridge crosses</p></li>
@@ -1744,7 +1744,7 @@ Fungus  66     65    68  67     66   69    61</code></pre>
 <p>Solution</p>
 <p>This sort of thing:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://ritsokiguess.site/datafiles/bridges.csv"</span></span>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/bridges.csv"</span></span>
 <span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>bridges0 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url, <span class="at">na =</span> <span class="st">"?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 108 Columns: 13
@@ -2041,7 +2041,7 @@ dbl  (2): location, lanes
 <p>This shows what we found before, that bridges 3 and 4 differ on 6 variables.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="7" type="a">
-<li>Turn your matrix or data frame into a <code>dist</code> object. (If you couldn’t create a matrix or data frame of dissimilarities, read them in from <a href="https://ritsokiguess.site/datafiles/mm.csv">link</a>.) Do not display your distance object.</li>
+<li>Turn your matrix or data frame into a <code>dist</code> object. (If you couldn’t create a matrix or data frame of dissimilarities, read them in from <a href="http://ritsokiguess.site/datafiles/mm.csv">link</a>.) Do not display your distance object.</li>
 </ol>
 <p>Solution</p>
 <p>The only tricky thing is that the data frame that I called <code>mm</code> has an extra column called <code>i</code> that needs to be removed first. This also applies if you need to read it in from the file. Thus:</p>

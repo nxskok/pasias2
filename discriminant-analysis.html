@@ -613,7 +613,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="understanding-athletes-height-weight-sport-and-gender" class="level2" data-number="35.7">
 <h2 data-number="35.7" class="anchored" data-anchor-id="understanding-athletes-height-weight-sport-and-gender"><span class="header-section-number">35.7</span> Understanding athletes’ height, weight, sport and gender</h2>
 <p>On a previous assignment, we used MANOVA on the athletes data to demonstrate that there was a significant relationship between the combination of the athletes’ height and weight, with the sport they play and the athlete’s gender. The problem with MANOVA is that it doesn’t give any information about the <em>kind</em> of relationship. To understand that, we need to do discriminant analysis, which is the purpose of this question.</p>
-<p>The data can be found at <a href="https://ritsokiguess.site/datafiles/ais.txt">link</a>.</p>
+<p>The data can be found at <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a>.</p>
 <ol type="a">
 <li><p>Once again, read in and display (some of) the data, bearing in mind that the data values are separated by <em>tabs</em>. (This ought to be a free two marks.)</p></li>
 <li><p>Use <code>unite</code> to make a new column in your data frame which contains the sport-gender <em>combination</em>. Display it. (You might like to display only a few columns so that it is clear that you did the right thing.) Hint: you’ve seen <code>unite</code> in the peanuts example in class.</p></li>
@@ -1324,8 +1324,7 @@ obesity a b c d
 <p>This is an exact repeat of what you did before:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/simple-manova.txt"</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># my_url &lt;- "https://ritsokiguess.site/datafiles/simple-manova.txt"</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 12 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -1684,7 +1683,7 @@ See problems(...) for more details.</code></pre>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["outdoor"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["social"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conservative"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["job"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["id"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["X6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["jobname"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"4","2":"12","3":"11","4":"3","5":"34","6":"NA","7":"dispatcher"},{"1":"18","2":"24","3":"5","4":"2","5":"40","6":"NA","7":"mechanic"},{"1":"23","2":"24","3":"7","4":"2","5":"67","6":"NA","7":"mechanic"},{"1":"25","2":"16","3":"12","4":"3","5":"46","6":"NA","7":"dispatcher"},{"1":"21","2":"19","3":"7","4":"2","5":"69","6":"NA","7":"mechanic"},{"1":"16","2":"18","3":"5","4":"1","5":"57","6":"NA","7":"custserv"},{"1":"17","2":"21","3":"12","4":"2","5":"50","6":"NA","7":"mechanic"},{"1":"14","2":"28","3":"1","4":"2","5":"15","6":"NA","7":"mechanic"},{"1":"15","2":"14","3":"17","4":"3","5":"11","6":"NA","7":"dispatcher"},{"1":"9","2":"13","3":"16","4":"3","5":"64","6":"NA","7":"dispatcher"},{"1":"14","2":"18","3":"14","4":"3","5":"37","6":"NA","7":"dispatcher"},{"1":"21","2":"12","3":"9","4":"2","5":"76","6":"NA","7":"mechanic"},{"1":"4","2":"10","3":"15","4":"3","5":"57","6":"NA","7":"dispatcher"},{"1":"7","2":"13","3":"7","4":"1","5":"61","6":"NA","7":"custserv"},{"1":"14","2":"19","3":"13","4":"2","5":"14","6":"NA","7":"mechanic"},{"1":"17","2":"24","3":"11","4":"2","5":"47","6":"NA","7":"mechanic"},{"1":"15","2":"22","3":"13","4":"2","5":"59","6":"NA","7":"mechanic"},{"1":"18","2":"20","3":"15","4":"3","5":"42","6":"NA","7":"dispatcher"},{"1":"15","2":"26","3":"4","4":"1","5":"70","6":"NA","7":"custserv"},{"1":"14","2":"16","3":"7","4":"3","5":"41","6":"NA","7":"dispatcher"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["outdoor"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["social"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conservative"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["job"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["id"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["X6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["jobname"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"14","2":"19","3":"13","4":"2","5":"14","6":"NA","7":"mechanic"},{"1":"13","2":"12","3":"15","4":"3","5":"35","6":"NA","7":"dispatcher"},{"1":"19","2":"33","3":"7","4":"1","5":"3","6":"NA","7":"custserv"},{"1":"10","2":"24","3":"5","4":"1","5":"30","6":"NA","7":"custserv"},{"1":"13","2":"16","3":"7","4":"3","5":"27","6":"NA","7":"dispatcher"},{"1":"20","2":"20","3":"9","4":"2","5":"45","6":"NA","7":"mechanic"},{"1":"14","2":"13","3":"12","4":"3","5":"59","6":"NA","7":"dispatcher"},{"1":"12","2":"22","3":"9","4":"1","5":"28","6":"NA","7":"custserv"},{"1":"17","2":"24","3":"5","4":"2","5":"86","6":"NA","7":"mechanic"},{"1":"24","2":"9","3":"17","4":"2","5":"6","6":"NA","7":"mechanic"},{"1":"17","2":"15","3":"10","4":"3","5":"15","6":"NA","7":"dispatcher"},{"1":"11","2":"17","3":"20","4":"3","5":"26","6":"NA","7":"dispatcher"},{"1":"10","2":"24","3":"12","4":"1","5":"18","6":"NA","7":"custserv"},{"1":"13","2":"27","3":"7","4":"1","5":"8","6":"NA","7":"custserv"},{"1":"19","2":"7","3":"13","4":"3","5":"43","6":"NA","7":"dispatcher"},{"1":"10","2":"17","3":"8","4":"1","5":"22","6":"NA","7":"custserv"},{"1":"12","2":"26","3":"9","4":"1","5":"27","6":"NA","7":"custserv"},{"1":"12","2":"12","3":"6","4":"3","5":"23","6":"NA","7":"dispatcher"},{"1":"4","2":"10","3":"15","4":"3","5":"57","6":"NA","7":"dispatcher"},{"1":"11","2":"15","3":"12","4":"1","5":"77","6":"NA","7":"custserv"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2101,7 +2100,7 @@ conservative -0.15499199  0.08734288</code></pre>
 <p>Solution</p>
 <p>As ever:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://ritsokiguess.site/datafiles/adhd-parents.txt"</span></span>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/adhd-parents.txt"</span></span>
 <span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>adhd <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(my_url, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 29 Columns: 5
@@ -2365,7 +2364,7 @@ that respectively contain everything from the (original) <code>lda</code> output
 <p>Solution</p>
 <p>The usual:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://ritsokiguess.site/datafiles/cornseed.csv"</span></span>
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/cornseed.csv"</span></span>
 <span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a>cornseed <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 32 Columns: 5
@@ -2757,14 +2756,14 @@ Caused by error:
 <section id="understanding-athletes-height-weight-sport-and-gender-1" class="level2" data-number="35.14">
 <h2 data-number="35.14" class="anchored" data-anchor-id="understanding-athletes-height-weight-sport-and-gender-1"><span class="header-section-number">35.14</span> Understanding athletes’ height, weight, sport and gender</h2>
 <p>On a previous assignment, we used MANOVA on the athletes data to demonstrate that there was a significant relationship between the combination of the athletes’ height and weight, with the sport they play and the athlete’s gender. The problem with MANOVA is that it doesn’t give any information about the <em>kind</em> of relationship. To understand that, we need to do discriminant analysis, which is the purpose of this question.</p>
-<p>The data can be found at <a href="https://ritsokiguess.site/datafiles/ais.txt">link</a>.</p>
+<p>The data can be found at <a href="http://ritsokiguess.site/datafiles/ais.txt">link</a>.</p>
 <ol type="a">
 <li>Once again, read in and display (some of) the data, bearing in mind that the data values are separated by <em>tabs</em>. (This ought to be a free two marks.)</li>
 </ol>
 <p>Solution</p>
 <p>Nothing new here:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"https://ritsokiguess.site/datafiles/ais.txt"</span></span>
+<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>my_url <span class="ot">&lt;-</span> <span class="st">"http://ritsokiguess.site/datafiles/ais.txt"</span></span>
 <span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(my_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 202 Columns: 13
