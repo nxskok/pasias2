@@ -54,7 +54,7 @@ about whether the research should continue or stop.
 I should perhaps stress at this point that no actual cats were harmed
 in the collection of these data (which can be found as a `.csv`
 file at
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/decision.csv)). The
+[link](https://ritsokiguess.site/datafiles/decision.csv). The
 variables in the data set are these:
 
 
@@ -87,7 +87,7 @@ Solution
 So, like this, using the name `decide` in my case:
 
 ```{r ethics-1 }
-my_url <- "https://raw.githubusercontent.com/nxskok/datafiles/master/decision.csv"
+my_url <- "https://ritsokiguess.site/datafiles/decision.csv"
 decide <- read_csv(my_url)
 decide
 ```
@@ -523,7 +523,7 @@ both of the relativism scores, the higher idealism score went with a
 Yet another way to assess this would be to make a graph:
 
 ```{r}
-plot_cap(decide.3, condition = c("relativism", "idealism"))
+plot_predictions(decide.3, condition = c("relativism", "idealism"))
 ```
 
 The story from here is the same: as relativism increases (move from left to right), the probability of `stop` decreases, but as idealism increases (from the red line up to the purple one), the probability of `stop` *increases*.

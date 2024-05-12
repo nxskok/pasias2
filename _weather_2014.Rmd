@@ -341,6 +341,7 @@ that I read in from the file to get the count of the day in the
 year, which was called `day.count`:
 
 ```{r weather-2014-15 }
+ggbiplot(weather.1, labels = weather.0$day.count)
 ggbiplot(weather.1, labels = weather.0$day.count, labels.size = 2)
 ```
 
@@ -424,13 +425,7 @@ This makes sense, because not only is it at the "wrong" end of the
 temperature arrows, it is kind of at the wrong end of the wind/rain
 arrows as well.
 
-Having done these by percentile ranks in one of the other questions,
-let's see if we can do that here as well:
-
-```{r weather-2014-20}
-weather %>% mutate(across(everything(), \(x) percent_rank(x))) %>% 
-    slice(c(37, 211, 265, 47))
-```
+Having done these by percentile ranks in one of the other
 
 The idea here is that we want to *replace* all the data values by the percent-rank version of themselves, rather than *summarizing* them as we have done before. That's what using an `across` inside a `mutate` will do.^[There are also options to keep the original variables, and to give the new ones new names.]
  
@@ -443,7 +438,13 @@ These are:
 but not remarkably so, on temperature). 
 
 * Day 211: the highest or near-highest temperature, no rain but
-unremarkable for wind.
+unremarkable for wind. questions,
+let's see if we can do that here as well:
+
+```{r weather-2014-20}
+weather %>% mutate(across(everything(), \(x) percent_rank(x))) %>% 
+    slice(c(37, 211, 265, 47))
+```
 
 * Day 265: Lowest for wind (and above Q3 for low temperature and
 rain). 

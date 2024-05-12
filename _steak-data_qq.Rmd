@@ -65,7 +65,7 @@ that the respondent lives in (five values).
 
 
 The data are in
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/steak.csv). 
+[link](https://ritsokiguess.site/datafiles/steak.csv). 
 
 
 

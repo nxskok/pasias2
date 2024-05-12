@@ -74,13 +74,4 @@ first making a data frame out of the values to predict for.
 
 
 
-(k) Since I am not making you hand this one in, I'm going to keep
-going. Re-run the analysis to incorporate cross-validation, and make
-a table of the predicted group memberships. Is it much different
-from the previous one you had? Why would that be?
-
-
-
-
-
 

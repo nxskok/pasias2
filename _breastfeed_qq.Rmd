@@ -63,6 +63,6 @@ breastfeeding? Explain briefly.
 successfully breastfeed for a representative collection of gestational ages.
 
 
-
+(i) Make a graph of the predicted probability that an infant will successfully breastfeed as it depends on gestational age.
 
 

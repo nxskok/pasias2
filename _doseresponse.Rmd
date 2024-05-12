@@ -56,8 +56,6 @@ dr2
 `seq` fills a sequence "10 to 70 in steps of 10", or you can
 just list the doses.
 
-I like this better than making two columns *not* attached to a
-data frame, but that will work as well.
 
 For these, find a way you like, and stick with it.
 
@@ -92,21 +90,20 @@ Solution
 This has a bunch of observations at each dose (100 cells, in
 fact), so we need to do the two-column response thing: the
 successes in the first column and the failures in the
-second. This means that we first need to calculate the number of
+second. This means that we need to calculate the number of
 cells at each dose that were not damaged, by subtracting the
-number that *were* damaged from 100. R makes this easier
-than you'd think, as
-you see. A `mutate` is the way to
-go: create a new column in `dr` and save back in
-`dr` (because I like living on the edge):
+number that *were* damaged from 100. This is best done within the `glm`, so that everything is accessible to `plot_predictions` later.
 
-```{r doseresponse-3 }
-dr <- dr %>% mutate(undamaged = 100 - damaged)
-dr
+
+
+Now we fit our model:
+
+```{r doseresponse-8 }
+cells.1 <- glm(cbind(damaged, 100 - damaged) ~ dose, family = "binomial", data = dr)
+summary(cells.1)
 ```
 
-       
-
+ 
 The programmer in you is probably complaining "but, 100 is a number and `damaged` is a vector of 7 numbers. How does R know to subtract *each one* from 100?" Well, R has what's known as
 "recycling rules": if you try to add or subtract (or elementwise
 multiply or divide) two vectors of different lengths, it recycles the
@@ -114,59 +111,6 @@ smaller one by repeating it until it's as long as the longer one. So
 rather than `100-damaged` giving an error, it does what you
 want.^[The usual application of this is to combine a number  with a vector. If you try to subtract a length-2 vector from a  length-6 vector, R will repeat the shorter one three times and do  the subtraction, but if you try to subtract a length-2 vector from a length-*7* vector, where you'd have to repeat the shorter one a fractional number of times, R will do it, but you'll get a warning, because this is probably *not* what you wanted. Try it and see.]
 
-I took the risk of saving the new data frame over the old one. If it
-had failed for some reason, I could have started again.
-
-Now we have to make our response "matrix" with two columns, using `cbind`:
-
-```{r doseresponse-4 }
-response <- with(dr, cbind(damaged, undamaged))
-response
-```
-
- 
-
-Note that each row adds up to 100, since there were 100 cells at each
-dose. This is actually trickier than it looks: the two things in
-`cbind` are columns (vectors), and `cbind` glues them
-together to make an R `matrix`:
-
-```{r doseresponse-5 }
-class(response)
-```
-
- 
-
-which is what `glm` needs here, even though it looks a lot like
-a data frame (which wouldn't work here). This *would* be a data
-frame:
-
-```{r doseresponse-6 }
-dr %>% select(damaged, undamaged) %>% class()
-```
-
- 
-
-and would therefore be the wrong thing to give `glm`. So I had
-to do it with `cbind`, or use some other trickery, like this:
-
-```{r doseresponse-7 }
-dr %>%
-  select(damaged, undamaged) %>%
-  as.matrix() -> resp
-class(resp)
-```
-
- 
-
-Now we fit our model:
-
-```{r doseresponse-8 }
-cells.1 <- glm(response ~ dose, family = "binomial", data = dr)
-summary(cells.1)
-```
-
- 
     
 
 $\blacksquare$
@@ -183,6 +127,7 @@ The slope of `dose` is significantly nonzero (P-value
 less than $2.2 \times 10^{-16}$, which is as small as it can
 be). The slope itself is *positive*, which means that as
 dose goes up, the probability of damage goes up. 
+
 That's all I needed, but if you want to press on: the slope is
 0.113, so an increase of 1 in dose goes with an increase of
 0.113 in the *log-odds* of damage. Or it multiplies the
@@ -211,10 +156,11 @@ $\blacksquare$
 
 Solution
 
-Pick some representative doses first, and then use them as `newdata`. The ones in the original data are fine (there are only seven of them):
+Pick some representative doses first, and then use them as `newdata`. The ones in the original data are fine (there are only seven of them), but you can use some others if you prefer:
 
 ```{r}
-p <- cbind(predictions(cells.1, newdata = dr))
+cbind(predictions(cells.1, newdata = dr)) %>% 
+  select(dose, damaged, estimate, conf.low, conf.high) -> p
 p
 ```
 
@@ -222,54 +168,45 @@ I saved mine to use again later, but you don't have to unless *you* want to use 
 
 $\blacksquare$
 
-(f) Draw a graph of the predicted probabilities, and to that add the observed proportions of damage at each dose. Hints: you will have to calculate the observed proportions first. See [here](https://vincentarelbundock.github.io/marginaleffects/articles/mfx01_predictions.html), near the bottom, to find out how to add data to one of these graphs. The `geom_point` line is the one you need.
-
+(f) Draw a graph of the predicted probabilities, and to that add the observed proportions of damage at each dose. Hints: you will have to calculate the observed proportions first. 
 Looking at  the predicted probabilities, would you say that
 the model fits well? Explain briefly.
 
 
 Solution
 
-This ought to be based on `plot_cap`, but that doesn't work here because of the `response` that's not part of the dataframe. So we will be making this ourselves. Let's start with a plot of the predictions, using the prediction we did just now:
+Because we used the `cbind` thing in our `glm`, we can start with `plot_predictions` as expected:
 
 ```{r}
-ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3)
+plot_predictions(cells.1, condition = "dose")
 ```
 
-This is not a smooth curve like the ones `plot_cap` makes, but that's all right, because we want to compare the predictions with the data.
+The predicted probability of a cell being damaged is very precisely estimated all the way up, and the probability is almost certainly very close to 1 for large doses.
 
+Now, we need to figure out how to add the data to this graph.
 Let's take a look at our original dataframe:
 
 ```{r}
 dr
 ```
 
-To that we need to add a column of proportion damaged, which is `damaged` divided by `damaged` plus `undamaged`. This last ought to be 100, but data can go missing for any number of reasons, so it pays not to assume that they add up to 100 every time:
+To that we need to add a column of proportion damaged, which is `damaged` divided by 100 (we know there were exactly 100 cells at each dose):
 
 ```{r}
-dr %>% mutate(prop = damaged / (damaged + undamaged)) -> dr2
+dr %>% mutate(prop = damaged / 100) -> dr2
 dr2
 ```
 
-Check. I saved this to add to the graph later.
+Check. I saved this to add to the graph.
 
 
-Now you can add a `geom_point` with a `data =` and an `aes`, making the points red, except that the obvious doesn't quite work:
+Now you can add this to the graph we made before with a `geom_point` with a `data =` and an `aes`, making the points red:
 
 ```{r}
 #| error: true
-ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3) +
-  geom_point(data = dr2, aes(x =  dose, y = prop), colour = "red")
-```
 
-The message is not very helpful, but I can tell you where it comes from. When you add something to a plot like this, all the things in the original `ggplot` are "inherited" by anything else that you add to the plot, so that you either have to overwrite them with something new (as I did with `x` and `y`) or you get the previous values, one of which was evidently `conf.low` (which supplied a value for `ymin`), but the dataframe `dr2` doesn't have a `conf.low` in it. To override this behaviour, which we don't want because *we* have nothing called `conf.low` in our data, add `inherit.aes = FALSE` to the `geom_point`:^[This is done in the `geom_point` on the website, which is where I learned about it.]
-
-```{r}
-ggplot(p, aes(x = dose, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3) +
-  geom_point(data = dr2, aes(x =  dose, y = prop), colour = "red", inherit.aes = FALSE)
+plot_predictions(cells.1, condition = "dose") +
+  geom_point(data = dr2, aes(x = dose, y = prop), colour = "red")
 ```
 
 I also made the data points red (you don't need to, but if you want to, put the colour *outside* the `aes`, to make it clear that the colour is constant, not determined by any of the variables in your dataframe).

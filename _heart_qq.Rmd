@@ -43,7 +43,7 @@ I don't know what most of those are, but we will not let that stand in
 our way. Our aim is to find out what variables are associated with
 heart disease, and what values of those variables give high
 probabilities of heart disease being present. The data are in
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/heartf.csv).
+[link](https://ritsokiguess.site/datafiles/heartf.csv).
 
 
 

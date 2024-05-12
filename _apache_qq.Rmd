@@ -28,10 +28,7 @@ sometimes to more than one? Explain briefly.
 
 
 (c) Explain why this is the kind of situation where you need a
-two-column response, and create this response variable, bearing in
-mind that I will (later) want you to estimate the probability of
-dying, given the `apache` score.
-
+two-column response.
 
 (d) Fit a logistic regression to estimate the probability of
 death from the `apache` score, and display the results.

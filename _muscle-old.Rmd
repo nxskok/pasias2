@@ -60,7 +60,7 @@ muscle.1 %>% augment(muscle) %>%
 ```
 
 ```{r}
-plot_cap(muscle.1, condition = "Conc") +
+plot_predictions(muscle.1, condition = "Conc") +
   geom_point(data = muscle, aes(x = Conc, y = Length))
 ```
 

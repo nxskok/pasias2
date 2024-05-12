@@ -34,27 +34,21 @@ not, as you wish. Demonstrate that you have the right data in R.
 significant effect of log-concentration? Explain briefly.
  
 
-(c) We are going to do a logistic regression to predict how
-likely an insect is to be killed, as it depends on the
-log-concentration. Create a suitable response variable, bearing in
-mind (i) that we have lots of insects exposed to each different
-concentration, and (ii) what needs to go into each column of the response.
+
+(c) Run a suitable logistic regression, and obtain a summary of
+the results. (There was a part (c) here before, but I took it out.)
 
  
 
-(d) Run a suitable logistic regression, and obtain a summary of
-the results.
-
- 
-
-(e) Does your analysis support your answer to (<a href="#part:expo">here</a>)?
+(d) Does your analysis support your answer to (<a href="#part:expo">here</a>)?
 Explain briefly.
 
  
 
-(f) Obtain predicted probabilities of an insect's being killed at
+(e) Obtain predicted probabilities of an insect's being killed at
 each of the log-concentrations in the data set. 
 
+(f) Obtain a plot of the predicted probabilities of an insect's being killed, as it depends on the log-concentration.
  
 
 (g) People in this kind of work are often interested in the

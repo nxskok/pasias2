@@ -128,36 +128,10 @@ Solution
 These are summarized data, rather than one infant per line, so
 what we have to do is to make a two-column response "matrix",
 successes in the first column and failures in the second, and then
-predict *that* from gestational age. (That's why this was
-three marks rather than two.)
-So, let's make the `response` first:
-
-```{r breastfeed-4 }
-response <- with(breastfeed, cbind(bf.yes, bf.no))
-response
-```
-
-     
-
-or, more Tidyverse-like, but we have to remember to turn it into a
-`matrix`:
-
-```{r breastfeed-5 }
-response <- breastfeed %>%
-  select(starts_with("bf")) %>%
-  as.matrix()
-response
-```
-
- 
-
-I used a select-helper, because what immediately came to me was that
-the names of the columns I wanted started with `bf`, but
-whatever way you have that works is good.
-Now we fit the logistic regression:
+predict *that* from gestational age. The currently-approved method is `cbind` inside `glm`, since this makes the use of `marginaleffects` easier later:
 
 ```{r breastfeed-6 }
-breastfeed.1 <- glm(response ~ gest.age, data = breastfeed, family = "binomial")
+breastfeed.1 <- glm(cbind(bf.yes, bf.no) ~ gest.age, data = breastfeed, family = "binomial")
 summary(breastfeed.1)
 ```
 
@@ -198,14 +172,7 @@ This is also what I observed above: almost all of the near-term
 (large gestational age) babies were breastfeeding, whereas a fair
 few of the small-gestational-age (very premature) ones were not. 
 
-We know that the event is "is breastfeeding" rather than "is not", because the first column of our response matrix is "yes" rather than "no": 
-
-```{r}
-response
-```
-
-(If you had happened to make your response matrix the other way around, the event would have been "is not breastfeeding", and then your slope would have been the same size but *negative*.)
-
+We know that the event is "is breastfeeding" rather than "is not", because the first column of our response matrix is "yes" rather than "no".
 
 
 $\blacksquare$
@@ -216,44 +183,51 @@ successfully breastfeed for a representative collection of gestational ages.
 Solution
 
 
-Pick some gestational ages, like the median and quartiles, or just pick some values like 25, 30, 35:^[I realize I am extrapolating with these values.]
+Pick some gestational ages, like the median and quartiles, or just pick some values like 25, 30, 35.^[I realize I am extrapolating with these values.] 40 weeks is a full-term baby (that's how long a "normal" pregnancy lasts):
 
 
 ```{r breastfeed-8 }
 new <- datagrid(model = breastfeed.1, gest.age = c(25, 30, 35))
-cbind(predictions(breastfeed.1, newdata = new))
+cbind(predictions(breastfeed.1, newdata = new)) %>% 
+  select(gest.age, estimate)
 ```
 
- 
+(i) Make a graph of the predicted probability that an infant will successfully breastfeed as it depends on gestational age.
 
-Or, if you wanted to make a graph of the observed and predicted
-proportions/probabilities, you would have to build it yourself since the `response` variable is not in the dataframe, like this: 
+We did the `cbind` inside `glm` thing, which means that we can use `plot_predictions` as normal. I added some more meaningful text for the $y$-axis label:
 
-```{r breastfeed-9 }
-new <- datagrid(model = breastfeed.1, gest.age = 28:33)
-p <- cbind(predictions(breastfeed.1, new))
-ggplot(p, aes(x = gest.age, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3)
+```{r}
+plot_predictions(model = breastfeed.1, condition = "gest.age") +
+  labs(y ="Prob. of successfully breastfeeding")
 ```
 
-or, if you wanted to add the data to this:
+The confidence interval  is still fairly wide, because there is only a moderate amount of data, but the pattern is clear enough to be a significant upward trend.
+
+If you wanted to make a graph of the observed and predicted
+proportions/probabilities, you would have to build it yourself thus:
 
 ```{r}
 breastfeed %>% 
   mutate(total = bf.yes + bf.no, 
          proportion = bf.yes / total) -> d
-ggplot(p, aes(x = gest.age, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3) +
-  geom_point(data = d, aes(x = gest.age, y = proportion, size = total), inherit.aes = FALSE)
+d
 ```
 
- 
+and then:
+
+```{r}
+plot_predictions(model = breastfeed.1, condition = "gest.age") +
+  labs(y ="Prob. of successfully breastfeeding") +
+  geom_point(data = d, aes(x = gest.age, y = proportion, size = total))
+```
+
+
 What did I do there? I first created some new variables:
 `total` is the total number of babies of each gestational age, and
 `proportion` is the observed proportion of breastfeeding babies at
 each gestational age (number of yes divided by total).
-`pred` which are the predictions we did above. Then I repeat the `plot_cap`, and on that plot
-I add the observed proportions against gestational age
+
+Then I add this to the plot of predicted probabilities.
 (as points). To do *that*, I need to change which dataframe I am using (the temporary one called `d` with the proportions and totals in it), and the variables I am plotting (which are now the ones in `d`).
 The way I
 do that is to put an `aes` inside the `geom_line` to
@@ -263,11 +237,11 @@ were observed; I did this by making the *size* of the plotted
 points proportional to how many babies there were at that gestational
 age (which was the quantity `total` I calculated above).  
 The legend for `total` tells you what size point
-corresponds to how many total babies. The final thing is that we used some other things (like the min and max of the confidence interval) that we would also have to supply values for were it not for the `inherit.aes` at the end; this means "don't use anything from the original `ggplot` but supply everything yourself".
+corresponds to how many total babies. 
 
 The idea is that the observed and predicted should be reasonably
 close, or at least not grossly different, especially when there is a lot of data (the circles are large), and I think they *are*
-close, which indicates that our model is doing a good job. You can see that there is not much data on the left, with small gestational ages, so the confidence interval around the predictions is wider there. On the right, where there is lots of data, the interval is narrower. When the gestational age is large (the baby is closer to being full term rather than premature), there is a good chance that the baby will be able to breastfeed, and we are fairly sure about that.
+close, which indicates that our model is doing a good job. You can see that there is not much data on the left, with small gestational ages, so the confidence interval around the predictions is wider there. On the right, where there is more data, the interval is narrower. When the gestational age is large (the baby is closer to being full term rather than premature), there is a good chance that the baby will be able to breastfeed, and we are fairly sure about that. (Very premature babies, with a gestational age under 30 weeks, are rare, which is a good thing because those babies tend  to have other health problems as well.)
     
 $\blacksquare$
 

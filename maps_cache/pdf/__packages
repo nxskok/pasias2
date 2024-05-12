@@ -1,10 +1,3 @@
-base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 tidyverse
 ggplot2
 tibble
@@ -28,7 +21,6 @@ Matrix
 lme4
 plyr
 scales
-grid
 ggbiplot
 ggrepel
 broom

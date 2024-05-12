@@ -1,7 +1,7 @@
 project:
   type: book
-# execute:
-  # freeze: auto
+execute:
+  freeze: auto
 book:
   title: "Problems and Solutions in Applied Statistics (2nd ed)"
   author: "Ken Butler"
@@ -45,7 +45,7 @@ book:
     - discriminant-analysis.Rmd
     - cluster.Rmd
     - kmeans-cluster.Rmd
-    # - maps.Rmd
+    - maps.Rmd
     - mds.Rmd
     - pc.Rmd
     - fa.Rmd

@@ -71,9 +71,7 @@ than one patient.
 $\blacksquare$
 
 (c) Explain why this is the kind of situation where you need a
-two-column response, and create this response variable, bearing in
-mind that I will (later) want you to estimate the probability of
-dying, given the `apache` score.
+two-column response.
 
 Solution
 
@@ -82,43 +80,11 @@ This needs a two-column response precisely *because* each row
 represents (or could represent) more than one observation.
 The two columns are the number of observations referring to the
 event of interest (dying), and the number of observations where
-that didn't happen (survived). We don't actually have the numbers
-of survivals, but we can calculate these by subtracting from the
-numbers of patients (since a patient must have either lived or
-died): 
+that didn't happen (survived). 
 
-```{r apache-2 }
-response <- icu %>%
-  mutate(survivals = patients - deaths) %>%
-  select(deaths, survivals) %>%
-  as.matrix()
-response
-```
+That's as far as you need to go.
 
-     
 
-noting that the deaths column has to come *first* since that's
-what we want the probability of. It has to be a `matrix`, so
-`as.matrix` is the final step. You can quickly check that the
-two numbers in each row add up to the number of `patients` for
-that row.
-
-Or do everything outside of the data
-frame: 
-
-```{r apache-3 }
-survivals <- with(icu, patients - deaths)
-resp <- with(icu, cbind(deaths, survivals))
-resp
-class(resp)
-```
-
- 
-
-Or use the dollar sign instead of the `with`s. Any of those is
-good. 
-
-I have no objection to your displaying the response matrix.
 
 $\blacksquare$
 
@@ -129,7 +95,7 @@ Solution
 
 
 ```{r apache-4 }
-apache.1 <- glm(response ~ apache, family = "binomial", data = icu)
+apache.1 <- glm(cbind(deaths, patients - deaths) ~ apache, family = "binomial", data = icu)
 summary(apache.1)
 ```
 
@@ -186,15 +152,18 @@ new
 
 
 ```{r}
-cbind(predictions(apache.1, newdata = new))
+cbind(predictions(apache.1, newdata = new)) %>% 
+  select(apache, estimate, conf.low, conf.high)
 ```
+
+Display a  reasonably small number of columns.
 
 As the `apache` score goes up, the predicted probability of death also goes up. This is what we would expect to see given the positive slope on `apache` in the model `apache.1`. (Again, if your model had the columns of the response the other way around, you were predicting the probability of *survival*, and your predictions should then show it going down rather than up to go with the negative slope you would then have had.)
 
 $\blacksquare$
 
 (h) Make a plot of predicted death probability against
-`apache` score (joined by lines) with, also on the plot, the
+`apache` score, with, also on the plot, the
 observed proportion of deaths within each `apache` score,
 plotted against `apache` score. Does there seem to be good
 agreement between observation and prediction? Hint: calculate what you need to from the original dataframe first, save it, then make a plot of the predictions, and then to the plot add the appropriate thing from the dataframe you just saved.
@@ -210,43 +179,28 @@ d
 
 That looks all right. 
 
-To plot predicted values, your first port of call would normally be `plot_cap`, since the job of this function is to make a lot of predictions and construct a nice plot of them, but this time we cannot since the response variable is a matrix and thus not part of the dataframe. So we have to make this ourselves. Let's do the predictions again with more Apache scores, so that we get a better plot:
+To plot predicted values, `plot_predictions`:
+
 
 ```{r}
-new <- datagrid(model = apache.1, apache = 0:40)
-cbind(predictions(apache.1, newdata = new))
-```
-
-Then, make a graph of these:
-
-```{r}
-cbind(predictions(apache.1, newdata = new)) %>% 
-  ggplot(aes(x = apache, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3)
+plot_predictions(apache.1, condition = "apache")
 ```
 
 
 This again shows that the predicted probability of death goes up sharply with `apache` score. Let's add the data to this graph. The trick is to remember how to add points to a graph you already have, when the points come from a different data set:
 
 ```{r}
-cbind(predictions(apache.1, newdata = new)) %>% 
-  ggplot(aes(x = apache, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3) + 
-  geom_point(data = d, aes(x = apache, y = proportion), inherit.aes = FALSE)
+plot_predictions(apache.1, condition = "apache") +
+  geom_point(data = d, aes(x = apache, y = proportion))
 ```
 
 That does a reasonably good job, but we can do better. We observe now that most of  the points are reasonably close to the curve, except for that one in the bottom right, a patient who had the highest `apache` score of all, but who happened to survive. The observed proportions that are 1 or 0 over on the right might have been based on only one patient, and the others might have been based on more. So it would be better to encode how many patients each point is based on, for example by the size of the point (you may be able to think of other ways like colour, and you can experiment to see what gets the message across best in your opinion).
 
-A reminder that the `inherit.aes` is to tell `ggplot` not to take anything for the `geom_point` from the `plot_cap` graph (which has additional things that it would be a pain to override).
-
 All right, we can make the points different sizes according to the number of `patients` they are based on, thus:
 
 ```{r}
-cbind(predictions(apache.1, newdata = new)) %>% 
-  ggplot(aes(x = apache, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3) + 
-  geom_point(data = d, aes(x = apache, y = proportion, size = patients), 
-             inherit.aes = FALSE)
+plot_predictions(apache.1, condition = "apache") +
+  geom_point(data = d, aes(x = apache, y = proportion, size = patients))
 ```
 
 This shows clearly that the points on the left and right of the graph are based on very few patients, maybe only one each time. But most of the scores between about 10 and 20 were represented by more patients, maybe up to 30. The bigger circles seem to follow the trend of the predictions pretty well, which is what we were hoping for; the proportions based on small numbers of patients might be further away from the predictions, and that's all right.
@@ -290,11 +244,8 @@ Now we redo our graph, but using the proportions in here as the observed proport
 Actually redrawing our graph is in fact *exactly* the same code as before; the thing that has changed is our definition of `d` in it:
 
 ```{r}
-cbind(predictions(apache.1, newdata = new)) %>% 
-  ggplot(aes(x = apache, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3) + 
-  geom_point(data = d, aes(x = apache, y = proportion, size = patients), 
-             inherit.aes = FALSE)
+plot_predictions(apache.1, condition = "apache") +
+  geom_point(data = d, aes(x = apache, y = proportion, size = patients))
 ```
 
 And now we see, with more patients per bin, that the agreement between data and prediction is very good apart from the very small bins on the right.

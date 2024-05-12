@@ -110,7 +110,7 @@ bugs2
 ```
 
  
-I don't know why a ficitious fourth column was invented, but we can safely ignore it the rest of the way. We have all our actual data.
+You might get a fictitious fourth column, but if you do, you can safely ignore it the rest of the way. We have all our actual data.
 We'd have to be careful with Capital Letters
 this way,  but it's definitely good.
 
@@ -135,73 +135,27 @@ significant, especially since we have almost 250 insects altogether.
  
 $\blacksquare$
 
-(c) We are going to do a logistic regression to predict how
-likely an insect is to be killed, as it depends on the
-log-concentration. Create a suitable response variable, bearing in
-mind (i) that we have lots of insects exposed to each different
-concentration, and (ii) what needs to go into each column of the response.
 
- 
-Solution
-
-
-There needs to be a two-column response variable. The first column
-needs to be the number of "successes" (insects killed, here) and
-the second needs to be the number of "failures" (insects that
-survived). We don't actually have the latter, but we know how many
-insects were exposed in total to each dose, so we can work it
-out. Like this:
-
-```{r aphids-5 }
-dead_bugs %>%
-  mutate(survived = exposed - killed) %>%
-  select(killed, survived) %>%
-  as.matrix() -> response
-response
-```
-
-   
-
-`glm` requires an R `matrix` rather than a data
-frame, so the last stage of our pipeline is to create one (using the
-same numbers that are in the data frame: all the `as.`
-functions do is to change what type of thing it is, without changing
-its contents). 
-
-It's also equally good to create the response *outside* of the
-data frame and use `cbind` to glue its columns together:
-
-```{r aphids-6 }
-resp2 <- with(
-  dead_bugs,
-  cbind(killed, survived = exposed - killed)
-)
-resp2
-```
-
- 
- 
-$\blacksquare$
-
-(d) Run a suitable logistic regression, and obtain a summary of
+(c) Run a suitable logistic regression, and obtain a summary of
 the results.
 
  
 Solution
 
 
-I think you know how to do this by now:
+This is one of those where each row of data is more than one individual (there were about 50 insects at each concentration), so the response variable needs to have two columns: one of how many insects were killed at that dose, and the other of how many insects survived. This is done using `cbind`. We don't actually have a number of insects that survived, but we know how many were exposed, so we can work out how many survived by doing a subtraction inside the `cbind`:
 
 ```{r aphids-7 }
-bugs.1 <- glm(response ~ log_conc, family = "binomial", data = dead_bugs)
+bugs.1 <- glm(cbind(killed, exposed - killed) ~ log_conc, family = "binomial", data = dead_bugs)
 summary(bugs.1)
 ```
 
    
+Extra: In the original part (c), I had you make the response matrix first, which is how I used to teach it, but I came to realize that this way plays better with `marginaleffects` because all the things in the `glm` line are in the dataframe.
  
 $\blacksquare$
 
-(e) Does your analysis support your answer to (<a href="#part:expo">here</a>)?
+(d) Does your analysis support your answer to (<a href="#part:expo">here</a>)?
 Explain briefly.
 
  
@@ -213,19 +167,22 @@ That's a *very* small P-value, $1.1\times 10^{-15}$, on
 effect on an insect's chances of being killed. This is exactly what
 I guessed in (<a href="#part:expo">here</a>), which I did before looking at the
 results, honest!
+
+You might also note that the Estimate for `log_conc` is positive and, by the standards of these things, pretty large in size, so the probability of being killed goes up pretty sharply as log-concentration increases.
  
 $\blacksquare$
 
-(f) Obtain predicted probabilities of an insect's being killed at
+(e) Obtain predicted probabilities of an insect's being killed at
 each of the log-concentrations in the data set. 
 
  
 Solution
 
-Use a `newdata` that is the original dataframe:
+Use a `newdata` that is the original dataframe, and display only the columns of interest:
 
 ```{r}
-cbind(predictions(bugs.1, newdata = dead_bugs))
+cbind(predictions(bugs.1, newdata = dead_bugs)) %>% 
+  select(log_conc, exposed, killed, estimate)
 ```
 
 
@@ -235,20 +192,25 @@ compare the observed with the predicted. For example, 44 out of 50
 insects were killed at log-dose 2.32, which is a proportion of 0.88,
 pretty close to the prediction of 0.91.
 
-Extra: you could also make a plot of these. The normal thing is to use `plot_cap`, but this time, the response variable is that matrix thing outside the dataframe, which confuses the issue. So let's make a more detailed set of predictions and plot them ourselves (effectively, doing the same thing `plot_cap` does but building it ourselves):
+(f) Obtain a plot of the predicted probabilities of an insect's being killed, as it depends on the log-concentration.
+
+This is `plot_predictions`, pretty much the obvious way:
 
 ```{r}
-new <- tibble(log_conc = seq(0.5, 2.5, 0.01))
-cbind(predictions(bugs.1, newdata = new)) %>% 
-  select(log_conc, estimate, conf.low, conf.high) %>% 
-  ggplot(aes(x = log_conc, y = estimate, ymin = conf.low, ymax = conf.high)) +
-  geom_line() + geom_ribbon(alpha = 0.3)
+plot_predictions(model = bugs.1, condition = "log_conc")
 ```
 
-As the log-concentration goes up, you can see how clearly the probability of the aphid being killed goes up. The confidence band is narrow because there is lots of data (almost 250 aphids altogether).
+The thing I always forget is that the name of the explanatory variable has to be *in quotes*, which is not what we are used to from the `tidyverse`. The odd thing on the $y$-axis is our response variable; the predictions are the probability of being killed, which we could make our $y$-axis actually say, like this:
 
-The final `alpha = 0.3` makes the ribbon see-through, so that you can see the actual predictions behind it. A smaller value of `alpha` makes it more transparent, but I think this strikes a decent compromise between being able to clearly see both the predictions and the confidence limits.
- 
+```{r}
+plot_predictions(model = bugs.1, condition = "log_conc") +
+  labs(y = "Prob(killed)")
+
+```
+
+
+As the log-concentration goes up, you can see how clearly the probability of the aphid being killed goes up. The confidence band is narrow because there is lots of data (almost 250 aphids altogether), and the confidence interval is much higher at the end than at the beginning, which is why the P-value came out so tiny.
+
 $\blacksquare$ 
 
 (g) People in this kind of work are often interested in the
@@ -260,15 +222,15 @@ median lethal dose is?
  
 Solution
 
+This is probably easier to see from the graph, though the $x$-scale doesn't make it very easy to be accurate: look across to where the prediction crosses the probability of 0.5, which is somewhere between a log-concentration of 1.5 and 1.6.
 
-The log-concentration of 1.63 is predicted to kill just over half
+If you go back and look at the predictions, the log-concentration of 1.63 is predicted to kill just over half
 the insects, so the median lethal dose should be a bit less than
 1.63. It should not be as small as 1.33, though, since that
 log-concentration only kills less than a third of the insects. So I
 would guess somewhere a bit bigger than 1.5. Any guess somewhere in
 this ballpark is fine: you really cannot be very accurate.
 
-If you read through the Extra to the previous part (or at least looked at the graph), the median lethal dose is where the curve of predictions passes through 0.5 on the $y$-axis. This is at a log-concentration of just less than 1.6; if you judge from the scale where the crossing-point is, it's something like 1.57.
 
 Extra: this is kind of a strange prediction problem, because we know what
 the *response* variable should be, and we want to know what the

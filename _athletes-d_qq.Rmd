@@ -10,7 +10,7 @@ understand that, we need to do discriminant analysis, which is the
 purpose of this question.
 
 The data can be found at
-[link](https://raw.githubusercontent.com/nxskok/datafiles/master/ais.txt). 
+[link](https://ritsokiguess.site/datafiles/ais.txt). 
 
 
 
