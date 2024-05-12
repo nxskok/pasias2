@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,33 +96,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
-
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mds.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mds.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multidimensional Scaling</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -126,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
@@ -400,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -438,7 +470,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>Packages for this chapter:</p>
 <div class="cell">
@@ -549,7 +583,6 @@ cols(
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wisc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Appleton"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Beloit"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Fort.Atkinson"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Madison"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Marshfield"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Milwaukee"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Monroe"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Superior"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Wausau"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Dubuque"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["St.Paul"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Chicago"],"name":[13],"type":["dbl"],"align":["right"]}],"data":[{"1":"Appleton","2":"0","3":"130","4":"98","5":"102","6":"103","7":"100","8":"149","9":"315","10":"91","11":"196","12":"257","13":"186"},{"1":"Beloit","2":"130","3":"0","4":"33","5":"50","6":"185","7":"73","8":"33","9":"377","10":"186","11":"94","12":"304","13":"97"},{"1":"Fort.Atkinson","2":"98","3":"33","4":"0","5":"36","6":"164","7":"54","8":"58","9":"359","10":"166","11":"119","12":"287","13":"113"},{"1":"Madison","2":"102","3":"50","4":"36","5":"0","6":"138","7":"77","8":"47","9":"330","10":"139","11":"95","12":"258","13":"146"},{"1":"Marshfield","2":"103","3":"185","4":"164","5":"138","6":"0","7":"184","8":"170","9":"219","10":"45","11":"186","12":"161","13":"276"},{"1":"Milwaukee","2":"100","3":"73","4":"54","5":"77","6":"184","7":"0","8":"107","9":"394","10":"181","11":"168","12":"322","13":"92"},{"1":"Monroe","2":"149","3":"33","4":"58","5":"47","6":"170","7":"107","8":"0","9":"362","10":"186","11":"61","12":"289","13":"130"},{"1":"Superior","2":"315","3":"377","4":"359","5":"330","6":"219","7":"394","8":"362","9":"0","10":"223","11":"351","12":"162","13":"467"},{"1":"Wausau","2":"91","3":"186","4":"166","5":"139","6":"45","7":"181","8":"186","9":"223","10":"0","11":"215","12":"175","13":"275"},{"1":"Dubuque","2":"196","3":"94","4":"119","5":"95","6":"186","7":"168","8":"61","9":"351","10":"215","11":"0","12":"274","13":"184"},{"1":"St.Paul","2":"257","3":"304","4":"287","5":"258","6":"161","7":"322","8":"289","9":"162","10":"175","11":"274","12":"0","13":"395"},{"1":"Chicago","2":"186","3":"97","4":"113","5":"146","6":"276","7":"93","8":"130","9":"467","10":"275","11":"184","12":"395","13":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -637,7 +670,6 @@ Milwaukee     -102.87582  49.849552</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(wisc<span class="fl">.1</span>, <span class="at">city =</span> cities)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"-13.37076","2":"85.067148","3":"Appleton","_rn_":"Appleton"},{"1":"-92.94157","2":"-20.205916","3":"Beloit","_rn_":"Beloit"},{"1":"-74.07473","2":"4.804039","3":"Fort.Atkinson","_rn_":"Fort.Atkinson"},{"1":"-44.68148","2":"-11.252521","3":"Madison","_rn_":"Madison"},{"1":"80.61250","2":"27.097882","3":"Marshfield","_rn_":"Marshfield"},{"1":"-102.87582","2":"49.849552","3":"Milwaukee","_rn_":"Milwaukee"},{"1":"-74.66603","2":"-48.422639","3":"Monroe","_rn_":"Monroe"},{"1":"279.27573","2":"-8.621892","3":"Superior","_rn_":"Superior"},{"1":"79.19504","2":"60.997371","3":"Wausau","_rn_":"Wausau"},{"1":"-50.92029","2":"-108.488036","3":"Dubuque","_rn_":"Dubuque"},{"1":"199.16640","2":"-39.595481","3":"St.Paul","_rn_":"St.Paul"},{"1":"-184.71900","2":"8.770492","3":"Chicago","_rn_":"Chicago"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -654,7 +686,11 @@ Milwaukee     -102.87582  49.849552</code></pre>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/wisconsin-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/wisconsin-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Your map may come out different from mine, but subject to the usual stuff about rotation and reflection it should be equivalent to mine. You should include the <code>coord_fixed</code> to get the scales the same (a corresponding distance on the two scales should take the same space). This one didn’t come out quite square because the MDS says the points should be in a rectangle (stretching further one way than the other).</p>
@@ -676,7 +712,6 @@ Milwaukee     -102.87582  49.849552</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wisc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Beloit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Fort.Atkinson"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Madison"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Beloit","2":"0","3":"33","4":"50"},{"1":"Fort.Atkinson","2":"33","3":"0","4":"36"},{"1":"Madison","2":"50","3":"36","4":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -779,7 +814,6 @@ attr(,"Upper")
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ddd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["...1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["one"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"-13.37076","2":"1","3":"Appleton"},{"1":"-92.94157","2":"1","3":"Beloit"},{"1":"-74.07473","2":"1","3":"Fort.Atkinson"},{"1":"-44.68148","2":"1","3":"Madison"},{"1":"80.61250","2":"1","3":"Marshfield"},{"1":"-102.87582","2":"1","3":"Milwaukee"},{"1":"-74.66603","2":"1","3":"Monroe"},{"1":"279.27573","2":"1","3":"Superior"},{"1":"79.19504","2":"1","3":"Wausau"},{"1":"-50.92029","2":"1","3":"Dubuque"},{"1":"199.16640","2":"1","3":"St.Paul"},{"1":"-184.71900","2":"1","3":"Chicago"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -792,7 +826,11 @@ attr(,"Upper")
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ddd, <span class="fu">aes</span>(<span class="at">x =</span> one, <span class="at">y =</span> ...<span class="dv">1</span>, <span class="at">label =</span> city)) <span class="sc">+</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/wisconsin-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/wisconsin-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The cities get mapped onto a line that goes northwest (top) to southeast (bottom). This is not completely terrible, since there aren’t really any cities in the northeast of the state, but it <em>is</em> pretty awful.</p>
@@ -822,7 +860,6 @@ dbl (17): X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16,...
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>stimuli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["X1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["X3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["X4"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["X5"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["X6"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["X7"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["X8"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["X9"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["X10"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["X11"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["X12"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["X13"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["X14"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["X15"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["X16"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["X17"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["X18"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"innersurfaceofpinebark","2":"0","3":"22","4":"23","5":"24","6":"26","7":"27","8":"26","9":"23","10":"24","11":"23","12":"23","13":"18","14":"23","15":"21","16":"28","17":"24","18":"22"},{"1":"brick","2":"22","3":"0","4":"27","5":"27","6":"27","7":"29","8":"29","9":"28","10":"16","11":"18","12":"28","13":"25","14":"24","15":"10","16":"29","17":"28","18":"27"},{"1":"cardboard","2":"23","3":"27","4":"0","5":"18","6":"19","7":"28","8":"23","9":"24","10":"24","11":"29","12":"27","13":"28","14":"21","15":"26","16":"28","17":"24","18":"23"},{"1":"cork","2":"24","3":"27","4":"18","5":"0","6":"15","7":"28","8":"25","9":"26","10":"28","11":"28","12":"20","13":"27","14":"10","15":"26","16":"28","17":"28","18":"29"},{"1":"rubbereraser","2":"26","3":"27","4":"19","5":"15","6":"0","7":"28","8":"20","9":"27","10":"24","11":"27","12":"24","13":"25","14":"19","15":"24","16":"29","17":"24","18":"28"},{"1":"felt","2":"27","3":"29","4":"28","5":"28","6":"28","7":"0","8":"24","9":"28","10":"29","11":"26","12":"26","13":"29","14":"28","15":"29","16":"4","17":"28","18":"29"},{"1":"leatherwallet","2":"26","3":"29","4":"23","5":"25","6":"20","7":"24","8":"0","9":"22","10":"28","11":"28","12":"27","13":"26","14":"25","15":"29","16":"24","17":"21","18":"20"},{"1":"rigidplasticsheet","2":"23","3":"28","4":"24","5":"26","6":"27","7":"28","8":"22","9":"0","10":"27","11":"29","12":"29","13":"27","14":"25","15":"25","16":"29","17":"12","18":"13"},{"1":"veryfinesandpaper","2":"24","3":"16","4":"24","5":"28","6":"24","7":"29","8":"28","9":"27","10":"0","11":"21","12":"24","13":"26","14":"25","15":"12","16":"29","17":"29","18":"27"},{"1":"nylonscouringpad","2":"23","3":"18","4":"29","5":"28","6":"27","7":"26","8":"28","9":"29","10":"21","11":"0","12":"22","13":"16","14":"25","15":"24","16":"27","17":"29","18":"28"},{"1":"cellulosekitchensponge","2":"23","3":"28","4":"27","5":"20","6":"24","7":"26","8":"27","9":"29","10":"24","11":"22","12":"0","13":"19","14":"21","15":"26","16":"27","17":"29","18":"27"},{"1":"wovenstraw","2":"18","3":"25","4":"28","5":"27","6":"25","7":"29","8":"26","9":"27","10":"26","11":"16","12":"19","13":"0","14":"26","15":"26","16":"28","17":"27","18":"25"},{"1":"blockofstyrofoam","2":"23","3":"24","4":"21","5":"10","6":"19","7":"28","8":"25","9":"25","10":"25","11":"25","12":"21","13":"26","14":"0","15":"25","16":"29","17":"26","18":"29"},{"1":"unglazedceramictile","2":"21","3":"10","4":"26","5":"26","6":"24","7":"29","8":"29","9":"25","10":"12","11":"24","12":"26","13":"26","14":"25","15":"0","16":"29","17":"28","18":"26"},{"1":"velvet","2":"28","3":"29","4":"28","5":"28","6":"29","7":"4","8":"24","9":"29","10":"29","11":"27","12":"27","13":"28","14":"29","15":"29","16":"0","17":"27","18":"26"},{"1":"waxpaper","2":"24","3":"28","4":"24","5":"28","6":"24","7":"28","8":"21","9":"12","10":"29","11":"29","12":"29","13":"27","14":"26","15":"28","16":"27","17":"0","18":"12"},{"1":"glossypaintedwood","2":"22","3":"27","4":"23","5":"29","6":"28","7":"29","8":"20","9":"13","10":"27","11":"28","12":"27","13":"25","14":"29","15":"26","16":"26","17":"12","18":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -862,7 +899,6 @@ dbl (17): X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16,...
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"object"</span>, objects)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>stimuli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["object"],"name":[1],"type":["chr"],"align":["left"]},{"label":["innersurfaceofpinebark"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["brick"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["cardboard"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["cork"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rubbereraser"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["felt"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["leatherwallet"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["rigidplasticsheet"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["veryfinesandpaper"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["nylonscouringpad"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["cellulosekitchensponge"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["wovenstraw"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["blockofstyrofoam"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["unglazedceramictile"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["velvet"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["waxpaper"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["glossypaintedwood"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"innersurfaceofpinebark","2":"0","3":"22","4":"23","5":"24","6":"26","7":"27","8":"26","9":"23","10":"24","11":"23","12":"23","13":"18","14":"23","15":"21","16":"28","17":"24","18":"22"},{"1":"brick","2":"22","3":"0","4":"27","5":"27","6":"27","7":"29","8":"29","9":"28","10":"16","11":"18","12":"28","13":"25","14":"24","15":"10","16":"29","17":"28","18":"27"},{"1":"cardboard","2":"23","3":"27","4":"0","5":"18","6":"19","7":"28","8":"23","9":"24","10":"24","11":"29","12":"27","13":"28","14":"21","15":"26","16":"28","17":"24","18":"23"},{"1":"cork","2":"24","3":"27","4":"18","5":"0","6":"15","7":"28","8":"25","9":"26","10":"28","11":"28","12":"20","13":"27","14":"10","15":"26","16":"28","17":"28","18":"29"},{"1":"rubbereraser","2":"26","3":"27","4":"19","5":"15","6":"0","7":"28","8":"20","9":"27","10":"24","11":"27","12":"24","13":"25","14":"19","15":"24","16":"29","17":"24","18":"28"},{"1":"felt","2":"27","3":"29","4":"28","5":"28","6":"28","7":"0","8":"24","9":"28","10":"29","11":"26","12":"26","13":"29","14":"28","15":"29","16":"4","17":"28","18":"29"},{"1":"leatherwallet","2":"26","3":"29","4":"23","5":"25","6":"20","7":"24","8":"0","9":"22","10":"28","11":"28","12":"27","13":"26","14":"25","15":"29","16":"24","17":"21","18":"20"},{"1":"rigidplasticsheet","2":"23","3":"28","4":"24","5":"26","6":"27","7":"28","8":"22","9":"0","10":"27","11":"29","12":"29","13":"27","14":"25","15":"25","16":"29","17":"12","18":"13"},{"1":"veryfinesandpaper","2":"24","3":"16","4":"24","5":"28","6":"24","7":"29","8":"28","9":"27","10":"0","11":"21","12":"24","13":"26","14":"25","15":"12","16":"29","17":"29","18":"27"},{"1":"nylonscouringpad","2":"23","3":"18","4":"29","5":"28","6":"27","7":"26","8":"28","9":"29","10":"21","11":"0","12":"22","13":"16","14":"25","15":"24","16":"27","17":"29","18":"28"},{"1":"cellulosekitchensponge","2":"23","3":"28","4":"27","5":"20","6":"24","7":"26","8":"27","9":"29","10":"24","11":"22","12":"0","13":"19","14":"21","15":"26","16":"27","17":"29","18":"27"},{"1":"wovenstraw","2":"18","3":"25","4":"28","5":"27","6":"25","7":"29","8":"26","9":"27","10":"26","11":"16","12":"19","13":"0","14":"26","15":"26","16":"28","17":"27","18":"25"},{"1":"blockofstyrofoam","2":"23","3":"24","4":"21","5":"10","6":"19","7":"28","8":"25","9":"25","10":"25","11":"25","12":"21","13":"26","14":"0","15":"25","16":"29","17":"26","18":"29"},{"1":"unglazedceramictile","2":"21","3":"10","4":"26","5":"26","6":"24","7":"29","8":"29","9":"25","10":"12","11":"24","12":"26","13":"26","14":"25","15":"0","16":"29","17":"28","18":"26"},{"1":"velvet","2":"28","3":"29","4":"28","5":"28","6":"29","7":"4","8":"24","9":"29","10":"29","11":"27","12":"27","13":"28","14":"29","15":"29","16":"0","17":"27","18":"26"},{"1":"waxpaper","2":"24","3":"28","4":"24","5":"28","6":"24","7":"28","8":"21","9":"12","10":"29","11":"29","12":"29","13":"27","14":"26","15":"28","16":"27","17":"0","18":"12"},{"1":"glossypaintedwood","2":"22","3":"27","4":"23","5":"29","6":"28","7":"29","8":"20","9":"13","10":"27","11":"28","12":"27","13":"25","14":"29","15":"26","16":"26","17":"12","18":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -953,7 +989,11 @@ glossypaintedwood          26       12</code></pre>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> stim)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/stimuli-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/stimuli-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><code>cmdscale</code> gets the coordinates to plot, then we plot them, and then we place the object names next to the points. I’m not quite sure what the scale is for <code>size</code>, but <code>size=2</code> worked for me here, making the text a bit smaller (so that the labels don’t overlap), but not so small that you can’t read it. You’ll probably have to experiment to find a <code>size</code> that you like.</p>
@@ -1028,7 +1068,11 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>d<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method =</span> <span class="st">"ward.D"</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/stimuli-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/stimuli-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That looks like 5 clusters to me (chopping the tree at a height of 30). Drawing them:</p>
@@ -1036,7 +1080,11 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d<span class="fl">.3</span>)</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(d<span class="fl">.3</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/stimuli-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/stimuli-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1062,7 +1110,11 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/stimuli-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/stimuli-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The first line obtains the clusters as numbers, which I then had to turn into a factor (to make the plot different colours). I copied the rest from above, and then I added to them, colouring the points according to what cluster they belonged to. Three of my “rough” objects have broken off into a cluster of their own; they are, kind of, in their own little area on the map.</p>
@@ -1070,7 +1122,6 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(d<span class="fl">.1</span>, <span class="at">object =</span> stimuli[, <span class="dv">1</span>], clusters) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(clusters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["object"],"name":[3],"type":["chr"],"align":["left"]},{"label":["clusters"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"-2.7066290","2":"1.694420","3":"innersurfaceofpinebark","4":"1","_rn_":"innersurfaceofpinebark"},{"1":"-10.4469053","2":"7.232787","3":"nylonscouringpad","4":"1","_rn_":"nylonscouringpad"},{"1":"-5.3886609","2":"-2.770991","3":"cellulosekitchensponge","4":"1","_rn_":"cellulosekitchensponge"},{"1":"-5.2762142","2":"3.836948","3":"wovenstraw","4":"1","_rn_":"wovenstraw"},{"1":"-12.2011332","2":"5.147970","3":"brick","4":"2","_rn_":"brick"},{"1":"-11.0869483","2":"2.800988","3":"veryfinesandpaper","4":"2","_rn_":"veryfinesandpaper"},{"1":"-10.5902291","2":"2.926805","3":"unglazedceramictile","4":"2","_rn_":"unglazedceramictile"},{"1":"3.8630322","2":"-9.322759","3":"cardboard","4":"3","_rn_":"cardboard"},{"1":"-0.8424358","2":"-14.884926","3":"cork","4":"3","_rn_":"cork"},{"1":"0.1676463","2":"-11.733873","3":"rubbereraser","4":"3","_rn_":"rubbereraser"},{"1":"-2.9950151","2":"-11.927717","3":"blockofstyrofoam","4":"3","_rn_":"blockofstyrofoam"},{"1":"5.1803473","2":"9.328562","3":"felt","4":"4","_rn_":"felt"},{"1":"6.3768882","2":"10.477972","3":"velvet","4":"4","_rn_":"velvet"},{"1":"10.4636668","2":"-1.016525","3":"leatherwallet","4":"5","_rn_":"leatherwallet"},{"1":"11.0208731","2":"1.201504","3":"rigidplasticsheet","4":"5","_rn_":"rigidplasticsheet"},{"1":"13.1702265","2":"1.677039","3":"waxpaper","4":"5","_rn_":"waxpaper"},{"1":"11.2914904","2":"5.331796","3":"glossypaintedwood","4":"5","_rn_":"glossypaintedwood"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1085,7 +1136,6 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(clusters)</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>save<span class="fl">.3</span>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["X3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["objects"],"name":[4],"type":["chr"],"align":["left"]},{"label":["clusters"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"-2.7066290","2":"1.694420","3":"4.1176385","4":"innersurfaceofpinebark","5":"1","_rn_":"innersurfaceofpinebark"},{"1":"-10.4469053","2":"7.232787","3":"-1.9720211","4":"nylonscouringpad","5":"1","_rn_":"nylonscouringpad"},{"1":"-5.3886609","2":"-2.770991","3":"-6.8039573","4":"cellulosekitchensponge","5":"1","_rn_":"cellulosekitchensponge"},{"1":"-5.2762142","2":"3.836948","3":"-0.3083513","4":"wovenstraw","5":"1","_rn_":"wovenstraw"},{"1":"-12.2011332","2":"5.147970","3":"5.9802631","4":"brick","5":"2","_rn_":"brick"},{"1":"-11.0869483","2":"2.800988","3":"4.9686770","4":"veryfinesandpaper","5":"2","_rn_":"veryfinesandpaper"},{"1":"-10.5902291","2":"2.926805","3":"7.2124679","4":"unglazedceramictile","5":"2","_rn_":"unglazedceramictile"},{"1":"3.8630322","2":"-9.322759","3":"1.2376174","4":"cardboard","5":"3","_rn_":"cardboard"},{"1":"-0.8424358","2":"-14.884926","3":"-5.6157998","4":"cork","5":"3","_rn_":"cork"},{"1":"0.1676463","2":"-11.733873","3":"-2.3880857","4":"rubbereraser","5":"3","_rn_":"rubbereraser"},{"1":"-2.9950151","2":"-11.927717","3":"-2.9877666","4":"blockofstyrofoam","5":"3","_rn_":"blockofstyrofoam"},{"1":"5.1803473","2":"9.328562","3":"-15.2730895","4":"felt","5":"4","_rn_":"felt"},{"1":"6.3768882","2":"10.477972","3":"-14.1837552","4":"velvet","5":"4","_rn_":"velvet"},{"1":"10.4636668","2":"-1.016525","3":"-1.9005177","4":"leatherwallet","5":"5","_rn_":"leatherwallet"},{"1":"11.0208731","2":"1.201504","3":"10.0016248","4":"rigidplasticsheet","5":"5","_rn_":"rigidplasticsheet"},{"1":"13.1702265","2":"1.677039","3":"8.2862272","4":"waxpaper","5":"5","_rn_":"waxpaper"},{"1":"11.2914904","2":"5.331796","3":"9.6288283","4":"glossypaintedwood","5":"5","_rn_":"glossypaintedwood"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1106,7 +1156,11 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> LD1, <span class="at">y =</span> LD2, <span class="at">colour =</span> cluster)) <span class="sc">+</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/stimuli-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/stimuli-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This says that the three-dimensional MDS <em>has</em> separated clusters 1 and 2, and if we were to plot <code>d.2a</code> in <code>rgl</code> and rotate it the right way, we <em>would</em> be able to see a difference between those two clusters as well. (They wouldn’t look mixed up as they do on the two-dimensional map.)</p>
@@ -1114,7 +1168,6 @@ glossypaintedwood       11.2914904   5.331796</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>save<span class="fl">.3</span>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["X3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["objects"],"name":[4],"type":["chr"],"align":["left"]},{"label":["clusters"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"-2.7066290","2":"1.694420","3":"4.1176385","4":"innersurfaceofpinebark","5":"1","_rn_":"innersurfaceofpinebark"},{"1":"-10.4469053","2":"7.232787","3":"-1.9720211","4":"nylonscouringpad","5":"1","_rn_":"nylonscouringpad"},{"1":"-5.3886609","2":"-2.770991","3":"-6.8039573","4":"cellulosekitchensponge","5":"1","_rn_":"cellulosekitchensponge"},{"1":"-5.2762142","2":"3.836948","3":"-0.3083513","4":"wovenstraw","5":"1","_rn_":"wovenstraw"},{"1":"-12.2011332","2":"5.147970","3":"5.9802631","4":"brick","5":"2","_rn_":"brick"},{"1":"-11.0869483","2":"2.800988","3":"4.9686770","4":"veryfinesandpaper","5":"2","_rn_":"veryfinesandpaper"},{"1":"-10.5902291","2":"2.926805","3":"7.2124679","4":"unglazedceramictile","5":"2","_rn_":"unglazedceramictile"},{"1":"3.8630322","2":"-9.322759","3":"1.2376174","4":"cardboard","5":"3","_rn_":"cardboard"},{"1":"-0.8424358","2":"-14.884926","3":"-5.6157998","4":"cork","5":"3","_rn_":"cork"},{"1":"0.1676463","2":"-11.733873","3":"-2.3880857","4":"rubbereraser","5":"3","_rn_":"rubbereraser"},{"1":"-2.9950151","2":"-11.927717","3":"-2.9877666","4":"blockofstyrofoam","5":"3","_rn_":"blockofstyrofoam"},{"1":"5.1803473","2":"9.328562","3":"-15.2730895","4":"felt","5":"4","_rn_":"felt"},{"1":"6.3768882","2":"10.477972","3":"-14.1837552","4":"velvet","5":"4","_rn_":"velvet"},{"1":"10.4636668","2":"-1.016525","3":"-1.9005177","4":"leatherwallet","5":"5","_rn_":"leatherwallet"},{"1":"11.0208731","2":"1.201504","3":"10.0016248","4":"rigidplasticsheet","5":"5","_rn_":"rigidplasticsheet"},{"1":"13.1702265","2":"1.677039","3":"8.2862272","4":"waxpaper","5":"5","_rn_":"waxpaper"},{"1":"11.2914904","2":"5.331796","3":"9.6288283","4":"glossypaintedwood","5":"5","_rn_":"glossypaintedwood"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1141,7 +1194,11 @@ X3 -0.3512713  0.09616153 0.19930252</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbiplot</span>(save<span class="fl">.3</span>d.lda, <span class="at">groups =</span> <span class="fu">factor</span>(save<span class="fl">.3</span>d<span class="sc">$</span>clusters))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/stimuli-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/stimuli-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Points on the right have <code>X1</code> and <code>X2</code> large, and <code>X3</code> small (cluster 4, and to a lesser extent, cluster 5). Points on the left are the other way around. None of the arrows point up or down really, but <code>X1</code> points up a bit and <code>X2</code> down a bit, so points at the top of the plot are likely to be high on <code>X1</code> and low on <code>X2</code>, like cluster 5.</p>
@@ -1187,7 +1244,6 @@ See problems(...) for more details.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>letters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["C"],"name":[1],"type":["chr"],"align":["left"]},{"label":["D"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["G"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["H"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["M"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["N"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Q"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["W"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"C","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0"},{"1":"D","2":"5","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0"},{"1":"G","2":"12","3":"2","4":"0","5":"0","6":"0","7":"0","8":"0"},{"1":"H","2":"2","3":"4","4":"3","5":"0","6":"0","7":"0","8":"0"},{"1":"M","2":"2","3":"3","4":"2","5":"10","6":"0","7":"0","8":"0"},{"1":"N","2":"2","3":"4","4":"1","5":"18","6":"16","7":"0","8":"0"},{"1":"Q","2":"9","3":"20","4":"9","5":"1","6":"2","7":"8","8":"0"},{"1":"W","2":"1","3":"5","4":"2","5":"5","6":"18","7":"13","8":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1353,7 +1409,7 @@ glossypaintedwood       11.2914904   5.331796
 $eig
  [1]  1.181313e+03  9.394546e+02  9.268689e+02  6.314409e+02  3.467493e+02
  [6]  2.705989e+02  2.575474e+02  1.937616e+02  1.485443e+02  1.186640e+02
-[11]  8.449108e+01  4.651045e+01  1.331767e+01 -1.278977e-13 -1.739199e+01
+[11]  8.449108e+01  4.651045e+01  1.331767e+01 -1.421085e-13 -1.739199e+01
 [16] -3.204147e+01 -6.782875e+01
 
 $x
@@ -1572,7 +1628,6 @@ attr(,"Upper")
 <div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>letters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["C"],"name":[1],"type":["chr"],"align":["left"]},{"label":["D"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["G"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["H"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["M"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["N"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Q"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["W"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"C","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0"},{"1":"D","2":"5","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0"},{"1":"G","2":"12","3":"2","4":"0","5":"0","6":"0","7":"0","8":"0"},{"1":"H","2":"2","3":"4","4":"3","5":"0","6":"0","7":"0","8":"0"},{"1":"M","2":"2","3":"3","4":"2","5":"10","6":"0","7":"0","8":"0"},{"1":"N","2":"2","3":"4","4":"1","5":"18","6":"16","7":"0","8":"0"},{"1":"Q","2":"9","3":"20","4":"9","5":"1","6":"2","7":"8","8":"0"},{"1":"W","2":"1","3":"5","4":"2","5":"5","6":"18","7":"13","8":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1691,7 +1746,6 @@ cols(
 </div>
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>beer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["student"],"name":[1],"type":["chr"],"align":["left"]},{"label":["AnchorS"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Bass"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Becks"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Corona"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["GordonB"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Guinness"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Heineken"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["PetesW"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["SamAdams"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["SierraN"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"S001","2":"5","3":"9","4":"7","5":"1","6":"7","7":"6","8":"6","9":"5","10":"9","11":"5"},{"1":"S008","2":"7","3":"5","4":"6","5":"8","6":"8","7":"4","8":"8","9":"8","10":"7","11":"7"},{"1":"S015","2":"7","3":"7","4":"5","5":"6","6":"6","7":"1","8":"8","9":"4","10":"7","11":"5"},{"1":"S022","2":"7","3":"7","4":"5","5":"2","6":"5","7":"8","8":"4","9":"6","10":"8","11":"9"},{"1":"S029","2":"9","3":"7","4":"3","5":"1","6":"6","7":"8","8":"2","9":"7","10":"6","11":"8"},{"1":"S036","2":"7","3":"6","4":"4","5":"3","6":"7","7":"6","8":"6","9":"5","10":"4","11":"9"},{"1":"S043","2":"5","3":"5","4":"5","5":"6","6":"6","7":"4","8":"7","9":"5","10":"5","11":"6"},{"1":"S050","2":"5","3":"3","4":"1","5":"5","6":"5","7":"5","8":"3","9":"5","10":"5","11":"9"},{"1":"S057","2":"9","3":"3","4":"2","5":"6","6":"4","7":"6","8":"1","9":"5","10":"3","11":"6"},{"1":"S064","2":"2","3":"6","4":"6","5":"5","6":"6","7":"4","8":"8","9":"4","10":"4","11":"3"},{"1":"S071","2":"7","3":"7","4":"7","5":"5","6":"7","7":"8","8":"6","9":"7","10":"7","11":"8"},{"1":"S078","2":"8","3":"3","4":"3","5":"9","6":"9","7":"2","8":"1","9":"9","10":"7","11":"8"},{"1":"S085","2":"6","3":"5","4":"3","5":"7","6":"6","7":"5","8":"8","9":"6","10":"7","11":"5"},{"1":"S092","2":"5","3":"6","4":"3","5":"8","6":"6","7":"7","8":"6","9":"7","10":"6","11":"7"},{"1":"S099","2":"4","3":"7","4":"2","5":"8","6":"5","7":"9","8":"8","9":"3","10":"8","11":"8"},{"1":"S106","2":"3","3":"3","4":"4","5":"5","6":"6","7":"5","8":"9","9":"7","10":"5","11":"5"},{"1":"S113","2":"2","3":"4","4":"5","5":"7","6":"6","7":"6","8":"8","9":"1","10":"7","11":"4"},{"1":"S120","2":"9","3":"3","4":"7","5":"4","6":"2","7":"4","8":"6","9":"3","10":"8","11":"6"},{"1":"S127","2":"5","3":"3","4":"4","5":"7","6":"7","7":"7","8":"6","9":"6","10":"6","11":"6"},{"1":"S134","2":"2","3":"4","4":"4","5":"8","6":"5","7":"5","8":"5","9":"4","10":"6","11":"6"},{"1":"S141","2":"5","3":"7","4":"6","5":"7","6":"5","7":"8","8":"8","9":"7","10":"5","11":"7"},{"1":"S148","2":"8","3":"9","4":"6","5":"7","6":"7","7":"8","8":"6","9":"8","10":"8","11":"8"},{"1":"S162","2":"5","3":"6","4":"6","5":"7","6":"5","7":"3","8":"7","9":"3","10":"4","11":"3"},{"1":"S169","2":"5","3":"5","4":"6","5":"7","6":"7","7":"4","8":"6","9":"3","10":"7","11":"6"},{"1":"S176","2":"5","3":"5","4":"7","5":"8","6":"7","7":"6","8":"7","9":"5","10":"4","11":"7"},{"1":"S183","2":"3","3":"5","4":"4","5":"7","6":"3","7":"1","8":"2","9":"6","10":"6","11":"5"},{"1":"S190","2":"4","3":"3","4":"6","5":"8","6":"6","7":"1","8":"8","9":"2","10":"7","11":"7"},{"1":"S197","2":"3","3":"8","4":"4","5":"8","6":"6","7":"2","8":"8","9":"4","10":"6","11":"1"},{"1":"S204","2":"3","3":"5","4":"1","5":"5","6":"5","7":"3","8":"4","9":"6","10":"7","11":"5"},{"1":"S211","2":"3","3":"8","4":"5","5":"8","6":"7","7":"5","8":"5","9":"3","10":"7","11":"8"},{"1":"S218","2":"8","3":"8","4":"5","5":"7","6":"9","7":"9","8":"7","9":"7","10":"6","11":"8"},{"1":"S225","2":"7","3":"6","4":"2","5":"2","6":"6","7":"6","8":"2","9":"7","10":"5","11":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1749,7 +1803,11 @@ converged</code></pre>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">label =</span> beer)) <span class="sc">+</span></span>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/beermds-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/beermds-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1761,7 +1819,6 @@ converged</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>beer <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(SamAdams, GordonB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["SamAdams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["GordonB"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"9","2":"7"},{"1":"7","2":"8"},{"1":"7","2":"6"},{"1":"8","2":"5"},{"1":"6","2":"6"},{"1":"4","2":"7"},{"1":"5","2":"6"},{"1":"5","2":"5"},{"1":"3","2":"4"},{"1":"4","2":"6"},{"1":"7","2":"7"},{"1":"7","2":"9"},{"1":"7","2":"6"},{"1":"6","2":"6"},{"1":"8","2":"5"},{"1":"5","2":"6"},{"1":"7","2":"6"},{"1":"8","2":"2"},{"1":"6","2":"7"},{"1":"6","2":"5"},{"1":"5","2":"5"},{"1":"8","2":"7"},{"1":"4","2":"5"},{"1":"7","2":"7"},{"1":"4","2":"7"},{"1":"6","2":"3"},{"1":"7","2":"6"},{"1":"6","2":"6"},{"1":"7","2":"5"},{"1":"7","2":"7"},{"1":"6","2":"9"},{"1":"5","2":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1774,7 +1831,11 @@ converged</code></pre>
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, <span class="fu">aes</span>(<span class="at">x =</span> SamAdams, <span class="at">y =</span> GordonB)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
 <span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/adkjalkjdsg-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/adkjalkjdsg-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Are they close to the line, or not? Dunno. Maybe I should plot the ratings of some far-apart beers, and see whether it looks any different, for example <code>Becks</code> and <code>SierraN</code>:</p>
@@ -1782,7 +1843,11 @@ converged</code></pre>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, <span class="fu">aes</span>(<span class="at">x =</span> Becks, <span class="at">y =</span> SierraN)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/adkjalkjdsh-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/adkjalkjdsh-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Not much. I was expecting something a lot more impressive. Another way is to summarize the rating <em>differences</em> for the pairs of beers:</p>
@@ -1831,7 +1896,6 @@ converged</code></pre>
 <span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stimuli) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"object"</span>, objects)</span>
 <span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>stimuli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["object"],"name":[1],"type":["chr"],"align":["left"]},{"label":["innersurfaceofpinebark"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["brick"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["cardboard"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["cork"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rubbereraser"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["felt"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["leatherwallet"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["rigidplasticsheet"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["veryfinesandpaper"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["nylonscouringpad"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["cellulosekitchensponge"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["wovenstraw"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["blockofstyrofoam"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["unglazedceramictile"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["velvet"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["waxpaper"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["glossypaintedwood"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"innersurfaceofpinebark","2":"0","3":"22","4":"23","5":"24","6":"26","7":"27","8":"26","9":"23","10":"24","11":"23","12":"23","13":"18","14":"23","15":"21","16":"28","17":"24","18":"22"},{"1":"brick","2":"22","3":"0","4":"27","5":"27","6":"27","7":"29","8":"29","9":"28","10":"16","11":"18","12":"28","13":"25","14":"24","15":"10","16":"29","17":"28","18":"27"},{"1":"cardboard","2":"23","3":"27","4":"0","5":"18","6":"19","7":"28","8":"23","9":"24","10":"24","11":"29","12":"27","13":"28","14":"21","15":"26","16":"28","17":"24","18":"23"},{"1":"cork","2":"24","3":"27","4":"18","5":"0","6":"15","7":"28","8":"25","9":"26","10":"28","11":"28","12":"20","13":"27","14":"10","15":"26","16":"28","17":"28","18":"29"},{"1":"rubbereraser","2":"26","3":"27","4":"19","5":"15","6":"0","7":"28","8":"20","9":"27","10":"24","11":"27","12":"24","13":"25","14":"19","15":"24","16":"29","17":"24","18":"28"},{"1":"felt","2":"27","3":"29","4":"28","5":"28","6":"28","7":"0","8":"24","9":"28","10":"29","11":"26","12":"26","13":"29","14":"28","15":"29","16":"4","17":"28","18":"29"},{"1":"leatherwallet","2":"26","3":"29","4":"23","5":"25","6":"20","7":"24","8":"0","9":"22","10":"28","11":"28","12":"27","13":"26","14":"25","15":"29","16":"24","17":"21","18":"20"},{"1":"rigidplasticsheet","2":"23","3":"28","4":"24","5":"26","6":"27","7":"28","8":"22","9":"0","10":"27","11":"29","12":"29","13":"27","14":"25","15":"25","16":"29","17":"12","18":"13"},{"1":"veryfinesandpaper","2":"24","3":"16","4":"24","5":"28","6":"24","7":"29","8":"28","9":"27","10":"0","11":"21","12":"24","13":"26","14":"25","15":"12","16":"29","17":"29","18":"27"},{"1":"nylonscouringpad","2":"23","3":"18","4":"29","5":"28","6":"27","7":"26","8":"28","9":"29","10":"21","11":"0","12":"22","13":"16","14":"25","15":"24","16":"27","17":"29","18":"28"},{"1":"cellulosekitchensponge","2":"23","3":"28","4":"27","5":"20","6":"24","7":"26","8":"27","9":"29","10":"24","11":"22","12":"0","13":"19","14":"21","15":"26","16":"27","17":"29","18":"27"},{"1":"wovenstraw","2":"18","3":"25","4":"28","5":"27","6":"25","7":"29","8":"26","9":"27","10":"26","11":"16","12":"19","13":"0","14":"26","15":"26","16":"28","17":"27","18":"25"},{"1":"blockofstyrofoam","2":"23","3":"24","4":"21","5":"10","6":"19","7":"28","8":"25","9":"25","10":"25","11":"25","12":"21","13":"26","14":"0","15":"25","16":"29","17":"26","18":"29"},{"1":"unglazedceramictile","2":"21","3":"10","4":"26","5":"26","6":"24","7":"29","8":"29","9":"25","10":"12","11":"24","12":"26","13":"26","14":"25","15":"0","16":"29","17":"28","18":"26"},{"1":"velvet","2":"28","3":"29","4":"28","5":"28","6":"29","7":"4","8":"24","9":"29","10":"29","11":"27","12":"27","13":"28","14":"29","15":"29","16":"0","17":"27","18":"26"},{"1":"waxpaper","2":"24","3":"28","4":"24","5":"28","6":"24","7":"28","8":"21","9":"12","10":"29","11":"29","12":"29","13":"27","14":"26","15":"28","16":"27","17":"0","18":"12"},{"1":"glossypaintedwood","2":"22","3":"27","4":"23","5":"29","6":"28","7":"29","8":"20","9":"13","10":"27","11":"28","12":"27","13":"25","14":"29","15":"26","16":"26","17":"12","18":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1948,7 +2012,6 @@ converged</code></pre>
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>stimuli.<span class="fl">1.</span>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(stimuli<span class="fl">.1</span><span class="sc">$</span>points, <span class="at">names =</span> objects)</span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>stimuli.<span class="fl">1.</span>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["names"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"-1.5343296","2":"1.3163495","3":"innersurfaceofpinebark","_rn_":"innersurfaceofpinebark"},{"1":"-11.1198228","2":"4.1255022","3":"brick","_rn_":"brick"},{"1":"3.7481838","2":"-9.4875599","3":"cardboard","_rn_":"cardboard"},{"1":"-0.8637631","2":"-11.6740046","3":"cork","_rn_":"cork"},{"1":"0.9478406","2":"-9.9955340","3":"rubbereraser","_rn_":"rubbereraser"},{"1":"3.7030786","2":"15.0204325","3":"felt","_rn_":"felt"},{"1":"9.5323886","2":"-3.3715939","3":"leatherwallet","_rn_":"leatherwallet"},{"1":"11.3370118","2":"-0.5134769","3":"rigidplasticsheet","_rn_":"rigidplasticsheet"},{"1":"-12.7743812","2":"1.1092242","3":"veryfinesandpaper","_rn_":"veryfinesandpaper"},{"1":"-9.1348586","2":"8.0045364","3":"nylonscouringpad","_rn_":"nylonscouringpad"},{"1":"-8.2296607","2":"-6.3368839","3":"cellulosekitchensponge","_rn_":"cellulosekitchensponge"},{"1":"-4.3321533","2":"5.1303993","3":"wovenstraw","_rn_":"wovenstraw"},{"1":"-3.3540109","2":"-9.7135472","3":"blockofstyrofoam","_rn_":"blockofstyrofoam"},{"1":"-10.7345424","2":"-0.4673140","3":"unglazedceramictile","_rn_":"unglazedceramictile"},{"1":"7.0712701","2":"15.3712514","3":"velvet","_rn_":"velvet"},{"1":"14.2695604","2":"-0.7584453","3":"waxpaper","_rn_":"waxpaper"},{"1":"11.4681889","2":"2.2406642","3":"glossypaintedwood","_rn_":"glossypaintedwood"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1967,7 +2030,6 @@ converged</code></pre>
 ℹ Using compatibility `.name_repair`.</code></pre>
 </div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["V1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["V2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"-1.5343296","2":"1.3163495","3":"innersurfaceofpinebark"},{"1":"-11.1198228","2":"4.1255022","3":"brick"},{"1":"3.7481838","2":"-9.4875599","3":"cardboard"},{"1":"-0.8637631","2":"-11.6740046","3":"cork"},{"1":"0.9478406","2":"-9.9955340","3":"rubbereraser"},{"1":"3.7030786","2":"15.0204325","3":"felt"},{"1":"9.5323886","2":"-3.3715939","3":"leatherwallet"},{"1":"11.3370118","2":"-0.5134769","3":"rigidplasticsheet"},{"1":"-12.7743812","2":"1.1092242","3":"veryfinesandpaper"},{"1":"-9.1348586","2":"8.0045364","3":"nylonscouringpad"},{"1":"-8.2296607","2":"-6.3368839","3":"cellulosekitchensponge"},{"1":"-4.3321533","2":"5.1303993","3":"wovenstraw"},{"1":"-3.3540109","2":"-9.7135472","3":"blockofstyrofoam"},{"1":"-10.7345424","2":"-0.4673140","3":"unglazedceramictile"},{"1":"7.0712701","2":"15.3712514","3":"velvet"},{"1":"14.2695604","2":"-0.7584453","3":"waxpaper"},{"1":"11.4681889","2":"2.2406642","3":"glossypaintedwood"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1982,7 +2044,11 @@ converged</code></pre>
 <span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/hon-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/hon-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I think the full names are good with the text this small.</p>
@@ -2018,7 +2084,11 @@ converged</code></pre>
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(stimuli.sh, <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">%&gt;%</span></span>
 <span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="mds_files/figure-html/sporers-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="mds_files/figure-html/sporers-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The actual distances are on the <span class="math inline">\(x\)</span>-axis and the map distances are on the <span class="math inline">\(y\)</span> axis, as far as I can tell (the help file is not clear on this). But I think I am right, since a lot of the actual distances were 28 or 29. Notice how the upward trend, such as it is, is very fuzzy: when the actual distance is very large, the map distance could be almost anything.</p>
@@ -2156,10 +2226,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2169,8 +2238,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2183,6 +2261,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2226,6 +2423,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2251,6 +2449,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2312,17 +2536,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./maps.html" class="pagination-link">
+      <a href="./maps.html" class="pagination-link  aria-label=" &lt;span="" maps="" with="" leaflet&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Drawing maps with Leaflet</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pc.html" class="pagination-link">
+      <a href="./pc.html" class="pagination-link" aria-label="<span class='chapter-number'>40</span>&nbsp; <span class='chapter-title'>Principal Components</span>">
         <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Principal Components</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

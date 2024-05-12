@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,33 +96,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
-
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-regression.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./simple-regression.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -126,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
@@ -400,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -456,7 +488,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -697,7 +731,6 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rains</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rainfall"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["altitude"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["latitude"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["fromcoast"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Eureka","2":"39.57","3":"43","4":"40.8","5":"1"},{"1":"RedBluff","2":"23.27","3":"341","4":"40.2","5":"97"},{"1":"Thermal","2":"18.20","3":"4152","4":"33.8","5":"70"},{"1":"FortBragg","2":"37.48","3":"74","4":"39.4","5":"1"},{"1":"SodaSprings","2":"49.26","3":"6752","4":"39.3","5":"150"},{"1":"SanFrancisco","2":"21.82","3":"52","4":"37.8","5":"5"},{"1":"Sacramento","2":"18.07","3":"25","4":"38.5","5":"80"},{"1":"SanJose","2":"14.17","3":"95","4":"37.4","5":"28"},{"1":"GiantForest","2":"42.63","3":"6360","4":"36.6","5":"145"},{"1":"Salinas","2":"13.85","3":"74","4":"36.7","5":"12"},{"1":"Fresno","2":"9.44","3":"331","4":"36.7","5":"114"},{"1":"PtPiedras","2":"19.33","3":"57","4":"35.7","5":"1"},{"1":"PasaRobles","2":"15.67","3":"740","4":"35.7","5":"31"},{"1":"Bakersfield","2":"6.00","3":"489","4":"35.4","5":"75"},{"1":"Bishop","2":"5.73","3":"4108","4":"37.3","5":"198"},{"1":"Mineral","2":"47.82","3":"4850","4":"40.4","5":"142"},{"1":"SantaBarbara","2":"17.95","3":"120","4":"34.4","5":"1"},{"1":"Susanville","2":"18.20","3":"4152","4":"40.3","5":"198"},{"1":"TuleLake","2":"10.03","3":"4036","4":"41.9","5":"140"},{"1":"Needles","2":"4.63","3":"913","4":"34.8","5":"192"},{"1":"Burbank","2":"14.74","3":"699","4":"34.2","5":"47"},{"1":"LosAngeles","2":"15.02","3":"312","4":"34.1","5":"16"},{"1":"LongBeach","2":"12.36","3":"50","4":"33.8","5":"12"},{"1":"LosBanos","2":"8.26","3":"125","4":"37.8","5":"74"},{"1":"Blythe","2":"4.05","3":"268","4":"33.6","5":"155"},{"1":"SanDiego","2":"9.94","3":"19","4":"32.7","5":"5"},{"1":"Daggett","2":"4.25","3":"2105","4":"34.1","5":"85"},{"1":"DeathValley","2":"1.66","3":"-178","4":"36.5","5":"194"},{"1":"CrescentCity","2":"74.87","3":"35","4":"41.7","5":"1"},{"1":"Colusa","2":"15.95","3":"60","4":"39.2","5":"91"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -715,7 +748,11 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rains,<span class="fu">aes</span>(<span class="at">y=</span>rainfall,<span class="at">x=</span><span class="dv">1</span>))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There is only one rainfall over 60 inches, and the smallest one is close to zero but positive, so that is good.</p>
@@ -723,14 +760,17 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rains, <span class="fu">aes</span>(<span class="at">x=</span>rainfall))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This clearly shows the rainfall value above 60 inches, but some other things are less clear: are those two rainfall values around 50 inches above or below 50, and are those six rainfall values near zero actually above zero? Extra: What stations have those extreme values? Should you wish to find out:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rains <span class="sc">%&gt;%</span> <span class="fu">filter</span>(rainfall<span class="sc">&gt;</span><span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rainfall"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["altitude"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["latitude"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["fromcoast"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"CrescentCity","2":"74.87","3":"35","4":"41.7","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -742,7 +782,6 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rains <span class="sc">%&gt;%</span> <span class="fu">filter</span>(rainfall<span class="sc">&lt;</span><span class="dv">2</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rainfall"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["altitude"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["latitude"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["fromcoast"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"DeathValley","2":"1.66","3":"-178","4":"36.5","5":"194"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -760,20 +799,32 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rains,<span class="fu">aes</span>(<span class="at">y=</span>rainfall,<span class="at">x=</span>altitude))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rains,<span class="fu">aes</span>(<span class="at">y=</span>rainfall,<span class="at">x=</span>latitude))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>and finally</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rains,<span class="fu">aes</span>(<span class="at">y=</span>rainfall,<span class="at">x=</span>fromcoast))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can add a smooth trend to these if you want. Up to you. Just the points is fine with me.</p>
@@ -784,7 +835,11 @@ cols(
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>rainfall))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>xname,<span class="at">scales=</span><span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This always seems extraordinarily strange if you haven’t run into it before. The strategy is to put <em>all</em> the <span class="math inline">\(x\)</span>-variables you want to plot into <em>one</em> column and then plot your <span class="math inline">\(y\)</span> against the <span class="math inline">\(x\)</span>-column. Thus: make a column of all the <span class="math inline">\(x\)</span>’s glued together, labelled by which <span class="math inline">\(x\)</span> they are, then plot <span class="math inline">\(y\)</span> against <span class="math inline">\(x\)</span> but make a different sub-plot or “facet” for each different <span class="math inline">\(x\)</span>-name. The last thing is that each <span class="math inline">\(x\)</span> is measured on a different scale, and unless we take steps, all the sub-plots will have the <em>same</em> scale on each axis, which we don’t want.</p>
@@ -795,7 +850,11 @@ cols(
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>rainfall))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>xname,<span class="at">scales=</span><span class="st">"free"</span>,<span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/calirain-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/calirain-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now, the three plots have come out about square, or at least “landscape”, which I like a lot better.</p>
@@ -949,7 +1008,6 @@ This also goes to show that the scatterplots we began with don’t get to the he
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(rainfall<span class="fl">.1</span>,rainfall<span class="fl">.4</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Res.Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"28","2":"5346.766","3":"NA","4":"NA","5":"NA","6":"NA","_rn_":"1"},{"1":"26","2":"3202.298","3":"2","4":"2144.469","5":"8.705653","6":"0.0012759","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -984,7 +1042,6 @@ cols(
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cigs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["tar"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["nicotine"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["co"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"14.1","2":"0.86","3":"0.9853","4":"13.6"},{"1":"16.0","2":"1.06","3":"1.0938","4":"16.6"},{"1":"29.8","2":"2.03","3":"1.1650","4":"23.5"},{"1":"8.0","2":"0.67","3":"0.9280","4":"10.2"},{"1":"4.1","2":"0.40","3":"0.9462","4":"5.4"},{"1":"15.0","2":"1.04","3":"0.8885","4":"15.0"},{"1":"8.8","2":"0.76","3":"1.0267","4":"9.0"},{"1":"12.4","2":"0.95","3":"0.9225","4":"12.3"},{"1":"16.6","2":"1.12","3":"0.9372","4":"16.3"},{"1":"14.9","2":"1.02","3":"0.8858","4":"15.4"},{"1":"13.7","2":"1.01","3":"0.9643","4":"13.0"},{"1":"15.1","2":"0.90","3":"0.9316","4":"14.4"},{"1":"7.8","2":"0.57","3":"0.9705","4":"10.0"},{"1":"11.4","2":"0.78","3":"1.1240","4":"10.2"},{"1":"9.0","2":"0.74","3":"0.8517","4":"9.5"},{"1":"1.0","2":"0.13","3":"0.7851","4":"1.5"},{"1":"17.0","2":"1.26","3":"0.9186","4":"18.5"},{"1":"12.8","2":"1.08","3":"1.0395","4":"12.6"},{"1":"15.8","2":"0.96","3":"0.9573","4":"17.5"},{"1":"4.5","2":"0.42","3":"0.9106","4":"4.9"},{"1":"14.5","2":"1.01","3":"1.0070","4":"15.9"},{"1":"7.3","2":"0.61","3":"0.9806","4":"8.5"},{"1":"8.6","2":"0.69","3":"0.9693","4":"10.6"},{"1":"15.2","2":"1.02","3":"0.9496","4":"13.9"},{"1":"12.0","2":"0.82","3":"1.1184","4":"14.9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1130,7 +1187,11 @@ F-statistic: 138.3 on 1 and 23 DF,  p-value: 3.312e-11</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/ftccigar-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/ftccigar-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We’re supposed to ignore <code>co</code>, but I comment that strong relationships between <code>co</code> and <em>both</em> of <code>tar</code> and <code>nicotine</code> show up here, along with <code>weight</code> being at most weakly related to anything else.</p>
@@ -1149,7 +1210,11 @@ F-statistic: 138.3 on 1 and 23 DF,  p-value: 3.312e-11</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>cigs <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/tober-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/tober-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>As ever, <code>install.packages</code> first, in the likely event that you don’t have this package installed yet. Once you do, though, I think this is a nicer way to get a pairs plot.</p>
@@ -1158,7 +1223,11 @@ F-statistic: 138.3 on 1 and 23 DF,  p-value: 3.312e-11</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>cigs <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>weight) <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/ftccigar-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/ftccigar-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The three correlations that remain are all very high, which is entirely consistent with the strong linear relationships that you see bottom left.</p>
@@ -1192,7 +1261,6 @@ dbl (5): uptake, age, height, weight, chest
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>boys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["uptake"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["chest"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.54","2":"8.4","3":"132.0","4":"29.1","5":"14.4"},{"1":"1.74","2":"8.7","3":"135.5","4":"29.7","5":"14.5"},{"1":"1.32","2":"8.9","3":"127.7","4":"28.4","5":"14.0"},{"1":"1.50","2":"9.9","3":"131.1","4":"28.8","5":"14.2"},{"1":"1.46","2":"9.0","3":"130.0","4":"25.9","5":"13.6"},{"1":"1.35","2":"7.7","3":"127.6","4":"27.6","5":"13.9"},{"1":"1.53","2":"7.3","3":"129.9","4":"29.0","5":"14.0"},{"1":"1.71","2":"9.9","3":"138.1","4":"33.6","5":"14.6"},{"1":"1.27","2":"9.3","3":"126.6","4":"27.7","5":"13.9"},{"1":"1.50","2":"8.1","3":"131.8","4":"30.8","5":"14.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1325,7 +1393,6 @@ F-statistic: 76.75 on 1 and 8 DF,  p-value: 2.258e-05</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(boys<span class="fl">.2</span>, boys<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Res.Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["RSS"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sum of Sq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"8","2":"0.020101574","3":"NA","4":"NA","5":"NA","6":"NA","_rn_":"1"},{"1":"5","2":"0.006922613","3":"3","4":"0.01317896","5":"3.172926","6":"0.1229759","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1360,7 +1427,11 @@ chest  0.7182659 0.1657523 0.7909452 0.8809605 1.0000000</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>boys <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/youngboys-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/youngboys-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A final remark: with five variables, we really ought to have more than ten observations (something like 50 would be better). But with more observations and the same correlation structure, the same issues would come up again, so the question would not be materially changed.</p>
@@ -1390,7 +1461,6 @@ dbl (2): GMdensity, FBfriends
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>fb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["GMdensity"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["FBfriends"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"-1.8","2":"23"},{"1":"0.1","2":"35"},{"1":"-1.2","2":"80"},{"1":"-0.4","2":"110"},{"1":"-0.9","2":"120"},{"1":"-2.1","2":"140"},{"1":"-1.5","2":"168"},{"1":"0.5","2":"132"},{"1":"0.6","2":"154"},{"1":"-0.5","2":"241"},{"1":"-1.1","2":"255"},{"1":"-1.0","2":"274"},{"1":"0.1","2":"238"},{"1":"0.1","2":"260"},{"1":"0.0","2":"275"},{"1":"0.3","2":"283"},{"1":"-0.8","2":"320"},{"1":"-0.9","2":"341"},{"1":"-1.0","2":"358"},{"1":"1.8","2":"384"},{"1":"1.2","2":"365"},{"1":"0.9","2":"377"},{"1":"0.1","2":"398"},{"1":"0.2","2":"372"},{"1":"1.8","2":"515"},{"1":"1.3","2":"504"},{"1":"1.3","2":"550"},{"1":"0.9","2":"506"},{"1":"0.4","2":"447"},{"1":"0.7","2":"728"},{"1":"0.0","2":"624"},{"1":"-1.2","2":"428"},{"1":"1.1","2":"617"},{"1":"-0.9","2":"472"},{"1":"-0.8","2":"526"},{"1":"-0.6","2":"541"},{"1":"-0.5","2":"575"},{"1":"-0.3","2":"531"},{"1":"-0.2","2":"430"},{"1":"0.3","2":"639"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1402,7 +1472,11 @@ dbl (2): GMdensity, FBfriends
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/fbfriends-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/fbfriends-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1491,7 +1565,11 @@ GMdensity    26.61391 138.2836</code></pre>
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/fbfriends-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/fbfriends-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1503,7 +1581,11 @@ GMdensity    26.61391 138.2836</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fb<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/fbfriends-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/fbfriends-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There is some “magic” here, since the fitted model object is not actually a data frame, but it works this way. That looks to me like a completely random scatter of points. Thus, I am completely happy with the straight-line regression that we fitted, and I see no need to improve it.</p>
@@ -1516,7 +1598,11 @@ GMdensity    26.61391 138.2836</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/fbfriends-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/fbfriends-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now, why did I try adding a smooth trend, and why is it not necessarily a good idea? The idea of a residual plot is that there should be no trend, and so the smooth trend curve ought to go straight across. The problem is that it will tend to wiggle, just by chance, as here: it looks as if it goes up and down before flattening out. But if you look at the points, <em>they</em> are all over the place, not close to the smooth trend at all. So the smooth trend is rather deceiving. Or, to put it another way, to indicate a real problem, the smooth trend would have to be a <em>lot</em> farther from flat than this one is. I’d call this one basically flat.</p>
@@ -1545,7 +1631,6 @@ dbl (3): tank, bodyweight, ENE
 </div>
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>carp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["tank"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["bodyweight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ENE"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"11.7","3":"15.3"},{"1":"2","2":"25.3","3":"9.3"},{"1":"3","2":"90.2","3":"6.5"},{"1":"4","2":"213.0","3":"6.0"},{"1":"5","2":"10.2","3":"15.7"},{"1":"6","2":"17.6","3":"10.0"},{"1":"7","2":"32.6","3":"8.6"},{"1":"8","2":"81.3","3":"6.4"},{"1":"9","2":"141.5","3":"5.6"},{"1":"10","2":"285.7","3":"6.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1565,7 +1650,11 @@ dbl (3): tank, bodyweight, ENE
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/marttis-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/marttis-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This part is just about getting the plot. Comments are coming in a minute. Note that <code>ENE</code> is capital letters, so that <code>ene</code> will not work.</p>
@@ -1615,7 +1704,11 @@ F-statistic: 6.971 on 1 and 8 DF,  p-value: 0.0297</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(carp<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/goeslingerin-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/goeslingerin-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1670,7 +1763,11 @@ F-statistic: 9.829 on 2 and 7 DF,  p-value: 0.009277</code></pre>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> carp, <span class="fu">aes</span>(<span class="at">x =</span> bodyweight, <span class="at">y =</span> ENE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/bletz-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/bletz-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This works, but is not very aesthetic, because the bodyweight that is plotted against the fitted values is in the wrong data frame, and so we have to use the dollar-sign thing to get it from the right one.</p>
@@ -1680,7 +1777,6 @@ F-statistic: 9.829 on 2 and 7 DF,  p-value: 0.009277</code></pre>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>carp<span class="fl">.2</span>a <span class="ot">&lt;-</span> <span class="fu">augment</span>(carp<span class="fl">.2</span>, carp)</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>carp<span class="fl">.2</span>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["tank"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["bodyweight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ENE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"11.7","3":"15.3","4":"12.558657","5":"2.7413428","6":"0.2392022","7":"1.992810","8":"0.21499558","9":"1.4322784"},{"1":"2","2":"25.3","3":"9.3","4":"11.311261","5":"-2.0112607","6":"0.1629840","7":"2.193651","8":"0.06514640","9":"-1.0018443"},{"1":"3","2":"90.2","3":"6.5","4":"6.751885","5":"-0.2518851","6":"0.2396677","7":"2.367208","8":"0.00182089","9":"-0.1316435"},{"1":"4","2":"213.0","3":"6.0","4":"4.428445","5":"1.5715555","6":"0.3246419","7":"2.237874","8":"0.12169479","9":"0.8714880"},{"1":"5","2":"10.2","3":"15.7","4":"12.702432","5":"2.9975680","6":"0.2511559","7":"1.902036","8":"0.27859605","9":"1.5785999"},{"1":"6","2":"17.6","3":"10.0","4":"12.005083","5":"-2.0050832","6":"0.1993691","7":"2.186473","8":"0.08656338","9":"-1.0212098"},{"1":"7","2":"32.6","3":"8.6","4":"10.683427","5":"-2.0834268","6":"0.1425478","7":"2.184918","8":"0.05826041","9":"-1.0253497"},{"1":"8","2":"81.3","3":"6.4","4":"7.240829","5":"-0.8408294","6":"0.2112076","7":"2.338418","8":"0.01661407","9":"-0.4314448"},{"1":"9","2":"141.5","3":"5.6","4":"4.778159","5":"0.8218410","6":"0.3546865","7":"2.333053","8":"0.03982493","9":"0.4662310"},{"1":"10","2":"285.7","3":"6.0","4":"6.939822","5":"-0.9398221","6":"0.8745372","7":"2.108136","8":"3.39715895","9":"-1.2091687"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1698,7 +1794,11 @@ F-statistic: 9.829 on 2 and 7 DF,  p-value: 0.009277</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/carp-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/carp-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Concerning interpretation, you have a number of possibilities here. The simplest is that the points in the middle are above the curve, and the points at the ends are below. (That is, negative residuals at the ends, and positive ones in the middle, which gives you a hint for the next part.) Another is that the parabola curve fails to capture the <em>shape</em> of the relationship; for example, I see nothing much in the data suggesting that the relationship should go back up, and even given that, the fitted curve doesn’t go especially near any of the points.</p>
@@ -1713,7 +1813,11 @@ F-statistic: 9.829 on 2 and 7 DF,  p-value: 0.009277</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(carp<span class="fl">.2</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/ohem-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/ohem-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I think this is <em>still</em> a curve (or, it goes down and then sharply up at the end). Either way, there is still a pattern.</p>
@@ -1751,7 +1855,11 @@ F-statistic: 334.6 on 1 and 8 DF,  p-value: 8.205e-08</code></pre>
 <span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
 <span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> ENE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/augment2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/augment2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I’d say that does a really nice job of fitting the data. But it would be nice to have a few more tanks with large-bodyweight fish, to convince us that we have the shape of the trend right.</p>
@@ -1759,7 +1867,11 @@ F-statistic: 334.6 on 1 and 8 DF,  p-value: 8.205e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(carp<span class="fl">.3</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/sailer-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/sailer-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>All in all, that looks pretty good (and certainly a vast improvement over the ones you got before).</p>
@@ -1788,7 +1900,6 @@ dbl (2): experience, salary
 </div>
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>soc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["experience"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["salary"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"7","2":"26075"},{"1":"28","2":"79370"},{"1":"23","2":"65726"},{"1":"18","2":"41983"},{"1":"19","2":"62308"},{"1":"15","2":"41154"},{"1":"24","2":"53610"},{"1":"13","2":"33697"},{"1":"2","2":"22444"},{"1":"8","2":"32562"},{"1":"20","2":"43076"},{"1":"21","2":"56000"},{"1":"18","2":"58667"},{"1":"7","2":"22210"},{"1":"2","2":"20521"},{"1":"18","2":"49727"},{"1":"11","2":"33233"},{"1":"21","2":"43628"},{"1":"4","2":"16105"},{"1":"24","2":"65644"},{"1":"20","2":"63022"},{"1":"20","2":"47780"},{"1":"15","2":"38853"},{"1":"25","2":"66537"},{"1":"25","2":"67477"},{"1":"28","2":"64785"},{"1":"26","2":"61581"},{"1":"27","2":"70678"},{"1":"20","2":"51301"},{"1":"18","2":"39346"},{"1":"1","2":"24833"},{"1":"26","2":"65929"},{"1":"20","2":"41721"},{"1":"26","2":"82641"},{"1":"28","2":"99139"},{"1":"23","2":"52624"},{"1":"17","2":"50594"},{"1":"25","2":"53272"},{"1":"26","2":"65343"},{"1":"19","2":"46216"},{"1":"16","2":"54288"},{"1":"3","2":"20844"},{"1":"12","2":"32586"},{"1":"23","2":"71235"},{"1":"20","2":"36530"},{"1":"19","2":"52745"},{"1":"27","2":"67282"},{"1":"25","2":"80931"},{"1":"12","2":"32303"},{"1":"11","2":"38371"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1816,7 +1927,6 @@ dbl (2): experience, salary
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), </span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">min =</span> \(x) <span class="fu">min</span>(x),  <span class="at">max =</span> \(x) <span class="fu">max</span>(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["experience_min"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["experience_max"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["salary_min"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["salary_max"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"28","3":"16105","4":"99139"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1836,7 +1946,6 @@ dbl (2): experience, salary
 <span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_sep =</span> <span class="st">"_"</span></span>
 <span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["statistic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["experience"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["salary"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"min","2":"1","3":"16105"},{"1":"max","2":"28","3":"99139"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1856,7 +1965,6 @@ dbl (2): experience, salary
 <span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"value"</span></span>
 <span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["variable"],"name":[1],"type":["chr"],"align":["left"]},{"label":["statistic"],"name":[2],"type":["chr"],"align":["left"]},{"label":["value"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"experience","2":"min","3":"1"},{"1":"experience","2":"max","3":"28"},{"1":"salary","2":"min","3":"16105"},{"1":"salary","2":"max","3":"99139"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1887,7 +1995,6 @@ dplyr 1.1.0.
   always returns an ungrouped data frame and adjust accordingly.</code></pre>
 </div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["experience_q"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["salary_q"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.00","2":"16105.00"},{"1":"13.50","2":"36990.25"},{"1":"20.00","2":"50947.50"},{"1":"24.75","2":"65203.50"},{"1":"28.00","2":"99139.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1901,7 +2008,6 @@ dplyr 1.1.0.
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>soc <span class="sc">%&gt;%</span> </span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="at">q_exp =</span> <span class="fu">quantile</span>(experience), <span class="at">q_sal =</span> <span class="fu">quantile</span>(salary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["q_exp"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["q_sal"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.00","2":"16105.00"},{"1":"13.50","2":"36990.25"},{"1":"20.00","2":"50947.50"},{"1":"24.75","2":"65203.50"},{"1":"28.00","2":"99139.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1915,7 +2021,6 @@ dplyr 1.1.0.
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>soc <span class="sc">%&gt;%</span> </span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), \(x) <span class="fu">enframe</span>(<span class="fu">quantile</span>(x)), <span class="at">.unpack =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["experience_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["experience_value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["salary_name"],"name":[3],"type":["chr"],"align":["left"]},{"label":["salary_value"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0%","2":"1.00","3":"0%","4":"16105.00"},{"1":"25%","2":"13.50","3":"25%","4":"36990.25"},{"1":"50%","2":"20.00","3":"50%","4":"50947.50"},{"1":"75%","2":"24.75","3":"75%","4":"65203.50"},{"1":"100%","2":"28.00","3":"100%","4":"99139.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1933,7 +2038,11 @@ dplyr 1.1.0.
 <div class="cell">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soc, <span class="fu">aes</span>(<span class="at">x =</span> experience, <span class="at">y =</span> salary)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>As experience goes up, salary also goes up, as you would expect. Also, the trend seems more or less straight.</p>
@@ -1976,7 +2085,11 @@ F-statistic: 177.3 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soc<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I see a “fanning-out”: the residuals are getting bigger <em>in size</em> (further away from zero) as the fitted values get bigger. That is, when the (estimated) salary gets larger, it also gets more variable.</p>
@@ -1987,7 +2100,11 @@ F-statistic: 177.3 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I added a smooth trend to this to help us judge whether the absolute-value-residuals are getting bigger as the fitted values get bigger. It looks to me as if the overall trend is an increasing one, apart from those few small fitted values that have larger-sized residuals. Don’t get thrown off by the kinks in the smooth trend. Here is a smoother version:</p>
@@ -1997,7 +2114,11 @@ F-statistic: 177.3 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The larger fitted values, according to this, have residuals larger in size.</p>
@@ -2015,7 +2136,11 @@ F-statistic: 177.3 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(salary <span class="sc">~</span> experience, <span class="at">data =</span> soc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That one looks like <span class="math inline">\(\lambda=0\)</span> or log. You could probably also justify fourth root (power 0.25), but log is a very common transformation, which people won’t need much persuasion to accept.</p>
@@ -2060,7 +2185,11 @@ F-statistic: 303.7 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soc<span class="fl">.3</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That, to my mind, is a horizontal band of points, so I would say yes, I have solved the fanning out.</p>
@@ -2068,7 +2197,11 @@ F-statistic: 303.7 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(soc<span class="fl">.3</span>, <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/socwork-21-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/socwork-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The issues here are that those bottom two values are a bit too low, and the top few values are a bit bunched up (that curve at the top). It is really not bad, though, so I am making the call that I don’t think I needed to worry. Note that the transformation we found here is the same as the log-salary used by the management consultants in the backward-elimination question, and with the same effect: an extra year of experience goes with a <em>percent</em> increase in salary.</p>
@@ -2105,7 +2238,6 @@ dbl (2): diameter, volume
 </div>
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>trees</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["volume"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"32","2":"185"},{"1":"29","2":"109"},{"1":"24","2":"95"},{"1":"45","2":"300"},{"1":"20","2":"30"},{"1":"30","2":"125"},{"1":"26","2":"55"},{"1":"40","2":"246"},{"1":"24","2":"60"},{"1":"18","2":"15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2123,7 +2255,11 @@ dbl (2): diameter, volume
 <div class="cell">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> diameter, <span class="at">y =</span> volume)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pinetrees-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pinetrees-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can put a smooth trend on it if you like, which would look like this:</p>
@@ -2134,7 +2270,11 @@ dbl (2): diameter, volume
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pinetrees-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pinetrees-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I’ll take either of those for this part, though I think the smooth trend actually obscures the issue here (because there is not so much data).</p>
@@ -2186,7 +2326,6 @@ F-statistic:   185 on 1 and 8 DF,  p-value: 8.217e-07</code></pre>
 <div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
 <span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(volume<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.9585402","2":"0.9533577","3":"20.38484","4":"184.9578","5":"8.21677e-07","6":"1","7":"-43.22158","8":"92.44316","9":"93.35092","10":"3324.333","11":"8","12":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2199,7 +2338,6 @@ F-statistic:   185 on 1 and 8 DF,  p-value: 8.217e-07</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(volume<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-191.74923","3":"23.9536222","4":"-8.00502","5":"4.34715e-05"},{"1":"diameter","2":"10.89407","3":"0.8010394","4":"13.59992","5":"8.21677e-07"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2211,7 +2349,6 @@ F-statistic:   185 on 1 and 8 DF,  p-value: 8.217e-07</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(volume<span class="fl">.1</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"diameter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"diameter","2":"10.89407","3":"0.8010394","4":"13.59992","5":"8.21677e-07"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2229,7 +2366,11 @@ F-statistic:   185 on 1 and 8 DF,  p-value: 8.217e-07</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(volume<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pinetrees-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pinetrees-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Make a call. You could say that there’s no discernible pattern, especially with such a small data set, and therefore that the regression is fine. Or you could say that there is fanning-in: the two points on the right have residuals close to 0 while the points on the left have residuals larger in size. Say something.</p>
@@ -2286,7 +2427,11 @@ F-statistic: 162.2 on 1 and 8 DF,  p-value: 1.359e-06</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(volume<span class="fl">.2</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pinetrees-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pinetrees-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I really don’t think there are any problems there.</p>
@@ -2343,7 +2488,11 @@ log(diameter)  2.315115  3.941665</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(volume<span class="fl">.3</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pinetrees-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pinetrees-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>which again seem to show no problems. The residuals are smaller in size now because of the log transformation: the actual and predicted log-volumes are smaller numbers than the actual and predicted volumes, so the residuals are now closer to zero.</p>
@@ -2352,7 +2501,6 @@ log(diameter)  2.315115  3.941665</code></pre>
 <div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">diameter =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">50</span>, <span class="dv">5</span>)))</span>
 <span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"1"},{"1":"2"},{"1":"5"},{"1":"10"},{"1":"15"},{"1":"20"},{"1":"25"},{"1":"30"},{"1":"35"},{"1":"40"},{"1":"45"},{"1":"50"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2366,7 +2514,6 @@ log(diameter)  2.315115  3.941665</code></pre>
 <span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">%&gt;%</span> <span class="fu">select</span>(diameter, estimate, conf.low, conf.high) <span class="ot">-&gt;</span> pp</span>
 <span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"-5.9242712","3":"-8.2288987","4":"-3.6196437"},{"1":"2","2":"-3.7558365","3":"-5.5833436","4":"-1.9283295"},{"1":"5","2":"-0.8893218","3":"-2.0885682","4":"0.3099246"},{"1":"10","2":"1.2791128","3":"0.5492341","4":"2.0089915"},{"1":"15","2":"2.5475658","3":"2.0829205","4":"3.0122111"},{"1":"20","2":"3.4475475","3":"3.1536433","4":"3.7414517"},{"1":"25","2":"4.1456275","3":"3.9446714","4":"4.3465837"},{"1":"30","2":"4.7160005","3":"4.5207483","4":"4.9112526"},{"1":"35","2":"5.1982439","3":"4.9512719","4":"5.4452159"},{"1":"40","2":"5.6159822","3":"5.3010818","4":"5.9308825"},{"1":"45","2":"5.9844534","3":"5.6010851","4":"6.3678218"},{"1":"50","2":"6.3140622","3":"5.8657639","4":"6.7623605"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2378,7 +2525,6 @@ log(diameter)  2.315115  3.941665</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>pp <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>diameter, \(x) <span class="fu">exp</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2.673756e-03","3":"2.668300e-04","4":"0.02679222"},{"1":"2","2":"2.338088e-02","3":"3.759973e-03","4":"0.14539088"},{"1":"5","2":"4.109343e-01","3":"1.238644e-01","4":"1.36332225"},{"1":"10","2":"3.593450e+00","3":"1.731926e+00","4":"7.45579463"},{"1":"15","2":"1.277597e+01","3":"8.027880e+00","4":"20.33230735"},{"1":"20","2":"3.142323e+01","3":"2.342124e+01","4":"42.15914875"},{"1":"25","2":"6.315724e+01","3":"5.165936e+01","4":"77.21422504"},{"1":"30","2":"1.117205e+02","3":"9.190434e+01","4":"135.80942646"},{"1":"35","2":"1.809542e+02","3":"1.413546e+02","4":"231.64727707"},{"1":"40","2":"2.747831e+02","3":"2.005537e+02","4":"376.48662082"},{"1":"45","2":"3.972054e+02","3":"2.707200e+02","4":"582.78700311"},{"1":"50","2":"5.522839e+02","3":"3.527515e+02","4":"864.68090367"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2391,7 +2537,6 @@ log(diameter)  2.315115  3.941665</code></pre>
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>pp <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>diameter, \(x) <span class="fu">exp</span>(x))) <span class="sc">%&gt;%</span> </span>
 <span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>diameter, \(x) <span class="fu">format</span>(x, <span class="at">scientific =</span> <span class="cn">FALSE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["chr"],"align":["left"]},{"label":["conf.low"],"name":[3],"type":["chr"],"align":["left"]},{"label":["conf.high"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"0.002673756","3":"0.000266830","4":"0.02679222"},{"1":"2","2":"0.023380883","3":"0.003759973","4":"0.14539088"},{"1":"5","2":"0.410934340","3":"0.123864355","4":"1.36332225"},{"1":"10","2":"3.593450319","3":"1.731926084","4":"7.45579463"},{"1":"15","2":"12.775966620","3":"8.027879976","4":"20.33230735"},{"1":"20","2":"31.423232247","3":"23.421239616","4":"42.15914875"},{"1":"25","2":"63.157243234","3":"51.659359018","4":"77.21422504"},{"1":"30","2":"111.720527798","3":"91.904344618","4":"135.80942646"},{"1":"35","2":"180.954189310","3":"141.354645056","4":"231.64727707"},{"1":"40","2":"274.783129616","3":"200.553656215","4":"376.48662082"},{"1":"45","2":"397.205361735","3":"270.720003275","4":"582.78700311"},{"1":"50","2":"552.283890387","3":"352.751511323","4":"864.68090367"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2405,7 +2550,6 @@ log(diameter)  2.315115  3.941665</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="fu">glance</span>(volume<span class="fl">.1</span>), <span class="fu">glance</span>(volume<span class="fl">.2</span>), <span class="fu">glance</span>(volume<span class="fl">.3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.9585402","2":"0.9533577","3":"20.3848388","4":"184.95779","5":"8.216770e-07","6":"1","7":"-43.221582","8":"92.443164","9":"93.350919","10":"3324.3332304","11":"8","12":"10"},{"1":"0.9530072","2":"0.9471331","3":"21.7024608","4":"162.23895","5":"1.359294e-06","6":"1","7":"-43.847924","8":"93.695848","9":"94.603604","10":"3767.9744307","11":"8","12":"10"},{"1":"0.9077109","2":"0.8961748","3":"0.3027174","4":"78.68414","5":"2.061375e-05","6":"1","7":"-1.124113","8":"8.248226","9":"9.155981","10":"0.7331027","11":"8","12":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2422,7 +2566,6 @@ log(diameter)  2.315115  3.941665</code></pre>
 <span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">glances =</span> <span class="fu">list</span>(<span class="fu">glance</span>(model))) <span class="sc">%&gt;%</span> </span>
 <span id="cb144-4"><a href="#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glances)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["i"],"name":[1],"type":["int"],"align":["right"]},{"label":["model"],"name":[2],"type":["list"],"align":["right"]},{"label":["r.squared"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[13],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[14],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"<S3: lm>","3":"0.9585402","4":"0.9533577","5":"20.3848388","6":"184.95779","7":"8.216770e-07","8":"1","9":"-43.221582","10":"92.443164","11":"93.350919","12":"3324.3332304","13":"8","14":"10"},{"1":"2","2":"<S3: lm>","3":"0.9530072","4":"0.9471331","5":"21.7024608","6":"162.23895","7":"1.359294e-06","8":"1","9":"-43.847924","10":"93.695848","11":"94.603604","12":"3767.9744307","13":"8","14":"10"},{"1":"3","2":"<S3: lm>","3":"0.9077109","4":"0.8961748","5":"0.3027174","6":"78.68414","7":"2.061375e-05","8":"1","9":"-1.124113","10":"8.248226","11":"9.155981","12":"0.7331027","13":"8","14":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2458,7 +2601,6 @@ cols(
 </div>
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>tortoises</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["eggs"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"284","2":"3"},{"1":"290","2":"2"},{"1":"290","2":"7"},{"1":"290","2":"7"},{"1":"298","2":"11"},{"1":"299","2":"12"},{"1":"302","2":"10"},{"1":"306","2":"8"},{"1":"306","2":"8"},{"1":"309","2":"9"},{"1":"310","2":"10"},{"1":"311","2":"13"},{"1":"317","2":"7"},{"1":"317","2":"9"},{"1":"320","2":"6"},{"1":"323","2":"13"},{"1":"334","2":"2"},{"1":"334","2":"8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2479,7 +2621,11 @@ cols(
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/looe-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/looe-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -2588,7 +2734,11 @@ F-statistic: 5.747 on 2 and 15 DF,  p-value: 0.01403</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tortoises<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/tortoise-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/tortoise-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Up to you whether you put a smooth trend on it or not:</p>
@@ -2599,7 +2749,11 @@ F-statistic: 5.747 on 2 and 15 DF,  p-value: 0.01403</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/tortoise-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/tortoise-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Looking at the plot, you see a curve, up and down. The most negative residuals go with small or large fitted values; when the fitted value is in the middle, the residual is usually positive. A curve on the residual plot indicates a curve in the actual relationship. We just found above that a curve does fit a lot better, so this is all consistent.</p>
@@ -2608,7 +2762,11 @@ F-statistic: 5.747 on 2 and 15 DF,  p-value: 0.01403</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tortoises<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/tortoise-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/tortoise-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is not the best: the low values are a bit too low, so that the whole picture is (a little) skewed to the left.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></p>
@@ -2620,7 +2778,11 @@ F-statistic: 5.747 on 2 and 15 DF,  p-value: 0.01403</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/tortoise-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/tortoise-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I put the smooth curve on as a kind of warning: it looks as if the size of the residuals goes down and then up again as the fitted values increase. But the width of the grey “envelope” and the general scatter of the points suggests that there is really not much happening here at all. On a plot of residuals, the grey envelope is really more informative than the blue smooth trend. On this one, there is no evidence of any fan-out (or fan-in).</p>
@@ -2649,7 +2811,6 @@ dbl (2): drop, duration
 </div>
 <div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>coasters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["coaster_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["state"],"name":[2],"type":["chr"],"align":["left"]},{"label":["drop"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["duration"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Incredible Hulk","2":"Florida","3":"105","4":"135"},{"1":"Millennium Force","2":"Ohio","3":"300","4":"105"},{"1":"Goliath","2":"California","3":"255","4":"180"},{"1":"Nitro","2":"New Jersey","3":"215","4":"240"},{"1":"Magnum XL-2000","2":"Ohio","3":"195","4":"120"},{"1":"The Beast","2":"Ohio","3":"141","4":"65"},{"1":"Son of Beast","2":"Ohio","3":"214","4":"140"},{"1":"Thunderbolt","2":"Pennsylvania","3":"95","4":"90"},{"1":"Ghost Rider","2":"California","3":"108","4":"160"},{"1":"Raven","2":"Indiana","3":"86","4":"90"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2681,7 +2842,11 @@ dbl (2): drop, duration
   variable into a factor?</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/coasters-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/coasters-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The <code>se=FALSE</code> at the end is optional; if you omit it, you get that “envelope” around the line, which is fine here.</p>
@@ -2695,7 +2860,11 @@ dbl (2): drop, duration
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/unnamed-chunk-154-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -2723,7 +2892,6 @@ dbl (2): drop, duration
 <span id="cb170-4"><a href="#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(coaster_name, duration, drop, .resid) <span class="sc">%&gt;%</span></span>
 <span id="cb170-5"><a href="#cb170-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(.resid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["coaster_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["drop"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Nitro","2":"240","3":"215","4":"96.95170"},{"1":"The Beast","2":"65","3":"141","4":"-60.14522"},{"1":"Millennium Force","2":"105","3":"300","4":"-58.61266"},{"1":"Ghost Rider","2":"160","3":"108","4":"42.83859"},{"1":"Goliath","2":"180","3":"255","4":"27.27435"},{"1":"Thunderbolt","2":"90","3":"95","4":"-24.01628"},{"1":"Raven","2":"90","3":"86","4":"-21.83887"},{"1":"Incredible Hulk","2":"135","3":"105","4":"18.56439"},{"1":"Magnum XL-2000","2":"120","3":"195","4":"-18.20963"},{"1":"Son of Beast","2":"140","3":"214","4":"-2.80637"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2738,7 +2906,6 @@ dbl (2): drop, duration
 <span id="cb171-3"><a href="#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(coasters) <span class="sc">%&gt;%</span></span>
 <span id="cb171-4"><a href="#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(.resid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["coaster_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["state"],"name":[2],"type":["chr"],"align":["left"]},{"label":["drop"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["duration"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".sigma"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[".std.resid"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"Nitro","2":"New Jersey","3":"215","4":"240","5":"143.0483","6":"96.95170","7":"0.1378057","8":"37.54500","9":"0.3355862058","10":"2.04920817"},{"1":"The Beast","2":"Ohio","3":"141","4":"65","5":"125.1452","6":"-60.14522","7":"0.1183794","8":"48.79432","9":"0.1061087925","10":"-1.25716851"},{"1":"Millennium Force","2":"Ohio","3":"300","4":"105","5":"163.6127","6":"-58.61266","7":"0.4289016","8":"45.90966","9":"0.8700715796","10":"-1.52219103"},{"1":"Ghost Rider","2":"California","3":"108","4":"160","5":"117.1614","6":"42.83859","7":"0.1799397","8":"51.45256","9":"0.0945675641","10":"0.92842216"},{"1":"Goliath","2":"California","3":"255","4":"180","5":"152.7256","6":"27.27435","7":"0.2389942","8":"53.17339","9":"0.0591230416","10":"0.61361184"},{"1":"Thunderbolt","2":"Pennsylvania","3":"95","4":"90","5":"114.0163","6":"-24.01628","7":"0.2160836","8":"53.49714","9":"0.0390597997","10":"-0.53235830"},{"1":"Raven","2":"Indiana","3":"86","4":"90","5":"111.8389","6":"-21.83887","7":"0.2450440","8":"53.63586","9":"0.0394909652","10":"-0.49329040"},{"1":"Incredible Hulk","2":"Florida","3":"105","4":"135","5":"116.4356","6":"18.56439","7":"0.1876840","8":"53.91145","9":"0.0188788219","10":"0.40425125"},{"1":"Magnum XL-2000","2":"Ohio","3":"195","4":"120","5":"138.2096","6":"-18.20963","7":"0.1110766","8":"53.97930","9":"0.0089770351","10":"-0.37905502"},{"1":"Son of Beast","2":"Ohio","3":"214","4":"140","5":"142.8064","6":"-2.80637","7":"0.1360914","8":"54.45872","9":"0.0002765802","10":"-0.05925762"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2772,7 +2939,6 @@ dbl (2): distance, blood_sugar
 </div>
 <div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>runs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["blood_sugar"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.0","2":"136"},{"1":"2.0","2":"146"},{"1":"2.5","2":"131"},{"1":"2.5","2":"125"},{"1":"3.0","2":"120"},{"1":"3.0","2":"116"},{"1":"3.5","2":"104"},{"1":"3.5","2":"95"},{"1":"4.0","2":"85"},{"1":"4.0","2":"94"},{"1":"4.5","2":"83"},{"1":"4.5","2":"75"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2793,7 +2959,11 @@ dbl (2): distance, blood_sugar
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/plymouth-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/plymouth-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><code>blood_sugar</code> should be on the vertical axis, since this is what we are trying to predict. Getting the <code>x</code> and the <code>y</code> right is easy on these, because they are the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for your plot.</p>
@@ -2857,7 +3027,6 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">distance =</span> dists)</span>
 <span id="cb179-3"><a href="#cb179-3" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"3"},{"1":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2871,10 +3040,9 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a>new2 <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> runs<span class="fl">.1</span>, <span class="at">distance =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>))</span>
 <span id="cb180-2"><a href="#cb180-2" aria-hidden="true" tabindex="-1"></a>new2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["blood_sugar"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"109.1667","2":"5"},{"1":"109.1667","2":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["rowid"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"5","2":"1"},{"1":"10","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -2894,7 +3062,6 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb183"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(new, pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["fit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"115.50952","3":"104.37000","4":"126.64905","_rn_":"1"},{"1":"5","2":"64.76667","3":"51.99545","4":"77.53788","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2906,7 +3073,6 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(new, pp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["fit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"115.50952","3":"104.37000","4":"126.64905","_rn_":"1"},{"1":"5","2":"64.76667","3":"51.99545","4":"77.53788","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2926,7 +3092,6 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb187"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>pp <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">bind_cols</span>(new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["fit"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"115.50952","2":"104.37000","3":"126.64905","4":"3"},{"1":"64.76667","2":"51.99545","3":"77.53788","4":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2938,7 +3103,6 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb188"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>new <span class="sc">%&gt;%</span> <span class="fu">bind_cols</span>(<span class="fu">as_tibble</span>(pp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["fit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"115.50952","3":"104.37000","4":"126.64905"},{"1":"5","2":"64.76667","3":"51.99545","4":"77.53788"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2954,7 +3118,6 @@ F-statistic: 245.7 on 1 and 10 DF,  p-value: 2.287e-08</code></pre>
 <span id="cb189-3"><a href="#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(new) <span class="sc">%&gt;%</span></span>
 <span id="cb189-4"><a href="#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(distance, <span class="fu">everything</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["fit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"115.50952","3":"104.37000","4":"126.64905"},{"1":"5","2":"64.76667","3":"51.99545","4":"77.53788"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2994,7 +3157,6 @@ dbl (3): Calories, Fat, Cost
 </div>
 <div class="sourceCode cell-code" id="cb192"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>pizza</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["Type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Calories"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Fat"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cost"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Domino's Deep Dish with Pepperoni","2":"385","3":"19.5","4":"1.87"},{"1":"Pizza Hut's Stuffed Crust with Pepperoni","2":"370","3":"15.0","4":"1.83"},{"1":"Pizza Hut's Pan Pizza with Pepperoni","2":"280","3":"14.0","4":"1.83"},{"1":"Domino's Hand-Tossed with Pepperoni","2":"305","3":"12.0","4":"1.67"},{"1":"Pizza Hut's Hand-Tossed with Pepperoni","2":"230","3":"9.0","4":"1.63"},{"1":"Little Caesars' Deep Dish with Pepperoni","2":"350","3":"14.2","4":"1.06"},{"1":"Little Caesars' Original Round with Pepperoni","2":"230","3":"8.0","4":"0.81"},{"1":"Freschetta Bakes & Rises  4-Cheese","2":"364","3":"15.0","4":"0.98"},{"1":"Freschetta Bakes & Rises Sauce Stuffed Crust 4-Cheese","2":"334","3":"11.0","4":"1.23"},{"1":"DiGiorno Rising Crust Four Cheese","2":"332","3":"12.0","4":"0.94"},{"1":"Amy's Organic Crust & Tomatoes Cheese","2":"341","3":"14.0","4":"1.92"},{"1":"Safeway Select Verdi Quattro Formaggio Self Rising Crust","2":"307","3":"9.0","4":"0.84"},{"1":"Tony's Super Rise Crust Four-Cheese","2":"335","3":"12.0","4":"0.96"},{"1":"Kroger Self Rising Crust Four Cheese","2":"292","3":"9.0","4":"0.80"},{"1":"Tombstone Stuffed Crust Cheese","2":"364","3":"18.0","4":"0.96"},{"1":"Red Baron Classic 4 Cheese","2":"384","3":"20.0","4":"0.91"},{"1":"Boboli Original","2":"333","3":"12.0","4":"0.89"},{"1":"Tombstone Original Extra Cheese","2":"328","3":"14.0","4":"0.94"},{"1":"Reggio's Chicago Style Cheese","2":"367","3":"13.0","4":"1.02"},{"1":"Jack's Original Cheese","2":"325","3":"13.0","4":"0.92"},{"1":"Celeste Pizza for One Cheese","2":"346","3":"17.0","4":"1.17"},{"1":"McCain Ellio's Cheese","2":"299","3":"9.0","4":"0.54"},{"1":"Michelina's Zap 'ems That'za Pizza!","2":"394","3":"19.0","4":"1.28"},{"1":"Totino's The Original Crisp Crust Party Cheese","2":"322","3":"14.0","4":"0.67"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3014,7 +3176,6 @@ dbl (3): Calories, Fat, Cost
 <span id="cb194-2"><a href="#cb194-2" aria-hidden="true" tabindex="-1"></a>pizza3 <span class="ot">&lt;-</span> <span class="fu">import</span>(my_url)</span>
 <span id="cb194-3"><a href="#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pizza3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Calories"],"name":[2],"type":["int"],"align":["right"]},{"label":["Fat"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cost"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Domino's Deep Dish with Pepperoni","2":"385","3":"19.5","4":"1.87","_rn_":"1"},{"1":"Pizza Hut's Stuffed Crust with Pepperoni","2":"370","3":"15.0","4":"1.83","_rn_":"2"},{"1":"Pizza Hut's Pan Pizza with Pepperoni","2":"280","3":"14.0","4":"1.83","_rn_":"3"},{"1":"Domino's Hand-Tossed with Pepperoni","2":"305","3":"12.0","4":"1.67","_rn_":"4"},{"1":"Pizza Hut's Hand-Tossed with Pepperoni","2":"230","3":"9.0","4":"1.63","_rn_":"5"},{"1":"Little Caesars' Deep Dish with Pepperoni","2":"350","3":"14.2","4":"1.06","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3030,7 +3191,6 @@ dbl (3): Calories, Fat, Cost
 <span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a>pizza4 <span class="ot">&lt;-</span> <span class="fu">import</span>(my_other_url)</span>
 <span id="cb195-3"><a href="#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pizza4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Calories"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Fat (g)"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Cost ($)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Domino's Deep Dish with Pepperoni","2":"385","3":"19.5","4":"1.87","_rn_":"1"},{"1":"Pizza Hut's Stuffed Crust with Pepperoni","2":"370","3":"15.0","4":"1.83","_rn_":"2"},{"1":"Pizza Hut's Pan Pizza with Pepperoni","2":"280","3":"14.0","4":"1.83","_rn_":"3"},{"1":"Domino's Hand-Tossed with Pepperoni","2":"305","3":"12.0","4":"1.67","_rn_":"4"},{"1":"Pizza Hut's Hand-Tossed with Pepperoni","2":"230","3":"9.0","4":"1.63","_rn_":"5"},{"1":"Little Caesars' Deep Dish with Pepperoni","2":"350","3":"14.2","4":"1.06","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3052,7 +3212,11 @@ dbl (3): Calories, Fat, Cost
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/alskhslafkhlksfhsasvvvv-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/alskhslafkhlksfhsasvvvv-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There is definitely an upward trend: the more fat, the more calories. The trend is more or less linear (or, a little bit curved: say what you like, as long as it’s not obviously crazy). <em>I</em> think, with this much scatter, there’s no real justification for fitting a curve.</p>
@@ -3086,7 +3250,8 @@ Multiple R-squared:  0.654, Adjusted R-squared:  0.6383
 F-statistic: 41.59 on 1 and 22 DF,  p-value: 1.731e-06</code></pre>
 </div>
 </div>
-<p>To assess whether this trend is real or just chance, look at the P-value on the end of the <code>Fat</code> line, or on the bottom line where the <span class="math inline">\(F\)</span>-statistic is (they are the same value of <span class="math inline">\(1.73\times 10^{-6}\)</span> or 0.0000017, so you can pick either). This P-value is really small, so the slope is definitely <em>not</em> zero, and therefore there really is a relationship between the two variables.</p>
+<p>To assess whether this trend is real or just chance, look at the P-value on the end of the <code>Fat</code> line, or on the bottom line where the <span class="math inline">\(F\)</span>-statistic is (they are the same value of <span class="math inline">\(1.73\times
+10^{-6}\)</span> or 0.0000017, so you can pick either). This P-value is really small, so the slope is definitely <em>not</em> zero, and therefore there really is a relationship between the two variables.</p>
 <p><span class="math inline">\(\blacksquare\)</span></p>
 <ol start="4" type="a">
 <li>Obtain a plot of the residuals against the fitted values for this regression. Does this indicate that there are any problems with this regression, or not? Explain briefly.</li>
@@ -3099,7 +3264,11 @@ F-statistic: 41.59 on 1 and 22 DF,  p-value: 1.731e-06</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pizza-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pizza-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On my residual plot, I see a slight curve in the smooth trend, but I am not worried about that because the residuals on the plot are all over the place in a seemingly random pattern (the grey envelope is wide and that is pretty close to going straight across). So I think a straight line model is satisfactory.</p>
@@ -3107,7 +3276,11 @@ F-statistic: 41.59 on 1 and 22 DF,  p-value: 1.731e-06</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb202"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pizza<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pizza-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pizza-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A bit skewed to the left (the low ones are too low).</p>
@@ -3118,7 +3291,11 @@ F-statistic: 41.59 on 1 and 22 DF,  p-value: 1.731e-06</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/pizza-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/pizza-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A tiny bit of fan-in (residuals getting <em>smaller</em> in size as the fitted value gets bigger), but nothing much, I think.</p>
@@ -3160,7 +3337,6 @@ F-statistic: 22.66 on 2 and 21 DF,  p-value: 5.698e-06</code></pre>
 <span id="cb207-2"><a href="#cb207-2" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Fat =</span> newfat)</span>
 <span id="cb207-3"><a href="#cb207-3" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["Fat"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"12"},{"1":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3170,7 +3346,6 @@ F-statistic: 22.66 on 2 and 21 DF,  p-value: 5.698e-06</code></pre>
 <div class="sourceCode cell-code" id="cb208"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb208-1"><a href="#cb208-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(pizza<span class="fl">.1</span>, new, <span class="at">interval =</span> <span class="st">"p"</span>)</span>
 <span id="cb208-2"><a href="#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(new, preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Fat"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["fit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"12","2":"315.3447","3":"260.5524","4":"370.1369","_rn_":"1"},{"1":"20","2":"395.7431","3":"337.1850","4":"454.3011","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3183,7 +3358,6 @@ F-statistic: 22.66 on 2 and 21 DF,  p-value: 5.698e-06</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb209"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(preds) <span class="sc">%&gt;%</span> <span class="fu">bind_cols</span>(new) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Fat, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["Fat"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["fit"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lwr"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upr"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"12","2":"315.3447","3":"260.5524","4":"370.1369"},{"1":"20","2":"395.7431","3":"337.1850","4":"454.3011"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3198,7 +3372,11 @@ F-statistic: 22.66 on 2 and 21 DF,  p-value: 5.698e-06</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb210"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(pizza<span class="fl">.1</span>, <span class="at">condition =</span> <span class="st">"Fat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/unnamed-chunk-177-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A <code>fat</code> value of 12 is close to the middle of the data, so the interval is shorter, but a value of 20 is out near the extreme and the interval is noticeably longer.</p>
@@ -3228,7 +3406,6 @@ dbl (2): distance, damage
 </div>
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>fire</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["damage"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"3.4","2":"26.2"},{"1":"1.8","2":"17.8"},{"1":"4.6","2":"31.3"},{"1":"2.3","2":"23.1"},{"1":"3.1","2":"27.5"},{"1":"5.5","2":"36.0"},{"1":"0.7","2":"14.1"},{"1":"3.0","2":"22.3"},{"1":"2.6","2":"19.6"},{"1":"4.3","2":"31.3"},{"1":"2.1","2":"24.0"},{"1":"1.1","2":"17.3"},{"1":"6.1","2":"43.2"},{"1":"4.8","2":"36.4"},{"1":"3.8","2":"26.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3289,7 +3466,11 @@ mean of x
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/riemer-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/riemer-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -3396,7 +3577,11 @@ F-statistic: 55.07 on 3 and 11 DF,  p-value: 6.507e-07</code></pre>
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/ganter-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/ganter-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The cubic, in red, does bend a little, but it doesn’t do an obvious job of going through the points better than the straight line does. It seems to be mostly swayed by that one observation with damage over 40, and choosing a relationship by how well it fits one point is flimsy at the best of times. So, by Occam’s Razor, we go with the line rather than the cubic because it (i) fits equally well, (ii) is simpler.</p>
@@ -3410,10 +3595,9 @@ F-statistic: 55.07 on 3 and 11 DF,  p-value: 6.507e-07</code></pre>
 <div class="sourceCode cell-code" id="cb228"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">datagrid</span>(<span class="at">model =</span> damage<span class="fl">.1</span>, <span class="at">distance =</span> <span class="dv">4</span>)</span>
 <span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["damage"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"26.41333","2":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["distance"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["rowid"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"4","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -3423,10 +3607,9 @@ F-statistic: 55.07 on 3 and 11 DF,  p-value: 6.507e-07</code></pre>
 <div class="sourceCode cell-code" id="cb229"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">predictions</span>(damage<span class="fl">.1</span>, <span class="at">newdata =</span> new))</span>
 <span id="cb229-2"><a href="#cb229-2" aria-hidden="true" tabindex="-1"></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["damage"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"29.95525","3":"0.6615595","4":"45.27976","5":"0","6":"Inf","7":"28.65862","8":"31.25188","9":"26.41333","10":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["damage"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"29.95525","3":"0.6615595","4":"45.27976","5":"0","6":"Inf","7":"28.65862","8":"31.25188","9":"4","10":"26.2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -3459,10 +3642,9 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb232"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["damage"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"29.95525","3":"0.6615595","4":"45.27976","5":"0","6":"Inf","7":"28.65862","8":"31.25188","9":"26.41333","10":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rowid"],"name":[1],"type":["int"],"align":["right"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["s.value"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["damage"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"29.95525","3":"0.6615595","4":"45.27976","5":"0","6":"Inf","7":"28.65862","8":"31.25188","9":"4","10":"26.2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -3471,7 +3653,6 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb233"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>fire <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(distance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["m"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"3.28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3507,7 +3688,6 @@ dbl (2): speed, distance
 </div>
 <div class="sourceCode cell-code" id="cb236"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a>stopping</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["speed"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["distance"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"0"},{"1":"10","2":"20"},{"1":"20","2":"50"},{"1":"30","2":"95"},{"1":"40","2":"150"},{"1":"50","2":"220"},{"1":"60","2":"300"},{"1":"70","2":"400"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3525,7 +3705,11 @@ dbl (2): speed, distance
 <div class="cell">
 <div class="sourceCode cell-code" id="cb237"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stopping, <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>distance)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/braking-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/braking-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -3573,7 +3757,11 @@ F-statistic: 115.5 on 1 and 6 DF,  p-value: 3.837e-05</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb240"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb240-1"><a href="#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stopping<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x=</span>.fitted, <span class="at">y=</span>.resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/braking-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/braking-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -3712,7 +3900,6 @@ dbl (2): height, foot
 </div>
 <div class="sourceCode cell-code" id="cb249"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a>hf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["height"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["foot"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"66.5","2":"27.0"},{"1":"73.5","2":"29.0"},{"1":"70.0","2":"25.5"},{"1":"71.0","2":"27.9"},{"1":"73.0","2":"27.0"},{"1":"71.0","2":"26.0"},{"1":"71.0","2":"29.0"},{"1":"69.5","2":"27.0"},{"1":"73.0","2":"29.0"},{"1":"71.0","2":"27.0"},{"1":"69.0","2":"29.0"},{"1":"69.0","2":"27.2"},{"1":"73.0","2":"29.0"},{"1":"75.0","2":"29.0"},{"1":"73.0","2":"27.2"},{"1":"72.0","2":"27.5"},{"1":"69.0","2":"25.0"},{"1":"68.0","2":"25.0"},{"1":"72.5","2":"28.0"},{"1":"78.0","2":"31.5"},{"1":"79.0","2":"30.0"},{"1":"71.0","2":"28.0"},{"1":"74.0","2":"29.0"},{"1":"66.0","2":"25.5"},{"1":"71.0","2":"26.7"},{"1":"71.0","2":"29.0"},{"1":"71.0","2":"28.0"},{"1":"84.0","2":"27.0"},{"1":"77.0","2":"29.0"},{"1":"72.0","2":"28.0"},{"1":"70.0","2":"26.0"},{"1":"76.0","2":"30.0"},{"1":"68.0","2":"27.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3735,7 +3922,11 @@ dbl (2): height, foot
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I added a smooth trend, or you could just plot the points. (This is better than plotting a regression line at this stage, because we haven’t yet thought about whether the trend is straight.)</p>
@@ -3777,11 +3968,19 @@ F-statistic: 14.41 on 1 and 31 DF,  p-value: 0.0006428</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb254"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hf<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x=</span>.fitted, <span class="at">y=</span>.resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb255"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hf<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">sample=</span>.resid)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-3-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Note that we did not exclude the off-trend point. Removing points <em>because they are outliers</em> is a <strong>bad</strong> idea. <a href="https://statisticsbyjim.com/basics/remove-outliers/">This</a> is a good discussion of the issues.</p>
@@ -3799,7 +3998,6 @@ F-statistic: 14.41 on 1 and 31 DF,  p-value: 0.0006428</code></pre>
 <span id="cb256-3"><a href="#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">ifelse</span>(x <span class="sc">==</span> <span class="dv">9</span>, <span class="dv">40</span>, y)) <span class="ot">-&gt;</span> madeup</span>
 <span id="cb256-4"><a href="#cb256-4" aria-hidden="true" tabindex="-1"></a>madeup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"13.62187"},{"1":"2","2":"13.25365"},{"1":"3","2":"15.73107"},{"1":"4","2":"17.30046"},{"1":"5","2":"20.21324"},{"1":"6","2":"22.70897"},{"1":"7","2":"22.92167"},{"1":"8","2":"26.79131"},{"1":"9","2":"40.00000"},{"1":"10","2":"31.09588"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3813,7 +4011,11 @@ F-statistic: 14.41 on 1 and 31 DF,  p-value: 0.0006428</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The second-last point is off a clearly linear trend otherwise (the smooth gets “distracted” by the outlying off-trend point). Fitting a regression anyway and looking at the residual plot gives this:</p>
@@ -3821,7 +4023,11 @@ F-statistic: 14.41 on 1 and 31 DF,  p-value: 0.0006428</code></pre>
 <div class="sourceCode cell-code" id="cb259"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb259-1"><a href="#cb259-1" aria-hidden="true" tabindex="-1"></a>madeup<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> madeup)</span>
 <span id="cb259-2"><a href="#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(madeup<span class="fl">.1</span>, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This time you see a rather more obvious downward trend in the other residuals. The problem is not with them, but with the one very positive residual, corresponding to the outlier that is way off the trend on the scatterplot.</p>
@@ -3836,7 +4042,6 @@ F-statistic: 14.41 on 1 and 31 DF,  p-value: 0.0006428</code></pre>
 <div class="sourceCode cell-code" id="cb260"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb260-1"><a href="#cb260-1" aria-hidden="true" tabindex="-1"></a>hf <span class="sc">%&gt;%</span> <span class="fu">filter</span>(height<span class="sc">&lt;</span><span class="dv">80</span>) <span class="ot">-&gt;</span> hfx</span>
 <span id="cb260-2"><a href="#cb260-2" aria-hidden="true" tabindex="-1"></a>hfx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["height"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["foot"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"66.5","2":"27.0"},{"1":"73.5","2":"29.0"},{"1":"70.0","2":"25.5"},{"1":"71.0","2":"27.9"},{"1":"73.0","2":"27.0"},{"1":"71.0","2":"26.0"},{"1":"71.0","2":"29.0"},{"1":"69.5","2":"27.0"},{"1":"73.0","2":"29.0"},{"1":"71.0","2":"27.0"},{"1":"69.0","2":"29.0"},{"1":"69.0","2":"27.2"},{"1":"73.0","2":"29.0"},{"1":"75.0","2":"29.0"},{"1":"73.0","2":"27.2"},{"1":"72.0","2":"27.5"},{"1":"69.0","2":"25.0"},{"1":"68.0","2":"25.0"},{"1":"72.5","2":"28.0"},{"1":"78.0","2":"31.5"},{"1":"79.0","2":"30.0"},{"1":"71.0","2":"28.0"},{"1":"74.0","2":"29.0"},{"1":"66.0","2":"25.5"},{"1":"71.0","2":"26.7"},{"1":"71.0","2":"29.0"},{"1":"71.0","2":"28.0"},{"1":"77.0","2":"29.0"},{"1":"72.0","2":"28.0"},{"1":"70.0","2":"26.0"},{"1":"76.0","2":"30.0"},{"1":"68.0","2":"27.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -3877,11 +4082,19 @@ F-statistic: 40.45 on 1 and 30 DF,  p-value: 5.124e-07</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb263"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hf<span class="fl">.2</span>, <span class="fu">aes</span>(<span class="at">x=</span>.fitted, <span class="at">y=</span>.resid)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb264"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hf<span class="fl">.2</span>, <span class="fu">aes</span>(<span class="at">sample=</span>.resid)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-9-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -3898,7 +4111,11 @@ F-statistic: 40.45 on 1 and 30 DF,  p-value: 5.124e-07</code></pre>
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>No evidence of fanning-out at all. In fact, the residuals seem to be smallest in size <em>in the middle</em>.</p>
@@ -3906,14 +4123,22 @@ F-statistic: 40.45 on 1 and 30 DF,  p-value: 5.124e-07</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb267"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb267-1"><a href="#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(height<span class="sc">~</span>foot, <span class="at">data=</span>hfx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>It looks as if the best <span class="math inline">\(\lambda\)</span> is <span class="math inline">\(-1\)</span>, and we should predict one over height from foot length. But this plot is deceiving, since it doesn’t even show the whole confidence interval for <span class="math inline">\(\lambda\)</span>! We should zoom out (a lot) more:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb268"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb268-1"><a href="#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(height<span class="sc">~</span>foot, <span class="at">data=</span>hfx, <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">8</span>, <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This shows that the confidence interval for <span class="math inline">\(\lambda\)</span> goes from about <span class="math inline">\(-7\)</span> to almost 5: that is, <em>any</em> value of <span class="math inline">\(\lambda\)</span> in that interval is supported by the data! This very definitely includes the do-nothing <span class="math inline">\(\lambda=1\)</span>, so there is really no support for any kind of transformation.</p>
@@ -3932,7 +4157,11 @@ F-statistic: 40.45 on 1 and 30 DF,  p-value: 5.124e-07</code></pre>
 `geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I would use the original data set as the “base”, since we want to plot its points (including the outlier) as well as its line. Then we want to plot just the line for the second data set. This entails using a <code>data=</code> in the second <code>geom_smooth</code>, to say that we want to get <em>this</em> regression line from a different data set, and also entails drawing this line in a different colour (or in some way distinguishing it from the first one). Putting the <code>colour</code> <em>outside</em> an <code>aes</code> is a way to make the <em>whole line</em> red. (Compare how you make points different colours according to their value on a third variable.)</p>
@@ -3944,7 +4173,11 @@ F-statistic: 40.45 on 1 and 30 DF,  p-value: 5.124e-07</code></pre>
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="simple-regression_files/figure-html/heightfoot-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="simple-regression_files/figure-html/heightfoot-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>but this is not as good, because you don’t need to use the trickery with <code>geom_line</code>: the second trend is another regression line not a curve, and we know how to draw regression lines with <code>geom_smooth</code> without having to actually fit them. (Doing it this way reveals that you are copying without thinking, instead of wondering whether there is a better way to do it.)</p>
@@ -4075,10 +4308,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -4088,8 +4320,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -4102,6 +4343,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -4145,6 +4505,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -4170,6 +4531,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -4231,17 +4618,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./tidying-data.html" class="pagination-link">
+      <a href="./tidying-data.html" class="pagination-link  aria-label=" &lt;span="" data&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tidying data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./multiple-regression.html" class="pagination-link">
+      <a href="./multiple-regression.html" class="pagination-link" aria-label="<span class='chapter-number'>19</span>&nbsp; <span class='chapter-title'>Multiple regression</span>">
         <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

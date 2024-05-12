@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,33 +96,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
-
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./one-sample-inference.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./one-sample-inference.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-sample inference</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -126,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
@@ -400,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -440,7 +472,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -540,7 +574,6 @@ dbl (1): density
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>societies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["density"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"jeidji","2":"17.00"},{"1":"kuku","2":"50.00"},{"1":"mamu","2":"45.00"},{"1":"ngatjan","2":"59.80"},{"1":"undanbi","2":"21.74"},{"1":"jinibarra","2":"16.00"},{"1":"ualaria","2":"9.00"},{"1":"barkindji","2":"15.43"},{"1":"wongaibon","2":"5.12"},{"1":"jaralde","2":"40.00"},{"1":"tjapwurong","2":"35.00"},{"1":"tasmanians","2":"13.35"},{"1":"badjalang","2":"13.40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -588,14 +621,22 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(societies,<span class="fu">aes</span>(<span class="at">x=</span>density))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/schnagg-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/schnagg-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Your conclusion might depend on how many bins you chose for your histogram. Here’s 8 bins (which is really too many with only 13 observations, but it actually shows the shape well):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(societies,<span class="fu">aes</span>(<span class="at">x=</span>density))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/fuos-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/fuos-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>or you can get a number of bins from one of the built-in functions, such as:</p>
@@ -611,7 +652,11 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(societies,<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span>density))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/hotz-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/hotz-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This isn’t the best for assessing normality as such, but it will tell you about lack of symmetry and outliers, which are the most important threats to the <span class="math inline">\(t\)</span>-test, so it’s fine here. Or, a normal quantile plot:</p>
@@ -619,7 +664,11 @@ mean of x
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(societies,<span class="fu">aes</span>(<span class="at">sample=</span>density))<span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/narten-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/narten-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is actually the best way to assess normality, but I’m not expecting you to use this plot here, because we may not have gotten to it in class yet. (If you have read ahead and successfully use the plot, it’s fine.)</p>
@@ -649,7 +698,6 @@ dbl (1): minutes
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>journey.times</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["minutes"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"58"},{"1":"61"},{"1":"69"},{"1":"62"},{"1":"81"},{"1":"54"},{"1":"72"},{"1":"71"},{"1":"53"},{"1":"54"},{"1":"66"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -708,14 +756,22 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(journey.times, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> minutes)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/brixham-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/brixham-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The assumption behind the <span class="math inline">\(t\)</span>-test is that the population from which the data come has a normal distribution: ie.&nbsp;symmetric with no outliers. A small sample (here we have 11 values) even from a normal distribution might look quite non-normal (as in Assignment 0 from last week), so I am not hugely concerned by this boxplot. However, it’s perfectly all right to say that this distribution is skewed, and therefore we should doubt the <span class="math inline">\(t\)</span>-test, because the upper whisker is longer than the lower one. In fact, the topmost value is very nearly an outlier:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(journey.times, <span class="fu">aes</span>(<span class="at">x =</span> minutes)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/babbacombe-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/babbacombe-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>and there might be skewness as well, so maybe I should have been concerned.</p>
@@ -724,7 +780,11 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(journey.times, <span class="fu">aes</span>(<span class="at">sample =</span> minutes)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/boulder-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/boulder-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The normal quantile plot is saying that the problem is actually at the <em>bottom</em> of the distribution: the lowest value is not low enough, but the highest value is actually <em>not</em> too high. So this one seems to be on the edge between OK and being right-skewed (too bunched up at the bottom). My take is that with this small sample this is not too bad. But you are free to disagree.</p>
@@ -850,7 +910,11 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bw, <span class="fu">aes</span>(<span class="at">x =</span> weight_pounds)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/ncbirths-inf-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/ncbirths-inf-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>So, we were assessing normality. What about that?</p>
@@ -860,7 +924,11 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bw, <span class="fu">aes</span>(<span class="at">sample =</span> weight_pounds)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/ncbirths-inf-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/ncbirths-inf-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is rather striking: the lowest birthweights (the ones below 5 pounds or so) are <em>way</em> too low for a normal distribution to apply. The top end is fine (except perhaps for that one very heavy baby), but there are too many low birthweights for a normal distribution to be believable. Note how much clearer this story is than on the histogram.</p>
@@ -954,7 +1022,11 @@ mean of x
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/nenana-inf-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/nenana-inf-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There was something obvious to see: after about 1960, there is a clear downward trend: the ice is breaking up earlier on average every year. Even though there is a lot of variability, the overall trend, viewed this way, is clear (and consistent with the test we did earlier). Note that the old-timer’s value of 130 is the kind of <code>JulianDate</code> we would typically observe around 1920, which would make the old-timer over 90 years old.</p>
@@ -966,7 +1038,11 @@ mean of x
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/nenana-inf-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/nenana-inf-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Compare the confidence interval for the mean <code>JulianDate</code> in 1920: 126 to 131 (the shaded area on the graph), with 2000: 121 to 125. A change of about 5 days over 80 years. And with the recent trend that we saw above, it’s probably changing faster than that now. Sobering indeed.</p>
@@ -994,7 +1070,6 @@ dbl (1): diameter
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>trees</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"10.5"},{"1":"13.3"},{"1":"26.0"},{"1":"18.3"},{"1":"52.2"},{"1":"9.2"},{"1":"26.1"},{"1":"17.6"},{"1":"40.5"},{"1":"31.8"},{"1":"47.2"},{"1":"11.4"},{"1":"2.7"},{"1":"69.3"},{"1":"44.4"},{"1":"16.9"},{"1":"35.7"},{"1":"5.4"},{"1":"44.2"},{"1":"2.2"},{"1":"4.3"},{"1":"7.8"},{"1":"38.1"},{"1":"2.2"},{"1":"11.4"},{"1":"51.5"},{"1":"4.9"},{"1":"39.7"},{"1":"32.6"},{"1":"51.8"},{"1":"43.6"},{"1":"2.3"},{"1":"44.6"},{"1":"31.5"},{"1":"40.3"},{"1":"22.3"},{"1":"43.3"},{"1":"37.5"},{"1":"29.1"},{"1":"27.9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1018,7 +1093,6 @@ dbl (1): diameter
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>trees</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"10.5"},{"1":"13.3"},{"1":"26.0"},{"1":"18.3"},{"1":"52.2"},{"1":"9.2"},{"1":"26.1"},{"1":"17.6"},{"1":"40.5"},{"1":"31.8"},{"1":"47.2"},{"1":"11.4"},{"1":"2.7"},{"1":"69.3"},{"1":"44.4"},{"1":"16.9"},{"1":"35.7"},{"1":"5.4"},{"1":"44.2"},{"1":"2.2"},{"1":"4.3"},{"1":"7.8"},{"1":"38.1"},{"1":"2.2"},{"1":"11.4"},{"1":"51.5"},{"1":"4.9"},{"1":"39.7"},{"1":"32.6"},{"1":"51.8"},{"1":"43.6"},{"1":"2.3"},{"1":"44.6"},{"1":"31.5"},{"1":"40.3"},{"1":"22.3"},{"1":"43.3"},{"1":"37.5"},{"1":"29.1"},{"1":"27.9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1039,7 +1113,6 @@ cols(
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>trees</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diameter"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"10.5"},{"1":"13.3"},{"1":"26.0"},{"1":"18.3"},{"1":"52.2"},{"1":"9.2"},{"1":"26.1"},{"1":"17.6"},{"1":"40.5"},{"1":"31.8"},{"1":"47.2"},{"1":"11.4"},{"1":"2.7"},{"1":"69.3"},{"1":"44.4"},{"1":"16.9"},{"1":"35.7"},{"1":"5.4"},{"1":"44.2"},{"1":"2.2"},{"1":"4.3"},{"1":"7.8"},{"1":"38.1"},{"1":"2.2"},{"1":"11.4"},{"1":"51.5"},{"1":"4.9"},{"1":"39.7"},{"1":"32.6"},{"1":"51.8"},{"1":"43.6"},{"1":"2.3"},{"1":"44.6"},{"1":"31.5"},{"1":"40.3"},{"1":"22.3"},{"1":"43.3"},{"1":"37.5"},{"1":"29.1"},{"1":"27.9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1057,7 +1130,11 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x=</span>diameter)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/trees-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/trees-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Extra 1: comments come later, but you might care to note (if only for yourself) that the distribution is a little skewed to the right, or, perhaps better, has <em>no</em> left tail at all. You might even observe that diameters cannot be less than 0 (they are measurements), and so you might expect a skew away from the limit.</p>
@@ -1066,7 +1143,11 @@ cols(
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">sample=</span>diameter)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/trees-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/trees-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If the data come from a normal distribution, the points should follow the straight line, at least approximately. Here, most of the points do, except for the points on the left, which veer away upwards from the line: that is, the highest values, on the right, are about right for a normal distribution, but the lowest values, on the left, <em>don’t go down low enough</em>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Thus, the problem with normality is not the long tail on the right, but the short one on the left. It is hard to get this kind of insight from the histogram, but at the moment, it’s the best we have.</p>
@@ -1184,7 +1265,6 @@ dbl (4): 2-Day, 4-Day, 14-Day, control
 </div>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cholest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["2-Day"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["4-Day"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["14-Day"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["control"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"270","2":"218","3":"156","4":"196"},{"1":"236","2":"234","3":"NA","4":"232"},{"1":"210","2":"214","3":"242","4":"200"},{"1":"142","2":"116","3":"NA","4":"242"},{"1":"280","2":"200","3":"NA","4":"206"},{"1":"272","2":"276","3":"256","4":"178"},{"1":"160","2":"146","3":"142","4":"184"},{"1":"220","2":"182","3":"216","4":"198"},{"1":"226","2":"238","3":"248","4":"160"},{"1":"242","2":"288","3":"NA","4":"182"},{"1":"186","2":"190","3":"168","4":"182"},{"1":"266","2":"236","3":"236","4":"198"},{"1":"206","2":"244","3":"NA","4":"182"},{"1":"318","2":"258","3":"200","4":"238"},{"1":"294","2":"240","3":"264","4":"198"},{"1":"282","2":"294","3":"NA","4":"188"},{"1":"234","2":"220","3":"264","4":"166"},{"1":"224","2":"200","3":"NA","4":"204"},{"1":"276","2":"220","3":"188","4":"182"},{"1":"282","2":"186","3":"182","4":"178"},{"1":"360","2":"352","3":"294","4":"212"},{"1":"310","2":"202","3":"214","4":"164"},{"1":"280","2":"218","3":"NA","4":"230"},{"1":"278","2":"248","3":"198","4":"186"},{"1":"288","2":"278","3":"NA","4":"162"},{"1":"288","2":"248","3":"256","4":"182"},{"1":"244","2":"270","3":"280","4":"218"},{"1":"236","2":"242","3":"204","4":"170"},{"1":"NA","2":"NA","3":"NA","4":"200"},{"1":"NA","2":"NA","3":"NA","4":"176"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1207,7 +1287,6 @@ Caused by error in `h()`:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>cholest <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">xbar =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">2-Day</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["xbar"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"253.9286"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1225,7 +1304,6 @@ Caused by error in `h()`:
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>cholest <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>() <span class="ot">-&gt;</span> cholest1</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>cholest1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["x2_day"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x4_day"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x14_day"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["control"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"270","2":"218","3":"156","4":"196"},{"1":"236","2":"234","3":"NA","4":"232"},{"1":"210","2":"214","3":"242","4":"200"},{"1":"142","2":"116","3":"NA","4":"242"},{"1":"280","2":"200","3":"NA","4":"206"},{"1":"272","2":"276","3":"256","4":"178"},{"1":"160","2":"146","3":"142","4":"184"},{"1":"220","2":"182","3":"216","4":"198"},{"1":"226","2":"238","3":"248","4":"160"},{"1":"242","2":"288","3":"NA","4":"182"},{"1":"186","2":"190","3":"168","4":"182"},{"1":"266","2":"236","3":"236","4":"198"},{"1":"206","2":"244","3":"NA","4":"182"},{"1":"318","2":"258","3":"200","4":"238"},{"1":"294","2":"240","3":"264","4":"198"},{"1":"282","2":"294","3":"NA","4":"188"},{"1":"234","2":"220","3":"264","4":"166"},{"1":"224","2":"200","3":"NA","4":"204"},{"1":"276","2":"220","3":"188","4":"182"},{"1":"282","2":"186","3":"182","4":"178"},{"1":"360","2":"352","3":"294","4":"212"},{"1":"310","2":"202","3":"214","4":"164"},{"1":"280","2":"218","3":"NA","4":"230"},{"1":"278","2":"248","3":"198","4":"186"},{"1":"288","2":"278","3":"NA","4":"162"},{"1":"288","2":"248","3":"256","4":"182"},{"1":"244","2":"270","3":"280","4":"218"},{"1":"236","2":"242","3":"204","4":"170"},{"1":"NA","2":"NA","3":"NA","4":"200"},{"1":"NA","2":"NA","3":"NA","4":"176"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1237,7 +1315,6 @@ Caused by error in `h()`:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>cholest1 <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">xbar =</span> <span class="fu">mean</span>(x2_day, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["xbar"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"253.9286"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1254,7 +1331,11 @@ Caused by error in `h()`:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cholest, <span class="fu">aes</span>(<span class="at">x=</span>control)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/luprands-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/luprands-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Pick a number of bins that shows the shape reasonably well. Too many or too few won’t. (Sturges’ rule says 6, since there are 30 observations and <span class="math inline">\(2^5=32\)</span>.) Seven bins also works, but by the time you get to 8 bins or more, you are starting to lose a clear picture of the shape. Four bins is, likewise, about as low as you can go before getting too crude a picture.</p>
@@ -1345,7 +1426,11 @@ mean of x
 <p>To illustrate my first idea, let’s pretend the population looks like this, with a flat top:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/brunhopter-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/brunhopter-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Only values between 0 and 1 are possible, and each of those is equally likely. Not very normal in shape. So let’s take some random samples of size <em>three</em>, not in any sense a large sample, from this “uniform” population, and see what kind of sample means we get. This technique is called <strong>simulation</strong>: rather than working out the answer by math, we’re letting the computer approximate the answer for us. Here’s one simulated sample:</p>
@@ -1368,7 +1453,11 @@ mean of x
 <span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_mean =</span> <span class="fu">mean</span>(my_sample)) <span class="sc">%&gt;%</span> </span>
 <span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> my_mean)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/toeber-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/toeber-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is our computer-generated assessment of what the sampling distribution of the sample mean looks like. Isn’t this looking like a normal distribution?</p>
@@ -1385,7 +1474,11 @@ mean of x
 <div class="cell">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cholest, <span class="fu">aes</span>(<span class="at">x=</span>control)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/schauffhusen-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/schauffhusen-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That brings us to my second idea above.</p>
@@ -1419,7 +1512,11 @@ mean of x
 <span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_mean =</span> <span class="fu">mean</span>(my_sample)) <span class="sc">%&gt;%</span> </span>
 <span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> my_mean)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="one-sample-inference_files/figure-html/schuomarchers-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="one-sample-inference_files/figure-html/schuomarchers-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That looks pretty normal, not obviously skewed, and so the <span class="math inline">\(t\)</span> procedures we used will be reliable enough.</p>
@@ -1522,10 +1619,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1535,8 +1631,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1549,6 +1654,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1592,6 +1816,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1617,6 +1842,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1678,17 +1929,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./working-with-dataframes.html" class="pagination-link">
+      <a href="./working-with-dataframes.html" class="pagination-link  aria-label=" &lt;span="" with="" dataframes&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./two-sample-inference.html" class="pagination-link">
+      <a href="./two-sample-inference.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Two-sample inference</span>">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-sample inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

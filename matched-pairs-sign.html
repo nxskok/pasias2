@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,33 +96,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
-
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matched-pairs-sign.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matched-pairs-sign.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Matched pairs t and sign test</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -126,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Problems and Solutions in Applied Statistics (2nd ed)</a> 
@@ -400,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -442,7 +474,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -586,7 +620,6 @@ dbl (3): athlete, xray, ultrasound
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bodyfat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["athlete"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["xray"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ultrasound"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"5.00","3":"4.75"},{"1":"2","2":"7.00","3":"3.75"},{"1":"3","2":"9.25","3":"9.00"},{"1":"4","2":"12.00","3":"11.75"},{"1":"5","2":"17.25","3":"17.00"},{"1":"6","2":"29.50","3":"27.50"},{"1":"7","2":"5.50","3":"6.50"},{"1":"8","2":"6.00","3":"6.75"},{"1":"9","2":"8.00","3":"8.75"},{"1":"10","2":"8.50","3":"9.50"},{"1":"11","2":"9.25","3":"9.50"},{"1":"12","2":"11.00","3":"12.00"},{"1":"13","2":"12.00","3":"12.25"},{"1":"14","2":"14.00","3":"15.50"},{"1":"15","2":"17.00","3":"18.00"},{"1":"16","2":"18.00","3":"18.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -640,7 +673,11 @@ mean difference
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> xray <span class="sc">-</span> ultrasound) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> diff)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/bodyfat-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/bodyfat-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>I don’t know whether you’d call that “approximately normal” or not. We are in kind of a double-bind with this one: the sample size is small, so normality matters, but with a small sample, the data might not look very normal. It’s kind of skewed right, but most of the evidence for the skewness is contained in those two observations with difference 2 and above, which is pretty flimsy evidence for anything. (In the normal quantile plot below, the suggestion is that those two observations really are a bit too large. It’s easier to tell there.)</p>
@@ -650,7 +687,11 @@ mean difference
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> xray <span class="sc">-</span> ultrasound) <span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> diff)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/bodyfat-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/bodyfat-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is showing a little evidence of skewness or outliers (depending on your point of view: either is good). The lowest and highest values are both too high, and the pattern of points on the plot is kind of curved (which would be evidence of skewness). Or you could say that the two highest values are too high, with the other values being more or less in line (that would be evidence of outliers at the upper end). I like outliers better than skewness, since those bottom-end points are not far off the line. I would also accept “no substantial problems”, if you can make the case that those two highest points are not too far off the line. With only 16 observations as we have here, even truly normal data would stray off the line a bit.</p>
@@ -681,7 +722,6 @@ dbl (3): student, baseball, softball
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>throws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["student"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["baseball"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["softball"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"65","3":"57"},{"1":"2","2":"90","3":"58"},{"1":"3","2":"75","3":"66"},{"1":"4","2":"73","3":"61"},{"1":"5","2":"79","3":"65"},{"1":"6","2":"68","3":"56"},{"1":"7","2":"58","3":"53"},{"1":"8","2":"41","3":"41"},{"1":"9","2":"56","3":"44"},{"1":"10","2":"70","3":"65"},{"1":"11","2":"64","3":"57"},{"1":"12","2":"62","3":"60"},{"1":"13","2":"73","3":"55"},{"1":"14","2":"50","3":"53"},{"1":"15","2":"63","3":"54"},{"1":"16","2":"48","3":"42"},{"1":"17","2":"34","3":"32"},{"1":"18","2":"49","3":"48"},{"1":"19","2":"48","3":"45"},{"1":"20","2":"68","3":"67"},{"1":"21","2":"30","3":"27"},{"1":"22","2":"26","3":"25"},{"1":"23","2":"28","3":"25"},{"1":"24","2":"26","3":"31"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -744,7 +784,6 @@ FALSE  TRUE
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>throws2 <span class="sc">%&gt;%</span> <span class="fu">count</span>(diff<span class="sc">&gt;</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["diff > 0"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"3"},{"1":"TRUE","2":"21"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -809,7 +848,6 @@ dbl (3): student, baseball, softball
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>throws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["student"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["baseball"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["softball"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["diff"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"65","3":"57","4":"8"},{"1":"2","2":"90","3":"58","4":"32"},{"1":"3","2":"75","3":"66","4":"9"},{"1":"4","2":"73","3":"61","4":"12"},{"1":"5","2":"79","3":"65","4":"14"},{"1":"6","2":"68","3":"56","4":"12"},{"1":"7","2":"58","3":"53","4":"5"},{"1":"8","2":"41","3":"41","4":"0"},{"1":"9","2":"56","3":"44","4":"12"},{"1":"10","2":"70","3":"65","4":"5"},{"1":"11","2":"64","3":"57","4":"7"},{"1":"12","2":"62","3":"60","4":"2"},{"1":"13","2":"73","3":"55","4":"18"},{"1":"14","2":"50","3":"53","4":"-3"},{"1":"15","2":"63","3":"54","4":"9"},{"1":"16","2":"48","3":"42","4":"6"},{"1":"17","2":"34","3":"32","4":"2"},{"1":"18","2":"49","3":"48","4":"1"},{"1":"19","2":"48","3":"45","4":"3"},{"1":"20","2":"68","3":"67","4":"1"},{"1":"21","2":"30","3":"27","4":"3"},{"1":"22","2":"26","3":"25","4":"1"},{"1":"23","2":"28","3":"25","4":"3"},{"1":"24","2":"26","3":"31","4":"-5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -884,7 +922,6 @@ $p_values
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pvals =</span> <span class="fu">pval_sign</span>(my.med, throws, diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["my.med"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pvals"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"6.604195e-05"},{"1":"2","2":"5.247879e-02"},{"1":"4","2":"8.388197e-01"},{"1":"6","2":"6.776395e-01"},{"1":"8","2":"2.100396e-01"},{"1":"10","2":"2.265584e-02"},{"1":"12","2":"1.489639e-03"},{"1":"14","2":"6.604195e-05"},{"1":"16","2":"3.588200e-05"},{"1":"18","2":"5.722046e-06"},{"1":"20","2":"2.980232e-06"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -898,7 +935,6 @@ $p_values
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pvals =</span> <span class="fu">pval_sign</span>(my.med, throws, diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["my.med"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pvals"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"6.604195e-05"},{"1":"0.5","2":"2.771616e-04"},{"1":"1.0","2":"1.489639e-03"},{"1":"1.5","2":"2.265584e-02"},{"1":"2.0","2":"5.247879e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -912,7 +948,6 @@ $p_values
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pvals =</span> <span class="fu">pval_sign</span>(my.med, throws, diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["my.med"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pvals"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"8.0","2":"0.21003962"},{"1":"8.5","2":"0.15158963"},{"1":"9.0","2":"0.05247879"},{"1":"9.5","2":"0.02265584"},{"1":"10.0","2":"0.02265584"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -991,7 +1026,6 @@ dbl (2): jan2016, jan2017
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>salaries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["employee"],"name":[1],"type":["chr"],"align":["left"]},{"label":["jan2016"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["jan2017"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"36.00","3":"39.50"},{"1":"B","2":"41.25","3":"47.00"},{"1":"C","2":"40.00","3":"45.00"},{"1":"D","2":"42.80","3":"49.00"},{"1":"E","2":"51.00","3":"57.75"},{"1":"F","2":"50.50","3":"54.00"},{"1":"G","2":"56.00","3":"62.00"},{"1":"I","2":"57.80","3":"69.90"},{"1":"J","2":"62.00","3":"66.80"},{"1":"K","2":"65.50","3":"71.00"},{"1":"L","2":"66.00","3":"72.00"},{"1":"M","2":"68.90","3":"74.00"},{"1":"N","2":"71.00","3":"80.00"},{"1":"O","2":"72.30","3":"79.00"},{"1":"P","2":"74.65","3":"80.00"},{"1":"Q","2":"77.00","3":"83.10"},{"1":"R","2":"79.90","3":"82.50"},{"1":"S","2":"81.00","3":"92.00"},{"1":"T","2":"83.25","3":"85.00"},{"1":"U","2":"90.00","3":"101.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1017,7 +1051,11 @@ dbl (2): jan2016, jan2017
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> jan2017 <span class="sc">-</span> jan2016) <span class="sc">%&gt;%</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> diff)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/salaryinc-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/salaryinc-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A couple of coding notes: (i) you can take the differences 2016 minus 2017 if you like (then they will tend to be negative), (ii) <code>ggplot</code> used in a pipeline like this does <em>not</em> have a data frame first (the data frame used is the nameless output from the <code>mutate</code>, with the differences in it).</p>
@@ -1083,7 +1121,8 @@ mean of x
     6.185 </code></pre>
 </div>
 </div>
-<p>Whichever way you do it, the P-value is the same <span class="math inline">\(2.271 \times 10^{-9}\)</span>, which is a whole lot less than 0.05, so there is no doubt at all that salaries are increasing.</p>
+<p>Whichever way you do it, the P-value is the same <span class="math inline">\(2.271 \times
+10^{-9}\)</span>, which is a whole lot less than 0.05, so there is no doubt at all that salaries are increasing.</p>
 <p>(Your intuition ought to have expected something like this, because everyone’s 2017 salary appears to be greater than their 2016 salary.)</p>
 <p>Extra: you might be feeling that we ought to be doing a matched-pairs sign test, which you could do this way:</p>
 <div class="cell">
@@ -1153,7 +1192,6 @@ dbl (3): athlete, xray, ultrasound
 </div>
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>bodyfat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["athlete"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["xray"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ultrasound"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"5.00","3":"4.75"},{"1":"2","2":"7.00","3":"3.75"},{"1":"3","2":"9.25","3":"9.00"},{"1":"4","2":"12.00","3":"11.75"},{"1":"5","2":"17.25","3":"17.00"},{"1":"6","2":"29.50","3":"27.50"},{"1":"7","2":"5.50","3":"6.50"},{"1":"8","2":"6.00","3":"6.75"},{"1":"9","2":"8.00","3":"8.75"},{"1":"10","2":"8.50","3":"9.50"},{"1":"11","2":"9.25","3":"9.50"},{"1":"12","2":"11.00","3":"12.00"},{"1":"13","2":"12.00","3":"12.25"},{"1":"14","2":"14.00","3":"15.50"},{"1":"15","2":"17.00","3":"18.00"},{"1":"16","2":"18.00","3":"18.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1175,7 +1213,11 @@ dbl (3): athlete, xray, ultrasound
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bodyfat2, <span class="fu">aes</span>(<span class="at">sample =</span> diff)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/bodyfat-sign-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/bodyfat-sign-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is showing a little evidence of skewness or outliers (depending on your point of view: either is good). The lowest and highest values are both too high, and the pattern of points on the plot is kind of curved (which would be evidence of skewness). Or you could say that the two highest values are too high, with the other values being more or less in line (that would be evidence of outliers at the upper end). I like outliers better than skewness, since those bottom-end points are not far off the line. I would also accept “no substantial problems”, if you can make the case that those two highest points are not too far off the line. With only 16 observations as we have here, even truly normal data would stray off the line a bit.</p>
@@ -1236,7 +1278,6 @@ dbl (2): before, after
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>blood_pressure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["person"],"name":[1],"type":["chr"],"align":["left"]},{"label":["before"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["after"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"p1","2":"132","3":"118"},{"1":"p2","2":"135","3":"137"},{"1":"p3","2":"149","3":"140"},{"1":"p4","2":"133","3":"139"},{"1":"p5","2":"119","3":"107"},{"1":"p6","2":"121","3":"116"},{"1":"p7","2":"128","3":"122"},{"1":"p8","2":"132","3":"124"},{"1":"p9","2":"119","3":"115"},{"1":"p10","2":"110","3":"103"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1280,7 +1321,6 @@ mean difference
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">difference =</span> before <span class="sc">-</span> after) <span class="ot">-&gt;</span> blood_pressure</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>blood_pressure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["person"],"name":[1],"type":["chr"],"align":["left"]},{"label":["before"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["after"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["difference"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"p1","2":"132","3":"118","4":"14"},{"1":"p2","2":"135","3":"137","4":"-2"},{"1":"p3","2":"149","3":"140","4":"9"},{"1":"p4","2":"133","3":"139","4":"-6"},{"1":"p5","2":"119","3":"107","4":"12"},{"1":"p6","2":"121","3":"116","4":"5"},{"1":"p7","2":"128","3":"122","4":"6"},{"1":"p8","2":"132","3":"124","4":"8"},{"1":"p9","2":"119","3":"115","4":"4"},{"1":"p10","2":"110","3":"103","4":"7"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1337,7 +1377,11 @@ $p_values
 <div class="cell">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blood_pressure, <span class="fu">aes</span>(<span class="at">sample=</span>difference)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/vilingers-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/vilingers-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\blacksquare\)</span></p>
@@ -1362,7 +1406,11 @@ $p_values
 <span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">the_mean =</span> <span class="fu">mean</span>(the_sample)) <span class="sc">%&gt;%</span> </span>
 <span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> the_mean)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/haschin-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/haschin-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>(Code note: you can do anything with the result of a simulation, and you can use anything that might need to be normal as input to a normal quantile plot. Now that we have the normal quantile plot as a tool, we can use it wherever it might be helpful.)</p>
@@ -1398,7 +1446,6 @@ dbl (3): id, pre, post
 </div>
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>french</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pre"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["post"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"32","3":"34"},{"1":"2","2":"31","3":"31"},{"1":"3","2":"29","3":"35"},{"1":"4","2":"10","3":"16"},{"1":"5","2":"30","3":"33"},{"1":"6","2":"33","3":"36"},{"1":"7","2":"22","3":"24"},{"1":"8","2":"25","3":"28"},{"1":"9","2":"32","3":"26"},{"1":"10","2":"20","3":"26"},{"1":"11","2":"30","3":"36"},{"1":"12","2":"20","3":"26"},{"1":"13","2":"24","3":"27"},{"1":"14","2":"24","3":"24"},{"1":"15","2":"31","3":"32"},{"1":"16","2":"30","3":"31"},{"1":"17","2":"15","3":"15"},{"1":"18","2":"32","3":"34"},{"1":"19","2":"23","3":"26"},{"1":"20","2":"23","3":"26"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1554,14 +1601,22 @@ mean difference
 <div class="cell">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(french1, <span class="fu">aes</span>(<span class="at">x=</span>gain)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/french-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/french-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>or, better, a normal quantile plot (since the normality is our immediate concern):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(french1, <span class="fu">aes</span>(<span class="at">sample=</span>gain)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/french-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/french-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>(note that the horizontal lines of points are because the test scores were whole numbers, therefore the differences between them are whole numbers also, and some of the teachers had the same difference in scores as others.)</p>
@@ -1587,7 +1642,11 @@ mean difference
 <span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">my_mean =</span> <span class="fu">mean</span>(my_sample)) <span class="sc">%&gt;%</span> </span>
 <span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> my_mean)) <span class="sc">+</span> <span class="fu">stat_qq</span>() <span class="sc">+</span> <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="matched-pairs-sign_files/figure-html/french-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="matched-pairs-sign_files/figure-html/french-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The bootstrapped sampling distribution of the sample mean difference is about as normal as you could reasonably wish for, so there was no need to worry. Only a very few of the most extreme samples were at all off the line.</p>
@@ -1724,10 +1783,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1737,8 +1795,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1751,6 +1818,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1794,6 +1980,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1819,6 +2006,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1880,17 +2093,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./mood-median.html" class="pagination-link">
+      <a href="./mood-median.html" class="pagination-link  aria-label=" &lt;span="" median="" test&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mood median test</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./normal-quantile.html" class="pagination-link">
+      <a href="./normal-quantile.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>Normal quantile plots</span>">
         <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Normal quantile plots</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
