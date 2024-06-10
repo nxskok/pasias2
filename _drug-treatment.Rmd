@@ -174,7 +174,7 @@ Solution
 This is `Surv` in package `survival`. The response
 variable needs to encode two things: the time until the event of
 interest (return to drug use) and whether or not that event
-happened for each patient.^[Some people define the response variable right inside the `coxph`, in the same way as putting something like `log(y)` as a response in an `lm`, but I think, especially while you're getting used to the process, it's better to create the response variable first and look at it to make sure it's the right thing.]
+happened for each patient.^[I now define the response variable right inside the `coxph`, in the same way as putting something like `log(y)` as a response in an `lm`, but I think, especially while you're getting used to the process, it's better to create the response variable first and look at it to make sure it's the right thing.]
 In this case, that is
 `censor="returned"`. 
 
@@ -182,18 +182,7 @@ In this case, that is
 y <- with(drugusers, Surv(time, censor == "returned"))
 ```
 
-       
-
-Use whatever name you gave to the level of `censor` that means "returned to drug use". 
-
-Once again, there is no problem with adding a new column `y` to your dataframe, thus:
-
-```{r}
-drugusers %>% 
-  mutate(y = Surv(time, censor == "returned"))
-```
-
-Add your response as a stand-alone vector or as a new column; your choice.
+Since we are doing this to test whether it is the right thing, we can save it in something outside of the dataframe, and then look at it (which we do in a moment).
 
 $\blacksquare$
 
@@ -216,7 +205,7 @@ head(y)
 The fifth value is marked with a `+` because it is a censored
 value: this is a patient who was never observed to go back to drug
 use. You can tell this by looking at the `head` of the entire
-data frame:
+data frame:^[Or, `slice` off the first few rows.]
 
 ```{r drug-treatment-10 }
 head(drugusers)
@@ -227,10 +216,8 @@ head(drugusers)
 since this patient has `censor="no-return"`. The other ones have
 `censor="returned"`; these are all "uncensored" in the jargon.
 
-If you added a new column `y` to your dataframe, you can see all this in one go by looking at the fifth row of the dataframe.
-
 Typically, censored values will be bigger than uncensored ones,
-because (in general) the individual will be observed until the study
+because (in most cases) the individual will be observed until the study
 ends, and studies of this kind carry on for years:
 
 ```{r drug-treatment-11 }
@@ -276,9 +263,10 @@ yet. Display the results.
 
 Solution
 
+For the thing to go on the left of the squiggle, copy the `Surv()` thing you made before and paste it in (once you have it working):
 
 ```{r drug-treatment-13 }
-drugusers.1 <- coxph(y ~ age + ndrugtx + treat + site + herco, data = drugusers)
+drugusers.1 <- coxph(Surv(time, censor == "returned") ~ age + ndrugtx + treat + site + herco, data = drugusers)
 summary(drugusers.1)
 ```
 
@@ -417,9 +405,10 @@ $\blacksquare$
 (j) We have three variables left in our model, `age`,
 `ndrugtx` and `treat`. The quartiles of age are 27 and
 37, the quartiles of `ndrugtx` are 1 and 6, and the two
-possible values of `treat` are `short` and `long`. Create a data frame
+possible values of `treat` are `short` and `long`. The quartiles and median of the times to return are about 80, 160, and 360.
+Create a data frame
 with variables of these names and all possible combinations of their
-values (so there should be 8 rows in the resulting data
+values (so there should be 24 rows in the resulting data
 frame). Display the resulting data frame.
 
 
@@ -434,67 +423,86 @@ call it `new` and construct it in pieces as I did before
 ages <- c(27, 37)
 ndrugtxs <- c(1, 6)
 treats <- c("short", "long")
-new <- datagrid(model = drugusers.2, age = ages, ndrugtx = ndrugtxs, treat = treats)
+times <- c(80, 160, 360)
+new <- datagrid(model = drugusers.2, age = ages, ndrugtx = ndrugtxs, treat = treats, time = times)
 new
 ```
 
        
 
-8 rows as promised.
+24 rows as promised. Note that the predicted probabilities of returning to drug use (or not having done so yet) will depend on the timescale you are looking at: the longer you wait, the more likely the previous drug user will have gone back to using.
     
 
 $\blacksquare$
 
 (k) Obtain predicted survival probabilities for each of the
-values of `age`, `ndrugtx` and `treat` used in
-the previous part. You don't need to display it (we are going to
-plot it shortly). 
+values of `age`, `ndrugtx`,`treat`, and `time` used in
+the previous part. Display at least some of it.
 
 Solution
 
+This is the usual `marginaleffects` stuff. I like to limit the display to the columns of interest so that it's not too wide. Don't forget the `type` here:
 
-`survfit` is the survival analysis version of
-`predict` and works the same way, so this is all you need:
-
-```{r drug-treatment-20 }
-pp <- survfit(drugusers.2, new, data = drugusers)
+```{r}
+cbind(predictions(drugusers.2, newdata = new, type = "survival")) %>% 
+  select(age, ndrugtx, treat, time, estimate)
 ```
 
-       
 
-Make sure that you use your best model, ie.\ the second one. The
-`data=` is needed for the plot below, not in itself for the
-prediction. 
+Make sure that you use your best model, ie. the second one. 
+
+This gives you a vague picture of the effects of things. The probability of survival (not having gone back to using drugs) decreases over time, and you can get an idea of the effect of the explanatory variables in the model. For example, if you use the first six rows, you can see that the effect of a short treatment vs a long one is to decrease the probability of survival somewhat (that is to say, to make it a little *more* likely that the user will have gone back to using drugs), comparing the same values for age, number of previous treatments, and time.
 
 $\blacksquare$
 
-(l) Plot your predicted survival curves. 
+(l) Plot your predicted survival curves to show the effect of each explanatory variable over time. This is most easily done with three separate plots.
 
 
 Solution
 
+This is `plot_predictions`, remembering to put time first in the `condition` and to have a `type` also.
 
-This:
+Effect of age first:
 
-```{r drug-treatment-21 }
-ggsurvplot(pp, conf.int = F)
+```{r}
+plot_predictions(drugusers.2, condition = c("time", "age"), type = "survival")
 ```
 
-   
+Five different ages were chosen for us. The best survival, at the top of the traces on the graph, is the purple and blue curves, which go with the oldest ages, so these are the least likely to go back to using drugs, all else equal.
 
-The only thing to remember is that you plot your *predictions*,
-not the model from which they came.
+Number of drug treatments:
 
-If your plot didn't come out, you may have to go back and re-do the
-`survfit` with the `data=` at the end.
-
-For reference in a minute:
-
-```{r drug-treatment-22 }
-new
+```{r}
+plot_predictions(drugusers.2, condition = c("time", "ndrugtx"), type = "survival")
 ```
 
- 
+Likewise, the graph shows some representative numbers of previous treatments, and the more of them there were, the worse the survival is. This is consistent with my comments on the `ndrugtx` coefficient on the `summary` output.
+
+
+Treatment:
+
+```{r}
+plot_predictions(drugusers.2, condition = c("time", "treat"), type = "survival")
+```
+
+A long treatment is a bit better than a short one. (I don't know why the warning happened on  this one.)
+
+You might be curious about what happens if you glue all *three* explanatory variables onto `condition`. If you are, try it and see:
+
+```{r}
+plot_predictions(drugusers.2, condition = c("time", "age", "ndrugtx", "treat"), 
+                 type = "survival")
+```
+
+What has happened here is that `plot_predictions` has used facets to accommodate the other explanatory variables, specifically `facet_grid` (rather than `facet_wrap`) because there are two additional explanatory variables, one of which is horizontal facets and the other one is vertical facets.
+
+To assess the effect of each explanatory variable, hold the others constant. Thus:
+
+- To assess age, pick one of the ten facets and see that the highest age is best (no matter which facet you pick)
+- To assess number of previous drug treatments, pick a row and see what happens as you go to the right (the survival is worse as `ndrugtx` increases)
+- To assess short vs. long treatment, pick a column and compare the top facet with the bottom one. This is not easy to see, but survival in the top facet is better (so that the longer treatment is better).
+
+My take is that the individual plots make it easier to assess the individual effects, but if you are willing to put in the work to assess the effects, you can make just the one graph and interpret that.
 
 $\blacksquare$
 
@@ -508,14 +516,11 @@ Solution
 
 Remember that "up and to the right" is the best survival
 curve: that is, the people on this survival curve are predicted
-to take the longest to return to drug use. On my plot, this is
-the pale blue survival curve, stratum 5. Going back to my
-combinations data frame, this is 37-year-olds with only one
-previous drug treatment and the longer drug treatment this time.
+to take the longest to return to drug use. 
 
-The worst is my green survival curve, stratum 4, which is
-the exact opposite of this: 27-year-olds, 6 previous drug
-treatments, shorter treatment this time.
+This is easiest to see from my combined plot: the best survival curve of all is the top left one: age 56, no previous drug treatments, long treatment. The worst one is the bottom right one: age 20, 40 previous drug treatments, short treatment. (It's hard to see which age is worst in this graph, but you infer that the age effect is the same as on all the other facets.)
+
+From the individual graphs, name the best and worst values on each one, and the best and worst survival overall will come from the combinations of those. This gives the same answer as above.
 
 "Returning to drug use" is like "death" in that you want it
 to be a long time before it happens, so "best" is top right on
@@ -540,25 +545,6 @@ the slope coefficients in `drugusers.2` were positive or
 negative came to exactly the same conclusion. So the survival
 curves and part (<a href="#part:posneg">here</a>) are entirely consistent.
 
-On my plot with the legend, you can assess the effects of the
-individual variables: for example, to assess the effect of age,
-find two combos that differ only in age, say strata 1 and 5, the
-red and light blue ones. Of these, the light blue survival curve is
-higher, so age 37 is better in terms of survival than age
-27. This will work whichever such pair you pick: for example,
-strata 3 and 7, the olive green and purple curves, compare
-the same way. 
-
-Extra: more comparisons for you to do: to assess the effect of number of
-previous treatments, compare eg. strata 1 and 3, red and olive
-green, and to assess the effect of treatment length, compare
-eg. strata 5 and 6, light blue and darker blue.
-
-All this struggling to identify colours makes me think of
-[link](https://blog.xkcd.com/2010/05/03/color-survey-results/), in
-which the guy behind the webcomic XKCD did a survey where he
-showed people a whole bunch of different colours and asked the
-people to name the colours.
     
 $\blacksquare$
 

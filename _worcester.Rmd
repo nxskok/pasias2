@@ -81,15 +81,8 @@ I listed the values by way of checking. The ones with a `+` are
 censored: that is, the patient was still alive the last time the
 doctor saw them. Most of the censored values are longer times. Usually
 this happens because the patient was still alive at the end of the study.
+
  
-This is perhaps now the old way of doing it, because you can now create `y` as a new column in your dataframe:
-
-```{r}
-whas100 %>% mutate(y = Surv(lenfol, fstat == 1))
-```
-
-
-If you scroll across, this has a column `y` that contains the same values as the stand-alone `y` we defined earlier, including plus signs for censored ones. At the top of the column is an indication that this is a `Surv` object: that is, not just a column of numbers, but something that also contains censorship information.
 
 $\blacksquare$
 
@@ -101,14 +94,15 @@ need to comment on it yet).
 Solution
 
 
-This, using the response variable that we just created:
+This, using the `Surv` that we just created:
 
 ```{r worcester-3 }
-whas100.1 <- coxph(y ~ age + gender + bmi, data = whas100)
+whas100.1 <- coxph(Surv(lenfol, fstat == 1) ~ age + gender + bmi, data = whas100)
 summary(whas100.1)
 ```
 
-   
+
+Gender is actually categorical, but because there are only two different values (0 and 1) in the dataset, we can get away with treating it as quantitative here. (The coefficient is actually the effect on the log-hazard of being gender 1, female, rather than gender 0, male).   
  
 $\blacksquare$
 
@@ -207,16 +201,12 @@ whas100 %>%
 ```
 
  
-Or, pure tidyverse: summarize all the columns (after you've done the `select`). 
+Or, pure tidyverse: summarize the two columns you want using `across`. This one is `reframe` rather than `summarize` because `quantile` returns five values (the five-number summary) rather than just one. The challenge with this kind of thing is getting the brackets right: there should be one bracket closed after `bmi` (the one  belonging to `c`), but the `across` has to include both the columns to work with *and* the thing to do with them (work out the 5-number summary of each one), so there are no more close-brackets before the `\(x) quantile(x)` but several after: the one closing the `quantile`, the one closing the `across`, and the one closing the `reframe`. When you close a bracket, R Studio shows you the corresponding open bracket, and if you close too many, the offending one will get a red squiggly line under it:
 
 ```{r worcester-9 }
 whas100 %>%
-  select(age, bmi) %>%
-  reframe(across(everything(), \(x) quantile(x)))
+  reframe(across(c(age, bmi), \(x) quantile(x)))
 ```
-
-This one is `reframe` rather than `summarize` because the "summaries" are five numbers rather than one.
-
 
 Using whichever of this multitude of ways appeals to you:
 
@@ -258,26 +248,31 @@ at the results, though you can if you want to.)
  
 Solution
 
+This is an edited version of an old problem where the above was all you needed to do, but to use `predictions` from `marginaleffects`, you need to add a column of times as well. In this problem, the times are in `lenfol`, so we'll use the median and quartiles of those as well, rounded off. It doesn't really matter what times you use, as long as they show the passage of survival probabilities over time in some reasonable way:
 
-The magic word is `survfit` (which plays the role of
-`predictions` here). The best model is `whas100.2`,
-with the non-significant `gender` removed:
-
-```{r worcester-12 }
-pp2 <- survfit(whas100.2, whas100.new, data = whas100)
+```{r}
+quantile(whas100$lenfol)
 ```
 
-      
+so say, 700, 1900, and 2100:
 
-This doesn't need the `data=` at the end (it works perfectly
-well without), but the plot (later) seems to need it to be there. I
-think the plot needs the information from the original data to be in
-the predictions somewhere.
+```{r}
+whas100.new <- datagrid(model = whas100.2, age = c(60, 71, 80), 
+                        bmi = c(24, 27, 30), lenfol = c(700, 1900, 2100))
+whas100.new
 
-This is kind of long to look at (`summary(pp2)` would be the
-thing), so we will need to make a graph of it. I gave it a name, since
-I want to use it again later.
- 
+```
+
+and then
+
+```{r}
+cbind(predictions(whas100.2, newdata = whas100.new, type = "survival")) %>% 
+  select(age, bmi, lenfol, estimate)
+```
+
+This is getting unwieldy to look at, but the hint here is that the effect of increasing  `bmi` is to *increase* the probability of survival (comparing the same age and the same `lenfol`, as in the first, fourth, and seventh rows).
+
+
 $\blacksquare$
 
 (j) Make a graph depicting the survival curves from
@@ -286,29 +281,25 @@ survival curves.
  
 Solution
 
+Let's do it all in one go this time:
 
-This is actually easy once you work out what to do:
-
-```{r worcester-13 }
-ggsurvplot(pp2, conf.int = FALSE)
+```{r}
+plot_predictions(whas100.2, condition = c("lenfol", "age", "bmi"), type = "survival")
 ```
 
- 
+This puts time on the  $x$-axis, age as colours (it selects some values for you), and `bmi` as facets. Both `age` and `bmi` are quantitative, so there is no reason why they should be this way around rather than `bmi` first and `age` second, which would be equally good.
 
-Without the `conf.int` thing, you get confidence intervals for
-each survival curve, which overlap each other and generally make the
-plot look messy.
+If you will find this a bit much to interpret, do two graphs, one for age and one  for BMI:
 
-The "strata" are the different age-BMI combinations that you
-predicted for, so it's usually a good idea to list the "new"
-prediction data frame, either here or when you assess the effects of
-the variables (next part) so that you can see which is which:
-
-```{r worcester-14 }
-whas100.new
+```{r}
+plot_predictions(whas100.2, condition = c("lenfol", "age"), type = "survival")
 ```
 
- 
+```{r}
+plot_predictions(whas100.2, condition = c("lenfol", "bmi"), type = "survival")
+```
+
+
  
 $\blacksquare$
 
@@ -323,30 +314,11 @@ Bear in mind that up-and-to-the-right is best for a survival
 curve, since that means that people in the upper-right group have
 a higher chance of surviving for longer.   
 
-The best survival curve is therefore the olive-green one. According
-to the legend, this goes with stratum 3, which is (according to
-the listing of `whas100.new`) age 60 (the youngest) and BMI
-30 (the highest). So it looks as if the best survival goes with a
-lower age (not surprising) and a higher BMI (surprising; see
-discussion about BMI below).  
+The best survival curve of all is the red one in the last facet. This goes with the youngest age (32), but the *highest* BMI, and therefore it is better to be younger in terms of survival (no surprise) but to have a *higher* BMI, which you might find surprising given the relationship between high BMI and obesity.
 
-You can also leave one variable constant and see the effects of
-changing the other one. Let's pick the oldest age 80: the BMI
-values are 24 (stratum 7, blue), 27 (stratum 8, purple), 30
-(stratum 9, pink). These survival curves are the bottom one, the
-second bottom one, and the fourth bottom one. At this age,
-survival chances are not great, but having a higher BMI goes with
-a greater chance of surviving longer.  
+If you prefer to interpret the separate plots for age and BMI, which are respectively for an average BMI, presumably about 27 and an average age, presumably about 70: a younger age is better in terms of survival (the red curve), and a higher BMI is better for survival (the pink curve).
 
-Or pick a BMI, say 30. These are strata 3 (olive green), 6 (light blue)
-and 9 (pink) respectively for ages 60, 71 and 80. These are the
-best, 3rd best and 5th best survival curves; that is, as age
-increases, the chance of surviving a long time decreases.  
-
-The effect of BMI, though, seems backwards: a higher BMI is
-associated with a *higher* chance of survival.   
-
-That's the end of what I wanted you to do, but:
+Extra: That's the end of what I wanted you to do, but:
 
 A higher BMI is usually associated with being obese (and therefore
 unhealthy), so you'd expect the effect of BMI to be the other way
@@ -358,7 +330,8 @@ the body recover from a heart attack.
 Let's start with the martingale residual plot:
 
 ```{r worcester-15 }
-ggcoxdiagnostics(whas100.2) + geom_smooth()
+whas100.2 %>% augment(whas100) %>% 
+  ggplot(aes(x = .fitted, y = .resid)) + geom_point() + geom_smooth()
 ```
 
      
@@ -386,62 +359,22 @@ survival chances decrease again.
 Have we improved the residuals by adding the squared term?
 
 ```{r worcester-17 }
-ggcoxdiagnostics(whas100.3) + geom_smooth()
+whas100.3 %>% augment(whas100) %>% 
+  ggplot(aes(x = .fitted, y = .resid)) + geom_point() + geom_smooth()
 ```
 
  
 
 I call those "inconsequential wiggles" now, so I think we are good.
-Let's explore the quadratic relationship on a graph.
+Let's explore the quadratic relationship on a graph. What matters now is how survival depends on BMI, so we can use an average age such as the one that `plot_predictions` will give us, and hence:
 
-I'm going to focus on a close-to-median age of 70, since, in this
-model, the effect of BMI is the same for all ages (to make it
-different, we would need an interaction term, ANOVA-style). 
-
-First we create a data frame with a bunch of different BMIs in, and
-one age 70:
-
-```{r worcester-18 }
-bmis <- seq(20, 36, 4)
-ages <- 70
-whas100.new.2 <- datagrid(model = whas100.3, bmi = bmis, age = ages)
-whas100.new.2
+```{r}
+plot_predictions(whas100.3, condition = c("lenfol", "bmi"), type = "survival")
 ```
 
- 
 
-It is rather absurd to have a plural `ages` with only one age
-in it, but that's the way it goes, if you're me and trying to avoid thinking.
-
-Predictions, using the model with the squared term in it:
-
-```{r worcester-19 }
-pp3 <- survfit(whas100.3, whas100.new.2, data = whas100)
-```
-
- 
-
-And then the plot:
-
-```{r worcester-20 }
-ggsurvplot(pp3, conf.int = F)
-```
-
- 
-
-and the customary reminder of which stratum is which, with its rather
-ungainly name:
-
-```{r worcester-21 }
-whas100.new.2
-```
-
- 
-
-This time, the green survival curve is best, stratum 3, which means that
-survival is best at BMI 28, and worse for both higher BMIs and lower
-BMIs. You can follow the sequence of colours: red, olive-green, green,
-blue, pink, that goes up and then down again. But it's still true
+This time, the blue and green survival curves are best, which go with BMI of about 30 and 27, values that are in the middle of the range. Both the low BMIs (red and yellow curves) and the highest one (pink, about 40) are associated with worse survival.
+But it's still true
 that having a very *low* BMI is worst, which is why our (linear)
 model said that having a higher BMI was better.
 

@@ -39,6 +39,9 @@ that makes a `tibble`, but this one wasn't read in from a
 file. It was stored in the package as an old-fashioned
 `data.frame`, and so that's how it stays.
 
+
+
+
 $\blacksquare$
 
 (b) The columns of interest to us are:
@@ -61,8 +64,16 @@ proportional-hazards model.
 
 Solution
 
+You'll notice that `rx` (treatment) is a number, but it really should be categorical, so let's first replace it with the categorical version of itself so that we don't get in trouble later:
 
-The idea is to use the appropriate one(s) of these columns in
+```{r}
+ovarian %>% 
+  mutate(rx = factor(rx)) -> ovarian
+ovarian
+```
+
+
+Now, the idea is to use the appropriate one(s) of these columns in
 `Surv`. Remember that the response variable in a survival
 model encodes two things: the survival time, and whether or not
 the event (here death) actually happened to that patient or not.
@@ -79,24 +90,7 @@ y
      
 
 This creates a separate variable `y` outside of any data
-frame. This is how, in the past, it had to be done, because although `y`
-looks as if it is 26 long (one per patient), it's actually more
-complicated than that. But adding it as a column to a dataframe now works just fine:
-
-```{r ovarian-4, error=T}
-ovarian %>% mutate(y = Surv(futime, fustat)) -> ov2
-ov2
-```
-
- 
-
-Internally `y` is a `matrix` with two columns:
-
-```{r ovarian-5 }
-print.default(y)
-```
-
-but everything is handled properly when you add it to a dataframe (note the `Surv` at the top of the column to indicated that it is a survival-time object, encoding a survival time and survivorship status both).
+frame. This is fine, because when we actually fit the model, we repeat the `Surv` rather than using the `y` we just made, which was only for practice.
 
 
 $\blacksquare$
@@ -153,33 +147,11 @@ Solution
 The hint suggests something like this:
 
 ```{r ovarian-6 }
-time.1 <- coxph(y ~ age + factor(rx), data = ovarian)
+time.1 <- coxph(Surv(futime, fustat) ~ age + rx, data = ovarian)
 summary(time.1)
 ```
 
-     
-
-Alternatively, define the factor version of `rx` in the data
-frame first. This is the slick way to do that:
-
-```{r ovarian-7 }
-time.1a <- ovarian %>%
-  mutate(rxf = factor(rx)) %>%
-  coxph(y ~ age + rxf, data = .)
-summary(time.1a)
-```
-
- 
-
-The answer is the same either way. 
-The `data=.` means "use the data frame that came out of the previous step, the one with `rxf` in it."
-
-Alternatively, use the dataframe I called `ov2` with `y` in it:
-
-```{r}
-time.1b <- coxph(y ~ age + factor(rx), data = ov2)
-summary(time.1b)
-```
+Because I made `rx` categorical earlier, I have nothing extra to do here. If you didn't, you might need `factor(rx)` here and below.
 
 
 $\blacksquare$
@@ -191,9 +163,19 @@ Solution
 
 
 
-Look at the P-value for my `factor(rx)2`, 0.203. This is
+Look at the P-value for my `rx2`, 0.203. This is
 not small, so there is no evidence of a difference between
 treatments. 
+
+I got away with something here, which is that treatment is actually categorical, so I should have tested it with `drop1`:
+
+```{r}
+drop1(time.1, test = "Chisq")
+```
+
+The reason it didn't matter here is that there were only two treatments, and therefore that testing the coefficient was equivalent to testing the whole categorical variable (a one degree of freedom test either way). If there had been three or more treatments, then the `summary` table would have compared each one with the baseline treatment, which is not the same as testing for *any* differences among treatments.
+
+The P-values are very close but not identical because `drop1` is using a so-called likelihood ratio test, and `summary` is using a Wald test, and they are different. In a regular regression, these two tests are identical, but once you get away from regression, they are only "asymptotically equivalent", meaning that they would be identical if you had an infinitely large sample size, but for actual real sample sizes, they can be a bit different. Usually though, as here, they are not different enough to change your conclusion about significance.
 
 Extra: the reason for the odd label is that we have turned
 treatment into a categorical variable; treatment 1 is used as the
@@ -231,7 +213,7 @@ end. Part of your job as a statistician is explaining what you got
 to people who are doctors, managers, etc., who won't
 understand the terminology. 
 
-Thus, one mark for assessing significance
+Thus, when this was on an assignment, one mark for assessing significance
 via P-value, one for looking at the slope coefficient and noting
 that it is positive, and one for getting to "older patients do     not survive as long", or 
 "older patients have a larger chance of dying sooner". 
@@ -273,14 +255,14 @@ graph showing that the treatment groups are similar in terms of
 important things like `age`. Here, that could be a boxplot:
 
 ```{r ovarian-9 }
-ggplot(ovarian, aes(x = factor(rx), y = age)) + geom_boxplot()
+ggplot(ovarian, aes(x = rx, y = age)) + geom_boxplot()
 ```
 
  0.14733
 
-I needed to do `factor(rx)` because `geom_boxplot`
+You might need to do `factor(rx)` because `geom_boxplot`
 needs a genuine categorical variable, not just a numerical variable
-masquerading as one. If you just leave it as `rx`, as I
+masquerading as one. If you just leave it as the numerical `rx`, as I
 discovered, you get *one* boxplot of all the ages together
 regardless of treatment. The key, for you as user of software, is not
 (necessarily) to get it right the first time, but to know what to do
@@ -302,11 +284,11 @@ any problems? Explain briefly.
 Solution
 
 
-The plot is just the same idea as the one in the notes. Make sure
-you have `survminer` installed and loaded:
+The plot is just the same idea as the one in the notes:
 
 ```{r ovarian-10 }
-ggcoxdiagnostics(time.1) + geom_smooth()
+time.1 %>% augment(ovarian) %>% 
+  ggplot(aes(x = .fitted, y = .resid)) + geom_point() + geom_smooth()
 ```
 
      
@@ -376,11 +358,28 @@ remembering that "treatment" is called `rx` here:
 
 ```{r ovarian-13 }
 ages <- c(50.17, 62.38)
-rxs <- c(1, 2)
+rxs <- c("1", "2")
 new <- datagrid(model = time.1, age = ages, rx = rxs)
 new
 ```
 
+The values 1 and 2 for `rx` should be in quotes (they are levels of a categorical variable), but it seems to work all right if they are not (this might be `datagrid` being clever on our behalf).
+
+Extra: recall that actual predictions of survival probabilities also depend on time, which is in `futime` here. Let's pick about three times:
+
+```{r}
+quantile(ovarian$futime)
+```
+
+ so, say, 350, 500, and 800 (rounded-off median and quartiles):
+ 
+```{r}
+ages <- c(50.17, 62.38)
+rxs <- c("1", "2")
+futimes <- c(350, 500, 800)
+new <- datagrid(model = time.1, age = ages, rx = rxs, futime = futimes)
+new
+```
  
 
 
@@ -393,36 +392,13 @@ times. (This is only one thing, despite it sounding like a lot.)
 
 Solution
 
-
-The magic word here is `survfit`. The structure is the same
-as for `predictions`:
-
-```{r ovarian-14 }
-s <- survfit(time.1, new, data = ovarian)
-summary(s)
+```{r}
+cbind(predictions(time.1, newdata = new, type = "survival")) %>% 
+  select(age, rx, futime, estimate)
 ```
 
-   
 
-I didn't ask you to display it, so doing so is optional. Also, you
-don't need (here) that `data=ovarian` (the predictions will
-work just fine without it), but the plot coming up *will not*. So
-my recommendation is to put it in.
-
-Extra: The four columns `survival1` through `survival4` are the
-survival probabilities for the times shown in the left-hand column
-(these are numbers of days), for the four *rows* of my
-`new`, in the same order.
-
-There are only a few different times, because these are the numbers of
-days at which somebody in the data set died, and the estimated
-survival probability does not change at the times in between
-these. (You'll see this on a plot in a minute.)
-
-These survival probabilities are pretty easy to eyeball: the best
-survival is in stratum 2, which is the younger patients in treatment
-2. This we'll come back to.
-
+To eyeball these: the effect of treatment seems to be smallish (compare rows 1 and 4, or 2 and 5, of what you see here), but the effect of age is more substantial (compare rows 1 and 7, with the same treatment but different ages, or rows 2 and 8). This matches up to what we found out about significance earlier.
 
 $\blacksquare$
 
@@ -432,57 +408,40 @@ different times.
 
 Solution
 
+One plot per explanatory variable might be easier to interpret:
 
-Thus. The `conf.int=FALSE` means to skip the confidence interval
-"envelopes" that I find make the plot rather messy:
-
-```{r ovarian-15 }
-ggsurvplot(s, conf.int = FALSE)
-```
 ```{r}
-new
+plot_predictions(time.1, condition = c("futime", "age"), type = "survival")
 ```
 
-   
+
+and
+
+
+```{r}
+plot_predictions(time.1, condition = c("futime", "rx"), type = "survival")
+```
+
+Or you could put both age and treatment on one plot. Treatment is categorical, so this might fit better on facets (ie. as the last thing in `condition`):
+
+```{r}
+plot_predictions(time.1, condition = c("futime", "age", "rx"), type = "survival")
+```
+
 
 $\blacksquare$
 
-(k) According to your plot, how would you describe the effects of
+(k) According to your plot(s), how would you describe the effects of
 treatment and of age?
 	
 
 Solution
 
+The best survival curve is up and to the right (if we are trying to avoid an unfavourable event such as death, here). 
 
-The best survival curve, in terms of surviving longest, is up and to
-the right, so the green one is best and the blue one is
-worst.^[In other cases, having the event happen sooner is    better. For example, you might be poisoning rats, in which case    you want them to die quicker. Or the event might be something    desirable like becoming qualified to fly an airplane. In those    cases, down and to the left is better.] To figure out which those
-are, we have to go back to the data frame we created:
-
-```{r ovarian-16 }
-new
-```
-
-  
-
-To see the effect of age, compare strata 1 and 3 (or 2 and 4). This
-means comparing the red and blue curves; the red one is clearly better
-(in the sense of longer survival time), which means that age has a big
-effect on survival, with younger people living longer, other things
-being equal (that we saw earlier was significant). You could
-equally well compare the green and purple survival curves and come to
-the same conclusion.
-
-To assess the effect of treatment, compare strata 1 and 2 (red and
-green), or strata 3 and 4 (blue and purple). In both cases, the
-stratum corresponding to treatment 2 has slightly better survival (has
-a higher chance of living for longer), but there is not as big an
-effect as for age. (You'll recall that the treatment difference was
-not significant).
-
-State or imply that you know which stratum is
-which, say something about the effects of age and
-of treatment, including which one is better.
+- On the plot for age, the best age is the youngest one (38.9 years old on the graph: it picked some ages for us). The envelopes for ages seem to be distinct, for the most part, so that the effect of age appears to be a real one.
+- On the plot for treatment, treatment 2 appears to be better than treatment 1, but the envelopes are indistinguishable, which is consistent with the treatment difference not being significant.
+- On the two-facet plot with both explanatory variables, the age effect is clear, with the youngest age at the top and the oldest at the bottom (so being younger is associated with better survival) in each facet. To assess the treatment effect, compare the patterns in the left and right facet: the story is very much the same, so treatment doesn't make much difference to survival.
 
 Extra: recall the output from the Cox model:
 

@@ -3,6 +3,7 @@
 ```{r 17-survival-analysis-1, eval=F}
 library(survival)
 library(tidyverse)
+library(marginaleffects)
 library(survminer)
 ```
 

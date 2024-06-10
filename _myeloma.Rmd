@@ -106,41 +106,26 @@ mean, without using a technical term.
 
 Solution
 
+This is really practice for the `Surv` that you are about to use in fitting a model, so it doesn't matter whether you save the results anywhere. 
 
-I seem to call my response variables `y`, but you can call
-yours whatever you like. Two things to consider: the survival times, here
-`time`, and the indicator of the event, here
-`vstatus` being 1.
 
-The modern way is to define the response variable right back into the dataframe, thus:
+Two things to consider: the survival times, here
+`time`, and the indicator of the event (death), here
+`vstatus` being 1. Sometimes, though not here, the column that is `vstatus` here is used to capture various types of outcome such as "lost to follow-up" (meaning, we don't know what happened to this patient) or "died of something else", and it is then important to make sure that you know which of these outcomes is the one of interest to you.
+
+
+I've changed my mind on this over the years: putting the `Surv` right in the `coxph` (next part) is what I do now, because that plays best with `marginaleffects` (later), so for me this part is just practice at getting the `Surv` right:
 
 ```{r}
-myeloma %>% mutate(y = Surv(time, vstatus == 1)) -> myeloma
-myeloma
+with(myeloma, Surv(time, vstatus == 1))
 ```
 
-You see that the new column (on the end) is of type `Surv`, to reflect the fact that it is not just a number (a survival time) but also encodes whether or not the individual was observed to die at that time.
-
-The old way (that still works) is to create `y` *outside* the dataframe, like this: 
-
-```{r myeloma-4 }
-y <- with(myeloma, Surv(time, vstatus == 1))
-y
-```
-
-
-
-Or use
-`myeloma$` (twice) before the variable names.
-
-The values of `y` that have a `+` by them go with
+The values of that have a `+` by them go with
 patients who were never observed to die (or were still alive at the
 end of the study). There were 17 of these, listed at the end of the
 data frame. Usually, these values of the response will be higher than
 the others, but they weren't here. (Maybe some of these patients were
 withdrawn from the study, or they joined it late.) 
-    
-The reason we used to have to do it this way is that `tibble`s didn't until recently have the ability to store a thing like the above `y` as a column, because it wasn't just a number. Now, it is stored like a list-column, and all that matters is that it is a column of *something*, one survival-time-plus-censorship-status for each observation.
 
 $\blacksquare$
 
@@ -156,7 +141,8 @@ I was trying to dissuade you from using the word "censored" in
 the previous part, since I wanted you to demonstrate that you
 understood what it *meant*. But you should know the technical
 term as well, which is why I asked you for it here.
-Grading note: if this part and the previous one contain,
+
+Grading note, for when this was on an assignment: if this part and the previous one contain,
 somewhere, the word "censored" *and* a clear explanation of
 what "censored" means, then I don't mind what is where.
     
@@ -176,33 +162,17 @@ The obvious way to do this is to list all the other variables on
 the right side of the squiggle, but a faster way is this:
 
 ```{r myeloma-5 }
-y.1 <- coxph(y ~ . - time - vstatus, data = myeloma)
-summary(y.1)
+myeloma.1 <- coxph(Surv(time, vstatus == 1) ~ ., data = myeloma)
+summary(myeloma.1)
 ```
 
      
 
 The `.` in this model formula means 
 "all the columns in the data frame" 
-(except for the response variable if it was in the data
-frame, which here it was not). I used `time` and
-`vstatus` to make `y`, so I had to exclude them explicitly.
+(except for those used in the response variable). I used `time` and
+`vstatus` to make the response, so I had no need to exclude them explicitly.
 
-If you forget to exclude `time` and `vstatus`, you are
-in danger of having a model that fits perfectly:
-
-```{r myeloma-6 }
-y.00 <- coxph(y ~ ., data = myeloma)
-summary(y.00)
-```
-
- 
-
-The warning at the top is your clue that something has gone
-wrong. This kind of warning *can* happen with real data, but not
-often: it is usually an indication that something is wrong with the
-way you specified the model. If you look at the output, you'll realize
-that predicting survival time from survival time makes no sense at all.
 
 There is of course nothing wrong with typing out all the variable
 names, except that the first time you type them out, you will likely
@@ -223,11 +193,11 @@ larger, usually much larger.
 Because there are so many variables to remove, I am frightened
 away from `update` here (which I would normally try to use
 in this situation). I'm going to copy-and-paste my code for
-`y.1` and edit it:
+`myeloma.1` and edit it:
 
 ```{r myeloma-7 }
-y.2 <- coxph(y ~ logbun + hgb, data = myeloma)
-summary(y.2)
+myeloma.2 <- coxph(Surv(time, vstatus == 1) ~ logbun + hgb, data = myeloma)
+summary(myeloma.2)
 ```
 
      
@@ -251,30 +221,21 @@ Comparing two models is `anova`, which also works here. The
 right `test` is `Chisq`:
 
 ```{r myeloma-8 }
-anova(y.2, y.1, test = "Chisq")
+anova(myeloma.2, myeloma.1, test = "Chisq")
 ```
 
      
 
 The usual logic here: this is far from significant, so the null
 hypothesis (that the two models are equally good) is not rejected, so
-we prefer the smaller model `y.2` because it is simpler.
+we prefer the smaller model `myeloma.2` because it is simpler.
 
-I wasn't sure about the `Model 2` line of my `anova`
-output (what are `time` and `vstatus` doing there?), but
-the test has 7 degrees of freedom, which is correct since we started with 9
-explanatory variables and finished with 2, so that we took out 7 of
-them. I checked what went off the right side of the page: there is a
-`-time-vstatus` on the end, so that it is correct. What
-happened is that the `.` got expanded out into all the
-variables separated by `+`, and then whatever else (the
-"minus" variables) were on the end.
 
 In case you are curious, `step` also works on models like these:
 
 ```{r myeloma-9 }
-y.3 <- step(y.1, direction = "backward", trace = 0)
-summary(y.3)
+myeloma.3 <- step(myeloma.1, direction = "backward", trace = 0)
+summary(myeloma.3)
 ```
 
 
@@ -304,7 +265,7 @@ third quartiles, any way you like.
 Solution
 
 
-The obvious way is probably this:
+The most concise way is probably this:
 
 ```{r myeloma-10 }
 quantile(myeloma$logbun)
@@ -345,7 +306,7 @@ myeloma %>% summarize(
 )
 ```
 
-Next is the tidyverse-approved way to get both quartiles for both variables at once. Use `across` to select the variables to use, and then something with a squiggle and a dot to say "do this on each of the columns selected in the `across`". If you have a cleverer way to select those two columns without naming them, go for it. Read this in English as "for each of the columns `logbun` and `hgb`, work out the first and third quantiles of it", where the dot is read as "it":
+Next is the tidyverse-approved way to get both quartiles for both variables at once. Use `across` to select the variables to use, and then something with a squiggle and a dot to say "do this on each of the columns selected in the `across`". If you have a cleverer way to select those two columns without naming them, go for it. Read this in English as "for each of the columns `logbun` and `hgb`, work out the first and third quantiles of it", where the dot is read as "it". This works but is not the best way:
 
 ```{r myeloma-14}
 myeloma %>% 
@@ -353,7 +314,18 @@ myeloma %>%
                    \(x) quantile(x, c(0.25, 0.75))))
 ```
 
-We have lost which quartile is which, but of course the lower one must be Q1 and the higher one Q3 for each variable.^[The way, as we  have seen elsewhere, is to use `tidy(quantile)` or `enframe(quantile)`, which  produce a two-column data frame with the percentiles shown.]
+The warning says that `summarize` is designed for situations where the summary is a *single* number. (The people behind `summarize` have changed their mind on this; it used to work, indeed it still does work, but "deprecated" means "one day it will stop working and our advice is to work out what to do now rather than later".) Reading the warning carefully is the right way to figure out what to do. The `tidyverse` people have put a good deal of effort into making their messages readable and helpful, so the least we can do is to repay their hard work. 
+
+The message says to use `reframe` rather than `summarize`, so let's try that:
+
+```{r}
+myeloma %>% 
+  reframe(across(c(logbun, hgb), 
+                   \(x) quantile(x, c(0.25, 0.75))))
+```
+
+
+This works without warnings. We have lost which quartile is which, but of course the lower one must be Q1 and the higher one Q3 for each variable.^[The way, as we  have seen elsewhere, is to use `tidy(quantile)` or `enframe(quantile)`, which  produce a two-column data frame with the percentiles shown.]
     
 
 $\blacksquare$
@@ -367,7 +339,7 @@ Solution
 This is `datagrid`. My best model is the one I called `y.2` (I had to scroll back a ways to find it), so:
 
 ```{r}
-new <- datagrid(model = y.2, logbun = c(1.14561, 1.5682), hgb = c(8.8, 12.0))
+new <- datagrid(model = myeloma.2, logbun = c(1.14561, 1.5682), hgb = c(8.8, 12.0))
 new
 ```
 
@@ -380,31 +352,31 @@ the end is a data frame with columns called `logbun` and
 to round the `logbun` values off more, for example to two
 decimals, that's fine; it won't affect the graph that's coming up.
     
+In fact, for predictions, you also need some times to predict for. We'll use 10, 20, and 35, gluing those onto the end of the `datagrid`:
+
+```{r}
+new <- datagrid(model = myeloma.2, logbun = c(1.14561, 1.5682), 
+                hgb = c(8.8, 12.0), time = c(10, 20, 35))
+new
+```
+
 
 $\blacksquare$
 
 (i) Obtain predicted survival probabilities for each of the
-combinations of variables you created above. You don't need to look
-at the results (they are rather long).
-
+combinations of variables you created above. 
 
 Solution
 
+This is `predictions` from `marginaleffects`:
 
-This seems as if it ought to be `predictions`, but the
-`survival` version of it is called `survfit`:
-
-```{r myeloma-16 }
-s <- survfit(y.2, new, data = myeloma)
+```{r}
+cbind(predictions(myeloma.2, newdata = new, type = "survival")) %>% 
+  select(logbun, hgb, time, estimate)
 ```
 
-     
+Despite what it says in the original question, this is not too long to look at (the old way was). For example, increasing `hgb`  increases survival probability somewhat, if you compare the same `logbun` at the same time, and increasing `logbun` for the some `hgb` decreases survival probability by a bit more.
 
-It works the same as `predictions`: a fitted model object (your
-smaller survival model), and a data frame of values to predict
-for. The `data=` is not strictly needed here, but if you want
-`ggsurvplot` to work right, you *do* need it to be here.
-    
 
 $\blacksquare$
 
@@ -414,15 +386,32 @@ combination of your variables.
 
 Solution
 
+You can do this in one shot or two, but it's `plot_predictions` either way.
 
-This is easier than you think: it's just `ggsurvplot` from `survminer`:
+The one-shot version is to put both `logbun` and `hgb` in at once (with `time` first, since the predictions depend on time which goes on the $x$-axis):
 
-```{r myeloma-17 }
-ggsurvplot(s, conf.int = FALSE)
+```{r}
+plot_predictions(myeloma.2, condition = c("time", "logbun", "hgb"), type = "survival")
 ```
 
-     
-    
+The first thing in `condition` goes on the $x$-axis (time), the second thing is colour (the selected values of `logbun`), and the third thing is facets (the selected values of `hgb`).
+
+If you don't like that, or don't fancy your chances of interpreting it (in a moment), do the two explanatory variables one at a time. First this:
+
+```{r}
+plot_predictions(myeloma.2, condition = c("time", "logbun"), type = "survival")
+```
+
+and then this:
+
+```{r}
+plot_predictions(myeloma.2, condition = c("time", "hgb"), type = "survival")
+```
+
+Keep the time first, to make sure it appears on the plot where it should. These two graphs leave you only one thing to compare (the colours, each time).
+
+
+
 
 $\blacksquare$
 
@@ -433,28 +422,25 @@ variables in your prediction? Explain briefly.
 Solution
 
 
-Those four "strata" are the four rows in your prediction data
-frame (the four combinations). They are in the same order that
-they were in `new` (or whatever name you used):
+The best survival curve is the top-right one in each case.
 
-```{r myeloma-18 }
-new
-```
+On the graph of `logbun`, this is the red curve, that goes with the *lowest* value of `logbun`.  So the lowest value on this variable is the best, and as `logbun` increases, the survival gets progressively worse. With `hgb`, it is the other way around: the lowest value is worst, and the highest value (pink curve) is the best.
 
-  
+If you prefer the one-shot graph with both explanatory variables on it:
 
-The best survival curve is the top-right green one. This is
-stratum^[Strata is plural; the singular is *stratum*. Like  data and datum.] 
-2, from the legend at the top. In `new`,
-this goes with a low value of `logbun` and a *high* value
-of `hgb`. 
+- to assess `logbun`, pick a facet, and see which curve is best: the red one, which goes with the *lowest* `logbun` value.
+- to assess `hgb`, cast your eye across the facets (along the first row and then the second) and see what is happening to the survival curves as you move from one facet to the next. These ones are moving up in their facet, so survival is improving as `hgb` increases (those numbers on the top of the facets are values of `hgb`).
 
-You can check this by looking at the *worst* survival curve,
-which should be diametrically opposed. This is the blue one, stratum
-3, which is *high* `logbun` and *low* `hgb`,
-indeed exactly the opposite of the best one.
+Another way to think about this is to mentally compare all of those survival curves and ask which is the best out of all of them: the one for `logbun` 0.7782 (the smallest value), and `hgb` 14.6 (the largest value).
 
-Things that are tests, like `logbun`, are often set up so that
+Extra 1: the conclusions from the graphs are the same as those from the `summary` table (as they should be). The coefficient of `logbun` is 1.72, positive, so that a higher value is associated with a higher hazard of death (and thus a smaller value is better). On the other hand, the coefficient of `hgb`, -0.12, is negative, so that a higher value *decreases* the hazard of death, and is thus better. You might find it confusing that things are this way around; the story is that you have to get used to it, and one way to do that is to phrase it in terms of hazard of death (or whatever the event is), and then decide whether that is good or bad.
+
+Extra 2: for `ggplot` enthusiasts among you: when you have three variables in a `plot_predictions`, the plot uses `facet_wrap`. When you have *four* of them (as one of the plots in one of the other problems does), it uses `facet_grid`, which is the way to handle *two* extra categorical or made-categorical variables. In this case, the quantitative variables `hgb` and `logbun` have been broken up into five distinct values, although they could take any of the values in between; they have been made categorical to enable us to draw a graph.
+
+Extra 3: the model we fitted here assumes that each variable has a one-directional effect: that is, survival is better the higher the variable's value gets (`hgb`) or the lower it gets (`logbun`), but it can't change direction. You might imagine an explanatory variable that has a "best" value: survival improves as the value increases, until it reaches the best value, and then, as it increases further, survival gets worse again. To model something like that, you might add a squared term in the variable and see whether that is significant; if it is, the relationship is curved rather than linear. An example of a variable for which that might be true is blood pressure; it is dangerous to have a blood pressure that is too high ("hypertension") or one that is too low ("hypotension").
+
+
+Extra 4: Things that are tests, like `logbun`, are often set up so that
 a high value is the abnormal one (so that an abnormal one will be easy
 to spot). Things that are measurements, like `hgb`, might have
 an ideal range, but the better value could be high or low, depending
