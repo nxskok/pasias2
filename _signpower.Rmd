@@ -48,7 +48,7 @@ SD 15, so we use `rnorm` with this mean and SD, obtaining
 10 values:
 
 ```{r signpower-2 }
-x=rnorm(10,50,15)  
+x <- rnorm(10,50,15)  
 x
 ``` 
 
@@ -378,6 +378,12 @@ This one has a small P-value and so the null median of 0 should be
 We'll use these ideas to simulate the power of the $t$-test for these
 data, testing a mean of 0. This uses the same ideas as for any power
 simulation; the difference here is the true distribution:
+
+```{r}
+#| include: false
+set.seed(457299)
+```
+
 
 ```{r signpower-19}
 tibble(sim = 1:1000) %>% 

@@ -21,7 +21,7 @@ set.seed(457298)
 ```       
 
 ```{r power-sim-2 }
-x=rnorm(10,20,2)
+x <- rnorm(10,20,2)
 x
 ```       
 
